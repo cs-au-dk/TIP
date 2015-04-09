@@ -1,0 +1,29 @@
+main() {
+	var x,y,z;
+	
+	//z=49;
+	z=1;
+	
+	x = 0;
+	y = 0;
+
+	if(x>0){
+		x=x-8;
+	} else {
+		x=x+7;
+	}
+
+	if(y>0){
+		y=y-8;
+	} else {
+		y=y-7;
+	}
+	
+	z=x*y;
+	
+	/*while(input){
+		x = x*(0-1);
+	}*/
+
+	return 0;
+}

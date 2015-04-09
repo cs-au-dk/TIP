@@ -1,0 +1,56 @@
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'scala'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+    }
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    flatDir {
+       dirs 'lib'
+   	}
+}
+
+
+dependencies {
+	compile 'org.scala-lang:scala-library:2.11.*'
+	compile 'org.parboiled:parboiled_2.11:2.0.1'
+    compile 'junit:junit:4.12'
+}
+
+
+/* To speed-up compilation using a daemon */
+compileScala {
+    scalaCompileOptions.useCompileDaemon = true
+
+    // optionally specify host and port of the daemon:
+    scalaCompileOptions.daemonServer = "localhost:4243"
+}
+
+
+/* To have incremental compilation */
+tasks.withType(ScalaCompile) {
+    scalaCompileOptions.useAnt = false
+}
+
+/* To generate the gradle wrapper */
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+
+apply plugin:'application'
+
+
+installDist {
+    outputs.dir "./bin"
+}
+
+mainClassName = "tip.entry"

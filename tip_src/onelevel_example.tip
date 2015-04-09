@@ -1,0 +1,8 @@
+main() {
+	var s1,s2,s3,p,q;
+	p = &s1;
+	p = &s2;
+	q = &s3;
+	q = p;
+	return s1;
+}

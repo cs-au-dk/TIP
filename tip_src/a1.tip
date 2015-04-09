@@ -1,0 +1,26 @@
+map(l,f,z) {
+  var r;
+  if (l==null){
+  	r=z;
+  } else {
+  	r=(f)(map(*l,f,z));
+  }
+  return r;
+}
+
+foo(i) {
+  return i+1;
+}
+
+main() {
+  var h,t,n;
+  t = null;
+  n = 42;
+  while (n>0) {
+    n = n-1;
+    h = malloc;
+    *h = t;
+    t = h;
+  }
+  return map(h,foo,0);
+}

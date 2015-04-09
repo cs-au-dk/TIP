@@ -1,0 +1,12 @@
+main() {
+	var p,q,x,y,z;
+	p = malloc;
+	x = y;
+	x = z;
+	*p = z;
+	p = q;
+	q = &y;
+	x = *p;
+	p = &z;
+	return 0;
+}

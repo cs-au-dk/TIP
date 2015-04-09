@@ -1,0 +1,11 @@
+main() {
+	var x,y;
+	x = 0;
+	y = 0;
+	while (input) {
+		x = 7;
+		x = x+1;
+		y = y+1;
+	}
+	return y;
+}

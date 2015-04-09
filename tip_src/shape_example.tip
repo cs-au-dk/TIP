@@ -1,0 +1,13 @@
+main() {
+	var x,y,n,p,q;
+	x = malloc; y = malloc;
+	*x = null; *y = y;
+	n = input;
+	while (n>0) {
+		p = malloc; q = malloc;
+		*p = x; *q = y;
+		x = p; y = q;
+		n = n-1;
+	}
+	return 0;
+}

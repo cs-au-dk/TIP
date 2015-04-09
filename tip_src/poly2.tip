@@ -1,0 +1,3 @@
+poly(p,q){
+	return q;
+}

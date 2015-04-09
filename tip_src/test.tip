@@ -1,0 +1,10 @@
+
+foo(p){
+	return bar(foo);
+}
+
+bar(q){
+	return foo(bar);
+}
+
+

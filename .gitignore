@@ -1,0 +1,38 @@
+*.class
+*.log
+
+# sbt specific
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+
+# Scala-IDE specific
+.scala_dependencies
+
+#idea project files
+.idea/
+.idea_modules/
+/.cache
+
+# gradle eclipse files
+/.settings/
+bin/
+/.project
+/.classpath
+
+
+# gradle
+.gradle
+*.iml
+*.ipr
+*.iws
+build/
+
+# compilation tmp file
+comp.out
+
+# tip out folder
+out/

@@ -1,0 +1,9 @@
+/*
+	TIP compiler test
+*/
+
+test(p){
+	var q;
+	q=3;
+	return (*p);
+}

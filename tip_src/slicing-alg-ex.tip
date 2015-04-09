@@ -1,0 +1,26 @@
+foo(m){
+	m = m*2;
+	return m;
+}
+
+main() {
+	var x,y,i,j,k;
+	y = input;
+	x = foo(y);	
+	i = x;
+	j = y;
+	while (i>0) {
+		y = y*y;
+		i = i-1;
+	}
+	while (j>0) {
+		x = x*x;
+		j = j-1;
+	}
+	if (x>0) {
+		x = 0-x;
+	} else {
+		x = x+1;
+	}
+	return x;
+}

@@ -1,0 +1,44 @@
+bar(x){
+	return 4;
+}
+
+unnormalized(){
+	var foo;
+	var x;
+	var d;
+	
+	d = *x;
+	*d = (*foo)(&x,bar(malloc));
+	
+	return 10;
+}
+
+
+normalized(){
+	var foo;
+	var x;
+	var a1,a2;
+	var m;
+	var f1,f2;
+	var d;
+	var r;
+	
+	f1 = bar;
+	f2 = *foo;
+
+	m = malloc;
+	
+	a1 = &x;
+	a2 = (f1)(m);
+	d = *x;
+	r = (f2)(a1,a2);
+	*d = r;
+	return 10;
+}
+
+/*
+test(){
+	var x,y;
+	y = (***x)(1,2,3);
+	return 45;
+}*/

@@ -1,0 +1,10 @@
+poly(p){
+	return *p;
+}
+
+poly2(q){
+	var n;
+	//n=malloc;
+	n=poly;
+	return *q;
+}

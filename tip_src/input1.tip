@@ -1,0 +1,5 @@
+test(){
+	var a;
+	a = input;
+	return a;
+}

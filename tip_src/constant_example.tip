@@ -1,0 +1,12 @@
+main(){
+	var x,y,z;
+	x=27;
+	y=input;
+	z=2*x+y;
+	if( 0>x ){
+		y=z-3;
+	} else {
+		y=12;
+	}
+	return y;
+}
