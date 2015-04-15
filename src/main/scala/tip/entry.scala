@@ -3,6 +3,7 @@ package tip
 import java.io.{ PrintWriter, FileFilter, File }
 
 import org.parboiled2.ParseError
+import tip.Interpreter.TipInterpreter
 import tip.analysis.{ TypeAnalysis, DeclarationAnalysis }
 import tip.graph.IntraControlFlowGraph
 import tip.newAST.AIfStmt
@@ -14,6 +15,7 @@ import scala.util.{ Failure, Success }
 class Option {
   var cfg = false;
   var types = false;
+  var run = false;
   var source: File = null
   var out: File = Globals.defaultOut
 
@@ -37,6 +39,7 @@ object entry {
                | possible options are:
                | -cfg : to output the control flow graph
                | -types : to output the cfg with the types at the declaration nodes
+               | -run : run the program as the last step
                |
              """.stripMargin)
 
@@ -109,6 +112,9 @@ object entry {
                 val cnst = ta.generatedConstraints()
                 val cnstOut = cnst.mkString("\n")
                 Utils.output(file, "", OutputKind.Constraints, cnstOut, options.out)
+              }
+              if (options.run) {
+                new TipInterpreter(programNode).run()
               }
             } catch {
               case e: Exception => println(s"Error processing $file\n$e")
