@@ -1,13 +1,13 @@
 package tip.types
 
 import tip.solvers.{Cons, Var, Term}
-import tip.newAST.ASTNode
+import tip.ast.AstNode
 
 import scala.collection.immutable
 
 object TipType {
 
-  implicit def ast2term(node: ASTNode): Var[TipType] = {
+  implicit def ast2term(node: AstNode): Var[TipType] = {
     TipVar(node)
   }
 }
@@ -65,7 +65,7 @@ case class TipRef(of: Term[TipType]) extends TipType with Cons[TipType] {
   override def toString: String = s"&$of"
 }
 
-case class TipVar(node: ASTNode) extends TipType with Var[TipType] {
+case class TipVar(node: AstNode) extends TipType with Var[TipType] {
   override def toString(): String = {
     val repr = node.toString.replace("\n", "")
     val s = repr.substring(0, Math.min(repr.length, 10))
@@ -73,7 +73,7 @@ case class TipVar(node: ASTNode) extends TipType with Var[TipType] {
   }
 }
 
-case class TipAlpha(node: ASTNode) extends TipType with Var[TipType] {
+case class TipAlpha(node: AstNode) extends TipType with Var[TipType] {
   override def toString(): String = {
     s"\u03B1<$node>"
   }

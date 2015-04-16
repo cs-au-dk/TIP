@@ -32,7 +32,7 @@ To build an executable
 
 #### Build -> Run cycle
 
-A wrapper ```tipw``` is provided that compile and run tip with the provided arguments
+A wrapper ```tipw``` is provided to compile and run TIP with the given arguments.
 
 ## Command-line arguments <a name="tipcmd"></a>
 
@@ -46,11 +46,16 @@ A wrapper ```tipw``` is provided that compile and run tip with the provided argu
 
  possible options are:
  
- - -cfg : to output the control flow graph
- - -types : to output the cfg with the types at the declaration nodes
+ - -cfg:           to output the control flow graph
+ - -types:         to output the cfg with the types at the declaration nodes
+ - -sign [wl]:     enable intraprocedural sign analysis using simple fixpoint solver,
+                   the wl option enables the worklist-based fixpoint solver
+ - -liveness [wl]: to output the cfg enriched with the liveness analysis information,
+                   the wl option enables the worklist-based fixpoint solver
 
-## Documentation
+## Authors
 
-A pre-generated documentation is available [here](http://cs-au-dk.github.io/TIP/build/docs/scaladoc/)
-
+- Gianluca Mezzetti
+- [Anders M&oslash;ller](http://cs.au.dk/~amoeller/)
+- Christian Budde Christensen
 

@@ -2,7 +2,7 @@ package tip.parser
 
 import org.parboiled2._
 import shapeless.HNil
-import tip.newAST._
+import tip.ast._
 import scala.collection.{ mutable, immutable }
 
 trait Comments {
@@ -86,7 +86,7 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
   }
 
   def Digits = rule {
-    oneOrMore(CharPredicate.Digit)
+    optional("-") ~ oneOrMore(CharPredicate.Digit)
   }
 
   def Identifier: Rule1[AIdentifier] = rule {
@@ -114,7 +114,7 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
 
   def TipFunction: Rule1[AFunDeclaration] = rule {
     push(cursor) ~ Identifier ~ "(" ~ zeroOrMore(Identifier).separatedBy(",") ~ ")" ~ Block ~> { (cur: Int, id: AIdentifier, args: immutable.Seq[AIdentifier], b: ABlockStmt) =>
-      assert(b.content.last.isInstanceOf[AReturnStmt])
+      if(!b.content.last.isInstanceOf[AReturnStmt]) throw new RuntimeException(s"Missing return statement in function $id")
       AFunDeclaration(id, args, b, cur)()
     }
   }
@@ -128,7 +128,12 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
   }
 
   def Assigment: Rule1[AStmt] = rule {
-    (push(cursor) ~ Expression ~ "=" ~ Expression ~ ";" ~> ((cur: Int, e1: AExpr, e2: AExpr) => AAssignStmt(e1, e2, cur)))
+    (push(cursor) ~ Expression ~ "=" ~ Expression ~ ";" ~> {(cur: Int, e1: AExpr, e2: AExpr) => 
+      e1 match {
+        case ase: AAssignable => AAssignStmt(ase, e2, cur) 
+        case _ => throw new RuntimeException("The left side of an assignment should be assignable: i.e. a de-reference or a variable")
+      }
+    })
   }
 
   def Block: Rule1[ABlockStmt] = rule {

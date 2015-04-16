@@ -1,11 +1,12 @@
 package tip.graph
 
 import tip.dot.{ DotGraph, DotArrow, DotDirArrow, DotNode }
-import tip.newAST._
+import tip.ast._
 
 import scala.collection.mutable
 import scala.collection.mutable.ArrayBuffer
 import IntraControlFlowGraph._
+import scala.collection.immutable.Seq
 
 object GNode {
   var _uid = -1
@@ -24,7 +25,7 @@ trait GNode[A] {
   def succ: mutable.Set[GNode[A]]
 
   def id: Int
-
+  
   override def equals(obj: scala.Any): Boolean = {
     obj match {
       case o: GNode[A] => o.id == this.id
@@ -56,8 +57,9 @@ case class AuxNode[A](
   override val id: Int = GNode.uid,
   override val pred: mutable.Set[GNode[A]] = mutable.Set[GNode[A]](),
   override val succ: mutable.Set[GNode[A]] = mutable.Set[GNode[A]]()) extends GNode[A] {
-
+  
   override def toString: String = s"AuxNode-$id"
+  
 }
 
 object IntraControlFlowGraph {
@@ -65,11 +67,11 @@ object IntraControlFlowGraph {
   /**
    * A function assigning to each cfg node n an appropriate state w.r.t. the slides.
    */
-  def prettyLabeller(f:AFunDeclaration)(n:ASTNode): String = {
+  def astLabeler(f:AFunDeclaration)(n:AstNode): AstNode = {
     n match {
-      case w:AWhileStmt => w.guard.toString
-      case i:AIfStmt => i.guard.toString
-      case _ => n.toString
+      case w:AWhileStmt => w.guard
+      case i:AIfStmt => i.guard
+      case _ => n
     }
   }
 
@@ -93,7 +95,7 @@ object IntraControlFlowGraph {
   /**
    *  Generate a CFG from a program
    */
-  def generateFromProgram[A](node: AProgram, init: AFunDeclaration => ASTNode => A): Map[AFunDeclaration, IntraControlFlowGraph[A]] = {
+  def generateFromProgram[A](node: AProgram, init: AFunDeclaration => AstNode => A): Map[AFunDeclaration, IntraControlFlowGraph[A]] = {
     node.fun.foldLeft(Map[AFunDeclaration, IntraControlFlowGraph[A]]()) { (m, fun) =>
       m + (fun -> generateFromAst(fun.stmts, init(fun)).collapse())
     }
@@ -102,7 +104,7 @@ object IntraControlFlowGraph {
   /**
    * Generate a CFG from the body of a function
    */
-  def generateFromAst[A](node: ASTNode, init: (ASTNode => A)): IntraControlFlowGraph[A] = {
+  def generateFromAst[A](node: AstNode, init: (AstNode => A)): IntraControlFlowGraph[A] = {
     node match {
       case ass: AAssignStmt =>
         GRealNode(data = init(ass))
@@ -179,10 +181,12 @@ case class IntraControlFlowGraph[A](entry: GNode[A], exit: GNode[A]) {
         case aux: AuxNode[A] =>
           if (aux != curEntry || aux.succ.size == 1) {
             aux.pred.foreach { p => p.succ ++= aux.succ; p.succ -= aux }
-            aux.succ.foreach { s => s.pred ++= aux.pred }
+            aux.succ.foreach { s => s.pred ++= aux.pred; s.pred -= aux }
           }
-          if (aux == curEntry)
+          if (aux == curEntry) {
+            aux.succ.head.pred.clear()
             aux.succ.head
+          }
           else
             curEntry
         case _ =>
@@ -191,22 +195,30 @@ case class IntraControlFlowGraph[A](entry: GNode[A], exit: GNode[A]) {
     }
     IntraControlFlowGraph(newEntry, this.exit)
   }
-
+  
   private def nodes_r(n: GNode[A], visited: mutable.Set[GNode[A]]): Unit = {
     if (!visited.contains(n)) {
       visited += n
       n.succ.foreach { n => nodes_r(n, visited) }
     }
-  }
-
+  }  
+  
   /**
    * Returns a dot representation of the CFG
    */
   def toDot(): String = {
+    toDot(x => x.toString())
+  }
+
+  /**
+   * Returns a dot representation of the CFG,
+   * each node is labeled using the function labeler
+   */
+  def toDot(labeler: GNode[A] => String): String = {
     val dotNodes = mutable.Map[GNode[A], DotNode]()
     val dotArrows = mutable.MutableList[DotArrow]()
     nodes.foreach { n =>
-      dotNodes += (n -> new DotNode(n.toString))
+      dotNodes += (n -> new DotNode(labeler(n)))
     }
     nodes.foreach { n =>
       n.succ.foreach { dest =>
@@ -219,5 +231,7 @@ case class IntraControlFlowGraph[A](entry: GNode[A], exit: GNode[A]) {
     dotArrows += new DotDirArrow(entry, dotNodes(this.entry))
     dotArrows += new DotDirArrow(dotNodes(this.exit), exit)
     (new DotGraph("IntraproceduralControlFlowGraph",  entry :: exit :: allNodes, dotArrows)).toDotString
-  }
+}
+
+  
 }

@@ -2,7 +2,6 @@ package tip.solvers
 
 /**
  * A generic term: either a variable ([[Var]]), a constructor [[Cons]]
- *
  */
 sealed trait Term[A] {
 
@@ -13,7 +12,6 @@ sealed trait Term[A] {
 
 /**
  * A variable
- *
  */
 trait Var[A] extends Term[A] {
 
@@ -27,7 +25,6 @@ trait Var[A] extends Term[A] {
 /**
  * An n-ary term constructor.
  * 0-ary constructors are constants
- *
  */
 trait Cons[A] extends Term[A] {
 

@@ -1,15 +1,12 @@
-package tip.AST
-
-import tip.newAST._
+package tip.ast
 
 /**
  * A depth-first visitor of the AST
  *
- * @tparam A
  */
 trait DepthFirstAstVisitor[A] {
 
-  def visit(node: ASTNode, arg: A)
+  def visit(node: AstNode, arg: A)
 
   /**
    * Recursively perform the visit to the sub-node of the passed node, passing the provided argument
@@ -17,7 +14,7 @@ trait DepthFirstAstVisitor[A] {
    * @param node the node whose children need to be visited
    * @param arg the argument to be passed to the visit of the children
    */
-  def visitChildren(node: ASTNode, arg: A): Unit = {
+  def visitChildren(node: AstNode, arg: A): Unit = {
     node match {
       case call: ACallFuncExpr =>
         visit(call.targetFun, arg)
@@ -51,7 +48,7 @@ trait DepthFirstAstVisitor[A] {
         visit(funDec.stmts, arg)
       case p: AProgram =>
         p.fun.foreach(visit(_, arg))
-      case atom: ASTAtom =>
+      case atom: AstAtom =>
     }
   }
 }

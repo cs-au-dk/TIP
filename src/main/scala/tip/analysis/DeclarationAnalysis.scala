@@ -1,7 +1,7 @@
 package tip.analysis
 
-import tip.AST.DepthFirstAstVisitor
-import tip.newAST._
+import tip.ast.DepthFirstAstVisitor
+import tip.ast._
 import scala.collection.immutable
 
 /**
@@ -9,7 +9,7 @@ import scala.collection.immutable
  * using the syntactical scope.
  */
 case class DeclarationAnalysis(prog: AProgram)
-  extends DepthFirstAstVisitor[immutable.Map[String, ASTNode]] {
+  extends DepthFirstAstVisitor[immutable.Map[String, AIdentifierDeclaration]] {
 
   visit(prog, Map())
 
@@ -23,7 +23,7 @@ case class DeclarationAnalysis(prog: AProgram)
    * @param node the node to visit
    * @param env the environment associating with each name its declaration in the current scope
    */
-  override def visit(node: ASTNode, env: immutable.Map[String, ASTNode]): Unit = {
+  override def visit(node: AstNode, env: immutable.Map[String, AIdentifierDeclaration]): Unit = {
     node match {
       case block: ABlockStmt =>
         // We visit each statement with the environment extended
@@ -35,7 +35,7 @@ case class DeclarationAnalysis(prog: AProgram)
         }
       case funDec: AFunDeclaration =>
         // We associate to each parameter itself as definition
-        val argsMap = funDec.args.foldLeft(Map[String, AExpr]()) { (acc, cur: AIdentifier) =>
+        val argsMap = funDec.args.foldLeft(Map[String, AIdentifierDeclaration]()) { (acc, cur: AIdentifier) =>
           cur.meta.definition = Some(cur)
           acc + (cur.value -> cur)
         }
@@ -47,7 +47,7 @@ case class DeclarationAnalysis(prog: AProgram)
       case p: AProgram =>
         // We assume there can be mutually recursive function
         // So we pre-bind all the functions to their definitions before visiting each of them
-        val extended = p.fun.foldLeft(Map[String, ASTNode]()) { (accEnv, fd: AFunDeclaration) =>
+        val extended = p.fun.foldLeft(Map[String, AIdentifierDeclaration]()) { (accEnv, fd: AFunDeclaration) =>
           accEnv + (fd.name.value -> fd)
         }
         p.fun.foreach { fd => visit(fd, extended) }
@@ -75,15 +75,15 @@ case class DeclarationAnalysis(prog: AProgram)
    * @param stmt the statement to analyze
    * @return a map associating with each name the node that declares it
    */
-  private def peekDecl(stmt: AStmt): immutable.Map[String, AExpr] = {
+  private def peekDecl(stmt: AStmt): immutable.Map[String, AIdentifierDeclaration] = {
     stmt match {
       case dec: AVarStmt =>
-        dec.declIds.foldLeft(Map[String, AExpr]()) { (acc, dec) =>
+        dec.declIds.foldLeft(Map[String, AIdentifierDeclaration]()) { (acc, dec) =>
           //Note this may override (and hide) the previous declaration
           acc + (dec.value -> dec)
         }
       case _ =>
-        Map[String, AExpr]()
+        Map[String, AIdentifierDeclaration]()
     }
   }
 

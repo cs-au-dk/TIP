@@ -2,11 +2,8 @@ package tip
 
 import java.io.{ PrintWriter, File }
 
-import tip.OutputKind.OutputKind
-
 object OutputKind extends Enumeration {
-  type OutputKind = Value
-  val Cfg, Ast, Constraints = Value
+  val Cfg, Ast, Constraints , Sign, Liveness = Value
 }
 
 object Utils {
@@ -16,11 +13,13 @@ object Utils {
    * The content is written into the output, assuming the funciton is writing a specific kind of output
    *
    */
-  def output(file: File, id: String, kind: OutputKind, content: String, outFolder: File): Unit = {
+  def output(file: File, id: String, kind: OutputKind.Value, content: String, outFolder: File): Unit = {
 
     val extension = kind match {
       case OutputKind.Cfg => "_cfg.dot"
+      case OutputKind.Sign => "_cfg_sign.dot"
       case OutputKind.Ast => "_type.ttip"
+      case OutputKind.Liveness => "_liveness.dot"
       case OutputKind.Constraints => "_constraints.md"
     }
     val outFile = new File(outFolder, file.getName + id + extension)
@@ -28,7 +27,7 @@ object Utils {
     pw.write(content)
     pw.close()
 
-    println(s" - $kind for $file $id written into ${outFile}")
+    println(s"$kind for $file $id written into ${outFile}")
 
   }
 

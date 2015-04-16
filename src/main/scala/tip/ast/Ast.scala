@@ -1,4 +1,4 @@
-package tip.newAST
+package tip.ast
 
 import tip.solvers.Term
 import tip.types.TipType
@@ -13,7 +13,7 @@ import scala.collection.immutable
  * @param theType the type of the node (available for expressions only)
  */
 case class AstMetadata(
-  var definition: Option[ASTNode] = None,
+  var definition: Option[AIdentifierDeclaration] = None,
   var theType: Option[TipType] = None) {
 
   def typeStr(): String = {
@@ -63,7 +63,7 @@ case class DerefOp() extends Operator {
   override def toString: String = "*"
 }
 
-sealed abstract class ASTNode {
+sealed abstract class AstNode {
   def offset: Loc
 
   def getId: String = s"${this.getClass.getSimpleName}:$offset"
@@ -71,11 +71,13 @@ sealed abstract class ASTNode {
   def toTypedString(): String = toString
 }
 
-sealed trait ASTAtom extends ASTNode
+sealed trait AstAtom extends AstNode
+sealed trait AIdentifierDeclaration extends AstNode
+sealed trait AAssignable extends AstNode
 
 //////////////// Expressions //////////////////////////
 
-sealed trait AExpr extends ASTNode {
+sealed trait AExpr extends AstNode {
   var meta: AstMetadata
 }
 
@@ -83,7 +85,8 @@ case class ACallFuncExpr(targetFun: AExpr, args: immutable.Seq[AExpr], offset: L
   override def toString(): String = s"$targetFun(${args.mkString(",")})"
 }
 
-case class AIdentifier(value: String, offset: Loc)(var meta: AstMetadata = AstMetadata()) extends AExpr with ASTAtom {
+case class AIdentifier(value: String, offset: Loc)(var meta: AstMetadata = AstMetadata()) extends AExpr 
+with AstAtom with AIdentifierDeclaration with AAssignable {
   override def toString(): String = value
 
   override def toTypedString(): String = {
@@ -98,31 +101,31 @@ case class ABinaryOp(operator: Operator, left: AExpr, right: AExpr, offset: Loc)
   override def toString(): String = left + " " + operator + " " + right
 }
 
-case class AUnaryOp(operator: Operator, target: AExpr, offset: Loc)(var meta: AstMetadata = AstMetadata()) extends AExpr {
+case class AUnaryOp(operator: Operator, target: AExpr, offset: Loc)(var meta: AstMetadata = AstMetadata()) extends AExpr with AAssignable {
   override def toString(): String = s"$operator$target"
 }
 
-case class ANumber(value: Int, offset: Loc)(var meta: AstMetadata = AstMetadata()) extends AExpr with ASTAtom {
+case class ANumber(value: Int, offset: Loc)(var meta: AstMetadata = AstMetadata()) extends AExpr with AstAtom {
   override def toString(): String = s"$value"
 }
 
-case class AInput(offset: Loc)(var meta: AstMetadata = AstMetadata()) extends AExpr with ASTAtom {
+case class AInput(offset: Loc)(var meta: AstMetadata = AstMetadata()) extends AExpr with AstAtom {
   override def toString(): String = "input"
 }
 
-case class AMalloc(offset: Loc)(var meta: AstMetadata = AstMetadata()) extends AExpr with ASTAtom {
+case class AMalloc(offset: Loc)(var meta: AstMetadata = AstMetadata()) extends AExpr with AstAtom {
   override def toString(): String = "malloc"
 }
 
-case class ANull(offset: Loc)(var meta: AstMetadata = AstMetadata()) extends AExpr with ASTAtom {
+case class ANull(offset: Loc)(var meta: AstMetadata = AstMetadata()) extends AExpr with AstAtom {
   override def toString(): String = "null"
 }
 
 //////////////// Statements //////////////////////////
 
-sealed trait AStmt extends ASTNode
+sealed trait AStmt extends AstNode
 
-case class AAssignStmt(left: AExpr, right: AExpr, offset: Loc) extends AStmt {
+case class AAssignStmt(left: AAssignable, right: AExpr, offset: Loc) extends AStmt {
   override def toString(): String = s"$left = $right;"
 
   override def toTypedString(): String = s"${left.toTypedString()} = ${right.toTypedString()};"
@@ -171,13 +174,14 @@ case class AWhileStmt(guard: AExpr, innerBlock: AStmt, offset: Loc) extends AStm
 
 //////////////// Program and function ///////////////
 
-case class AProgram(fun: immutable.Seq[AFunDeclaration], offset: Loc) extends ASTNode {
+case class AProgram(fun: immutable.Seq[AFunDeclaration], offset: Loc) extends AstNode {
   override def toString(): String = s"${fun.mkString("\n\n")}"
 
   override def toTypedString(): String = s"${fun.map(_.toTypedString).mkString("\n\n")}"
 }
 
-case class AFunDeclaration(name: AIdentifier, args: immutable.Seq[AIdentifier], stmts: ABlockStmt, offset: Loc)(var meta: AstMetadata = AstMetadata()) extends ASTNode {
+case class AFunDeclaration(name: AIdentifier, args: immutable.Seq[AIdentifier], stmts: ABlockStmt, offset: Loc)(var meta: AstMetadata = AstMetadata())
+  extends AstNode with AIdentifierDeclaration {
   override def toString(): String = s"$name (${args.mkString(",")})\n$stmts"
 
   override def toTypedString(): String = s"${name} (${args.map(_.toTypedString()).mkString(",")}): ${this.meta.typeStr()}\n${stmts.toTypedString()}"
