@@ -186,7 +186,7 @@ class MapLattice[A, +L <: Lattice](ch: A => Boolean, val l: L) extends Lattice {
    * and all the other elements are mapped as in e.
    */
   def set(e: Element, a: A, f: l.Element): Element = {
-    checkDomain(e)
+    checkDomain(e + (a -> f))
     e + (a -> f)
   }
 
