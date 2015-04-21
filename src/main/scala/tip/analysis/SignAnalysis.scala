@@ -124,8 +124,8 @@ abstract class IntraprocSignAnalysis(cfg: IntraControlFlowGraph[AstNode]) {
     List(Bottom, Top, Top, Top, Top))
 
   private val absTimes = List(
-    List(Bottom, Zero, Bottom, Bottom, Bottom),
-    List(Zero, Zero, Zero, Zero, Zero),
+    List(Bottom, Bottom, Bottom, Bottom, Bottom),
+    List(Bottom, Zero, Zero, Zero, Zero),
     List(Bottom, Zero, Pos, Neg, Top),
     List(Bottom, Zero, Neg, Pos, Top),
     List(Bottom, Zero, Top, Top, Top))
@@ -133,6 +133,7 @@ abstract class IntraprocSignAnalysis(cfg: IntraControlFlowGraph[AstNode]) {
   private val absDivide = List(
     List(Bottom, Bottom, Bottom, Bottom, Bottom),
     List(Bottom, Top, Zero, Zero, Top),
+    List(Bottom, Top, Top, Top, Top),
     List(Bottom, Top, Top, Top, Top),
     List(Bottom, Top, Top, Top, Top))
 
