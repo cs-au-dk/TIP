@@ -1,0 +1,304 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>lattices - TIP API - tip.lattices</title>
+          <meta name="description" content="lattices - TIP API - tip.lattices" />
+          <meta name="keywords" content="lattices TIP API tip.lattices" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../lib/template.js"></script>
+      <script type="text/javascript" src="../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../index.html';
+            var hash = 'tip.lattices.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img src="../../lib/package_big.png" />
+        <p id="owner"><a href="../package.html" class="extype" name="tip">tip</a></p>
+        <h1>lattices</h1><span class="permalink">
+      <a href="../../index.html#tip.lattices.package" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">lattices</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="tip.lattices.FlatLattice" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="FlatLattice[X]extendsLattice"></a>
+      <a id="FlatLattice[X]:FlatLattice[X]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="FlatLattice.html"><span class="name">FlatLattice</span></a><span class="tparams">[<span name="X">X</span>]</span><span class="result"> extends <a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.lattices.package@FlatLattice[X]extendsLattice" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The flat lattice made of element of X.</p><div class="fullcomment"><div class="comment cmt"><p>The flat lattice made of element of X.
+Top is greater than every other element, and Bottom is less than every other element.
+No additional ordering is defined.
+</p></div></div>
+    </li><li name="tip.lattices.IntervalLattice" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="IntervalLatticeextendsLatticewithLatticeOps"></a>
+      <a id="IntervalLattice:IntervalLattice"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="IntervalLattice.html"><span class="name">IntervalLattice</span></a><span class="result"> extends <a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a> with <a href="LatticeOps.html" class="extype" name="tip.lattices.LatticeOps">LatticeOps</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.lattices.package@IntervalLatticeextendsLatticewithLatticeOps" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The interval lattice
+</p>
+    </li><li name="tip.lattices.Lattice" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="LatticeextendsAnyRef"></a>
+      <a id="Lattice:Lattice"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Lattice.html"><span class="name">Lattice</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.lattices.package@LatticeextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A (semi-)lattice.</p>
+    </li><li name="tip.lattices.LatticeOps" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="LatticeOpsextendsAnyRef"></a>
+      <a id="LatticeOps:LatticeOps"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="LatticeOps.html"><span class="name">LatticeOps</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.lattices.package@LatticeOpsextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Abstract operators.</p>
+    </li><li name="tip.lattices.LiftLattice" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="LiftLattice[+L&lt;:tip.lattices.Lattice]extendsLattice"></a>
+      <a id="LiftLattice[+L&lt;:Lattice]:LiftLattice[L]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="LiftLattice.html"><span class="name">LiftLattice</span></a><span class="tparams">[<span name="L">+L &lt;: <a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></span>]</span><span class="result"> extends <a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.lattices.package@LiftLattice[+L&lt;:tip.lattices.Lattice]extendsLattice" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The lift lattice for l.</p><div class="fullcomment"><div class="comment cmt"><p>The lift lattice for l.
+Supports implicit lifting and unlifting.
+</p></div></div>
+    </li><li name="tip.lattices.MapLattice" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MapLattice[A,+L&lt;:tip.lattices.Lattice]extendsLattice"></a>
+      <a id="MapLattice[A,+L&lt;:Lattice]:MapLattice[A,L]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MapLattice.html"><span class="name">MapLattice</span></a><span class="tparams">[<span name="A">A</span>, <span name="L">+L &lt;: <a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></span>]</span><span class="result"> extends <a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.lattices.package@MapLattice[A,+L&lt;:tip.lattices.Lattice]extendsLattice" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A lattice of maps from the set X to the lattice l.</p><div class="fullcomment"><div class="comment cmt"><p>A lattice of maps from the set X to the lattice l.
+The set X a subset of A and it is defined by the characteristic function ch, i.e.
+a is in X if and only if ch(a) returns true.
+Bottom is the default value.
+</p></div></div>
+    </li><li name="tip.lattices.PairLattice" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PairLattice[L1&lt;:tip.lattices.Lattice,L2&lt;:tip.lattices.Lattice]extendsLattice"></a>
+      <a id="PairLattice[L1&lt;:Lattice,L2&lt;:Lattice]:PairLattice[L1,L2]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="PairLattice.html"><span class="name">PairLattice</span></a><span class="tparams">[<span name="L1">L1 &lt;: <a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></span>, <span name="L2">L2 &lt;: <a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></span>]</span><span class="result"> extends <a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.lattices.package@PairLattice[L1&lt;:tip.lattices.Lattice,L2&lt;:tip.lattices.Lattice]extendsLattice" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The product lattice made by l1 and l2.</p>
+    </li><li name="tip.lattices.PowersetLattice" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PowersetLattice[A]extendsLattice"></a>
+      <a id="PowersetLattice[A]:PowersetLattice[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="PowersetLattice.html"><span class="name">PowersetLattice</span></a><span class="tparams">[<span name="A">A</span>]</span><span class="result"> extends <a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.lattices.package@PowersetLattice[A]extendsLattice" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The powerset lattice of X, where X is the subset of A
+defined by the characteristic function ch.</p>
+    </li><li name="tip.lattices.ReversePowersetLattice" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ReversePowersetLattice[A]extendsLattice"></a>
+      <a id="ReversePowersetLattice[A]:ReversePowersetLattice[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ReversePowersetLattice.html"><span class="name">ReversePowersetLattice</span></a><span class="tparams">[<span name="A">A</span>]</span><span class="result"> extends <a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.lattices.package@ReversePowersetLattice[A]extendsLattice" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The powerset lattice of X, where X is the subset of A
+defined by the characteristic function ch, with reverse
+subset ordering.</p>
+    </li><li name="tip.lattices.UniformProductLattice" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="UniformProductLattice[L&lt;:tip.lattices.Lattice]extendsLattice"></a>
+      <a id="UniformProductLattice[L&lt;:Lattice]:UniformProductLattice[L]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="UniformProductLattice.html"><span class="name">UniformProductLattice</span></a><span class="tparams">[<span name="L">L &lt;: <a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></span>]</span><span class="result"> extends <a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.lattices.package@UniformProductLattice[L&lt;:tip.lattices.Lattice]extendsLattice" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The n-th product lattice made of l lattices.</p>
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="tip.lattices.SignLattice" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SignLattice"></a>
+      <a id="SignLattice:SignLattice"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="SignLattice$.html"><span class="name">SignLattice</span></a><span class="result"> extends <a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a> with <a href="LatticeOps.html" class="extype" name="tip.lattices.LatticeOps">LatticeOps</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.lattices.package@SignLattice" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The sign lattice.</p>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

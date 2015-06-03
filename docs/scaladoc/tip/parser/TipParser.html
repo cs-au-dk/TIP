@@ -1,0 +1,2579 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>TipParser - TIP API - tip.parser.TipParser</title>
+          <meta name="description" content="TipParser - TIP API - tip.parser.TipParser" />
+          <meta name="keywords" content="TipParser TIP API tip.parser.TipParser" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../lib/template.js"></script>
+      <script type="text/javascript" src="../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../index.html';
+            var hash = 'tip.parser.TipParser';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="type">
+      <div id="definition">
+        <img src="../../lib/class_big.png" />
+        <p id="owner"><a href="../package.html" class="extype" name="tip">tip</a>.<a href="package.html" class="extype" name="tip.parser">parser</a></p>
+        <h1>TipParser</h1><h3><span class="morelinks"><div>Related Doc:
+            <a href="package.html" class="extype" name="tip.parser">package parser</a>
+          </div></span></h3><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TipParser</span><span class="result"> extends <span class="extype" name="org.parboiled2.Parser">Parser</span> with <a href="Comments.html" class="extype" name="tip.parser.Comments">Comments</a></span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><a href="Comments.html" class="extype" name="tip.parser.Comments">Comments</a>, <span class="extype" name="org.parboiled2.Parser">Parser</span>, <span class="extype" name="org.parboiled2.RuleDSL">RuleDSL</span>, <span class="extype" name="org.parboiled2.RuleDSLActions">RuleDSLActions</span>, <span class="extype" name="org.parboiled2.RuleDSLCombinators">RuleDSLCombinators</span>, <span class="extype" name="org.parboiled2.RuleDSLBasics">RuleDSLBasics</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="tip.parser.TipParser"><span>TipParser</span></li><li class="in" name="tip.parser.Comments"><span>Comments</span></li><li class="in" name="org.parboiled2.Parser"><span>Parser</span></li><li class="in" name="org.parboiled2.RuleDSL"><span>RuleDSL</span></li><li class="in" name="org.parboiled2.RuleDSLActions"><span>RuleDSLActions</span></li><li class="in" name="org.parboiled2.RuleDSLCombinators"><span>RuleDSLCombinators</span></li><li class="in" name="org.parboiled2.RuleDSLBasics"><span>RuleDSLBasics</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show all</span></li>
+            </ol>
+            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        <div id="constructors" class="members">
+              <h3>Instance Constructors</h3>
+              <ol><li name="tip.parser.TipParser#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;(input:org.parboiled2.ParserInput):tip.parser.TipParser"></a>
+      <a id="&lt;init&gt;:TipParser"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TipParser</span><span class="params">(<span name="input">input: <span class="extype" name="org.parboiled2.ParserInput">ParserInput</span></span>)</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@&lt;init&gt;(input:org.parboiled2.ParserInput):tip.parser.TipParser" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="org.parboiled2.RuleDSLActions.ActionOperator" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="ActionOperator[I&lt;:&lt;?&gt;,O&lt;:&lt;?&gt;,Ops]extendsAnyRef"></a>
+      <a id="ActionOperator[I&lt;:HList,O&lt;:HList,Ops]:ActionOperator[I,O,Ops]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed </span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ActionOperator</span><span class="tparams">[<span name="I">I &lt;: <span class="extype" name="shapeless.HList">HList</span></span>, <span name="O">O &lt;: <span class="extype" name="shapeless.HList">HList</span></span>, <span name="Ops">Ops</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@ActionOperator[I&lt;:shapeless.HList,O&lt;:shapeless.HList,Ops]extendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLActions</dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLBasics.CharRangeSupport" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="CharRangeSupportextendsAnyRef"></a>
+      <a id="CharRangeSupport:CharRangeSupport"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed </span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CharRangeSupport</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@CharRangeSupportextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLBasics</dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLCombinators.NTimes" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="NTimesextendsAnyRef"></a>
+      <a id="NTimes:NTimes"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed </span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <span class="name">NTimes</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@NTimesextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLCombinators</dd></dl></div>
+    </li><li name="org.parboiled2.Parser.TracingBubbleException" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="TracingBubbleExceptionextendsRuntimeExceptionwithNoStackTrace"></a>
+      <a id="TracingBubbleException:TracingBubbleException"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TracingBubbleException</span><span class="result"> extends <span class="extype" name="scala.RuntimeException">RuntimeException</span> with <span class="extype" name="scala.util.control.NoStackTrace">NoStackTrace</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@TracingBubbleExceptionextendsRuntimeExceptionwithNoStackTrace" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLCombinators.WithSeparatedBy" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="WithSeparatedBy[I&lt;:&lt;?&gt;,O&lt;:&lt;?&gt;]extendsAnyRef"></a>
+      <a id="WithSeparatedBy[I&lt;:HList,O&lt;:HList]:WithSeparatedBy[I,O]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <span class="name">WithSeparatedBy</span><span class="tparams">[<span name="I">I &lt;: <span class="extype" name="shapeless.HList">HList</span></span>, <span name="O">O &lt;: <span class="extype" name="shapeless.HList">HList</span></span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@WithSeparatedBy[I&lt;:shapeless.HList,O&lt;:shapeless.HList]extendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLCombinators</dd></dl></div>
+    </li><li name="org.parboiled2.Parser.__SubParserInput" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="__SubParserInputextendsParserInput"></a>
+      <a id="__SubParserInput:__SubParserInput"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <span class="name">__SubParserInput</span><span class="result"> extends <span class="extype" name="org.parboiled2.ParserInput">ParserInput</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@__SubParserInputextendsParserInput" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@!=(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@##():Int" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLCombinators#&amp;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="&amp;(r:&lt;?&gt;):org.parboiled2.Rule0"></a>
+      <a id="&amp;(Rule[_,_]):Rule0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $amp" class="name">&amp;</span><span class="params">(<span name="r">r: <span class="extype" name="org.parboiled2.Rule">Rule</span>[_, _]</span>)</span><span class="result">: <span class="extype" name="org.parboiled2.Rule0">Rule0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@&amp;(r:org.parboiled2.Rule[_,_]):org.parboiled2.Rule0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLCombinators</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `&amp;` must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@==(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLBasics#ANY" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ANY:org.parboiled2.Rule0"></a>
+      <a id="ANY:Rule0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ANY</span><span class="result">: <span class="extype" name="org.parboiled2.Rule0">Rule0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@ANY:org.parboiled2.Rule0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLBasics</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `ANY` must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="tip.parser.TipParser#Assigment" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Assigment:org.parboiled2.Rule1[tip.ast.AStmt]"></a>
+      <a id="Assigment:Rule1[AStmt]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Assigment</span><span class="result">: <span class="extype" name="org.parboiled2.Rule1">Rule1</span>[<a href="../ast/AStmt.html" class="extype" name="tip.ast.AStmt">AStmt</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@Assigment:org.parboiled2.Rule1[tip.ast.AStmt]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.TipParser#Atom" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Atom:org.parboiled2.Rule1[tip.ast.AExpr]"></a>
+      <a id="Atom:Rule1[AExpr]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Atom</span><span class="result">: <span class="extype" name="org.parboiled2.Rule1">Rule1</span>[<a href="../ast/AExpr.html" class="extype" name="tip.ast.AExpr">AExpr</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@Atom:org.parboiled2.Rule1[tip.ast.AExpr]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.TipParser#Block" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Block:org.parboiled2.Rule1[tip.ast.ABlockStmt]"></a>
+      <a id="Block:Rule1[ABlockStmt]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Block</span><span class="result">: <span class="extype" name="org.parboiled2.Rule1">Rule1</span>[<a href="../ast/ABlockStmt.html" class="extype" name="tip.ast.ABlockStmt">ABlockStmt</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@Block:org.parboiled2.Rule1[tip.ast.ABlockStmt]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.Comments#BlockComment" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="BlockComment:org.parboiled2.Rule0"></a>
+      <a id="BlockComment:Rule0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">BlockComment</span><span class="result">: <span class="extype" name="org.parboiled2.Rule0">Rule0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@BlockComment:org.parboiled2.Rule0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Comments.html" class="extype" name="tip.parser.Comments">Comments</a></dd></dl></div>
+    </li><li name="tip.parser.Comments#Comment" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="Comment:org.parboiled2.Rule0"></a>
+      <a id="Comment:Rule0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Comment</span><span class="result">: <span class="extype" name="org.parboiled2.Rule0">Rule0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@Comment:org.parboiled2.Rule0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Comments.html" class="extype" name="tip.parser.Comments">Comments</a></dd></dl></div>
+    </li><li name="tip.parser.TipParser#Declaration" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Declaration:org.parboiled2.Rule1[tip.ast.AStmt]"></a>
+      <a id="Declaration:Rule1[AStmt]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Declaration</span><span class="result">: <span class="extype" name="org.parboiled2.Rule1">Rule1</span>[<a href="../ast/AStmt.html" class="extype" name="tip.ast.AStmt">AStmt</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@Declaration:org.parboiled2.Rule1[tip.ast.AStmt]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.TipParser#Digits" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Digits:org.parboiled2.Rule[shapeless.HNil,shapeless.HNil]"></a>
+      <a id="Digits:Rule[HNil,HNil]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Digits</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="shapeless.HNil">HNil</span>, <span class="extype" name="shapeless.HNil">HNil</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@Digits:org.parboiled2.Rule[shapeless.HNil,shapeless.HNil]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="org.parboiled2.RuleDSLBasics#EOI" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="EOI:Char"></a>
+      <a id="EOI:Char"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">EOI</span><span class="result">: <span class="extype" name="scala.Char">Char</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@EOI:Char" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLBasics</dd></dl></div>
+    </li><li name="tip.parser.TipParser#Expression" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Expression:org.parboiled2.Rule1[tip.ast.AExpr]"></a>
+      <a id="Expression:Rule1[AExpr]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Expression</span><span class="result">: <span class="extype" name="org.parboiled2.Rule1">Rule1</span>[<a href="../ast/AExpr.html" class="extype" name="tip.ast.AExpr">AExpr</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@Expression:org.parboiled2.Rule1[tip.ast.AExpr]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.TipParser#FunActualArgs" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="FunActualArgs:org.parboiled2.Rule1[scala.collection.immutable.Seq[tip.ast.AExpr]]"></a>
+      <a id="FunActualArgs:Rule1[Seq[AExpr]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">FunActualArgs</span><span class="result">: <span class="extype" name="org.parboiled2.Rule1">Rule1</span>[<span class="extype" name="scala.collection.immutable.Seq">Seq</span>[<a href="../ast/AExpr.html" class="extype" name="tip.ast.AExpr">AExpr</a>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@FunActualArgs:org.parboiled2.Rule1[scala.collection.immutable.Seq[tip.ast.AExpr]]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.TipParser#FunApp" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="FunApp:org.parboiled2.Rule1[tip.ast.AExpr]"></a>
+      <a id="FunApp:Rule1[AExpr]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">FunApp</span><span class="result">: <span class="extype" name="org.parboiled2.Rule1">Rule1</span>[<a href="../ast/AExpr.html" class="extype" name="tip.ast.AExpr">AExpr</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@FunApp:org.parboiled2.Rule1[tip.ast.AExpr]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.TipParser#Identifier" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Identifier:org.parboiled2.Rule1[tip.ast.AIdentifier]"></a>
+      <a id="Identifier:Rule1[AIdentifier]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Identifier</span><span class="result">: <span class="extype" name="org.parboiled2.Rule1">Rule1</span>[<a href="../ast/AIdentifier.html" class="extype" name="tip.ast.AIdentifier">AIdentifier</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@Identifier:org.parboiled2.Rule1[tip.ast.AIdentifier]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.TipParser#If" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="If:org.parboiled2.Rule1[tip.ast.AStmt]"></a>
+      <a id="If:Rule1[AStmt]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">If</span><span class="result">: <span class="extype" name="org.parboiled2.Rule1">Rule1</span>[<a href="../ast/AStmt.html" class="extype" name="tip.ast.AStmt">AStmt</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@If:org.parboiled2.Rule1[tip.ast.AStmt]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.TipParser#InputLine" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="InputLine:org.parboiled2.Rule[shapeless.HNil,shapeless.::[tip.ast.AProgram,shapeless.HNil]]"></a>
+      <a id="InputLine:Rule[HNil,::[AProgram,HNil]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">InputLine</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="shapeless.HNil">HNil</span>, <span class="extype" name="shapeless.::">::</span>[<a href="../ast/AProgram.html" class="extype" name="tip.ast.AProgram">AProgram</a>, <span class="extype" name="shapeless.HNil">HNil</span>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@InputLine:org.parboiled2.Rule[shapeless.HNil,shapeless.::[tip.ast.AProgram,shapeless.HNil]]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="org.parboiled2.RuleDSLBasics#MATCH" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MATCH:org.parboiled2.Rule0"></a>
+      <a id="MATCH:Rule0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">MATCH</span><span class="result">: <span class="extype" name="org.parboiled2.Rule0">Rule0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@MATCH:org.parboiled2.Rule0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLBasics</dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLBasics#MISMATCH" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MISMATCH[I&lt;:&lt;?&gt;,O&lt;:&lt;?&gt;]:org.parboiled2.Rule[I,O]"></a>
+      <a id="MISMATCH[I&lt;:HList,O&lt;:HList]:Rule[I,O]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">MISMATCH</span><span class="tparams">[<span name="I">I &lt;: <span class="extype" name="shapeless.HList">HList</span></span>, <span name="O">O &lt;: <span class="extype" name="shapeless.HList">HList</span></span>]</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="org.parboiled2.RuleDSLBasics.MISMATCH.I">I</span>, <span class="extype" name="org.parboiled2.RuleDSLBasics.MISMATCH.O">O</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@MISMATCH[I&lt;:shapeless.HList,O&lt;:shapeless.HList]:org.parboiled2.Rule[I,O]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLBasics</dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLBasics#MISMATCH0" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MISMATCH0:org.parboiled2.Rule0"></a>
+      <a id="MISMATCH0:Rule0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">MISMATCH0</span><span class="result">: <span class="extype" name="org.parboiled2.Rule0">Rule0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@MISMATCH0:org.parboiled2.Rule0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLBasics</dd></dl></div>
+    </li><li name="tip.parser.Comments#NewLine" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="NewLine:org.parboiled2.Rule0"></a>
+      <a id="NewLine:Rule0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">NewLine</span><span class="result">: <span class="extype" name="org.parboiled2.Rule0">Rule0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@NewLine:org.parboiled2.Rule0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Comments.html" class="extype" name="tip.parser.Comments">Comments</a></dd></dl></div>
+    </li><li name="tip.parser.TipParser#Number" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Number:org.parboiled2.Rule1[tip.ast.AExpr]"></a>
+      <a id="Number:Rule1[AExpr]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Number</span><span class="result">: <span class="extype" name="org.parboiled2.Rule1">Rule1</span>[<a href="../ast/AExpr.html" class="extype" name="tip.ast.AExpr">AExpr</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@Number:org.parboiled2.Rule1[tip.ast.AExpr]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.TipParser#Operation" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Operation:org.parboiled2.Rule1[tip.ast.AExpr]"></a>
+      <a id="Operation:Rule1[AExpr]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Operation</span><span class="result">: <span class="extype" name="org.parboiled2.Rule1">Rule1</span>[<a href="../ast/AExpr.html" class="extype" name="tip.ast.AExpr">AExpr</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@Operation:org.parboiled2.Rule1[tip.ast.AExpr]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.TipParser#OptSpace" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="OptSpace:org.parboiled2.Rule[shapeless.HNil,shapeless.HNil]"></a>
+      <a id="OptSpace:Rule[HNil,HNil]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">OptSpace</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="shapeless.HNil">HNil</span>, <span class="extype" name="shapeless.HNil">HNil</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@OptSpace:org.parboiled2.Rule[shapeless.HNil,shapeless.HNil]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.TipParser#OptSpaceInline" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="OptSpaceInline:org.parboiled2.Rule[shapeless.HNil,shapeless.HNil]"></a>
+      <a id="OptSpaceInline:Rule[HNil,HNil]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">OptSpaceInline</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="shapeless.HNil">HNil</span>, <span class="extype" name="shapeless.HNil">HNil</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@OptSpaceInline:org.parboiled2.Rule[shapeless.HNil,shapeless.HNil]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.TipParser#Output" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Output:org.parboiled2.Rule1[tip.ast.AStmt]"></a>
+      <a id="Output:Rule1[AStmt]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Output</span><span class="result">: <span class="extype" name="org.parboiled2.Rule1">Rule1</span>[<a href="../ast/AStmt.html" class="extype" name="tip.ast.AStmt">AStmt</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@Output:org.parboiled2.Rule1[tip.ast.AStmt]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.TipParser#Parens" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Parens:org.parboiled2.Rule[shapeless.HNil,shapeless.::[tip.ast.AExpr,shapeless.HNil]]"></a>
+      <a id="Parens:Rule[HNil,::[AExpr,HNil]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Parens</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="shapeless.HNil">HNil</span>, <span class="extype" name="shapeless.::">::</span>[<a href="../ast/AExpr.html" class="extype" name="tip.ast.AExpr">AExpr</a>, <span class="extype" name="shapeless.HNil">HNil</span>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@Parens:org.parboiled2.Rule[shapeless.HNil,shapeless.::[tip.ast.AExpr,shapeless.HNil]]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.TipParser#PointersExpression" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PointersExpression:org.parboiled2.Rule[shapeless.HNil,shapeless.::[tip.ast.AExprwithProductwithSerializable,shapeless.HNil]]"></a>
+      <a id="PointersExpression:Rule[HNil,::[AExprwithProductwithSerializable,HNil]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">PointersExpression</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="shapeless.HNil">HNil</span>, <span class="extype" name="shapeless.::">::</span>[<a href="../ast/AExpr.html" class="extype" name="tip.ast.AExpr">AExpr</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="shapeless.HNil">HNil</span>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@PointersExpression:org.parboiled2.Rule[shapeless.HNil,shapeless.::[tip.ast.AExprwithProductwithSerializable,shapeless.HNil]]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.TipParser#Program" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Program:org.parboiled2.Rule1[tip.ast.AProgram]"></a>
+      <a id="Program:Rule1[AProgram]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Program</span><span class="result">: <span class="extype" name="org.parboiled2.Rule1">Rule1</span>[<a href="../ast/AProgram.html" class="extype" name="tip.ast.AProgram">AProgram</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@Program:org.parboiled2.Rule1[tip.ast.AProgram]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.TipParser#Return" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Return:org.parboiled2.Rule1[tip.ast.AStmt]"></a>
+      <a id="Return:Rule1[AStmt]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Return</span><span class="result">: <span class="extype" name="org.parboiled2.Rule1">Rule1</span>[<a href="../ast/AStmt.html" class="extype" name="tip.ast.AStmt">AStmt</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@Return:org.parboiled2.Rule1[tip.ast.AStmt]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.TipParser#Statement" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Statement:org.parboiled2.Rule[shapeless.HNil,shapeless.::[tip.ast.AStmt,shapeless.HNil]]"></a>
+      <a id="Statement:Rule[HNil,::[AStmt,HNil]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Statement</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="shapeless.HNil">HNil</span>, <span class="extype" name="shapeless.::">::</span>[<a href="../ast/AStmt.html" class="extype" name="tip.ast.AStmt">AStmt</a>, <span class="extype" name="shapeless.HNil">HNil</span>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@Statement:org.parboiled2.Rule[shapeless.HNil,shapeless.::[tip.ast.AStmt,shapeless.HNil]]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.TipParser#Statements" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Statements:org.parboiled2.Rule[shapeless.HNil,shapeless.::[scala.collection.immutable.Seq[tip.ast.AStmt],shapeless.HNil]]"></a>
+      <a id="Statements:Rule[HNil,::[Seq[AStmt],HNil]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Statements</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="shapeless.HNil">HNil</span>, <span class="extype" name="shapeless.::">::</span>[<span class="extype" name="scala.collection.immutable.Seq">Seq</span>[<a href="../ast/AStmt.html" class="extype" name="tip.ast.AStmt">AStmt</a>], <span class="extype" name="shapeless.HNil">HNil</span>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@Statements:org.parboiled2.Rule[shapeless.HNil,shapeless.::[scala.collection.immutable.Seq[tip.ast.AStmt],shapeless.HNil]]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.TipParser#Term" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Term:org.parboiled2.Rule1[tip.ast.AExpr]"></a>
+      <a id="Term:Rule1[AExpr]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Term</span><span class="result">: <span class="extype" name="org.parboiled2.Rule1">Rule1</span>[<a href="../ast/AExpr.html" class="extype" name="tip.ast.AExpr">AExpr</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@Term:org.parboiled2.Rule1[tip.ast.AExpr]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.TipParser#TipFunction" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TipFunction:org.parboiled2.Rule1[tip.ast.AFunDeclaration]"></a>
+      <a id="TipFunction:Rule1[AFunDeclaration]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TipFunction</span><span class="result">: <span class="extype" name="org.parboiled2.Rule1">Rule1</span>[<a href="../ast/AFunDeclaration.html" class="extype" name="tip.ast.AFunDeclaration">AFunDeclaration</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@TipFunction:org.parboiled2.Rule1[tip.ast.AFunDeclaration]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.TipParser#UnaryPointerExpression" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="UnaryPointerExpression:org.parboiled2.Rule[shapeless.HNil,shapeless.::[tip.ast.AUnaryOp,shapeless.HNil]]"></a>
+      <a id="UnaryPointerExpression:Rule[HNil,::[AUnaryOp,HNil]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">UnaryPointerExpression</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="shapeless.HNil">HNil</span>, <span class="extype" name="shapeless.::">::</span>[<a href="../ast/AUnaryOp.html" class="extype" name="tip.ast.AUnaryOp">AUnaryOp</a>, <span class="extype" name="shapeless.HNil">HNil</span>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@UnaryPointerExpression:org.parboiled2.Rule[shapeless.HNil,shapeless.::[tip.ast.AUnaryOp,shapeless.HNil]]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.TipParser#WS" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WS:org.parboiled2.Rule[shapeless.HNil,shapeless.HNil]"></a>
+      <a id="WS:Rule[HNil,HNil]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">WS</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="shapeless.HNil">HNil</span>, <span class="extype" name="shapeless.HNil">HNil</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@WS:org.parboiled2.Rule[shapeless.HNil,shapeless.HNil]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.TipParser#WSinline" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WSinline:org.parboiled2.Rule[shapeless.HNil,shapeless.HNil]"></a>
+      <a id="WSinline:Rule[HNil,HNil]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">WSinline</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="shapeless.HNil">HNil</span>, <span class="extype" name="shapeless.HNil">HNil</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@WSinline:org.parboiled2.Rule[shapeless.HNil,shapeless.HNil]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.TipParser#While" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="While:org.parboiled2.Rule1[tip.ast.AStmt]"></a>
+      <a id="While:Rule1[AStmt]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">While</span><span class="result">: <span class="extype" name="org.parboiled2.Rule1">Rule1</span>[<a href="../ast/AStmt.html" class="extype" name="tip.ast.AStmt">AStmt</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@While:org.parboiled2.Rule1[tip.ast.AStmt]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.TipParser#ZeraryPointerExpression" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ZeraryPointerExpression:org.parboiled2.Rule[shapeless.HNil,shapeless.::[tip.ast.AExprwithtip.ast.AstAtomwithProductwithSerializable,shapeless.HNil]]"></a>
+      <a id="ZeraryPointerExpression:Rule[HNil,::[AExprwithAstAtomwithProductwithSerializable,HNil]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ZeraryPointerExpression</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="shapeless.HNil">HNil</span>, <span class="extype" name="shapeless.::">::</span>[<a href="../ast/AExpr.html" class="extype" name="tip.ast.AExpr">AExpr</a> with <a href="../ast/AstAtom.html" class="extype" name="tip.ast.AstAtom">AstAtom</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="shapeless.HNil">HNil</span>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@ZeraryPointerExpression:org.parboiled2.Rule[shapeless.HNil,shapeless.::[tip.ast.AExprwithtip.ast.AstAtomwithProductwithSerializable,shapeless.HNil]]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="org.parboiled2.Parser#__advance" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="__advance():Boolean"></a>
+      <a id="__advance():Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">__advance</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@__advance():Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.Parser#__bubbleUp" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="__bubbleUp(prefix:List[org.parboiled2.RuleTrace.NonTerminal],terminal:org.parboiled2.RuleTrace.Terminal):Nothing"></a>
+      <a id="__bubbleUp(List[NonTerminal],Terminal):Nothing"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">__bubbleUp</span><span class="params">(<span name="prefix">prefix: <span class="extype" name="scala.List">List</span>[<span class="extype" name="org.parboiled2.RuleTrace.NonTerminal">NonTerminal</span>]</span>, <span name="terminal">terminal: <span class="extype" name="org.parboiled2.RuleTrace.Terminal">Terminal</span></span>)</span><span class="result">: <span class="extype" name="scala.Nothing">Nothing</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@__bubbleUp(prefix:List[org.parboiled2.RuleTrace.NonTerminal],terminal:org.parboiled2.RuleTrace.Terminal):Nothing" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.Parser#__bubbleUp" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="__bubbleUp(terminal:org.parboiled2.RuleTrace.Terminal):Nothing"></a>
+      <a id="__bubbleUp(Terminal):Nothing"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">__bubbleUp</span><span class="params">(<span name="terminal">terminal: <span class="extype" name="org.parboiled2.RuleTrace.Terminal">Terminal</span></span>)</span><span class="result">: <span class="extype" name="scala.Nothing">Nothing</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@__bubbleUp(terminal:org.parboiled2.RuleTrace.Terminal):Nothing" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.Parser#__enterAtomic" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="__enterAtomic(start:&lt;?&gt;):Boolean"></a>
+      <a id="__enterAtomic(Int):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">__enterAtomic</span><span class="params">(<span name="start">start: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@__enterAtomic(start:Int):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.Parser#__enterNotPredicate" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="__enterNotPredicate():AnyRef"></a>
+      <a id="__enterNotPredicate():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">__enterNotPredicate</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@__enterNotPredicate():AnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.Parser#__enterQuiet" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="__enterQuiet():Int"></a>
+      <a id="__enterQuiet():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">__enterQuiet</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@__enterQuiet():Int" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.Parser#__exitAtomic" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="__exitAtomic(saved:&lt;?&gt;):Unit"></a>
+      <a id="__exitAtomic(Boolean):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">__exitAtomic</span><span class="params">(<span name="saved">saved: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@__exitAtomic(saved:Boolean):Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.Parser#__exitNotPredicate" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="__exitNotPredicate(saved:AnyRef):Unit"></a>
+      <a id="__exitNotPredicate(AnyRef):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">__exitNotPredicate</span><span class="params">(<span name="saved">saved: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@__exitNotPredicate(saved:AnyRef):Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.Parser#__exitQuiet" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="__exitQuiet(saved:&lt;?&gt;):Unit"></a>
+      <a id="__exitQuiet(Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">__exitQuiet</span><span class="params">(<span name="saved">saved: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@__exitQuiet(saved:Int):Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.Parser#__hardFail" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="__hardFail(expected:&lt;?&gt;):Nothing"></a>
+      <a id="__hardFail(String):Nothing"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">__hardFail</span><span class="params">(<span name="expected">expected: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Nothing">Nothing</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@__hardFail(expected:String):Nothing" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.Parser#__inErrorAnalysis" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="__inErrorAnalysis:Boolean"></a>
+      <a id="__inErrorAnalysis:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">__inErrorAnalysis</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@__inErrorAnalysis:Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.Parser#__matchAnyOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="__matchAnyOf(string:&lt;?&gt;,ix:&lt;?&gt;):Boolean"></a>
+      <a id="__matchAnyOf(String,Int):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">__matchAnyOf</span><span class="params">(<span name="string">string: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ix">ix: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@__matchAnyOf(string:String,ix:Int):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd><dt>Annotations</dt><dd>
+                <span class="name">@tailrec</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.parboiled2.Parser#__matchIgnoreCaseString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="__matchIgnoreCaseString(string:&lt;?&gt;,ix:&lt;?&gt;):Boolean"></a>
+      <a id="__matchIgnoreCaseString(String,Int):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">__matchIgnoreCaseString</span><span class="params">(<span name="string">string: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ix">ix: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@__matchIgnoreCaseString(string:String,ix:Int):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd><dt>Annotations</dt><dd>
+                <span class="name">@tailrec</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.parboiled2.Parser#__matchIgnoreCaseStringWrapped" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="__matchIgnoreCaseStringWrapped(string:&lt;?&gt;,ix:&lt;?&gt;):Boolean"></a>
+      <a id="__matchIgnoreCaseStringWrapped(String,Int):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">__matchIgnoreCaseStringWrapped</span><span class="params">(<span name="string">string: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ix">ix: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@__matchIgnoreCaseStringWrapped(string:String,ix:Int):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd><dt>Annotations</dt><dd>
+                <span class="name">@tailrec</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.parboiled2.Parser#__matchMap" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="__matchMap(m:&lt;?&gt;):Boolean"></a>
+      <a id="__matchMap(Map[String,Any]):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">__matchMap</span><span class="params">(<span name="m">m: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Any">Any</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@__matchMap(m:Map[String,Any]):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.Parser#__matchMapWrapped" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="__matchMapWrapped(m:&lt;?&gt;):Boolean"></a>
+      <a id="__matchMapWrapped(Map[String,Any]):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">__matchMapWrapped</span><span class="params">(<span name="m">m: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Any">Any</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@__matchMapWrapped(m:Map[String,Any]):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.Parser#__matchNoneOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="__matchNoneOf(string:&lt;?&gt;,ix:&lt;?&gt;):Boolean"></a>
+      <a id="__matchNoneOf(String,Int):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">__matchNoneOf</span><span class="params">(<span name="string">string: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ix">ix: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@__matchNoneOf(string:String,ix:Int):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd><dt>Annotations</dt><dd>
+                <span class="name">@tailrec</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.parboiled2.Parser#__matchString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="__matchString(string:String,ix:Int):Boolean"></a>
+      <a id="__matchString(String,Int):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">__matchString</span><span class="params">(<span name="string">string: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ix">ix: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@__matchString(string:String,ix:Int):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd><dt>Annotations</dt><dd>
+                <span class="name">@tailrec</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.parboiled2.Parser#__matchStringWrapped" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="__matchStringWrapped(string:String,ix:Int):Boolean"></a>
+      <a id="__matchStringWrapped(String,Int):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">__matchStringWrapped</span><span class="params">(<span name="string">string: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ix">ix: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@__matchStringWrapped(string:String,ix:Int):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd><dt>Annotations</dt><dd>
+                <span class="name">@tailrec</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.parboiled2.Parser#__push" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="__push(value:Any):Boolean"></a>
+      <a id="__push(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">__push</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@__push(value:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.Parser#__registerMismatch" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="__registerMismatch():Boolean"></a>
+      <a id="__registerMismatch():Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">__registerMismatch</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@__registerMismatch():Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.Parser#__restoreState" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="__restoreState(mark:org.parboiled2.Parser.Mark):Unit"></a>
+      <a id="__restoreState(Mark):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">__restoreState</span><span class="params">(<span name="mark">mark: <span class="extype" name="org.parboiled2.Parser.Mark">Mark</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@__restoreState(mark:org.parboiled2.Parser.Mark):Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.Parser#__run" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="__run[L&lt;:shapeless.HList](rule:=&gt;org.parboiled2.RuleN[L])(implicitscheme:org.parboiled2.Parser.DeliveryScheme[L]):scheme.Result"></a>
+      <a id="__run[L&lt;:HList](⇒RuleN[L])(DeliveryScheme[L]):Result"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">__run</span><span class="tparams">[<span name="L">L &lt;: <span class="extype" name="shapeless.HList">HList</span></span>]</span><span class="params">(<span name="rule">rule: ⇒ <span class="extype" name="org.parboiled2.RuleN">RuleN</span>[<span class="extype" name="org.parboiled2.Parser.__run.L">L</span>]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="scheme">scheme: <span class="extype" name="org.parboiled2.Parser.DeliveryScheme">DeliveryScheme</span>[<span class="extype" name="org.parboiled2.Parser.__run.L">L</span>]</span>)</span><span class="result">: <span class="extype" name="org.parboiled2.Parser.DeliveryScheme.Result">Result</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@__run[L&lt;:shapeless.HList](rule:=&gt;org.parboiled2.RuleN[L])(implicitscheme:org.parboiled2.Parser.DeliveryScheme[L]):scheme.Result" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.Parser#__saveState" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="__saveState:org.parboiled2.Parser.Mark"></a>
+      <a id="__saveState:Mark"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">__saveState</span><span class="result">: <span class="extype" name="org.parboiled2.Parser.Mark">Mark</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@__saveState:org.parboiled2.Parser.Mark" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.Parser#__updateMaxCursor" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="__updateMaxCursor():Boolean"></a>
+      <a id="__updateMaxCursor():Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">__updateMaxCursor</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@__updateMaxCursor():Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLBasics#anyOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="anyOf(chars:&lt;?&gt;):org.parboiled2.Rule0"></a>
+      <a id="anyOf(String):Rule0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">anyOf</span><span class="params">(<span name="chars">chars: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="org.parboiled2.Rule0">Rule0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@anyOf(chars:String):org.parboiled2.Rule0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLBasics</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `anyOf` must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@asInstanceOf[T0]:T0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLCombinators#atomic" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="atomic[I&lt;:&lt;?&gt;,O&lt;:&lt;?&gt;](r:&lt;?&gt;):org.parboiled2.Rule[I,O]"></a>
+      <a id="atomic[I&lt;:HList,O&lt;:HList](Rule[I,O]):Rule[I,O]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">atomic</span><span class="tparams">[<span name="I">I &lt;: <span class="extype" name="shapeless.HList">HList</span></span>, <span name="O">O &lt;: <span class="extype" name="shapeless.HList">HList</span></span>]</span><span class="params">(<span name="r">r: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="org.parboiled2.RuleDSLCombinators.atomic.I">I</span>, <span class="extype" name="org.parboiled2.RuleDSLCombinators.atomic.O">O</span>]</span>)</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="org.parboiled2.RuleDSLCombinators.atomic.I">I</span>, <span class="extype" name="org.parboiled2.RuleDSLCombinators.atomic.O">O</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@atomic[I&lt;:shapeless.HList,O&lt;:shapeless.HList](r:org.parboiled2.Rule[I,O]):org.parboiled2.Rule[I,O]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLCombinators</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `atomic` must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLActions#capture" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="capture[I&lt;:shapeless.HList,O&lt;:shapeless.HList](r:org.parboiled2.Rule[I,O])(implicitp:shapeless.ops.hlist.Prepend[O,shapeless.::[String,shapeless.HNil]]):org.parboiled2.Rule[I,p.Out]"></a>
+      <a id="capture[I&lt;:HList,O&lt;:HList](Rule[I,O])(Prepend[O,::[String,HNil]]):Rule[I,Out]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">capture</span><span class="tparams">[<span name="I">I &lt;: <span class="extype" name="shapeless.HList">HList</span></span>, <span name="O">O &lt;: <span class="extype" name="shapeless.HList">HList</span></span>]</span><span class="params">(<span name="r">r: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="org.parboiled2.RuleDSLActions.capture.I">I</span>, <span class="extype" name="org.parboiled2.RuleDSLActions.capture.O">O</span>]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="p">p: <span class="extype" name="shapeless.ops.hlist.Prepend">Prepend</span>[<span class="extype" name="org.parboiled2.RuleDSLActions.capture.O">O</span>, <span class="extype" name="shapeless.::">::</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="shapeless.HNil">HNil</span>]]</span>)</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="org.parboiled2.RuleDSLActions.capture.I">I</span>, <span class="extype" name="shapeless.ops.hlist.Prepend.Out">Out</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@capture[I&lt;:shapeless.HList,O&lt;:shapeless.HList](r:org.parboiled2.Rule[I,O])(implicitp:shapeless.ops.hlist.Prepend[O,shapeless.::[String,shapeless.HNil]]):org.parboiled2.Rule[I,p.Out]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLActions</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `capture` must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLBasics#ch" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ch(c:Char):org.parboiled2.Rule0"></a>
+      <a id="ch(Char):Rule0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ch</span><span class="params">(<span name="c">c: <span class="extype" name="scala.Char">Char</span></span>)</span><span class="result">: <span class="extype" name="org.parboiled2.Rule0">Rule0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@ch(c:Char):org.parboiled2.Rule0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLBasics</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `ch` must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.parboiled2.Parser#charAt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="charAt(offset:&lt;?&gt;):Char"></a>
+      <a id="charAt(Int):Char"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">charAt</span><span class="params">(<span name="offset">offset: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Char">Char</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@charAt(offset:Int):Char" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.Parser#charAtRC" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="charAtRC(offset:&lt;?&gt;):Char"></a>
+      <a id="charAtRC(Int):Char"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">charAtRC</span><span class="params">(<span name="offset">offset: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Char">Char</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@charAtRC(offset:Int):Char" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@clone():Object" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.parboiled2.Parser#copyStateFrom" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="copyStateFrom(other:&lt;?&gt;,offset:&lt;?&gt;):Unit"></a>
+      <a id="copyStateFrom(Parser,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">copyStateFrom</span><span class="params">(<span name="other">other: <span class="extype" name="org.parboiled2.Parser">Parser</span></span>, <span name="offset">offset: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@copyStateFrom(other:org.parboiled2.Parser,offset:Int):Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.Parser#cursor" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="cursor:Int"></a>
+      <a id="cursor:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">cursor</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@cursor:Int" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.Parser#cursorChar" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="cursorChar:Char"></a>
+      <a id="cursorChar:Char"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">cursorChar</span><span class="result">: <span class="extype" name="scala.Char">Char</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@cursorChar:Char" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLActions#drop" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="drop[T&lt;:&lt;?&gt;](implicith:&lt;?&gt;):org.parboiled2.PopRule[h.Out]"></a>
+      <a id="drop[T](HListable[T]):PopRule[Out]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">drop</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="h">h: <span class="extype" name="org.parboiled2.support.HListable">HListable</span>[<span class="extype" name="org.parboiled2.RuleDSLActions.drop.T">T</span>]</span>)</span><span class="result">: <span class="extype" name="org.parboiled2.PopRule">PopRule</span>[<span class="extype" name="org.parboiled2.support.HListable.Out">Out</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@drop[T](implicith:org.parboiled2.support.HListable[T]):org.parboiled2.PopRule[h.Out]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLActions</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `drop` must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@equals(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.parboiled2.Parser#errorTraceCollectionLimit" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="errorTraceCollectionLimit:Int"></a>
+      <a id="errorTraceCollectionLimit:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">errorTraceCollectionLimit</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@errorTraceCollectionLimit:Int" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLBasics#fail" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="fail(expected:&lt;?&gt;):org.parboiled2.Rule0"></a>
+      <a id="fail(String):Rule0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">fail</span><span class="params">(<span name="expected">expected: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="org.parboiled2.Rule0">Rule0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@fail(expected:String):org.parboiled2.Rule0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLBasics</dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLBasics#failX" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="failX[I&lt;:&lt;?&gt;,O&lt;:&lt;?&gt;](expected:&lt;?&gt;):org.parboiled2.Rule[I,O]"></a>
+      <a id="failX[I&lt;:HList,O&lt;:HList](String):Rule[I,O]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">failX</span><span class="tparams">[<span name="I">I &lt;: <span class="extype" name="shapeless.HList">HList</span></span>, <span name="O">O &lt;: <span class="extype" name="shapeless.HList">HList</span></span>]</span><span class="params">(<span name="expected">expected: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="org.parboiled2.RuleDSLBasics.failX.I">I</span>, <span class="extype" name="org.parboiled2.RuleDSLBasics.failX.O">O</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@failX[I&lt;:shapeless.HList,O&lt;:shapeless.HList](expected:String):org.parboiled2.Rule[I,O]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLBasics</dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@finalize():Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.parboiled2.Parser#formatError" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="formatError(error:org.parboiled2.ParseError,formatter:org.parboiled2.ErrorFormatter):String"></a>
+      <a id="formatError(ParseError,ErrorFormatter):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">formatError</span><span class="params">(<span name="error">error: <span class="extype" name="org.parboiled2.ParseError">ParseError</span></span>, <span name="formatter">formatter: <span class="extype" name="org.parboiled2.ErrorFormatter">ErrorFormatter</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@formatError(error:org.parboiled2.ParseError,formatter:org.parboiled2.ErrorFormatter):String" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@getClass():Class[_]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@hashCode():Int" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLBasics#ignoreCase" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ignoreCase(s:&lt;?&gt;):org.parboiled2.Rule0"></a>
+      <a id="ignoreCase(String):Rule0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ignoreCase</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="org.parboiled2.Rule0">Rule0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@ignoreCase(s:String):org.parboiled2.Rule0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLBasics</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `ignoreCase` must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLBasics#ignoreCase" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ignoreCase(c:&lt;?&gt;):org.parboiled2.Rule0"></a>
+      <a id="ignoreCase(Char):Rule0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ignoreCase</span><span class="params">(<span name="c">c: <span class="extype" name="scala.Char">Char</span></span>)</span><span class="result">: <span class="extype" name="org.parboiled2.Rule0">Rule0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@ignoreCase(c:Char):org.parboiled2.Rule0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLBasics</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `ignoreCase` must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="tip.parser.TipParser#input" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="input:org.parboiled2.ParserInput"></a>
+      <a id="input:ParserInput"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">input</span><span class="result">: <span class="extype" name="org.parboiled2.ParserInput">ParserInput</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@input:org.parboiled2.ParserInput" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.parser.TipParser">TipParser</a> → Parser</dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLCombinators#int2NTimes" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="int2NTimes(i:Int):RuleDSLCombinators.this.NTimes"></a>
+      <a id="int2NTimes(Int):NTimes"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">int2NTimes</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="#NTimesextendsAnyRef" class="extmbr" name="tip.parser.TipParser.NTimes">NTimes</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@int2NTimes(i:Int):RuleDSLCombinators.this.NTimes" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLCombinators</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `int2NTimes` must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="tip.parser.TipParser#keywords" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="keywords:org.parboiled2.Rule[shapeless.HNil,shapeless.HNil]"></a>
+      <a id="keywords:Rule[HNil,HNil]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">keywords</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="shapeless.HNil">HNil</span>, <span class="extype" name="shapeless.HNil">HNil</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@keywords:org.parboiled2.Rule[shapeless.HNil,shapeless.HNil]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="tip.parser.Comments#lastBreaks" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="lastBreaks:scala.collection.mutable.MutableList[Int]"></a>
+      <a id="lastBreaks:MutableList[Int]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">lastBreaks</span><span class="result">: <span class="extype" name="scala.collection.mutable.MutableList">MutableList</span>[<span class="extype" name="scala.Int">Int</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@lastBreaks:scala.collection.mutable.MutableList[Int]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Comments.html" class="extype" name="tip.parser.Comments">Comments</a></dd></dl></div>
+    </li><li name="org.parboiled2.Parser#lastChar" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="lastChar:Char"></a>
+      <a id="lastChar:Char"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">lastChar</span><span class="result">: <span class="extype" name="scala.Char">Char</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@lastChar:Char" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.Parser#namedRule" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="namedRule[I&lt;:&lt;?&gt;,O&lt;:&lt;?&gt;](name:&lt;?&gt;)(r:&lt;?&gt;):org.parboiled2.Rule[I,O]"></a>
+      <a id="namedRule[I&lt;:HList,O&lt;:HList](String)(Rule[I,O]):Rule[I,O]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">macro </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">namedRule</span><span class="tparams">[<span name="I">I &lt;: <span class="extype" name="shapeless.HList">HList</span></span>, <span name="O">O &lt;: <span class="extype" name="shapeless.HList">HList</span></span>]</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="params">(<span name="r">r: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="org.parboiled2.Parser.namedRule.I">I</span>, <span class="extype" name="org.parboiled2.Parser.namedRule.O">O</span>]</span>)</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="org.parboiled2.Parser.namedRule.I">I</span>, <span class="extype" name="org.parboiled2.Parser.namedRule.O">O</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@namedRule[I&lt;:shapeless.HList,O&lt;:shapeless.HList](name:String)(r:org.parboiled2.Rule[I,O]):org.parboiled2.Rule[I,O]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLBasics#noneOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="noneOf(chars:&lt;?&gt;):org.parboiled2.Rule0"></a>
+      <a id="noneOf(String):Rule0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">noneOf</span><span class="params">(<span name="chars">chars: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="org.parboiled2.Rule0">Rule0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@noneOf(chars:String):org.parboiled2.Rule0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLBasics</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `noneOf` must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@notify():Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@notifyAll():Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="tip.parser.Comments#offset2Loc" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="offset2Loc(i:Int):tip.ast.Loc"></a>
+      <a id="offset2Loc(Int):Loc"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">offset2Loc</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="../ast/Loc.html" class="extype" name="tip.ast.Loc">Loc</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@offset2Loc(i:Int):tip.ast.Loc" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Comments.html" class="extype" name="tip.parser.Comments">Comments</a></dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLCombinators#oneOrMore" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="oneOrMore[I&lt;:shapeless.HList,O&lt;:shapeless.HList](r:org.parboiled2.Rule[I,O])(implicitl:org.parboiled2.support.Lifter[scala.collection.immutable.Seq,I,O]):org.parboiled2.Rule[l.In,l.StrictOut]withorg.parboiled2.Repeated"></a>
+      <a id="oneOrMore[I&lt;:HList,O&lt;:HList](Rule[I,O])(Lifter[Seq,I,O]):Rule[In,StrictOut]withRepeated"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">oneOrMore</span><span class="tparams">[<span name="I">I &lt;: <span class="extype" name="shapeless.HList">HList</span></span>, <span name="O">O &lt;: <span class="extype" name="shapeless.HList">HList</span></span>]</span><span class="params">(<span name="r">r: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="org.parboiled2.RuleDSLCombinators.oneOrMore.I">I</span>, <span class="extype" name="org.parboiled2.RuleDSLCombinators.oneOrMore.O">O</span>]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="l">l: <span class="extype" name="org.parboiled2.support.Lifter">Lifter</span>[<span class="extype" name="scala.collection.immutable.Seq">Seq</span>, <span class="extype" name="org.parboiled2.RuleDSLCombinators.oneOrMore.I">I</span>, <span class="extype" name="org.parboiled2.RuleDSLCombinators.oneOrMore.O">O</span>]</span>)</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="org.parboiled2.support.Lifter.In">In</span>, <span class="extype" name="org.parboiled2.support.Lifter.StrictOut">StrictOut</span>] with <span class="extype" name="org.parboiled2.Repeated">Repeated</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@oneOrMore[I&lt;:shapeless.HList,O&lt;:shapeless.HList](r:org.parboiled2.Rule[I,O])(implicitl:org.parboiled2.support.Lifter[scala.collection.immutable.Seq,I,O]):org.parboiled2.Rule[l.In,l.StrictOut]withorg.parboiled2.Repeated" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLCombinators</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `oneOrMore` must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLCombinators#optional" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="optional[I&lt;:shapeless.HList,O&lt;:shapeless.HList](r:org.parboiled2.Rule[I,O])(implicitl:org.parboiled2.support.Lifter[Option,I,O]):org.parboiled2.Rule[l.In,l.OptionalOut]"></a>
+      <a id="optional[I&lt;:HList,O&lt;:HList](Rule[I,O])(Lifter[Option,I,O]):Rule[In,OptionalOut]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">optional</span><span class="tparams">[<span name="I">I &lt;: <span class="extype" name="shapeless.HList">HList</span></span>, <span name="O">O &lt;: <span class="extype" name="shapeless.HList">HList</span></span>]</span><span class="params">(<span name="r">r: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="org.parboiled2.RuleDSLCombinators.optional.I">I</span>, <span class="extype" name="org.parboiled2.RuleDSLCombinators.optional.O">O</span>]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="l">l: <span class="extype" name="org.parboiled2.support.Lifter">Lifter</span>[<span class="extype" name="scala.Option">Option</span>, <span class="extype" name="org.parboiled2.RuleDSLCombinators.optional.I">I</span>, <span class="extype" name="org.parboiled2.RuleDSLCombinators.optional.O">O</span>]</span>)</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="org.parboiled2.support.Lifter.In">In</span>, <span class="extype" name="org.parboiled2.support.Lifter.OptionalOut">OptionalOut</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@optional[I&lt;:shapeless.HList,O&lt;:shapeless.HList](r:org.parboiled2.Rule[I,O])(implicitl:org.parboiled2.support.Lifter[Option,I,O]):org.parboiled2.Rule[l.In,l.OptionalOut]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLCombinators</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `optional` must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLBasics#predicate" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="predicate(p:org.parboiled2.CharPredicate):org.parboiled2.Rule0"></a>
+      <a id="predicate(CharPredicate):Rule0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">predicate</span><span class="params">(<span name="p">p: <span class="extype" name="org.parboiled2.CharPredicate">CharPredicate</span></span>)</span><span class="result">: <span class="extype" name="org.parboiled2.Rule0">Rule0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@predicate(p:org.parboiled2.CharPredicate):org.parboiled2.Rule0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLBasics</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `predicate` must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLActions#push" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="push[T](value:T)(implicith:org.parboiled2.support.HListable[T]):org.parboiled2.RuleN[h.Out]"></a>
+      <a id="push[T](T)(HListable[T]):RuleN[Out]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">push</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="value">value: <span class="extype" name="org.parboiled2.RuleDSLActions.push.T">T</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="h">h: <span class="extype" name="org.parboiled2.support.HListable">HListable</span>[<span class="extype" name="org.parboiled2.RuleDSLActions.push.T">T</span>]</span>)</span><span class="result">: <span class="extype" name="org.parboiled2.RuleN">RuleN</span>[<span class="extype" name="org.parboiled2.support.HListable.Out">Out</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@push[T](value:T)(implicith:org.parboiled2.support.HListable[T]):org.parboiled2.RuleN[h.Out]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLActions</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `push` must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLCombinators#quiet" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="quiet[I&lt;:&lt;?&gt;,O&lt;:&lt;?&gt;](r:&lt;?&gt;):org.parboiled2.Rule[I,O]"></a>
+      <a id="quiet[I&lt;:HList,O&lt;:HList](Rule[I,O]):Rule[I,O]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">quiet</span><span class="tparams">[<span name="I">I &lt;: <span class="extype" name="shapeless.HList">HList</span></span>, <span name="O">O &lt;: <span class="extype" name="shapeless.HList">HList</span></span>]</span><span class="params">(<span name="r">r: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="org.parboiled2.RuleDSLCombinators.quiet.I">I</span>, <span class="extype" name="org.parboiled2.RuleDSLCombinators.quiet.O">O</span>]</span>)</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="org.parboiled2.RuleDSLCombinators.quiet.I">I</span>, <span class="extype" name="org.parboiled2.RuleDSLCombinators.quiet.O">O</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@quiet[I&lt;:shapeless.HList,O&lt;:shapeless.HList](r:org.parboiled2.Rule[I,O]):org.parboiled2.Rule[I,O]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLCombinators</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `atomic` must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLCombinators#range2NTimes" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="range2NTimes(range:Range):RuleDSLCombinators.this.NTimes"></a>
+      <a id="range2NTimes(Range):NTimes"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">range2NTimes</span><span class="params">(<span name="range">range: <span class="extype" name="scala.Range">Range</span></span>)</span><span class="result">: <a href="#NTimesextendsAnyRef" class="extmbr" name="tip.parser.TipParser.NTimes">NTimes</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@range2NTimes(range:Range):RuleDSLCombinators.this.NTimes" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLCombinators</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `range2NTimes` must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.parboiled2.Parser#rule" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="rule[I&lt;:shapeless.HList,O&lt;:shapeless.HList](r:org.parboiled2.Rule[I,O]):org.parboiled2.Rule[I,O]"></a>
+      <a id="rule[I&lt;:HList,O&lt;:HList](Rule[I,O]):Rule[I,O]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">macro </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">rule</span><span class="tparams">[<span name="I">I &lt;: <span class="extype" name="shapeless.HList">HList</span></span>, <span name="O">O &lt;: <span class="extype" name="shapeless.HList">HList</span></span>]</span><span class="params">(<span name="r">r: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="org.parboiled2.Parser.rule.I">I</span>, <span class="extype" name="org.parboiled2.Parser.rule.O">O</span>]</span>)</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="org.parboiled2.Parser.rule.I">I</span>, <span class="extype" name="org.parboiled2.Parser.rule.O">O</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@rule[I&lt;:shapeless.HList,O&lt;:shapeless.HList](r:org.parboiled2.Rule[I,O]):org.parboiled2.Rule[I,O]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLActions#rule2ActionOperator" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="rule2ActionOperator[I&lt;:shapeless.HList,O&lt;:shapeless.HList](r:org.parboiled2.Rule[I,O])(implicitops:org.parboiled2.support.ActionOps[I,O]):RuleDSLActions.this.ActionOperator[I,O,ops.Out]"></a>
+      <a id="rule2ActionOperator[I&lt;:HList,O&lt;:HList](Rule[I,O])(ActionOps[I,O]):ActionOperator[I,O,Out]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">rule2ActionOperator</span><span class="tparams">[<span name="I">I &lt;: <span class="extype" name="shapeless.HList">HList</span></span>, <span name="O">O &lt;: <span class="extype" name="shapeless.HList">HList</span></span>]</span><span class="params">(<span name="r">r: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="org.parboiled2.RuleDSLActions.rule2ActionOperator.I">I</span>, <span class="extype" name="org.parboiled2.RuleDSLActions.rule2ActionOperator.O">O</span>]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="ops">ops: <span class="extype" name="org.parboiled2.support.ActionOps">ActionOps</span>[<span class="extype" name="org.parboiled2.RuleDSLActions.rule2ActionOperator.I">I</span>, <span class="extype" name="org.parboiled2.RuleDSLActions.rule2ActionOperator.O">O</span>]</span>)</span><span class="result">: <a href="#ActionOperator[I&lt;:shapeless.HList,O&lt;:shapeless.HList,Ops]extendsAnyRef" class="extmbr" name="tip.parser.TipParser.ActionOperator">ActionOperator</a>[<span class="extype" name="org.parboiled2.RuleDSLActions.rule2ActionOperator.I">I</span>, <span class="extype" name="org.parboiled2.RuleDSLActions.rule2ActionOperator.O">O</span>, <span class="extype" name="org.parboiled2.support.ActionOps.Out">Out</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@rule2ActionOperator[I&lt;:shapeless.HList,O&lt;:shapeless.HList](r:org.parboiled2.Rule[I,O])(implicitops:org.parboiled2.support.ActionOps[I,O]):RuleDSLActions.this.ActionOperator[I,O,ops.Out]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLActions</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `rule2ActionOperator` must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLCombinators#rule2WithSeparatedBy" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="rule2WithSeparatedBy[I&lt;:shapeless.HList,O&lt;:shapeless.HList](r:org.parboiled2.Rule[I,O]withorg.parboiled2.Repeated):RuleDSLCombinators.this.WithSeparatedBy[I,O]"></a>
+      <a id="rule2WithSeparatedBy[I&lt;:HList,O&lt;:HList](Rule[I,O]withRepeated):WithSeparatedBy[I,O]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">rule2WithSeparatedBy</span><span class="tparams">[<span name="I">I &lt;: <span class="extype" name="shapeless.HList">HList</span></span>, <span name="O">O &lt;: <span class="extype" name="shapeless.HList">HList</span></span>]</span><span class="params">(<span name="r">r: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="org.parboiled2.RuleDSLCombinators.rule2WithSeparatedBy.I">I</span>, <span class="extype" name="org.parboiled2.RuleDSLCombinators.rule2WithSeparatedBy.O">O</span>] with <span class="extype" name="org.parboiled2.Repeated">Repeated</span></span>)</span><span class="result">: <a href="#WithSeparatedBy[I&lt;:shapeless.HList,O&lt;:shapeless.HList]extendsAnyRef" class="extmbr" name="tip.parser.TipParser.WithSeparatedBy">WithSeparatedBy</a>[<span class="extype" name="org.parboiled2.RuleDSLCombinators.rule2WithSeparatedBy.I">I</span>, <span class="extype" name="org.parboiled2.RuleDSLCombinators.rule2WithSeparatedBy.O">O</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@rule2WithSeparatedBy[I&lt;:shapeless.HList,O&lt;:shapeless.HList](r:org.parboiled2.Rule[I,O]withorg.parboiled2.Repeated):RuleDSLCombinators.this.WithSeparatedBy[I,O]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLCombinators</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `rule2WithSeparatedBy` constructor must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLActions#run" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="run[T&lt;:&lt;?&gt;](arg:&lt;?&gt;)(implicitrr:&lt;?&gt;):rr.Out"></a>
+      <a id="run[T](T)(RunResult[T]):Out"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">run</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="arg">arg: <span class="extype" name="org.parboiled2.RuleDSLActions.run.T">T</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="rr">rr: <span class="extype" name="org.parboiled2.support.RunResult">RunResult</span>[<span class="extype" name="org.parboiled2.RuleDSLActions.run.T">T</span>]</span>)</span><span class="result">: <span class="extype" name="org.parboiled2.support.RunResult.Out">Out</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@run[T](arg:T)(implicitrr:org.parboiled2.support.RunResult[T]):rr.Out" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLActions</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `run` must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLCombinators#runSubParser" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="runSubParser[I&lt;:&lt;?&gt;,O&lt;:&lt;?&gt;](f:&lt;?&gt;):org.parboiled2.Rule[I,O]"></a>
+      <a id="runSubParser[I&lt;:HList,O&lt;:HList]((ParserInput)⇒Rule[I,O]):Rule[I,O]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">runSubParser</span><span class="tparams">[<span name="I">I &lt;: <span class="extype" name="shapeless.HList">HList</span></span>, <span name="O">O &lt;: <span class="extype" name="shapeless.HList">HList</span></span>]</span><span class="params">(<span name="f">f: (<span class="extype" name="org.parboiled2.ParserInput">ParserInput</span>) ⇒ <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="org.parboiled2.RuleDSLCombinators.runSubParser.I">I</span>, <span class="extype" name="org.parboiled2.RuleDSLCombinators.runSubParser.O">O</span>]</span>)</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="org.parboiled2.RuleDSLCombinators.runSubParser.I">I</span>, <span class="extype" name="org.parboiled2.RuleDSLCombinators.runSubParser.O">O</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@runSubParser[I&lt;:shapeless.HList,O&lt;:shapeless.HList](f:org.parboiled2.ParserInput=&gt;org.parboiled2.Rule[I,O]):org.parboiled2.Rule[I,O]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLCombinators</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `runSubParser` must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLBasics#str" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="str(s:String):org.parboiled2.Rule0"></a>
+      <a id="str(String):Rule0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">str</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="org.parboiled2.Rule0">Rule0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@str(s:String):org.parboiled2.Rule0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLBasics</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `str` must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLBasics#str2CharRangeSupport" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="str2CharRangeSupport(s:String):RuleDSLBasics.this.CharRangeSupport"></a>
+      <a id="str2CharRangeSupport(String):CharRangeSupport"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">str2CharRangeSupport</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="#CharRangeSupportextendsAnyRef" class="extmbr" name="tip.parser.TipParser.CharRangeSupport">CharRangeSupport</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@str2CharRangeSupport(s:String):RuleDSLBasics.this.CharRangeSupport" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLBasics</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `str2CharRangeSupport` must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLActions#test" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="test(condition:&lt;?&gt;):org.parboiled2.Rule0"></a>
+      <a id="test(Boolean):Rule0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">test</span><span class="params">(<span name="condition">condition: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <span class="extype" name="org.parboiled2.Rule0">Rule0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@test(condition:Boolean):org.parboiled2.Rule0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLActions</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `test` must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@toString():String" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLBasics#valueMap" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="valueMap[T](m:Map[String,T])(implicith:org.parboiled2.support.HListable[T]):org.parboiled2.RuleN[h.Out]"></a>
+      <a id="valueMap[T](Map[String,T])(HListable[T]):RuleN[Out]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">valueMap</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="m">m: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="org.parboiled2.RuleDSLBasics.valueMap.T">T</span>]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="h">h: <span class="extype" name="org.parboiled2.support.HListable">HListable</span>[<span class="extype" name="org.parboiled2.RuleDSLBasics.valueMap.T">T</span>]</span>)</span><span class="result">: <span class="extype" name="org.parboiled2.RuleN">RuleN</span>[<span class="extype" name="org.parboiled2.support.HListable.Out">Out</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@valueMap[T](m:Map[String,T])(implicith:org.parboiled2.support.HListable[T]):org.parboiled2.RuleN[h.Out]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLBasics</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `valueMap` must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.parboiled2.Parser#valueStack" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="valueStack:org.parboiled2.ValueStack"></a>
+      <a id="valueStack:ValueStack"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">valueStack</span><span class="result">: <span class="extype" name="org.parboiled2.ValueStack">ValueStack</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@valueStack:org.parboiled2.ValueStack" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@wait():Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@wait(x$1:Long):Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="tip.parser.TipParser#wspStr" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="wspStr(s:String):org.parboiled2.Rule0"></a>
+      <a id="wspStr(String):Rule0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wspStr</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="org.parboiled2.Rule0">Rule0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@wspStr(s:String):org.parboiled2.Rule0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="org.parboiled2.RuleDSLCombinators#zeroOrMore" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="zeroOrMore[I&lt;:shapeless.HList,O&lt;:shapeless.HList](r:org.parboiled2.Rule[I,O])(implicitl:org.parboiled2.support.Lifter[scala.collection.immutable.Seq,I,O]):org.parboiled2.Rule[l.In,l.OptionalOut]withorg.parboiled2.Repeated"></a>
+      <a id="zeroOrMore[I&lt;:HList,O&lt;:HList](Rule[I,O])(Lifter[Seq,I,O]):Rule[In,OptionalOut]withRepeated"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">zeroOrMore</span><span class="tparams">[<span name="I">I &lt;: <span class="extype" name="shapeless.HList">HList</span></span>, <span name="O">O &lt;: <span class="extype" name="shapeless.HList">HList</span></span>]</span><span class="params">(<span name="r">r: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="org.parboiled2.RuleDSLCombinators.zeroOrMore.I">I</span>, <span class="extype" name="org.parboiled2.RuleDSLCombinators.zeroOrMore.O">O</span>]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="l">l: <span class="extype" name="org.parboiled2.support.Lifter">Lifter</span>[<span class="extype" name="scala.collection.immutable.Seq">Seq</span>, <span class="extype" name="org.parboiled2.RuleDSLCombinators.zeroOrMore.I">I</span>, <span class="extype" name="org.parboiled2.RuleDSLCombinators.zeroOrMore.O">O</span>]</span>)</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="org.parboiled2.support.Lifter.In">In</span>, <span class="extype" name="org.parboiled2.support.Lifter.OptionalOut">OptionalOut</span>] with <span class="extype" name="org.parboiled2.Repeated">Repeated</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.parser.TipParser@zeroOrMore[I&lt;:shapeless.HList,O&lt;:shapeless.HList](r:org.parboiled2.Rule[I,O])(implicitl:org.parboiled2.support.Lifter[scala.collection.immutable.Seq,I,O]):org.parboiled2.Rule[l.In,l.OptionalOut]withorg.parboiled2.Repeated" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLCombinators</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `zeroOrMore` must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="tip.parser.Comments">
+              <h3>Inherited from <a href="Comments.html" class="extype" name="tip.parser.Comments">Comments</a></h3>
+            </div><div class="parent" name="org.parboiled2.Parser">
+              <h3>Inherited from <span class="extype" name="org.parboiled2.Parser">Parser</span></h3>
+            </div><div class="parent" name="org.parboiled2.RuleDSL">
+              <h3>Inherited from <span class="extype" name="org.parboiled2.RuleDSL">RuleDSL</span></h3>
+            </div><div class="parent" name="org.parboiled2.RuleDSLActions">
+              <h3>Inherited from <span class="extype" name="org.parboiled2.RuleDSLActions">RuleDSLActions</span></h3>
+            </div><div class="parent" name="org.parboiled2.RuleDSLCombinators">
+              <h3>Inherited from <span class="extype" name="org.parboiled2.RuleDSLCombinators">RuleDSLCombinators</span></h3>
+            </div><div class="parent" name="org.parboiled2.RuleDSLBasics">
+              <h3>Inherited from <span class="extype" name="org.parboiled2.RuleDSLBasics">RuleDSLBasics</span></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>
