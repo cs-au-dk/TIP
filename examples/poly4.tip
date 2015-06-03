@@ -1,0 +1,22 @@
+foo(a) {
+	return a;
+}
+
+bar() {
+	var x;
+	x = foo(17);
+	return x;
+}
+
+baz() {
+	var y;
+	y = foo(18);
+	return y;
+}
+
+main() {
+	var a,b;
+	a = bar();
+	b = baz();
+	return a+b;
+}

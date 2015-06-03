@@ -1,0 +1,6 @@
+test(){
+	var p;
+	p = malloc;
+	*p = p;
+	return 0;
+}

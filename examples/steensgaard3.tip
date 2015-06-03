@@ -1,0 +1,9 @@
+main() {
+	var a, b, x, y, z, c;
+	a = &x;
+	b = &y;
+	y = &z;
+	y = &x;
+	c = &y;
+	return 0;
+}

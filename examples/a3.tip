@@ -1,0 +1,28 @@
+bar(x) {
+	return x;
+}
+
+foh(x,y) {
+	return x+y;
+}
+
+baz(x, y) {
+	*y = foh(4,3);
+	*y = ***x * *y;
+	return *y;
+	//return 1;
+}
+
+main() {
+	var foo, x, y, z, w;
+	w = baz;
+	foo = &w;
+	z = 8;
+	y = &z;
+	x = &y;
+	
+	**x = (*foo)(&x,bar(malloc));
+	
+	return **x;
+	//return 1;
+}

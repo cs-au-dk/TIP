@@ -1,0 +1,28 @@
+posf(b) {
+	return 5;
+}
+
+negf(c) {
+	return -5;
+}
+
+main() {
+	var pos, neg, top, u, f;
+
+	u = 0;
+	
+	pos = posf(-4);
+
+	neg = negf(3);
+
+	if(u > 0) {
+		f = posf;
+	}
+	else {
+		f = negf;
+	}
+
+	top = (f)(4);
+
+	return 0;
+}

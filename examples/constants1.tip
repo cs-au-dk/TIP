@@ -1,0 +1,36 @@
+/*f(a,b){
+	return 5*a + 7*b;
+}*/
+
+
+main(){
+	var x,y,z,n;
+	
+	x=12;
+	y=17;
+	z=8;
+	
+	n=4;
+	z = 3*(x+y-z) + 5 -17;
+	while(n > 0){
+		//x = f(y,z);
+		y = x * input;
+		n=n-1;
+	}
+	z = 3*(x+y-z) + 5 -16;
+	return 123;
+}
+
+
+
+/*
+main(){
+	var n;
+	
+	n=4;
+	while(n > 0){
+		n=n-1;
+	}
+	return n;
+}
+*/

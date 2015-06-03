@@ -1,0 +1,4 @@
+main(){
+r=(f)(a);
+return 1;
+}

@@ -1,0 +1,31 @@
+idf(a) {
+	return a;
+}
+
+posf(b) {
+	return b;
+}
+
+negf(c) {
+	return c;
+}
+
+main() {
+	var pos, neg, top, u;
+
+	u = 0;
+	
+	top = idf(5);
+
+	top = idf(-4);
+
+	pos = posf(5);
+
+	pos = posf(7);
+
+	neg = negf(-4);
+
+	neg = negf(-8);
+
+	return 0;
+}

@@ -1,0 +1,29 @@
+fun(x) {
+	var y;
+	var k ;
+
+	k = 8;
+	y = 7;
+
+	while(k > y) {
+		k = k - 1;
+	}
+
+	return 0;
+}
+
+main() {
+	var pos, neg, top, zero;
+	pos = 5 + 5;
+	pos = 5 * 5;	
+	neg = -5 - 5;
+	neg = -5 * 5;
+	neg = 5 * -5;
+	top = 5 - 5;
+	top = top * 5;
+	var later;
+	zero = top * 0;
+	zero = 5 * zero;
+	later = 7;
+	return 0;
+}

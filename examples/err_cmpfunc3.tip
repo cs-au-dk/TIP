@@ -1,0 +1,16 @@
+
+f(z){
+	return z(4);
+}
+
+g(j){
+	return j+1;
+}
+
+main(){
+	var n;
+	if( f==g ){
+		n=10;
+	}
+	return 0;
+}

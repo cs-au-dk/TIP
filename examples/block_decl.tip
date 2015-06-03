@@ -1,0 +1,13 @@
+main() {
+	var x,y;
+	x = 0;
+	{
+		var z;
+		z = x;
+		var w;
+		w = z;
+		x = w;
+	}
+	y = x + 1;
+	return x;
+}

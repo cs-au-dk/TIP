@@ -1,0 +1,10 @@
+// Not typable : int = [[r]]=[[g]]=&\alpha
+
+foo(p) {
+	return *p;
+}
+
+main() {
+	foo = 5;
+	return 4;
+}
