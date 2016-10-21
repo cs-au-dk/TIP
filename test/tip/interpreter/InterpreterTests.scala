@@ -27,8 +27,8 @@ class InterpreterTests {
 	@Test
 	def factorialRecursiveIterative() {
 	  val in = new ByteArrayInputStream(("5\n4").getBytes)
-		val recursive = ("tipprograms/factorial_iterative.tip")
-		val iterative = ("tipprograms/factorial_recursive.tip")
+		val recursive = "tipprograms/factorial_iterative.tip"
+		val iterative = "tipprograms/factorial_recursive.tip"
 		val progrec = prepare(recursive)
 		val progite = prepare(iterative)
 		Console.withIn(in)  {
@@ -39,5 +39,10 @@ class InterpreterTests {
 	  }
 	}
 	
+	@Test
+	def pointerManipulation() {
+	  		val p = prepare("tipprograms/pointers.tip")
+	  		assertEquals(1, new Interpreter(p).run())
+	}
 	
 }
