@@ -8,21 +8,9 @@ import scala.io.Source
 import org.junit.Test
 import org.junit.Assert._
 import java.io.ByteArrayInputStream
+import tip.InterpreterUtils._
   
 class InterpreterTests {
-
-	def prepare(fileName : String) : AProgram =  {
-			val src = Source.fromFile(fileName).mkString
-		  val tipParser = new TipParser(src)
-			val p = tipParser.InputLine.run()
-			p match {
-			  case Success(programNode : tip.ast.AProgram) => {
-				  //required for side effects on environment
-				  new DeclarationAnalysis(programNode)
-				  programNode
-			  }
-			}
-	}
 	
 	@Test
 	def factorialRecursiveIterative() {
@@ -50,5 +38,5 @@ class InterpreterTests {
 	  		val p = prepare("tipprograms/map.tip")
 	  		assertEquals(42, new Interpreter(p).run())
 	}
-	
 }
+

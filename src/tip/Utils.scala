@@ -6,6 +6,11 @@ import tip.analysis.FlowSensitiveAnalysis
 import tip.ast.{AFunDeclaration, AstNode}
 import tip.graph._
 import tip.logging.Log
+import tip.ast.AProgram
+import tip.parser.TipParser
+import scala.util.Success
+import tip.analysis.DeclarationAnalysis
+import scala.io.Source
 
 object OutputKindE extends Enumeration {
   val Cfg, Icfg, Ast, Constraints = Value
@@ -146,5 +151,24 @@ object MapUtils {
       res
     }
   }
+}
 
+object InterpreterUtils {
+  /**
+   * Parses the TIP source file at the given location, performs a declaration analysis, 
+   * and returns an Abstract Syntax Tree in which every AIdentifier 
+   * has been annotated with its corresponding declaration. 
+   * Required for the Interpreter.
+   */
+  def prepare(fileName : String) : AProgram =  {
+    val src = Source.fromFile(fileName).mkString
+    val tipParser = new TipParser(src)
+    val p = tipParser.InputLine.run()
+    p match {
+      case Success(programNode : tip.ast.AProgram) => {
+        new DeclarationAnalysis(programNode)
+        programNode
+      }
+    }
+  }
 }
