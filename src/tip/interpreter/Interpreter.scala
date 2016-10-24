@@ -24,6 +24,7 @@ class Interpreter(program: AProgram) {
       case _ => false
     }
   }
+  case object NullValue extends Value
 
   type Env = Map[AIdentifierDeclaration, Location]
 
@@ -64,10 +65,8 @@ class Interpreter(program: AProgram) {
             env(id.meta.definition.get).i = Some(value)
           case AUnaryOp(DerefOp(), id: AIdentifier, loc) =>
             env(id.meta.definition.get).i match {
-              case Some(Location(x)) => {
-                env(id.meta.definition.get).i = Some(value)
-              }
-              case None => nullPointerException(loc)
+              case Some(location @ Location(x)) => location.i = Some(value)
+              case Some(NullValue) => nullPointerException(loc)
               case _ => unreferenceNonPointer(loc)
             }
           case _ => throw new RuntimeException(s"Unassignable on the left-hand side of an assignmnet: $left")
@@ -135,12 +134,12 @@ class Interpreter(program: AProgram) {
       case AInput(_) => val line = scala.io.StdIn.readLine()
         if (line == null) IntValue(0) else IntValue(line.toInt)
       case AMalloc(_) => new Location(None)
-      case ANull(_) => new Location(None)
+      case ANull(_) => NullValue
       case ANumber(value, _) => IntValue(value)
       case AUnaryOp(op: DerefOp, target: AExpr, loc) =>
         runExpression(target, env) match {
           case Location(Some(x)) => x
-          case Location(None) => nullPointerException(loc)
+          case NullValue => nullPointerException(loc)
           case _ => unreferenceNonPointer(loc)
         }
       case AUnaryOp(op: RefOp, target: AExpr, loc) =>

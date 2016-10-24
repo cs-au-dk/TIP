@@ -45,4 +45,10 @@ class InterpreterTests {
 	  		assertEquals(1, new Interpreter(p).run())
 	}
 	
+	@Test
+	def map() {
+	  		val p = prepare("tipprograms/map.tip")
+	  		assertEquals(42, new Interpreter(p).run())
+	}
+	
 }
