@@ -67,9 +67,9 @@ class Interpreter(program: AProgram) {
             env(id.meta.definition.get).i match {
               case Some(location @ Location(x)) => location.i = Some(value)
               case Some(NullValue) => nullPointerException(loc)
-              case _ => unreferenceNonPointer(loc)
+              case _ => dereferenceNonPointer(loc)
             }
-          case _ => throw new RuntimeException(s"Unassignable on the left-hand side of an assignmnet: $left")
+          case _ => throw new RuntimeException(s"Unassignable on the left-hand side of an assignment: $left")
         }
         env
       case ABlockStmt(content, _) => content.foldLeft(env)((env: Env, stm: AStmt) => runStatement(stm, env))
@@ -122,14 +122,14 @@ class Interpreter(program: AProgram) {
                   case _ => ???
                 }
               }
-              case _ => throw new RuntimeException(s"Unable to apply the operator $op to non integer values")
+              case _ => throw new RuntimeException(s"Unable to apply the operator $op to non-integer values")
             }
           }
         }
       case id: AIdentifier =>
         env(id.meta.definition.get).i match {
           case Some(z) => z
-          case None => throw new RuntimeException(s"Not initialised variable at ${id.offset}")
+          case None => throw new RuntimeException(s"Uninitialised variable at ${id.offset}")
         }
       case AInput(_) => val line = scala.io.StdIn.readLine()
         if (line == null) IntValue(0) else IntValue(line.toInt)
@@ -140,12 +140,12 @@ class Interpreter(program: AProgram) {
         runExpression(target, env) match {
           case Location(Some(x)) => x
           case NullValue => nullPointerException(loc)
-          case _ => unreferenceNonPointer(loc)
+          case _ => dereferenceNonPointer(loc)
         }
       case AUnaryOp(op: RefOp, target: AExpr, loc) =>
         target match {
           case id: AIdentifier => env(id.meta.definition.get)
-          case _ => throw new RuntimeException(s"Can not take the reference of an expression at $loc")
+          case _ => throw new RuntimeException(s"Cannot take the reference of an expression at $loc")
         }
       case ACallFuncExpr(target, args, loc) =>
         val funValue = runExpression(target, env)
@@ -160,5 +160,5 @@ class Interpreter(program: AProgram) {
   def missingReturn(fun: AFunDeclaration) = throw new RuntimeException(s"Missing return statement in ${fun.name}")
   def nullPointerException(loc: Loc) = throw new RuntimeException(s"NullPointer exception at $loc")
   def guardNotInteger(loc: Loc) = throw new RuntimeException(s"Guard in $loc not evaluating to an integer")
-  def unreferenceNonPointer(loc: Loc) = throw new RuntimeException(s"Unreferencing a non-pointer at $loc")
+  def dereferenceNonPointer(loc: Loc) = throw new RuntimeException(s"Dereferencing a non-pointer at $loc")
 }
