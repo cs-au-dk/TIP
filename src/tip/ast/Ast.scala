@@ -160,6 +160,10 @@ case class AReturnStmt(value: AExpr, offset: Loc) extends AStmt {
   override def toString: String = s"return $value;"
 }
 
+case class AErrorStmt(value: AExpr, offset: Loc) extends AStmt {
+  override def toString: String = s"error $value;"
+}
+
 case class AVarStmt(declIds: immutable.Seq[AIdentifier], offset: Loc) extends AStmt {
   override def toString: String = s"var ${declIds.mkString(",")};"
 

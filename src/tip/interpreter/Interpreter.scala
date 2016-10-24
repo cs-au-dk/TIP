@@ -25,6 +25,8 @@ class Interpreter(program: AProgram) {
     }
   }
   case object NullValue extends Value
+  case class ApplicationException(errorCode : Int) extends RuntimeException(s"Application error, code: $errorCode")
+
 
   type Env = Map[AIdentifierDeclaration, Location]
 
@@ -85,6 +87,11 @@ class Interpreter(program: AProgram) {
       case ret: AReturnStmt =>
         env(returnId).i = Some(runExpression(ret.value, env))
         env
+      case err : AErrorStmt =>
+        runExpression(err.value, env)  match {
+          case IntValue(errorCode) => throw new ApplicationException(errorCode)
+          case _ @ v => throw new RuntimeException(s"Error statement expects integer value as error code, given $v")
+       }
       case AVarStmt(ids, _) =>
         ids.foldLeft(env)((env: Env, id: AIdentifier) => env + (id.meta.definition.get -> new Location(None)))
       case w: AWhileStmt =>

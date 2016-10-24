@@ -29,14 +29,21 @@ class InterpreterTests {
 	
 	@Test
 	def pointerManipulation() {
-	  		val p = prepare("tipprograms/pointers.tip")
-	  		assertEquals(1, new Interpreter(p).run())
+	  val p = prepare("tipprograms/pointers.tip")
+	  assertEquals(1, new Interpreter(p).run())
 	}
 	
 	@Test
 	def map() {
-	  		val p = prepare("tipprograms/map.tip")
-	  		assertEquals(42, new Interpreter(p).run())
+	  val p = prepare("tipprograms/map.tip")
+	  assertEquals(42, new Interpreter(p).run())
 	}
+	
+	@Test(expected = classOf[RuntimeException]) 
+	def errorStatement() {
+	  val p = prepare("tipprograms/error.tip")	  
+	  new Interpreter(p).run()
+	}
+	
 }
 
