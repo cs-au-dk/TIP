@@ -13,6 +13,8 @@ import tip.parser.TipParser
 import scala.io.Source
 import scala.language.existentials
 import scala.util.{Failure, Success}
+import tip.ast.AProgram
+import tip.concolic.SymbolicInterpreter
 
 class RunOption {
 
@@ -27,6 +29,7 @@ var source: File = null
 var out: File = Globals.defaultOut
 
 var run = false
+var concolic = false
 
 def check (): Boolean = {
 source != null
@@ -81,6 +84,7 @@ object entry {
         | Running:
         |
         | -run               run the program as the last step
+        | -concolic          perform concolic testing (i.e., search for failing inputs using dynamic symbolic execution)
         |
       """.
         stripMargin)
@@ -119,6 +123,8 @@ object entry {
           options.dfAnalysis += dfa.withName(args(i).drop(1)) -> extDataFlowOptions(i)
         case "-run" =>
           options.run = true
+        case "-concolic" =>
+          options.concolic = true
         case "-verbose" =>
           Log.defaultLevel = Log.Level.Verbose
         case s: String =>
@@ -167,7 +173,7 @@ object entry {
           log.warn(s"Failure parsing the program: $file\n$program\n${tipParser.formatError(e, new ErrorFormatter(showTraces = true))}")
         case Failure(e: Throwable) =>
           log.warn(s"Failure parsing the program: $file\n$program", e)
-        case Success(programNode) =>
+        case Success(programNode : AProgram) =>
           new DeclarationAnalysis(programNode)
 
           if (options.cfg | options.dfAnalysis.exists(p => p._2 != dfo.Disabled && !dfo.intraprocedural(p._2))) {
@@ -220,6 +226,9 @@ object entry {
           }
           if (options.run) {
             new Interpreter(programNode).run()
+          }
+          if (options.concolic) {
+            new SymbolicInterpreter(programNode).test()
           }
           log.info("Success")
       }
