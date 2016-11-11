@@ -181,16 +181,20 @@ object SMTUtils {
   import smtlib.parser.Terms._
   import smtlib.theories.Core._
 
+  val log = Log.typeLogger[this.type](Log.Level.Info)
+
   private def runScriptGetModel(script: Script)(implicit interpreter: Interpreter): Option[List[SExpr]] = {
     script.commands.foreach(interpreter.eval _)
     interpreter.eval(CheckSat()) match {
       case CheckSatStatus(SatStatus) => interpreter.eval(GetModel()) match {
         case GetModelResponseSuccess(m) => Some(m)
-        case s => None
+        case s => log.info(s"Unhandled sat response: $s"); None
       }
-      case s => None
+      case CheckSatStatus(UnsatStatus) => None
+      case s => log.info(s"Unhandled response code: $s"); None
     }
   }
+
 
   private def extractConstModel(model: List[SExpr]): Map[String, BigInt] = {
     def extract(cl: SExpr): Option[(String, BigInt)] = cl match {
@@ -208,12 +212,12 @@ object SMTUtils {
               /* Bitvector number */
               Some((fundef.name.name, v.toInt))
               /* There's probably more missing cases */
-            case _ => println(s"Ignoring non-integer model values ($fundef)"); None
+            case _ => log.info(s"Ignoring non-integer model values ($fundef)"); None
           }
         } else {
-          println(s"Ignoring non-constant values in the model ($fundef)"); None
+          log.info(s"Ignoring non-constant values in the model ($fundef)"); None
         }
-      case _ => println(s"Ignoring unknown model clause ($cl)"); None
+      case _ => log.info(s"Ignoring unknown model clause ($cl)"); None
     }
     model match {
       case Nil => Map[String, BigInt]()
@@ -227,6 +231,8 @@ object SMTUtils {
   implicit lazy val z3 = smtlib.interpreters.Z3Interpreter.buildDefault
   /** Solves a SMTLib script */
   def solve(script: Script): Option[Map[String, BigInt]] = {
+    log.info(s"solving $script")
+    reset()
     runScriptGetModel(script).map(extractConstModel)
   }
   /**

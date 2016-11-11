@@ -240,7 +240,8 @@ class SymbolicInterpreter(program: AProgram) {
             return newInputs(symbols, lastNode)
           case Some(mapping) =>
             log.info(s"Model: $mapping")
-            return Some(symbols.map(v => mapping(v.value).toInt))            
+            return Some(symbols.map(v =>
+              mapping.get(v.value).map(_.toInt).getOrElse(scala.util.Random.nextInt)))
           }
       }
       case _ => return None
@@ -416,14 +417,14 @@ class SymbolicInterpreter(program: AProgram) {
               IntValue(if (lv == rv) 1 else 0)
             def symbolicEquality(lsym : AExpr, rsym : AExpr) : ABinaryOp =
               ABinaryOp(Eqq(), lsym, rsym, location)()
-              
+
             (s2, (left, right) match {    
               case (IntValue(lv), IntValue(rv)) => 
                 integerEquality(lv,rv)
               case (IntValue(lv), SymbolicValue(IntValue(rv), rsym)) =>
                 new SymbolicValue(integerEquality(lv,rv), symbolicEquality(new ANumber(lv, location)(), rsym))
               case (SymbolicValue(IntValue(lv), lsym), IntValue(rv)) =>
-                new SymbolicValue(integerEquality(lv,rv), symbolicEquality(lsym, new ANumber(lv, location)()))
+                new SymbolicValue(integerEquality(lv,rv), symbolicEquality(lsym, new ANumber(rv, location)()))
               case (SymbolicValue(IntValue(lv), lsym), SymbolicValue(IntValue(rv), rsym)) =>
                 new SymbolicValue(integerEquality(lv,rv), symbolicEquality(lsym, rsym))
               case _  =>
