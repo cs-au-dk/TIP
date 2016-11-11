@@ -1,0 +1,15 @@
+main() {
+  var x, y;
+  x = input;
+  x = x + 5;
+  if (x > 0) {
+    y = input;
+  } else {
+    y = 10;
+  }
+
+  if (x > 2)
+    if (y == 2789)
+      error 1;
+  return 0;
+}
