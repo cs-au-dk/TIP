@@ -183,7 +183,7 @@ class SymbolicInterpreter(program: AProgram) {
   
   val returnId = AIdentifier("return", Loc(-1, -1))()
   
-  def nextExplorationTarget(lastExplored : CTNode) : Option[(CTNode, Boolean)] = {
+  def nextExplorationTarget(lastExplored : CTNode, root : CTNode) : Option[(CTNode, Boolean)] = {
       lastExplored.parent match {
         case None => 
           None
@@ -191,11 +191,11 @@ class SymbolicInterpreter(program: AProgram) {
            if(parent.trueBranch.isDefined) {
              if(parent.falseBranch.isDefined)
                //true explored, false explored
-               nextExplorationTarget(parent)
+               nextExplorationTarget(parent, root)
              else {
                if(parent.falseUnsat)
                  //true explored, false unsatisfiable
-                 nextExplorationTarget(parent)
+                 nextExplorationTarget(parent, root)
             	 else 
             	   //true explored, false not explored
             	   Some((parent,false))
@@ -204,11 +204,11 @@ class SymbolicInterpreter(program: AProgram) {
              if(parent.trueUnsat) {
                if(parent.falseBranch.isDefined) {
                  //true unsatisfiable, false explored
-                 nextExplorationTarget(parent)
+                 nextExplorationTarget(parent, root)
                } else {
                  if(parent.falseUnsat) 
                    //true unsatisfiable, false unsatisfiable
-                   nextExplorationTarget(parent)
+                   nextExplorationTarget(parent, root)
                  else 
                    //true unsatisfiable, false not explored
                    Some((parent,false))
@@ -222,8 +222,8 @@ class SymbolicInterpreter(program: AProgram) {
   }
   
   
-  def newInputs(symbols : List[Symbol], lastNode : CTNode) : Option[List[Int]] = {
-    val target = nextExplorationTarget(lastNode) 
+  def newInputs(symbols : List[Symbol], lastNode : CTNode, root : CTNode) : Option[List[Int]] = {
+    val target = nextExplorationTarget(lastNode, root)
     target match {
       case Some((targetNode, value)) => {
         val pc = targetNode.pathCondition(List((targetNode.symcond.get, value)))
@@ -237,7 +237,7 @@ class SymbolicInterpreter(program: AProgram) {
               targetNode.trueUnsat = true
             else
               targetNode.falseUnsat = true
-            return newInputs(symbols, lastNode)
+            return newInputs(symbols, lastNode, root)
           case Some(mapping) =>
             log.info(s"Model: $mapping")
             return Some(symbols.map(v =>
@@ -262,7 +262,7 @@ class SymbolicInterpreter(program: AProgram) {
         val result = run(computationTree = root, inputs)
         results = result :: results
         symbols = result.symbolicVars()
-        newInputs(symbols, result.lastNode) match {
+        newInputs(symbols, result.lastNode, root) match {
           case Some(values) => 
             inputs = values
           case None => 
