@@ -129,7 +129,7 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
   }
 
   def Statement = rule {
-    Output | Assigment | Declaration | Block | While | If | Return
+    Output | Assigment | Declaration | Block | While | If | Return | Error
   }
 
   def Assigment: Rule1[AStmt] = rule {
@@ -163,6 +163,10 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
 
   def Return: Rule1[AStmt] = rule {
     push(cursor) ~ "return" ~ Expression ~ ";" ~> ((cur: Int, e: AExpr) => AReturnStmt(e, cur))
+  }
+  
+  def Error: Rule1[AStmt] = rule {
+    push(cursor) ~ "error" ~ Expression ~ ";" ~> ((cur: Int, e: AExpr) => AErrorStmt(e, cur))
   }
 
   def FunApp: Rule1[AExpr] = rule {

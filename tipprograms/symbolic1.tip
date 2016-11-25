@@ -1,0 +1,23 @@
+double(v) {
+  return 2*v;
+}
+
+testme(x, y) {
+  var z, res;
+  res = 0;
+  z = double(y);
+  if (z==x) {
+    if (x > y + 10) {
+      error 42;
+    }
+    error 41;
+  }
+  return res;
+}
+
+main() {
+  var ix, iy;
+  ix = input;
+  iy = input;
+  return testme(ix, iy);
+}

@@ -36,6 +36,8 @@ trait DepthFirstAstVisitor[A] {
         visit(out.value, arg)
       case ret: AReturnStmt =>
         visit(ret.value, arg)
+      case err : AErrorStmt =>
+        visit(err.value, arg)
       case varr: AVarStmt =>
         varr.declIds.foreach(visit(_, arg))
       case whl: AWhileStmt =>
