@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>InterprocSignAnalysisFunctions - TIP API - tip.analysis.InterprocSignAnalysisFunctions</title>
-          <meta name="description" content="InterprocSignAnalysisFunctions - TIP API - tip.analysis.InterprocSignAnalysisFunctions" />
-          <meta name="keywords" content="InterprocSignAnalysisFunctions TIP API tip.analysis.InterprocSignAnalysisFunctions" />
+          <title>InterprocSignAnalysisFunctions - tip.analysis.InterprocSignAnalysisFunctions</title>
+          <meta name="description" content="InterprocSignAnalysisFunctions - tip.analysis.InterprocSignAnalysisFunctions" />
+          <meta name="keywords" content="InterprocSignAnalysisFunctions tip.analysis.InterprocSignAnalysisFunctions" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -28,13 +28,13 @@
         </head>
         <body class="type">
       <div id="definition">
-        <img src="../../lib/trait_big.png" />
+        <img alt="Trait" src="../../lib/trait_big.png" />
         <p id="owner"><a href="../package.html" class="extype" name="tip">tip</a>.<a href="package.html" class="extype" name="tip.analysis">analysis</a></p>
         <h1>InterprocSignAnalysisFunctions</h1><h3><span class="morelinks"><div>Related Doc:
             <a href="package.html" class="extype" name="tip.analysis">package analysis</a>
           </div></span></h3><span class="permalink">
       <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       </div>
@@ -45,7 +45,7 @@
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <span class="name">InterprocSignAnalysisFunctions</span><span class="result"> extends <a href="../solvers/MapLiftLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLiftLatticeUpdateFunction">MapLiftLatticeUpdateFunction</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]] with <a href="InterprocSignAnalysisMisc.html" class="extype" name="tip.analysis.InterprocSignAnalysisMisc">InterprocSignAnalysisMisc</a></span>
+        <span class="name">InterprocSignAnalysisFunctions</span><span class="result"> extends <a href="../solvers/MapLiftLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLiftLatticeUpdateFunction">MapLiftLatticeUpdateFunction</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] with <a href="InterprocSignAnalysisMisc.html" class="extype" name="tip.analysis.InterprocSignAnalysisMisc">InterprocSignAnalysisMisc</a> with <a href="InterproceduralForwardDependencies.html" class="extype" name="tip.analysis.InterproceduralForwardDependencies">InterproceduralForwardDependencies</a></span>
       </span>
       </h4>
       
@@ -53,10 +53,10 @@
 This version is for the basic worklist algorithm.
 </p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="InterprocSignAnalysisMisc.html" class="extype" name="tip.analysis.InterprocSignAnalysisMisc">InterprocSignAnalysisMisc</a>, <a href="../solvers/MapLiftLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLiftLatticeUpdateFunction">MapLiftLatticeUpdateFunction</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]], <a href="../solvers/Dependencies.html" class="extype" name="tip.solvers.Dependencies">Dependencies</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="InterproceduralForwardDependencies.html" class="extype" name="tip.analysis.InterproceduralForwardDependencies">InterproceduralForwardDependencies</a>, <a href="InterprocSignAnalysisMisc.html" class="extype" name="tip.analysis.InterprocSignAnalysisMisc">InterprocSignAnalysisMisc</a>, <a href="../solvers/MapLiftLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLiftLatticeUpdateFunction">MapLiftLatticeUpdateFunction</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>], <a href="Dependencies.html" class="extype" name="tip.analysis.Dependencies">Dependencies</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div><div class="toggleContainer block">
             <span class="toggle">Known Subclasses</span>
-            <div class="subClasses hiddenContent"><a href="InterprocSignAnalysisWorklistSolverWithInit.html" class="extype" name="tip.analysis.InterprocSignAnalysisWorklistSolverWithInit">InterprocSignAnalysisWorklistSolverWithInit</a>, <a href="InterprocSignAnalysisWorklistSolverWithInitAndCFA.html" class="extype" name="tip.analysis.InterprocSignAnalysisWorklistSolverWithInitAndCFA">InterprocSignAnalysisWorklistSolverWithInitAndCFA</a></div>
+            <div class="subClasses hiddenContent"><a href="InterprocSignAnalysisWorklistSolverWithInit.html" class="extype" name="tip.analysis.InterprocSignAnalysisWorklistSolverWithInit">InterprocSignAnalysisWorklistSolverWithInit</a></div>
           </div></div>
         
 
@@ -67,22 +67,21 @@ This version is for the basic worklist algorithm.
               <ol>
                 
                 <li class="alpha in"><span>Alphabetic</span></li>
-                <li class="inherit out"><span>By inheritance</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
               </ol>
             </div>
         <div id="ancestors">
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="tip.analysis.InterprocSignAnalysisFunctions"><span>InterprocSignAnalysisFunctions</span></li><li class="in" name="tip.analysis.InterprocSignAnalysisMisc"><span>InterprocSignAnalysisMisc</span></li><li class="in" name="tip.solvers.MapLiftLatticeUpdateFunction"><span>MapLiftLatticeUpdateFunction</span></li><li class="in" name="tip.solvers.Dependencies"><span>Dependencies</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="tip.analysis.InterprocSignAnalysisFunctions"><span>InterprocSignAnalysisFunctions</span></li><li class="in" name="tip.analysis.InterproceduralForwardDependencies"><span>InterproceduralForwardDependencies</span></li><li class="in" name="tip.analysis.InterprocSignAnalysisMisc"><span>InterprocSignAnalysisMisc</span></li><li class="in" name="tip.solvers.MapLiftLatticeUpdateFunction"><span>MapLiftLatticeUpdateFunction</span></li><li class="in" name="tip.analysis.Dependencies"><span>Dependencies</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
             <ol>
               <li class="hideall out"><span>Hide All</span></li>
-              <li class="showall in"><span>Show all</span></li>
+              <li class="showall in"><span>Show All</span></li>
             </ol>
-            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
           </div>
         <div id="visbl">
             <span class="filtertype">Visibility</span>
@@ -98,124 +97,71 @@ This version is for the basic worklist algorithm.
 
         <div id="values" class="values members">
               <h3>Abstract Value Members</h3>
-              <ol><li name="tip.analysis.InterprocSignAnalysisFunctions#called" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="called(n:tip.graph.GNode[tip.ast.AstNode]):Set[tip.graph.GNode[tip.ast.AstNode]]"></a>
-      <a id="called(GNode[AstNode]):Set[GNode[AstNode]]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">called</span><span class="params">(<span name="n">n: <a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@called(n:tip.graph.GNode[tip.ast.AstNode]):Set[tip.graph.GNode[tip.ast.AstNode]]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
-      </a>
-    </span>
-      
-    </li><li name="tip.analysis.InterprocSignAnalysisFunctions#callers" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="callers(n:tip.graph.GNode[tip.ast.AstNode]):Set[tip.graph.GNode[tip.ast.AstNode]]"></a>
-      <a id="callers(GNode[AstNode]):Set[GNode[AstNode]]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">callers</span><span class="params">(<span name="n">n: <a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@callers(n:tip.graph.GNode[tip.ast.AstNode]):Set[tip.graph.GNode[tip.ast.AstNode]]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
-      </a>
-    </span>
-      
-    </li><li name="tip.analysis.InterprocSignAnalysisMisc#cfg" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="cfg:tip.graph.ProgramCFG"></a>
-      <a id="cfg:ProgramCFG"></a>
+              <ol><li name="tip.analysis.InterproceduralForwardDependencies#cfg" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="cfg:tip.cfg.InterproceduralProgramCfg"></a>
+      <a id="cfg:InterproceduralProgramCfg"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">abstract </span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">cfg</span><span class="result">: <a href="../graph/ProgramCFG.html" class="extype" name="tip.graph.ProgramCFG">ProgramCFG</a></span>
+        <span class="name">cfg</span><span class="result">: <a href="../cfg/InterproceduralProgramCfg.html" class="extype" name="tip.cfg.InterproceduralProgramCfg">InterproceduralProgramCfg</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@cfg:tip.graph.ProgramCFG" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@cfg:tip.cfg.InterproceduralProgramCfg" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="InterprocSignAnalysisMisc.html" class="extype" name="tip.analysis.InterprocSignAnalysisMisc">InterprocSignAnalysisMisc</a></dd></dl></div>
-    </li><li name="tip.solvers.Dependencies#indep" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="indep(n:N):scala.collection.immutable.Set[N]"></a>
-      <a id="indep(GNode[AstNode]):Set[GNode[AstNode]]"></a>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="InterproceduralForwardDependencies.html" class="extype" name="tip.analysis.InterproceduralForwardDependencies">InterproceduralForwardDependencies</a></dd></dl></div>
+    </li><li name="tip.analysis.InterprocSignAnalysisFunctions#declData" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="declData:tip.ast.AstNodeData.DeclarationData"></a>
+      <a id="declData:DeclarationData"></a>
       <h4 class="signature">
       <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">def</span>
+        <span class="modifier">implicit abstract </span>
+        <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">indep</span><span class="params">(<span name="n">n: <a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]</span>)</span><span class="result">: <span class="extype" name="scala.collection.immutable.Set">Set</span>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</span>
+        <span class="name">declData</span><span class="result">: <a href="../ast/AstNodeData$.html#DeclarationData=Map[tip.ast.AIdentifier,tip.ast.ADeclaration]" class="extmbr" name="tip.ast.AstNodeData.DeclarationData">DeclarationData</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@indep(n:N):scala.collection.immutable.Set[N]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@declData:tip.ast.AstNodeData.DeclarationData" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Incoming dependencies.</p><div class="fullcomment"><div class="comment cmt"><p>Incoming dependencies. Used when computing the join from predecessors.</p></div><dl class="paramcmts block"><dt class="param">n</dt><dd class="cmt"><p>an element from the worklist</p></dd><dt>returns</dt><dd class="cmt"><p>the elements that the given element depends on
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../solvers/Dependencies.html" class="extype" name="tip.solvers.Dependencies">Dependencies</a></dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.InterprocSignAnalysisFunctions">InterprocSignAnalysisFunctions</a> → <a href="InterprocSignAnalysisMisc.html" class="extype" name="tip.analysis.InterprocSignAnalysisMisc">InterprocSignAnalysisMisc</a></dd></dl></div>
     </li><li name="tip.analysis.InterprocSignAnalysisMisc#lattice" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="lattice:tip.lattices.MapLattice[tip.graph.GNode[tip.ast.AstNode],tip.lattices.LiftLattice[tip.lattices.MapLattice[tip.ast.AIdentifier,tip.lattices.SignLattice.type]]]"></a>
-      <a id="lattice:MapLattice[GNode[AstNode],LiftLattice[MapLattice[AIdentifier,SignLattice.type]]]"></a>
+      <a id="lattice:tip.lattices.MapLattice[tip.cfg.CfgNode,tip.lattices.LiftLattice[tip.lattices.MapLattice[tip.ast.ADeclaration,tip.lattices.SignLattice.type]]]"></a>
+      <a id="lattice:MapLattice[CfgNode,LiftLattice[MapLattice[ADeclaration,SignLattice.type]]]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">abstract </span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">lattice</span><span class="result">: <a href="../lattices/MapLattice.html" class="extype" name="tip.lattices.MapLattice">MapLattice</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>], <a href="../lattices/LiftLattice.html" class="extype" name="tip.lattices.LiftLattice">LiftLattice</a>[<a href="../lattices/MapLattice.html" class="extype" name="tip.lattices.MapLattice">MapLattice</a>[<a href="../ast/AIdentifier.html" class="extype" name="tip.ast.AIdentifier">AIdentifier</a>, <a href="../lattices/SignLattice$.html" class="extype" name="tip.lattices.SignLattice">SignLattice</a>.type]]]</span>
+        <span class="name">lattice</span><span class="result">: <a href="../lattices/MapLattice.html" class="extype" name="tip.lattices.MapLattice">MapLattice</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <a href="../lattices/LiftLattice.html" class="extype" name="tip.lattices.LiftLattice">LiftLattice</a>[<a href="../lattices/MapLattice.html" class="extype" name="tip.lattices.MapLattice">MapLattice</a>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>, <a href="../lattices/SignLattice$.html" class="extype" name="tip.lattices.SignLattice">SignLattice</a>.type]]]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@lattice:tip.lattices.MapLattice[tip.graph.GNode[tip.ast.AstNode],tip.lattices.LiftLattice[tip.lattices.MapLattice[tip.ast.AIdentifier,tip.lattices.SignLattice.type]]]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@lattice:tip.lattices.MapLattice[tip.cfg.CfgNode,tip.lattices.LiftLattice[tip.lattices.MapLattice[tip.ast.ADeclaration,tip.lattices.SignLattice.type]]]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="InterprocSignAnalysisMisc.html" class="extype" name="tip.analysis.InterprocSignAnalysisMisc">InterprocSignAnalysisMisc</a></dd></dl></div>
-    </li><li name="tip.solvers.Dependencies#outdep" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="outdep(n:N):scala.collection.immutable.Set[N]"></a>
-      <a id="outdep(GNode[AstNode]):Set[GNode[AstNode]]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">outdep</span><span class="params">(<span name="n">n: <a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]</span>)</span><span class="result">: <span class="extype" name="scala.collection.immutable.Set">Set</span>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@outdep(n:N):scala.collection.immutable.Set[N]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Outgoing dependencies.</p><div class="fullcomment"><div class="comment cmt"><p>Outgoing dependencies. Used when propagating dataflow to successors.</p></div><dl class="paramcmts block"><dt class="param">n</dt><dd class="cmt"><p>an element from the worklist</p></dd><dt>returns</dt><dd class="cmt"><p>the elements that depend on the given element
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../solvers/Dependencies.html" class="extype" name="tip.solvers.Dependencies">Dependencies</a></dd></dl></div>
     </li><li name="tip.solvers.MapLiftLatticeUpdateFunction#transfer" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="transfer(n:N,s:MapLiftLatticeUpdateFunction.this.lattice.sublattice.sublattice.Element):MapLiftLatticeUpdateFunction.this.lattice.sublattice.sublattice.Element"></a>
-      <a id="transfer(GNode[AstNode],Element):Element"></a>
+      <a id="transfer(CfgNode,Element):Element"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">abstract </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">transfer</span><span class="params">(<span name="n">n: <a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]</span>, <span name="s">s: <a href="../lattices/MapLattice.html#Element=Map[A,MapLattice.this.sublattice.Element]" class="extmbr" name="tip.lattices.MapLattice.Element">Element</a></span>)</span><span class="result">: <a href="../lattices/MapLattice.html#Element=Map[A,MapLattice.this.sublattice.Element]" class="extmbr" name="tip.lattices.MapLattice.Element">Element</a></span>
+        <span class="name">transfer</span><span class="params">(<span name="n">n: <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a></span>, <span name="s">s: <a href="../lattices/MapLattice.html#Element=Map[A,MapLattice.this.sublattice.Element]" class="extmbr" name="tip.lattices.MapLattice.Element">Element</a></span>)</span><span class="result">: <a href="../lattices/MapLattice.html#Element=Map[A,MapLattice.this.sublattice.Element]" class="extmbr" name="tip.lattices.MapLattice.Element">Element</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@transfer(n:N,s:MapLiftLatticeUpdateFunction.this.lattice.sublattice.sublattice.Element):MapLiftLatticeUpdateFunction.this.lattice.sublattice.sublattice.Element" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">The transfer function.</p><div class="fullcomment"><div class="comment cmt"><p>The transfer function.
@@ -238,7 +184,7 @@ This version is for the basic worklist algorithm.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@!=(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -255,7 +201,7 @@ This version is for the basic worklist algorithm.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@##():Int" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -272,7 +218,7 @@ This version is for the basic worklist algorithm.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@==(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -289,7 +235,7 @@ This version is for the basic worklist algorithm.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@asInstanceOf[T0]:T0" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
@@ -306,7 +252,7 @@ This version is for the basic worklist algorithm.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@clone():Object" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -329,7 +275,7 @@ This version is for the basic worklist algorithm.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -346,24 +292,24 @@ This version is for the basic worklist algorithm.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@equals(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="tip.analysis.InterprocSignAnalysisMisc#evalArgs" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="evalArgs(formalParams:Seq[tip.ast.AIdentifier],actualParams:Seq[tip.ast.AExpr],state:InterprocSignAnalysisMisc.this.lattice.sublattice.sublattice.Element):InterprocSignAnalysisMisc.this.lattice.sublattice.sublattice.Element"></a>
-      <a id="evalArgs(Seq[AIdentifier],Seq[AExpr],Element):Element"></a>
+      <a id="evalArgs(formalParams:Seq[tip.ast.ADeclaration],actualParams:Seq[tip.ast.AExpr],state:InterprocSignAnalysisMisc.this.lattice.sublattice.sublattice.Element):InterprocSignAnalysisMisc.this.lattice.sublattice.sublattice.Element"></a>
+      <a id="evalArgs(Seq[ADeclaration],Seq[AExpr],Element):Element"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">evalArgs</span><span class="params">(<span name="formalParams">formalParams: <span class="extype" name="scala.Seq">Seq</span>[<a href="../ast/AIdentifier.html" class="extype" name="tip.ast.AIdentifier">AIdentifier</a>]</span>, <span name="actualParams">actualParams: <span class="extype" name="scala.Seq">Seq</span>[<a href="../ast/AExpr.html" class="extype" name="tip.ast.AExpr">AExpr</a>]</span>, <span name="state">state: <a href="../lattices/MapLattice.html#Element=Map[A,MapLattice.this.sublattice.Element]" class="extmbr" name="tip.lattices.MapLattice.Element">Element</a></span>)</span><span class="result">: <a href="../lattices/MapLattice.html#Element=Map[A,MapLattice.this.sublattice.Element]" class="extmbr" name="tip.lattices.MapLattice.Element">Element</a></span>
+        <span class="name">evalArgs</span><span class="params">(<span name="formalParams">formalParams: <span class="extype" name="scala.Seq">Seq</span>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>]</span>, <span name="actualParams">actualParams: <span class="extype" name="scala.Seq">Seq</span>[<a href="../ast/AExpr.html" class="extype" name="tip.ast.AExpr">AExpr</a>]</span>, <span name="state">state: <a href="../lattices/MapLattice.html#Element=Map[A,MapLattice.this.sublattice.Element]" class="extmbr" name="tip.lattices.MapLattice.Element">Element</a></span>)</span><span class="result">: <a href="../lattices/MapLattice.html#Element=Map[A,MapLattice.this.sublattice.Element]" class="extmbr" name="tip.lattices.MapLattice.Element">Element</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@evalArgs(formalParams:Seq[tip.ast.AIdentifier],actualParams:Seq[tip.ast.AExpr],state:InterprocSignAnalysisMisc.this.lattice.sublattice.sublattice.Element):InterprocSignAnalysisMisc.this.lattice.sublattice.sublattice.Element" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@evalArgs(formalParams:Seq[tip.ast.ADeclaration],actualParams:Seq[tip.ast.AExpr],state:InterprocSignAnalysisMisc.this.lattice.sublattice.sublattice.Element):InterprocSignAnalysisMisc.this.lattice.sublattice.sublattice.Element" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="InterprocSignAnalysisMisc.html" class="extype" name="tip.analysis.InterprocSignAnalysisMisc">InterprocSignAnalysisMisc</a></dd></dl></div>
@@ -380,7 +326,7 @@ This version is for the basic worklist algorithm.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@finalize():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -391,19 +337,19 @@ This version is for the basic worklist algorithm.
               
         </dd></dl></div>
     </li><li name="tip.analysis.InterprocSignAnalysisFunctions#funsub" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="funsub(n:tip.graph.GNode[tip.ast.AstNode],s:InterprocSignAnalysisFunctions.this.lattice.sublattice.Element,o:InterprocSignAnalysisFunctions.this.lattice.Element):InterprocSignAnalysisFunctions.this.lattice.sublattice.Element"></a>
-      <a id="funsub(GNode[AstNode],Element,Element):Element"></a>
+      <a id="funsub(n:tip.cfg.CfgNode,s:InterprocSignAnalysisFunctions.this.lattice.sublattice.Element,o:InterprocSignAnalysisFunctions.this.lattice.Element):InterprocSignAnalysisFunctions.this.lattice.sublattice.Element"></a>
+      <a id="funsub(CfgNode,Element,Element):Element"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">funsub</span><span class="params">(<span name="n">n: <a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]</span>, <span name="s">s: <a href="../lattices/LiftLattice.html#Element=LiftLattice.this.Lifted" class="extmbr" name="tip.lattices.LiftLattice.Element">Element</a></span>, <span name="o">o: <a href="../lattices/MapLattice.html#Element=Map[A,MapLattice.this.sublattice.Element]" class="extmbr" name="tip.lattices.MapLattice.Element">Element</a></span>)</span><span class="result">: <a href="../lattices/LiftLattice.html#Element=LiftLattice.this.Lifted" class="extmbr" name="tip.lattices.LiftLattice.Element">Element</a></span>
+        <span class="name">funsub</span><span class="params">(<span name="n">n: <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a></span>, <span name="s">s: <a href="../lattices/LiftLattice.html#Element=LiftLattice.this.Lifted" class="extmbr" name="tip.lattices.LiftLattice.Element">Element</a></span>, <span name="o">o: <a href="../lattices/MapLattice.html#Element=Map[A,MapLattice.this.sublattice.Element]" class="extmbr" name="tip.lattices.MapLattice.Element">Element</a></span>)</span><span class="result">: <a href="../lattices/LiftLattice.html#Element=LiftLattice.this.Lifted" class="extmbr" name="tip.lattices.LiftLattice.Element">Element</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@funsub(n:tip.graph.GNode[tip.ast.AstNode],s:InterprocSignAnalysisFunctions.this.lattice.sublattice.Element,o:InterprocSignAnalysisFunctions.this.lattice.Element):InterprocSignAnalysisFunctions.this.lattice.sublattice.Element" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@funsub(n:tip.cfg.CfgNode,s:InterprocSignAnalysisFunctions.this.lattice.sublattice.Element,o:InterprocSignAnalysisFunctions.this.lattice.Element):InterprocSignAnalysisFunctions.this.lattice.sublattice.Element" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Update function that first computes the join of the incoming elements and applies the transfer function.</p><div class="fullcomment"><div class="comment cmt"><p>Update function that first computes the join of the incoming elements and applies the transfer function.
@@ -422,7 +368,7 @@ This version is for the basic worklist algorithm.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@getClass():Class[_]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -439,10 +385,27 @@ This version is for the basic worklist algorithm.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@hashCode():Int" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="tip.analysis.InterproceduralForwardDependencies#indep" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="indep(n:tip.cfg.CfgNode):scala.collection.immutable.Set[tip.cfg.CfgNode]"></a>
+      <a id="indep(CfgNode):Set[CfgNode]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">indep</span><span class="params">(<span name="n">n: <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a></span>)</span><span class="result">: <span class="extype" name="scala.collection.immutable.Set">Set</span>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@indep(n:tip.cfg.CfgNode):scala.collection.immutable.Set[tip.cfg.CfgNode]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Like <a href="ForwardDependencies.html#indep(n:tip.cfg.CfgNode):scala.collection.immutable.Set[tip.cfg.CfgNode]" class="extmbr" name="tip.analysis.ForwardDependencies#indep">ForwardDependencies.indep</a> but returning an empty set for after-call nodes.</p><div class="fullcomment"><div class="comment cmt"><p>Like <a href="ForwardDependencies.html#indep(n:tip.cfg.CfgNode):scala.collection.immutable.Set[tip.cfg.CfgNode]" class="extmbr" name="tip.analysis.ForwardDependencies#indep">ForwardDependencies.indep</a> but returning an empty set for after-call nodes.</p></div><dl class="paramcmts block"><dt class="param">n</dt><dd class="cmt"><p>an element from the worklist</p></dd><dt>returns</dt><dd class="cmt"><p>the elements that the given element depends on</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="InterproceduralForwardDependencies.html" class="extype" name="tip.analysis.InterproceduralForwardDependencies">InterproceduralForwardDependencies</a> → <a href="Dependencies.html" class="extype" name="tip.analysis.Dependencies">Dependencies</a></dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -456,24 +419,24 @@ This version is for the basic worklist algorithm.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
     </li><li name="tip.solvers.MapLiftLatticeUpdateFunction#join" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="join(n:N,s:MapLiftLatticeUpdateFunction.this.lattice.sublattice.Element,o:MapLiftLatticeUpdateFunction.this.lattice.Element):MapLiftLatticeUpdateFunction.this.lattice.sublattice.Element"></a>
-      <a id="join(GNode[AstNode],Element,Element):Element"></a>
+      <a id="join(CfgNode,Element,Element):Element"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">join</span><span class="params">(<span name="n">n: <a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]</span>, <span name="s">s: <a href="../lattices/LiftLattice.html#Element=LiftLattice.this.Lifted" class="extmbr" name="tip.lattices.LiftLattice.Element">Element</a></span>, <span name="o">o: <a href="../lattices/MapLattice.html#Element=Map[A,MapLattice.this.sublattice.Element]" class="extmbr" name="tip.lattices.MapLattice.Element">Element</a></span>)</span><span class="result">: <a href="../lattices/LiftLattice.html#Element=LiftLattice.this.Lifted" class="extmbr" name="tip.lattices.LiftLattice.Element">Element</a></span>
+        <span class="name">join</span><span class="params">(<span name="n">n: <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a></span>, <span name="s">s: <a href="../lattices/LiftLattice.html#Element=LiftLattice.this.Lifted" class="extmbr" name="tip.lattices.LiftLattice.Element">Element</a></span>, <span name="o">o: <a href="../lattices/MapLattice.html#Element=Map[A,MapLattice.this.sublattice.Element]" class="extmbr" name="tip.lattices.MapLattice.Element">Element</a></span>)</span><span class="result">: <a href="../lattices/LiftLattice.html#Element=LiftLattice.this.Lifted" class="extmbr" name="tip.lattices.LiftLattice.Element">Element</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@join(n:N,s:MapLiftLatticeUpdateFunction.this.lattice.sublattice.Element,o:MapLiftLatticeUpdateFunction.this.lattice.Element):MapLiftLatticeUpdateFunction.this.lattice.sublattice.Element" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Computes the least upper bound of the (implicitly) unlifted incoming elements.</p><div class="fullcomment"><div class="comment cmt"><p>Computes the least upper bound of the (implicitly) unlifted incoming elements.
@@ -491,7 +454,7 @@ This version is for the basic worklist algorithm.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -508,7 +471,7 @@ This version is for the basic worklist algorithm.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@notify():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -525,10 +488,28 @@ This version is for the basic worklist algorithm.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@notifyAll():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="tip.analysis.InterproceduralForwardDependencies#outdep" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="outdep(n:tip.cfg.CfgNode):scala.collection.immutable.Set[tip.cfg.CfgNode]"></a>
+      <a id="outdep(CfgNode):Set[CfgNode]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">outdep</span><span class="params">(<span name="n">n: <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a></span>)</span><span class="result">: <span class="extype" name="scala.collection.immutable.Set">Set</span>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@outdep(n:tip.cfg.CfgNode):scala.collection.immutable.Set[tip.cfg.CfgNode]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Like <a href="ForwardDependencies.html#outdep(n:tip.cfg.CfgNode):scala.collection.immutable.Set[tip.cfg.CfgNode]" class="extmbr" name="tip.analysis.ForwardDependencies#outdep">ForwardDependencies.outdep</a> but with call and return edges.</p><div class="fullcomment"><div class="comment cmt"><p>Like <a href="ForwardDependencies.html#outdep(n:tip.cfg.CfgNode):scala.collection.immutable.Set[tip.cfg.CfgNode]" class="extmbr" name="tip.analysis.ForwardDependencies#outdep">ForwardDependencies.outdep</a> but with call and return edges.
+A call node has an outdep to its after-call node.</p></div><dl class="paramcmts block"><dt class="param">n</dt><dd class="cmt"><p>an element from the worklist</p></dd><dt>returns</dt><dd class="cmt"><p>the elements that depend on the given element</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="InterproceduralForwardDependencies.html" class="extype" name="tip.analysis.InterproceduralForwardDependencies">InterproceduralForwardDependencies</a> → <a href="Dependencies.html" class="extype" name="tip.analysis.Dependencies">Dependencies</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -542,7 +523,7 @@ This version is for the basic worklist algorithm.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -559,7 +540,7 @@ This version is for the basic worklist algorithm.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@toString():String" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -576,7 +557,7 @@ This version is for the basic worklist algorithm.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@wait():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -599,7 +580,7 @@ This version is for the basic worklist algorithm.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -622,7 +603,7 @@ This version is for the basic worklist algorithm.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.InterprocSignAnalysisFunctions@wait(x$1:Long):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -641,12 +622,14 @@ This version is for the basic worklist algorithm.
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="tip.analysis.InterprocSignAnalysisMisc">
+        <div class="parent" name="tip.analysis.InterproceduralForwardDependencies">
+              <h3>Inherited from <a href="InterproceduralForwardDependencies.html" class="extype" name="tip.analysis.InterproceduralForwardDependencies">InterproceduralForwardDependencies</a></h3>
+            </div><div class="parent" name="tip.analysis.InterprocSignAnalysisMisc">
               <h3>Inherited from <a href="InterprocSignAnalysisMisc.html" class="extype" name="tip.analysis.InterprocSignAnalysisMisc">InterprocSignAnalysisMisc</a></h3>
             </div><div class="parent" name="tip.solvers.MapLiftLatticeUpdateFunction">
-              <h3>Inherited from <a href="../solvers/MapLiftLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLiftLatticeUpdateFunction">MapLiftLatticeUpdateFunction</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</h3>
-            </div><div class="parent" name="tip.solvers.Dependencies">
-              <h3>Inherited from <a href="../solvers/Dependencies.html" class="extype" name="tip.solvers.Dependencies">Dependencies</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</h3>
+              <h3>Inherited from <a href="../solvers/MapLiftLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLiftLatticeUpdateFunction">MapLiftLatticeUpdateFunction</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</h3>
+            </div><div class="parent" name="tip.analysis.Dependencies">
+              <h3>Inherited from <a href="Dependencies.html" class="extype" name="tip.analysis.Dependencies">Dependencies</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>types - TIP API - tip.types</title>
-          <meta name="description" content="types - TIP API - tip.types" />
-          <meta name="keywords" content="types TIP API tip.types" />
+          <title>types - tip.types</title>
+          <meta name="description" content="types - tip.types" />
+          <meta name="keywords" content="types tip.types" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -28,11 +28,11 @@
         </head>
         <body class="value">
       <div id="definition">
-        <img src="../../lib/package_big.png" />
+        <img alt="Package" src="../../lib/package_big.png" />
         <p id="owner"><a href="../package.html" class="extype" name="tip">tip</a></p>
         <h1>types</h1><span class="permalink">
       <a href="../../index.html#tip.types.package" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       </div>
@@ -66,30 +66,7 @@
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="tip.types.Mu" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="Mu[A]extendsTipTypewithCons[A]withProductwithSerializable"></a>
-      <a id="Mu[A]:Mu[A]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">case class</span>
-      </span>
-      <span class="symbol">
-        <a href="Mu.html"><span class="name">Mu</span></a><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="v">v: <a href="../solvers/Var.html" class="extype" name="tip.solvers.Var">Var</a>[<span class="extype" name="tip.types.Mu.A">A</span>]</span>, <span name="t">t: <a href="../solvers/Term.html" class="extype" name="tip.solvers.Term">Term</a>[<span class="extype" name="tip.types.Mu.A">A</span>]</span>)</span><span class="result"> extends <a href="TipType.html" class="extype" name="tip.types.TipType">TipType</a> with <a href="../solvers/Cons.html" class="extype" name="tip.solvers.Cons">Cons</a>[<span class="extype" name="tip.types.Mu.A">A</span>] with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#tip.types.package@Mu[A]extendsTipTypewithCons[A]withProductwithSerializable" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">A recursive type.</p><div class="fullcomment"><div class="comment cmt"><p>A recursive type.
-Whenever a term is such that x = t[x], where x appears free in
-t[x], then we represent it finitely as
-mu x. t[x]
-x is a binder in the term, and the copy rule holds</p><p>mu x. t[x] == t [ mu x. t[x] ]
-</p></div><dl class="paramcmts block"><dt class="param">v</dt><dd class="cmt"><p>the recursion variable</p></dd><dt class="param">t</dt><dd class="cmt"><p>the recursion term
-</p></dd></dl></div>
-    </li><li name="tip.types.TipAlpha" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+              <ol><li name="tip.types.TipAlpha" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="TipAlphaextendsTipTypewithVar[tip.types.TipType]withProductwithSerializable"></a>
       <a id="TipAlpha:TipAlpha"></a>
       <h4 class="signature">
@@ -98,14 +75,14 @@ x is a binder in the term, and the copy rule holds</p><p>mu x. t[x] == t [ mu x.
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <a href="TipAlpha.html"><span class="name">TipAlpha</span></a><span class="params">(<span name="node">node: <a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a></span>)</span><span class="result"> extends <a href="TipType.html" class="extype" name="tip.types.TipType">TipType</a> with <a href="../solvers/Var.html" class="extype" name="tip.solvers.Var">Var</a>[<a href="TipType.html" class="extype" name="tip.types.TipType">TipType</a>] with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a href="TipAlpha.html"><span class="name">TipAlpha</span></a><span class="params">(<span name="x">x: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result"> extends <a href="TipType.html" class="extype" name="tip.types.TipType">TipType</a> with <a href="../solvers/Var.html" class="extype" name="tip.solvers.Var">Var</a>[<a href="TipType.html" class="extype" name="tip.types.TipType">TipType</a>] with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.types.package@TipAlphaextendsTipTypewithVar[tip.types.TipType]withProductwithSerializable" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Fresh type variable, whose identity is uniquely determined by <code>x</code>.</p>
     </li><li name="tip.types.TipFunction" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="TipFunctionextendsTipTypewithCons[tip.types.TipType]withProductwithSerializable"></a>
       <a id="TipFunction:TipFunction"></a>
@@ -115,14 +92,14 @@ x is a binder in the term, and the copy rule holds</p><p>mu x. t[x] == t [ mu x.
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <a href="TipFunction.html"><span class="name">TipFunction</span></a><span class="params">(<span name="params">params: <span class="extype" name="scala.collection.immutable.Seq">Seq</span>[<a href="../solvers/Term.html" class="extype" name="tip.solvers.Term">Term</a>[<a href="TipType.html" class="extype" name="tip.types.TipType">TipType</a>]]</span>, <span name="ret">ret: <a href="../solvers/Term.html" class="extype" name="tip.solvers.Term">Term</a>[<a href="TipType.html" class="extype" name="tip.types.TipType">TipType</a>]</span>)</span><span class="result"> extends <a href="TipType.html" class="extype" name="tip.types.TipType">TipType</a> with <a href="../solvers/Cons.html" class="extype" name="tip.solvers.Cons">Cons</a>[<a href="TipType.html" class="extype" name="tip.types.TipType">TipType</a>] with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a href="TipFunction.html"><span class="name">TipFunction</span></a><span class="params">(<span name="params">params: <span class="extype" name="scala.List">List</span>[<a href="../solvers/Term.html" class="extype" name="tip.solvers.Term">Term</a>[<a href="TipType.html" class="extype" name="tip.types.TipType">TipType</a>]]</span>, <span name="ret">ret: <a href="../solvers/Term.html" class="extype" name="tip.solvers.Term">Term</a>[<a href="TipType.html" class="extype" name="tip.types.TipType">TipType</a>]</span>)</span><span class="result"> extends <a href="TipType.html" class="extype" name="tip.types.TipType">TipType</a> with <a href="../solvers/Cons.html" class="extype" name="tip.solvers.Cons">Cons</a>[<a href="TipType.html" class="extype" name="tip.types.TipType">TipType</a>] with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.types.package@TipFunctionextendsTipTypewithCons[tip.types.TipType]withProductwithSerializable" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Function type.</p>
     </li><li name="tip.types.TipInt" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="TipIntextendsTipTypewithCons[tip.types.TipType]withProductwithSerializable"></a>
       <a id="TipInt:TipInt"></a>
@@ -136,10 +113,27 @@ x is a binder in the term, and the copy rule holds</p><p>mu x. t[x] == t [ mu x.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.types.package@TipIntextendsTipTypewithCons[tip.types.TipType]withProductwithSerializable" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Int type.</p>
+    </li><li name="tip.types.TipMu" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TipMuextendsTipTypewithMu[tip.types.TipType]withProductwithSerializable"></a>
+      <a id="TipMu:TipMu"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="TipMu.html"><span class="name">TipMu</span></a><span class="params">(<span name="v">v: <a href="../solvers/Var.html" class="extype" name="tip.solvers.Var">Var</a>[<a href="TipType.html" class="extype" name="tip.types.TipType">TipType</a>]</span>, <span name="t">t: <a href="../solvers/Term.html" class="extype" name="tip.solvers.Term">Term</a>[<a href="TipType.html" class="extype" name="tip.types.TipType">TipType</a>]</span>)</span><span class="result"> extends <a href="TipType.html" class="extype" name="tip.types.TipType">TipType</a> with <a href="../solvers/Mu.html" class="extype" name="tip.solvers.Mu">Mu</a>[<a href="TipType.html" class="extype" name="tip.types.TipType">TipType</a>] with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.types.package@TipMuextendsTipTypewithMu[tip.types.TipType]withProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Recursive type (only created when closing terms).</p>
     </li><li name="tip.types.TipRef" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="TipRefextendsTipTypewithCons[tip.types.TipType]withProductwithSerializable"></a>
       <a id="TipRef:TipRef"></a>
@@ -153,10 +147,10 @@ x is a binder in the term, and the copy rule holds</p><p>mu x. t[x] == t [ mu x.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.types.package@TipRefextendsTipTypewithCons[tip.types.TipType]withProductwithSerializable" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Pointer reference type.</p>
     </li><li name="tip.types.TipType" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="TipTypeextendsAnyRef"></a>
       <a id="TipType:TipType"></a>
@@ -170,10 +164,10 @@ x is a binder in the term, and the copy rule holds</p><p>mu x. t[x] == t [ mu x.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.types.package@TipTypeextendsAnyRef" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">A type for a TIP variable or expression.</p>
     </li><li name="tip.types.TipVar" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="TipVarextendsTipTypewithVar[tip.types.TipType]withProductwithSerializable"></a>
       <a id="TipVar:TipVar"></a>
@@ -187,10 +181,10 @@ x is a binder in the term, and the copy rule holds</p><p>mu x. t[x] == t [ mu x.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.types.package@TipVarextendsTipTypewithVar[tip.types.TipType]withProductwithSerializable" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Type variable for a program variable or expression.</p>
     </li></ol>
             </div>
 
@@ -211,7 +205,24 @@ x is a binder in the term, and the copy rule holds</p><p>mu x. t[x] == t [ mu x.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.types.package@TipType" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="tip.types.TipTypeOps" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TipTypeOps"></a>
+      <a id="TipTypeOps:TipTypeOps"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="TipTypeOps$.html"><span class="name">TipTypeOps</span></a><span class="result"> extends <a href="../solvers/TermOps.html" class="extype" name="tip.solvers.TermOps">TermOps</a>[<a href="TipType.html" class="extype" name="tip.types.TipType">TipType</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.types.package@TipTypeOps" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       

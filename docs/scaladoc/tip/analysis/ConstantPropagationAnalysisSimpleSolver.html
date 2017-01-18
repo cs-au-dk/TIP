@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ConstantPropagationAnalysisSimpleSolver - TIP API - tip.analysis.ConstantPropagationAnalysisSimpleSolver</title>
-          <meta name="description" content="ConstantPropagationAnalysisSimpleSolver - TIP API - tip.analysis.ConstantPropagationAnalysisSimpleSolver" />
-          <meta name="keywords" content="ConstantPropagationAnalysisSimpleSolver TIP API tip.analysis.ConstantPropagationAnalysisSimpleSolver" />
+          <title>ConstantPropagationAnalysisSimpleSolver - tip.analysis.ConstantPropagationAnalysisSimpleSolver</title>
+          <meta name="description" content="ConstantPropagationAnalysisSimpleSolver - tip.analysis.ConstantPropagationAnalysisSimpleSolver" />
+          <meta name="keywords" content="ConstantPropagationAnalysisSimpleSolver tip.analysis.ConstantPropagationAnalysisSimpleSolver" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -28,13 +28,13 @@
         </head>
         <body class="type">
       <div id="definition">
-        <img src="../../lib/class_big.png" />
+        <img alt="Class" src="../../lib/class_big.png" />
         <p id="owner"><a href="../package.html" class="extype" name="tip">tip</a>.<a href="package.html" class="extype" name="tip.analysis">analysis</a></p>
         <h1>ConstantPropagationAnalysisSimpleSolver</h1><h3><span class="morelinks"><div>Related Doc:
             <a href="package.html" class="extype" name="tip.analysis">package analysis</a>
           </div></span></h3><span class="permalink">
       <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       </div>
@@ -45,14 +45,14 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">ConstantPropagationAnalysisSimpleSolver</span><span class="result"> extends <a href="ConstantPropagationAnalysis.html" class="extype" name="tip.analysis.ConstantPropagationAnalysis">ConstantPropagationAnalysis</a> with <a href="../solvers/SimpleFixpointSolver.html" class="extype" name="tip.solvers.SimpleFixpointSolver">SimpleFixpointSolver</a> with <a href="../solvers/MapLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLatticeUpdateFunction">MapLatticeUpdateFunction</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</span>
+        <span class="name">ConstantPropagationAnalysisSimpleSolver</span><span class="result"> extends <a href="ConstantPropagationAnalysis.html" class="extype" name="tip.analysis.ConstantPropagationAnalysis">ConstantPropagationAnalysis</a> with <a href="../solvers/SimpleFixpointSolver.html" class="extype" name="tip.solvers.SimpleFixpointSolver">SimpleFixpointSolver</a> with <a href="../solvers/MapLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLatticeUpdateFunction">MapLatticeUpdateFunction</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Constant propagation analysis that uses the simple fipoint solver.
 </p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="../solvers/MapLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLatticeUpdateFunction">MapLatticeUpdateFunction</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]], <a href="../solvers/MapLatticeSolver.html" class="extype" name="tip.solvers.MapLatticeSolver">MapLatticeSolver</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]], <a href="../solvers/SimpleFixpointSolver.html" class="extype" name="tip.solvers.SimpleFixpointSolver">SimpleFixpointSolver</a>, <a href="../solvers/LatticeSolver.html" class="extype" name="tip.solvers.LatticeSolver">LatticeSolver</a>, <a href="ConstantPropagationAnalysis.html" class="extype" name="tip.analysis.ConstantPropagationAnalysis">ConstantPropagationAnalysis</a>, <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="../solvers/MapLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLatticeUpdateFunction">MapLatticeUpdateFunction</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>], <a href="../solvers/MapLatticeSolver.html" class="extype" name="tip.solvers.MapLatticeSolver">MapLatticeSolver</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>], <a href="../solvers/SimpleFixpointSolver.html" class="extype" name="tip.solvers.SimpleFixpointSolver">SimpleFixpointSolver</a>, <a href="../solvers/LatticeSolver.html" class="extype" name="tip.solvers.LatticeSolver">LatticeSolver</a>, <a href="ConstantPropagationAnalysis.html" class="extype" name="tip.analysis.ConstantPropagationAnalysis">ConstantPropagationAnalysis</a>, <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a>, <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Any">Any</span>], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -63,22 +63,21 @@
               <ol>
                 
                 <li class="alpha in"><span>Alphabetic</span></li>
-                <li class="inherit out"><span>By inheritance</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
               </ol>
             </div>
         <div id="ancestors">
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="tip.analysis.ConstantPropagationAnalysisSimpleSolver"><span>ConstantPropagationAnalysisSimpleSolver</span></li><li class="in" name="tip.solvers.MapLatticeUpdateFunction"><span>MapLatticeUpdateFunction</span></li><li class="in" name="tip.solvers.MapLatticeSolver"><span>MapLatticeSolver</span></li><li class="in" name="tip.solvers.SimpleFixpointSolver"><span>SimpleFixpointSolver</span></li><li class="in" name="tip.solvers.LatticeSolver"><span>LatticeSolver</span></li><li class="in" name="tip.analysis.ConstantPropagationAnalysis"><span>ConstantPropagationAnalysis</span></li><li class="in" name="tip.analysis.FlowSensitiveAnalysis"><span>FlowSensitiveAnalysis</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="tip.analysis.ConstantPropagationAnalysisSimpleSolver"><span>ConstantPropagationAnalysisSimpleSolver</span></li><li class="in" name="tip.solvers.MapLatticeUpdateFunction"><span>MapLatticeUpdateFunction</span></li><li class="in" name="tip.solvers.MapLatticeSolver"><span>MapLatticeSolver</span></li><li class="in" name="tip.solvers.SimpleFixpointSolver"><span>SimpleFixpointSolver</span></li><li class="in" name="tip.solvers.LatticeSolver"><span>LatticeSolver</span></li><li class="in" name="tip.analysis.ConstantPropagationAnalysis"><span>ConstantPropagationAnalysis</span></li><li class="in" name="tip.analysis.FlowSensitiveAnalysis"><span>FlowSensitiveAnalysis</span></li><li class="in" name="tip.analysis.Analysis"><span>Analysis</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
             <ol>
               <li class="hideall out"><span>Hide All</span></li>
-              <li class="showall in"><span>Show all</span></li>
+              <li class="showall in"><span>Show All</span></li>
             </ol>
-            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
           </div>
         <div id="visbl">
             <span class="filtertype">Visibility</span>
@@ -91,7 +90,7 @@
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="tip.analysis.ConstantPropagationAnalysisSimpleSolver#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(cfg:tip.graph.ControlFlowGraph[tip.ast.AstNode]):tip.analysis.ConstantPropagationAnalysisSimpleSolver"></a>
+      <a id="&lt;init&gt;(cfg:tip.cfg.IntraproceduralProgramCfg)(implicitdeclData:tip.ast.AstNodeData.DeclarationData):tip.analysis.ConstantPropagationAnalysisSimpleSolver"></a>
       <a id="&lt;init&gt;:ConstantPropagationAnalysisSimpleSolver"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -99,11 +98,11 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">ConstantPropagationAnalysisSimpleSolver</span><span class="params">(<span name="cfg">cfg: <a href="../graph/ControlFlowGraph.html" class="extype" name="tip.graph.ControlFlowGraph">ControlFlowGraph</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]</span>)</span>
+        <span class="name">ConstantPropagationAnalysisSimpleSolver</span><span class="params">(<span name="cfg">cfg: <a href="../cfg/IntraproceduralProgramCfg.html" class="extype" name="tip.cfg.IntraproceduralProgramCfg">IntraproceduralProgramCfg</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="declData">declData: <a href="../ast/AstNodeData$.html#DeclarationData=Map[tip.ast.AIdentifier,tip.ast.ADeclaration]" class="extmbr" name="tip.ast.AstNodeData.DeclarationData">DeclarationData</a></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@&lt;init&gt;(cfg:tip.graph.ControlFlowGraph[tip.ast.AstNode]):tip.analysis.ConstantPropagationAnalysisSimpleSolver" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@&lt;init&gt;(cfg:tip.cfg.IntraproceduralProgramCfg)(implicitdeclData:tip.ast.AstNodeData.DeclarationData):tip.analysis.ConstantPropagationAnalysisSimpleSolver" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
@@ -129,7 +128,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@!=(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -146,7 +145,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@##():Int" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -163,7 +162,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@==(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -180,7 +179,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@analyze():SimpleFixpointSolver.this.lattice.Element" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">The basic Knaster-Tarski/Kleene fixpoint solver.</p><div class="fullcomment"><div class="comment cmt"><p>The basic Knaster-Tarski/Kleene fixpoint solver.
@@ -198,7 +197,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@asInstanceOf[T0]:T0" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
@@ -215,7 +214,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@clone():Object" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -226,36 +225,36 @@
               
         </dd></dl></div>
     </li><li name="tip.analysis.ConstantPropagationAnalysis#declaredVars" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="declaredVars:scala.collection.immutable.Set[tip.ast.AIdentifier]"></a>
-      <a id="declaredVars:Set[AIdentifier]"></a>
+      <a id="declaredVars:Set[tip.ast.ADeclaration]"></a>
+      <a id="declaredVars:Set[ADeclaration]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">declaredVars</span><span class="result">: <span class="extype" name="scala.collection.immutable.Set">Set</span>[<a href="../ast/AIdentifier.html" class="extype" name="tip.ast.AIdentifier">AIdentifier</a>]</span>
+        <span class="name">declaredVars</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@declaredVars:scala.collection.immutable.Set[tip.ast.AIdentifier]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@declaredVars:Set[tip.ast.ADeclaration]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ConstantPropagationAnalysis.html" class="extype" name="tip.analysis.ConstantPropagationAnalysis">ConstantPropagationAnalysis</a></dd></dl></div>
     </li><li name="tip.analysis.FlowSensitiveAnalysis#domain" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="domain:Set[tip.graph.GNode[tip.ast.AstNode]]"></a>
-      <a id="domain:Set[GNode[AstNode]]"></a>
+      <a id="domain:Set[tip.cfg.CfgNode]"></a>
+      <a id="domain:Set[CfgNode]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">domain</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</span>
+        <span class="name">domain</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@domain:Set[tip.graph.GNode[tip.ast.AstNode]]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@domain:Set[tip.cfg.CfgNode]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">The domain of the map lattice.</p><div class="fullcomment"><div class="comment cmt"><p>The domain of the map lattice.
@@ -273,7 +272,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -290,7 +289,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@equals(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -307,7 +306,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@finalize():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -330,26 +329,25 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@fun(x:MapLatticeUpdateFunction.this.lattice.Element):MapLatticeUpdateFunction.this.lattice.Element" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">The function for which the least fixpoint is to be computed.</p><div class="fullcomment"><div class="comment cmt"><p>The function for which the least fixpoint is to be computed.
-Applies the sublattice update function pointwise to each entry.</p></div><dl class="paramcmts block"><dt class="param">x</dt><dd class="cmt"><p>the input lattice element</p></dd><dt>returns</dt><dd class="cmt"><p>the output lattice element
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../solvers/MapLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLatticeUpdateFunction">MapLatticeUpdateFunction</a></dd></dl></div>
+Applies the sublattice update function pointwise to each entry.</p></div><dl class="paramcmts block"><dt class="param">x</dt><dd class="cmt"><p>the input lattice element</p></dd><dt>returns</dt><dd class="cmt"><p>the output lattice element</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../solvers/MapLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLatticeUpdateFunction">MapLatticeUpdateFunction</a></dd></dl></div>
     </li><li name="tip.analysis.ConstantPropagationAnalysis#funsub" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="funsub(n:tip.graph.GNode[tip.ast.AstNode],s:ConstantPropagationAnalysis.this.lattice.sublattice.Element,o:ConstantPropagationAnalysis.this.lattice.Element):ConstantPropagationAnalysis.this.lattice.sublattice.Element"></a>
-      <a id="funsub(GNode[AstNode],Element,Element):Element"></a>
+      <a id="funsub(n:tip.cfg.CfgNode,s:ConstantPropagationAnalysis.this.lattice.sublattice.Element,o:ConstantPropagationAnalysis.this.lattice.Element):ConstantPropagationAnalysis.this.lattice.sublattice.Element"></a>
+      <a id="funsub(CfgNode,Element,Element):Element"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">funsub</span><span class="params">(<span name="n">n: <a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]</span>, <span name="s">s: <a href="../lattices/MapLattice.html#Element=Map[A,MapLattice.this.sublattice.Element]" class="extmbr" name="tip.lattices.MapLattice.Element">Element</a></span>, <span name="o">o: <a href="../lattices/MapLattice.html#Element=Map[A,MapLattice.this.sublattice.Element]" class="extmbr" name="tip.lattices.MapLattice.Element">Element</a></span>)</span><span class="result">: <a href="../lattices/MapLattice.html#Element=Map[A,MapLattice.this.sublattice.Element]" class="extmbr" name="tip.lattices.MapLattice.Element">Element</a></span>
+        <span class="name">funsub</span><span class="params">(<span name="n">n: <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a></span>, <span name="s">s: <a href="../lattices/MapLattice.html#Element=Map[A,MapLattice.this.sublattice.Element]" class="extmbr" name="tip.lattices.MapLattice.Element">Element</a></span>, <span name="o">o: <a href="../lattices/MapLattice.html#Element=Map[A,MapLattice.this.sublattice.Element]" class="extmbr" name="tip.lattices.MapLattice.Element">Element</a></span>)</span><span class="result">: <a href="../lattices/MapLattice.html#Element=Map[A,MapLattice.this.sublattice.Element]" class="extmbr" name="tip.lattices.MapLattice.Element">Element</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@funsub(n:tip.graph.GNode[tip.ast.AstNode],s:ConstantPropagationAnalysis.this.lattice.sublattice.Element,o:ConstantPropagationAnalysis.this.lattice.Element):ConstantPropagationAnalysis.this.lattice.sublattice.Element" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@funsub(n:tip.cfg.CfgNode,s:ConstantPropagationAnalysis.this.lattice.sublattice.Element,o:ConstantPropagationAnalysis.this.lattice.Element):ConstantPropagationAnalysis.this.lattice.sublattice.Element" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">The local update function.</p><div class="fullcomment"><div class="comment cmt"><p>The local update function.
@@ -367,7 +365,7 @@ Applies the sublattice update function pointwise to each entry.</p></div><dl cla
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@getClass():Class[_]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -384,7 +382,7 @@ Applies the sublattice update function pointwise to each entry.</p></div><dl cla
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@hashCode():Int" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -401,24 +399,24 @@ Applies the sublattice update function pointwise to each entry.</p></div><dl cla
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
     </li><li name="tip.analysis.ConstantPropagationAnalysis#lattice" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="lattice:tip.lattices.MapLattice[tip.graph.GNode[tip.ast.AstNode],tip.lattices.MapLattice[tip.ast.AIdentifier,tip.lattices.FlatLattice[Int]]]"></a>
-      <a id="lattice:MapLattice[GNode[AstNode],MapLattice[AIdentifier,FlatLattice[Int]]]"></a>
+      <a id="lattice:tip.lattices.MapLattice[tip.cfg.CfgNode,tip.lattices.MapLattice[tip.ast.ADeclaration,tip.lattices.FlatLattice[Int]]]"></a>
+      <a id="lattice:MapLattice[CfgNode,MapLattice[ADeclaration,FlatLattice[Int]]]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">lattice</span><span class="result">: <a href="../lattices/MapLattice.html" class="extype" name="tip.lattices.MapLattice">MapLattice</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>], <a href="../lattices/MapLattice.html" class="extype" name="tip.lattices.MapLattice">MapLattice</a>[<a href="../ast/AIdentifier.html" class="extype" name="tip.ast.AIdentifier">AIdentifier</a>, <a href="../lattices/FlatLattice.html" class="extype" name="tip.lattices.FlatLattice">FlatLattice</a>[<span class="extype" name="scala.Int">Int</span>]]]</span>
+        <span class="name">lattice</span><span class="result">: <a href="../lattices/MapLattice.html" class="extype" name="tip.lattices.MapLattice">MapLattice</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <a href="../lattices/MapLattice.html" class="extype" name="tip.lattices.MapLattice">MapLattice</a>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>, <a href="../lattices/FlatLattice.html" class="extype" name="tip.lattices.FlatLattice">FlatLattice</a>[<span class="extype" name="scala.Int">Int</span>]]]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@lattice:tip.lattices.MapLattice[tip.graph.GNode[tip.ast.AstNode],tip.lattices.MapLattice[tip.ast.AIdentifier,tip.lattices.FlatLattice[Int]]]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@lattice:tip.lattices.MapLattice[tip.cfg.CfgNode,tip.lattices.MapLattice[tip.ast.ADeclaration,tip.lattices.FlatLattice[Int]]]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">The lattice used by the analysis.</p><div class="fullcomment"><div class="comment cmt"><p>The lattice used by the analysis.
@@ -436,7 +434,7 @@ Applies the sublattice update function pointwise to each entry.</p></div><dl cla
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -453,7 +451,7 @@ Applies the sublattice update function pointwise to each entry.</p></div><dl cla
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@notify():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -470,7 +468,7 @@ Applies the sublattice update function pointwise to each entry.</p></div><dl cla
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@notifyAll():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -487,7 +485,7 @@ Applies the sublattice update function pointwise to each entry.</p></div><dl cla
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -504,7 +502,7 @@ Applies the sublattice update function pointwise to each entry.</p></div><dl cla
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@toString():String" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -521,7 +519,7 @@ Applies the sublattice update function pointwise to each entry.</p></div><dl cla
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@wait():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -544,7 +542,7 @@ Applies the sublattice update function pointwise to each entry.</p></div><dl cla
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -567,7 +565,7 @@ Applies the sublattice update function pointwise to each entry.</p></div><dl cla
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ConstantPropagationAnalysisSimpleSolver@wait(x$1:Long):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -587,9 +585,9 @@ Applies the sublattice update function pointwise to each entry.</p></div><dl cla
 
         <div id="inheritedMembers">
         <div class="parent" name="tip.solvers.MapLatticeUpdateFunction">
-              <h3>Inherited from <a href="../solvers/MapLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLatticeUpdateFunction">MapLatticeUpdateFunction</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</h3>
+              <h3>Inherited from <a href="../solvers/MapLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLatticeUpdateFunction">MapLatticeUpdateFunction</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</h3>
             </div><div class="parent" name="tip.solvers.MapLatticeSolver">
-              <h3>Inherited from <a href="../solvers/MapLatticeSolver.html" class="extype" name="tip.solvers.MapLatticeSolver">MapLatticeSolver</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</h3>
+              <h3>Inherited from <a href="../solvers/MapLatticeSolver.html" class="extype" name="tip.solvers.MapLatticeSolver">MapLatticeSolver</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</h3>
             </div><div class="parent" name="tip.solvers.SimpleFixpointSolver">
               <h3>Inherited from <a href="../solvers/SimpleFixpointSolver.html" class="extype" name="tip.solvers.SimpleFixpointSolver">SimpleFixpointSolver</a></h3>
             </div><div class="parent" name="tip.solvers.LatticeSolver">
@@ -598,6 +596,8 @@ Applies the sublattice update function pointwise to each entry.</p></div><dl cla
               <h3>Inherited from <a href="ConstantPropagationAnalysis.html" class="extype" name="tip.analysis.ConstantPropagationAnalysis">ConstantPropagationAnalysis</a></h3>
             </div><div class="parent" name="tip.analysis.FlowSensitiveAnalysis">
               <h3>Inherited from <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a></h3>
+            </div><div class="parent" name="tip.analysis.Analysis">
+              <h3>Inherited from <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Any">Any</span>]</h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">

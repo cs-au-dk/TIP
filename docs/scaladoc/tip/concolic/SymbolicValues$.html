@@ -1,0 +1,935 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>SymbolicValues - tip.concolic.SymbolicValues</title>
+          <meta name="description" content="SymbolicValues - tip.concolic.SymbolicValues" />
+          <meta name="keywords" content="SymbolicValues tip.concolic.SymbolicValues" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../lib/template.js"></script>
+      <script type="text/javascript" src="../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../index.html';
+            var hash = 'tip.concolic.SymbolicValues$';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img alt="Object" src="../../lib/object_big.png" />
+        <p id="owner"><a href="../package.html" class="extype" name="tip">tip</a>.<a href="package.html" class="extype" name="tip.concolic">concolic</a></p>
+        <h1>SymbolicValues</h1><h3><span class="morelinks"><div>Related Doc:
+            <a href="package.html" class="extype" name="tip.concolic">package concolic</a>
+          </div></span></h3><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <span class="name">SymbolicValues</span><span class="result"> extends <a href="../interpreter/ValueSpecification.html" class="extype" name="tip.interpreter.ValueSpecification">ValueSpecification</a></span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><a href="../interpreter/ValueSpecification.html" class="extype" name="tip.interpreter.ValueSpecification">ValueSpecification</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="tip.concolic.SymbolicValues"><span>SymbolicValues</span></li><li class="in" name="tip.interpreter.ValueSpecification"><span>ValueSpecification</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show All</span></li>
+            </ol>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="tip.concolic.SymbolicValues.ConcreteFunValue" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ConcreteFunValueextendstip.concolic.SymbolicValues.FunValuewithProductwithSerializable"></a>
+      <a id="ConcreteFunValue:ConcreteFunValue"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="SymbolicValues$$ConcreteFunValue.html"><span class="name">ConcreteFunValue</span></a><span class="params">(<span name="fun">fun: <a href="../ast/AFunDeclaration.html" class="extype" name="tip.ast.AFunDeclaration">AFunDeclaration</a></span>)</span><span class="result"> extends <a href="#FunValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.FunValue">FunValue</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@ConcreteFunValueextendstip.concolic.SymbolicValues.FunValuewithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A procedure: denotable and storable
+</p>
+    </li><li name="tip.concolic.SymbolicValues.ConcreteNullValue" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ConcreteNullValueextendstip.concolic.SymbolicValues.NullValuewithProductwithSerializable"></a>
+      <a id="ConcreteNullValue:ConcreteNullValue"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="SymbolicValues$$ConcreteNullValue.html"><span class="name">ConcreteNullValue</span></a><span class="params">()</span><span class="result"> extends <a href="#NullValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.NullValue">NullValue</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@ConcreteNullValueextendstip.concolic.SymbolicValues.NullValuewithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Null: expressible and storable, but not denotable
+</p>
+    </li><li name="tip.concolic.SymbolicValues.ConcreteReferenceValue" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ConcreteReferenceValueextendstip.concolic.SymbolicValues.ReferenceValuewithProductwithSerializable"></a>
+      <a id="ConcreteReferenceValue:ConcreteReferenceValue"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="SymbolicValues$$ConcreteReferenceValue.html"><span class="name">ConcreteReferenceValue</span></a><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result"> extends <a href="#ReferenceValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.ReferenceValue">ReferenceValue</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@ConcreteReferenceValueextendstip.concolic.SymbolicValues.ReferenceValuewithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Reference: expressible, storable and denotable
+</p>
+    </li><li name="tip.interpreter.ValueSpecification.EValue" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="EValueextendsAnyRef"></a>
+      <a id="EValue:EValue"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="../interpreter/ValueSpecification$EValue.html"><span class="name">EValue</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.interpreter.ValueSpecification@EValueextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Expressible values, the ones that can result from evaluation of expressions.</p><div class="fullcomment"><div class="comment cmt"><p>Expressible values, the ones that can result from evaluation of expressions.</p><p>In TIP, all values are expressible.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../interpreter/ValueSpecification.html" class="extype" name="tip.interpreter.ValueSpecification">ValueSpecification</a></dd></dl></div>
+    </li><li name="tip.interpreter.ValueSpecification.FunValue" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="FunValueextendsValueSpecification.this.EValue"></a>
+      <a id="FunValue:FunValue"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="../interpreter/ValueSpecification$FunValue.html"><span class="name">FunValue</span></a><span class="result"> extends <a href="../interpreter/ValueSpecification$EValue.html" class="extype" name="tip.interpreter.ValueSpecification.EValue">EValue</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.interpreter.ValueSpecification@FunValueextendsValueSpecification.this.EValue" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Functions: expressible and storable, but not denotable.</p><div class="fullcomment"><div class="comment cmt"><p>Functions: expressible and storable, but not denotable.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../interpreter/ValueSpecification.html" class="extype" name="tip.interpreter.ValueSpecification">ValueSpecification</a></dd></dl></div>
+    </li><li name="tip.interpreter.ValueSpecification.IntValue" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="IntValueextendsValueSpecification.this.EValue"></a>
+      <a id="IntValue:IntValue"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="../interpreter/ValueSpecification$IntValue.html"><span class="name">IntValue</span></a><span class="result"> extends <a href="../interpreter/ValueSpecification$EValue.html" class="extype" name="tip.interpreter.ValueSpecification.EValue">EValue</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.interpreter.ValueSpecification@IntValueextendsValueSpecification.this.EValue" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Integers: expressible and storable, but not denotable.</p><div class="fullcomment"><div class="comment cmt"><p>Integers: expressible and storable, but not denotable.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../interpreter/ValueSpecification.html" class="extype" name="tip.interpreter.ValueSpecification">ValueSpecification</a></dd></dl></div>
+    </li><li name="tip.interpreter.ValueSpecification.Location" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="Location=ValueSpecification.this.ReferenceValue"></a>
+      <a id="Location:Location"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Location</span><span class="result"> = <a href="#ReferenceValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.ReferenceValue">ReferenceValue</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@Location=ValueSpecification.this.ReferenceValue" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Denotable values, the ones that represent memory locations.</p><div class="fullcomment"><div class="comment cmt"><p>Denotable values, the ones that represent memory locations.</p><p>In TIP those are references to variables or heap cells.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../interpreter/ValueSpecification.html" class="extype" name="tip.interpreter.ValueSpecification">ValueSpecification</a></dd></dl></div>
+    </li><li name="tip.interpreter.ValueSpecification.NullValue" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="NullValueextendsValueSpecification.this.EValue"></a>
+      <a id="NullValue:NullValue"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="../interpreter/ValueSpecification$NullValue.html"><span class="name">NullValue</span></a><span class="result"> extends <a href="../interpreter/ValueSpecification$EValue.html" class="extype" name="tip.interpreter.ValueSpecification.EValue">EValue</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.interpreter.ValueSpecification@NullValueextendsValueSpecification.this.EValue" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Null: expressible and storable, but not denotable.</p><div class="fullcomment"><div class="comment cmt"><p>Null: expressible and storable, but not denotable.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../interpreter/ValueSpecification.html" class="extype" name="tip.interpreter.ValueSpecification">ValueSpecification</a></dd></dl></div>
+    </li><li name="tip.interpreter.ValueSpecification.ReferenceValue" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="ReferenceValueextendsValueSpecification.this.EValue"></a>
+      <a id="ReferenceValue:ReferenceValue"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="../interpreter/ValueSpecification$ReferenceValue.html"><span class="name">ReferenceValue</span></a><span class="result"> extends <a href="../interpreter/ValueSpecification$EValue.html" class="extype" name="tip.interpreter.ValueSpecification.EValue">EValue</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.interpreter.ValueSpecification@ReferenceValueextendsValueSpecification.this.EValue" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Reference: expressible, storable and denotable.</p><div class="fullcomment"><div class="comment cmt"><p>Reference: expressible, storable and denotable.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../interpreter/ValueSpecification.html" class="extype" name="tip.interpreter.ValueSpecification">ValueSpecification</a></dd></dl></div>
+    </li><li name="tip.concolic.SymbolicValues.SymbIntValue" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SymbIntValueextendstip.concolic.SymbolicValues.IntValuewithProductwithSerializable"></a>
+      <a id="SymbIntValue:SymbIntValue"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="SymbolicValues$$SymbIntValue.html"><span class="name">SymbIntValue</span></a><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>, <span name="symbolic">symbolic: <a href="../ast/AExpr.html" class="extype" name="tip.ast.AExpr">AExpr</a></span>)</span><span class="result"> extends <a href="#IntValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.IntValue">IntValue</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@SymbIntValueextendstip.concolic.SymbolicValues.IntValuewithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="tip.interpreter.ValueSpecification.Value" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="Value=ValueSpecification.this.EValue"></a>
+      <a id="Value:Value"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Value</span><span class="result"> = <a href="#EValueextendsAnyRef" class="extmbr" name="tip.interpreter.ValueSpecification.EValue">EValue</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@Value=ValueSpecification.this.EValue" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Storable values, the ones that that can be stored in mutable variables or heap cells.</p><div class="fullcomment"><div class="comment cmt"><p>Storable values, the ones that that can be stored in mutable variables or heap cells.</p><p>Storable values are generally a subset of expressible ones; in TIP they are the same.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../interpreter/ValueSpecification.html" class="extype" name="tip.interpreter.ValueSpecification">ValueSpecification</a></dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@!=(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@##():Int" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@==(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@asInstanceOf[T0]:T0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@clone():Object" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="tip.concolic.SymbolicValues#constInt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="constInt(i:Int):tip.concolic.SymbolicValues.IntValue"></a>
+      <a id="constInt(Int):IntValue"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">constInt</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="#IntValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.IntValue">IntValue</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@constInt(i:Int):tip.concolic.SymbolicValues.IntValue" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Makes am integer value from a literal.</p><div class="fullcomment"><div class="comment cmt"><p>Makes am integer value from a literal.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.concolic.SymbolicValues">SymbolicValues</a> → <a href="../interpreter/ValueSpecification.html" class="extype" name="tip.interpreter.ValueSpecification">ValueSpecification</a></dd></dl></div>
+    </li><li name="tip.concolic.SymbolicValues#divideInt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="divideInt(x:tip.concolic.SymbolicValues.IntValue,y:tip.concolic.SymbolicValues.IntValue):tip.concolic.SymbolicValues.IntValue"></a>
+      <a id="divideInt(IntValue,IntValue):IntValue"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">divideInt</span><span class="params">(<span name="x">x: <a href="#IntValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.IntValue">IntValue</a></span>, <span name="y">y: <a href="#IntValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.IntValue">IntValue</a></span>)</span><span class="result">: <a href="#IntValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.IntValue">IntValue</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@divideInt(x:tip.concolic.SymbolicValues.IntValue,y:tip.concolic.SymbolicValues.IntValue):tip.concolic.SymbolicValues.IntValue" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The <code>/</code> operator on integer values.</p><div class="fullcomment"><div class="comment cmt"><p>The <code>/</code> operator on integer values.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.concolic.SymbolicValues">SymbolicValues</a> → <a href="../interpreter/ValueSpecification.html" class="extype" name="tip.interpreter.ValueSpecification">ValueSpecification</a></dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="tip.concolic.SymbolicValues#eqq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eqq(x:tip.concolic.SymbolicValues.EValue,y:tip.concolic.SymbolicValues.EValue):tip.concolic.SymbolicValues.IntValue"></a>
+      <a id="eqq(EValue,EValue):IntValue"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eqq</span><span class="params">(<span name="x">x: <a href="#EValueextendsAnyRef" class="extmbr" name="tip.interpreter.ValueSpecification.EValue">EValue</a></span>, <span name="y">y: <a href="#EValueextendsAnyRef" class="extmbr" name="tip.interpreter.ValueSpecification.EValue">EValue</a></span>)</span><span class="result">: <a href="#IntValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.IntValue">IntValue</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@eqq(x:tip.concolic.SymbolicValues.EValue,y:tip.concolic.SymbolicValues.EValue):tip.concolic.SymbolicValues.IntValue" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The <code>==</code> operator on arbitrary values.</p><div class="fullcomment"><div class="comment cmt"><p>The <code>==</code> operator on arbitrary values.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.concolic.SymbolicValues">SymbolicValues</a> → <a href="../interpreter/ValueSpecification.html" class="extype" name="tip.interpreter.ValueSpecification">ValueSpecification</a></dd></dl></div>
+    </li><li name="tip.concolic.SymbolicValues#eqqInt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eqqInt(x:tip.concolic.SymbolicValues.IntValue,y:tip.concolic.SymbolicValues.IntValue):Boolean"></a>
+      <a id="eqqInt(IntValue,IntValue):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eqqInt</span><span class="params">(<span name="x">x: <a href="#IntValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.IntValue">IntValue</a></span>, <span name="y">y: <a href="#IntValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.IntValue">IntValue</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@eqqInt(x:tip.concolic.SymbolicValues.IntValue,y:tip.concolic.SymbolicValues.IntValue):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Equality of integer values.</p><div class="fullcomment"><div class="comment cmt"><p>Equality of integer values.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.concolic.SymbolicValues">SymbolicValues</a> → <a href="../interpreter/ValueSpecification.html" class="extype" name="tip.interpreter.ValueSpecification">ValueSpecification</a></dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@equals(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@finalize():Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@getClass():Class[_]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="tip.concolic.SymbolicValues#greatThanInt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="greatThanInt(x:tip.concolic.SymbolicValues.IntValue,y:tip.concolic.SymbolicValues.IntValue):tip.concolic.SymbolicValues.IntValue"></a>
+      <a id="greatThanInt(IntValue,IntValue):IntValue"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">greatThanInt</span><span class="params">(<span name="x">x: <a href="#IntValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.IntValue">IntValue</a></span>, <span name="y">y: <a href="#IntValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.IntValue">IntValue</a></span>)</span><span class="result">: <a href="#IntValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.IntValue">IntValue</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@greatThanInt(x:tip.concolic.SymbolicValues.IntValue,y:tip.concolic.SymbolicValues.IntValue):tip.concolic.SymbolicValues.IntValue" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The <code>&gt;=</code> operator on integer values.</p><div class="fullcomment"><div class="comment cmt"><p>The <code>&gt;=</code> operator on integer values.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.concolic.SymbolicValues">SymbolicValues</a> → <a href="../interpreter/ValueSpecification.html" class="extype" name="tip.interpreter.ValueSpecification">ValueSpecification</a></dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@hashCode():Int" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="tip.concolic.SymbolicValues#lastLoc" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="lastLoc:Int"></a>
+      <a id="lastLoc:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">lastLoc</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@lastLoc:Int" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="tip.concolic.SymbolicValues#minusInt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="minusInt(x:tip.concolic.SymbolicValues.IntValue,y:tip.concolic.SymbolicValues.IntValue):tip.concolic.SymbolicValues.IntValue"></a>
+      <a id="minusInt(IntValue,IntValue):IntValue"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">minusInt</span><span class="params">(<span name="x">x: <a href="#IntValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.IntValue">IntValue</a></span>, <span name="y">y: <a href="#IntValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.IntValue">IntValue</a></span>)</span><span class="result">: <a href="#IntValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.IntValue">IntValue</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@minusInt(x:tip.concolic.SymbolicValues.IntValue,y:tip.concolic.SymbolicValues.IntValue):tip.concolic.SymbolicValues.IntValue" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The <code>-</code> operator on integer values.</p><div class="fullcomment"><div class="comment cmt"><p>The <code>-</code> operator on integer values.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.concolic.SymbolicValues">SymbolicValues</a> → <a href="../interpreter/ValueSpecification.html" class="extype" name="tip.interpreter.ValueSpecification">ValueSpecification</a></dd></dl></div>
+    </li><li name="tip.concolic.SymbolicValues#mkFun" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="mkFun(f:tip.ast.AFunDeclaration):tip.concolic.SymbolicValues.FunValue"></a>
+      <a id="mkFun(AFunDeclaration):FunValue"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">mkFun</span><span class="params">(<span name="f">f: <a href="../ast/AFunDeclaration.html" class="extype" name="tip.ast.AFunDeclaration">AFunDeclaration</a></span>)</span><span class="result">: <a href="#FunValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.FunValue">FunValue</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@mkFun(f:tip.ast.AFunDeclaration):tip.concolic.SymbolicValues.FunValue" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Makes a function value from a function declaration in the program code.</p><div class="fullcomment"><div class="comment cmt"><p>Makes a function value from a function declaration in the program code.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.concolic.SymbolicValues">SymbolicValues</a> → <a href="../interpreter/ValueSpecification.html" class="extype" name="tip.interpreter.ValueSpecification">ValueSpecification</a></dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="tip.concolic.SymbolicValues#newLoc" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="newLoc():tip.concolic.SymbolicValues.ReferenceValue"></a>
+      <a id="newLoc():ReferenceValue"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">newLoc</span><span class="params">()</span><span class="result">: <a href="#ReferenceValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.ReferenceValue">ReferenceValue</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@newLoc():tip.concolic.SymbolicValues.ReferenceValue" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Creates a new reference
+</p><div class="fullcomment"><div class="comment cmt"><p>Creates a new reference
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.concolic.SymbolicValues">SymbolicValues</a> → <a href="../interpreter/ValueSpecification.html" class="extype" name="tip.interpreter.ValueSpecification">ValueSpecification</a></dd></dl></div>
+    </li><li name="tip.concolic.SymbolicValues#noLoc" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="noLoc:tip.ast.Loc"></a>
+      <a id="noLoc:Loc"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">noLoc</span><span class="result">: <a href="../ast/Loc.html" class="extype" name="tip.ast.Loc">Loc</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@noLoc:tip.ast.Loc" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@notify():Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@notifyAll():Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="tip.concolic.SymbolicValues#nullValue" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="nullValue:tip.concolic.SymbolicValues.ConcreteNullValue"></a>
+      <a id="nullValue:ConcreteNullValue"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">nullValue</span><span class="result">: <a href="SymbolicValues$$ConcreteNullValue.html" class="extype" name="tip.concolic.SymbolicValues.ConcreteNullValue">ConcreteNullValue</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@nullValue:tip.concolic.SymbolicValues.ConcreteNullValue" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The null value.</p><div class="fullcomment"><div class="comment cmt"><p>The null value.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.concolic.SymbolicValues">SymbolicValues</a> → <a href="../interpreter/ValueSpecification.html" class="extype" name="tip.interpreter.ValueSpecification">ValueSpecification</a></dd></dl></div>
+    </li><li name="tip.concolic.SymbolicValues#plusInt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="plusInt(x:tip.concolic.SymbolicValues.IntValue,y:tip.concolic.SymbolicValues.IntValue):tip.concolic.SymbolicValues.IntValue"></a>
+      <a id="plusInt(IntValue,IntValue):IntValue"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">plusInt</span><span class="params">(<span name="x">x: <a href="#IntValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.IntValue">IntValue</a></span>, <span name="y">y: <a href="#IntValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.IntValue">IntValue</a></span>)</span><span class="result">: <a href="#IntValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.IntValue">IntValue</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@plusInt(x:tip.concolic.SymbolicValues.IntValue,y:tip.concolic.SymbolicValues.IntValue):tip.concolic.SymbolicValues.IntValue" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Thr <code>+</code> operator on integer values.</p><div class="fullcomment"><div class="comment cmt"><p>Thr <code>+</code> operator on integer values.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.concolic.SymbolicValues">SymbolicValues</a> → <a href="../interpreter/ValueSpecification.html" class="extype" name="tip.interpreter.ValueSpecification">ValueSpecification</a></dd></dl></div>
+    </li><li name="tip.concolic.SymbolicValues#returnLoc" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="returnLoc:tip.concolic.SymbolicValues.ConcreteReferenceValue"></a>
+      <a id="returnLoc:ConcreteReferenceValue"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">returnLoc</span><span class="result">: <a href="SymbolicValues$$ConcreteReferenceValue.html" class="extype" name="tip.concolic.SymbolicValues.ConcreteReferenceValue">ConcreteReferenceValue</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@returnLoc:tip.concolic.SymbolicValues.ConcreteReferenceValue" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The reserved location for storing return values.</p><div class="fullcomment"><div class="comment cmt"><p>The reserved location for storing return values.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.concolic.SymbolicValues">SymbolicValues</a> → <a href="../interpreter/ValueSpecification.html" class="extype" name="tip.interpreter.ValueSpecification">ValueSpecification</a></dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="tip.concolic.SymbolicValues#timesInt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="timesInt(x:tip.concolic.SymbolicValues.IntValue,y:tip.concolic.SymbolicValues.IntValue):tip.concolic.SymbolicValues.IntValue"></a>
+      <a id="timesInt(IntValue,IntValue):IntValue"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">timesInt</span><span class="params">(<span name="x">x: <a href="#IntValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.IntValue">IntValue</a></span>, <span name="y">y: <a href="#IntValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.IntValue">IntValue</a></span>)</span><span class="result">: <a href="#IntValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.IntValue">IntValue</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@timesInt(x:tip.concolic.SymbolicValues.IntValue,y:tip.concolic.SymbolicValues.IntValue):tip.concolic.SymbolicValues.IntValue" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The <code>*</code> operator on integer values.</p><div class="fullcomment"><div class="comment cmt"><p>The <code>*</code> operator on integer values.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.concolic.SymbolicValues">SymbolicValues</a> → <a href="../interpreter/ValueSpecification.html" class="extype" name="tip.interpreter.ValueSpecification">ValueSpecification</a></dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@toString():String" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@wait():Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.concolic.SymbolicValues$@wait(x$1:Long):Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="tip.interpreter.ValueSpecification">
+              <h3>Inherited from <a href="../interpreter/ValueSpecification.html" class="extype" name="tip.interpreter.ValueSpecification">ValueSpecification</a></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

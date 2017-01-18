@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Term - TIP API - tip.solvers.Term</title>
-          <meta name="description" content="Term - TIP API - tip.solvers.Term" />
-          <meta name="keywords" content="Term TIP API tip.solvers.Term" />
+          <title>Term - tip.solvers.Term</title>
+          <meta name="description" content="Term - tip.solvers.Term" />
+          <meta name="keywords" content="Term tip.solvers.Term" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -28,13 +28,13 @@
         </head>
         <body class="type">
       <div id="definition">
-        <img src="../../lib/trait_big.png" />
+        <img alt="Trait" src="../../lib/trait_big.png" />
         <p id="owner"><a href="../package.html" class="extype" name="tip">tip</a>.<a href="package.html" class="extype" name="tip.solvers">solvers</a></p>
         <h1>Term</h1><h3><span class="morelinks"><div>Related Doc:
             <a href="package.html" class="extype" name="tip.solvers">package solvers</a>
           </div></span></h3><span class="permalink">
       <a href="../../index.html#tip.solvers.Term" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       </div>
@@ -49,13 +49,13 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A generic term: either a variable <a href="Var.html" class="extype" name="tip.solvers.Var">Var</a> or a constructor <a href="Cons.html" class="extype" name="tip.solvers.Cons">Cons</a>.
-</p></div><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A generic term: a variable <a href="Var.html" class="extype" name="tip.solvers.Var">Var</a>, a constructor <a href="Cons.html" class="extype" name="tip.solvers.Cons">Cons</a>, or a recursive term <a href="Mu.html" class="extype" name="tip.solvers.Mu">Mu</a>.
+</p></div><dl class="paramcmts block"><dt class="tparam">A</dt><dd class="cmt"><p>type parameter describing the kind of constraint system</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div><div class="toggleContainer block">
             <span class="toggle">Known Subclasses</span>
-            <div class="subClasses hiddenContent"><a href="Cons.html" class="extype" name="tip.solvers.Cons">Cons</a>, <a href="../analysis/FreshVariable.html" class="extype" name="tip.analysis.FreshVariable">FreshVariable</a>, <a href="../analysis/IdentifierVariable.html" class="extype" name="tip.analysis.IdentifierVariable">IdentifierVariable</a>, <a href="../analysis/MallocVariable.html" class="extype" name="tip.analysis.MallocVariable">MallocVariable</a>, <a href="../types/Mu.html" class="extype" name="tip.types.Mu">Mu</a>, <a href="../analysis/PointerRef.html" class="extype" name="tip.analysis.PointerRef">PointerRef</a>, <a href="../types/TipAlpha.html" class="extype" name="tip.types.TipAlpha">TipAlpha</a>, <a href="../types/TipFunction.html" class="extype" name="tip.types.TipFunction">TipFunction</a>, <a href="../types/TipInt.html" class="extype" name="tip.types.TipInt">TipInt</a>, <a href="../types/TipRef.html" class="extype" name="tip.types.TipRef">TipRef</a>, <a href="../types/TipVar.html" class="extype" name="tip.types.TipVar">TipVar</a>, <a href="Var.html" class="extype" name="tip.solvers.Var">Var</a></div>
+            <div class="subClasses hiddenContent"><a href="Cons.html" class="extype" name="tip.solvers.Cons">Cons</a>, <a href="../analysis/FreshVariable.html" class="extype" name="tip.analysis.FreshVariable">FreshVariable</a>, <a href="../analysis/IdentifierVariable.html" class="extype" name="tip.analysis.IdentifierVariable">IdentifierVariable</a>, <a href="../analysis/MallocVariable.html" class="extype" name="tip.analysis.MallocVariable">MallocVariable</a>, <a href="Mu.html" class="extype" name="tip.solvers.Mu">Mu</a>, <a href="../analysis/PointerRef.html" class="extype" name="tip.analysis.PointerRef">PointerRef</a>, <a href="../types/TipAlpha.html" class="extype" name="tip.types.TipAlpha">TipAlpha</a>, <a href="../types/TipFunction.html" class="extype" name="tip.types.TipFunction">TipFunction</a>, <a href="../types/TipInt.html" class="extype" name="tip.types.TipInt">TipInt</a>, <a href="../types/TipMu.html" class="extype" name="tip.types.TipMu">TipMu</a>, <a href="../types/TipRef.html" class="extype" name="tip.types.TipRef">TipRef</a>, <a href="../types/TipVar.html" class="extype" name="tip.types.TipVar">TipVar</a>, <a href="Var.html" class="extype" name="tip.solvers.Var">Var</a></div>
           </div></div>
         
 
@@ -66,7 +66,7 @@
               <ol>
                 
                 <li class="alpha in"><span>Alphabetic</span></li>
-                <li class="inherit out"><span>By inheritance</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
               </ol>
             </div>
         <div id="ancestors">
@@ -79,9 +79,8 @@
             <span class="filtertype"></span>
             <ol>
               <li class="hideall out"><span>Hide All</span></li>
-              <li class="showall in"><span>Show all</span></li>
+              <li class="showall in"><span>Show All</span></li>
             </ol>
-            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
           </div>
         <div id="visbl">
             <span class="filtertype">Visibility</span>
@@ -110,10 +109,10 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.solvers.Term@fv:Set[tip.solvers.Var[A]]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Returns the set of free variables in this term.</p>
     </li><li name="tip.solvers.Term#subst" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="subst(v:tip.solvers.Var[A],t:tip.solvers.Term[A]):tip.solvers.Term[A]"></a>
       <a id="subst(Var[A],Term[A]):Term[A]"></a>
@@ -127,10 +126,10 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.solvers.Term@subst(v:tip.solvers.Var[A],t:tip.solvers.Term[A]):tip.solvers.Term[A]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Produces a new term from this term by substituting the variable <code>v</code> with the term <code>t</code>.</p>
     </li></ol>
             </div>
 
@@ -149,7 +148,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.solvers.Term@!=(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -166,7 +165,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.solvers.Term@##():Int" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -183,7 +182,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.solvers.Term@==(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -200,7 +199,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.solvers.Term@asInstanceOf[T0]:T0" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
@@ -217,7 +216,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.solvers.Term@clone():Object" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -240,7 +239,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.solvers.Term@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -257,7 +256,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.solvers.Term@equals(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -274,7 +273,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.solvers.Term@finalize():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -297,7 +296,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.solvers.Term@getClass():Class[_]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -314,7 +313,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.solvers.Term@hashCode():Int" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -331,7 +330,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.solvers.Term@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
@@ -348,7 +347,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.solvers.Term@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -365,7 +364,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.solvers.Term@notify():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -382,7 +381,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.solvers.Term@notifyAll():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -399,7 +398,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.solvers.Term@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -416,7 +415,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.solvers.Term@toString():String" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -433,7 +432,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.solvers.Term@wait():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -456,7 +455,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.solvers.Term@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -479,7 +478,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.solvers.Term@wait(x$1:Long):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>

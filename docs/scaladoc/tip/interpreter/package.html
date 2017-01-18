@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>interpreter - TIP API - tip.interpreter</title>
-          <meta name="description" content="interpreter - TIP API - tip.interpreter" />
-          <meta name="keywords" content="interpreter TIP API tip.interpreter" />
+          <title>interpreter - tip.interpreter</title>
+          <meta name="description" content="interpreter - tip.interpreter" />
+          <meta name="keywords" content="interpreter tip.interpreter" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -28,11 +28,11 @@
         </head>
         <body class="value">
       <div id="definition">
-        <img src="../../lib/package_big.png" />
+        <img alt="Package" src="../../lib/package_big.png" />
         <p id="owner"><a href="../package.html" class="extype" name="tip">tip</a></p>
         <h1>interpreter</h1><span class="permalink">
       <a href="../../index.html#tip.interpreter.package" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       </div>
@@ -66,12 +66,29 @@
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="tip.interpreter.Interpreter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+              <ol><li name="tip.interpreter.ConcreteInterpreter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ConcreteInterpreterextendsInterpreter"></a>
+      <a id="ConcreteInterpreter:ConcreteInterpreter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ConcreteInterpreter.html"><span class="name">ConcreteInterpreter</span></a><span class="result"> extends <a href="Interpreter.html" class="extype" name="tip.interpreter.Interpreter">Interpreter</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.interpreter.package@ConcreteInterpreterextendsInterpreter" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Interpreter that uses concrete values.</p>
+    </li><li name="tip.interpreter.Interpreter" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="InterpreterextendsAnyRef"></a>
       <a id="Interpreter:Interpreter"></a>
       <h4 class="signature">
       <span class="modifier_kind">
-        <span class="modifier"></span>
+        <span class="modifier">abstract </span>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
@@ -79,16 +96,55 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.interpreter.package@InterpreterextendsAnyRef" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Interpreter for TIP programs.</p>
+    </li><li name="tip.interpreter.ValueSpecification" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="ValueSpecificationextendsAnyRef"></a>
+      <a id="ValueSpecification:ValueSpecification"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ValueSpecification.html"><span class="name">ValueSpecification</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.interpreter.package@ValueSpecificationextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Ca of values.</p><div class="fullcomment"><div class="comment cmt"><p>Ca of values.
+(Using the classic terminology by Strachey.)
+</p></div></div>
     </li></ol>
             </div>
 
         
 
-        
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="tip.interpreter.ConcreteValues" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ConcreteValues"></a>
+      <a id="ConcreteValues:ConcreteValues"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ConcreteValues$.html"><span class="name">ConcreteValues</span></a><span class="result"> extends <a href="ValueSpecification.html" class="extype" name="tip.interpreter.ValueSpecification">ValueSpecification</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.interpreter.package@ConcreteValues" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Values for concrete execution of TIP progams.</p>
+    </li></ol>
+            </div>
 
         
 

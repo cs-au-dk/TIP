@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ControlFlowAnalysis - TIP API - tip.analysis.ControlFlowAnalysis</title>
-          <meta name="description" content="ControlFlowAnalysis - TIP API - tip.analysis.ControlFlowAnalysis" />
-          <meta name="keywords" content="ControlFlowAnalysis TIP API tip.analysis.ControlFlowAnalysis" />
+          <title>ControlFlowAnalysis - tip.analysis.ControlFlowAnalysis</title>
+          <meta name="description" content="ControlFlowAnalysis - tip.analysis.ControlFlowAnalysis" />
+          <meta name="keywords" content="ControlFlowAnalysis tip.analysis.ControlFlowAnalysis" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -28,13 +28,13 @@
         </head>
         <body class="type">
       <div id="definition">
-        <img src="../../lib/class_big.png" />
+        <img alt="Class" src="../../lib/class_big.png" />
         <p id="owner"><a href="../package.html" class="extype" name="tip">tip</a>.<a href="package.html" class="extype" name="tip.analysis">analysis</a></p>
         <h1>ControlFlowAnalysis</h1><h3><span class="morelinks"><div>Related Doc:
             <a href="package.html" class="extype" name="tip.analysis">package analysis</a>
           </div></span></h3><span class="permalink">
       <a href="../../index.html#tip.analysis.ControlFlowAnalysis" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       </div>
@@ -45,13 +45,13 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">ControlFlowAnalysis</span><span class="result"> extends <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Null">Null</span>]</span>
+        <span class="name">ControlFlowAnalysis</span><span class="result"> extends <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Null">Null</span>] with <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Predef.Map">Map</span>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>, <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../ast/AFunDeclaration.html" class="extype" name="tip.ast.AFunDeclaration">AFunDeclaration</a>]]]</span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Null">Null</span>], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Predef.Map">Map</span>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>, <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../ast/AFunDeclaration.html" class="extype" name="tip.ast.AFunDeclaration">AFunDeclaration</a>]]], <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Null">Null</span>], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -62,22 +62,21 @@
               <ol>
                 
                 <li class="alpha in"><span>Alphabetic</span></li>
-                <li class="inherit out"><span>By inheritance</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
               </ol>
             </div>
         <div id="ancestors">
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="tip.analysis.ControlFlowAnalysis"><span>ControlFlowAnalysis</span></li><li class="in" name="tip.ast.DepthFirstAstVisitor"><span>DepthFirstAstVisitor</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="tip.analysis.ControlFlowAnalysis"><span>ControlFlowAnalysis</span></li><li class="in" name="tip.analysis.Analysis"><span>Analysis</span></li><li class="in" name="tip.ast.DepthFirstAstVisitor"><span>DepthFirstAstVisitor</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
             <ol>
               <li class="hideall out"><span>Hide All</span></li>
-              <li class="showall in"><span>Show all</span></li>
+              <li class="showall in"><span>Show All</span></li>
             </ol>
-            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
           </div>
         <div id="visbl">
             <span class="filtertype">Visibility</span>
@@ -90,7 +89,7 @@
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="tip.analysis.ControlFlowAnalysis#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(program:tip.ast.AProgram):tip.analysis.ControlFlowAnalysis"></a>
+      <a id="&lt;init&gt;(program:tip.ast.AProgram)(implicitdeclData:tip.ast.AstNodeData.DeclarationData):tip.analysis.ControlFlowAnalysis"></a>
       <a id="&lt;init&gt;:ControlFlowAnalysis"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -98,11 +97,11 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">ControlFlowAnalysis</span><span class="params">(<span name="program">program: <a href="../ast/AProgram.html" class="extype" name="tip.ast.AProgram">AProgram</a></span>)</span>
+        <span class="name">ControlFlowAnalysis</span><span class="params">(<span name="program">program: <a href="../ast/AProgram.html" class="extype" name="tip.ast.AProgram">AProgram</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="declData">declData: <a href="../ast/AstNodeData$.html#DeclarationData=Map[tip.ast.AIdentifier,tip.ast.ADeclaration]" class="extmbr" name="tip.ast.AstNodeData.DeclarationData">DeclarationData</a></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.ControlFlowAnalysis@&lt;init&gt;(program:tip.ast.AProgram):tip.analysis.ControlFlowAnalysis" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.ControlFlowAnalysis@&lt;init&gt;(program:tip.ast.AProgram)(implicitdeclData:tip.ast.AstNodeData.DeclarationData):tip.analysis.ControlFlowAnalysis" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
@@ -124,7 +123,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ControlFlowAnalysis@AstVariableextendsProductwithSerializable" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
@@ -141,7 +140,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ControlFlowAnalysis@DeclextendsProductwithSerializable" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
@@ -165,7 +164,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ControlFlowAnalysis@!=(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -182,7 +181,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ControlFlowAnalysis@##():Int" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -199,7 +198,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ControlFlowAnalysis@==(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -216,10 +215,27 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ControlFlowAnalysis@allFunctions:scala.collection.immutable.Set[tip.ast.AFunDeclaration]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
+    </li><li name="tip.analysis.ControlFlowAnalysis#analyze" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="analyze():Map[tip.ast.AstNode,Set[tip.ast.AFunDeclaration]]"></a>
+      <a id="analyze():Map[AstNode,Set[AFunDeclaration]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">analyze</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>, <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../ast/AFunDeclaration.html" class="extype" name="tip.ast.AFunDeclaration">AFunDeclaration</a>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.analysis.ControlFlowAnalysis@analyze():Map[tip.ast.AstNode,Set[tip.ast.AFunDeclaration]]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Performs the analysis and returns the result.</p><div class="fullcomment"><div class="comment cmt"><p>Performs the analysis and returns the result.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.ControlFlowAnalysis">ControlFlowAnalysis</a> → <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a></dd></dl></div>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -233,7 +249,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ControlFlowAnalysis@asInstanceOf[T0]:T0" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
@@ -250,7 +266,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ControlFlowAnalysis@clone():Object" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -273,7 +289,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ControlFlowAnalysis@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -290,7 +306,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ControlFlowAnalysis@equals(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -307,7 +323,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ControlFlowAnalysis@finalize():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -330,7 +346,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ControlFlowAnalysis@getClass():Class[_]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -347,7 +363,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ControlFlowAnalysis@hashCode():Int" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -364,12 +380,12 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ControlFlowAnalysis@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
     </li><li name="tip.analysis.ControlFlowAnalysis#log" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="log:tip.logging.Logger"></a>
+      <a id="log:tip.util.Logger"></a>
       <a id="log:Logger"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -377,11 +393,11 @@
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">log</span><span class="result">: <a href="../logging/Logger.html" class="extype" name="tip.logging.Logger">Logger</a></span>
+        <span class="name">log</span><span class="result">: <a href="../util/Logger.html" class="extype" name="tip.util.Logger">Logger</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.ControlFlowAnalysis@log:tip.logging.Logger" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.ControlFlowAnalysis@log:tip.util.Logger" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
@@ -398,7 +414,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ControlFlowAnalysis@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -415,7 +431,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ControlFlowAnalysis@notify():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -432,27 +448,10 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ControlFlowAnalysis@notifyAll():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="tip.analysis.ControlFlowAnalysis#solver" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="solver:tip.solvers.CubicSolver[ControlFlowAnalysis.this.Decl,ControlFlowAnalysis.this.AstVariable]"></a>
-      <a id="solver:CubicSolver[Decl,AstVariable]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">solver</span><span class="result">: <a href="../solvers/CubicSolver.html" class="extype" name="tip.solvers.CubicSolver">CubicSolver</a>[<a href="ControlFlowAnalysis$Decl.html" class="extype" name="tip.analysis.ControlFlowAnalysis.Decl">Decl</a>, <a href="ControlFlowAnalysis$AstVariable.html" class="extype" name="tip.analysis.ControlFlowAnalysis.AstVariable">AstVariable</a>]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.ControlFlowAnalysis@solver:tip.solvers.CubicSolver[ControlFlowAnalysis.this.Decl,ControlFlowAnalysis.this.AstVariable]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
-      </a>
-    </span>
-      
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -466,7 +465,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ControlFlowAnalysis@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -483,7 +482,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ControlFlowAnalysis@toString():String" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -500,11 +499,10 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ControlFlowAnalysis@visit(node:tip.ast.AstNode,arg:Null):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Generates the constraints for the given sub-AST.</p><div class="fullcomment"><div class="comment cmt"><p>Generates the constraints for the given sub-AST.</p></div><dl class="paramcmts block"><dt class="param">node</dt><dd class="cmt"><p>the node for which it generates the constraints</p></dd><dt class="param">arg</dt><dd class="cmt"><p>unused for this visitor
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.ControlFlowAnalysis">ControlFlowAnalysis</a> → <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a></dd></dl></div>
+      <p class="shortcomment cmt">Generates the constraints for the given sub-AST.</p><div class="fullcomment"><div class="comment cmt"><p>Generates the constraints for the given sub-AST.</p></div><dl class="paramcmts block"><dt class="param">node</dt><dd class="cmt"><p>the node for which it generates the constraints</p></dd><dt class="param">arg</dt><dd class="cmt"><p>unused for this visitor</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.ControlFlowAnalysis">ControlFlowAnalysis</a> → <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a></dd></dl></div>
     </li><li name="tip.ast.DepthFirstAstVisitor#visitChildren" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="visitChildren(node:tip.ast.AstNode,arg:A):Unit"></a>
       <a id="visitChildren(AstNode,Null):Unit"></a>
@@ -518,13 +516,11 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ControlFlowAnalysis@visitChildren(node:tip.ast.AstNode,arg:A):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Recursively perform the visit to the sub-node of the passed node, passing the provided argument
-</p><div class="fullcomment"><div class="comment cmt"><p>Recursively perform the visit to the sub-node of the passed node, passing the provided argument
-</p></div><dl class="paramcmts block"><dt class="param">node</dt><dd class="cmt"><p>the node whose children need to be visited</p></dd><dt class="param">arg</dt><dd class="cmt"><p>the argument to be passed to the visit of the children
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a></dd></dl></div>
+      <p class="shortcomment cmt">Recursively perform the visit to the sub-node of the passed node, passing the provided argument.</p><div class="fullcomment"><div class="comment cmt"><p>Recursively perform the visit to the sub-node of the passed node, passing the provided argument.
+</p></div><dl class="paramcmts block"><dt class="param">node</dt><dd class="cmt"><p>the node whose children need to be visited</p></dd><dt class="param">arg</dt><dd class="cmt"><p>the argument to be passed to all sub-nodes</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a></dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
@@ -538,7 +534,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ControlFlowAnalysis@wait():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -561,7 +557,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ControlFlowAnalysis@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -584,7 +580,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.ControlFlowAnalysis@wait(x$1:Long):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -603,7 +599,9 @@
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="tip.ast.DepthFirstAstVisitor">
+        <div class="parent" name="tip.analysis.Analysis">
+              <h3>Inherited from <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Predef.Map">Map</span>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>, <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../ast/AFunDeclaration.html" class="extype" name="tip.ast.AFunDeclaration">AFunDeclaration</a>]]]</h3>
+            </div><div class="parent" name="tip.ast.DepthFirstAstVisitor">
               <h3>Inherited from <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Null">Null</span>]</h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>

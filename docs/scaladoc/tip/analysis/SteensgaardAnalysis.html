@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>SteensgaardAnalysis - TIP API - tip.analysis.SteensgaardAnalysis</title>
-          <meta name="description" content="SteensgaardAnalysis - TIP API - tip.analysis.SteensgaardAnalysis" />
-          <meta name="keywords" content="SteensgaardAnalysis TIP API tip.analysis.SteensgaardAnalysis" />
+          <title>SteensgaardAnalysis - tip.analysis.SteensgaardAnalysis</title>
+          <meta name="description" content="SteensgaardAnalysis - tip.analysis.SteensgaardAnalysis" />
+          <meta name="keywords" content="SteensgaardAnalysis tip.analysis.SteensgaardAnalysis" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -28,13 +28,13 @@
         </head>
         <body class="type">
       <div id="definition">
-        <img src="../../lib/class_big.png" />
+        <img alt="Class" src="../../lib/class_big.png" />
         <p id="owner"><a href="../package.html" class="extype" name="tip">tip</a>.<a href="package.html" class="extype" name="tip.analysis">analysis</a></p>
         <h1>SteensgaardAnalysis</h1><h3><span class="morelinks"><div>Related Doc:
             <a href="package.html" class="extype" name="tip.analysis">package analysis</a>
           </div></span></h3><span class="permalink">
       <a href="../../index.html#tip.analysis.SteensgaardAnalysis" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       </div>
@@ -45,13 +45,16 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">SteensgaardAnalysis</span><span class="result"> extends <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Null">Null</span>]</span>
+        <span class="name">SteensgaardAnalysis</span><span class="result"> extends <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Null">Null</span>] with <a href="PointsToAnalysis.html" class="extype" name="tip.analysis.PointsToAnalysis">PointsToAnalysis</a></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Steensgaard-style pointer analysis.
+The analysis associates an <a href="StTerm.html" class="extype" name="tip.analysis.StTerm">StTerm</a> with each variable declaration and expression node in the AST.
+It is implemented using <a href="../solvers/UnionFindSolver.html" class="extype" name="tip.solvers.UnionFindSolver">tip.solvers.UnionFindSolver</a>.
+</p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Null">Null</span>], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="PointsToAnalysis.html" class="extype" name="tip.analysis.PointsToAnalysis">PointsToAnalysis</a>, <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Unit">Unit</span>], <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Null">Null</span>], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -62,22 +65,21 @@
               <ol>
                 
                 <li class="alpha in"><span>Alphabetic</span></li>
-                <li class="inherit out"><span>By inheritance</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
               </ol>
             </div>
         <div id="ancestors">
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="tip.analysis.SteensgaardAnalysis"><span>SteensgaardAnalysis</span></li><li class="in" name="tip.ast.DepthFirstAstVisitor"><span>DepthFirstAstVisitor</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="tip.analysis.SteensgaardAnalysis"><span>SteensgaardAnalysis</span></li><li class="in" name="tip.analysis.PointsToAnalysis"><span>PointsToAnalysis</span></li><li class="in" name="tip.analysis.Analysis"><span>Analysis</span></li><li class="in" name="tip.ast.DepthFirstAstVisitor"><span>DepthFirstAstVisitor</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
             <ol>
               <li class="hideall out"><span>Hide All</span></li>
-              <li class="showall in"><span>Show all</span></li>
+              <li class="showall in"><span>Show All</span></li>
             </ol>
-            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
           </div>
         <div id="visbl">
             <span class="filtertype">Visibility</span>
@@ -90,7 +92,7 @@
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="tip.analysis.SteensgaardAnalysis#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(program:tip.ast.AProgram):tip.analysis.SteensgaardAnalysis"></a>
+      <a id="&lt;init&gt;(program:tip.ast.AProgram)(implicitdeclData:tip.ast.AstNodeData.DeclarationData):tip.analysis.SteensgaardAnalysis"></a>
       <a id="&lt;init&gt;:SteensgaardAnalysis"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -98,11 +100,11 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">SteensgaardAnalysis</span><span class="params">(<span name="program">program: <a href="../ast/AProgram.html" class="extype" name="tip.ast.AProgram">AProgram</a></span>)</span>
+        <span class="name">SteensgaardAnalysis</span><span class="params">(<span name="program">program: <a href="../ast/AProgram.html" class="extype" name="tip.ast.AProgram">AProgram</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="declData">declData: <a href="../ast/AstNodeData$.html#DeclarationData=Map[tip.ast.AIdentifier,tip.ast.ADeclaration]" class="extmbr" name="tip.ast.AstNodeData.DeclarationData">DeclarationData</a></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.SteensgaardAnalysis@&lt;init&gt;(program:tip.ast.AProgram):tip.analysis.SteensgaardAnalysis" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.SteensgaardAnalysis@&lt;init&gt;(program:tip.ast.AProgram)(implicitdeclData:tip.ast.AstNodeData.DeclarationData):tip.analysis.SteensgaardAnalysis" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
@@ -128,7 +130,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.SteensgaardAnalysis@!=(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -145,7 +147,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.SteensgaardAnalysis@##():Int" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -162,10 +164,27 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.SteensgaardAnalysis@==(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="tip.analysis.SteensgaardAnalysis#analyze" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="analyze():Unit"></a>
+      <a id="analyze():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">analyze</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.analysis.SteensgaardAnalysis@analyze():Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Performs the analysis and returns the result.</p><div class="fullcomment"><div class="comment cmt"><p>Performs the analysis and returns the result.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.SteensgaardAnalysis">SteensgaardAnalysis</a> → <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a></dd></dl></div>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -179,7 +198,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.SteensgaardAnalysis@asInstanceOf[T0]:T0" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
@@ -196,7 +215,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.SteensgaardAnalysis@clone():Object" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -219,7 +238,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.SteensgaardAnalysis@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -236,7 +255,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.SteensgaardAnalysis@equals(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -253,7 +272,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.SteensgaardAnalysis@finalize():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -276,7 +295,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.SteensgaardAnalysis@getClass():Class[_]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -293,7 +312,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.SteensgaardAnalysis@hashCode():Int" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -310,12 +329,12 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.SteensgaardAnalysis@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
     </li><li name="tip.analysis.SteensgaardAnalysis#log" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="log:tip.logging.Logger"></a>
+      <a id="log:tip.util.Logger"></a>
       <a id="log:Logger"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -323,14 +342,32 @@
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">log</span><span class="result">: <a href="../logging/Logger.html" class="extype" name="tip.logging.Logger">Logger</a></span>
+        <span class="name">log</span><span class="result">: <a href="../util/Logger.html" class="extype" name="tip.util.Logger">Logger</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.SteensgaardAnalysis@log:tip.logging.Logger" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.SteensgaardAnalysis@log:tip.util.Logger" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
+    </li><li name="tip.analysis.SteensgaardAnalysis#mayAlias" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="mayAlias():(tip.ast.ADeclaration,tip.ast.ADeclaration)=&gt;Boolean"></a>
+      <a id="mayAlias():(ADeclaration,ADeclaration)⇒Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">mayAlias</span><span class="params">()</span><span class="result">: (<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>, <a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>) ⇒ <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.analysis.SteensgaardAnalysis@mayAlias():(tip.ast.ADeclaration,tip.ast.ADeclaration)=&gt;Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Returns a function that tells whether two given identifiers may point to the same cell.</p><div class="fullcomment"><div class="comment cmt"><p>Returns a function that tells whether two given identifiers may point to the same cell.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a function that returns true if the identifiers may point to the same cell; false if they definitely do not point to the same cell</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.SteensgaardAnalysis">SteensgaardAnalysis</a> → <a href="PointsToAnalysis.html" class="extype" name="tip.analysis.PointsToAnalysis">PointsToAnalysis</a></dd></dl></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -344,7 +381,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.SteensgaardAnalysis@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -361,7 +398,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.SteensgaardAnalysis@notify():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -378,27 +415,28 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.SteensgaardAnalysis@notifyAll():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="tip.analysis.SteensgaardAnalysis#result" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="result:Map[tip.analysis.IdentifierVariable,Set[tip.analysis.StTerm]]"></a>
-      <a id="result:Map[IdentifierVariable,Set[StTerm]]"></a>
+    </li><li name="tip.analysis.SteensgaardAnalysis#pointsTo" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="pointsTo():Map[tip.ast.ADeclaration,Set[tip.ast.AstNode]]"></a>
+      <a id="pointsTo():Map[ADeclaration,Set[AstNode]]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">result</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<a href="IdentifierVariable.html" class="extype" name="tip.analysis.IdentifierVariable">IdentifierVariable</a>, <span class="extype" name="scala.Predef.Set">Set</span>[<a href="StTerm.html" class="extype" name="tip.analysis.StTerm">StTerm</a>]]</span>
+        <span class="name">pointsTo</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>, <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.SteensgaardAnalysis@result:Map[tip.analysis.IdentifierVariable,Set[tip.analysis.StTerm]]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.SteensgaardAnalysis@pointsTo():Map[tip.ast.ADeclaration,Set[tip.ast.AstNode]]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Builds the points-to map.</p><div class="fullcomment"><div class="comment cmt"><p>Builds the points-to map.
+For each identifier, the points-to map gives the set of locations the identifier may point to.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.SteensgaardAnalysis">SteensgaardAnalysis</a> → <a href="PointsToAnalysis.html" class="extype" name="tip.analysis.PointsToAnalysis">PointsToAnalysis</a></dd></dl></div>
     </li><li name="tip.analysis.SteensgaardAnalysis#solver" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="solver:tip.solvers.UnionFindSolver[tip.analysis.StTerm]"></a>
       <a id="solver:UnionFindSolver[StTerm]"></a>
@@ -412,7 +450,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.SteensgaardAnalysis@solver:tip.solvers.UnionFindSolver[tip.analysis.StTerm]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
@@ -429,11 +467,11 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.SteensgaardAnalysis@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="tip.analysis.SteensgaardAnalysis#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <a id="toString():String"></a>
       <h4 class="signature">
@@ -442,14 +480,14 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.SteensgaardAnalysis@toString():String" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.SteensgaardAnalysis">SteensgaardAnalysis</a> → AnyRef → Any</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="tip.analysis.SteensgaardAnalysis#visit" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="visit(node:tip.ast.AstNode,arg:Null):Unit"></a>
       <a id="visit(AstNode,Null):Unit"></a>
@@ -463,11 +501,10 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.SteensgaardAnalysis@visit(node:tip.ast.AstNode,arg:Null):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Generates the constraints for the given sub-AST.</p><div class="fullcomment"><div class="comment cmt"><p>Generates the constraints for the given sub-AST.</p></div><dl class="paramcmts block"><dt class="param">node</dt><dd class="cmt"><p>the node for which it generates the constraints</p></dd><dt class="param">arg</dt><dd class="cmt"><p>unused for this visitor
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.SteensgaardAnalysis">SteensgaardAnalysis</a> → <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a></dd></dl></div>
+      <p class="shortcomment cmt">Generates the constraints for the given sub-AST.</p><div class="fullcomment"><div class="comment cmt"><p>Generates the constraints for the given sub-AST.</p></div><dl class="paramcmts block"><dt class="param">node</dt><dd class="cmt"><p>the node for which it generates the constraints</p></dd><dt class="param">arg</dt><dd class="cmt"><p>unused for this visitor</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.SteensgaardAnalysis">SteensgaardAnalysis</a> → <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a></dd></dl></div>
     </li><li name="tip.ast.DepthFirstAstVisitor#visitChildren" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="visitChildren(node:tip.ast.AstNode,arg:A):Unit"></a>
       <a id="visitChildren(AstNode,Null):Unit"></a>
@@ -481,13 +518,11 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.SteensgaardAnalysis@visitChildren(node:tip.ast.AstNode,arg:A):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Recursively perform the visit to the sub-node of the passed node, passing the provided argument
-</p><div class="fullcomment"><div class="comment cmt"><p>Recursively perform the visit to the sub-node of the passed node, passing the provided argument
-</p></div><dl class="paramcmts block"><dt class="param">node</dt><dd class="cmt"><p>the node whose children need to be visited</p></dd><dt class="param">arg</dt><dd class="cmt"><p>the argument to be passed to the visit of the children
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a></dd></dl></div>
+      <p class="shortcomment cmt">Recursively perform the visit to the sub-node of the passed node, passing the provided argument.</p><div class="fullcomment"><div class="comment cmt"><p>Recursively perform the visit to the sub-node of the passed node, passing the provided argument.
+</p></div><dl class="paramcmts block"><dt class="param">node</dt><dd class="cmt"><p>the node whose children need to be visited</p></dd><dt class="param">arg</dt><dd class="cmt"><p>the argument to be passed to all sub-nodes</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a></dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
@@ -501,7 +536,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.SteensgaardAnalysis@wait():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -524,7 +559,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.SteensgaardAnalysis@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -547,7 +582,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.SteensgaardAnalysis@wait(x$1:Long):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -566,7 +601,11 @@
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="tip.ast.DepthFirstAstVisitor">
+        <div class="parent" name="tip.analysis.PointsToAnalysis">
+              <h3>Inherited from <a href="PointsToAnalysis.html" class="extype" name="tip.analysis.PointsToAnalysis">PointsToAnalysis</a></h3>
+            </div><div class="parent" name="tip.analysis.Analysis">
+              <h3>Inherited from <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Unit">Unit</span>]</h3>
+            </div><div class="parent" name="tip.ast.DepthFirstAstVisitor">
               <h3>Inherited from <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Null">Null</span>]</h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>

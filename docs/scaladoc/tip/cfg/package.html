@@ -1,0 +1,369 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>cfg - tip.cfg</title>
+          <meta name="description" content="cfg - tip.cfg" />
+          <meta name="keywords" content="cfg tip.cfg" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../lib/template.js"></script>
+      <script type="text/javascript" src="../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../index.html';
+            var hash = 'tip.cfg.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img alt="Package" src="../../lib/package_big.png" />
+        <p id="owner"><a href="../package.html" class="extype" name="tip">tip</a></p>
+        <h1>cfg</h1><span class="permalink">
+      <a href="../../index.html#tip.cfg.package" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">cfg</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="tip.cfg.CfgAfterCallNode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="CfgAfterCallNodeextendsCfgNodewithProductwithSerializable"></a>
+      <a id="CfgAfterCallNode:CfgAfterCallNode"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="CfgAfterCallNode.html"><span class="name">CfgAfterCallNode</span></a><span class="params">(<span name="id">id: <span class="extype" name="scala.Int">Int</span> = <span class="symbol"><span class="name"><a href="CfgNode$.html">CfgNode.uid</a></span></span></span>, <span name="pred">pred: <span class="extype" name="scala.collection.mutable.Set">Set</span>[<a href="CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] = <span class="symbol">mutable.Set[CfgNode]()</span></span>, <span name="succ">succ: <span class="extype" name="scala.collection.mutable.Set">Set</span>[<a href="CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] = <span class="symbol">mutable.Set[CfgNode]()</span></span>, <span name="data">data: <a href="../ast/AAssignStmt.html" class="extype" name="tip.ast.AAssignStmt">AAssignStmt</a></span>)</span><span class="result"> extends <a href="CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.cfg.package@CfgAfterCallNodeextendsCfgNodewithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Node in a CFG representing having returned from a function call.</p><div class="fullcomment"><div class="comment cmt"><p>Node in a CFG representing having returned from a function call.
+The <code>data</code> field holds the assignment statement where the right-hand-side is the function call.
+</p></div></div>
+    </li><li name="tip.cfg.CfgCallNode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="CfgCallNodeextendsCfgNodewithProductwithSerializable"></a>
+      <a id="CfgCallNode:CfgCallNode"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="CfgCallNode.html"><span class="name">CfgCallNode</span></a><span class="params">(<span name="id">id: <span class="extype" name="scala.Int">Int</span> = <span class="symbol"><span class="name"><a href="CfgNode$.html">CfgNode.uid</a></span></span></span>, <span name="pred">pred: <span class="extype" name="scala.collection.mutable.Set">Set</span>[<a href="CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] = <span class="symbol">mutable.Set[CfgNode]()</span></span>, <span name="succ">succ: <span class="extype" name="scala.collection.mutable.Set">Set</span>[<a href="CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] = <span class="symbol">mutable.Set[CfgNode]()</span></span>, <span name="data">data: <a href="../ast/AAssignStmt.html" class="extype" name="tip.ast.AAssignStmt">AAssignStmt</a></span>)</span><span class="result"> extends <a href="CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.cfg.package@CfgCallNodeextendsCfgNodewithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Node in a CFG representing a function call.</p><div class="fullcomment"><div class="comment cmt"><p>Node in a CFG representing a function call.
+The <code>data</code> field holds the assignment statement where the right-hand-side is the function call.
+</p></div></div>
+    </li><li name="tip.cfg.CfgFunEntryNode" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CfgFunEntryNodeextendsCfgNodewithProductwithSerializable"></a>
+      <a id="CfgFunEntryNode:CfgFunEntryNode"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="CfgFunEntryNode.html"><span class="name">CfgFunEntryNode</span></a><span class="params">(<span name="id">id: <span class="extype" name="scala.Int">Int</span> = <span class="symbol"><span class="name"><a href="CfgNode$.html">CfgNode.uid</a></span></span></span>, <span name="pred">pred: <span class="extype" name="scala.collection.mutable.Set">Set</span>[<a href="CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] = <span class="symbol">mutable.Set[CfgNode]()</span></span>, <span name="succ">succ: <span class="extype" name="scala.collection.mutable.Set">Set</span>[<a href="CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] = <span class="symbol">mutable.Set[CfgNode]()</span></span>, <span name="data">data: <a href="../ast/AFunDeclaration.html" class="extype" name="tip.ast.AFunDeclaration">AFunDeclaration</a></span>)</span><span class="result"> extends <a href="CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.cfg.package@CfgFunEntryNodeextendsCfgNodewithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Node in a CFG representing the entry of a function.</p>
+    </li><li name="tip.cfg.CfgFunExitNode" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CfgFunExitNodeextendsCfgNodewithProductwithSerializable"></a>
+      <a id="CfgFunExitNode:CfgFunExitNode"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="CfgFunExitNode.html"><span class="name">CfgFunExitNode</span></a><span class="params">(<span name="id">id: <span class="extype" name="scala.Int">Int</span> = <span class="symbol"><span class="name"><a href="CfgNode$.html">CfgNode.uid</a></span></span></span>, <span name="pred">pred: <span class="extype" name="scala.collection.mutable.Set">Set</span>[<a href="CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] = <span class="symbol">mutable.Set[CfgNode]()</span></span>, <span name="succ">succ: <span class="extype" name="scala.collection.mutable.Set">Set</span>[<a href="CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] = <span class="symbol">mutable.Set[CfgNode]()</span></span>, <span name="data">data: <a href="../ast/AFunDeclaration.html" class="extype" name="tip.ast.AFunDeclaration">AFunDeclaration</a></span>)</span><span class="result"> extends <a href="CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.cfg.package@CfgFunExitNodeextendsCfgNodewithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Node in a CFG representing the exit of a function.</p>
+    </li><li name="tip.cfg.CfgNode" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="CfgNodeextendsAnyRef"></a>
+      <a id="CfgNode:CfgNode"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="CfgNode.html"><span class="name">CfgNode</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.cfg.package@CfgNodeextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Node in a control-flow graph.</p>
+    </li><li name="tip.cfg.CfgStmtNode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="CfgStmtNodeextendsCfgNodewithProductwithSerializable"></a>
+      <a id="CfgStmtNode:CfgStmtNode"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="CfgStmtNode.html"><span class="name">CfgStmtNode</span></a><span class="params">(<span name="id">id: <span class="extype" name="scala.Int">Int</span> = <span class="symbol"><span class="name"><a href="CfgNode$.html">CfgNode.uid</a></span></span></span>, <span name="pred">pred: <span class="extype" name="scala.collection.mutable.Set">Set</span>[<a href="CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] = <span class="symbol">mutable.Set[CfgNode]()</span></span>, <span name="succ">succ: <span class="extype" name="scala.collection.mutable.Set">Set</span>[<a href="CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] = <span class="symbol">mutable.Set[CfgNode]()</span></span>, <span name="data">data: <a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a></span>)</span><span class="result"> extends <a href="CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.cfg.package@CfgStmtNodeextendsCfgNodewithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Node in a CFG representing a program statement.</p><div class="fullcomment"><div class="comment cmt"><p>Node in a CFG representing a program statement.
+The <code>data</code> field hold the statement, or in case of if/while instructions, the branch condition.
+</p></div></div>
+    </li><li name="tip.cfg.FragmentCfg" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="FragmentCfgextendsAnyRef"></a>
+      <a id="FragmentCfg:FragmentCfg"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="FragmentCfg.html"><span class="name">FragmentCfg</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.cfg.package@FragmentCfgextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Fragment of a control-flow graph.</p><div class="fullcomment"><div class="comment cmt"><p>Fragment of a control-flow graph.
+Describes a fragment of a TIP program, for example one or more statements or function bodies.
+</p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="InterproceduralProgramCfg.html" class="extype" name="tip.cfg.InterproceduralProgramCfg">tip.cfg.InterproceduralProgramCfg</a>, <a href="IntraproceduralProgramCfg.html" class="extype" name="tip.cfg.IntraproceduralProgramCfg">tip.cfg.IntraproceduralProgramCfg</a></p></span></dd></dl></div>
+    </li><li name="tip.cfg.InterproceduralProgramCfg" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="InterproceduralProgramCfgextendsProgramCfg"></a>
+      <a id="InterproceduralProgramCfg:InterproceduralProgramCfg"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="InterproceduralProgramCfg.html"><span class="name">InterproceduralProgramCfg</span></a><span class="result"> extends <a href="ProgramCfg.html" class="extype" name="tip.cfg.ProgramCfg">ProgramCfg</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.cfg.package@InterproceduralProgramCfgextendsProgramCfg" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Interprocedural control-flow graph for a program, where function calls are represented using call/after-call nodes.</p><div class="fullcomment"><div class="comment cmt"><p>Interprocedural control-flow graph for a program, where function calls are represented using call/after-call nodes.
+Requires the program to be normalized using <a href="../ast/NormalizedCalls.html" class="extype" name="tip.ast.NormalizedCalls">tip.ast.NormalizedCalls</a>, i.e. all calls are of the form x = f(..).
+</p></div></div>
+    </li><li name="tip.cfg.IntraproceduralProgramCfg" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="IntraproceduralProgramCfgextendsProgramCfg"></a>
+      <a id="IntraproceduralProgramCfg:IntraproceduralProgramCfg"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="IntraproceduralProgramCfg.html"><span class="name">IntraproceduralProgramCfg</span></a><span class="result"> extends <a href="ProgramCfg.html" class="extype" name="tip.cfg.ProgramCfg">ProgramCfg</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.cfg.package@IntraproceduralProgramCfgextendsProgramCfg" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Control-flow graph for a program, where function calls are represented as expressions, without using call/after-call nodes.</p>
+    </li><li name="tip.cfg.ProgramCfg" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ProgramCfgextendsFragmentCfg"></a>
+      <a id="ProgramCfg:ProgramCfg"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ProgramCfg.html"><span class="name">ProgramCfg</span></a><span class="result"> extends <a href="FragmentCfg.html" class="extype" name="tip.cfg.FragmentCfg">FragmentCfg</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.cfg.package@ProgramCfgextendsFragmentCfg" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Control-flow graph for an entire program.</p>
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="tip.cfg.CfgNode" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CfgNode"></a>
+      <a id="CfgNode:CfgNode"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CfgNode$.html"><span class="name">CfgNode</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.cfg.package@CfgNode" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="tip.cfg.CfgOps" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CfgOps"></a>
+      <a id="CfgOps:CfgOps"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CfgOps$.html"><span class="name">CfgOps</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.cfg.package@CfgOps" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="tip.cfg.FragmentCfg" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="FragmentCfg"></a>
+      <a id="FragmentCfg:FragmentCfg"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="FragmentCfg$.html"><span class="name">FragmentCfg</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.cfg.package@FragmentCfg" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="tip.cfg.InterproceduralProgramCfg" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="InterproceduralProgramCfg"></a>
+      <a id="InterproceduralProgramCfg:InterproceduralProgramCfg"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="InterproceduralProgramCfg$.html"><span class="name">InterproceduralProgramCfg</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.cfg.package@InterproceduralProgramCfg" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="tip.cfg.IntraproceduralProgramCfg" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="IntraproceduralProgramCfg"></a>
+      <a id="IntraproceduralProgramCfg:IntraproceduralProgramCfg"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="IntraproceduralProgramCfg$.html"><span class="name">IntraproceduralProgramCfg</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.cfg.package@IntraproceduralProgramCfg" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

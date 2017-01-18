@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>TypeAnalysis - TIP API - tip.analysis.TypeAnalysis</title>
-          <meta name="description" content="TypeAnalysis - TIP API - tip.analysis.TypeAnalysis" />
-          <meta name="keywords" content="TypeAnalysis TIP API tip.analysis.TypeAnalysis" />
+          <title>TypeAnalysis - tip.analysis.TypeAnalysis</title>
+          <meta name="description" content="TypeAnalysis - tip.analysis.TypeAnalysis" />
+          <meta name="keywords" content="TypeAnalysis tip.analysis.TypeAnalysis" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -28,13 +28,13 @@
         </head>
         <body class="type">
       <div id="definition">
-        <img src="../../lib/class_big.png" />
+        <img alt="Class" src="../../lib/class_big.png" />
         <p id="owner"><a href="../package.html" class="extype" name="tip">tip</a>.<a href="package.html" class="extype" name="tip.analysis">analysis</a></p>
         <h1>TypeAnalysis</h1><h3><span class="morelinks"><div>Related Doc:
             <a href="package.html" class="extype" name="tip.analysis">package analysis</a>
           </div></span></h3><span class="permalink">
       <a href="../../index.html#tip.analysis.TypeAnalysis" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       </div>
@@ -42,20 +42,19 @@
       <h4 id="signature" class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">case class</span>
+        <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">TypeAnalysis</span><span class="params">(<span name="program">program: <a href="../ast/AProgram.html" class="extype" name="tip.ast.AProgram">AProgram</a></span>)</span><span class="result"> extends <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Null">Null</span>] with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">TypeAnalysis</span><span class="result"> extends <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Null">Null</span>] with <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<a href="../ast/AstNodeData$.html#TypeData=Map[tip.ast.AstNode,Option[tip.types.TipType]]" class="extmbr" name="tip.ast.AstNodeData.TypeData">TypeData</a>]</span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The analysis associates with each node in the AST a <a href="../types/TipType.html" class="extype" name="tip.types.TipType">tip.types.TipType</a>.
-The associated term is meant to represent a TipType (when the inference has established
-a definite type), a TipType with open variables (when the inference has not inferred the identity
-of all the types appearing as subterms) and a rational recursive TipType in the case of <a href="../types/Mu.html" class="extype" name="tip.types.Mu">tip.types.Mu</a>.
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Unification-based type analysis.
+The analysis associates a <a href="../types/TipType.html" class="extype" name="tip.types.TipType">tip.types.TipType</a> with each variable declaration and expression node in the AST.
+It is implemented using <a href="../solvers/UnionFindSolver.html" class="extype" name="tip.solvers.UnionFindSolver">tip.solvers.UnionFindSolver</a>.
 </p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Null">Null</span>], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<a href="../ast/AstNodeData$.html#TypeData=Map[tip.ast.AstNode,Option[tip.types.TipType]]" class="extmbr" name="tip.ast.AstNodeData.TypeData">TypeData</a>], <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Null">Null</span>], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -66,22 +65,21 @@ of all the types appearing as subterms) and a rational recursive TipType in the 
               <ol>
                 
                 <li class="alpha in"><span>Alphabetic</span></li>
-                <li class="inherit out"><span>By inheritance</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
               </ol>
             </div>
         <div id="ancestors">
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="tip.analysis.TypeAnalysis"><span>TypeAnalysis</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="tip.ast.DepthFirstAstVisitor"><span>DepthFirstAstVisitor</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="tip.analysis.TypeAnalysis"><span>TypeAnalysis</span></li><li class="in" name="tip.analysis.Analysis"><span>Analysis</span></li><li class="in" name="tip.ast.DepthFirstAstVisitor"><span>DepthFirstAstVisitor</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
             <ol>
               <li class="hideall out"><span>Hide All</span></li>
-              <li class="showall in"><span>Show all</span></li>
+              <li class="showall in"><span>Show All</span></li>
             </ol>
-            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
           </div>
         <div id="visbl">
             <span class="filtertype">Visibility</span>
@@ -94,7 +92,7 @@ of all the types appearing as subterms) and a rational recursive TipType in the 
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="tip.analysis.TypeAnalysis#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(program:tip.ast.AProgram):tip.analysis.TypeAnalysis"></a>
+      <a id="&lt;init&gt;(program:tip.ast.AProgram)(implicitdeclData:tip.ast.AstNodeData.DeclarationData):tip.analysis.TypeAnalysis"></a>
       <a id="&lt;init&gt;:TypeAnalysis"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -102,11 +100,11 @@ of all the types appearing as subterms) and a rational recursive TipType in the 
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">TypeAnalysis</span><span class="params">(<span name="program">program: <a href="../ast/AProgram.html" class="extype" name="tip.ast.AProgram">AProgram</a></span>)</span>
+        <span class="name">TypeAnalysis</span><span class="params">(<span name="program">program: <a href="../ast/AProgram.html" class="extype" name="tip.ast.AProgram">AProgram</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="declData">declData: <a href="../ast/AstNodeData$.html#DeclarationData=Map[tip.ast.AIdentifier,tip.ast.ADeclaration]" class="extmbr" name="tip.ast.AstNodeData.DeclarationData">DeclarationData</a></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.TypeAnalysis@&lt;init&gt;(program:tip.ast.AProgram):tip.analysis.TypeAnalysis" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.TypeAnalysis@&lt;init&gt;(program:tip.ast.AProgram)(implicitdeclData:tip.ast.AstNodeData.DeclarationData):tip.analysis.TypeAnalysis" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
@@ -132,7 +130,7 @@ of all the types appearing as subterms) and a rational recursive TipType in the 
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.TypeAnalysis@!=(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -149,7 +147,7 @@ of all the types appearing as subterms) and a rational recursive TipType in the 
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.TypeAnalysis@##():Int" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -166,10 +164,27 @@ of all the types appearing as subterms) and a rational recursive TipType in the 
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.TypeAnalysis@==(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="tip.analysis.TypeAnalysis#analyze" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="analyze():tip.ast.AstNodeData.TypeData"></a>
+      <a id="analyze():TypeData"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">analyze</span><span class="params">()</span><span class="result">: <a href="../ast/AstNodeData$.html#TypeData=Map[tip.ast.AstNode,Option[tip.types.TipType]]" class="extmbr" name="tip.ast.AstNodeData.TypeData">TypeData</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.analysis.TypeAnalysis@analyze():tip.ast.AstNodeData.TypeData" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Performs the analysis and returns the result.</p><div class="fullcomment"><div class="comment cmt"><p>Performs the analysis and returns the result.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.TypeAnalysis">TypeAnalysis</a> → <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a></dd></dl></div>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -183,7 +198,7 @@ of all the types appearing as subterms) and a rational recursive TipType in the 
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.TypeAnalysis@asInstanceOf[T0]:T0" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
@@ -200,7 +215,7 @@ of all the types appearing as subterms) and a rational recursive TipType in the 
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.TypeAnalysis@clone():Object" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -210,23 +225,6 @@ of all the types appearing as subterms) and a rational recursive TipType in the 
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="tip.analysis.TypeAnalysis#constraints" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="constraints:scala.collection.immutable.Set[tip.analysis.Constraint]"></a>
-      <a id="constraints:Set[Constraint]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">var</span>
-      </span>
-      <span class="symbol">
-        <span class="name">constraints</span><span class="result">: <span class="extype" name="scala.collection.immutable.Set">Set</span>[<a href="Constraint.html" class="extype" name="tip.analysis.Constraint">Constraint</a>]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.TypeAnalysis@constraints:scala.collection.immutable.Set[tip.analysis.Constraint]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
-      </a>
-    </span>
-      
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -240,10 +238,27 @@ of all the types appearing as subterms) and a rational recursive TipType in the 
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.TypeAnalysis@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.analysis.TypeAnalysis@equals(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <a id="finalize():Unit"></a>
@@ -257,7 +272,7 @@ of all the types appearing as subterms) and a rational recursive TipType in the 
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.TypeAnalysis@finalize():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -267,25 +282,6 @@ of all the types appearing as subterms) and a rational recursive TipType in the 
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="tip.analysis.TypeAnalysis#generatedConstraints" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="generatedConstraints():Set[tip.analysis.Constraint]"></a>
-      <a id="generatedConstraints():Set[Constraint]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">generatedConstraints</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="Constraint.html" class="extype" name="tip.analysis.Constraint">Constraint</a>]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.TypeAnalysis@generatedConstraints():Set[tip.analysis.Constraint]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Returns the set of constraints that are generated by analysis.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the set of constraints that are generated by analysis.
-Note that we collect them only for debugging purposes - the solving happens on-the-fly.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the set of constraints
-</p></dd></dl></div>
     </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <a id="getClass():Class[_]"></a>
@@ -299,7 +295,24 @@ Note that we collect them only for debugging purposes - the solving happens on-t
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.TypeAnalysis@getClass():Class[_]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.analysis.TypeAnalysis@hashCode():Int" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -316,10 +329,27 @@ Note that we collect them only for debugging purposes - the solving happens on-t
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.TypeAnalysis@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="tip.analysis.TypeAnalysis#log" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="log:tip.util.Logger"></a>
+      <a id="log:Logger"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">log</span><span class="result">: <a href="../util/Logger.html" class="extype" name="tip.util.Logger">Logger</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.analysis.TypeAnalysis@log:tip.util.Logger" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -333,7 +363,7 @@ Note that we collect them only for debugging purposes - the solving happens on-t
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.TypeAnalysis@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -350,7 +380,7 @@ Note that we collect them only for debugging purposes - the solving happens on-t
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.TypeAnalysis@notify():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -367,27 +397,10 @@ Note that we collect them only for debugging purposes - the solving happens on-t
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.TypeAnalysis@notifyAll():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="tip.analysis.TypeAnalysis#program" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="program:tip.ast.AProgram"></a>
-      <a id="program:AProgram"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">program</span><span class="result">: <a href="../ast/AProgram.html" class="extype" name="tip.ast.AProgram">AProgram</a></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.TypeAnalysis@program:tip.ast.AProgram" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
-      </a>
-    </span>
-      
     </li><li name="tip.analysis.TypeAnalysis#solver" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="solver:tip.solvers.UnionFindSolver[tip.types.TipType]"></a>
       <a id="solver:UnionFindSolver[TipType]"></a>
@@ -401,7 +414,7 @@ Note that we collect them only for debugging purposes - the solving happens on-t
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.TypeAnalysis@solver:tip.solvers.UnionFindSolver[tip.types.TipType]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
@@ -418,10 +431,27 @@ Note that we collect them only for debugging purposes - the solving happens on-t
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.TypeAnalysis@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.analysis.TypeAnalysis@toString():String" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="tip.analysis.TypeAnalysis#visit" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="visit(node:tip.ast.AstNode,arg:Null):Unit"></a>
       <a id="visit(AstNode,Null):Unit"></a>
@@ -435,11 +465,10 @@ Note that we collect them only for debugging purposes - the solving happens on-t
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.TypeAnalysis@visit(node:tip.ast.AstNode,arg:Null):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Generates the constraints for the given sub-AST.</p><div class="fullcomment"><div class="comment cmt"><p>Generates the constraints for the given sub-AST.</p></div><dl class="paramcmts block"><dt class="param">node</dt><dd class="cmt"><p>the node for which it generates the constraints</p></dd><dt class="param">arg</dt><dd class="cmt"><p>unused for this visitor
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.TypeAnalysis">TypeAnalysis</a> → <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a></dd></dl></div>
+      <p class="shortcomment cmt">Generates the constraints for the given sub-AST.</p><div class="fullcomment"><div class="comment cmt"><p>Generates the constraints for the given sub-AST.</p></div><dl class="paramcmts block"><dt class="param">node</dt><dd class="cmt"><p>the node for which it generates the constraints</p></dd><dt class="param">arg</dt><dd class="cmt"><p>unused for this visitor</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.TypeAnalysis">TypeAnalysis</a> → <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a></dd></dl></div>
     </li><li name="tip.ast.DepthFirstAstVisitor#visitChildren" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="visitChildren(node:tip.ast.AstNode,arg:A):Unit"></a>
       <a id="visitChildren(AstNode,Null):Unit"></a>
@@ -453,13 +482,11 @@ Note that we collect them only for debugging purposes - the solving happens on-t
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.TypeAnalysis@visitChildren(node:tip.ast.AstNode,arg:A):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Recursively perform the visit to the sub-node of the passed node, passing the provided argument
-</p><div class="fullcomment"><div class="comment cmt"><p>Recursively perform the visit to the sub-node of the passed node, passing the provided argument
-</p></div><dl class="paramcmts block"><dt class="param">node</dt><dd class="cmt"><p>the node whose children need to be visited</p></dd><dt class="param">arg</dt><dd class="cmt"><p>the argument to be passed to the visit of the children
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a></dd></dl></div>
+      <p class="shortcomment cmt">Recursively perform the visit to the sub-node of the passed node, passing the provided argument.</p><div class="fullcomment"><div class="comment cmt"><p>Recursively perform the visit to the sub-node of the passed node, passing the provided argument.
+</p></div><dl class="paramcmts block"><dt class="param">node</dt><dd class="cmt"><p>the node whose children need to be visited</p></dd><dt class="param">arg</dt><dd class="cmt"><p>the argument to be passed to all sub-nodes</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a></dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
@@ -473,7 +500,7 @@ Note that we collect them only for debugging purposes - the solving happens on-t
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.TypeAnalysis@wait():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -496,7 +523,7 @@ Note that we collect them only for debugging purposes - the solving happens on-t
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.TypeAnalysis@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -519,7 +546,7 @@ Note that we collect them only for debugging purposes - the solving happens on-t
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.TypeAnalysis@wait(x$1:Long):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -538,14 +565,8 @@ Note that we collect them only for debugging purposes - the solving happens on-t
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="scala.Serializable">
-              <h3>Inherited from <span class="extype" name="scala.Serializable">Serializable</span></h3>
-            </div><div class="parent" name="java.io.Serializable">
-              <h3>Inherited from <span class="extype" name="java.io.Serializable">Serializable</span></h3>
-            </div><div class="parent" name="scala.Product">
-              <h3>Inherited from <span class="extype" name="scala.Product">Product</span></h3>
-            </div><div class="parent" name="scala.Equals">
-              <h3>Inherited from <span class="extype" name="scala.Equals">Equals</span></h3>
+        <div class="parent" name="tip.analysis.Analysis">
+              <h3>Inherited from <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<a href="../ast/AstNodeData$.html#TypeData=Map[tip.ast.AstNode,Option[tip.types.TipType]]" class="extmbr" name="tip.ast.AstNodeData.TypeData">TypeData</a>]</h3>
             </div><div class="parent" name="tip.ast.DepthFirstAstVisitor">
               <h3>Inherited from <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Null">Null</span>]</h3>
             </div><div class="parent" name="scala.AnyRef">

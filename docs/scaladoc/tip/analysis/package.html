@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>analysis - TIP API - tip.analysis</title>
-          <meta name="description" content="analysis - TIP API - tip.analysis" />
-          <meta name="keywords" content="analysis TIP API tip.analysis" />
+          <title>analysis - tip.analysis</title>
+          <meta name="description" content="analysis - tip.analysis" />
+          <meta name="keywords" content="analysis tip.analysis" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -28,11 +28,11 @@
         </head>
         <body class="value">
       <div id="definition">
-        <img src="../../lib/package_big.png" />
+        <img alt="Package" src="../../lib/package_big.png" />
         <p id="owner"><a href="../package.html" class="extype" name="tip">tip</a></p>
         <h1>analysis</h1><span class="permalink">
       <a href="../../index.html#tip.analysis.package" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       </div>
@@ -66,8 +66,26 @@
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="tip.analysis.AndersenAnalysis" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="AndersenAnalysisextendsDepthFirstAstVisitor[Null]"></a>
+              <ol><li name="tip.analysis.Analysis" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="Analysis[+R]extendsAnyRef"></a>
+      <a id="Analysis[+R]:Analysis[R]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Analysis.html"><span class="name">Analysis</span></a><span class="tparams">[<span name="R">+R</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.analysis.package@Analysis[+R]extendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Trait for program analyses.</p><div class="fullcomment"><div class="comment cmt"><p>Trait for program analyses.
+</p></div><dl class="paramcmts block"><dt class="tparam">R</dt><dd class="cmt"><p>the type of the analysis result</p></dd></dl></div>
+    </li><li name="tip.analysis.AndersenAnalysis" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AndersenAnalysisextendsDepthFirstAstVisitor[Null]withPointsToAnalysis"></a>
       <a id="AndersenAnalysis:AndersenAnalysis"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -75,11 +93,11 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="AndersenAnalysis.html"><span class="name">AndersenAnalysis</span></a><span class="result"> extends <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Null">Null</span>]</span>
+        <a href="AndersenAnalysis.html"><span class="name">AndersenAnalysis</span></a><span class="result"> extends <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Null">Null</span>] with <a href="PointsToAnalysis.html" class="extype" name="tip.analysis.PointsToAnalysis">PointsToAnalysis</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@AndersenAnalysisextendsDepthFirstAstVisitor[Null]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.package@AndersenAnalysisextendsDepthFirstAstVisitor[Null]withPointsToAnalysis" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
@@ -96,13 +114,13 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.package@AvailableExpAnalysisextendsFlowSensitiveAnalysis" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Base class for available expressions analysis
 </p>
     </li><li name="tip.analysis.AvailableExpAnalysisSimpleSolver" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="AvailableExpAnalysisSimpleSolverextendsAvailableExpAnalysiswithSimpleFixpointSolverwithMapLatticeUpdateFunction[tip.graph.GNode[tip.ast.AstNode]]"></a>
+      <a id="AvailableExpAnalysisSimpleSolverextendsAvailableExpAnalysiswithSimpleFixpointSolverwithMapLatticeUpdateFunction[tip.cfg.CfgNode]"></a>
       <a id="AvailableExpAnalysisSimpleSolver:AvailableExpAnalysisSimpleSolver"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -110,16 +128,16 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="AvailableExpAnalysisSimpleSolver.html"><span class="name">AvailableExpAnalysisSimpleSolver</span></a><span class="result"> extends <a href="AvailableExpAnalysis.html" class="extype" name="tip.analysis.AvailableExpAnalysis">AvailableExpAnalysis</a> with <a href="../solvers/SimpleFixpointSolver.html" class="extype" name="tip.solvers.SimpleFixpointSolver">SimpleFixpointSolver</a> with <a href="../solvers/MapLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLatticeUpdateFunction">MapLatticeUpdateFunction</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</span>
+        <a href="AvailableExpAnalysisSimpleSolver.html"><span class="name">AvailableExpAnalysisSimpleSolver</span></a><span class="result"> extends <a href="AvailableExpAnalysis.html" class="extype" name="tip.analysis.AvailableExpAnalysis">AvailableExpAnalysis</a> with <a href="../solvers/SimpleFixpointSolver.html" class="extype" name="tip.solvers.SimpleFixpointSolver">SimpleFixpointSolver</a> with <a href="../solvers/MapLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLatticeUpdateFunction">MapLatticeUpdateFunction</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@AvailableExpAnalysisSimpleSolverextendsAvailableExpAnalysiswithSimpleFixpointSolverwithMapLatticeUpdateFunction[tip.graph.GNode[tip.ast.AstNode]]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.package@AvailableExpAnalysisSimpleSolverextendsAvailableExpAnalysiswithSimpleFixpointSolverwithMapLatticeUpdateFunction[tip.cfg.CfgNode]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Available expressions analysis that uses the simple fipoint solver.</p>
     </li><li name="tip.analysis.AvailableExpAnalysisWorklistSolver" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="AvailableExpAnalysisWorklistSolverextendsAvailableExpAnalysiswithWorklistFixpointSolver[tip.graph.GNode[tip.ast.AstNode]]withForwardDependencies"></a>
+      <a id="AvailableExpAnalysisWorklistSolverextendsAvailableExpAnalysiswithWorklistFixpointSolver[tip.cfg.CfgNode]withForwardDependencies"></a>
       <a id="AvailableExpAnalysisWorklistSolver:AvailableExpAnalysisWorklistSolver"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -127,16 +145,16 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="AvailableExpAnalysisWorklistSolver.html"><span class="name">AvailableExpAnalysisWorklistSolver</span></a><span class="result"> extends <a href="AvailableExpAnalysis.html" class="extype" name="tip.analysis.AvailableExpAnalysis">AvailableExpAnalysis</a> with <a href="../solvers/WorklistFixpointSolver.html" class="extype" name="tip.solvers.WorklistFixpointSolver">WorklistFixpointSolver</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]] with <a href="ForwardDependencies.html" class="extype" name="tip.analysis.ForwardDependencies">ForwardDependencies</a></span>
+        <a href="AvailableExpAnalysisWorklistSolver.html"><span class="name">AvailableExpAnalysisWorklistSolver</span></a><span class="result"> extends <a href="AvailableExpAnalysis.html" class="extype" name="tip.analysis.AvailableExpAnalysis">AvailableExpAnalysis</a> with <a href="../solvers/WorklistFixpointSolver.html" class="extype" name="tip.solvers.WorklistFixpointSolver">WorklistFixpointSolver</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] with <a href="ForwardDependencies.html" class="extype" name="tip.analysis.ForwardDependencies">ForwardDependencies</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@AvailableExpAnalysisWorklistSolverextendsAvailableExpAnalysiswithWorklistFixpointSolver[tip.graph.GNode[tip.ast.AstNode]]withForwardDependencies" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.package@AvailableExpAnalysisWorklistSolverextendsAvailableExpAnalysiswithWorklistFixpointSolver[tip.cfg.CfgNode]withForwardDependencies" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Available expressions analysis that uses the worklist solver.</p>
     </li><li name="tip.analysis.BackwardDependencies" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="BackwardDependenciesextendsDependencies[tip.graph.GNode[tip.ast.AstNode]]"></a>
+      <a id="BackwardDependenciesextendsDependencies[tip.cfg.CfgNode]"></a>
       <a id="BackwardDependencies:BackwardDependencies"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -144,11 +162,11 @@
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <a href="BackwardDependencies.html"><span class="name">BackwardDependencies</span></a><span class="result"> extends <a href="../solvers/Dependencies.html" class="extype" name="tip.solvers.Dependencies">Dependencies</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</span>
+        <a href="BackwardDependencies.html"><span class="name">BackwardDependencies</span></a><span class="result"> extends <a href="Dependencies.html" class="extype" name="tip.analysis.Dependencies">Dependencies</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@BackwardDependenciesextendsDependencies[tip.graph.GNode[tip.ast.AstNode]]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.package@BackwardDependenciesextendsDependencies[tip.cfg.CfgNode]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Dependency methods for backward analyses.</p>
@@ -165,12 +183,12 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.package@ConstantPropagationAnalysisextendsFlowSensitiveAnalysis" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
     </li><li name="tip.analysis.ConstantPropagationAnalysisSimpleSolver" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="ConstantPropagationAnalysisSimpleSolverextendsConstantPropagationAnalysiswithSimpleFixpointSolverwithMapLatticeUpdateFunction[tip.graph.GNode[tip.ast.AstNode]]"></a>
+      <a id="ConstantPropagationAnalysisSimpleSolverextendsConstantPropagationAnalysiswithSimpleFixpointSolverwithMapLatticeUpdateFunction[tip.cfg.CfgNode]"></a>
       <a id="ConstantPropagationAnalysisSimpleSolver:ConstantPropagationAnalysisSimpleSolver"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -178,16 +196,16 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="ConstantPropagationAnalysisSimpleSolver.html"><span class="name">ConstantPropagationAnalysisSimpleSolver</span></a><span class="result"> extends <a href="ConstantPropagationAnalysis.html" class="extype" name="tip.analysis.ConstantPropagationAnalysis">ConstantPropagationAnalysis</a> with <a href="../solvers/SimpleFixpointSolver.html" class="extype" name="tip.solvers.SimpleFixpointSolver">SimpleFixpointSolver</a> with <a href="../solvers/MapLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLatticeUpdateFunction">MapLatticeUpdateFunction</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</span>
+        <a href="ConstantPropagationAnalysisSimpleSolver.html"><span class="name">ConstantPropagationAnalysisSimpleSolver</span></a><span class="result"> extends <a href="ConstantPropagationAnalysis.html" class="extype" name="tip.analysis.ConstantPropagationAnalysis">ConstantPropagationAnalysis</a> with <a href="../solvers/SimpleFixpointSolver.html" class="extype" name="tip.solvers.SimpleFixpointSolver">SimpleFixpointSolver</a> with <a href="../solvers/MapLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLatticeUpdateFunction">MapLatticeUpdateFunction</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@ConstantPropagationAnalysisSimpleSolverextendsConstantPropagationAnalysiswithSimpleFixpointSolverwithMapLatticeUpdateFunction[tip.graph.GNode[tip.ast.AstNode]]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.package@ConstantPropagationAnalysisSimpleSolverextendsConstantPropagationAnalysiswithSimpleFixpointSolverwithMapLatticeUpdateFunction[tip.cfg.CfgNode]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Constant propagation analysis that uses the simple fipoint solver.</p>
     </li><li name="tip.analysis.ConstantPropagationAnalysisWorklistSolver" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="ConstantPropagationAnalysisWorklistSolverextendsConstantPropagationAnalysiswithWorklistFixpointSolver[tip.graph.GNode[tip.ast.AstNode]]withForwardDependencies"></a>
+      <a id="ConstantPropagationAnalysisWorklistSolverextendsConstantPropagationAnalysiswithWorklistFixpointSolver[tip.cfg.CfgNode]withForwardDependencies"></a>
       <a id="ConstantPropagationAnalysisWorklistSolver:ConstantPropagationAnalysisWorklistSolver"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -195,35 +213,16 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="ConstantPropagationAnalysisWorklistSolver.html"><span class="name">ConstantPropagationAnalysisWorklistSolver</span></a><span class="result"> extends <a href="ConstantPropagationAnalysis.html" class="extype" name="tip.analysis.ConstantPropagationAnalysis">ConstantPropagationAnalysis</a> with <a href="../solvers/WorklistFixpointSolver.html" class="extype" name="tip.solvers.WorklistFixpointSolver">WorklistFixpointSolver</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]] with <a href="ForwardDependencies.html" class="extype" name="tip.analysis.ForwardDependencies">ForwardDependencies</a></span>
+        <a href="ConstantPropagationAnalysisWorklistSolver.html"><span class="name">ConstantPropagationAnalysisWorklistSolver</span></a><span class="result"> extends <a href="ConstantPropagationAnalysis.html" class="extype" name="tip.analysis.ConstantPropagationAnalysis">ConstantPropagationAnalysis</a> with <a href="../solvers/WorklistFixpointSolver.html" class="extype" name="tip.solvers.WorklistFixpointSolver">WorklistFixpointSolver</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] with <a href="ForwardDependencies.html" class="extype" name="tip.analysis.ForwardDependencies">ForwardDependencies</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@ConstantPropagationAnalysisWorklistSolverextendsConstantPropagationAnalysiswithWorklistFixpointSolver[tip.graph.GNode[tip.ast.AstNode]]withForwardDependencies" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.package@ConstantPropagationAnalysisWorklistSolverextendsConstantPropagationAnalysiswithWorklistFixpointSolver[tip.cfg.CfgNode]withForwardDependencies" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Constant propagation analysis that uses the worklist solver.</p>
-    </li><li name="tip.analysis.Constraint" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="ConstraintextendsProductwithSerializable"></a>
-      <a id="Constraint:Constraint"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">case class</span>
-      </span>
-      <span class="symbol">
-        <a href="Constraint.html"><span class="name">Constraint</span></a><span class="params">(<span name="t1">t1: <a href="../solvers/Term.html" class="extype" name="tip.solvers.Term">Term</a>[<a href="../types/TipType.html" class="extype" name="tip.types.TipType">TipType</a>]</span>, <span name="t2">t2: <a href="../solvers/Term.html" class="extype" name="tip.solvers.Term">Term</a>[<a href="../types/TipType.html" class="extype" name="tip.types.TipType">TipType</a>]</span>, <span name="gen">gen: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@ConstraintextendsProductwithSerializable" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">A class representing an equality constraint t1 == t2.</p><div class="fullcomment"><div class="comment cmt"><p>A class representing an equality constraint t1 == t2.
-</p></div><dl class="paramcmts block"><dt class="param">t1</dt><dd class="cmt"><p>the left-hand of the constraint</p></dd><dt class="param">t2</dt><dd class="cmt"><p>the right-hand side of the constraint</p></dd><dt class="param">gen</dt><dd class="cmt"><p>a string representing where the constraint is generated w.r.t. the program
-</p></dd></dl></div>
     </li><li name="tip.analysis.ControlFlowAnalysis" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="ControlFlowAnalysisextendsDepthFirstAstVisitor[Null]"></a>
+      <a id="ControlFlowAnalysisextendsDepthFirstAstVisitor[Null]withAnalysis[Map[tip.ast.AstNode,Set[tip.ast.AFunDeclaration]]]"></a>
       <a id="ControlFlowAnalysis:ControlFlowAnalysis"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -231,16 +230,16 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="ControlFlowAnalysis.html"><span class="name">ControlFlowAnalysis</span></a><span class="result"> extends <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Null">Null</span>]</span>
+        <a href="ControlFlowAnalysis.html"><span class="name">ControlFlowAnalysis</span></a><span class="result"> extends <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Null">Null</span>] with <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Predef.Map">Map</span>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>, <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../ast/AFunDeclaration.html" class="extype" name="tip.ast.AFunDeclaration">AFunDeclaration</a>]]]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@ControlFlowAnalysisextendsDepthFirstAstVisitor[Null]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.package@ControlFlowAnalysisextendsDepthFirstAstVisitor[Null]withAnalysis[Map[tip.ast.AstNode,Set[tip.ast.AFunDeclaration]]]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
-    </li><li name="tip.analysis.DeclarationAnalysis" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="DeclarationAnalysisextendsDepthFirstAstVisitor[scala.collection.immutable.Map[String,tip.ast.AIdentifierDeclaration]]"></a>
+    </li><li name="tip.analysis.DeclarationAnalysis" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="DeclarationAnalysisextendsDepthFirstAstVisitor[Map[String,tip.ast.ADeclaration]]withAnalysis[tip.ast.AstNodeData.DeclarationData]"></a>
       <a id="DeclarationAnalysis:DeclarationAnalysis"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -248,17 +247,34 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="DeclarationAnalysis.html"><span class="name">DeclarationAnalysis</span></a><span class="result"> extends <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="../ast/AIdentifierDeclaration.html" class="extype" name="tip.ast.AIdentifierDeclaration">AIdentifierDeclaration</a>]]</span>
+        <a href="DeclarationAnalysis.html"><span class="name">DeclarationAnalysis</span></a><span class="result"> extends <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>]] with <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<a href="../ast/AstNodeData$.html#DeclarationData=Map[tip.ast.AIdentifier,tip.ast.ADeclaration]" class="extmbr" name="tip.ast.AstNodeData.DeclarationData">DeclarationData</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@DeclarationAnalysisextendsDepthFirstAstVisitor[scala.collection.immutable.Map[String,tip.ast.AIdentifierDeclaration]]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.package@DeclarationAnalysisextendsDepthFirstAstVisitor[Map[String,tip.ast.ADeclaration]]withAnalysis[tip.ast.AstNodeData.DeclarationData]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">The analysis associates with each identifier its definition,
-using the syntactical scope.</p>
+      <p class="shortcomment cmt">Declaration analysis, binds identifiers to their declarations.</p><div class="fullcomment"><div class="comment cmt"><p>Declaration analysis, binds identifiers to their declarations.
+</p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="../ast/AstNodeData$.html" class="extype" name="tip.ast.AstNodeData">tip.ast.AstNodeData</a></p></span></dd></dl></div>
+    </li><li name="tip.analysis.Dependencies" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="Dependencies[N]extendsAnyRef"></a>
+      <a id="Dependencies[N]:Dependencies[N]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Dependencies.html"><span class="name">Dependencies</span></a><span class="tparams">[<span name="N">N</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.analysis.package@Dependencies[N]extendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Dependency methods for worklist-based analyses.</p>
     </li><li name="tip.analysis.FlowSensitiveAnalysis" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="FlowSensitiveAnalysisextendsAnyRef"></a>
+      <a id="FlowSensitiveAnalysisextendsAnalysis[Any]"></a>
       <a id="FlowSensitiveAnalysis:FlowSensitiveAnalysis"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -266,16 +282,16 @@ using the syntactical scope.</p>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="FlowSensitiveAnalysis.html"><span class="name">FlowSensitiveAnalysis</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <a href="FlowSensitiveAnalysis.html"><span class="name">FlowSensitiveAnalysis</span></a><span class="result"> extends <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Any">Any</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@FlowSensitiveAnalysisextendsAnyRef" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.package@FlowSensitiveAnalysisextendsAnalysis[Any]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">A flow-sensitive analysis.</p>
     </li><li name="tip.analysis.ForwardDependencies" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="ForwardDependenciesextendsDependencies[tip.graph.GNode[tip.ast.AstNode]]"></a>
+      <a id="ForwardDependenciesextendsDependencies[tip.cfg.CfgNode]"></a>
       <a id="ForwardDependencies:ForwardDependencies"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -283,11 +299,11 @@ using the syntactical scope.</p>
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <a href="ForwardDependencies.html"><span class="name">ForwardDependencies</span></a><span class="result"> extends <a href="../solvers/Dependencies.html" class="extype" name="tip.solvers.Dependencies">Dependencies</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</span>
+        <a href="ForwardDependencies.html"><span class="name">ForwardDependencies</span></a><span class="result"> extends <a href="Dependencies.html" class="extype" name="tip.analysis.Dependencies">Dependencies</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@ForwardDependenciesextendsDependencies[tip.graph.GNode[tip.ast.AstNode]]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.package@ForwardDependenciesextendsDependencies[tip.cfg.CfgNode]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Dependency methods for forward analyses.</p>
@@ -304,7 +320,7 @@ using the syntactical scope.</p>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.package@FreshVariableextendsStTermwithVar[tip.analysis.StTerm]withProductwithSerializable" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">A fresh term variable.</p>
@@ -317,16 +333,16 @@ using the syntactical scope.</p>
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <a href="IdentifierVariable.html"><span class="name">IdentifierVariable</span></a><span class="params">(<span name="id">id: <a href="../ast/AIdentifierDeclaration.html" class="extype" name="tip.ast.AIdentifierDeclaration">AIdentifierDeclaration</a></span>)</span><span class="result"> extends <a href="StTerm.html" class="extype" name="tip.analysis.StTerm">StTerm</a> with <a href="../solvers/Var.html" class="extype" name="tip.solvers.Var">Var</a>[<a href="StTerm.html" class="extype" name="tip.analysis.StTerm">StTerm</a>] with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a href="IdentifierVariable.html"><span class="name">IdentifierVariable</span></a><span class="params">(<span name="id">id: <a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a></span>)</span><span class="result"> extends <a href="StTerm.html" class="extype" name="tip.analysis.StTerm">StTerm</a> with <a href="../solvers/Var.html" class="extype" name="tip.solvers.Var">Var</a>[<a href="StTerm.html" class="extype" name="tip.analysis.StTerm">StTerm</a>] with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.package@IdentifierVariableextendsStTermwithVar[tip.analysis.StTerm]withProductwithSerializable" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">A term variable that represents an identifier in the program.</p>
     </li><li name="tip.analysis.InterprocSignAnalysisFunctions" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="InterprocSignAnalysisFunctionsextendsMapLiftLatticeUpdateFunction[tip.graph.GNode[tip.ast.AstNode]]withInterprocSignAnalysisMisc"></a>
+      <a id="InterprocSignAnalysisFunctionsextendsMapLiftLatticeUpdateFunction[tip.cfg.CfgNode]withInterprocSignAnalysisMiscwithInterproceduralForwardDependencies"></a>
       <a id="InterprocSignAnalysisFunctions:InterprocSignAnalysisFunctions"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -334,18 +350,18 @@ using the syntactical scope.</p>
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <a href="InterprocSignAnalysisFunctions.html"><span class="name">InterprocSignAnalysisFunctions</span></a><span class="result"> extends <a href="../solvers/MapLiftLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLiftLatticeUpdateFunction">MapLiftLatticeUpdateFunction</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]] with <a href="InterprocSignAnalysisMisc.html" class="extype" name="tip.analysis.InterprocSignAnalysisMisc">InterprocSignAnalysisMisc</a></span>
+        <a href="InterprocSignAnalysisFunctions.html"><span class="name">InterprocSignAnalysisFunctions</span></a><span class="result"> extends <a href="../solvers/MapLiftLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLiftLatticeUpdateFunction">MapLiftLatticeUpdateFunction</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] with <a href="InterprocSignAnalysisMisc.html" class="extype" name="tip.analysis.InterprocSignAnalysisMisc">InterprocSignAnalysisMisc</a> with <a href="InterproceduralForwardDependencies.html" class="extype" name="tip.analysis.InterproceduralForwardDependencies">InterproceduralForwardDependencies</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@InterprocSignAnalysisFunctionsextendsMapLiftLatticeUpdateFunction[tip.graph.GNode[tip.ast.AstNode]]withInterprocSignAnalysisMisc" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.package@InterprocSignAnalysisFunctionsextendsMapLiftLatticeUpdateFunction[tip.cfg.CfgNode]withInterprocSignAnalysisMiscwithInterproceduralForwardDependencies" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Update function for sign analysis (including interprocedural).</p><div class="fullcomment"><div class="comment cmt"><p>Update function for sign analysis (including interprocedural).
 This version is for the basic worklist algorithm.
 </p></div></div>
     </li><li name="tip.analysis.InterprocSignAnalysisFunctionsWithPropagation" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="InterprocSignAnalysisFunctionsWithPropagationextendsMapLiftLatticeUpdateFunction[tip.graph.GNode[tip.ast.AstNode]]withWorklistFixpointPropagationSolver[tip.graph.GNode[tip.ast.AstNode]]withInterprocSignAnalysisMisc"></a>
+      <a id="InterprocSignAnalysisFunctionsWithPropagationextendsMapLiftLatticeUpdateFunction[tip.cfg.CfgNode]withWorklistFixpointPropagationSolver[tip.cfg.CfgNode]withInterprocSignAnalysisMisc"></a>
       <a id="InterprocSignAnalysisFunctionsWithPropagation:InterprocSignAnalysisFunctionsWithPropagation"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -353,11 +369,11 @@ This version is for the basic worklist algorithm.
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <a href="InterprocSignAnalysisFunctionsWithPropagation.html"><span class="name">InterprocSignAnalysisFunctionsWithPropagation</span></a><span class="result"> extends <a href="../solvers/MapLiftLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLiftLatticeUpdateFunction">MapLiftLatticeUpdateFunction</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]] with <a href="../solvers/WorklistFixpointPropagationSolver.html" class="extype" name="tip.solvers.WorklistFixpointPropagationSolver">WorklistFixpointPropagationSolver</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]] with <a href="InterprocSignAnalysisMisc.html" class="extype" name="tip.analysis.InterprocSignAnalysisMisc">InterprocSignAnalysisMisc</a></span>
+        <a href="InterprocSignAnalysisFunctionsWithPropagation.html"><span class="name">InterprocSignAnalysisFunctionsWithPropagation</span></a><span class="result"> extends <a href="../solvers/MapLiftLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLiftLatticeUpdateFunction">MapLiftLatticeUpdateFunction</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] with <a href="../solvers/WorklistFixpointPropagationSolver.html" class="extype" name="tip.solvers.WorklistFixpointPropagationSolver">WorklistFixpointPropagationSolver</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] with <a href="InterprocSignAnalysisMisc.html" class="extype" name="tip.analysis.InterprocSignAnalysisMisc">InterprocSignAnalysisMisc</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@InterprocSignAnalysisFunctionsWithPropagationextendsMapLiftLatticeUpdateFunction[tip.graph.GNode[tip.ast.AstNode]]withWorklistFixpointPropagationSolver[tip.graph.GNode[tip.ast.AstNode]]withInterprocSignAnalysisMisc" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.package@InterprocSignAnalysisFunctionsWithPropagationextendsMapLiftLatticeUpdateFunction[tip.cfg.CfgNode]withWorklistFixpointPropagationSolver[tip.cfg.CfgNode]withInterprocSignAnalysisMisc" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Update functions for sign analysis (including interprocedural), propagation style.</p><div class="fullcomment"><div class="comment cmt"><p>Update functions for sign analysis (including interprocedural), propagation style.
@@ -376,12 +392,12 @@ This is a variant of <a href="InterprocSignAnalysisFunctions.html" class="extype
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.package@InterprocSignAnalysisMiscextendsAnyRef" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Common functionality for interprocedural analysis.</p>
     </li><li name="tip.analysis.InterprocSignAnalysisWorklistSolverWithInit" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="InterprocSignAnalysisWorklistSolverWithInitextendsIntraprocSignAnalysisWorklistSolverWithInitwithInterprocSignAnalysisFunctionswithInterproceduralDependencies"></a>
+      <a id="InterprocSignAnalysisWorklistSolverWithInitextendsIntraprocSignAnalysisWorklistSolverWithInitwithInterprocSignAnalysisFunctionswithInterproceduralForwardDependencies"></a>
       <a id="InterprocSignAnalysisWorklistSolverWithInit:InterprocSignAnalysisWorklistSolverWithInit"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -389,32 +405,14 @@ This is a variant of <a href="InterprocSignAnalysisFunctions.html" class="extype
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="InterprocSignAnalysisWorklistSolverWithInit.html"><span class="name">InterprocSignAnalysisWorklistSolverWithInit</span></a><span class="result"> extends <a href="IntraprocSignAnalysisWorklistSolverWithInit.html" class="extype" name="tip.analysis.IntraprocSignAnalysisWorklistSolverWithInit">IntraprocSignAnalysisWorklistSolverWithInit</a> with <a href="InterprocSignAnalysisFunctions.html" class="extype" name="tip.analysis.InterprocSignAnalysisFunctions">InterprocSignAnalysisFunctions</a> with <a href="InterproceduralDependencies.html" class="extype" name="tip.analysis.InterproceduralDependencies">InterproceduralDependencies</a></span>
+        <a href="InterprocSignAnalysisWorklistSolverWithInit.html"><span class="name">InterprocSignAnalysisWorklistSolverWithInit</span></a><span class="result"> extends <a href="IntraprocSignAnalysisWorklistSolverWithInit.html" class="extype" name="tip.analysis.IntraprocSignAnalysisWorklistSolverWithInit">IntraprocSignAnalysisWorklistSolverWithInit</a> with <a href="InterprocSignAnalysisFunctions.html" class="extype" name="tip.analysis.InterprocSignAnalysisFunctions">InterprocSignAnalysisFunctions</a> with <a href="InterproceduralForwardDependencies.html" class="extype" name="tip.analysis.InterproceduralForwardDependencies">InterproceduralForwardDependencies</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@InterprocSignAnalysisWorklistSolverWithInitextendsIntraprocSignAnalysisWorklistSolverWithInitwithInterprocSignAnalysisFunctionswithInterproceduralDependencies" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.package@InterprocSignAnalysisWorklistSolverWithInitextendsIntraprocSignAnalysisWorklistSolverWithInitwithInterprocSignAnalysisFunctionswithInterproceduralForwardDependencies" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Interprocedural sign analysis that uses <a href="../solvers/WorklistFixpointSolverWithInit.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithInit">tip.solvers.WorklistFixpointSolverWithInit</a>.</p>
-    </li><li name="tip.analysis.InterprocSignAnalysisWorklistSolverWithInitAndCFA" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="InterprocSignAnalysisWorklistSolverWithInitAndCFAextendsIntraprocSignAnalysisWorklistSolverWithInitwithInterprocSignAnalysisFunctionswithInterproceduralDependencies"></a>
-      <a id="InterprocSignAnalysisWorklistSolverWithInitAndCFA:InterprocSignAnalysisWorklistSolverWithInitAndCFA"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">class</span>
-      </span>
-      <span class="symbol">
-        <a href="InterprocSignAnalysisWorklistSolverWithInitAndCFA.html"><span class="name">InterprocSignAnalysisWorklistSolverWithInitAndCFA</span></a><span class="result"> extends <a href="IntraprocSignAnalysisWorklistSolverWithInit.html" class="extype" name="tip.analysis.IntraprocSignAnalysisWorklistSolverWithInit">IntraprocSignAnalysisWorklistSolverWithInit</a> with <a href="InterprocSignAnalysisFunctions.html" class="extype" name="tip.analysis.InterprocSignAnalysisFunctions">InterprocSignAnalysisFunctions</a> with <a href="InterproceduralDependencies.html" class="extype" name="tip.analysis.InterproceduralDependencies">InterproceduralDependencies</a></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@InterprocSignAnalysisWorklistSolverWithInitAndCFAextendsIntraprocSignAnalysisWorklistSolverWithInitwithInterprocSignAnalysisFunctionswithInterproceduralDependencies" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Interprocedural sign analysis that uses <a href="../solvers/WorklistFixpointSolverWithInit.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithInit">tip.solvers.WorklistFixpointSolverWithInit</a>,
-using <a href="ControlFlowAnalysis.html" class="extype" name="tip.analysis.ControlFlowAnalysis">ControlFlowAnalysis</a> to resolve function calls.</p>
     </li><li name="tip.analysis.InterprocSignAnalysisWorklistSolverWithInitAndPropagation" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="InterprocSignAnalysisWorklistSolverWithInitAndPropagationextendsIntraprocSignAnalysisWorklistSolverWithInitAndPropagationwithInterprocSignAnalysisFunctionsWithPropagationwithForwardDependencies"></a>
       <a id="InterprocSignAnalysisWorklistSolverWithInitAndPropagation:InterprocSignAnalysisWorklistSolverWithInitAndPropagation"></a>
@@ -428,7 +426,7 @@ using <a href="ControlFlowAnalysis.html" class="extype" name="tip.analysis.Contr
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.package@InterprocSignAnalysisWorklistSolverWithInitAndPropagationextendsIntraprocSignAnalysisWorklistSolverWithInitAndPropagationwithInterprocSignAnalysisFunctionsWithPropagationwithForwardDependencies" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Interprocedural sign analysis that uses <a href="../solvers/WorklistFixpointSolverWithInit.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithInit">tip.solvers.WorklistFixpointSolverWithInit</a>
@@ -437,23 +435,23 @@ together with <a href="../solvers/WorklistFixpointPropagationSolver.html" class=
 Note that this class uses <a href="ForwardDependencies.html" class="extype" name="tip.analysis.ForwardDependencies">tip.analysis.ForwardDependencies</a> which has no interprocedural outdeps,
 and it does not use indeps.
 </p></div></div>
-    </li><li name="tip.analysis.InterproceduralDependencies" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="InterproceduralDependenciesextendsDependencies[tip.graph.GNode[tip.ast.AstNode]]"></a>
-      <a id="InterproceduralDependencies:InterproceduralDependencies"></a>
+    </li><li name="tip.analysis.InterproceduralForwardDependencies" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="InterproceduralForwardDependenciesextendsDependencies[tip.cfg.CfgNode]"></a>
+      <a id="InterproceduralForwardDependencies:InterproceduralForwardDependencies"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <a href="InterproceduralDependencies.html"><span class="name">InterproceduralDependencies</span></a><span class="result"> extends <a href="../solvers/Dependencies.html" class="extype" name="tip.solvers.Dependencies">Dependencies</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</span>
+        <a href="InterproceduralForwardDependencies.html"><span class="name">InterproceduralForwardDependencies</span></a><span class="result"> extends <a href="Dependencies.html" class="extype" name="tip.analysis.Dependencies">Dependencies</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@InterproceduralDependenciesextendsDependencies[tip.graph.GNode[tip.ast.AstNode]]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.package@InterproceduralForwardDependenciesextendsDependencies[tip.cfg.CfgNode]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Variant of <a href="ForwardDependencies.html" class="extype" name="tip.analysis.ForwardDependencies">tip.analysis.ForwardDependencies</a> for interprocedural analysis.</p>
+      <p class="shortcomment cmt">Variant of <a href="ForwardDependencies.html" class="extype" name="tip.analysis.ForwardDependencies">ForwardDependencies</a> for interprocedural analysis.</p>
     </li><li name="tip.analysis.IntervalAnalysis" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="IntervalAnalysisextendsFlowSensitiveAnalysis"></a>
       <a id="IntervalAnalysis:IntervalAnalysis"></a>
@@ -467,13 +465,13 @@ and it does not use indeps.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.package@IntervalAnalysisextendsFlowSensitiveAnalysis" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">The base class for the interval analysis
 </p>
     </li><li name="tip.analysis.IntervalAnalysisWorklistSolverWithWidening" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="IntervalAnalysisWorklistSolverWithWideningextendsIntervalAnalysiswithWorklistFixpointSolverWithInitAndSetWidening[tip.graph.GNode[tip.ast.AstNode]]withForwardDependencies"></a>
+      <a id="IntervalAnalysisWorklistSolverWithWideningextendsIntervalAnalysiswithWorklistFixpointSolverWithInitAndSetWidening[tip.cfg.CfgNode]withForwardDependencies"></a>
       <a id="IntervalAnalysisWorklistSolverWithWidening:IntervalAnalysisWorklistSolverWithWidening"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -481,16 +479,16 @@ and it does not use indeps.
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="IntervalAnalysisWorklistSolverWithWidening.html"><span class="name">IntervalAnalysisWorklistSolverWithWidening</span></a><span class="result"> extends <a href="IntervalAnalysis.html" class="extype" name="tip.analysis.IntervalAnalysis">IntervalAnalysis</a> with <a href="../solvers/WorklistFixpointSolverWithInitAndSetWidening.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithInitAndSetWidening">WorklistFixpointSolverWithInitAndSetWidening</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]] with <a href="ForwardDependencies.html" class="extype" name="tip.analysis.ForwardDependencies">ForwardDependencies</a></span>
+        <a href="IntervalAnalysisWorklistSolverWithWidening.html"><span class="name">IntervalAnalysisWorklistSolverWithWidening</span></a><span class="result"> extends <a href="IntervalAnalysis.html" class="extype" name="tip.analysis.IntervalAnalysis">IntervalAnalysis</a> with <a href="../solvers/WorklistFixpointSolverWithInitAndSetWidening.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithInitAndSetWidening">WorklistFixpointSolverWithInitAndSetWidening</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] with <a href="ForwardDependencies.html" class="extype" name="tip.analysis.ForwardDependencies">ForwardDependencies</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@IntervalAnalysisWorklistSolverWithWideningextendsIntervalAnalysiswithWorklistFixpointSolverWithInitAndSetWidening[tip.graph.GNode[tip.ast.AstNode]]withForwardDependencies" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.package@IntervalAnalysisWorklistSolverWithWideningextendsIntervalAnalysiswithWorklistFixpointSolverWithInitAndSetWidening[tip.cfg.CfgNode]withForwardDependencies" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Interval analysis, using the worklist solver with init and widening.</p>
     </li><li name="tip.analysis.IntervalAnalysisWorklistSolverWithWideningAndNarrowing" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="IntervalAnalysisWorklistSolverWithWideningAndNarrowingextendsIntervalAnalysisWorklistSolverWithWideningwithWorklistFixpointSolverWithInitAndSetWideningAndNarrowing[tip.graph.GNode[tip.ast.AstNode]]"></a>
+      <a id="IntervalAnalysisWorklistSolverWithWideningAndNarrowingextendsIntervalAnalysisWorklistSolverWithWideningwithWorklistFixpointSolverWithInitAndSetWideningAndNarrowing[tip.cfg.CfgNode]"></a>
       <a id="IntervalAnalysisWorklistSolverWithWideningAndNarrowing:IntervalAnalysisWorklistSolverWithWideningAndNarrowing"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -498,16 +496,16 @@ and it does not use indeps.
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="IntervalAnalysisWorklistSolverWithWideningAndNarrowing.html"><span class="name">IntervalAnalysisWorklistSolverWithWideningAndNarrowing</span></a><span class="result"> extends <a href="IntervalAnalysisWorklistSolverWithWidening.html" class="extype" name="tip.analysis.IntervalAnalysisWorklistSolverWithWidening">IntervalAnalysisWorklistSolverWithWidening</a> with <a href="../solvers/WorklistFixpointSolverWithInitAndSetWideningAndNarrowing.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithInitAndSetWideningAndNarrowing">WorklistFixpointSolverWithInitAndSetWideningAndNarrowing</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</span>
+        <a href="IntervalAnalysisWorklistSolverWithWideningAndNarrowing.html"><span class="name">IntervalAnalysisWorklistSolverWithWideningAndNarrowing</span></a><span class="result"> extends <a href="IntervalAnalysisWorklistSolverWithWidening.html" class="extype" name="tip.analysis.IntervalAnalysisWorklistSolverWithWidening">IntervalAnalysisWorklistSolverWithWidening</a> with <a href="../solvers/WorklistFixpointSolverWithInitAndSetWideningAndNarrowing.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithInitAndSetWideningAndNarrowing">WorklistFixpointSolverWithInitAndSetWideningAndNarrowing</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@IntervalAnalysisWorklistSolverWithWideningAndNarrowingextendsIntervalAnalysisWorklistSolverWithWideningwithWorklistFixpointSolverWithInitAndSetWideningAndNarrowing[tip.graph.GNode[tip.ast.AstNode]]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.package@IntervalAnalysisWorklistSolverWithWideningAndNarrowingextendsIntervalAnalysisWorklistSolverWithWideningwithWorklistFixpointSolverWithInitAndSetWideningAndNarrowing[tip.cfg.CfgNode]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Interval analysis, using the worklist solver with init, widening, and narrowing.</p>
     </li><li name="tip.analysis.IntraprocSignAnalysis" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="IntraprocSignAnalysisextendsFlowSensitiveAnalysiswithIntraprocSignAnalysisTransferFunctionswithMapLiftLatticeUpdateFunction[tip.graph.GNode[tip.ast.AstNode]]withForwardDependencies"></a>
+      <a id="IntraprocSignAnalysisextendsFlowSensitiveAnalysiswithIntraprocSignAnalysisTransferFunctionswithMapLiftLatticeUpdateFunction[tip.cfg.CfgNode]withForwardDependencies"></a>
       <a id="IntraprocSignAnalysis:IntraprocSignAnalysis"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -515,16 +513,16 @@ and it does not use indeps.
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="IntraprocSignAnalysis.html"><span class="name">IntraprocSignAnalysis</span></a><span class="result"> extends <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a> with <a href="IntraprocSignAnalysisTransferFunctions.html" class="extype" name="tip.analysis.IntraprocSignAnalysisTransferFunctions">IntraprocSignAnalysisTransferFunctions</a> with <a href="../solvers/MapLiftLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLiftLatticeUpdateFunction">MapLiftLatticeUpdateFunction</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]] with <a href="ForwardDependencies.html" class="extype" name="tip.analysis.ForwardDependencies">ForwardDependencies</a></span>
+        <a href="IntraprocSignAnalysis.html"><span class="name">IntraprocSignAnalysis</span></a><span class="result"> extends <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a> with <a href="IntraprocSignAnalysisTransferFunctions.html" class="extype" name="tip.analysis.IntraprocSignAnalysisTransferFunctions">IntraprocSignAnalysisTransferFunctions</a> with <a href="../solvers/MapLiftLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLiftLatticeUpdateFunction">MapLiftLatticeUpdateFunction</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] with <a href="ForwardDependencies.html" class="extype" name="tip.analysis.ForwardDependencies">ForwardDependencies</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@IntraprocSignAnalysisextendsFlowSensitiveAnalysiswithIntraprocSignAnalysisTransferFunctionswithMapLiftLatticeUpdateFunction[tip.graph.GNode[tip.ast.AstNode]]withForwardDependencies" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.package@IntraprocSignAnalysisextendsFlowSensitiveAnalysiswithIntraprocSignAnalysisTransferFunctionswithMapLiftLatticeUpdateFunction[tip.cfg.CfgNode]withForwardDependencies" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Base class for sign analysis.</p>
     </li><li name="tip.analysis.IntraprocSignAnalysisSimpleSolver" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="IntraprocSignAnalysisSimpleSolverextendsIntraprocSignAnalysiswithSimpleFixpointSolverwithMapLatticeUpdateFunction[tip.graph.GNode[tip.ast.AstNode]]"></a>
+      <a id="IntraprocSignAnalysisSimpleSolverextendsIntraprocSignAnalysiswithSimpleFixpointSolverwithMapLatticeUpdateFunction[tip.cfg.CfgNode]"></a>
       <a id="IntraprocSignAnalysisSimpleSolver:IntraprocSignAnalysisSimpleSolver"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -532,11 +530,11 @@ and it does not use indeps.
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="IntraprocSignAnalysisSimpleSolver.html"><span class="name">IntraprocSignAnalysisSimpleSolver</span></a><span class="result"> extends <a href="IntraprocSignAnalysis.html" class="extype" name="tip.analysis.IntraprocSignAnalysis">IntraprocSignAnalysis</a> with <a href="../solvers/SimpleFixpointSolver.html" class="extype" name="tip.solvers.SimpleFixpointSolver">SimpleFixpointSolver</a> with <a href="../solvers/MapLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLatticeUpdateFunction">MapLatticeUpdateFunction</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</span>
+        <a href="IntraprocSignAnalysisSimpleSolver.html"><span class="name">IntraprocSignAnalysisSimpleSolver</span></a><span class="result"> extends <a href="IntraprocSignAnalysis.html" class="extype" name="tip.analysis.IntraprocSignAnalysis">IntraprocSignAnalysis</a> with <a href="../solvers/SimpleFixpointSolver.html" class="extype" name="tip.solvers.SimpleFixpointSolver">SimpleFixpointSolver</a> with <a href="../solvers/MapLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLatticeUpdateFunction">MapLatticeUpdateFunction</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@IntraprocSignAnalysisSimpleSolverextendsIntraprocSignAnalysiswithSimpleFixpointSolverwithMapLatticeUpdateFunction[tip.graph.GNode[tip.ast.AstNode]]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.package@IntraprocSignAnalysisSimpleSolverextendsIntraprocSignAnalysiswithSimpleFixpointSolverwithMapLatticeUpdateFunction[tip.cfg.CfgNode]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Intraprocedural sign analysis that uses <a href="../solvers/SimpleFixpointSolver.html" class="extype" name="tip.solvers.SimpleFixpointSolver">tip.solvers.SimpleFixpointSolver</a>.</p>
@@ -553,12 +551,12 @@ and it does not use indeps.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.package@IntraprocSignAnalysisTransferFunctionsextendsAnyRef" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Transfer functions for sign analysis (intraprocedural only).</p>
     </li><li name="tip.analysis.IntraprocSignAnalysisWorklistSolver" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="IntraprocSignAnalysisWorklistSolverextendsIntraprocSignAnalysiswithWorklistFixpointSolver[tip.graph.GNode[tip.ast.AstNode]]"></a>
+      <a id="IntraprocSignAnalysisWorklistSolverextendsIntraprocSignAnalysiswithWorklistFixpointSolver[tip.cfg.CfgNode]"></a>
       <a id="IntraprocSignAnalysisWorklistSolver:IntraprocSignAnalysisWorklistSolver"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -566,16 +564,16 @@ and it does not use indeps.
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="IntraprocSignAnalysisWorklistSolver.html"><span class="name">IntraprocSignAnalysisWorklistSolver</span></a><span class="result"> extends <a href="IntraprocSignAnalysis.html" class="extype" name="tip.analysis.IntraprocSignAnalysis">IntraprocSignAnalysis</a> with <a href="../solvers/WorklistFixpointSolver.html" class="extype" name="tip.solvers.WorklistFixpointSolver">WorklistFixpointSolver</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</span>
+        <a href="IntraprocSignAnalysisWorklistSolver.html"><span class="name">IntraprocSignAnalysisWorklistSolver</span></a><span class="result"> extends <a href="IntraprocSignAnalysis.html" class="extype" name="tip.analysis.IntraprocSignAnalysis">IntraprocSignAnalysis</a> with <a href="../solvers/WorklistFixpointSolver.html" class="extype" name="tip.solvers.WorklistFixpointSolver">WorklistFixpointSolver</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@IntraprocSignAnalysisWorklistSolverextendsIntraprocSignAnalysiswithWorklistFixpointSolver[tip.graph.GNode[tip.ast.AstNode]]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.package@IntraprocSignAnalysisWorklistSolverextendsIntraprocSignAnalysiswithWorklistFixpointSolver[tip.cfg.CfgNode]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Intraprocedural sign analysis that uses <a href="../solvers/WorklistFixpointSolver.html" class="extype" name="tip.solvers.WorklistFixpointSolver">tip.solvers.WorklistFixpointSolver</a>.</p>
     </li><li name="tip.analysis.IntraprocSignAnalysisWorklistSolverWithInit" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="IntraprocSignAnalysisWorklistSolverWithInitextendsIntraprocSignAnalysisWorklistSolverwithWorklistFixpointSolverWithInit[tip.graph.GNode[tip.ast.AstNode]]"></a>
+      <a id="IntraprocSignAnalysisWorklistSolverWithInitextendsIntraprocSignAnalysisWorklistSolverwithWorklistFixpointSolverWithInit[tip.cfg.CfgNode]"></a>
       <a id="IntraprocSignAnalysisWorklistSolverWithInit:IntraprocSignAnalysisWorklistSolverWithInit"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -583,17 +581,17 @@ and it does not use indeps.
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="IntraprocSignAnalysisWorklistSolverWithInit.html"><span class="name">IntraprocSignAnalysisWorklistSolverWithInit</span></a><span class="result"> extends <a href="IntraprocSignAnalysisWorklistSolver.html" class="extype" name="tip.analysis.IntraprocSignAnalysisWorklistSolver">IntraprocSignAnalysisWorklistSolver</a> with <a href="../solvers/WorklistFixpointSolverWithInit.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithInit">WorklistFixpointSolverWithInit</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</span>
+        <a href="IntraprocSignAnalysisWorklistSolverWithInit.html"><span class="name">IntraprocSignAnalysisWorklistSolverWithInit</span></a><span class="result"> extends <a href="IntraprocSignAnalysisWorklistSolver.html" class="extype" name="tip.analysis.IntraprocSignAnalysisWorklistSolver">IntraprocSignAnalysisWorklistSolver</a> with <a href="../solvers/WorklistFixpointSolverWithInit.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithInit">WorklistFixpointSolverWithInit</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@IntraprocSignAnalysisWorklistSolverWithInitextendsIntraprocSignAnalysisWorklistSolverwithWorklistFixpointSolverWithInit[tip.graph.GNode[tip.ast.AstNode]]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.package@IntraprocSignAnalysisWorklistSolverWithInitextendsIntraprocSignAnalysisWorklistSolverwithWorklistFixpointSolverWithInit[tip.cfg.CfgNode]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Intraprocedural sign analysis that uses <a href="../solvers/WorklistFixpointSolverWithInit.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithInit">tip.solvers.WorklistFixpointSolverWithInit</a>,
 with all function entries as start nodes.</p>
     </li><li name="tip.analysis.IntraprocSignAnalysisWorklistSolverWithInitAndPropagation" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="IntraprocSignAnalysisWorklistSolverWithInitAndPropagationextendsIntraprocSignAnalysisWorklistSolverWithInitwithWorklistFixpointPropagationSolver[tip.graph.GNode[tip.ast.AstNode]]"></a>
+      <a id="IntraprocSignAnalysisWorklistSolverWithInitAndPropagationextendsIntraprocSignAnalysisWorklistSolverWithInitwithWorklistFixpointPropagationSolver[tip.cfg.CfgNode]"></a>
       <a id="IntraprocSignAnalysisWorklistSolverWithInitAndPropagation:IntraprocSignAnalysisWorklistSolverWithInitAndPropagation"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -601,11 +599,11 @@ with all function entries as start nodes.</p>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="IntraprocSignAnalysisWorklistSolverWithInitAndPropagation.html"><span class="name">IntraprocSignAnalysisWorklistSolverWithInitAndPropagation</span></a><span class="result"> extends <a href="IntraprocSignAnalysisWorklistSolverWithInit.html" class="extype" name="tip.analysis.IntraprocSignAnalysisWorklistSolverWithInit">IntraprocSignAnalysisWorklistSolverWithInit</a> with <a href="../solvers/WorklistFixpointPropagationSolver.html" class="extype" name="tip.solvers.WorklistFixpointPropagationSolver">WorklistFixpointPropagationSolver</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</span>
+        <a href="IntraprocSignAnalysisWorklistSolverWithInitAndPropagation.html"><span class="name">IntraprocSignAnalysisWorklistSolverWithInitAndPropagation</span></a><span class="result"> extends <a href="IntraprocSignAnalysisWorklistSolverWithInit.html" class="extype" name="tip.analysis.IntraprocSignAnalysisWorklistSolverWithInit">IntraprocSignAnalysisWorklistSolverWithInit</a> with <a href="../solvers/WorklistFixpointPropagationSolver.html" class="extype" name="tip.solvers.WorklistFixpointPropagationSolver">WorklistFixpointPropagationSolver</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@IntraprocSignAnalysisWorklistSolverWithInitAndPropagationextendsIntraprocSignAnalysisWorklistSolverWithInitwithWorklistFixpointPropagationSolver[tip.graph.GNode[tip.ast.AstNode]]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.package@IntraprocSignAnalysisWorklistSolverWithInitAndPropagationextendsIntraprocSignAnalysisWorklistSolverWithInitwithWorklistFixpointPropagationSolver[tip.cfg.CfgNode]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Intraprocedural sign analysis that uses <a href="../solvers/WorklistFixpointSolverWithInit.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithInit">tip.solvers.WorklistFixpointSolverWithInit</a>
@@ -623,13 +621,13 @@ together with <a href="../solvers/WorklistFixpointPropagationSolver.html" class=
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.package@LiveVarsAnalysisextendsFlowSensitiveAnalysis" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Base class for the live variables analysis
 </p>
     </li><li name="tip.analysis.LiveVarsAnalysisSimpleSolver" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="LiveVarsAnalysisSimpleSolverextendsLiveVarsAnalysiswithSimpleFixpointSolverwithMapLatticeUpdateFunction[tip.graph.GNode[tip.ast.AstNode]]"></a>
+      <a id="LiveVarsAnalysisSimpleSolverextendsLiveVarsAnalysiswithSimpleFixpointSolverwithMapLatticeUpdateFunction[tip.cfg.CfgNode]"></a>
       <a id="LiveVarsAnalysisSimpleSolver:LiveVarsAnalysisSimpleSolver"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -637,16 +635,16 @@ together with <a href="../solvers/WorklistFixpointPropagationSolver.html" class=
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="LiveVarsAnalysisSimpleSolver.html"><span class="name">LiveVarsAnalysisSimpleSolver</span></a><span class="result"> extends <a href="LiveVarsAnalysis.html" class="extype" name="tip.analysis.LiveVarsAnalysis">LiveVarsAnalysis</a> with <a href="../solvers/SimpleFixpointSolver.html" class="extype" name="tip.solvers.SimpleFixpointSolver">SimpleFixpointSolver</a> with <a href="../solvers/MapLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLatticeUpdateFunction">MapLatticeUpdateFunction</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</span>
+        <a href="LiveVarsAnalysisSimpleSolver.html"><span class="name">LiveVarsAnalysisSimpleSolver</span></a><span class="result"> extends <a href="LiveVarsAnalysis.html" class="extype" name="tip.analysis.LiveVarsAnalysis">LiveVarsAnalysis</a> with <a href="../solvers/SimpleFixpointSolver.html" class="extype" name="tip.solvers.SimpleFixpointSolver">SimpleFixpointSolver</a> with <a href="../solvers/MapLatticeUpdateFunction.html" class="extype" name="tip.solvers.MapLatticeUpdateFunction">MapLatticeUpdateFunction</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@LiveVarsAnalysisSimpleSolverextendsLiveVarsAnalysiswithSimpleFixpointSolverwithMapLatticeUpdateFunction[tip.graph.GNode[tip.ast.AstNode]]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.package@LiveVarsAnalysisSimpleSolverextendsLiveVarsAnalysiswithSimpleFixpointSolverwithMapLatticeUpdateFunction[tip.cfg.CfgNode]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Live variables analysis that uses the simple fixpoint solver.</p>
     </li><li name="tip.analysis.LiveVarsAnalysisWorklistSolver" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="LiveVarsAnalysisWorklistSolverextendsLiveVarsAnalysiswithWorklistFixpointSolver[tip.graph.GNode[tip.ast.AstNode]]withBackwardDependencies"></a>
+      <a id="LiveVarsAnalysisWorklistSolverextendsLiveVarsAnalysiswithWorklistFixpointSolver[tip.cfg.CfgNode]withBackwardDependencies"></a>
       <a id="LiveVarsAnalysisWorklistSolver:LiveVarsAnalysisWorklistSolver"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -654,11 +652,11 @@ together with <a href="../solvers/WorklistFixpointPropagationSolver.html" class=
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="LiveVarsAnalysisWorklistSolver.html"><span class="name">LiveVarsAnalysisWorklistSolver</span></a><span class="result"> extends <a href="LiveVarsAnalysis.html" class="extype" name="tip.analysis.LiveVarsAnalysis">LiveVarsAnalysis</a> with <a href="../solvers/WorklistFixpointSolver.html" class="extype" name="tip.solvers.WorklistFixpointSolver">WorklistFixpointSolver</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]] with <a href="BackwardDependencies.html" class="extype" name="tip.analysis.BackwardDependencies">BackwardDependencies</a></span>
+        <a href="LiveVarsAnalysisWorklistSolver.html"><span class="name">LiveVarsAnalysisWorklistSolver</span></a><span class="result"> extends <a href="LiveVarsAnalysis.html" class="extype" name="tip.analysis.LiveVarsAnalysis">LiveVarsAnalysis</a> with <a href="../solvers/WorklistFixpointSolver.html" class="extype" name="tip.solvers.WorklistFixpointSolver">WorklistFixpointSolver</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] with <a href="BackwardDependencies.html" class="extype" name="tip.analysis.BackwardDependencies">BackwardDependencies</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@LiveVarsAnalysisWorklistSolverextendsLiveVarsAnalysiswithWorklistFixpointSolver[tip.graph.GNode[tip.ast.AstNode]]withBackwardDependencies" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.package@LiveVarsAnalysisWorklistSolverextendsLiveVarsAnalysiswithWorklistFixpointSolver[tip.cfg.CfgNode]withBackwardDependencies" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Live variables analysis that uses the worklist solver.</p>
@@ -675,11 +673,11 @@ together with <a href="../solvers/WorklistFixpointPropagationSolver.html" class=
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.package@MallocVariableextendsStTermwithVar[tip.analysis.StTerm]withProductwithSerializable" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">A term variable that represents a malloc in the program.</p>
-    </li><li name="tip.analysis.PointerRef" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="tip.analysis.PointerRef" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="PointerRefextendsStTermwithCons[tip.analysis.StTerm]withProductwithSerializable"></a>
       <a id="PointerRef:PointerRef"></a>
       <h4 class="signature">
@@ -688,15 +686,32 @@ together with <a href="../solvers/WorklistFixpointPropagationSolver.html" class=
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <a href="PointerRef.html"><span class="name">PointerRef</span></a><span class="params">(<span name="of">of: <a href="../solvers/Term.html" class="extype" name="tip.solvers.Term">Term</a>[<a href="StTerm.html" class="extype" name="tip.analysis.StTerm">StTerm</a>]</span>, <span name="tag">tag: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result"> extends <a href="StTerm.html" class="extype" name="tip.analysis.StTerm">StTerm</a> with <a href="../solvers/Cons.html" class="extype" name="tip.solvers.Cons">Cons</a>[<a href="StTerm.html" class="extype" name="tip.analysis.StTerm">StTerm</a>] with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a href="PointerRef.html"><span class="name">PointerRef</span></a><span class="params">(<span name="of">of: <a href="../solvers/Term.html" class="extype" name="tip.solvers.Term">Term</a>[<a href="StTerm.html" class="extype" name="tip.analysis.StTerm">StTerm</a>]</span>)</span><span class="result"> extends <a href="StTerm.html" class="extype" name="tip.analysis.StTerm">StTerm</a> with <a href="../solvers/Cons.html" class="extype" name="tip.solvers.Cons">Cons</a>[<a href="StTerm.html" class="extype" name="tip.analysis.StTerm">StTerm</a>] with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.package@PointerRefextendsStTermwithCons[tip.analysis.StTerm]withProductwithSerializable" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">A constructor term that represents a pointer to another term.</p><div class="fullcomment"><div class="comment cmt"><p>A constructor term that represents a pointer to another term.
-The tag is used to distinguish between different pointers that point to the same term.
+      <p class="shortcomment cmt">A constructor term that represents a pointer to another term.</p>
+    </li><li name="tip.analysis.PointsToAnalysis" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="PointsToAnalysisextendsAnalysis[Unit]"></a>
+      <a id="PointsToAnalysis:PointsToAnalysis"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="PointsToAnalysis.html"><span class="name">PointsToAnalysis</span></a><span class="result"> extends <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Unit">Unit</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.analysis.package@PointsToAnalysisextendsAnalysis[Unit]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Trait for (may-)points-to analyses.</p><div class="fullcomment"><div class="comment cmt"><p>Trait for (may-)points-to analyses.
+Can answer may-points-to and may-alias queries.
 </p></div></div>
     </li><li name="tip.analysis.StTerm" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="StTermextendsAnyRef"></a>
@@ -711,12 +726,12 @@ The tag is used to distinguish between different pointers that point to the same
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.package@StTermextendsAnyRef" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Terms used in unification.</p>
-    </li><li name="tip.analysis.SteensgaardAnalysis" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="SteensgaardAnalysisextendsDepthFirstAstVisitor[Null]"></a>
+    </li><li name="tip.analysis.SteensgaardAnalysis" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="SteensgaardAnalysisextendsDepthFirstAstVisitor[Null]withPointsToAnalysis"></a>
       <a id="SteensgaardAnalysis:SteensgaardAnalysis"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -724,34 +739,36 @@ The tag is used to distinguish between different pointers that point to the same
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="SteensgaardAnalysis.html"><span class="name">SteensgaardAnalysis</span></a><span class="result"> extends <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Null">Null</span>]</span>
+        <a href="SteensgaardAnalysis.html"><span class="name">SteensgaardAnalysis</span></a><span class="result"> extends <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Null">Null</span>] with <a href="PointsToAnalysis.html" class="extype" name="tip.analysis.PointsToAnalysis">PointsToAnalysis</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@SteensgaardAnalysisextendsDepthFirstAstVisitor[Null]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.package@SteensgaardAnalysisextendsDepthFirstAstVisitor[Null]withPointsToAnalysis" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Steensgaard-style pointer analysis.</p><div class="fullcomment"><div class="comment cmt"><p>Steensgaard-style pointer analysis.
+The analysis associates an <a href="StTerm.html" class="extype" name="tip.analysis.StTerm">StTerm</a> with each variable declaration and expression node in the AST.
+It is implemented using <a href="../solvers/UnionFindSolver.html" class="extype" name="tip.solvers.UnionFindSolver">tip.solvers.UnionFindSolver</a>.
+</p></div></div>
     </li><li name="tip.analysis.TypeAnalysis" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="TypeAnalysisextendsDepthFirstAstVisitor[Null]withProductwithSerializable"></a>
+      <a id="TypeAnalysisextendsDepthFirstAstVisitor[Null]withAnalysis[tip.ast.AstNodeData.TypeData]"></a>
       <a id="TypeAnalysis:TypeAnalysis"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">case class</span>
+        <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="TypeAnalysis.html"><span class="name">TypeAnalysis</span></a><span class="params">(<span name="program">program: <a href="../ast/AProgram.html" class="extype" name="tip.ast.AProgram">AProgram</a></span>)</span><span class="result"> extends <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Null">Null</span>] with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a href="TypeAnalysis.html"><span class="name">TypeAnalysis</span></a><span class="result"> extends <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Null">Null</span>] with <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<a href="../ast/AstNodeData$.html#TypeData=Map[tip.ast.AstNode,Option[tip.types.TipType]]" class="extmbr" name="tip.ast.AstNodeData.TypeData">TypeData</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.package@TypeAnalysisextendsDepthFirstAstVisitor[Null]withProductwithSerializable" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.package@TypeAnalysisextendsDepthFirstAstVisitor[Null]withAnalysis[tip.ast.AstNodeData.TypeData]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">The analysis associates with each node in the AST a <a href="../types/TipType.html" class="extype" name="tip.types.TipType">tip.types.TipType</a>.</p><div class="fullcomment"><div class="comment cmt"><p>The analysis associates with each node in the AST a <a href="../types/TipType.html" class="extype" name="tip.types.TipType">tip.types.TipType</a>.
-The associated term is meant to represent a TipType (when the inference has established
-a definite type), a TipType with open variables (when the inference has not inferred the identity
-of all the types appearing as subterms) and a rational recursive TipType in the case of <a href="../types/Mu.html" class="extype" name="tip.types.Mu">tip.types.Mu</a>.
+      <p class="shortcomment cmt">Unification-based type analysis.</p><div class="fullcomment"><div class="comment cmt"><p>Unification-based type analysis.
+The analysis associates a <a href="../types/TipType.html" class="extype" name="tip.types.TipType">tip.types.TipType</a> with each variable declaration and expression node in the AST.
+It is implemented using <a href="../solvers/UnionFindSolver.html" class="extype" name="tip.solvers.UnionFindSolver">tip.solvers.UnionFindSolver</a>.
 </p></div></div>
     </li></ol>
             </div>
@@ -773,7 +790,7 @@ of all the types appearing as subterms) and a rational recursive TipType in the 
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.package@FlowSensitiveAnalysis" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">A factory to create a specific flow-sensitive analysis that matches the options.</p>
@@ -790,7 +807,7 @@ of all the types appearing as subterms) and a rational recursive TipType in the 
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.package@Fresh" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Counter for producing fresh IDs.</p>
@@ -807,7 +824,7 @@ of all the types appearing as subterms) and a rational recursive TipType in the 
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.package@SignAnalysisCommons" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       

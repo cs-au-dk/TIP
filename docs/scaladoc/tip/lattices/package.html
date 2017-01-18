@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>lattices - TIP API - tip.lattices</title>
-          <meta name="description" content="lattices - TIP API - tip.lattices" />
-          <meta name="keywords" content="lattices TIP API tip.lattices" />
+          <title>lattices - tip.lattices</title>
+          <meta name="description" content="lattices - tip.lattices" />
+          <meta name="keywords" content="lattices tip.lattices" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -28,11 +28,11 @@
         </head>
         <body class="value">
       <div id="definition">
-        <img src="../../lib/package_big.png" />
+        <img alt="Package" src="../../lib/package_big.png" />
         <p id="owner"><a href="../package.html" class="extype" name="tip">tip</a></p>
         <h1>lattices</h1><span class="permalink">
       <a href="../../index.html#tip.lattices.package" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       </div>
@@ -79,10 +79,10 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.lattices.package@FlatLattice[X]extendsLattice" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">The flat lattice made of element of X.</p><div class="fullcomment"><div class="comment cmt"><p>The flat lattice made of element of X.
+      <p class="shortcomment cmt">The flat lattice made of element of <code>X</code>.</p><div class="fullcomment"><div class="comment cmt"><p>The flat lattice made of element of <code>X</code>.
 Top is greater than every other element, and Bottom is less than every other element.
 No additional ordering is defined.
 </p></div></div>
@@ -99,11 +99,10 @@ No additional ordering is defined.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.lattices.package@IntervalLatticeextendsLatticewithLatticeOps" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">The interval lattice
-</p>
+      <p class="shortcomment cmt">The interval lattice.</p>
     </li><li name="tip.lattices.Lattice" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="LatticeextendsAnyRef"></a>
       <a id="Lattice:Lattice"></a>
@@ -117,7 +116,7 @@ No additional ordering is defined.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.lattices.package@LatticeextendsAnyRef" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">A (semi-)lattice.</p>
@@ -134,7 +133,7 @@ No additional ordering is defined.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.lattices.package@LatticeOpsextendsAnyRef" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Abstract operators.</p>
@@ -151,10 +150,10 @@ No additional ordering is defined.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.lattices.package@LiftLattice[+L&lt;:tip.lattices.Lattice]extendsLattice" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">The lift lattice for l.</p><div class="fullcomment"><div class="comment cmt"><p>The lift lattice for l.
+      <p class="shortcomment cmt">The lift lattice for <code>sublattice</code>.</p><div class="fullcomment"><div class="comment cmt"><p>The lift lattice for <code>sublattice</code>.
 Supports implicit lifting and unlifting.
 </p></div></div>
     </li><li name="tip.lattices.MapLattice" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -170,12 +169,11 @@ Supports implicit lifting and unlifting.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.lattices.package@MapLattice[A,+L&lt;:tip.lattices.Lattice]extendsLattice" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">A lattice of maps from the set X to the lattice l.</p><div class="fullcomment"><div class="comment cmt"><p>A lattice of maps from the set X to the lattice l.
-The set X a subset of A and it is defined by the characteristic function ch, i.e.
-a is in X if and only if ch(a) returns true.
+      <p class="shortcomment cmt">A lattice of maps from the set <code>X</code> to the lattice <code>sublattice</code>.</p><div class="fullcomment"><div class="comment cmt"><p>A lattice of maps from the set <code>X</code> to the lattice <code>sublattice</code>.
+The set <code>X</code> a subset of <code>A</code> and it is defined by the characteristic function <code>ch</code>, i.e. <code>a</code> is in <code>X</code> if and only if <code>ch(a)</code> returns true.
 Bottom is the default value.
 </p></div></div>
     </li><li name="tip.lattices.PairLattice" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
@@ -191,10 +189,10 @@ Bottom is the default value.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.lattices.package@PairLattice[L1&lt;:tip.lattices.Lattice,L2&lt;:tip.lattices.Lattice]extendsLattice" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">The product lattice made by l1 and l2.</p>
+      <p class="shortcomment cmt">The product lattice made by <code>l1</code> and <code>l2</code>.</p>
     </li><li name="tip.lattices.PowersetLattice" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="PowersetLattice[A]extendsLattice"></a>
       <a id="PowersetLattice[A]:PowersetLattice[A]"></a>
@@ -208,11 +206,10 @@ Bottom is the default value.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.lattices.package@PowersetLattice[A]extendsLattice" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">The powerset lattice of X, where X is the subset of A
-defined by the characteristic function ch.</p>
+      <p class="shortcomment cmt">The powerset lattice of <code>X</code>, where <code>X</code> is the subset of <code>A</code> defined by the characteristic function <code>ch</code>.</p>
     </li><li name="tip.lattices.ReversePowersetLattice" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="ReversePowersetLattice[A]extendsLattice"></a>
       <a id="ReversePowersetLattice[A]:ReversePowersetLattice[A]"></a>
@@ -226,12 +223,10 @@ defined by the characteristic function ch.</p>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.lattices.package@ReversePowersetLattice[A]extendsLattice" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">The powerset lattice of X, where X is the subset of A
-defined by the characteristic function ch, with reverse
-subset ordering.</p>
+      <p class="shortcomment cmt">The powerset lattice of <code>X</code>, where <code>X</code> is the subset of <code>A</code> defined by the characteristic function ch, with reverse subset ordering.</p>
     </li><li name="tip.lattices.UniformProductLattice" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="UniformProductLattice[L&lt;:tip.lattices.Lattice]extendsLattice"></a>
       <a id="UniformProductLattice[L&lt;:Lattice]:UniformProductLattice[L]"></a>
@@ -245,10 +240,10 @@ subset ordering.</p>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.lattices.package@UniformProductLattice[L&lt;:tip.lattices.Lattice]extendsLattice" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">The n-th product lattice made of l lattices.</p>
+      <p class="shortcomment cmt">The <code>n</code>-th product lattice made of <code>sublattice</code> lattices.</p>
     </li></ol>
             </div>
 
@@ -256,7 +251,24 @@ subset ordering.</p>
 
         <div id="values" class="values members">
               <h3>Value Members</h3>
-              <ol><li name="tip.lattices.SignLattice" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+              <ol><li name="tip.lattices.SignElement" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SignElement"></a>
+      <a id="SignElement:SignElement"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="SignElement$.html"><span class="name">SignElement</span></a><span class="result"> extends <span class="extype" name="scala.Enumeration">Enumeration</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.lattices.package@SignElement" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">An element of the sign lattice.</p>
+    </li><li name="tip.lattices.SignLattice" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="SignLattice"></a>
       <a id="SignLattice:SignLattice"></a>
       <h4 class="signature">
@@ -265,11 +277,11 @@ subset ordering.</p>
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a href="SignLattice$.html"><span class="name">SignLattice</span></a><span class="result"> extends <a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a> with <a href="LatticeOps.html" class="extype" name="tip.lattices.LatticeOps">LatticeOps</a></span>
+        <a href="SignLattice$.html"><span class="name">SignLattice</span></a><span class="result"> extends <a href="FlatLattice.html" class="extype" name="tip.lattices.FlatLattice">FlatLattice</a>[<a href="SignElement$.html#ValueextendsOrdered[Enumeration.this.Value]withSerializable" class="extmbr" name="tip.lattices.SignElement.Value">lattices.SignElement.Value</a>] with <a href="LatticeOps.html" class="extype" name="tip.lattices.LatticeOps">LatticeOps</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.lattices.package@SignLattice" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">The sign lattice.</p>

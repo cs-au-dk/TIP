@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>DeclarationAnalysis - TIP API - tip.analysis.DeclarationAnalysis</title>
-          <meta name="description" content="DeclarationAnalysis - TIP API - tip.analysis.DeclarationAnalysis" />
-          <meta name="keywords" content="DeclarationAnalysis TIP API tip.analysis.DeclarationAnalysis" />
+          <title>DeclarationAnalysis - tip.analysis.DeclarationAnalysis</title>
+          <meta name="description" content="DeclarationAnalysis - tip.analysis.DeclarationAnalysis" />
+          <meta name="keywords" content="DeclarationAnalysis tip.analysis.DeclarationAnalysis" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -28,13 +28,13 @@
         </head>
         <body class="type">
       <div id="definition">
-        <img src="../../lib/class_big.png" />
+        <img alt="Class" src="../../lib/class_big.png" />
         <p id="owner"><a href="../package.html" class="extype" name="tip">tip</a>.<a href="package.html" class="extype" name="tip.analysis">analysis</a></p>
         <h1>DeclarationAnalysis</h1><h3><span class="morelinks"><div>Related Doc:
             <a href="package.html" class="extype" name="tip.analysis">package analysis</a>
           </div></span></h3><span class="permalink">
       <a href="../../index.html#tip.analysis.DeclarationAnalysis" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       </div>
@@ -45,15 +45,14 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">DeclarationAnalysis</span><span class="result"> extends <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="../ast/AIdentifierDeclaration.html" class="extype" name="tip.ast.AIdentifierDeclaration">AIdentifierDeclaration</a>]]</span>
+        <span class="name">DeclarationAnalysis</span><span class="result"> extends <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>]] with <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<a href="../ast/AstNodeData$.html#DeclarationData=Map[tip.ast.AIdentifier,tip.ast.ADeclaration]" class="extmbr" name="tip.ast.AstNodeData.DeclarationData">DeclarationData</a>]</span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The analysis associates with each identifier its definition,
-using the syntactical scope.
-</p></div><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Declaration analysis, binds identifiers to their declarations.
+</p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="../ast/AstNodeData$.html" class="extype" name="tip.ast.AstNodeData">tip.ast.AstNodeData</a></p></span></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="../ast/AIdentifierDeclaration.html" class="extype" name="tip.ast.AIdentifierDeclaration">AIdentifierDeclaration</a>]], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<a href="../ast/AstNodeData$.html#DeclarationData=Map[tip.ast.AIdentifier,tip.ast.ADeclaration]" class="extmbr" name="tip.ast.AstNodeData.DeclarationData">DeclarationData</a>], <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>]], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -64,22 +63,21 @@ using the syntactical scope.
               <ol>
                 
                 <li class="alpha in"><span>Alphabetic</span></li>
-                <li class="inherit out"><span>By inheritance</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
               </ol>
             </div>
         <div id="ancestors">
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="tip.analysis.DeclarationAnalysis"><span>DeclarationAnalysis</span></li><li class="in" name="tip.ast.DepthFirstAstVisitor"><span>DepthFirstAstVisitor</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="tip.analysis.DeclarationAnalysis"><span>DeclarationAnalysis</span></li><li class="in" name="tip.analysis.Analysis"><span>Analysis</span></li><li class="in" name="tip.ast.DepthFirstAstVisitor"><span>DepthFirstAstVisitor</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
             <ol>
               <li class="hideall out"><span>Hide All</span></li>
-              <li class="showall in"><span>Show all</span></li>
+              <li class="showall in"><span>Show All</span></li>
             </ol>
-            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
           </div>
         <div id="visbl">
             <span class="filtertype">Visibility</span>
@@ -104,7 +102,7 @@ using the syntactical scope.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.DeclarationAnalysis@&lt;init&gt;(prog:tip.ast.AProgram):tip.analysis.DeclarationAnalysis" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
@@ -130,7 +128,7 @@ using the syntactical scope.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.DeclarationAnalysis@!=(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -147,7 +145,7 @@ using the syntactical scope.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.DeclarationAnalysis@##():Int" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -164,10 +162,27 @@ using the syntactical scope.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.DeclarationAnalysis@==(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="tip.analysis.DeclarationAnalysis#analyze" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="analyze():tip.ast.AstNodeData.DeclarationData"></a>
+      <a id="analyze():DeclarationData"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">analyze</span><span class="params">()</span><span class="result">: <a href="../ast/AstNodeData$.html#DeclarationData=Map[tip.ast.AIdentifier,tip.ast.ADeclaration]" class="extmbr" name="tip.ast.AstNodeData.DeclarationData">DeclarationData</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.analysis.DeclarationAnalysis@analyze():tip.ast.AstNodeData.DeclarationData" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Performs the analysis and returns the result.</p><div class="fullcomment"><div class="comment cmt"><p>Performs the analysis and returns the result.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.DeclarationAnalysis">DeclarationAnalysis</a> → <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a></dd></dl></div>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -181,7 +196,7 @@ using the syntactical scope.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.DeclarationAnalysis@asInstanceOf[T0]:T0" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
@@ -198,7 +213,7 @@ using the syntactical scope.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.DeclarationAnalysis@clone():Object" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -221,7 +236,7 @@ using the syntactical scope.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.DeclarationAnalysis@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -238,10 +253,44 @@ using the syntactical scope.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.DeclarationAnalysis@equals(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="tip.analysis.DeclarationAnalysis#extendEnv" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="extendEnv(env:Map[String,tip.ast.ADeclaration],pair:(String,tip.ast.ADeclaration)):Map[String,tip.ast.ADeclaration]"></a>
+      <a id="extendEnv(Map[String,ADeclaration],(String,ADeclaration)):Map[String,ADeclaration]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">extendEnv</span><span class="params">(<span name="env">env: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>]</span>, <span name="pair">pair: (<span class="extype" name="scala.Predef.String">String</span>, <a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>)</span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.analysis.DeclarationAnalysis@extendEnv(env:Map[String,tip.ast.ADeclaration],pair:(String,tip.ast.ADeclaration)):Map[String,tip.ast.ADeclaration]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Extend the environment <code>env</code> with the binding <code>pair</code>, checking that no re-definition occurs.</p><div class="fullcomment"><div class="comment cmt"><p>Extend the environment <code>env</code> with the binding <code>pair</code>, checking that no re-definition occurs.</p></div><dl class="paramcmts block"><dt class="param">env</dt><dd class="cmt"><p>the environment to extend</p></dd><dt class="param">pair</dt><dd class="cmt"><p>the binding to add</p></dd><dt>returns</dt><dd class="cmt"><p>the extended environment if no conflict occurs, throws a RuntimeException otherwise</p></dd></dl></div>
+    </li><li name="tip.analysis.DeclarationAnalysis#extendEnv" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="extendEnv(env:Map[String,tip.ast.ADeclaration],ext:Map[String,tip.ast.ADeclaration]):Map[String,tip.ast.ADeclaration]"></a>
+      <a id="extendEnv(Map[String,ADeclaration],Map[String,ADeclaration]):Map[String,ADeclaration]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">extendEnv</span><span class="params">(<span name="env">env: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>]</span>, <span name="ext">ext: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.analysis.DeclarationAnalysis@extendEnv(env:Map[String,tip.ast.ADeclaration],ext:Map[String,tip.ast.ADeclaration]):Map[String,tip.ast.ADeclaration]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Extend the environment <code>env</code> with the bindings in <code>ext</code>, checking that no re-definitions occur.</p><div class="fullcomment"><div class="comment cmt"><p>Extend the environment <code>env</code> with the bindings in <code>ext</code>, checking that no re-definitions occur.</p></div><dl class="paramcmts block"><dt class="param">env</dt><dd class="cmt"><p>the environment to extend</p></dd><dt class="param">ext</dt><dd class="cmt"><p>the bindings to add</p></dd><dt>returns</dt><dd class="cmt"><p>the extended environment if no conflict occurs, throws a RuntimeException otherwise</p></dd></dl></div>
     </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <a id="finalize():Unit"></a>
@@ -255,7 +304,7 @@ using the syntactical scope.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.DeclarationAnalysis@finalize():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -278,7 +327,7 @@ using the syntactical scope.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.DeclarationAnalysis@getClass():Class[_]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -295,7 +344,7 @@ using the syntactical scope.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.DeclarationAnalysis@hashCode():Int" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -312,7 +361,7 @@ using the syntactical scope.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.DeclarationAnalysis@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
@@ -329,7 +378,7 @@ using the syntactical scope.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.DeclarationAnalysis@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -346,7 +395,7 @@ using the syntactical scope.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.DeclarationAnalysis@notify():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -363,10 +412,27 @@ using the syntactical scope.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.DeclarationAnalysis@notifyAll():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="tip.analysis.DeclarationAnalysis#redefinition" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="redefinition(conflicting:Set[tip.ast.ADeclaration]):Nothing"></a>
+      <a id="redefinition(Set[ADeclaration]):Nothing"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">redefinition</span><span class="params">(<span name="conflicting">conflicting: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Nothing">Nothing</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#tip.analysis.DeclarationAnalysis@redefinition(conflicting:Set[tip.ast.ADeclaration]):Nothing" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -380,7 +446,7 @@ using the syntactical scope.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.DeclarationAnalysis@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -397,53 +463,48 @@ using the syntactical scope.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.DeclarationAnalysis@toString():String" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="tip.analysis.DeclarationAnalysis#visit" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="visit(node:tip.ast.AstNode,env:scala.collection.immutable.Map[String,tip.ast.AIdentifierDeclaration]):Unit"></a>
-      <a id="visit(AstNode,Map[String,AIdentifierDeclaration]):Unit"></a>
+      <a id="visit(node:tip.ast.AstNode,env:Map[String,tip.ast.ADeclaration]):Unit"></a>
+      <a id="visit(AstNode,Map[String,ADeclaration]):Unit"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">visit</span><span class="params">(<span name="node">node: <a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a></span>, <span name="env">env: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="../ast/AIdentifierDeclaration.html" class="extype" name="tip.ast.AIdentifierDeclaration">AIdentifierDeclaration</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">visit</span><span class="params">(<span name="node">node: <a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a></span>, <span name="env">env: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.DeclarationAnalysis@visit(node:tip.ast.AstNode,env:scala.collection.immutable.Map[String,tip.ast.AIdentifierDeclaration]):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.DeclarationAnalysis@visit(node:tip.ast.AstNode,env:Map[String,tip.ast.ADeclaration]):Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">The method recursively visit a the nodes of the AST.</p><div class="fullcomment"><div class="comment cmt"><p>The method recursively visit a the nodes of the AST.
-An environment env is provided as arguments, associating with each
-identifier name the node that declares it.
-Whenever an identifier is visited the declaration associated with its
-name in the environment is attached to the metadata of the identifier.
-</p></div><dl class="paramcmts block"><dt class="param">node</dt><dd class="cmt"><p>the node to visit</p></dd><dt class="param">env</dt><dd class="cmt"><p>the environment associating with each name its declaration in the current scope
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.DeclarationAnalysis">DeclarationAnalysis</a> → <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a></dd></dl></div>
+      <p class="shortcomment cmt">Recursively visits the nodes of the AST.</p><div class="fullcomment"><div class="comment cmt"><p>Recursively visits the nodes of the AST.
+An environment <code>env</code> is provided as argument, mapping each identifier name to the node that declares it.
+Whenever an identifier is visited, <code>declResult</code> is extended accordingly.
+</p></div><dl class="paramcmts block"><dt class="param">node</dt><dd class="cmt"><p>the node to visit</p></dd><dt class="param">env</dt><dd class="cmt"><p>the environment associating with each name its declaration in the current scope</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.DeclarationAnalysis">DeclarationAnalysis</a> → <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a></dd></dl></div>
     </li><li name="tip.ast.DepthFirstAstVisitor#visitChildren" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="visitChildren(node:tip.ast.AstNode,arg:A):Unit"></a>
-      <a id="visitChildren(AstNode,Map[String,AIdentifierDeclaration]):Unit"></a>
+      <a id="visitChildren(AstNode,Map[String,ADeclaration]):Unit"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">visitChildren</span><span class="params">(<span name="node">node: <a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a></span>, <span name="arg">arg: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="../ast/AIdentifierDeclaration.html" class="extype" name="tip.ast.AIdentifierDeclaration">AIdentifierDeclaration</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">visitChildren</span><span class="params">(<span name="node">node: <a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a></span>, <span name="arg">arg: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.DeclarationAnalysis@visitChildren(node:tip.ast.AstNode,arg:A):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Recursively perform the visit to the sub-node of the passed node, passing the provided argument
-</p><div class="fullcomment"><div class="comment cmt"><p>Recursively perform the visit to the sub-node of the passed node, passing the provided argument
-</p></div><dl class="paramcmts block"><dt class="param">node</dt><dd class="cmt"><p>the node whose children need to be visited</p></dd><dt class="param">arg</dt><dd class="cmt"><p>the argument to be passed to the visit of the children
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a></dd></dl></div>
+      <p class="shortcomment cmt">Recursively perform the visit to the sub-node of the passed node, passing the provided argument.</p><div class="fullcomment"><div class="comment cmt"><p>Recursively perform the visit to the sub-node of the passed node, passing the provided argument.
+</p></div><dl class="paramcmts block"><dt class="param">node</dt><dd class="cmt"><p>the node whose children need to be visited</p></dd><dt class="param">arg</dt><dd class="cmt"><p>the argument to be passed to all sub-nodes</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a></dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
@@ -457,7 +518,7 @@ name in the environment is attached to the metadata of the identifier.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.DeclarationAnalysis@wait():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -480,7 +541,7 @@ name in the environment is attached to the metadata of the identifier.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.DeclarationAnalysis@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -503,7 +564,7 @@ name in the environment is attached to the metadata of the identifier.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.DeclarationAnalysis@wait(x$1:Long):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -522,8 +583,10 @@ name in the environment is attached to the metadata of the identifier.
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="tip.ast.DepthFirstAstVisitor">
-              <h3>Inherited from <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="../ast/AIdentifierDeclaration.html" class="extype" name="tip.ast.AIdentifierDeclaration">AIdentifierDeclaration</a>]]</h3>
+        <div class="parent" name="tip.analysis.Analysis">
+              <h3>Inherited from <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<a href="../ast/AstNodeData$.html#DeclarationData=Map[tip.ast.AIdentifier,tip.ast.ADeclaration]" class="extmbr" name="tip.ast.AstNodeData.DeclarationData">DeclarationData</a>]</h3>
+            </div><div class="parent" name="tip.ast.DepthFirstAstVisitor">
+              <h3>Inherited from <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>]]</h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">

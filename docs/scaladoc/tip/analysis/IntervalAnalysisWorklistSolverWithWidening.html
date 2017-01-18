@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>IntervalAnalysisWorklistSolverWithWidening - TIP API - tip.analysis.IntervalAnalysisWorklistSolverWithWidening</title>
-          <meta name="description" content="IntervalAnalysisWorklistSolverWithWidening - TIP API - tip.analysis.IntervalAnalysisWorklistSolverWithWidening" />
-          <meta name="keywords" content="IntervalAnalysisWorklistSolverWithWidening TIP API tip.analysis.IntervalAnalysisWorklistSolverWithWidening" />
+          <title>IntervalAnalysisWorklistSolverWithWidening - tip.analysis.IntervalAnalysisWorklistSolverWithWidening</title>
+          <meta name="description" content="IntervalAnalysisWorklistSolverWithWidening - tip.analysis.IntervalAnalysisWorklistSolverWithWidening" />
+          <meta name="keywords" content="IntervalAnalysisWorklistSolverWithWidening tip.analysis.IntervalAnalysisWorklistSolverWithWidening" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -28,13 +28,13 @@
         </head>
         <body class="type">
       <div id="definition">
-        <img src="../../lib/class_big.png" />
+        <img alt="Class" src="../../lib/class_big.png" />
         <p id="owner"><a href="../package.html" class="extype" name="tip">tip</a>.<a href="package.html" class="extype" name="tip.analysis">analysis</a></p>
         <h1>IntervalAnalysisWorklistSolverWithWidening</h1><h3><span class="morelinks"><div>Related Doc:
             <a href="package.html" class="extype" name="tip.analysis">package analysis</a>
           </div></span></h3><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       </div>
@@ -45,14 +45,14 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">IntervalAnalysisWorklistSolverWithWidening</span><span class="result"> extends <a href="IntervalAnalysis.html" class="extype" name="tip.analysis.IntervalAnalysis">IntervalAnalysis</a> with <a href="../solvers/WorklistFixpointSolverWithInitAndSetWidening.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithInitAndSetWidening">WorklistFixpointSolverWithInitAndSetWidening</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]] with <a href="ForwardDependencies.html" class="extype" name="tip.analysis.ForwardDependencies">ForwardDependencies</a></span>
+        <span class="name">IntervalAnalysisWorklistSolverWithWidening</span><span class="result"> extends <a href="IntervalAnalysis.html" class="extype" name="tip.analysis.IntervalAnalysis">IntervalAnalysis</a> with <a href="../solvers/WorklistFixpointSolverWithInitAndSetWidening.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithInitAndSetWidening">WorklistFixpointSolverWithInitAndSetWidening</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] with <a href="ForwardDependencies.html" class="extype" name="tip.analysis.ForwardDependencies">ForwardDependencies</a></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Interval analysis, using the worklist solver with init and widening.
 </p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="ForwardDependencies.html" class="extype" name="tip.analysis.ForwardDependencies">ForwardDependencies</a>, <a href="../solvers/WorklistFixpointSolverWithInitAndSetWidening.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithInitAndSetWidening">WorklistFixpointSolverWithInitAndSetWidening</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]], <a href="../solvers/WorklistFixpointSolverWithInit.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithInit">WorklistFixpointSolverWithInit</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]], <a href="../solvers/WorklistFixpointSolver.html" class="extype" name="tip.solvers.WorklistFixpointSolver">WorklistFixpointSolver</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]], <a href="../solvers/Dependencies.html" class="extype" name="tip.solvers.Dependencies">Dependencies</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]], <a href="../solvers/ListSetWorklist.html" class="extype" name="tip.solvers.ListSetWorklist">ListSetWorklist</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]], <a href="../solvers/Worklist.html" class="extype" name="tip.solvers.Worklist">Worklist</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]], <a href="../solvers/MapLatticeSolver.html" class="extype" name="tip.solvers.MapLatticeSolver">MapLatticeSolver</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]], <a href="../solvers/LatticeSolver.html" class="extype" name="tip.solvers.LatticeSolver">LatticeSolver</a>, <a href="IntervalAnalysis.html" class="extype" name="tip.analysis.IntervalAnalysis">IntervalAnalysis</a>, <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="ForwardDependencies.html" class="extype" name="tip.analysis.ForwardDependencies">ForwardDependencies</a>, <a href="../solvers/WorklistFixpointSolverWithInitAndSetWidening.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithInitAndSetWidening">WorklistFixpointSolverWithInitAndSetWidening</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>], <a href="../solvers/WorklistFixpointSolverWithInit.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithInit">WorklistFixpointSolverWithInit</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>], <a href="../solvers/WorklistFixpointSolver.html" class="extype" name="tip.solvers.WorklistFixpointSolver">WorklistFixpointSolver</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>], <a href="Dependencies.html" class="extype" name="tip.analysis.Dependencies">Dependencies</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>], <a href="../solvers/ListSetWorklist.html" class="extype" name="tip.solvers.ListSetWorklist">ListSetWorklist</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>], <a href="../solvers/Worklist.html" class="extype" name="tip.solvers.Worklist">Worklist</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>], <a href="../solvers/MapLatticeSolver.html" class="extype" name="tip.solvers.MapLatticeSolver">MapLatticeSolver</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>], <a href="../solvers/LatticeSolver.html" class="extype" name="tip.solvers.LatticeSolver">LatticeSolver</a>, <a href="IntervalAnalysis.html" class="extype" name="tip.analysis.IntervalAnalysis">IntervalAnalysis</a>, <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a>, <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Any">Any</span>], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div><div class="toggleContainer block">
             <span class="toggle">Known Subclasses</span>
             <div class="subClasses hiddenContent"><a href="IntervalAnalysisWorklistSolverWithWideningAndNarrowing.html" class="extype" name="tip.analysis.IntervalAnalysisWorklistSolverWithWideningAndNarrowing">IntervalAnalysisWorklistSolverWithWideningAndNarrowing</a></div>
@@ -66,22 +66,21 @@
               <ol>
                 
                 <li class="alpha in"><span>Alphabetic</span></li>
-                <li class="inherit out"><span>By inheritance</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
               </ol>
             </div>
         <div id="ancestors">
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="tip.analysis.IntervalAnalysisWorklistSolverWithWidening"><span>IntervalAnalysisWorklistSolverWithWidening</span></li><li class="in" name="tip.analysis.ForwardDependencies"><span>ForwardDependencies</span></li><li class="in" name="tip.solvers.WorklistFixpointSolverWithInitAndSetWidening"><span>WorklistFixpointSolverWithInitAndSetWidening</span></li><li class="in" name="tip.solvers.WorklistFixpointSolverWithInit"><span>WorklistFixpointSolverWithInit</span></li><li class="in" name="tip.solvers.WorklistFixpointSolver"><span>WorklistFixpointSolver</span></li><li class="in" name="tip.solvers.Dependencies"><span>Dependencies</span></li><li class="in" name="tip.solvers.ListSetWorklist"><span>ListSetWorklist</span></li><li class="in" name="tip.solvers.Worklist"><span>Worklist</span></li><li class="in" name="tip.solvers.MapLatticeSolver"><span>MapLatticeSolver</span></li><li class="in" name="tip.solvers.LatticeSolver"><span>LatticeSolver</span></li><li class="in" name="tip.analysis.IntervalAnalysis"><span>IntervalAnalysis</span></li><li class="in" name="tip.analysis.FlowSensitiveAnalysis"><span>FlowSensitiveAnalysis</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="tip.analysis.IntervalAnalysisWorklistSolverWithWidening"><span>IntervalAnalysisWorklistSolverWithWidening</span></li><li class="in" name="tip.analysis.ForwardDependencies"><span>ForwardDependencies</span></li><li class="in" name="tip.solvers.WorklistFixpointSolverWithInitAndSetWidening"><span>WorklistFixpointSolverWithInitAndSetWidening</span></li><li class="in" name="tip.solvers.WorklistFixpointSolverWithInit"><span>WorklistFixpointSolverWithInit</span></li><li class="in" name="tip.solvers.WorklistFixpointSolver"><span>WorklistFixpointSolver</span></li><li class="in" name="tip.analysis.Dependencies"><span>Dependencies</span></li><li class="in" name="tip.solvers.ListSetWorklist"><span>ListSetWorklist</span></li><li class="in" name="tip.solvers.Worklist"><span>Worklist</span></li><li class="in" name="tip.solvers.MapLatticeSolver"><span>MapLatticeSolver</span></li><li class="in" name="tip.solvers.LatticeSolver"><span>LatticeSolver</span></li><li class="in" name="tip.analysis.IntervalAnalysis"><span>IntervalAnalysis</span></li><li class="in" name="tip.analysis.FlowSensitiveAnalysis"><span>FlowSensitiveAnalysis</span></li><li class="in" name="tip.analysis.Analysis"><span>Analysis</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
             <ol>
               <li class="hideall out"><span>Hide All</span></li>
-              <li class="showall in"><span>Show all</span></li>
+              <li class="showall in"><span>Show All</span></li>
             </ol>
-            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
           </div>
         <div id="visbl">
             <span class="filtertype">Visibility</span>
@@ -94,7 +93,7 @@
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="tip.analysis.IntervalAnalysisWorklistSolverWithWidening#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(cfg:tip.graph.ControlFlowGraph[tip.ast.AstNode]):tip.analysis.IntervalAnalysisWorklistSolverWithWidening"></a>
+      <a id="&lt;init&gt;(cfg:tip.cfg.ProgramCfg)(implicitdeclData:tip.ast.AstNodeData.DeclarationData):tip.analysis.IntervalAnalysisWorklistSolverWithWidening"></a>
       <a id="&lt;init&gt;:IntervalAnalysisWorklistSolverWithWidening"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -102,11 +101,11 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">IntervalAnalysisWorklistSolverWithWidening</span><span class="params">(<span name="cfg">cfg: <a href="../graph/ControlFlowGraph.html" class="extype" name="tip.graph.ControlFlowGraph">ControlFlowGraph</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]</span>)</span>
+        <span class="name">IntervalAnalysisWorklistSolverWithWidening</span><span class="params">(<span name="cfg">cfg: <a href="../cfg/ProgramCfg.html" class="extype" name="tip.cfg.ProgramCfg">ProgramCfg</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="declData">declData: <a href="../ast/AstNodeData$.html#DeclarationData=Map[tip.ast.AIdentifier,tip.ast.ADeclaration]" class="extmbr" name="tip.ast.AstNodeData.DeclarationData">DeclarationData</a></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@&lt;init&gt;(cfg:tip.graph.ControlFlowGraph[tip.ast.AstNode]):tip.analysis.IntervalAnalysisWorklistSolverWithWidening" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@&lt;init&gt;(cfg:tip.cfg.ProgramCfg)(implicitdeclData:tip.ast.AstNodeData.DeclarationData):tip.analysis.IntervalAnalysisWorklistSolverWithWidening" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
@@ -132,7 +131,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@!=(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -149,7 +148,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@##():Int" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -166,7 +165,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@==(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -183,42 +182,42 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@B:scala.collection.immutable.Set[Int]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
     </li><li name="tip.solvers.ListSetWorklist#add" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="add(ns:scala.collection.immutable.Set[N]):Unit"></a>
-      <a id="add(Set[GNode[AstNode]]):Unit"></a>
+      <a id="add(Set[CfgNode]):Unit"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">add</span><span class="params">(<span name="ns">ns: <span class="extype" name="scala.collection.immutable.Set">Set</span>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">add</span><span class="params">(<span name="ns">ns: <span class="extype" name="scala.collection.immutable.Set">Set</span>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@add(ns:scala.collection.immutable.Set[N]):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Adds a set of items to the worklist.</p><div class="fullcomment"><div class="comment cmt"><p>Adds a set of items to the worklist.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../solvers/ListSetWorklist.html" class="extype" name="tip.solvers.ListSetWorklist">ListSetWorklist</a> → <a href="../solvers/Worklist.html" class="extype" name="tip.solvers.Worklist">Worklist</a></dd></dl></div>
     </li><li name="tip.solvers.ListSetWorklist#add" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="add(n:N):Unit"></a>
-      <a id="add(GNode[AstNode]):Unit"></a>
+      <a id="add(CfgNode):Unit"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">add</span><span class="params">(<span name="n">n: <a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">add</span><span class="params">(<span name="n">n: <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@add(n:N):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Adds an item to the worklist.</p><div class="fullcomment"><div class="comment cmt"><p>Adds an item to the worklist.
@@ -236,25 +235,25 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@analyze():WorklistFixpointSolverWithInit.this.lattice.Element" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">The solver function.</p><div class="fullcomment"><div class="comment cmt"><p>The solver function.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../solvers/WorklistFixpointSolverWithInit.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithInit">WorklistFixpointSolverWithInit</a> → <a href="../solvers/WorklistFixpointSolver.html" class="extype" name="tip.solvers.WorklistFixpointSolver">WorklistFixpointSolver</a> → <a href="../solvers/LatticeSolver.html" class="extype" name="tip.solvers.LatticeSolver">LatticeSolver</a></dd></dl></div>
     </li><li name="tip.solvers.WorklistFixpointSolverWithInitAndSetWidening#apply" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="apply(n:N):Unit"></a>
-      <a id="apply(GNode[AstNode]):Unit"></a>
+      <a id="apply(CfgNode):Unit"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">apply</span><span class="params">(<span name="n">n: <a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">apply</span><span class="params">(<span name="n">n: <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@apply(n:N):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Called by <a href="../solvers/WorklistFixpointSolverWithInitAndSetWidening.html#run(first:scala.collection.immutable.Set[N]):Unit" class="extmbr" name="tip.solvers.WorklistFixpointSolverWithInitAndSetWidening#run">run</a> to process an item from the worklist.</p><div class="fullcomment"><div class="comment cmt"><p>Called by <a href="../solvers/WorklistFixpointSolverWithInitAndSetWidening.html#run(first:scala.collection.immutable.Set[N]):Unit" class="extmbr" name="tip.solvers.WorklistFixpointSolverWithInitAndSetWidening#run">run</a> to process an item from the worklist.
@@ -272,24 +271,24 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@asInstanceOf[T0]:T0" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
     </li><li name="tip.analysis.IntervalAnalysisWorklistSolverWithWidening#backedge" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="backedge(src:tip.graph.GNode[tip.ast.AstNode],dst:tip.graph.GNode[tip.ast.AstNode]):Boolean"></a>
-      <a id="backedge(GNode[AstNode],GNode[AstNode]):Boolean"></a>
+      <a id="backedge(src:tip.cfg.CfgNode,dst:tip.cfg.CfgNode):Boolean"></a>
+      <a id="backedge(CfgNode,CfgNode):Boolean"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">backedge</span><span class="params">(<span name="src">src: <a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]</span>, <span name="dst">dst: <a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">backedge</span><span class="params">(<span name="src">src: <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a></span>, <span name="dst">dst: <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@backedge(src:tip.graph.GNode[tip.ast.AstNode],dst:tip.graph.GNode[tip.ast.AstNode]):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@backedge(src:tip.cfg.CfgNode,dst:tip.cfg.CfgNode):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Tells whether (src,dst) is a back-edge.</p><div class="fullcomment"><div class="comment cmt"><p>Tells whether (src,dst) is a back-edge.
@@ -307,7 +306,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@clone():Object" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -318,36 +317,36 @@
               
         </dd></dl></div>
     </li><li name="tip.analysis.IntervalAnalysis#declaredVars" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="declaredVars:scala.collection.immutable.Set[tip.ast.AIdentifier]"></a>
-      <a id="declaredVars:Set[AIdentifier]"></a>
+      <a id="declaredVars:scala.collection.immutable.Set[tip.ast.ADeclaration]"></a>
+      <a id="declaredVars:Set[ADeclaration]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">declaredVars</span><span class="result">: <span class="extype" name="scala.collection.immutable.Set">Set</span>[<a href="../ast/AIdentifier.html" class="extype" name="tip.ast.AIdentifier">AIdentifier</a>]</span>
+        <span class="name">declaredVars</span><span class="result">: <span class="extype" name="scala.collection.immutable.Set">Set</span>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@declaredVars:scala.collection.immutable.Set[tip.ast.AIdentifier]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@declaredVars:scala.collection.immutable.Set[tip.ast.ADeclaration]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="IntervalAnalysis.html" class="extype" name="tip.analysis.IntervalAnalysis">IntervalAnalysis</a></dd></dl></div>
     </li><li name="tip.analysis.FlowSensitiveAnalysis#domain" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="domain:Set[tip.graph.GNode[tip.ast.AstNode]]"></a>
-      <a id="domain:Set[GNode[AstNode]]"></a>
+      <a id="domain:Set[tip.cfg.CfgNode]"></a>
+      <a id="domain:Set[CfgNode]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">domain</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</span>
+        <span class="name">domain</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@domain:Set[tip.graph.GNode[tip.ast.AstNode]]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@domain:Set[tip.cfg.CfgNode]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">The domain of the map lattice.</p><div class="fullcomment"><div class="comment cmt"><p>The domain of the map lattice.
@@ -365,7 +364,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -382,7 +381,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@equals(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -399,7 +398,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@finalize():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -410,37 +409,37 @@
               
         </dd></dl></div>
     </li><li name="tip.analysis.IntervalAnalysisWorklistSolverWithWidening#first" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="first:scala.collection.immutable.Set[tip.graph.GNode[tip.ast.AstNode]]"></a>
-      <a id="first:Set[GNode[AstNode]]"></a>
+      <a id="first:scala.collection.immutable.Set[tip.cfg.CfgNode]"></a>
+      <a id="first:Set[CfgNode]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">first</span><span class="result">: <span class="extype" name="scala.collection.immutable.Set">Set</span>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</span>
+        <span class="name">first</span><span class="result">: <span class="extype" name="scala.collection.immutable.Set">Set</span>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@first:scala.collection.immutable.Set[tip.graph.GNode[tip.ast.AstNode]]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@first:scala.collection.immutable.Set[tip.cfg.CfgNode]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">The start locations.</p><div class="fullcomment"><div class="comment cmt"><p>The start locations.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.IntervalAnalysisWorklistSolverWithWidening">IntervalAnalysisWorklistSolverWithWidening</a> → <a href="../solvers/WorklistFixpointSolverWithInit.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithInit">WorklistFixpointSolverWithInit</a></dd></dl></div>
     </li><li name="tip.analysis.IntervalAnalysis#funsub" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="funsub(n:tip.graph.GNode[tip.ast.AstNode],s:IntervalAnalysis.this.lattice.sublattice.Element,o:IntervalAnalysis.this.lattice.Element):IntervalAnalysis.this.lattice.sublattice.Element"></a>
-      <a id="funsub(GNode[AstNode],Element,Element):Element"></a>
+      <a id="funsub(n:tip.cfg.CfgNode,s:IntervalAnalysis.this.lattice.sublattice.Element,o:IntervalAnalysis.this.lattice.Element):IntervalAnalysis.this.lattice.sublattice.Element"></a>
+      <a id="funsub(CfgNode,Element,Element):Element"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">funsub</span><span class="params">(<span name="n">n: <a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]</span>, <span name="s">s: <a href="../lattices/LiftLattice.html#Element=LiftLattice.this.Lifted" class="extmbr" name="tip.lattices.LiftLattice.Element">Element</a></span>, <span name="o">o: <a href="../lattices/MapLattice.html#Element=Map[A,MapLattice.this.sublattice.Element]" class="extmbr" name="tip.lattices.MapLattice.Element">Element</a></span>)</span><span class="result">: <a href="../lattices/LiftLattice.html#Element=LiftLattice.this.Lifted" class="extmbr" name="tip.lattices.LiftLattice.Element">Element</a></span>
+        <span class="name">funsub</span><span class="params">(<span name="n">n: <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a></span>, <span name="s">s: <a href="../lattices/LiftLattice.html#Element=LiftLattice.this.Lifted" class="extmbr" name="tip.lattices.LiftLattice.Element">Element</a></span>, <span name="o">o: <a href="../lattices/MapLattice.html#Element=Map[A,MapLattice.this.sublattice.Element]" class="extmbr" name="tip.lattices.MapLattice.Element">Element</a></span>)</span><span class="result">: <a href="../lattices/LiftLattice.html#Element=LiftLattice.this.Lifted" class="extmbr" name="tip.lattices.LiftLattice.Element">Element</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@funsub(n:tip.graph.GNode[tip.ast.AstNode],s:IntervalAnalysis.this.lattice.sublattice.Element,o:IntervalAnalysis.this.lattice.Element):IntervalAnalysis.this.lattice.sublattice.Element" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@funsub(n:tip.cfg.CfgNode,s:IntervalAnalysis.this.lattice.sublattice.Element,o:IntervalAnalysis.this.lattice.Element):IntervalAnalysis.this.lattice.sublattice.Element" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">The local update function.</p><div class="fullcomment"><div class="comment cmt"><p>The local update function.
@@ -458,7 +457,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@getClass():Class[_]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -475,28 +474,27 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@hashCode():Int" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="tip.analysis.ForwardDependencies#indep" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="indep(n:tip.graph.GNode[tip.ast.AstNode]):scala.collection.immutable.Set[tip.graph.GNode[tip.ast.AstNode]]"></a>
-      <a id="indep(GNode[AstNode]):Set[GNode[AstNode]]"></a>
+      <a id="indep(n:tip.cfg.CfgNode):scala.collection.immutable.Set[tip.cfg.CfgNode]"></a>
+      <a id="indep(CfgNode):Set[CfgNode]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">indep</span><span class="params">(<span name="n">n: <a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]</span>)</span><span class="result">: <span class="extype" name="scala.collection.immutable.Set">Set</span>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</span>
+        <span class="name">indep</span><span class="params">(<span name="n">n: <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a></span>)</span><span class="result">: <span class="extype" name="scala.collection.immutable.Set">Set</span>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@indep(n:tip.graph.GNode[tip.ast.AstNode]):scala.collection.immutable.Set[tip.graph.GNode[tip.ast.AstNode]]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@indep(n:tip.cfg.CfgNode):scala.collection.immutable.Set[tip.cfg.CfgNode]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Incoming dependencies.</p><div class="fullcomment"><div class="comment cmt"><p>Incoming dependencies. Used when computing the join from predecessors.</p></div><dl class="paramcmts block"><dt class="param">n</dt><dd class="cmt"><p>an element from the worklist</p></dd><dt>returns</dt><dd class="cmt"><p>the elements that the given element depends on
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ForwardDependencies.html" class="extype" name="tip.analysis.ForwardDependencies">ForwardDependencies</a> → <a href="../solvers/Dependencies.html" class="extype" name="tip.solvers.Dependencies">Dependencies</a></dd></dl></div>
+      <p class="shortcomment cmt">Incoming dependencies.</p><div class="fullcomment"><div class="comment cmt"><p>Incoming dependencies. Used when computing the join from predecessors.</p></div><dl class="paramcmts block"><dt class="param">n</dt><dd class="cmt"><p>an element from the worklist</p></dd><dt>returns</dt><dd class="cmt"><p>the elements that the given element depends on</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ForwardDependencies.html" class="extype" name="tip.analysis.ForwardDependencies">ForwardDependencies</a> → <a href="Dependencies.html" class="extype" name="tip.analysis.Dependencies">Dependencies</a></dd></dl></div>
     </li><li name="tip.solvers.WorklistFixpointSolverWithInit#init" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="init:WorklistFixpointSolverWithInit.this.lattice.sublattice.Element"></a>
       <a id="init:Element"></a>
@@ -510,7 +508,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@init:WorklistFixpointSolverWithInit.this.lattice.sublattice.Element" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">The initial lattice element at the start location.</p><div class="fullcomment"><div class="comment cmt"><p>The initial lattice element at the start location.
@@ -529,24 +527,24 @@ Default: bottom.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
     </li><li name="tip.analysis.IntervalAnalysis#lattice" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="lattice:tip.lattices.MapLattice[tip.graph.GNode[tip.ast.AstNode],tip.lattices.LiftLattice[tip.lattices.MapLattice[tip.ast.AIdentifier,tip.lattices.IntervalLattice]]]"></a>
-      <a id="lattice:MapLattice[GNode[AstNode],LiftLattice[MapLattice[AIdentifier,IntervalLattice]]]"></a>
+      <a id="lattice:tip.lattices.MapLattice[tip.cfg.CfgNode,tip.lattices.LiftLattice[tip.lattices.MapLattice[tip.ast.ADeclaration,tip.lattices.IntervalLattice]]]"></a>
+      <a id="lattice:MapLattice[CfgNode,LiftLattice[MapLattice[ADeclaration,IntervalLattice]]]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">lattice</span><span class="result">: <a href="../lattices/MapLattice.html" class="extype" name="tip.lattices.MapLattice">MapLattice</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>], <a href="../lattices/LiftLattice.html" class="extype" name="tip.lattices.LiftLattice">LiftLattice</a>[<a href="../lattices/MapLattice.html" class="extype" name="tip.lattices.MapLattice">MapLattice</a>[<a href="../ast/AIdentifier.html" class="extype" name="tip.ast.AIdentifier">AIdentifier</a>, <a href="../lattices/IntervalLattice.html" class="extype" name="tip.lattices.IntervalLattice">IntervalLattice</a>]]]</span>
+        <span class="name">lattice</span><span class="result">: <a href="../lattices/MapLattice.html" class="extype" name="tip.lattices.MapLattice">MapLattice</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <a href="../lattices/LiftLattice.html" class="extype" name="tip.lattices.LiftLattice">LiftLattice</a>[<a href="../lattices/MapLattice.html" class="extype" name="tip.lattices.MapLattice">MapLattice</a>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>, <a href="../lattices/IntervalLattice.html" class="extype" name="tip.lattices.IntervalLattice">IntervalLattice</a>]]]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@lattice:tip.lattices.MapLattice[tip.graph.GNode[tip.ast.AstNode],tip.lattices.LiftLattice[tip.lattices.MapLattice[tip.ast.AIdentifier,tip.lattices.IntervalLattice]]]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@lattice:tip.lattices.MapLattice[tip.cfg.CfgNode,tip.lattices.LiftLattice[tip.lattices.MapLattice[tip.ast.ADeclaration,tip.lattices.IntervalLattice]]]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">The lattice used by the analysis.</p><div class="fullcomment"><div class="comment cmt"><p>The lattice used by the analysis.
@@ -564,7 +562,7 @@ Default: bottom.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -581,7 +579,7 @@ Default: bottom.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@notify():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -598,63 +596,61 @@ Default: bottom.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@notifyAll():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
     </li><li name="tip.analysis.ForwardDependencies#outdep" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="outdep(n:tip.graph.GNode[tip.ast.AstNode]):scala.collection.immutable.Set[tip.graph.GNode[tip.ast.AstNode]]"></a>
-      <a id="outdep(GNode[AstNode]):Set[GNode[AstNode]]"></a>
+      <a id="outdep(n:tip.cfg.CfgNode):scala.collection.immutable.Set[tip.cfg.CfgNode]"></a>
+      <a id="outdep(CfgNode):Set[CfgNode]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">outdep</span><span class="params">(<span name="n">n: <a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]</span>)</span><span class="result">: <span class="extype" name="scala.collection.immutable.Set">Set</span>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</span>
+        <span class="name">outdep</span><span class="params">(<span name="n">n: <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a></span>)</span><span class="result">: <span class="extype" name="scala.collection.immutable.Set">Set</span>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@outdep(n:tip.graph.GNode[tip.ast.AstNode]):scala.collection.immutable.Set[tip.graph.GNode[tip.ast.AstNode]]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@outdep(n:tip.cfg.CfgNode):scala.collection.immutable.Set[tip.cfg.CfgNode]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Outgoing dependencies.</p><div class="fullcomment"><div class="comment cmt"><p>Outgoing dependencies. Used when propagating dataflow to successors.</p></div><dl class="paramcmts block"><dt class="param">n</dt><dd class="cmt"><p>an element from the worklist</p></dd><dt>returns</dt><dd class="cmt"><p>the elements that depend on the given element
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ForwardDependencies.html" class="extype" name="tip.analysis.ForwardDependencies">ForwardDependencies</a> → <a href="../solvers/Dependencies.html" class="extype" name="tip.solvers.Dependencies">Dependencies</a></dd></dl></div>
+      <p class="shortcomment cmt">Outgoing dependencies.</p><div class="fullcomment"><div class="comment cmt"><p>Outgoing dependencies. Used when propagating dataflow to successors.</p></div><dl class="paramcmts block"><dt class="param">n</dt><dd class="cmt"><p>an element from the worklist</p></dd><dt>returns</dt><dd class="cmt"><p>the elements that depend on the given element</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ForwardDependencies.html" class="extype" name="tip.analysis.ForwardDependencies">ForwardDependencies</a> → <a href="Dependencies.html" class="extype" name="tip.analysis.Dependencies">Dependencies</a></dd></dl></div>
     </li><li name="tip.analysis.IntervalAnalysisWorklistSolverWithWidening#rank" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="rank:Map[tip.graph.GNode[tip.ast.AstNode],Int]"></a>
-      <a id="rank:Map[GNode[AstNode],Int]"></a>
+      <a id="rank:Map[tip.cfg.CfgNode,Int]"></a>
+      <a id="rank:Map[CfgNode,Int]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">rank</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>], <span class="extype" name="scala.Int">Int</span>]</span>
+        <span class="name">rank</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Int">Int</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@rank:Map[tip.graph.GNode[tip.ast.AstNode],Int]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@rank:Map[tip.cfg.CfgNode,Int]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">The rank of the graph, which is used to detect the backedges.</p>
     </li><li name="tip.solvers.ListSetWorklist#run" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="run(first:scala.collection.immutable.Set[N]):Unit"></a>
-      <a id="run(Set[GNode[AstNode]]):Unit"></a>
+      <a id="run(Set[CfgNode]):Unit"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">run</span><span class="params">(<span name="first">first: <span class="extype" name="scala.collection.immutable.Set">Set</span>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">run</span><span class="params">(<span name="first">first: <span class="extype" name="scala.collection.immutable.Set">Set</span>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@run(first:scala.collection.immutable.Set[N]):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Iterates until there is no more work to do.</p><div class="fullcomment"><div class="comment cmt"><p>Iterates until there is no more work to do.</p></div><dl class="paramcmts block"><dt class="param">first</dt><dd class="cmt"><p>the initial contents of the worklist
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../solvers/ListSetWorklist.html" class="extype" name="tip.solvers.ListSetWorklist">ListSetWorklist</a> → <a href="../solvers/Worklist.html" class="extype" name="tip.solvers.Worklist">Worklist</a></dd></dl></div>
+      <p class="shortcomment cmt">Iterates until there is no more work to do.</p><div class="fullcomment"><div class="comment cmt"><p>Iterates until there is no more work to do.</p></div><dl class="paramcmts block"><dt class="param">first</dt><dd class="cmt"><p>the initial contents of the worklist</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../solvers/ListSetWorklist.html" class="extype" name="tip.solvers.ListSetWorklist">ListSetWorklist</a> → <a href="../solvers/Worklist.html" class="extype" name="tip.solvers.Worklist">Worklist</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -668,7 +664,7 @@ Default: bottom.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -685,7 +681,7 @@ Default: bottom.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@toString():String" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -702,7 +698,7 @@ Default: bottom.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@wait():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -725,7 +721,7 @@ Default: bottom.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -748,7 +744,7 @@ Default: bottom.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@wait(x$1:Long):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -771,11 +767,10 @@ Default: bottom.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@widen(s:IntervalAnalysisWorklistSolverWithWidening.this.lattice.sublattice.Element):IntervalAnalysisWorklistSolverWithWidening.this.lattice.sublattice.Element" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Set widening function.</p><div class="fullcomment"><div class="comment cmt"><p>Set widening function.</p></div><dl class="paramcmts block"><dt class="param">s</dt><dd class="cmt"><p>input lattice element</p></dd><dt>returns</dt><dd class="cmt"><p>output lattice element
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.IntervalAnalysisWorklistSolverWithWidening">IntervalAnalysisWorklistSolverWithWidening</a> → <a href="../solvers/WorklistFixpointSolverWithInitAndSetWidening.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithInitAndSetWidening">WorklistFixpointSolverWithInitAndSetWidening</a></dd></dl></div>
+      <p class="shortcomment cmt">Set widening function.</p><div class="fullcomment"><div class="comment cmt"><p>Set widening function.</p></div><dl class="paramcmts block"><dt class="param">s</dt><dd class="cmt"><p>input lattice element</p></dd><dt>returns</dt><dd class="cmt"><p>output lattice element</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.IntervalAnalysisWorklistSolverWithWidening">IntervalAnalysisWorklistSolverWithWidening</a> → <a href="../solvers/WorklistFixpointSolverWithInitAndSetWidening.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithInitAndSetWidening">WorklistFixpointSolverWithInitAndSetWidening</a></dd></dl></div>
     </li><li name="tip.solvers.WorklistFixpointSolver#x" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="x:WorklistFixpointSolver.this.lattice.Element"></a>
       <a id="x:Element"></a>
@@ -789,7 +784,7 @@ Default: bottom.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#tip.analysis.IntervalAnalysisWorklistSolverWithWidening@x:WorklistFixpointSolver.this.lattice.Element" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">The current lattice element.</p><div class="fullcomment"><div class="comment cmt"><p>The current lattice element.
@@ -806,25 +801,27 @@ Default: bottom.
         <div class="parent" name="tip.analysis.ForwardDependencies">
               <h3>Inherited from <a href="ForwardDependencies.html" class="extype" name="tip.analysis.ForwardDependencies">ForwardDependencies</a></h3>
             </div><div class="parent" name="tip.solvers.WorklistFixpointSolverWithInitAndSetWidening">
-              <h3>Inherited from <a href="../solvers/WorklistFixpointSolverWithInitAndSetWidening.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithInitAndSetWidening">WorklistFixpointSolverWithInitAndSetWidening</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</h3>
+              <h3>Inherited from <a href="../solvers/WorklistFixpointSolverWithInitAndSetWidening.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithInitAndSetWidening">WorklistFixpointSolverWithInitAndSetWidening</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</h3>
             </div><div class="parent" name="tip.solvers.WorklistFixpointSolverWithInit">
-              <h3>Inherited from <a href="../solvers/WorklistFixpointSolverWithInit.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithInit">WorklistFixpointSolverWithInit</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</h3>
+              <h3>Inherited from <a href="../solvers/WorklistFixpointSolverWithInit.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithInit">WorklistFixpointSolverWithInit</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</h3>
             </div><div class="parent" name="tip.solvers.WorklistFixpointSolver">
-              <h3>Inherited from <a href="../solvers/WorklistFixpointSolver.html" class="extype" name="tip.solvers.WorklistFixpointSolver">WorklistFixpointSolver</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</h3>
-            </div><div class="parent" name="tip.solvers.Dependencies">
-              <h3>Inherited from <a href="../solvers/Dependencies.html" class="extype" name="tip.solvers.Dependencies">Dependencies</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</h3>
+              <h3>Inherited from <a href="../solvers/WorklistFixpointSolver.html" class="extype" name="tip.solvers.WorklistFixpointSolver">WorklistFixpointSolver</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</h3>
+            </div><div class="parent" name="tip.analysis.Dependencies">
+              <h3>Inherited from <a href="Dependencies.html" class="extype" name="tip.analysis.Dependencies">Dependencies</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</h3>
             </div><div class="parent" name="tip.solvers.ListSetWorklist">
-              <h3>Inherited from <a href="../solvers/ListSetWorklist.html" class="extype" name="tip.solvers.ListSetWorklist">ListSetWorklist</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</h3>
+              <h3>Inherited from <a href="../solvers/ListSetWorklist.html" class="extype" name="tip.solvers.ListSetWorklist">ListSetWorklist</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</h3>
             </div><div class="parent" name="tip.solvers.Worklist">
-              <h3>Inherited from <a href="../solvers/Worklist.html" class="extype" name="tip.solvers.Worklist">Worklist</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</h3>
+              <h3>Inherited from <a href="../solvers/Worklist.html" class="extype" name="tip.solvers.Worklist">Worklist</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</h3>
             </div><div class="parent" name="tip.solvers.MapLatticeSolver">
-              <h3>Inherited from <a href="../solvers/MapLatticeSolver.html" class="extype" name="tip.solvers.MapLatticeSolver">MapLatticeSolver</a>[<a href="../graph/GNode.html" class="extype" name="tip.graph.GNode">GNode</a>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>]]</h3>
+              <h3>Inherited from <a href="../solvers/MapLatticeSolver.html" class="extype" name="tip.solvers.MapLatticeSolver">MapLatticeSolver</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</h3>
             </div><div class="parent" name="tip.solvers.LatticeSolver">
               <h3>Inherited from <a href="../solvers/LatticeSolver.html" class="extype" name="tip.solvers.LatticeSolver">LatticeSolver</a></h3>
             </div><div class="parent" name="tip.analysis.IntervalAnalysis">
               <h3>Inherited from <a href="IntervalAnalysis.html" class="extype" name="tip.analysis.IntervalAnalysis">IntervalAnalysis</a></h3>
             </div><div class="parent" name="tip.analysis.FlowSensitiveAnalysis">
               <h3>Inherited from <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a></h3>
+            </div><div class="parent" name="tip.analysis.Analysis">
+              <h3>Inherited from <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Any">Any</span>]</h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">
