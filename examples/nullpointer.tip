@@ -1,9 +1,9 @@
 main() {
-	var p,q,r,n;
-	p = malloc;
-	q = &p;
-	n = null;
-	*q = n;
-	*p = r;
-	return 0;
+    var p,q,r,n;
+    p = malloc;
+    q = &p;
+    n = null;
+    *q = n;
+    *p = r;
+    return 0;
 }

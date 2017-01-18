@@ -1,19 +1,19 @@
 apply(f,a){
-	return (f)(a);
+    return (f)(a);
 }
 
 fib(n){
-	var result;
-	
-	if( n>1 ){
-		result = fib(n-1)+fib(n-2);
-	} else {
-		result=1;
-	}
-	
-	return result;
+    var result;
+    
+    if( n>1 ){
+        result = fib(n-1)+fib(n-2);
+    } else {
+        result=1;
+    }
+    
+    return result;
 }
 
 main(){
-	return apply(fib,5);
+    return apply(fib,5);
 }

@@ -2,88 +2,129 @@ package tip.analysis
 
 import tip.ast.DepthFirstAstVisitor
 import tip.ast._
-import scala.collection.immutable
 
 /**
- * The analysis associates with each identifier its definition,
- * using the syntactical scope.
- */
-class DeclarationAnalysis(prog: AProgram)
-  extends DepthFirstAstVisitor[immutable.Map[String, AIdentifierDeclaration]] {
+  * Declaration analysis, binds identifiers to their declarations.
+  *
+  * @see [[tip.ast.AstNodeData]]
+  */
+class DeclarationAnalysis(prog: AProgram) extends DepthFirstAstVisitor[Map[String, ADeclaration]] with Analysis[AstNodeData.DeclarationData] {
 
-  visit(prog, Map())
+  private var declResult: AstNodeData.DeclarationData = Map()
 
   /**
-   * The method recursively visit a the nodes of the AST.
-   * An environment env is provided as arguments, associating with each
-   * identifier name the node that declares it.
-   * Whenever an identifier is visited the declaration associated with its
-   * name in the environment is attached to the metadata of the identifier.
-   *
-   * @param node the node to visit
-   * @param env the environment associating with each name its declaration in the current scope
-   */
-  override def visit(node: AstNode, env: immutable.Map[String, AIdentifierDeclaration]): Unit = {
+    * @inheritdoc
+    */
+  def analyze(): AstNodeData.DeclarationData = {
+    visit(prog, Map())
+    declResult
+  }
+
+  /**
+    * Recursively visits the nodes of the AST.
+    * An environment `env` is provided as argument, mapping each identifier name to the node that declares it.
+    * Whenever an identifier is visited, `declResult` is extended accordingly.
+    *
+    * @param node the node to visit
+    * @param env the environment associating with each name its declaration in the current scope
+    */
+  override def visit(node: AstNode, env: Map[String, ADeclaration]): Unit = {
     node match {
-      case block: ABlockStmt =>
-        // We visit each statement with the environment extended
-        // by the previous declarations in the block
-        block.content.foldLeft(env) { (accEnv, stmt) =>
-          val extendedEnv = accEnv ++ peekDecl(stmt)
+      case block: ABlock =>
+        // Extend the environment with the initial declarations in the block, if present
+        val ext = block match {
+          case fblock: AFunBlockStmt => peekDecl(fblock.declarations)
+          case _: ANestedBlockStmt => Map[String, ADeclaration]()
+        }
+        // Extend the env
+        val extendedEnv = extendEnv(env, ext)
+        // Visit each statement in the extended environment
+        block.body.foreach { stmt =>
           visit(stmt, extendedEnv)
-          extendedEnv
         }
       case funDec: AFunDeclaration =>
-        // We associate to each parameter itself as definition
-        val argsMap = funDec.args.foldLeft(Map[String, AIdentifierDeclaration]()) { (acc, cur: AIdentifier) =>
-          cur.meta.definition = Some(cur)
-          acc + (cur.value -> cur)
+        // Associate to each parameter itself as definition
+        val argsMap = funDec.args.foldLeft(Map[String, ADeclaration]()) { (acc, cur: AIdentifierDeclaration) =>
+          extendEnv(acc, cur.value -> cur)
         }
-        // We associate to the function name the function declaration as definition
-        funDec.name.meta.definition = Some(funDec)
-        val newEnv = env + (funDec.name.value -> funDec) ++ argsMap
-        visit(funDec.name, newEnv)
-        visit(funDec.stmts, newEnv)
+        // Visit the function body in the extended environment
+        val extendedEnv = extendEnv(env, argsMap)
+        visit(funDec.stmts, extendedEnv)
       case p: AProgram =>
-        // We assume there can be mutually recursive function
-        // So we pre-bind all the functions to their definitions before visiting each of them
-        val extended = p.fun.foldLeft(Map[String, AIdentifierDeclaration]()) { (accEnv, fd: AFunDeclaration) =>
-          accEnv + (fd.name.value -> fd)
+        // There can be mutually recursive functions, so pre-bind all the functions to their definitions before visiting each of them
+        val extended = p.funs.foldLeft(Map[String, ADeclaration]()) { (accEnv, fd: AFunDeclaration) =>
+          extendEnv(accEnv, fd.name -> fd)
         }
-        p.fun.foreach { fd => visit(fd, extended) }
-      case varr: AVarStmt =>
-        // We associate each x of var x to itself, we don't visit the children
-        varr.declIds.foreach { id => id.meta.definition = Some(id) }
+        p.funs.foreach { fd =>
+          visit(fd, extended)
+        }
       case ident: AIdentifier =>
-        // We associate with each identifier the definition in the environment
+        // Associate with each identifier the definition in the environment
         try {
-          ident.meta.definition = Some(env(ident.value))
+          declResult += ident -> env(ident.value)
         } catch {
           case e: Exception =>
             throw new RuntimeException(s"Error retrieving definition of $ident in ${env.keys}", e)
         }
+      case AAssignStmt(Left(id), _, loc) =>
+        if (env.contains(id.value)) {
+          env(id.value) match {
+            case f: AFunDeclaration =>
+              throw new RuntimeException(s"Function identifier for function $f can not appears on the left-hand side of an assignment at $loc")
+            case _ =>
+          }
+        }
+        visitChildren(node, env)
+      case AUnaryOp(RefOp, id, loc) =>
+        id match {
+          case id: AIdentifier if env.contains(id.value) && env(id.value).isInstanceOf[AFunDeclaration] =>
+            throw new RuntimeException(s"Cannot take address of function ${env(id.value)} at $loc")
+          case _: AIdentifier => // no problem
+          case _ => ??? // unexpected, only identifiers are allowed here by the parser
+        }
+        visitChildren(node, env)
       case _ =>
-        // There is no alteration of the environment,
-        // we just visit the children in the current environment
+        // There is no alteration of the environment, just visit the children in the current environment
         visitChildren(node, env)
     }
   }
 
   /**
-   * The method returns a map containing the new declarations contained in the statement
-   *
-   * @param stmt the statement to analyze
-   * @return a map associating with each name the node that declares it
-   */
-  private def peekDecl(stmt: AStmt): immutable.Map[String, AIdentifierDeclaration] = {
-    stmt match {
-      case dec: AVarStmt =>
-        dec.declIds.foldLeft(Map[String, AIdentifierDeclaration]()) { (acc, dec) =>
-          //Note this may override (and hide) the previous declaration
-          acc + (dec.value -> dec)
-        }
-      case _ =>
-        Map[String, AIdentifierDeclaration]()
+    * Extend the environment `env` with the bindings in `ext`, checking that no re-definitions occur.
+    * @param env the environment to extend
+    * @param ext the bindings to add
+    * @return the extended environment if no conflict occurs, throws a RuntimeException otherwise
+    */
+  def extendEnv(env: Map[String, ADeclaration], ext: Map[String, ADeclaration]): Map[String, ADeclaration] = {
+    // Check for conflicts
+    val conflicts = env.keys.toSet.intersect(ext.keys.toSet)
+    if (conflicts.nonEmpty) redefinition(conflicts.map(env(_)))
+    env ++ ext
+  }
+
+  /**
+    * Extend the environment `env` with the binding `pair`, checking that no re-definition occurs.
+    * @param env the environment to extend
+    * @param pair the binding to add
+    * @return the extended environment if no conflict occurs, throws a RuntimeException otherwise
+    */
+  def extendEnv(env: Map[String, ADeclaration], pair: (String, ADeclaration)): Map[String, ADeclaration] = {
+    if (env.contains(pair._1)) redefinition(Set(env(pair._1)))
+    env + pair
+  }
+
+  /**
+    * Returns a map containing the new declarations contained in the given sequence of variable declaration statements.
+    * If a variable is re-defined, a RuntimeException is thrown.
+    * @param decls the sequence of variable declaration statements
+    * @return a map associating with each name the node that declares it
+    */
+  private def peekDecl(decls: Seq[AVarStmt]): Map[String, ADeclaration] = {
+    val allDecls = decls.flatMap(v => v.declIds.map(id => id.value -> id))
+    allDecls.foldLeft(Map[String, ADeclaration]()) { (map, pair) =>
+      extendEnv(map, pair)
     }
   }
+
+  def redefinition(conflicting: Set[ADeclaration]) = throw new RuntimeException(s"Redefinition of identifiers $conflicting")
 }

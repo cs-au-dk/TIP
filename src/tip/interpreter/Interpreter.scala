@@ -1,165 +1,243 @@
 package tip.interpreter
 
+import tip.ast.AstNodeData._
 import tip.ast._
-import tip.logging.Log
+import tip.util.Log
 
-/*
-  An Interpreter for the TIP language.
-  Notes:
-    This interpreter throws an exception if you do stuff with an undefined value. This includes returning it from a function.
-    You can however do stuff with pointers to undefined values.
-    The error handling consists of throwing RuntimeExceptions.
-    There is currently no restrictions on what the main method can return (except for undefined values).
- */
-class Interpreter(program: AProgram) {
+/**
+  * Interpreter for TIP programs.
+  */
+abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData) {
 
-  val log = Log.typeLogger[this.type](Log.Level.Info)
+  val spec: ValueSpecification // specification of values and operations used by the interpreter
 
-  trait Value
-  case class IntValue(i: Int) extends Value
-  case class FunValue(fun: AFunDeclaration) extends Value
-  case class Location(var i: Option[Value]) extends Value {
-    override def equals(obj: scala.Any): Boolean = obj match {
-      case rf: AnyRef => this.eq(rf)
-      case _ => false
+  val log = Log.logger[this.type](Log.Level.Info)
+
+  import spec._
+  type Env = Map[ADeclaration, Location] // environments map from identifier declarations to locations
+  type Store = Map[ReferenceValue, Value] // stores map from locations to values
+
+  /**
+    * Semantics for programs.
+    * @return the resulting value
+    */
+  def semp(): IntValue = {
+    // Make an initial environment with a location for each function
+    val boundEnv = program.funs.foldLeft(Map(): Env) { (a: Env, f: AFunDeclaration) =>
+      a + (f -> newLoc())
+    }
+    // Store the functions in the associated locations
+    val boundStore = program.funs.foldLeft(Map(): Store) { (s: Store, f: AFunDeclaration) =>
+      s + (boundEnv(f) -> spec.mkFun(f))
+    }
+    // Execute the main function
+    val (_, cs) = semc(program.mainFunction.stmts, boundEnv, boundStore)
+    // Return the result, if type int
+    cs(returnLoc) match {
+      case x: IntValue => x
+      case _ => errorReturnNotInt(program.mainFunction)
     }
   }
 
-  type Env = Map[AIdentifierDeclaration, Location]
-
-  val returnId = AIdentifier("return", Loc(-1, -1))()
-
-  def run() : Integer = {
-    log.info("Running program")
-    val value = runFunction(program.mainFunction, Seq())
-    value match {
-      case IntValue(i) =>
-        log.info(s"Program ran succesfully, result: $i"); i
-      case _ => throw new RuntimeException("Main function can only return an integer")
-    }
-  }
-
-  private def runFunction(fun: AFunDeclaration, args: Seq[Value]): Value = {
-    val boundEnv = program.fun.foldLeft(Map[AIdentifierDeclaration, Location]()) { (a: Env, f: AFunDeclaration) =>
-      a + (f -> new Location(Some(FunValue(f))))
-    } ++
-      fun.args.zip(args).foldLeft(Map[AIdentifierDeclaration, Location]()) { (a: Env, p: (AIdentifier, Value)) =>
-        a + (p._1 -> new Location(Some(p._2)))
-      } +
-      (returnId -> new Location(None))
-
-
-    runStatement(fun.stmts, boundEnv)(returnId).i match {
-      case Some(x) => x
-      case None => missingReturn(fun)
-    }
-  }
-
-  private def runStatement(stm: AStmt, env: Env) : Env = {
-    stm match {
-      case AAssignStmt(left: AAssignable, right: AExpr, _) =>
-        val value: Value = runExpression(right, env)
-        left match {
-          case id: AIdentifier =>
-            env(id.meta.definition.get).i = Some(value)
-          case AUnaryOp(DerefOp(), id: AIdentifier, loc) =>
-            env(id.meta.definition.get).i match {
-              case Some(Location(x)) => {
-                env(id.meta.definition.get).i = Some(value)
-              }
-              case None => nullPointerException(loc)
-              case _ => unreferenceNonPointer(loc)
-            }
-          case _ => throw new RuntimeException(s"Unassignable on the left-hand side of an assignmnet: $left")
-        }
-        env
-      case ABlockStmt(content, _) => content.foldLeft(env)((env: Env, stm: AStmt) => runStatement(stm, env))
-      case AIfStmt(guard, ifBranch, elseBranch, loc) =>
-        val value: Value = runExpression(guard, env)
-        value match {
-          case IntValue(0) =>
-            elseBranch.map(stmt => runStatement(stmt, env)).getOrElse(env)
-          case IntValue(1) =>
-            runStatement(ifBranch, env)
-          case _ => guardNotInteger(loc)
-        }
-      case ret: AReturnStmt =>
-        env(returnId).i = Some(runExpression(ret.value, env))
-        env
-      case AVarStmt(ids, _) =>
-        ids.foldLeft(env)((env: Env, id: AIdentifier) => env + (id.meta.definition.get -> new Location(None)))
-      case w: AWhileStmt =>
-        val gvalue = runExpression(w.guard, env)
-        gvalue match {
-          case IntValue(0) => env
-          case IntValue(_) => runStatement(w, runStatement(w.innerBlock, env))
-          case _ => guardNotInteger(w.offset)
-        }
-      case AoutputStmt(value, _) =>
-        val out = runExpression(value, env)
-        out match {
-          case IntValue(x) => log.info(s"Program out: $x"); env
-          case _ => throw new RuntimeException(s"Output not supported for non integer values")
-        }
-    }
-  }
-
-  private def runExpression(exp: AExpr, env: Env): Value = {
-    exp match {
-      case e: ABinaryOp =>
-        val left: Value = runExpression(e.left, env)
-        val right: Value = runExpression(e.right, env)
-        e.operator match {
-          case Eqq() => IntValue(if (left == right) 1 else 0)
-          case op: Operator => {
-            (left, right) match {
-              case (IntValue(lv), IntValue(rv)) => {
-                op match {
-                  case Divide() => IntValue(lv / rv)
-                  case GreatThan() => IntValue(if (lv > rv) 1 else 0)
-                  case Minus() => IntValue(lv - rv)
-                  case Plus() => IntValue(lv + rv)
-                  case Times() => IntValue(lv * rv)
-                  case _ => ???
-                }
-              }
-              case _ => throw new RuntimeException(s"Unable to apply the operator $op to non integer values")
+  /**
+    * Semantics for functions.
+    * @param f the function to execute
+    * @param actualParams actual parameters
+    * @param env the initial environment (containing function names)
+    * @param store the initial store
+    * @return the resulting store
+    */
+  private def semf(f: AFunDeclaration, actualParams: List[EValue], env: Env, store: Store): Store = {
+    // Extend the environment with ...
+    val extEnv: Env = (
+      // ... the formal parameters
+      f.args.map { id =>
+        id -> newLoc()
+      }
+        ++
+          // ... and the local variables
+          f.stmts.declarations.flatMap { vs =>
+            vs.declIds.map { v =>
+              v -> newLoc()
             }
           }
+    ).toMap
+    val nEnv = env ++ extEnv
+    // Write the actual parameters to the corresponding locations in the store
+    val nStore = f.args.zip(actualParams).foldLeft(store) { (ns: Store, p: (AIdentifierDeclaration, EValue)) =>
+      ns + (extEnv(p._1) -> p._2)
+    }
+    // Execute the body
+    val (_, finalStore) = semc(f.stmts, nEnv, nStore)
+    // Remove the formal parameters and local variables from the store
+    finalStore -- extEnv.values
+  }
+
+  /**
+    * Semantics for statements (including local variable declarations).
+    * @param stm the statement to execute
+    * @param env the initial environment
+    * @param store the initial store
+    * @return the resulting environment and store
+    */
+  protected def semc(stm: AStmt, env: Env, store: Store): (Env, Store) = {
+    stm match {
+      case AAssignStmt(left, right: AExpr, _) =>
+        val (lv, s1) = semeref(left.fold(identity, identity), env, store)
+        val (rv, s2) = semeright(right, env, s1)
+        (env, s2 + (lv -> rv))
+      case block: ABlock =>
+        block.body.foldLeft((env, store))((acc: (Env, Store), stm: AStmt) => semc(stm, acc._1, acc._2))
+      case AIfStmt(guard, ifBranch, elseBranch, loc) =>
+        val (gv, s1) = semeright(guard, env, store)
+        gv match {
+          case x: IntValue if spec.eqqInt(x, spec.constInt(0)) =>
+            elseBranch.map(stmt => semc(stmt, env, s1)).getOrElse((env, s1))
+          case x: IntValue if spec.eqqInt(x, spec.constInt(1)) =>
+            semc(ifBranch, env, s1)
+          case _ => errorConditionNotInt(loc)
         }
-      case id: AIdentifier =>
-        env(id.meta.definition.get).i match {
-          case Some(z) => z
-          case None => throw new RuntimeException(s"Not initialised variable at ${id.offset}")
+      case ret: AReturnStmt =>
+        val (v, s1) = semeright(ret.value, env, store)
+        (env, s1 + (returnLoc -> v))
+      case err: AErrorStmt =>
+        val (ev, _) = semeright(err.value, env, store)
+        ev match {
+          case i: IntValue => throw ExecutionError(i)
+          case _ => errorErrorNonInt(ev)
         }
-      case AInput(_) => val line = scala.io.StdIn.readLine()
-        if (line == null) IntValue(0) else IntValue(line.toInt)
-      case AMalloc(_) => new Location(None)
-      case ANull(_) => new Location(None)
-      case ANumber(value, _) => IntValue(value)
-      case AUnaryOp(op: DerefOp, target: AExpr, loc) =>
-        runExpression(target, env) match {
-          case Location(Some(x)) => x
-          case Location(None) => nullPointerException(loc)
-          case _ => unreferenceNonPointer(loc)
+      case w: AWhileStmt =>
+        val (gv, s1) = semeright(w.guard, env, store)
+        gv match {
+          case x: IntValue if spec.eqqInt(x, spec.constInt(0)) => (env, s1)
+          case _: IntValue =>
+            val (env1, s2) = semc(w.innerBlock, env, s1)
+            semc(w, env1, s2)
+          case _ => errorConditionNotInt(w.loc)
         }
-      case AUnaryOp(op: RefOp, target: AExpr, loc) =>
-        target match {
-          case id: AIdentifier => env(id.meta.definition.get)
-          case _ => throw new RuntimeException(s"Can not take the reference of an expression at $loc")
+      case AOutputStmt(value, _) =>
+        val (ov, s1) = semeright(value, env, store)
+        ov match {
+          case y: IntValue =>
+            log.info(s"Program out: $y")
+            (env, s1)
+          case _ => errorOutputNotInt()
         }
-      case ACallFuncExpr(target, args, loc) =>
-        val funValue = runExpression(target, env)
-        funValue match {
-          case f: FunValue =>
-            runFunction(f.fun, args.map((arg) => runExpression(arg, env)))
-          case _ => throw new RuntimeException(s"Call to a non-function at $loc, $funValue found")
-        }
+      case AVarStmt(ids, _) =>
+        (ids.foldLeft(env) { (accenv, id) =>
+          accenv + (id -> newLoc())
+        }, store)
     }
   }
 
-  def missingReturn(fun: AFunDeclaration) = throw new RuntimeException(s"Missing return statement in ${fun.name}")
-  def nullPointerException(loc: Loc) = throw new RuntimeException(s"NullPointer exception at $loc")
-  def guardNotInteger(loc: Loc) = throw new RuntimeException(s"Guard in $loc not evaluating to an integer")
-  def unreferenceNonPointer(loc: Loc) = throw new RuntimeException(s"Unreferencing a non-pointer at $loc")
+  /**
+    * Semantics for left-hand-side expressions.
+    * @param exp the expression to execute
+    * @param env the environment
+    * @param store the initial store
+    * @return the resulting location and store
+    */
+  protected def semeref(exp: AExpr, env: Env, store: Store): (ReferenceValue, Store) = {
+    exp match {
+      case id: AIdentifier => (env(id.declaration), store)
+      case AUnaryOp(_: DerefOp.type, target, loc) =>
+        semeright(target, env, store) match {
+          case (pref: ReferenceValue, s1) => (pref, s1)
+          case (_: NullValue, _) => errorNullDereference(loc)
+          case (x, _) => errorDerefNotPointer(loc, store, x)
+        }
+      case _ => ???
+    }
+  }
+
+  /**
+    * Semantics for right-hand-side expressions.
+    * @param exp the expression to execute
+    * @param env the environment
+    * @param store the initial store
+    * @return the resulting value and store
+    */
+  protected def semeright(exp: AExpr, env: Env, store: Store): (EValue, Store) = {
+    exp match {
+      case e: ABinaryOp =>
+        val (left: EValue, s1) = semeright(e.left, env, store)
+        val (right: EValue, s2) = semeright(e.right, env, s1)
+        val cval = e.operator match {
+          case Eqq => spec.eqq(left, right)
+          case op: BinaryOperator =>
+            (left, right) match {
+              case (lv: IntValue, rv: IntValue) =>
+                op match {
+                  case Divide => spec.divideInt(lv, rv)
+                  case GreatThan => spec.greatThanInt(lv, rv)
+                  case Minus => spec.minusInt(lv, rv)
+                  case Plus => spec.plusInt(lv, rv)
+                  case Times => spec.timesInt(lv, rv)
+                  case _ => ???
+                }
+              case _ => errorArithmeticOnNonInt(op)
+            }
+        }
+        (cval, s2)
+      case AInput(_) =>
+        val line = scala.io.StdIn.readLine()
+        val cval = if (line == null) spec.constInt(0) else spec.constInt(line.toInt)
+        (cval, store)
+      case AMalloc(_) => (newLoc(), store)
+      case ANull(_) => (spec.nullValue, store)
+      case ANumber(value, _) => (spec.constInt(value), store)
+      case AUnaryOp(_: RefOp.type, e: AExpr, _) =>
+        semeref(e, env, store)
+      case op @ AUnaryOp(_: DerefOp.type, _, _) =>
+        val (l, s1) = semeref(op, env, store)
+        (s1.getOrElse(l, errorDerefNotPointer(exp.loc, s1, l)), s1)
+      case ACallFuncExpr(target, actualParams, _) =>
+        val (funValue, s1) = semeright(target, env, store)
+        funValue match {
+          case f: FunValue =>
+            val (actualParamsValues, computedStore) =
+              actualParams.foldRight((List[EValue](), s1)) { (arg: AExpr, p: (List[EValue], Store)) =>
+                val (computed, s1) = p
+                val (v, s2) = semeright(arg, env, s1)
+                (v :: computed, s2)
+              }
+            val finStore = semf(f.fun, actualParamsValues, env, computedStore)
+            (finStore(returnLoc), finStore)
+          case _ => errorCallNotFunction(funValue)
+        }
+      case id: AIdentifier =>
+        val (l, s1) = semeref(id, env, store)
+        (s1.getOrElse(l, errorDerefNotPointer(exp.loc, s1, l)), s1)
+    }
+  }
+
+  def errorCallNotFunction(funValue: EValue) =
+    throw new RuntimeException(s"Call to a non-function $funValue")
+  def errorBadLeftHand(x: Any) =
+    throw new RuntimeException(s"Bad left-hand-side $x of assignment")
+  def errorOutputNotInt() =
+    throw new RuntimeException(s"Output not supported for non-integer values")
+  def errorErrorNonInt(v: Any) =
+    throw new RuntimeException(s"Error statement expects integer value as error code, given $v")
+  def errorNonRefable(exp: AExpr) =
+    throw new RuntimeException(s"Cannot take the address of an expression at $exp")
+  def errorArithmeticOnNonInt(op: BinaryOperator) =
+    throw new RuntimeException(s"Unable to apply the operator $op to non-integer values")
+  def errorReturnNotInt(fun: AFunDeclaration) =
+    throw new RuntimeException(s"Return statement returning non-integer in function ${fun.name}")
+  def errorNullDereference(loc: Loc) =
+    throw new RuntimeException(s"Null pointer error at $loc")
+  def errorConditionNotInt(loc: Loc) =
+    throw new RuntimeException(s"Branch condition at $loc not evaluating to an integer")
+  def errorDerefNotPointer(loc: Loc, store: Store, x: Any) =
+    throw new RuntimeException(s"Dereferencing non or bad pointer at $loc: $x in $store")
+
+  case class ExecutionError(code: IntValue) extends RuntimeException(s"Execution error, code: $code")
+}
+
+/**
+  * Interpreter that uses concrete values.
+  */
+class ConcreteInterpreter(val program: AProgram)(implicit declData: DeclarationData) extends Interpreter(program) {
+  val spec = ConcreteValues
 }

@@ -1,7 +1,7 @@
 main() {
-	var x;
-	{
-		x = input;
-	}
-	return x;
+    var x;
+    {
+        x = input;
+    }
+    return x;
 }

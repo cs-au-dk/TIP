@@ -1,15 +1,15 @@
 // Not typable : int = [[r]]=[[g]]=&\alpha
 
 bar(g,x) {
-	var r;
-	if (x==0){
-		r=g;
-	} else {
-		r=bar(2,0);
-	}
-	return r+1;
+    var r;
+    if (x==0){
+        r=g;
+    } else {
+        r=bar(2,0);
+    }
+    return r+1;
 }
 
 main() {
-	return bar(null,1);
+    return bar(null,1);
 }

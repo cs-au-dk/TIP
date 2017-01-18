@@ -1,12 +1,12 @@
 f(){
-	return 5;
+    return 5;
 }
 
 g(){
-	return 5;
+    return 5;
 }
 
 main(){
-	f=g;
-	return 0;
+    f=g;
+    return 0;
 }

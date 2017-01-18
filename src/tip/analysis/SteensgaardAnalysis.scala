@@ -1,85 +1,104 @@
 package tip.analysis
 
-import tip.ast.DepthFirstAstVisitor
-import tip.logging.Log
+import tip.ast.{ADeclaration, DepthFirstAstVisitor, _}
 import tip.solvers._
-import tip.ast._
+import tip.util.Log
+import tip.ast.AstNodeData.{AstNodeWithDeclaration, DeclarationData}
 
-class SteensgaardAnalysis(program: AProgram)
-  extends DepthFirstAstVisitor[Null] {
+import scala.language.implicitConversions
 
-  val log = Log.typeLogger[this.type](Log.Level.Info)
+/**
+  * Steensgaard-style pointer analysis.
+  * The analysis associates an [[StTerm]] with each variable declaration and expression node in the AST.
+  * It is implemented using [[tip.solvers.UnionFindSolver]].
+  */
+class SteensgaardAnalysis(program: AProgram)(implicit declData: DeclarationData) extends DepthFirstAstVisitor[Null] with PointsToAnalysis {
+
+  val log = Log.logger[this.type](Log.Level.Debug)
 
   val solver = new UnionFindSolver[StTerm]
 
-  performAnalysis()
+  NormalizedForPointsToAnalysis.assertContainsProgram(program)
 
   /**
-   * Generates the constraints for the given sub-AST.
-   * @param node the node for which it generates the constraints
-   * @param arg unused for this visitor
-   */
+    * @inheritdoc
+    */
+  def analyze(): Unit = {
+    // generate the constraints by traversing the AST and solve them on-the-fly
+    visit(program, null)
+  }
+
+  /**
+    * Generates the constraints for the given sub-AST.
+    * @param node the node for which it generates the constraints
+    * @param arg unused for this visitor
+    */
   override def visit(node: AstNode, arg: Null): Unit = {
 
-    PointerNormalised.checkAstLanguageRestriction(node)
-
     /**
-     * Peek the declaration of the identifier, either the variable declaration
-     * or the function declaration for global functions
-     */
-    def pdef(id:AIdentifier): AIdentifierDeclaration = id.meta.definition.get
+      * Implicitly convert from `AIdentifier` to `ADeclaration` by extracting the declaration node for the given identifier node.
+      */
+    implicit def pdef(id: AIdentifier): ADeclaration = id.declaration
 
+    log.debug(s"Visiting ${node.getClass.getSimpleName} at ${node.loc}")
     node match {
-      case AAssignStmt(id1: AIdentifier, malloc: AMalloc, _) =>
-        //<---- Complete here
-      case AAssignStmt(id1: AIdentifier, AUnaryOp(r:RefOp, id2: AIdentifier, _ ), _) =>
-        //<---- Complete here
-      case AAssignStmt(id1: AIdentifier, id2: AIdentifier, _) =>
-        //<---- Complete here
-      case AAssignStmt(id1: AIdentifier, AUnaryOp(d:DerefOp, id2: AIdentifier, _ ), _) =>
-        //<---- Complete here
-      case AAssignStmt(AUnaryOp(d: DerefOp, id1: AIdentifier, _), id2: AIdentifier, _) =>
-        //<---- Complete here
-      case AAssignStmt(id: AIdentifier, atom: AstAtom, _) =>
-      case ass: AAssignStmt => PointerNormalised.LanguageRestrictionViolation(ass)
-      case _ =>
+      case AAssignStmt(Left(id1), malloc: AMalloc, _) => ??? //<--- Complete here
+      case AAssignStmt(Left(id1), AUnaryOp(RefOp, id2: AIdentifier, _), _) => ??? //<--- Complete here
+      case AAssignStmt(Left(id1), id2: AIdentifier, _) => ??? //<--- Complete here
+      case AAssignStmt(Left(id1), AUnaryOp(DerefOp, id2: AIdentifier, _), _) => ??? //<--- Complete here
+      case AAssignStmt(Right(AUnaryOp(_, id1: AIdentifier, _)), id2: AIdentifier, _) => ??? //<--- Complete here
+      case AAssignStmt(Left(_), _, _) => // ignore other assignments where left-hand-side is an identifier
+      case ass: AAssignStmt => NormalizedForPointsToAnalysis.LanguageRestrictionViolation(s"Not expecting other kinds of assignment: $ass")
+      case _ => // ignore other kinds of nodes
     }
-
     visitChildren(node, null)
   }
 
-  private def performAnalysis(): Unit = {
-    visit(program, null)
-    log.info(s"Sets: \n${solver.unifications.values.toSet.map{s: Set[Term[StTerm]] => s"{ ${s.mkString(",")} }"}.mkString("; ")}")
-    log.info(s"Solution: \n$this")
+  private def unify(t1: Term[StTerm], t2: Term[StTerm]): Unit = {
+    log.debug(s"Generating constraint $t1 = $t2")
+    solver.unify(t1, t2) // note that unification cannot fail, because there is only one kind of term constructor and no constants
   }
-  
-  def result: Map[IdentifierVariable, Set[StTerm]] = {
-    val solution = solver.solution
-    val unifications = solver.unifications
-    val vars = solution.keys.collect{case id:IdentifierVariable => id}
-    val pointsto = vars.foldLeft(Map[IdentifierVariable, Set[StTerm]]()) {
-      case(a: Map[IdentifierVariable, Set[StTerm]], v: IdentifierVariable) =>
-        val typeofv = solution(v)
-        val pointsto = typeofv match {
-          case p: PointerRef =>
-            unifications(p.of).collect({case id: IdentifierVariable => id:StTerm; case mal: MallocVariable => mal:StTerm})
-          case _ => Set[StTerm]() // If this variable is here, then there are no chances that it has ever been unified with a Pointer
-        }
-        a + (v -> pointsto) 
+
+  /**
+    * @inheritdoc
+    */
+  def pointsTo(): Map[ADeclaration, Set[AstNode]] = {
+    val solution = solver.solution()
+    val unifications = solver.unifications()
+    log.info(s"Solution: \n${solution.mkString(",\n")}")
+    log.info(s"Sets: \n${unifications.values
+      .map { s =>
+        s"{ ${s.mkString(",")} }"
+      }
+      .mkString(", ")}")
+
+    val vars = solution.keys.collect { case id: IdentifierVariable => id }
+    val pointsto = vars.foldLeft(Map[ADeclaration, Set[AstNode]]()) {
+      case (a, v: IdentifierVariable) =>
+        val pt = unifications(solution(v))
+          .collect({ case PointerRef(IdentifierVariable(id)) => id; case PointerRef(MallocVariable(malloc)) => malloc })
+          .toSet
+        a + (v.id -> pt)
     }
+    log.info(s"Points-to:\n${pointsto.map(p => s"${p._1} -> { ${p._2.mkString(",")} }").mkString("\n")}")
     pointsto
   }
 
-  override def toString(): String = {
-    val res = result
-    res.map(p => s"${p._1} = { ${p._2.mkString(",")} }").mkString("\n")
+  /**
+    * @inheritdoc
+    */
+  def mayAlias(): (ADeclaration, ADeclaration) => Boolean = {
+    val solution = solver.solution()
+    (id1: ADeclaration, id2: ADeclaration) =>
+      val sol1 = solution(IdentifierVariable(id1))
+      val sol2 = solution(IdentifierVariable(id2))
+      sol1 == sol2 && sol1.isInstanceOf[PointerRef] // same equivalence class, and it contains a reference
   }
 }
 
 /**
- * Counter for producing fresh IDs.
- */
+  * Counter for producing fresh IDs.
+  */
 object Fresh {
 
   var n = 0
@@ -91,29 +110,29 @@ object Fresh {
 }
 
 /**
- * Terms used in unification.
- */
+  * Terms used in unification.
+  */
 sealed trait StTerm
 
 /**
- * A term variable that represents a malloc in the program.
- */
+  * A term variable that represents a malloc in the program.
+  */
 case class MallocVariable(malloc: AMalloc) extends StTerm with Var[StTerm] {
 
-  override def toString: String = s"malloc-${malloc.offset}"
+  override def toString: String = s"[[malloc:${malloc.loc}]]"
 }
 
 /**
- * A term variable that represents an identifier in the program.
- */
-case class IdentifierVariable(id: AIdentifierDeclaration) extends StTerm with Var[StTerm] {
+  * A term variable that represents an identifier in the program.
+  */
+case class IdentifierVariable(id: ADeclaration) extends StTerm with Var[StTerm] {
 
-  override def toString: String = s"$id:${id.offset}"
+  override def toString: String = s"[[$id]]"
 }
 
 /**
- * A fresh term variable.
- */
+  * A fresh term variable.
+  */
 case class FreshVariable(var id: Int = 0) extends StTerm with Var[StTerm] {
 
   id = Fresh.next
@@ -122,18 +141,13 @@ case class FreshVariable(var id: Int = 0) extends StTerm with Var[StTerm] {
 }
 
 /**
- * A constructor term that represents a pointer to another term.
- * The tag is used to distinguish between different pointers that point to the same term.
- */
-case class PointerRef(of: Term[StTerm], tag: Any) extends StTerm with Cons[StTerm] {
+  * A constructor term that represents a pointer to another term.
+  */
+case class PointerRef(of: Term[StTerm]) extends StTerm with Cons[StTerm] {
 
-  def fv: Set[Var[StTerm]] = of.fv
+  val args: List[Term[StTerm]] = List(of)
 
-  def subst(v: Var[StTerm], t: Term[StTerm]): Term[StTerm] = PointerRef(of.subst(v, t), tag)
+  def subst(v: Var[StTerm], t: Term[StTerm]): Term[StTerm] = PointerRef(of.subst(v, t)) // currently not used
 
-  override def toString: String = s"&$tag$of"
-
-  override def arity: Int = 1
-
-  override def args: Seq[Term[StTerm]] = Seq(of)
+  override def toString: String = s"&$of"
 }

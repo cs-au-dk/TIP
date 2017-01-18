@@ -1,9 +1,9 @@
 main() {
-	var x,y;
-	x = 10;
-	y = &x;
-	while (*y > 0) {
-		*y = *y-1;
-	}
-	return x;
+    var x,y;
+    x = 10;
+    y = &x;
+    while (*y > 0) {
+        *y = *y-1;
+    }
+    return x;
 }

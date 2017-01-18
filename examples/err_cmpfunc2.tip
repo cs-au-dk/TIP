@@ -1,16 +1,16 @@
 
 f(){
-	return 17;
+    return 17;
 }
 
 g(i){
-	return i+1;
+    return i+1;
 }
 
 main(){
-	var n;
-	if( f==g ){
-		n=10;
-	}
-	return 0;
+    var n;
+    if( f==g ){
+        n=10;
+    }
+    return 0;
 }

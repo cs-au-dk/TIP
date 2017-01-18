@@ -1,13 +1,13 @@
 main() {
-	var x,y,z;
-	x = input;
-	y = input;
-	z = input;
-	if (x == 0)
-		if (y == 0)
-			output z;
-		else
-			output x;
-	return y;
+    var x,y,z;
+    x = input;
+    y = input;
+    z = input;
+    if (x == 0)
+        if (y == 0)
+            output z;
+        else
+            output x;
+    return y;
 }
-		
+        

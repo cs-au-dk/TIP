@@ -1,65 +1,76 @@
 package tip.analysis
 
-import tip.ast.DepthFirstAstVisitor
-import tip.logging.Log
+import tip.ast.{ADeclaration, DepthFirstAstVisitor, _}
 import tip.solvers._
-import tip.ast._
-import scala.collection.{ mutable, immutable }
+import tip.util.Log
+import tip.ast.AstNodeData.{AstNodeWithDeclaration, DeclarationData}
 
-class AndersenAnalysis(program: AProgram)
-  extends DepthFirstAstVisitor[Null] {
+class AndersenAnalysis(program: AProgram)(implicit declData: DeclarationData) extends DepthFirstAstVisitor[Null] with PointsToAnalysis {
 
-  val log = Log.typeLogger[this.type](Log.Level.Info)
+  val log = Log.logger[this.type](Log.Level.Info)
 
   trait Target
   case class Malloc(malloc: AMalloc) extends Target {
-    override def toString() = s"malloc-${malloc.offset}"
+    override def toString = s"malloc-${malloc.loc}"
   }
-  case class Var(id: AIdentifierDeclaration) extends Target {
-    override def toString() = s"$id:${id.offset}"
+  case class Var(id: ADeclaration) extends Target {
+    override def toString = id.toString
   }
 
   val solver = new CubicSolver[Target, Target]
 
   import AstOps._
-  val allTargets = (program.appearingIds.map(Var(_)): Set[Target]) union program.appearingMallocs.map(Malloc(_))
+  val allTargets = (program.appearingIds.map(Var): Set[Target]) union program.appearingMallocs.map(Malloc)
 
-  performAnalysis()
+  NormalizedForPointsToAnalysis.assertContainsProgram(program)
 
   /**
-   * Generates the constraints for the given sub-AST.
-   * @param node the node for which it generates the constraints
-   * @param arg unused for this visitor
-   */
+    * Generates the constraints for the given sub-AST.
+    * @param node the node for which it generates the constraints
+    * @param arg unused for this visitor
+    */
   override def visit(node: AstNode, arg: Null): Unit = {
-    PointerNormalised.checkAstLanguageRestriction(node)
-
-    /**
-     * Get the (variable or function) declaration of the identifier.
-     */
-    def decl(id:AIdentifier): AIdentifierDeclaration = id.meta.definition.get.asInstanceOf[AIdentifierDeclaration]
 
     node match {
-      case AAssignStmt(id: AIdentifier, malloc: AMalloc, _) =>
-        //<---- Complete here
-      case AAssignStmt(id1: AIdentifier, AUnaryOp(r: RefOp, id2: AIdentifier, _ ), _) =>
-        //<---- Complete here
-      case AAssignStmt(id1: AIdentifier, id2: AIdentifier, _) =>
-        //<---- Complete here
-      case AAssignStmt(id1: AIdentifier, AUnaryOp(d: DerefOp, id2: AIdentifier, _ ), _) =>
-        //<---- Complete here
-      case AAssignStmt(AUnaryOp(d: DerefOp, id1: AIdentifier, _), id2: AIdentifier, _) =>
-        //<---- Complete here
-      case AAssignStmt(id: AIdentifier, ANull(_), _) =>
-      case AAssignStmt(id: AIdentifier, atom: AstAtom, _) =>
-      case ass: AAssignStmt => PointerNormalised.LanguageRestrictionViolation(ass)
+      case AAssignStmt(Left(id), malloc: AMalloc, _) => ??? //<--- Complete here
+      case AAssignStmt(Left(id1), AUnaryOp(RefOp, id2: AIdentifier, _), _) => ??? //<--- Complete here
+      case AAssignStmt(Left(id1), id2: AIdentifier, _) => ??? //<--- Complete here
+      case AAssignStmt(Left(id1), AUnaryOp(DerefOp, id2: AIdentifier, _), _) => ??? //<--- Complete here
+      case AAssignStmt(Right(AUnaryOp(_, id1: AIdentifier, _)), id2: AIdentifier, _) => ??? //<--- Complete here
+      case AAssignStmt(Left(_), ANull(_), _) =>
+      case AAssignStmt(Left(_), _: AAtomicExpr, _) =>
+      case ass: AAssignStmt => NormalizedForPointsToAnalysis.LanguageRestrictionViolation(s"Assignment $ass not expected")
       case _ =>
     }
     visitChildren(node, null)
   }
 
-  private def performAnalysis(): Unit = {
+  /**
+    * @inheritdoc
+    */
+  def pointsTo() = {
+    val pointsTo = solver.getSolution.collect {
+      case (v: Var, ts: Set[Target]) =>
+        v.id -> ts.map {
+          case Var(x) => x
+          case Malloc(m) => m
+        }
+    }
+    println(s"Points-to:\n${pointsTo.mapValues(v => s"{${v.mkString(",")}}").mkString("\n")}")
+    pointsTo
+  }
+
+  /**
+    * @inheritdoc
+    */
+  def mayAlias(): (ADeclaration, ADeclaration) => Boolean = { (x: ADeclaration, y: ADeclaration) =>
+    solver.getSolution(Var(x)).intersect(solver.getSolution(Var(y))).nonEmpty
+  }
+
+  /**
+    * @inheritdoc
+    */
+  override def analyze() = {
     visit(program, null)
-    log.info(s"Solution is:\n$solver")
   }
 }

@@ -1,21 +1,21 @@
 fib(n){
-	var f1,f2,i;
-	f1=1;
-	f2=1;
-	
-	i=n;
-	while( i>1 ){
-		var temp;
-		temp = f1+f2;
-		f1=f2;
-		f2=temp;
-		i=i-1;
-	}
-	return f2;
+    var f1,f2,i;
+    var temp;
+    f1=1;
+    f2=1;
+    
+    i=n;
+    while( i>1 ){
+        temp = f1+f2;
+        f1=f2;
+        f2=temp;
+        i=i-1;
+    }
+    return f2;
 }
 
 main(){
-	var n;
-	n=input;
-	return fib(n);
+    var n;
+    n=input;
+    return fib(n);
 }

@@ -1,0 +1,9 @@
+main() {
+  var a,b,c,d;
+
+  c = &d;
+  a = &b;
+  *a = c;
+
+  return 0;
+}

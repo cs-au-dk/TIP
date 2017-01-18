@@ -1,10 +1,10 @@
 main() {
-	var x,y,p,q;
-	q = malloc;
-	y = &q;
-	x = *y;
-	p = null;
-	y = &p;
-	*x = p;	
-	return 1;
+    var x,y,p,q;
+    q = malloc;
+    y = &q;
+    x = *y;
+    p = null;
+    y = &p;
+    *x = p;    
+    return 1;
 }

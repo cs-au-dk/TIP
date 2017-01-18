@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectCodeStyleSettingsManager">
+    <option name="PER_PROJECT_SETTINGS">
+      <value>
+        <option name="RIGHT_MARGIN" value="150" />
+        <ScalaCodeStyleSettings>
+          <option name="PUBLIC_PROPERTY_TYPE_ANNOTATION" value="0" />
+          <option name="PROTECTED_PROPERTY_TYPE_ANNOTATION" value="0" />
+          <option name="PUBLIC_METHOD_TYPE_ANNOTATION" value="0" />
+          <option name="PROTECTED_METHOD_TYPE_ANNOTATION" value="0" />
+        </ScalaCodeStyleSettings>
+      </value>
+    </option>
+    <option name="USE_PER_PROJECT_SETTINGS" value="true" />
+  </component>
+</project>

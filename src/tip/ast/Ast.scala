@@ -1,29 +1,20 @@
 package tip.ast
 
-import tip.types.TipType
+object AstNode {
 
-import scala.collection.immutable
+  var lastUid: Int = 0
 
-/**
- * A class holding all the meta-informations about an AST node collected during
- * the various phases of the analysis
- *
- * @param definition the definition point point of the node (available for identifiers only)
- * @param theType the type of the node (available for expressions only)
- */
-case class AstMetadata(
-                        var definition: Option[AIdentifierDeclaration] = None,
-                        var theType: Option[TipType] = None) {
-
-  def typeStr(): String = {
-    theType match {
-      case Some(t) => t.toString
-      case None => "NotInferred"
-    }
-  }
-
+  /**
+    * Only `AIdentifier` and `AUnaryOp[DerefOp.type]` are legal left-hand-sides of assignments.
+    * An AST node of type `Assignable` matches `Left(id)` if it is an identifier `id`, and
+    * it matches `Right(AUnaryOp(DerefOp, e, _))` if it is a dereference of `e`.
+    */
+  type Assignable = Either[AIdentifier, AUnaryOp[DerefOp.type]]
 }
 
+/**
+  * Source code location.
+  */
 case class Loc(line: Int, col: Int) {
   override def toString: String = s"$line:$col"
 }
@@ -32,168 +23,272 @@ sealed trait Operator
 sealed trait BinaryOperator
 sealed trait UnaryOperator
 
-case class Plus() extends Operator with BinaryOperator {
+object Plus extends Operator with BinaryOperator {
   override def toString: String = "+"
 }
 
-case class Minus() extends Operator with BinaryOperator {
+object Minus extends Operator with BinaryOperator {
   override def toString: String = "-"
 }
 
-case class Times() extends Operator with BinaryOperator {
+object Times extends Operator with BinaryOperator {
   override def toString: String = "*"
 }
 
-case class Divide() extends Operator with BinaryOperator {
+object Divide extends Operator with BinaryOperator {
   override def toString: String = "/"
 }
 
-case class Eqq() extends Operator with BinaryOperator {
+object Eqq extends Operator with BinaryOperator {
   override def toString: String = "=="
 }
 
-case class GreatThan() extends Operator with BinaryOperator {
+object GreatThan extends Operator with BinaryOperator {
   override def toString: String = ">"
 }
 
-case class RefOp() extends Operator with UnaryOperator {
+object RefOp extends Operator with UnaryOperator {
   override def toString: String = "&"
 }
 
-case class DerefOp() extends Operator with UnaryOperator {
+object DerefOp extends Operator with UnaryOperator {
   override def toString: String = "*"
 }
 
-sealed abstract class AstNode {
-  def offset: Loc
+/**
+  * AST node.
+  */
+sealed abstract class AstNode extends AnyRef {
 
-  def getId: String = s"${this.getClass.getSimpleName}:$offset"
+  /**
+    * Unique ID of the node.
+    * Every new node object gets a fresh ID (but the ID is ignored in equals tests).
+    */
+  val uid = { AstNode.lastUid += 1; AstNode.lastUid }
 
-  def toTypedString: String = toString
+  /**
+    * Source code location.
+    */
+  val loc: Loc
+
+  def toCustomString(printer: PartialFunction[AstNode, String]): String
 }
 
 //////////////// Expressions //////////////////////////
 
-sealed trait AExpr extends AstNode {
-  var meta: AstMetadata
+sealed trait AExpr extends AstNode
+
+sealed trait AAtomicExpr extends AExpr
+
+sealed trait ADeclaration extends AstNode
+
+case class ACallFuncExpr(targetFun: AExpr, args: List[AExpr], loc: Loc) extends AExpr {
+  override def toString: String = s"${toCustomString(PartialFunction.empty)}:$loc"
+
+  def toCustomString(printer: PartialFunction[AstNode, String]): String =
+    printer.applyOrElse(this, { _: ACallFuncExpr =>
+      s"${targetFun.toCustomString(printer)}(${args.map(_.toCustomString(printer)).mkString(",")})"
+    })
 }
 
-sealed trait AstAtom extends AstNode
+case class AIdentifierDeclaration(value: String, loc: Loc) extends ADeclaration {
+  override def toString: String = s"${toCustomString(PartialFunction.empty)}:$loc"
 
-sealed trait AIdentifierDeclaration extends AstNode
-
-sealed trait AAssignable extends AstNode
-
-case class ACallFuncExpr(targetFun: AExpr, args: immutable.Seq[AExpr], offset: Loc)(var meta: AstMetadata = AstMetadata()) extends AExpr {
-  override def toString: String = s"$targetFun(${args.mkString(",")})"
+  def toCustomString(printer: PartialFunction[AstNode, String]): String =
+    printer.applyOrElse(this, { _: AIdentifierDeclaration =>
+      s"$value"
+    })
 }
 
-case class AIdentifier(value: String, offset: Loc)(var meta: AstMetadata = AstMetadata()) extends AExpr
-with AstAtom with AIdentifierDeclaration with AAssignable {
-  override def toString: String = value
+case class AIdentifier(value: String, loc: Loc) extends AExpr with AAtomicExpr {
+  override def toString: String = s"${toCustomString(PartialFunction.empty)}:$loc"
 
-  override def toTypedString: String = {
-    if (this.meta.definition.contains(this))
-      s"$value: ${this.meta.typeStr()}"
-    else
-      toString()
-  }
+  def toCustomString(printer: PartialFunction[AstNode, String]): String =
+    printer.applyOrElse(this, { _: AIdentifier =>
+      value
+    })
 }
 
-case class ABinaryOp(operator: BinaryOperator, left: AExpr, right: AExpr, offset: Loc)(var meta: AstMetadata = AstMetadata()) extends AExpr {
-  override def toString: String = left + " " + operator + " " + right
+case class ABinaryOp(operator: BinaryOperator, left: AExpr, right: AExpr, loc: Loc) extends AExpr {
+  override def toString: String = s"${toCustomString(PartialFunction.empty)}:$loc"
+
+  def toCustomString(printer: PartialFunction[AstNode, String]): String =
+    printer.applyOrElse(this, { _: ABinaryOp =>
+      left.toCustomString(printer) + " " + operator + " " + right.toCustomString(printer)
+    })
 }
 
-case class AUnaryOp(operator: UnaryOperator, target: AExpr, offset: Loc)(var meta: AstMetadata = AstMetadata()) extends AExpr with AAssignable {
-  override def toString: String = s"$operator$target"
+case class AUnaryOp[+T <: UnaryOperator](operator: T, target: AExpr, loc: Loc) extends AExpr {
+  override def toString: String = s"${toCustomString(PartialFunction.empty)}:$loc"
+
+  def toCustomString(printer: PartialFunction[AstNode, String]): String =
+    printer.applyOrElse(this, { _: AUnaryOp[T] =>
+      s"$operator${target.toCustomString(printer)}"
+    })
 }
 
-case class ANumber(value: Int, offset: Loc)(var meta: AstMetadata = AstMetadata()) extends AExpr with AstAtom {
-  override def toString: String = s"$value"
+case class ANumber(value: Int, loc: Loc) extends AExpr with AAtomicExpr {
+  override def toString: String = s"${toCustomString(PartialFunction.empty)}:$loc"
+
+  def toCustomString(printer: PartialFunction[AstNode, String]): String =
+    printer.applyOrElse(this, { _: ANumber =>
+      s"$value"
+    })
 }
 
-case class AInput(offset: Loc)(var meta: AstMetadata = AstMetadata()) extends AExpr with AstAtom {
-  override def toString: String = "input"
+case class AInput(loc: Loc) extends AExpr with AAtomicExpr {
+  override def toString: String = s"${toCustomString(PartialFunction.empty)}:$loc"
+
+  def toCustomString(printer: PartialFunction[AstNode, String]): String =
+    printer.applyOrElse(this, { _: AInput =>
+      "input"
+    })
 }
 
-case class AMalloc(offset: Loc)(var meta: AstMetadata = AstMetadata()) extends AExpr with AstAtom {
-  override def toString: String = "malloc"
+case class AMalloc(loc: Loc) extends AExpr with AAtomicExpr {
+  override def toString: String = s"malloc:$loc"
+
+  def toCustomString(printer: PartialFunction[AstNode, String]): String =
+    printer.applyOrElse(this, { _: AMalloc =>
+      "malloc"
+    })
 }
 
-case class ANull(offset: Loc)(var meta: AstMetadata = AstMetadata()) extends AExpr with AstAtom {
-  override def toString: String = "null"
+case class ANull(loc: Loc) extends AExpr with AAtomicExpr {
+  override def toString: String = s"${toCustomString(PartialFunction.empty)}:$loc"
+
+  def toCustomString(printer: PartialFunction[AstNode, String]): String =
+    printer.applyOrElse(this, { _: ANull =>
+      "null"
+    })
 }
 
 //////////////// Statements //////////////////////////
 
 sealed trait AStmt extends AstNode
 
-case class AAssignStmt(left: AAssignable, right: AExpr, offset: Loc) extends AStmt {
-  override def toString: String = s"$left = $right;"
+/**
+  * A statement in the body of a nested block (cannot be a declaration or a return).
+  */
+sealed trait AStmtInNestedBlock extends AStmt
 
-  override def toTypedString: String = s"${left.toTypedString} = ${right.toTypedString};"
+case class AAssignStmt(left: AstNode.Assignable, right: AExpr, loc: Loc) extends AStmtInNestedBlock {
+  override def toString: String = s"${toCustomString(PartialFunction.empty)}:$loc"
+
+  def toCustomString(printer: PartialFunction[AstNode, String]): String =
+    printer.applyOrElse(this, { _: AAssignStmt =>
+      s"${left.fold(_.toCustomString(printer), _.toCustomString(printer))} = ${right.toCustomString(printer)};"
+    })
 }
 
-case class ABlockStmt(content: immutable.Seq[AStmt], offset: Loc) extends AStmt {
-  override def toString: String = s"{\n${content.mkString("\n")}\n}"
+sealed trait ABlock extends AStmt {
 
-  override def toTypedString: String = s"{\n${content.map(_.toTypedString).mkString("\n")}\n}"
+  /**
+    * All the statements in the block, in order.
+    */
+  def body: List[AStmt]
+
+  override def toString: String = s"${toCustomString(PartialFunction.empty)}:$loc"
+
+  def toCustomString(printer: PartialFunction[AstNode, String]): String =
+    printer.applyOrElse(this, { _: ABlock =>
+      {
+        s"{\n${body.map(_.toCustomString(printer)).mkString("\n")}\n}"
+      }
+    })
 }
 
-case class AIfStmt(guard: AExpr, ifBranch: AStmt, elseBranch: Option[AStmt], offset: Loc) extends AStmt {
-  override def toString: String = {
-    val elseb = elseBranch.fold("")("else " + _)
-    s"if($guard) $ifBranch  $elseb"
+case class ANestedBlockStmt(body: List[AStmtInNestedBlock], loc: Loc) extends ABlock with AStmtInNestedBlock
+
+case class AFunBlockStmt(declarations: List[AVarStmt], others: List[AStmtInNestedBlock], ret: AReturnStmt, loc: Loc) extends ABlock {
+
+  /**
+    * The contents of the block, not partitioned into declarations, others and return
+    */
+  val body: List[AStmt] = declarations ++ (others :+ ret)
+}
+
+case class AIfStmt(guard: AExpr, ifBranch: AStmtInNestedBlock, elseBranch: Option[AStmtInNestedBlock], loc: Loc) extends AStmtInNestedBlock {
+  override def toString: String = s"${toCustomString(PartialFunction.empty)}:$loc"
+
+  def toCustomString(printer: PartialFunction[AstNode, String]): String =
+    printer.applyOrElse(this, { _: AIfStmt =>
+      {
+        val elseb = elseBranch.map(x => "else " + x.toCustomString(printer)).getOrElse("")
+        s"if(${guard.toCustomString(printer)}) ${ifBranch.toCustomString(printer)}  $elseb"
+      }
+    })
+}
+
+case class AOutputStmt(value: AExpr, loc: Loc) extends AStmtInNestedBlock {
+  override def toString: String = s"${toCustomString(PartialFunction.empty)}:$loc"
+
+  def toCustomString(printer: PartialFunction[AstNode, String]): String = {
+    printer.applyOrElse(this, { _: AOutputStmt =>
+      s"output ${value.toCustomString(printer)};"
+    })
   }
-
-  override def toTypedString: String = {
-    val elseb = elseBranch.fold("")("else " + _.toTypedString)
-    s"if(${guard.toTypedString}) ${ifBranch.toTypedString}  $elseb"
-  }
 }
 
-case class AoutputStmt(value: AExpr, offset: Loc) extends AStmt {
-  override def toString: String = s"output $value;"
+case class AReturnStmt(value: AExpr, loc: Loc) extends AStmt {
+  override def toString: String = s"${toCustomString(PartialFunction.empty)}:$loc"
+
+  def toCustomString(printer: PartialFunction[AstNode, String]): String =
+    printer.applyOrElse(this, { _: AReturnStmt =>
+      s"return ${value.toCustomString(printer)};"
+    })
 }
 
-case class AReturnStmt(value: AExpr, offset: Loc) extends AStmt {
-  override def toString: String = s"return $value;"
+case class AErrorStmt(value: AExpr, loc: Loc) extends AStmtInNestedBlock {
+  override def toString: String = s"${toCustomString(PartialFunction.empty)}:$loc"
+
+  def toCustomString(printer: PartialFunction[AstNode, String]): String =
+    printer.applyOrElse(this, { _: AErrorStmt =>
+      s"error ${value.toCustomString(printer)};"
+    })
 }
 
-case class AVarStmt(declIds: immutable.Seq[AIdentifier], offset: Loc) extends AStmt {
-  override def toString: String = s"var ${declIds.mkString(",")};"
+case class AVarStmt(declIds: List[AIdentifierDeclaration], loc: Loc) extends AStmt {
+  override def toString: String = s"${toCustomString(PartialFunction.empty)}:$loc"
 
-  override def toTypedString: String = {
-    val typedVar = declIds.map(_.toTypedString).mkString(",")
-    s"var $typedVar;"
-  }
+  def toCustomString(printer: PartialFunction[AstNode, String]): String =
+    printer.applyOrElse(this, { _: AVarStmt =>
+      s"var ${declIds.map(_.toCustomString(printer)).mkString(",")};"
+    })
 }
 
-case class AWhileStmt(guard: AExpr, innerBlock: AStmt, offset: Loc) extends AStmt {
-  override def toString: String = s"while(${guard.toTypedString}) $innerBlock"
+case class AWhileStmt(guard: AExpr, innerBlock: AStmtInNestedBlock, loc: Loc) extends AStmtInNestedBlock {
+  override def toString: String = s"${toCustomString(PartialFunction.empty)}:$loc"
 
-  override def toTypedString: String = s"while(${guard.toTypedString}) ${innerBlock.toTypedString}"
+  def toCustomString(printer: PartialFunction[AstNode, String]): String =
+    printer.applyOrElse(this, { _: AWhileStmt =>
+      s"while(${guard.toCustomString(printer)}) ${innerBlock.toCustomString(printer)}"
+    })
 }
 
 //////////////// Program and function ///////////////
 
-case class AProgram(fun: immutable.Seq[AFunDeclaration], offset: Loc) extends AstNode {
+case class AProgram(funs: List[AFunDeclaration], loc: Loc) extends AstNode {
 
-  def mainFunction:AFunDeclaration = {
-    val main = fun.find(decl => decl.name.value == "main")
-    if(main.isDefined) main.get
-    else throw new RuntimeException(s"Missing main function, declared functions are $fun")
+  def mainFunction: AFunDeclaration = {
+    val main = funs.find(decl => decl.name == "main")
+    if (main.isDefined) main.get
+    else throw new RuntimeException(s"Missing main function, declared functions are $funs")
   }
 
-  override def toString: String = s"${fun.mkString("\n\n")}"
+  override def toString: String = s"${toCustomString(PartialFunction.empty)}:$loc"
 
-  override def toTypedString: String = s"${fun.map(_.toTypedString).mkString("\n\n")}"
-
+  def toCustomString(printer: PartialFunction[AstNode, String]): String =
+    printer.applyOrElse(this, { _: AProgram =>
+      s"${funs.map(_.toCustomString(printer)).mkString("\n\n")}"
+    })
 }
 
-case class AFunDeclaration(name: AIdentifier, args: immutable.Seq[AIdentifier], stmts: ABlockStmt, offset: Loc)(var meta: AstMetadata = AstMetadata())
-  extends AstNode with AIdentifierDeclaration {
+case class AFunDeclaration(name: String, args: List[AIdentifierDeclaration], stmts: AFunBlockStmt, loc: Loc) extends ADeclaration {
   override def toString: String = s"$name (${args.mkString(",")}){...}"
 
-  override def toTypedString: String = s"$name (${args.map(_.toTypedString).mkString(",")}): ${this.meta.typeStr()}\n${stmts.toTypedString}"
+  def toCustomString(printer: PartialFunction[AstNode, String]): String =
+    printer.applyOrElse(this, { _: AFunDeclaration =>
+      s"$name (${args.map(_.toCustomString(printer)).mkString(",")})\n${stmts.toCustomString(printer)}"
+    })
 }

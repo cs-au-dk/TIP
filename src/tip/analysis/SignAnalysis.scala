@@ -1,196 +1,171 @@
 package tip.analysis
 
-import tip.ast
 import tip.ast._
-import tip.lattices._
-import tip.graph._
-import tip.logging.Log
+import tip.cfg.CfgOps._
+import tip.cfg._
+import tip.lattices.{SignLattice, _}
 import tip.solvers._
-import tip.graph.NodeOps._
-import tip.MapUtils
+import tip.ast.AstNodeData.{AstNodeWithDeclaration, DeclarationData}
+
+import tip.util.Log
 
 object SignAnalysisCommons {
-  val returnId = AIdentifier(s"#result", Loc(0, 0))()
+  val returnId = AIdentifierDeclaration(s"#result", Loc(0, 0))
 }
 
 /**
- * Transfer functions for sign analysis (intraprocedural only).
- */
+  * Transfer functions for sign analysis (intraprocedural only).
+  */
 trait IntraprocSignAnalysisTransferFunctions {
 
-  val log = Log.typeLogger[this.type]()
+  implicit val declData: DeclarationData
 
-  type Sign = SignLattice.SignElement.Value
+  val log = Log.logger[this.type](Log.Level.None)
 
-  import SignLattice.SignElement._
+  type Sign = SignElement.Value
 
-  val domain: Set[GNode[AstNode]]
+  val domain: Set[CfgNode]
 
-  val declaredVars = domain.map {_.declaredIdsIncludingParams}.flatten
+  val declaredVars = domain.flatMap(_.declaredVarsAndParams)
 
   val statelattice = new MapLattice(declaredVars, SignLattice)
 
   /**
-   * The transfer functions.
-   */
-  def transfer(n: GNode[AstNode], s: statelattice.Element): statelattice.Element = {
-    NoPointer.checkCfgNodeLanguageRestriction(n)
-    import NoPointer._
+    * The transfer functions.
+    */
+  def transfer(n: CfgNode, s: statelattice.Element): statelattice.Element = {
+    NoPointers.assertContainsNode(n.data)
+    NoCalls.assertContainsNode(n.data)
     n match {
-      case r: GRealNode[AstNode] =>
+      case r: CfgStmtNode =>
         r.data match {
-          //<---- Complete here
+
+          // var declarations
+          case varr: AVarStmt => ??? //<--- Complete here
+
+          // assignments
+          case AAssignStmt(Left(id), right, _) => ??? //<--- Complete here
+
+          case AAssignStmt(Right(_), _, _) => NoPointers.LanguageRestrictionViolation(s"De-reference on the right-hand of ${r.data}")
+
           // all others: like no-ops
           case _ => s
         }
       case _ => s
     }
   }
-
-  private def unsupportedError(x: Any) = throw new IllegalArgumentException(s"Sign analysis meant to be run on programs without $x")
 }
 
 /**
- * Variant of [[tip.analysis.ForwardDependencies]] for interprocedural analysis.
- */
-trait InterproceduralDependencies extends Dependencies[GNode[AstNode]] {
-
-  val depLog = Log.typeLogger[this.type]()
-  
-  val cfg: ProgramCFG
-
-  def called(n: GNode[AstNode]): Set[GNode[AstNode]]
-  
-  def callers(n: GNode[AstNode]): Set[GNode[AstNode]]
-
-  /**
-   * Like [[tip.analysis.ForwardDependencies.outdep()]] but with call and return edges.
-   * A call node has an outdep to its after-call node.
-   */
-  override def outdep(n: GNode[AstNode]) = {
-    val intraDep = n match {
-      case call: CallNode[AstNode] => called(call)
-      case exit: FunExit[AstNode] => callers(exit)
-      case _ => Set()
-    } 
-    intraDep ++ n.succ.toSet
-  }
-
-  /**
-   * Like [[tip.analysis.ForwardDependencies.indep()]] but returning an empty set for after-call nodes.
-   */
-  override def indep(n: GNode[AstNode]) = {
-    n match {
-      case acall: AfterCallNode[AstNode] => Set()
-      case _ => n.pred.toSet
-    }
-  }
-}
-
-/**
- * Common functionality for interprocedural analysis.
- */
+  * Common functionality for interprocedural analysis.
+  */
 trait InterprocSignAnalysisMisc {
-  
-  val lattice: MapLattice[GNode[AstNode], LiftLattice[MapLattice[AIdentifier, SignLattice.type]]]
 
-  val cfg: ProgramCFG
-  
-  NormalisedCallsLanguageRestrictions.checkCfgLanguageRestriction(cfg)
-  NoPointer.checkCfgLanguageRestriction(cfg)
+  val lattice: MapLattice[CfgNode, LiftLattice[MapLattice[ADeclaration, SignLattice.type]]]
 
-  def evalArgs(formalParams: Seq[AIdentifier], actualParams: Seq[AExpr], state: lattice.sublattice.sublattice.Element): lattice.sublattice.sublattice.Element = {
-    formalParams.zip(actualParams).foldLeft(lattice.sublattice.sublattice.bottom) { case (acc, (id, exp)) =>
-      acc + (id -> lattice.sublattice.sublattice.sublattice.eval(exp, state))
+  val cfg: InterproceduralProgramCfg
+
+  implicit val declData: DeclarationData
+
+  def evalArgs(formalParams: Seq[ADeclaration],
+               actualParams: Seq[AExpr],
+               state: lattice.sublattice.sublattice.Element): lattice.sublattice.sublattice.Element = {
+    formalParams.zip(actualParams).foldLeft(lattice.sublattice.sublattice.bottom) {
+      case (acc, (id, exp)) =>
+        acc + (id -> lattice.sublattice.sublattice.sublattice.eval(exp, state))
     }
   }
 }
 
 /**
- * Update function for sign analysis (including interprocedural).
- * This version is for the basic worklist algorithm.
- */
-trait InterprocSignAnalysisFunctions extends MapLiftLatticeUpdateFunction[GNode[AstNode]] with InterprocSignAnalysisMisc {
+  * Update function for sign analysis (including interprocedural).
+  * This version is for the basic worklist algorithm.
+  */
+trait InterprocSignAnalysisFunctions
+    extends MapLiftLatticeUpdateFunction[CfgNode]
+    with InterprocSignAnalysisMisc
+    with InterproceduralForwardDependencies {
 
-  private val log = Log.typeLogger[this.type]()
-  
-  def called(n: GNode[AstNode]): Set[GNode[AstNode]]
-  
-  def callers(n: GNode[AstNode]): Set[GNode[AstNode]]
-  
-  override def funsub(n: GNode[AstNode], s: lattice.sublattice.Element, o: lattice.Element): lattice.sublattice.Element = {
-    import NormalisedCallsLanguageRestrictions._
+  private val log = Log.logger[this.type](Log.Level.None)
+
+  implicit val declData: DeclarationData
+
+  override def funsub(n: CfgNode, s: lattice.sublattice.Element, o: lattice.Element): lattice.sublattice.Element = {
     import lattice.sublattice._
+    import cfg._
 
     log.debug(s"Processing $n ${n.getClass}")
-    
+
+    NormalizedCalls().assertContainsNode(n.data)
+
     n match {
-      
+
       // call nodes (like no-ops here)
-      case call: CallNode[AstNode] => join(n, s, o)
-      
+      case _: CfgCallNode => join(n, s, o)
+
       // function entry nodes
-      case funentry: FunEntry[AstNode] => ???//<---- Complete here
-      
+      case funentry: CfgFunEntryNode => ??? //<--- Complete here
+
       // function exit nodes (like no-ops here)
-      case funexit: FunExit[AstNode] => join(n, s, o)
-      
+      case _: CfgFunExitNode => join(n, s, o)
+
       // after-call nodes
-      case aftercall: AfterCallNode[AstNode] => ???//<---- Complete here
-      
-      case GRealNode(_, _,_ , ret: AReturnStmt) => {
+      case aftercall: CfgAfterCallNode => ??? //<--- Complete here
+
+      case CfgStmtNode(_, _, _, ret: AReturnStmt) =>
         val j = join(n, s, o)
         j + (SignAnalysisCommons.returnId -> lattice.sublattice.sublattice.sublattice.eval(ret.value, j))
-      }
-      
+
       case _ => super.funsub(n, s, o)
     }
   }
 }
 
 /**
- * Update functions for sign analysis (including interprocedural), propagation style.
- * This is a variant of [[InterprocSignAnalysisFunctions]] for use with [[tip.solvers.WorklistFixpointPropagationSolver]].
- */
-trait InterprocSignAnalysisFunctionsWithPropagation extends MapLiftLatticeUpdateFunction[GNode[AstNode]]
-  with WorklistFixpointPropagationSolver[GNode[AstNode]] with InterprocSignAnalysisMisc {
-  
-  override def funsub(n: GNode[AstNode], s: lattice.sublattice.Element, o: lattice.Element): lattice.sublattice.Element = {
+  * Update functions for sign analysis (including interprocedural), propagation style.
+  * This is a variant of [[InterprocSignAnalysisFunctions]] for use with [[tip.solvers.WorklistFixpointPropagationSolver]].
+  */
+trait InterprocSignAnalysisFunctionsWithPropagation
+    extends MapLiftLatticeUpdateFunction[CfgNode]
+    with WorklistFixpointPropagationSolver[CfgNode]
+    with InterprocSignAnalysisMisc {
+
+  implicit val declData: DeclarationData
+
+  override def funsub(n: CfgNode, s: lattice.sublattice.Element, o: lattice.Element): lattice.sublattice.Element = {
     import cfg._
-    import NormalisedCallsLanguageRestrictions._
     import lattice.sublattice._
-    
-    // helper function that propagates dataflow from a function exit node to an after-call node 
-    def returnflow(funexit: FunExit[AstNode], aftercall: AfterCallNode[AstNode]) {
-      val id = aftercall.assignment.leftId
-      propagate(o(aftercall.pred.head) + (id.meta.definition.get.asInstanceOf[AIdentifier] -> s(SignAnalysisCommons.returnId)), aftercall)
+
+    // helper function that propagates dataflow from a function exit node to an after-call node
+    def returnflow(funexit: CfgFunExitNode, aftercall: CfgAfterCallNode) {
+      val id = aftercall.targetIdentifier
+      propagate(o(aftercall.pred.head) + (id.declaration -> s(SignAnalysisCommons.returnId)), aftercall)
     }
 
     n match {
 
       // call nodes
-      case call: CallNode[AstNode] => {
-        val calledFun = call.called.get.data.asInstanceOf[AFunDeclaration]
-        propagate(evalArgs(calledFun.args, call.invocation.args, s), call.called.head)
-        returnflow(call.succ.head.calledExits.head, call.succ.head.asInstanceOf[AfterCallNode[AstNode]]) // make sure existing return flow gets propagated
+      case call: CfgCallNode =>
+        val calledEntries = call.callees
+        calledEntries.foreach { entry =>
+          propagate(evalArgs(entry.data.args, call.invocation.args, s), entry)
+          returnflow(entry.exit, call.afterCallNode) // make sure existing return flow gets propagated
+        }
         lattice.sublattice.bottom // no flow directly to the after-call node
-      }
 
       // function entry nodes (like no-op here)
-      case funentry: FunEntry[AstNode] => s
-      
+      case _: CfgFunEntryNode => s
+
       // function exit nodes
-      case funexit: FunExit[AstNode] => {
+      case funexit: CfgFunExitNode =>
         for (aftercall <- funexit.callersAfterCall) returnflow(funexit, aftercall)
         lattice.sublattice.bottom // no successors for this kind of node, but we have to return something
-      }
-      
-      // after-call nodes (like no-op here)
-      case aftercall: AfterCallNode[AstNode] => s
 
-      case GRealNode(_, _,_ , ret: AReturnStmt) => {
+      // after-call nodes (like no-op here)
+      case _: CfgAfterCallNode => s
+
+      case CfgStmtNode(_, _, _, ret: AReturnStmt) =>
         s + (SignAnalysisCommons.returnId -> lattice.sublattice.sublattice.sublattice.eval(ret.value, s))
-      }
 
       case _ => super.funsub(n, s, o)
     }
@@ -198,118 +173,75 @@ trait InterprocSignAnalysisFunctionsWithPropagation extends MapLiftLatticeUpdate
 }
 
 /**
- * Base class for sign analysis.
- */
-abstract class IntraprocSignAnalysis(cfg: ControlFlowGraph[AstNode]) extends FlowSensitiveAnalysis(cfg)
-  with IntraprocSignAnalysisTransferFunctions with MapLiftLatticeUpdateFunction[GNode[AstNode]] with ForwardDependencies {
+  * Base class for sign analysis.
+  */
+abstract class IntraprocSignAnalysis(cfg: ProgramCfg)
+    extends FlowSensitiveAnalysis(cfg)
+    with IntraprocSignAnalysisTransferFunctions
+    with MapLiftLatticeUpdateFunction[CfgNode]
+    with ForwardDependencies {
 
   val lattice = new MapLattice(cfg.nodes, new LiftLattice(statelattice))
 }
 
 /**
- * Intraprocedural sign analysis that uses [[tip.solvers.SimpleFixpointSolver]].
- */
-class IntraprocSignAnalysisSimpleSolver(cfg: ControlFlowGraph[AstNode])
-  extends IntraprocSignAnalysis(cfg) with SimpleFixpointSolver with MapLatticeUpdateFunction[GNode[AstNode]]
+  * Intraprocedural sign analysis that uses [[tip.solvers.SimpleFixpointSolver]].
+  */
+class IntraprocSignAnalysisSimpleSolver(cfg: ProgramCfg)(override implicit val declData: DeclarationData)
+    extends IntraprocSignAnalysis(cfg)
+    with SimpleFixpointSolver
+    with MapLatticeUpdateFunction[CfgNode]
 
 /**
- * Intraprocedural sign analysis that uses [[tip.solvers.WorklistFixpointSolver]].
- */
-class IntraprocSignAnalysisWorklistSolver(cfg: ControlFlowGraph[AstNode])
-  extends IntraprocSignAnalysis(cfg) with WorklistFixpointSolver[GNode[AstNode]]
+  * Intraprocedural sign analysis that uses [[tip.solvers.WorklistFixpointSolver]].
+  */
+class IntraprocSignAnalysisWorklistSolver(cfg: ProgramCfg)(implicit val declData: DeclarationData)
+    extends IntraprocSignAnalysis(cfg)
+    with WorklistFixpointSolver[CfgNode]
 
 /**
- * Intraprocedural sign analysis that uses [[tip.solvers.WorklistFixpointSolverWithInit]],
- * with all function entries as start nodes.
- */
-class IntraprocSignAnalysisWorklistSolverWithInit(cfg: ControlFlowGraph[AstNode])
-  extends IntraprocSignAnalysisWorklistSolver(cfg) with WorklistFixpointSolverWithInit[GNode[AstNode]] {
+  * Intraprocedural sign analysis that uses [[tip.solvers.WorklistFixpointSolverWithInit]],
+  * with all function entries as start nodes.
+  */
+class IntraprocSignAnalysisWorklistSolverWithInit(cfg: ProgramCfg)(override implicit val declData: DeclarationData)
+    extends IntraprocSignAnalysisWorklistSolver(cfg)
+    with WorklistFixpointSolverWithInit[CfgNode] {
 
-  val first = cfg.entries.values.toSet
+  val first = cfg.funEntries.values.toSet[CfgNode]
 }
 
 /**
- * Intraprocedural sign analysis that uses [[tip.solvers.WorklistFixpointSolverWithInit]]
- * together with [[tip.solvers.WorklistFixpointPropagationSolver]].
- */
-class IntraprocSignAnalysisWorklistSolverWithInitAndPropagation(cfg: ControlFlowGraph[AstNode])
-  extends IntraprocSignAnalysisWorklistSolverWithInit(cfg) with WorklistFixpointPropagationSolver[GNode[AstNode]] {
-  
+  * Intraprocedural sign analysis that uses [[tip.solvers.WorklistFixpointSolverWithInit]]
+  * together with [[tip.solvers.WorklistFixpointPropagationSolver]].
+  */
+class IntraprocSignAnalysisWorklistSolverWithInitAndPropagation(cfg: ProgramCfg)(override implicit val declData: DeclarationData)
+    extends IntraprocSignAnalysisWorklistSolverWithInit(cfg)
+    with WorklistFixpointPropagationSolver[CfgNode] {
+
   override val init = lattice.sublattice.Lift(lattice.sublattice.sublattice.bottom)
 }
 
 /**
- * Interprocedural sign analysis that uses [[tip.solvers.WorklistFixpointSolverWithInit]].
- */
-class InterprocSignAnalysisWorklistSolverWithInit(val cfg: ProgramCFG)
-  extends IntraprocSignAnalysisWorklistSolverWithInit(cfg) with InterprocSignAnalysisFunctions
-  with InterproceduralDependencies {
+  * Interprocedural sign analysis that uses [[tip.solvers.WorklistFixpointSolverWithInit]].
+  */
+class InterprocSignAnalysisWorklistSolverWithInit(val cfg: InterproceduralProgramCfg)(override implicit val declData: DeclarationData)
+    extends IntraprocSignAnalysisWorklistSolverWithInit(cfg)
+    with InterprocSignAnalysisFunctions
+    with InterproceduralForwardDependencies {
 
-  override val first = Set(cfg.programEntry)
- 
-  import cfg._
-  
-  override def called(n: GNode[AstNode]): Set[GNode[AstNode]] = n.called.map(Set(_)).getOrElse(Set()) ++ n.calledExits.map(Set(_)).getOrElse(Set())  
-  
-  override def callers(n: GNode[AstNode]): Set[GNode[AstNode]] = n.callers ++ n.callersAfterCall
-}
-  
-/**
- * Interprocedural sign analysis that uses [[tip.solvers.WorklistFixpointSolverWithInit]]
- * together with [[tip.solvers.WorklistFixpointPropagationSolver]].
- * Note that this class uses [[tip.analysis.ForwardDependencies]] which has no interprocedural outdeps,
- * and it does not use indeps.
- */
-class InterprocSignAnalysisWorklistSolverWithInitAndPropagation(val cfg: ProgramCFG)
-  extends IntraprocSignAnalysisWorklistSolverWithInitAndPropagation(cfg) 
-  with InterprocSignAnalysisFunctionsWithPropagation with ForwardDependencies {
-
-  override val first = Set(cfg.programEntry)
+  override val first = Set[CfgNode](cfg.funEntries(cfg.program.mainFunction))
 }
 
 /**
- * Interprocedural sign analysis that uses [[tip.solvers.WorklistFixpointSolverWithInit]],
- * using [[ControlFlowAnalysis]] to resolve function calls.
- */
-class InterprocSignAnalysisWorklistSolverWithInitAndCFA(val cfg: ProgramCFG)
-  extends IntraprocSignAnalysisWorklistSolverWithInit(cfg) with InterprocSignAnalysisFunctions
-  with InterproceduralDependencies {
+  * Interprocedural sign analysis that uses [[tip.solvers.WorklistFixpointSolverWithInit]]
+  * together with [[tip.solvers.WorklistFixpointPropagationSolver]].
+  * Note that this class uses [[tip.analysis.ForwardDependencies]] which has no interprocedural outdeps,
+  * and it does not use indeps.
+  */
+class InterprocSignAnalysisWorklistSolverWithInitAndPropagation(val cfg: InterproceduralProgramCfg)(override implicit val declData: DeclarationData)
+    extends IntraprocSignAnalysisWorklistSolverWithInitAndPropagation(cfg)
+    with InterprocSignAnalysisFunctionsWithPropagation
+    with ForwardDependencies {
 
-  override val first = Set(cfg.programEntry)
-
-  private val cfaLog = Log.typeLogger[this.type]()
-  
-  val cfaAnalysis = new ControlFlowAnalysis(cfg.program)
-
-  private val cfaSolution = cfaAnalysis.solver.getSolution.map(p => p._1.n -> p._2.map { x => x.fun })
-  
-  import MapUtils._
-  private val cfaSolutionRev = cfaSolution.reverse
-
-  import NormalisedCallsLanguageRestrictions._
-  
-  def called(n: GNode[AstNode]) = {
-    val res = n match {
-      case call: CallNode[AstNode] =>  cfaSolution(call.invocation.targetFun.meta.definition.get).map { x => cfg.entries(x) }
-      case acall: AfterCallNode[AstNode] =>
-        cfaSolution(acall.invocation.targetFun.meta.definition.get).map { x => cfg.exits(x) }
-      case _ => Set[GNode[AstNode]]() 
-    }
-    res
-  }
-  
-  def callers(n: GNode[AstNode]) = {
-    val res = n match {
-      case fexit: FunExit[AstNode] =>
-        val callNodes = cfg.nodes.collect{case call: AfterCallNode[AstNode] => call}
-        val possibleCallSites = cfaSolutionRev(fexit.data.asInstanceOf[AFunDeclaration])
-        callNodes.filter { x => possibleCallSites.contains(x.invocation.targetFun.meta.definition.get) }.map(x => x: GNode[AstNode])
-      case fentry: FunEntry[AstNode] => 
-        val callNodes = cfg.nodes.collect{case call: CallNode[AstNode] => call}
-        val possibleCallSites = cfaSolutionRev(fentry.data.asInstanceOf[AFunDeclaration])
-        callNodes.filter { x => possibleCallSites.contains(x.invocation.targetFun.meta.definition.get) }.map(x => x: GNode[AstNode])
-      case _ => Set[GNode[AstNode]]() 
-    }
-    res
-  }
+  override val first = Set[CfgNode](cfg.funEntries(cfg.program.mainFunction))
 }

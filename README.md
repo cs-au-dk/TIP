@@ -1,94 +1,102 @@
 #TIP
 
-TIP is a tiny imperative programming language aimed at teaching the fundamental concepts of static program analysis.
+TIP is a tiny imperative programming language aimed at teaching the
+fundamental concepts of static program analysis. This code accompanies the
+lecture notes on [Static Program Analysis](http://cs.au.dk/~amoeller/spa/).
 
 [![Build Status](https://travis-ci.org/cs-au-dk/TIP.svg)](https://travis-ci.org/cs-au-dk/TIP)
 
 ## Getting started
 
 Prerequisites:
-- Check you have [Scala 2.11](http://www.scala-lang.org/download/) installed 
+- [Scala 2.11](http://www.scala-lang.org/download/)
+- [SBT](http://www.scala-sbt.org/)
 
-### Eclipse users
+We suggest you to use IntelliJ for working on TIP, but all the following
+options are viable.
 
-- Check that you have installed the [scala-plugin](http://scala-ide.org/) for eclipse 
-- Run ```./gradlew eclipse``` (```gradlew eclipse``` on Windows) to generate the eclipse project files.
-- Now you should be able to open and build the project from eclipse.
-- To run tip from within eclipse feed the [arguments](#tipcmd) into the "Run Arguments" dialog
+### IntelliJ IDEA
 
-### IntelliJ IDEA users
+- Import the project from the SBT model.
+- Since the `.idea` folder is regenerated from scrach, in order to keep the
+  inspection profiles you need to checkout the `.idea/inspectionProfiles`
+  folder and the `.idea/codeStyleSettings.xml` file from the original repo,
+  leaving untouched the other generated folders.
+- Follow the IDE instructions to download the Scala plugin and to set-up the
+  Scala SDK, if needed.
+- Right-click on `Tip.scala` in `src/tip`, then select `Run 'Tip'`. To supply
+  arguments, use `Edit Configurations` in the `Run` menu.
 
-- Import the project from the Gradle model
-- Since the ```.idea``` folder is regenerated from scrach, in order to keep the inspection profiles, you need to checkout the ```.idea/inspectionProfiles``` folder from this repo, leaving untouched the other generated folders
-- Follow the IDE instructions to download the Scala plugin and to set-up the Scala-SDK, if needed
+#### IntelliJ performance
 
-### Working from the terminal
+If your IntelliJ has high-CPU and high-memory peaks while editing, the
+following tweaks might be useful:
 
-To build 
-
+- Disable type-aware highlighting by clicking on the small `[T]` icon on the
+  bottom right corner of the window.
+- Go to `Help -> Edit Custom VM Options` and increase the JVM memory at least
+  with the following values:
 ```
-./gradlew build
+-Xms500m -Xmx1500m
+```
+- If still nothing works, try `File -> Power Save Mode`.
+
+#### IntelliJ Import optimization
+
+IntelliJ offers an option to optimize imports upon commit. We suggest not to
+use that feature, as it may remove needed imports thereby breaking
+compilation.
+
+### Eclipse
+
+- Check that you have installed the [scala-plugin](http://scala-ide.org/) for
+  Eclipse.
+- To run TIP from within Eclipse, feed the [arguments](#tipcmd) into the `Run
+  Arguments` dialog.
+
+### Working from the command-line
+
+A wrapper command `tip` (`tip.bat` for Windows) is provided to compile and run
+TIP with the given arguments.
+
+Example:
+```
+./tip -types examples/a1.tip
 ```
 
-To build an executable
-
+To build:
 ```
-./gradlew installDist
+sbt compile
 ```
-
-#### Build -> Run cycle
-
-A wrapper ```tipw``` is provided to compile and run TIP with the given arguments.
 
 ## Command-line arguments <a name="tipcmd"></a>
 
+Usage:
 ```
- Usage:
- tip <options> <source> [out]
-
- <source> can be a file or a directory,
-
- [out] is an output directory (default: ./out)
-
- possible options are:
-
- Analyses:
-
- -cfg               construct the control flow graph, but do not perform any analysis
- -icfg              construct the interprocedural control flow graph, but do not perform any analysis
- -types             enable type analysis
- -cfa               enable control-flow analysis
- -andersen          enable Andersen pointer analysis
- -steensgaard       enable Steensgaard pointer analysis
- -sign              enable sign analysis
- -livevars          enable live variables analysis
- -available         enable available expressions analysis
- -vbusy             enable very busy expressions analysis
- -reaching          enable reaching definitions analysis
- -constprop         enable constant propagation analysis
- -interval          enable interval analysis
-
- some of the previous options can be followed immediately by the modifiers
-
- wl       use the worklist solver
- wli      use the worklist solver with init
- wliw     use the worklist solver with init and widening
- wliwn    use the worklist solver with init, widening, and narrowing
- wlip     use the worklist solver with init and propagation
- iwli     use the worklist solver with init, interprocedural version
- iwlip    use the worklist solver with init and propagation, interprocedural version
- iwlic    use the worklist solver with init, interprocedural version with CFA analysis
-
- e.g. -sign wl  will run the sign analysis using the basic worklist solver
-
- Running:
-
- -run               run the program as the last step
+tip <options> <source> [out]
 ```
+where `<source>` can be a file or a directory containing `.tip` files and
+`[out]` is an output directory (default: ./out).
+
+To see the possible options, run `tip` without options.
+
+## Code style
+
+To avoid using inconsistent code styles and meaningless diffs caused
+by IDE reformatting we use [scalafmt](https://olafurpg.github.io/scalafmt/).
+Before committing, please double-check that all the code is in the right
+format by executing `sbt scalafmt` or by installing the `scalafmt` IDE plugin
+and enabling the `Format on save` option as explained
+[here](https://olafurpg.github.io/scalafmt/#IntelliJ).
+
 ## Authors
 
-- Gianluca Mezzetti
+- [Gianluca Mezzetti](http://gmezzetti.name/)
 - [Anders M&oslash;ller](http://cs.au.dk/~amoeller/)
-- Erik Krogh Kristensen
-- Christian Budde Christensen
 
+with contributions from
+
+- [Coen De Roover](http://soft.vub.ac.be/~cderoove/)
+- [Quentin Stievenart](http://awesom.eu/~acieroid/)
+- Erik Krogh Kristensen (interpreter)
+- Christian Budde Christensen (interpreter)

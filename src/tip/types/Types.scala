@@ -1,108 +1,109 @@
 package tip.types
 
-import tip.ast.AstNode
-import tip.solvers.{Cons, Term, Var}
-
-import scala.collection.immutable
+import tip.ast._
+import tip.solvers._
+import tip.ast.AstNodeData._
 import scala.language.implicitConversions
 
 object TipType {
 
-  implicit def ast2term(node: AstNode): Var[TipType] = {
-    TipVar(node)
+  /**
+    * Implicitly convert any AstNode to its type variable.
+    * For identifiers the type variable is associated with the declaration;
+    * for any other kind of AST node the type variable is associated with the node itself.
+    */
+  implicit def ast2typevar(node: AstNode)(implicit declData: DeclarationData): Var[TipType] = {
+    node match {
+      case id: AIdentifier => TipVar(declData(id))
+      case _ => TipVar(node)
+    }
   }
 }
 
+/**
+  * A type for a TIP variable or expression.
+  */
 sealed trait TipType
 
+object TipTypeOps extends TermOps[TipType] {
+
+  def makeAlpha(node: Var[TipType]): Var[TipType] = node match {
+    case v: TipVar => TipAlpha(v.node.uid)
+    case alpha: TipAlpha => alpha
+  }
+
+  def makeMu(v: Var[TipType], t: Term[TipType]): Mu[TipType] = TipMu(v, t)
+}
+
+/**
+  * Int type.
+  */
 case class TipInt() extends TipType with Cons[TipType] {
 
-  override def toString: String = "Int"
+  val args: List[Term[TipType]] = List()
 
-  override def args: Seq[Term[TipType]] = List()
+  def subst(v: Var[TipType], t: Term[TipType]): Term[TipType] = this
 
-  override def arity: Int = 0
-
-  override def fv: Set[Var[TipType]] = Set()
-
-  override def subst(v: Var[TipType], t: Term[TipType]): Term[TipType] = this
+  override def toString: String = "int"
 }
 
-case class TipFunction(params: immutable.Seq[Term[TipType]], ret: Term[TipType]) extends TipType with Cons[TipType] {
+/**
+  * Function type.
+  */
+case class TipFunction(params: List[Term[TipType]], ret: Term[TipType]) extends TipType with Cons[TipType] {
 
-  def fv: Set[Var[TipType]] = ret.fv ++ params.foldLeft(Set[Var[TipType]]()) { (set: Set[Var[TipType]], arg: Term[TipType]) => arg.fv ++ set }
+  val args: List[Term[TipType]] = {
+    ret :: params
+  }
 
   def subst(v: Var[TipType], t: Term[TipType]): Term[TipType] = {
-    TipFunction(params.map { p => p.subst(v, t) }, ret.subst(v, t))
+    TipFunction(params.map { p =>
+      p.subst(v, t)
+    }, ret.subst(v, t))
   }
 
-  override def toString: String = {
-    s"(${params.mkString(",")}) --> $ret"
-  }
-
-  override def arity: Int = {
-    params.length + 1
-  }
-
-  override def args: Seq[Term[TipType]] = {
-    ret :: params.toList
-  }
+  override def toString: String = s"(${params.mkString(",")}) -> $ret"
 }
 
+/**
+  * Pointer reference type.
+  */
 case class TipRef(of: Term[TipType]) extends TipType with Cons[TipType] {
 
-  def fv: Set[Var[TipType]] = of.fv
+  val args: List[Term[TipType]] = {
+    List(of)
+  }
 
   def subst(v: Var[TipType], t: Term[TipType]): Term[TipType] = {
     TipRef(of.subst(v, t))
   }
 
-  override def arity: Int = 1
-
-  override def args: Seq[Term[TipType]] = {
-    List(of)
-  }
-
   override def toString: String = s"&$of"
 }
 
+/**
+  * Type variable for a program variable or expression.
+  */
 case class TipVar(node: AstNode) extends TipType with Var[TipType] {
-  override def toString: String = {
-    val repr = node.toString.replace("\n", "")
-    val s = repr.substring(0, Math.min(repr.length, 10))
-    s"<($s)>${node.offset}"
-  }
-}
 
-case class TipAlpha(node: AstNode) extends TipType with Var[TipType] {
-  override def toString: String = {
-    s"\u03B1<$node>"
-  }
+  override def toString: String = s"[[$node]]"
 }
 
 /**
- * A recursive type.
- * Whenever a term is such that x = t[x], where x appears free in
- * t[x], then we represent it finitely as
- * mu x. t[x]
- * x is a binder in the term, and the copy rule holds
- *
- * mu x. t[x] == t [ mu x. t[x] ]
- *
- * @param v the recursion variable
- * @param t the recursion term
- */
-case class Mu[A](v: Var[A], t: Term[A]) extends TipType with Cons[A] {
+  * Fresh type variable, whose identity is uniquely determined by `x`.
+  */
+case class TipAlpha(x: Any) extends TipType with Var[TipType] {
 
-  override def args: Seq[Term[A]] = List(v, t)
+  override def toString: String =
+    s"\u03B1<$x>"
+}
 
-  override def arity: Int = 2
+/**
+  * Recursive type (only created when closing terms).
+  */
+case class TipMu(v: Var[TipType], t: Term[TipType]) extends TipType with Mu[TipType] {
 
-  def fv: Set[Var[A]] = t.fv - v
-
-  def subst(sv: Var[A], to: Term[A]): Term[A] = {
-    if (sv == v) this else Mu(v, t.subst(sv, to))
+  def subst(sv: Var[TipType], to: Term[TipType]): Term[TipType] = {
+    if (sv == v) this else TipMu(v, t.subst(sv, to))
   }
-
-  override def toString: String = s"\u03bc $v.$t"
 }

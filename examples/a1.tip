@@ -1,9 +1,9 @@
 map(l,f,z) {
   var r;
   if (l==null){
-  	r=z;
+      r=z;
   } else {
-  	r=(f)(map(*l,f,z));
+      r=(f)(map(*l,f,z));
   }
   return r;
 }

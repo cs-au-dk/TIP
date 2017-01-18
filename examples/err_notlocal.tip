@@ -1,10 +1,10 @@
 
 f(){
-	var n;
-	return 17;
+    var n;
+    return 17;
 }
 
 main(){
-	n=10;
-	return 0;
+    n=10;
+    return 0;
 }

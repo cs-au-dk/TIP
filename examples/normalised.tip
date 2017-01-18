@@ -1,16 +1,16 @@
 f() {
-	return 0;
+    return 0;
 }
 
 g() {
-	var x;
-	x = f();
-	return x;
+    var x;
+    x = f();
+    return x;
 }
 
 main() {
-	var u;
-	u = g();
-	return u;
+    var u;
+    u = g();
+    return u;
 
 }

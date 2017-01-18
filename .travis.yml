@@ -1,1 +1,10 @@
-language: java
+language: scala
+scala:
+  - 2.11.8
+
+# whitelist
+branches:
+  only:
+    - master
+    - devel
+    - public-release

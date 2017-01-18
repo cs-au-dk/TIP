@@ -1,0 +1,29 @@
+package tip.util
+
+object MapUtils {
+
+  implicit class ReverseOp[A, B](m: Map[A, Set[B]]) {
+    def reverse: Map[B, Set[A]] = {
+      var res = Map[B, Set[A]]()
+      m.keys.foreach { k =>
+        m(k).foreach { v =>
+          val ins = res.getOrElse(v, Set[A]())
+          res += (v -> (ins + k))
+        }
+      }
+      res
+    }
+  }
+
+  implicit class ReverseOp2[A, B](m: Map[A, B]) {
+    def reverse: Map[B, Set[A]] = {
+      var res = Map[B, Set[A]]()
+      m.keys.foreach { k =>
+        val ins = res.getOrElse(m(k), Set[A]())
+        res += (m(k) -> (ins + k))
+      }
+      res
+    }
+  }
+
+}

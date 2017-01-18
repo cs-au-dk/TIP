@@ -1,67 +1,70 @@
 f(x) {
-	return *x;
+    return *x;
 }
 g(x) {
-	return &x;
+    var y;
+    y = malloc;
+    *y = x;
+    return y;
 }
 h(x) {
-	return x;
+    return x;
 }
 main() {
-	var ret;
-	var x, y, z, u, v, k;
+    var ret;
+    var x, y, z, u, v, k;
 
-	ret = 0;
+    ret = 0;
 
-	// Pointers fun 
+    // Pointers fun 
 
-	x = &z;
-	y = &z;
-	z = 5;
-	if((z - 5) > 0){
-		ret = -1;
-	}
-	if((*x - 5) > 0) {
-		ret = -2;
-	}
-	if((*y - 5) > 0) {
-		ret = -3;
-	}
+    x = &z;
+    y = &z;
+    z = 5;
+    if((z - 5) > 0){
+        ret = -1;
+    }
+    if((*x - 5) > 0) {
+        ret = -2;
+    }
+    if((*y - 5) > 0) {
+        ret = -3;
+    }
 
-	if(x == y) {
-		ret = ret;
-	}
-	else {
-		ret = -4;
-	}
+    if(x == y) {
+        ret = ret;
+    }
+    else {
+        ret = -4;
+    }
 
-	// Call by value
-	if((f(x) - 5) > 0) {
-		ret = -5;
-	}
-	if((h(z) - 5) > 0) {
-		ret = -6;
-	}
-	// This result can be indeterminate in other implementation
-	if((*(*(g(x))) - 5) > 0) {
-		ret = -7;
-	}
+    // Call by value
+    if((f(x) - 5) > 0) {
+        ret = -5;
+    }
+    if((h(z) - 5) > 0) {
+        ret = -6;
+    }
+    
+    if((*(*(g(x))) - 5) > 0) {
+        ret = -7;
+    }
 
-	// Functions fun
-	u = h;
-	v = h;
-	k = v(5);
-	if((k - 5) > 0) {
-		ret = -8;
-	}
+    // Functions fun
+    u = h;
+    v = h;
+    k = v(5);
+    if((k - 5) > 0) {
+        ret = -8;
+    }
 
-	if(u == v) {
-		ret = ret;
-	}
-	else {
-		ret = -9;
-	}
+    if(u == v) {
+        ret = ret;
+    }
+    else {
+        ret = -9;
+    }
 
 
-	return ret;
+    return ret;
 }

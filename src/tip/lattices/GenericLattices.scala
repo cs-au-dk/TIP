@@ -3,34 +3,34 @@ package tip.lattices
 import scala.language.implicitConversions
 
 /**
- * A (semi-)lattice.
- */
+  * A (semi-)lattice.
+  */
 trait Lattice {
 
   /**
-   * The type of the elements of this lattice.
-   */
+    * The type of the elements of this lattice.
+    */
   type Element
 
   /**
-   * The bottom element of this lattice.
-   */
+    * The bottom element of this lattice.
+    */
   def bottom: Element
 
   /**
-   * The least upper bound of x and y.
-   */
+    * The least upper bound of `x` and `y`.
+    */
   def lub(x: Element, y: Element): Element
 
   /**
-   * Returns true whenever x <= y in the lattice.
-   */
+    * Returns true whenever `x` <= `y` in the lattice.
+    */
   def leq(x: Element, y: Element): Boolean = lub(x, y) == y // rarely used, but easy to implement :-)
 }
 
 /**
- * The n-th product lattice made of l lattices.
- */
+  * The `n`-th product lattice made of `sublattice` lattices.
+  */
 class UniformProductLattice[L <: Lattice](val sublattice: L, n: Int) extends Lattice {
 
   type Element = List[sublattice.Element]
@@ -47,10 +47,10 @@ class UniformProductLattice[L <: Lattice](val sublattice: L, n: Int) extends Lat
 }
 
 /**
- * The flat lattice made of element of X.
- * Top is greater than every other element, and Bottom is less than every other element.
- * No additional ordering is defined.
- */
+  * The flat lattice made of element of `X`.
+  * Top is greater than every other element, and Bottom is less than every other element.
+  * No additional ordering is defined.
+  */
 class FlatLattice[X] extends Lattice {
 
   sealed trait FlatElement
@@ -59,41 +59,45 @@ class FlatLattice[X] extends Lattice {
     override def toString = el.toString
   }
 
-  case class Top() extends FlatElement
+  object Top extends FlatElement {
+    override def toString = "Top"
+  }
 
-  case class Bot() extends FlatElement
+  object Bot extends FlatElement {
+    override def toString = "Bot"
+  }
 
   type Element = FlatElement
 
   /**
-   * Lift an element of X into an element of the flat lattice.
-   */
+    * Lift an element of `X` into an element of the flat lattice.
+    */
   implicit def lift(a: X): Element = FlatEl(a)
 
   /**
-   * Un-lift an element of the lattice to an element of X.
-   * If the element is Top or Bot then IllegalArgumentException is thrown.
-   */
+    * Un-lift an element of the lattice to an element of `X`.
+    * If the element is Top or Bot then IllegalArgumentException is thrown.
+    */
   implicit def unlift(a: Element): X = a match {
     case FlatEl(n) => n
     case _ => throw new IllegalArgumentException(s"cannot unlift $a")
   }
 
-  override def bottom: Element = Bot()
+  override def bottom: Element = Bot
 
   override def lub(x: Element, y: Element) = {
-    if (x == Bot() || y == Top() || x == y)
+    if (x == Bot || y == Top || x == y)
       y
-    else if (y == Bot() || x == Top())
+    else if (y == Bot || x == Top)
       x
     else
-      Top()
+      Top
   }
 }
 
 /**
- * The product lattice made by l1 and l2.
- */
+  * The product lattice made by `l1` and `l2`.
+  */
 class PairLattice[L1 <: Lattice, L2 <: Lattice](val sublattice1: L1, val sublattice2: L2) extends Lattice {
 
   type Element = (sublattice1.Element, sublattice2.Element)
@@ -104,13 +108,12 @@ class PairLattice[L1 <: Lattice, L2 <: Lattice](val sublattice1: L1, val sublatt
 }
 
 /**
- * A lattice of maps from the set X to the lattice l.
- * The set X a subset of A and it is defined by the characteristic function ch, i.e. 
- * a is in X if and only if ch(a) returns true.
- * Bottom is the default value.
- */
+  * A lattice of maps from the set `X` to the lattice `sublattice`.
+  * The set `X` a subset of `A` and it is defined by the characteristic function `ch`, i.e. `a` is in `X` if and only if `ch(a)` returns true.
+  * Bottom is the default value.
+  */
 class MapLattice[A, +L <: Lattice](ch: A => Boolean, val sublattice: L) extends Lattice {
-  // note: 'ch' isn't used in the class, but having it as a class parameter avoids a lot of type annotations 
+  // note: 'ch' isn't used in the class, but having it as a class parameter avoids a lot of type annotations
 
   type Element = Map[A, sublattice.Element] // TODO: replace this with a more type safe solution
 
@@ -122,24 +125,21 @@ class MapLattice[A, +L <: Lattice](ch: A => Boolean, val sublattice: L) extends 
 }
 
 /**
- * The powerset lattice of X, where X is the subset of A
- * defined by the characteristic function ch.
- */
+  * The powerset lattice of `X`, where `X` is the subset of `A` defined by the characteristic function `ch`.
+  */
 class PowersetLattice[A](ch: A => Boolean) extends Lattice {
-  // note: 'ch' isn't used in the class, but having it as a class parameter avoids a lot of type annotations 
+  // note: 'ch' isn't used in the class, but having it as a class parameter avoids a lot of type annotations
 
   type Element = Set[A]
 
-  override def bottom: Element = ???
+  override def bottom: Element = ??? //<--- Complete here
 
-  override def lub(x: Element, y: Element) = ???
+  override def lub(x: Element, y: Element) = ??? //<--- Complete here
 }
 
 /**
- * The powerset lattice of X, where X is the subset of A
- * defined by the characteristic function ch, with reverse
- * subset ordering.
- */
+  * The powerset lattice of `X`, where `X` is the subset of `A` defined by the characteristic function ch, with reverse subset ordering.
+  */
 class ReversePowersetLattice[A](s: Set[A]) extends Lattice {
 
   type Element = Set[A]
@@ -150,9 +150,9 @@ class ReversePowersetLattice[A](s: Set[A]) extends Lattice {
 }
 
 /**
- * The lift lattice for l.
- * Supports implicit lifting and unlifting.
- */
+  * The lift lattice for `sublattice`.
+  * Supports implicit lifting and unlifting.
+  */
 class LiftLattice[+L <: Lattice](val sublattice: L) extends Lattice {
 
   type Element = Lifted
@@ -175,9 +175,15 @@ class LiftLattice[+L <: Lattice](val sublattice: L) extends Lattice {
     }
   }
 
-  implicit def lift(x: sublattice.Element) = Lift(x)
+  /**
+    * Lift elements of the sublattice to this lattice.
+    */
+  implicit def lift(x: sublattice.Element): Element = Lift(x)
 
-  implicit def unlift(x: Element) = {
+  /**
+    * Unl-ift elements of this lattice to the sublattice, converting bottom to bottom.
+    */
+  implicit def unlift(x: Element): sublattice.Element = {
     x match {
       case Lift(s) => s
       case Bottom => sublattice.bottom

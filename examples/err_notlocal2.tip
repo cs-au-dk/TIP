@@ -1,9 +1,9 @@
 
 f(){
-	return 17;
+    return 17;
 }
 
 main(){
-	*f=10;
-	return 0;
+    *f=10;
+    return 0;
 }

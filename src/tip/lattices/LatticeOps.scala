@@ -1,8 +1,8 @@
 package tip.lattices
 
 /**
- * Abstract operators.
- */
+  * Abstract operators.
+  */
 trait LatticeOps {
 
   type Element

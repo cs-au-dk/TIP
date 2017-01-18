@@ -1,0 +1,122 @@
+package tip.concolic
+
+import tip.ast.AstNodeData._
+import tip.ast.AProgram
+import tip.util.Log
+import SMTSolver.Symbol
+
+class ConcolicEngine(val program: AProgram)(implicit declData: DeclarationData) extends SymbolicInterpreter(program) {
+
+  override val log = Log.logger[this.type](Log.Level.Info)
+
+  def nextExplorationTarget(lastExplored: ExecutionTree, root: ExecutionTreeRoot): Option[(Branch, Boolean)] = {
+    lastExplored.parent match {
+      case b: Branch =>
+        (b.branches(true), b.branches(false)) match {
+          case (_: SubTreePlaceholder, _) if b.count(true) == 0 => Some((b, true))
+          case (_, _: SubTreePlaceholder) if b.count(false) == 0 => Some((b, false))
+          case (_, _) => nextExplorationTarget(b, root)
+        }
+      case _ => None
+    }
+  }
+
+  def newInputs(symbols: List[Symbol], lastNode: ExecutionTree, root: ExecutionTreeRoot): Option[List[Int]] = {
+    if (lastNode == root) {
+      log.info("Program never branches")
+      return None
+    }
+    val target = nextExplorationTarget(lastNode, root)
+    log.info(s"Execution tree status: \n${ExecutionTreePrinter.printExecutionTree(root)}")
+    target match {
+      case Some((targetNode, value)) =>
+        val pc = targetNode.pathCondition(List((targetNode.symcond, value)))
+        log.info(s"Path condition for next run: $pc")
+        val smt = SMTSolver.pathToSMT(symbols, pc)
+        log.info(s"SMT script for next run: \n$smt")
+        SMTSolver.solve(smt) match {
+          case None =>
+            log.info(s"Path condition is unsatisfiable.")
+            targetNode.unsat(value)
+            newInputs(symbols, lastNode, root)
+          case Some(mapping) =>
+            log.info(s"Model: $mapping")
+            Some(symbols.map(v => mapping.get(v.value).map(_.toInt).getOrElse(scala.util.Random.nextInt)))
+        }
+      case _ => None
+    }
+  }
+
+  var cState: ConcolicState = ConcolicState(ct = new ExecutionTreeRoot())
+
+  def test(budget: Int = 20): Unit = {
+    val root = new ExecutionTreeRoot()
+    cState = ConcolicState(ct = root)
+
+    var runs = 0
+    var results: List[ExecutionResult] = Nil
+    while (runs <= budget) {
+
+      cState.counter = 0
+      cState.ct = root
+      cState.symbols = Nil
+      cState.usedInputs = Nil
+      runs += 1
+
+      log.info("\n")
+      log.info(s"Starting run $runs")
+
+      val result: ExecutionResult =
+        try {
+          val ret = semp()
+          ret match {
+            case spec.SymbIntValue(i, _) =>
+              log.info(s"Program ran successfully, result: $i")
+              ExSuccess(cState, i)
+            case _ => ???
+          }
+        } catch {
+          case sexp: SymbolicInterpreterException =>
+            log.info(s"Error statement found: $sexp")
+            ExFailure(cState, sexp.message)
+          case exc: RuntimeException =>
+            log.info(s"Exception found: $exc")
+            ExFailure(cState, s"Exception while running the program: $exc")
+
+        }
+
+      results = result :: results
+      newInputs(result.symbolicVars, result.lastNode, root) match {
+        case Some(values) =>
+          log.info(s"New input for ${result.symbolicVars}: $values")
+          cState.inputs = values
+        case None =>
+          log.info(s"Finished exhaustive exploration in $runs runs.\n")
+          reportExplorationStatistics(results)
+          return
+      }
+    }
+    log.info(s"Exhausted search budget after $runs runs.\n")
+    reportExplorationStatistics(results)
+  }
+
+  private def reportExplorationStatistics(results: List[ExecutionResult]): Unit = {
+    val successes = results.collect { case s: ExSuccess => s }
+    log.info(s"Found ${successes.length} successful input sequences.")
+    successes.foreach(s => log.info(s"Input sequence ${s.usedInputs} produces: \n${s.value}"))
+    val failures = results.collect { case f: ExFailure => f }
+    log.info(s"Found ${failures.length} failure-inducing input sequences.")
+    failures.foreach(f => log.info(s"Input sequence ${f.usedInputs} fails with: \n${f.message}."))
+  }
+
+  abstract class ExecutionResult(val concolicState: ConcolicState) {
+    val lastNode = concolicState.ct
+    val symbolicVars = concolicState.symbols
+    val usedInputs = concolicState.usedInputs
+  }
+
+  case class ExSuccess(s: ConcolicState, value: Int) extends ExecutionResult(s)
+
+  case class ExFailure(s: ConcolicState, message: String) extends ExecutionResult(s)
+
+}

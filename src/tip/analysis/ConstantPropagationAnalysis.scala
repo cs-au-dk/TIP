@@ -1,41 +1,40 @@
 package tip.analysis
 
 import tip.ast._
-import tip.graph.{AuxNode, GRealNode, GNode, ControlFlowGraph}
-import tip.lattices.{FlatLattice, ReversePowersetLattice, PowersetLattice, MapLattice}
-import tip.solvers.{WorklistFixpointSolver, MapLatticeUpdateFunction, SimpleFixpointSolver}
+import tip.cfg.{IntraproceduralProgramCfg, CfgNode, CfgStmtNode}
+import tip.lattices.{FlatLattice, MapLattice}
+import tip.solvers.{MapLatticeUpdateFunction, SimpleFixpointSolver, WorklistFixpointSolver}
+import tip.ast.AstNodeData.{AstNodeWithDeclaration, DeclarationData}
 
-abstract class ConstantPropagationAnalysis(cfg: ControlFlowGraph[AstNode]) extends FlowSensitiveAnalysis(cfg) {
+abstract class ConstantPropagationAnalysis(cfg: IntraproceduralProgramCfg)(implicit declData: DeclarationData) extends FlowSensitiveAnalysis(cfg) {
 
-  import tip.graph.NodeOps._
-  import tip.ast.AstOps._
+  import tip.cfg.CfgOps._
 
-  val declaredVars = cfg.nodes.map {
-    _.declaredIds
-  }.flatten
+  val declaredVars: Set[ADeclaration] = cfg.nodes.flatMap(_.declaredVars).toSet
 
   val lattice = new MapLattice(cfg.nodes, new MapLattice(declaredVars, new FlatLattice[Int]()))
 
-  def funsub(n: GNode[AstNode], s: lattice.sublattice.Element, o: lattice.Element): lattice.sublattice.Element = {
-    val predStates = n.pred.map { x => o(x) }
-    val joinState = predStates.foldLeft(lattice.sublattice.bottom) { (lub, pred) => lattice.sublattice.lub(lub, pred) }
+  def funsub(n: CfgNode, s: lattice.sublattice.Element, o: lattice.Element): lattice.sublattice.Element = {
+    val predStates = n.pred.map { x =>
+      o(x)
+    }
+    val joinState = predStates.foldLeft(lattice.sublattice.bottom) { (lub, pred) =>
+      lattice.sublattice.lub(lub, pred)
+    }
+
     n match {
-      case r: GRealNode[AstNode] =>
+      case r: CfgStmtNode =>
         r.data match {
           case varr: AVarStmt =>
             varr.declIds.foldLeft(joinState) { (lub, id) =>
-              lub + (id -> lattice.sublattice.sublattice.Top())
+              lub + (id -> lattice.sublattice.sublattice.Top)
             }
           case ass: AAssignStmt =>
             ass.left match {
-              case id: AIdentifier =>
-                val vdef = id.meta.definition match {
-                  case Some(x: AIdentifier) => x
-                  case Some(y) => ???
-                  case _ => throw new IllegalArgumentException(s"No definition found for $id")
-                }
+              case Left(id: AIdentifier) =>
+                val vdef: ADeclaration = id.declaration
                 joinState + (vdef -> absEval(ass.right, joinState))
-              case _: AUnaryOp => ???
+              case Right(_) => ???
             }
           case _ => joinState
         }
@@ -43,7 +42,7 @@ abstract class ConstantPropagationAnalysis(cfg: ControlFlowGraph[AstNode]) exten
     }
   }
 
-  private def absEval(exp: AExpr, env: Map[AIdentifier, lattice.sublattice.sublattice.Element]): lattice.sublattice.sublattice.Element = {
+  private def absEval(exp: AExpr, env: Map[ADeclaration, lattice.sublattice.sublattice.Element]): lattice.sublattice.sublattice.Element = {
     exp match {
       case bin: ABinaryOp =>
         val left = absEval(bin.left, env)
@@ -51,26 +50,26 @@ abstract class ConstantPropagationAnalysis(cfg: ControlFlowGraph[AstNode]) exten
         (left, right) match {
           case (lattice.sublattice.sublattice.FlatEl(x), lattice.sublattice.sublattice.FlatEl(y)) =>
             bin.operator match {
-              case Eqq() =>  lattice.sublattice.sublattice.FlatEl(if (x == y) 1 else 0)
-              case Divide() => lattice.sublattice.sublattice.FlatEl(x / y)
-              case GreatThan() => lattice.sublattice.sublattice.FlatEl(if (x > y) 1 else 0)
-              case Minus() => lattice.sublattice.sublattice.FlatEl(x - y)
-              case Plus() => lattice.sublattice.sublattice.FlatEl(x + y)
-              case Times() => lattice.sublattice.sublattice.FlatEl(x * y)
+              case Eqq => lattice.sublattice.sublattice.FlatEl(if (x == y) 1 else 0)
+              case Divide => lattice.sublattice.sublattice.FlatEl(x / y)
+              case GreatThan => lattice.sublattice.sublattice.FlatEl(if (x > y) 1 else 0)
+              case Minus => lattice.sublattice.sublattice.FlatEl(x - y)
+              case Plus => lattice.sublattice.sublattice.FlatEl(x + y)
+              case Times => lattice.sublattice.sublattice.FlatEl(x * y)
               case _ => ???
             }
-          case (lattice.sublattice.sublattice.Bot(), _) => lattice.sublattice.sublattice.Bot()
-          case (_, lattice.sublattice.sublattice.Bot()) => lattice.sublattice.sublattice.Bot()
-          case (_, lattice.sublattice.sublattice.Top()) => lattice.sublattice.sublattice.Top()
-          case (lattice.sublattice.sublattice.Top(), _) => lattice.sublattice.sublattice.Top()
+          case (lattice.sublattice.sublattice.Bot, _) => lattice.sublattice.sublattice.Bot
+          case (_, lattice.sublattice.sublattice.Bot) => lattice.sublattice.sublattice.Bot
+          case (_, lattice.sublattice.sublattice.Top) => lattice.sublattice.sublattice.Top
+          case (lattice.sublattice.sublattice.Top, _) => lattice.sublattice.sublattice.Top
         }
-      case id: AIdentifier => 
-        val defId = id.meta.definition match {
-          case Some(x: AIdentifier) => x
+      case id: AIdentifier =>
+        val defId = id.declaration match {
+          case x: AIdentifier => x
           case _ => ???
         }
         env(defId)
-      case input: AInput => lattice.sublattice.sublattice.Top()
+      case input: AInput => lattice.sublattice.sublattice.Top
       case num: ANumber => lattice.sublattice.sublattice.FlatEl(num.value)
       case _ => ???
 
@@ -79,13 +78,17 @@ abstract class ConstantPropagationAnalysis(cfg: ControlFlowGraph[AstNode]) exten
 }
 
 /**
- * Constant propagation analysis that uses the simple fipoint solver.
- */
-class ConstantPropagationAnalysisSimpleSolver(cfg: ControlFlowGraph[AstNode])
-  extends ConstantPropagationAnalysis(cfg) with SimpleFixpointSolver with MapLatticeUpdateFunction[GNode[AstNode]]
+  * Constant propagation analysis that uses the simple fipoint solver.
+  */
+class ConstantPropagationAnalysisSimpleSolver(cfg: IntraproceduralProgramCfg)(implicit declData: DeclarationData)
+    extends ConstantPropagationAnalysis(cfg)
+    with SimpleFixpointSolver
+    with MapLatticeUpdateFunction[CfgNode]
 
 /**
- * Constant propagation analysis that uses the worklist solver.
- */
-class ConstantPropagationAnalysisWorklistSolver(cfg: ControlFlowGraph[AstNode])
-  extends ConstantPropagationAnalysis(cfg) with WorklistFixpointSolver[GNode[AstNode]] with ForwardDependencies
+  * Constant propagation analysis that uses the worklist solver.
+  */
+class ConstantPropagationAnalysisWorklistSolver(cfg: IntraproceduralProgramCfg)(implicit declData: DeclarationData)
+    extends ConstantPropagationAnalysis(cfg)
+    with WorklistFixpointSolver[CfgNode]
+    with ForwardDependencies

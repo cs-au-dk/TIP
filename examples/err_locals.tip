@@ -1,16 +1,8 @@
 f(){
-	var a,b,c;
-	return 10;
-}
-
-g(){
-	var a,b,c;
-	if( 3==4 ){
-		var a,f;
-	}
-	return 3;
+    var a,b,c;
+    return 10;
 }
 
 f(){
-	return 4;
+    return 4;
 }

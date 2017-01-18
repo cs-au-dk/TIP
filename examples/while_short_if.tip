@@ -1,18 +1,18 @@
 main() {
-	var x,y,z;
-	x = input;
-	y = input;
-	z = input;
-	if (x == 1) {
-		while (x > 0) {
-			if (y == 0) {
-				output z;
-			}
-			else {
-				x = input;
-			}
-		}
-	}
-	return y;
+    var x,y,z;
+    x = input;
+    y = input;
+    z = input;
+    if (x == 1) {
+        while (x > 0) {
+            if (y == 0) {
+                output z;
+            }
+            else {
+                x = input;
+            }
+        }
+    }
+    return y;
 }
-		
+        

@@ -1,7 +1,7 @@
 poly(p){
-	return *p;
+    return *p;
 }
 
 poly2(p){
-	return *p;
+    return *p;
 }

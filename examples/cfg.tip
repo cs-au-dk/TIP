@@ -1,9 +1,9 @@
 main(n) {
-	var f;
-	f = 1;
-	if (n>0) {
-		f = f*n;
-		n = n-1;
-	}
-	return f;
+    var f;
+    f = 1;
+    if (n>0) {
+        f = f*n;
+        n = n-1;
+    }
+    return f;
 }

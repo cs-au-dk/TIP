@@ -1,10 +1,10 @@
 poly(p){
-	return *p;
+    return *p;
 }
 
 poly2(q){
-	var n;
-	//n=malloc;
-	n=poly;
-	return *q;
+    var n;
+    //n=malloc;
+    n=poly;
+    return *q;
 }

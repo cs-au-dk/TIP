@@ -1,10 +1,10 @@
 main() {
-	var a, x, z, t, y;
+    var a, x, z, t, y;
 
-	a = &x;
-	z = &t;
-	y = &z;
-	x = *y;
+    a = &x;
+    z = &t;
+    y = &z;
+    x = *y;
 
-	return 0;
+    return 0;
 }

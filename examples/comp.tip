@@ -1,9 +1,9 @@
 succ(i){
-	return i+1;
+    return i+1;
 }
 foo(p) { 
-	return (p)(5);
+    return (p)(5);
 }
 main(){
-	return foo(succ);
+    return foo(succ);
 }

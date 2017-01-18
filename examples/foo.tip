@@ -1,16 +1,16 @@
 foo(p,x) { 
-	var f,q; 
-	if (*p==0) { f=1; } 
-	else { 
-		q = malloc;
-		*q = (*p)-1;
-		f=(*p)*((x)(q,x));
-	}
-	return f;
+    var f,q; 
+    if (*p==0) { f=1; } 
+    else { 
+        q = malloc;
+        *q = (*p)-1;
+        f=(*p)*((x)(q,x));
+    }
+    return f;
 }
 
 main() {
-	var n;
-	n = input;
-	return foo(&n,foo);
+    var n;
+    n = input;
+    return foo(&n,foo);
 }

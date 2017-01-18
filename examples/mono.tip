@@ -1,11 +1,11 @@
 foo(x,y) {
- 	x = 2*y;
- 	return x+1;
+     x = 2*y;
+     return x+1;
 }
 
 main() {
-	var a,b;
-	a = input;
-	b = foo(a,17);
-	return b;
+    var a,b;
+    a = input;
+    b = foo(a,17);
+    return b;
 }

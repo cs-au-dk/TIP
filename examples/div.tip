@@ -1,46 +1,46 @@
 /*
 div(a,b){
-	return a/b;
+    return a/b;
 }
 
 
 main(){
-	var a,b,c;
-	
-	a = 17;
-	b = 17 + (a / 3);
-	a = 13;
-	if( a > 17 ){
-		a = 5+2;
-	} else {
-		b = a/3;
-	}
-	
-	a = *c;
-	
-	while( a > 5 ){
-		//a = div(a/2,3);
-		a=117;
-	}
-	
-	return 127;
+    var a,b,c;
+    
+    a = 17;
+    b = 17 + (a / 3);
+    a = 13;
+    if( a > 17 ){
+        a = 5+2;
+    } else {
+        b = a/3;
+    }
+    
+    a = *c;
+    
+    while( a > 5 ){
+        //a = div(a/2,3);
+        a=117;
+    }
+    
+    return 127;
 }*/
 
 
 main(){
-	var a,b;
-	
-	a = 17;
-	b = 17 + (a / 3);
-	a = 13;
+    var a,b;
+    
+    a = 17;
+    b = 17 + (a / 3);
+    a = 13;
 
-	if( a > 17 ){
-		a = 77*b;
-	} else {
-		b = a/3;
-	}
+    if( a > 17 ){
+        a = 77*b;
+    } else {
+        b = a/3;
+    }
 
-	b=117;	
+    b=117;    
 
-	return 127;
+    return 127;
 }

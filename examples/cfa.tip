@@ -3,15 +3,15 @@ dec(j) { return j-1; }
 ide(k) { return k; }
 
 foo(n,f) {
-	var r;
-	if (n==0) { f=ide; }
-	r = (f)(n);
-	return r;
+    var r;
+    if (n==0) { f=ide; }
+    r = (f)(n);
+    return r;
 }
 
 main() {
-	var x,y;
-	x = 1;//input;
-	if (x>0) { y = foo(x,inc); } else { y = foo(x,dec); }
-	return y;
+    var x,y;
+    x = 1;//input;
+    if (x>0) { y = foo(x,inc); } else { y = foo(x,dec); }
+    return y;
 }

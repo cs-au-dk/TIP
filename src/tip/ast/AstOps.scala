@@ -1,18 +1,25 @@
 package tip.ast
 
+import tip.ast.AstNodeData.{AstNodeWithDeclaration, DeclarationData}
+
 import scala.collection.mutable
-import scala.language.implicitConversions
 
 object AstOps {
 
+  /**
+    * An implicit class with convenience methods for collecting information in AST subtrees.
+    */
   implicit class AstOp(n: AstNode) {
 
+    /**
+      * Checks whether the subtree of the node contains function calls.
+      */
     def containsInvocation: Boolean = {
       var found = false
       val invocationFinder = new DepthFirstAstVisitor[Null] {
         override def visit(node: AstNode, arg: Null): Unit = {
           node match {
-            case id: ACallFuncExpr =>
+            case _: ACallFuncExpr =>
               found = true
             case _ => visitChildren(node, null)
           }
@@ -23,30 +30,33 @@ object AstOps {
     }
 
     /**
-     * Return the set of identifiers declared by the node
-     */
-    def declaredLocals: Set[AIdentifier] = {
+      * Returns the set of local variable identifiers declared by the node (excluding function parameters and function identifiers).
+      */
+    def declaredLocals: Set[ADeclaration] = {
       n match {
         case varr: AVarStmt => varr.declIds.toSet
         case _ => Set()
       }
     }
 
-
     /**
-     * Returns the set of identifiers appearing in the node
-     */
-    def appearingIds: Set[AIdentifier] = {
-      val ids = mutable.Set[AIdentifier]()
+      * Returns the set of identifier declarations appearing in the subtree of the node.
+      */
+    def appearingIds(implicit declData: DeclarationData): Set[ADeclaration] = {
+      val ids = mutable.Set[ADeclaration]()
       val idFinder = new DepthFirstAstVisitor[Null] {
         override def visit(node: AstNode, arg: Null): Unit = {
           node match {
-            case id: AIdentifier => id.meta.definition.get match {
-              case local: AIdentifier => ids += local
-              case fun: AFunDeclaration => ids += fun.name
-            }
-            case _ => visitChildren(node, null)
+            case id: AIdentifier =>
+              id.declaration match {
+                case local: AIdentifierDeclaration => ids += local
+                case fun: AFunDeclaration => ids += fun
+              }
+            case decl: AIdentifierDeclaration => ids += decl
+            case fun: AFunDeclaration => ids += fun
+            case _ =>
           }
+          visitChildren(node, null)
         }
       }
       idFinder.visit(n, null)
@@ -54,8 +64,8 @@ object AstOps {
     }
 
     /**
-     * Returns the set of identifiers appearing in the node
-     */
+      * Returns the set of mallocs appearing in the subtree of the node.
+      */
     def appearingMallocs: Set[AMalloc] = {
       val mallocs = mutable.Set[AMalloc]()
       val mallocsFinder = new DepthFirstAstVisitor[Null] {
@@ -71,9 +81,9 @@ object AstOps {
     }
 
     /**
-     * Returns the set of constants appearing in the node
-     */
-    def constants: Set[ANumber] = {
+      * Returns the set of constants appearing in subtree of the node.
+      */
+    def appearingConstants: Set[ANumber] = {
       val numbers = mutable.Set[ANumber]()
       val numFinder = new DepthFirstAstVisitor[Null] {
         override def visit(node: AstNode, arg: Null): Unit = {
@@ -88,8 +98,8 @@ object AstOps {
     }
 
     /**
-     * Returns the set of expressions appearing in the node
-     */
+      * Returns the set of expressions appearing in the subtree of the node.
+      */
     def appearingExpressions: Set[AExpr] = {
       val exps = mutable.Set[AExpr]()
       val expFinder = new DepthFirstAstVisitor[Null] {
@@ -105,35 +115,42 @@ object AstOps {
       expFinder.visit(n, null)
       exps.toSet
     }
-
   }
 
   /**
-   * An implicit class lifting the [[AstNode]] n into an unlabelled one.
-   * An unlabelled node represents n without the offset, so coalescing terms that look
-   * the same but appear in different part of the code.
-   *
-   * For example UnlabelledNode(3 + x) == UnlabelledNode(3 + x) even though the first
-   * 3 + x appears at offset 5 and the second at offset 30.
-   */
-  implicit class UnlabelledNode[X <: AstNode](val n: X) {
+    * An implicit class for lifting the given [[AstNode]] `n` into an unlabelled one.
+    * The unlabelled node represents `n` but without the source code location.
+    * Thereby two nodes become "equal" if they are structurally the same even though they appear in different parts of the code.
+    * Identifiers are compared using their declarations.
+    */
+  implicit class UnlabelledNode[X <: AstNode](val n: X)(implicit declData: DeclarationData) {
 
     /**
-     * The members of the node, excluding the location
-     */
-    def members = n.asInstanceOf[Product].productIterator.filter { x => if (x.isInstanceOf[Loc]) false else true }.toList
+      * The members of the node, excluding `loc`.
+      */
+    lazy val nonLocMembers =
+      n.asInstanceOf[Product]
+        .productIterator
+        .filter { x =>
+          if (x.isInstanceOf[Loc]) false else true
+        }
+        .toList
 
+    /**
+      * Compares objects structurally, but ignores `loc`.
+      * Identifiers are compared using their declarations.
+      */
     override def equals(obj: scala.Any): Boolean = {
       obj match {
         case n: UnlabelledNode[_] =>
           (this.n, n.n) match {
             case (idt: AIdentifier, ido: AIdentifier) =>
-              idt.meta.definition.get == ido.meta.definition.get
+              idt.declaration == ido.declaration
             case _ =>
               if (this.getClass != n.getClass)
                 false
               else {
-                this.members.zip(n.members).foldLeft(true) { (a, p) =>
+                this.nonLocMembers.zip(n.nonLocMembers).foldLeft(true) { (a, p) =>
                   (p._1, p._2) match {
                     case (p1: AstNode, p2: AstNode) =>
                       a && (p1: UnlabelledNode[_]) == (p2: UnlabelledNode[_])
@@ -146,13 +163,12 @@ object AstOps {
       }
     }
 
-    override def hashCode(): Int = n.getClass.hashCode * (members map {
-      case id: AIdentifier => id.meta.definition.get.hashCode()
-      case x => x.hashCode()
-    }).product
+    override lazy val hashCode: Int =
+      n.getClass.hashCode * (nonLocMembers map {
+        case id: AIdentifier => id.declaration.hashCode()
+        case x => x.hashCode()
+      }).product
 
-    override def toString: String = s"$n"
+    override def toString: String = n.toString
   }
-
 }
-
