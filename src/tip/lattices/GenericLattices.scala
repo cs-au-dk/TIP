@@ -181,7 +181,7 @@ class LiftLattice[+L <: Lattice](val sublattice: L) extends Lattice {
   implicit def lift(x: sublattice.Element): Element = Lift(x)
 
   /**
-    * Unl-ift elements of this lattice to the sublattice, converting bottom to bottom.
+    * Un-lift elements of this lattice to the sublattice, converting bottom to bottom.
     */
   implicit def unlift(x: Element): sublattice.Element = {
     x match {

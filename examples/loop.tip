@@ -1,0 +1,11 @@
+main() {
+  var a,b,i;
+  a = 5;
+  b = 42;
+  i = a;
+  while (b > i) {
+    // ...
+    i = i + 1;
+  }
+  return 0;
+}

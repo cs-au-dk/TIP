@@ -7,7 +7,7 @@ import tip.solvers._
 import tip.ast.AstNodeData.{AstNodeWithDeclaration, DeclarationData}
 
 /**
-  * The base class for the interval analysis
+  * The base class for interval analysis.
   */
 abstract class IntervalAnalysis(cfg: FragmentCfg)(implicit declData: DeclarationData) extends FlowSensitiveAnalysis(cfg) {
 
@@ -22,7 +22,8 @@ abstract class IntervalAnalysis(cfg: FragmentCfg)(implicit declData: Declaration
     val predStates = n.pred.map { x =>
       o(x)
     }
-    // Whenever the transfer is called, the state is reached
+    // Whenever the transfer is called, the program point becomes "reached",
+    // so compute the join state starting from the *sub-lattice* bottom element
     val reached: lattice.sublattice.Element = lattice.sublattice.sublattice.bottom
     val joinState = predStates.foldLeft(reached) { (lub, pred) =>
       lattice.sublattice.lub(lub, pred)
@@ -45,7 +46,7 @@ abstract class IntervalAnalysis(cfg: FragmentCfg)(implicit declData: Declaration
   }
 
   /**
-    * The abstract evaluation function for an expression
+    * The abstract evaluation function for an expression.
     * @param exp the expression
     * @param env the current abstract environment
     * @return the result of the evaluation
@@ -68,7 +69,7 @@ abstract class IntervalAnalysis(cfg: FragmentCfg)(implicit declData: Declaration
       case id: AIdentifier =>
         val defId = id.declaration
         env(defId)
-      case _: AInput => lattice.sublattice.sublattice.sublattice.fullInterval
+      case _: AInput => lattice.sublattice.sublattice.sublattice.FullInterval
       case num: ANumber =>
         (lattice.sublattice.sublattice.sublattice.IntNum(num.value), lattice.sublattice.sublattice.sublattice.IntNum(num.value))
       case _ => ???
@@ -81,25 +82,30 @@ abstract class IntervalAnalysis(cfg: FragmentCfg)(implicit declData: Declaration
   */
 class IntervalAnalysisWorklistSolverWithWidening(cfg: ProgramCfg)(implicit declData: DeclarationData)
     extends IntervalAnalysis(cfg)
-    with WorklistFixpointSolverWithInitAndSetWidening[CfgNode]
+    with WorklistFixpointSolverWithInitAndSimpleWidening[CfgNode]
     with ForwardDependencies {
 
   import tip.cfg.CfgOps._
 
-  /**
-    * The rank of the graph, which is used to detect the backedges.
-    */
-  val rank = cfg.rank
-
   val first = cfg.funEntries.values.toSet[CfgNode]
 
-  val B = cfg.nodes.flatMap { n =>
-    n.appearingConstants.map { x =>
-      x.value
+  /**
+    * Int values occurring in the program, plus -infinity and +infinity.
+    */
+  private val B = cfg.nodes.flatMap { n =>
+    {
+      import lattice.sublattice.sublattice.sublattice._
+      n.appearingConstants.map { x =>
+        IntNum(x.value): Num
+      } + MInf + PInf
     }
   }
 
-  def backedge(src: CfgNode, dst: CfgNode): Boolean = rank(src) > rank(dst)
+  def backedge(src: CfgNode, dst: CfgNode): Boolean = cfg.rank(src) > cfg.rank(dst)
+
+  private def minB(b: lattice.sublattice.sublattice.sublattice.Num) = B.filter(b <= _).min
+
+  private def maxB(a: lattice.sublattice.sublattice.sublattice.Num) = B.filter(_ <= a).max
 
   def widen(s: lattice.sublattice.Element): lattice.sublattice.Element = {
     import lattice.sublattice.sublattice.sublattice._
@@ -116,7 +122,7 @@ class IntervalAnalysisWorklistSolverWithWidening(cfg: ProgramCfg)(implicit declD
   */
 class IntervalAnalysisWorklistSolverWithWideningAndNarrowing(cfg: ProgramCfg)(implicit declData: DeclarationData)
     extends IntervalAnalysisWorklistSolverWithWidening(cfg)
-    with WorklistFixpointSolverWithInitAndSetWideningAndNarrowing[CfgNode] {
+    with WorklistFixpointSolverWithInitAndSimpleWideningAndNarrowing[CfgNode] {
 
   val narrowingSteps = 3
 }

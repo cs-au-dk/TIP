@@ -280,9 +280,9 @@ trait WorklistFixpointSolverWithInit[N] extends WorklistFixpointSolver[N] {
 }
 
 /**
-  * Worklist-based fixpoint solver with initialization and set widening.
+  * Worklist-based fixpoint solver with initialization and simple widening.
   */
-trait WorklistFixpointSolverWithInitAndSetWidening[N] extends WorklistFixpointSolverWithInit[N] {
+trait WorklistFixpointSolverWithInitAndSimpleWidening[N] extends WorklistFixpointSolverWithInit[N] {
 
   /**
     * Set widening function.
@@ -322,10 +322,10 @@ trait MapLatticeNarrowing[N] extends MapLatticeUpdateFunction[N] {
 }
 
 /**
-  * The worklist-based fixpoint solver with initialization, set widening, and narrowing.
+  * The worklist-based fixpoint solver with initialization, simple widening, and narrowing.
   */
-trait WorklistFixpointSolverWithInitAndSetWideningAndNarrowing[N]
-    extends WorklistFixpointSolverWithInitAndSetWidening[N]
+trait WorklistFixpointSolverWithInitAndSimpleWideningAndNarrowing[N]
+    extends WorklistFixpointSolverWithInitAndSimpleWidening[N]
     with MapLatticeNarrowing[N] {
 
   /**

@@ -17,6 +17,7 @@ options are viable.
 
 ### IntelliJ IDEA
 
+- Install the Scala end the SBT plugins in IntelliJ.
 - Import the project from the SBT model.
 - Since the `.idea` folder is regenerated from scrach, in order to keep the
   inspection profiles you need to checkout the `.idea/inspectionProfiles`

@@ -75,7 +75,7 @@ trait Mu[A] extends Term[A] {
 
   lazy val fv: Set[Var[A]] = t.fv - v
 
-  override def toString: String = s"\u03bc $v.$t"
+  override def toString: String = s"\u03bc$v.$t"
 }
 
 /**
