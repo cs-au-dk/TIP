@@ -66,7 +66,7 @@ class IntervalLattice extends Lattice with LatticeOps {
   /**
     * Abstract `+` on intervals.
     */
-  override def sum(a: Element, b: Element): Element = {
+  override def plus(a: Element, b: Element): Element = {
     val low = (a._1, b._1) match {
       case (_, MInf) | (MInf, _) => MInf
       case (_, PInf) | (PInf, _) => PInf
@@ -83,7 +83,7 @@ class IntervalLattice extends Lattice with LatticeOps {
   /**
     * Abstract binary `-` on intervals.
     */
-  override def sub(a: Element, b: Element): Element = sum(a, inv(b))
+  override def minus(a: Element, b: Element): Element = plus(a, inv(b))
 
   /**
     * Abstract `/` on intervals.
@@ -172,7 +172,7 @@ class IntervalLattice extends Lattice with LatticeOps {
   /**
     * Abstract `*` on intervals;
     */
-  override def prod(a: Element, b: Element): Element = {
+  override def times(a: Element, b: Element): Element = {
     (a, b) match {
       case ((PInf, _), _) => EmptyInterval
       case (_, (PInf, _)) => EmptyInterval

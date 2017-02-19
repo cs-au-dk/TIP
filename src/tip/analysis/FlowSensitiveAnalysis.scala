@@ -7,12 +7,12 @@ import tip.ast.AstNodeData.DeclarationData
 /**
   * A flow-sensitive analysis.
   */
-abstract class FlowSensitiveAnalysis(cfg: FragmentCfg) extends Analysis[Any] {
+abstract class FlowSensitiveAnalysis[N](cfg: FragmentCfg) extends Analysis[Any] {
 
   /**
     * The lattice used by the analysis.
     */
-  val lattice: MapLattice[CfgNode, Lattice]
+  val lattice: MapLattice[N, Lattice]
 
   /**
     * The domain of the map lattice.
@@ -22,7 +22,7 @@ abstract class FlowSensitiveAnalysis(cfg: FragmentCfg) extends Analysis[Any] {
   /**
     * The local update function.
     */
-  def funsub(n: CfgNode, s: lattice.sublattice.Element, o: lattice.Element): lattice.sublattice.Element
+  def funsub(n: N, x: lattice.Element): lattice.sublattice.Element
 
   /**
     * @inheritdoc
@@ -37,7 +37,7 @@ object FlowSensitiveAnalysis {
 
   def select(kind: Analysis.Value, options: AnalysisOption.Value, cfg: FragmentCfg)(
     implicit declData: DeclarationData
-  ): Option[FlowSensitiveAnalysis] = {
+  ): Option[FlowSensitiveAnalysis[_]] = {
 
     val typedCfg = options match { // FIXME
       case AnalysisOption.iwli | AnalysisOption.iwlip =>
@@ -77,6 +77,7 @@ object FlowSensitiveAnalysis {
       case AnalysisOption.`wli` =>
         Some(kind match {
           case Analysis.sign => new IntraprocSignAnalysisWorklistSolverWithInit(typedCfg.left.get)
+          case Analysis.interval => new IntervalAnalysisWorklistSolverWithInit(typedCfg.left.get)
           case _ => throw new RuntimeException(s"Unsupported option for the analysis $kind")
         })
       case AnalysisOption.`wliw` =>
@@ -110,14 +111,14 @@ object FlowSensitiveAnalysis {
   /**
     * The options of the analysis:
     *
-    * - Enabled: tries to create an analysis which uses the simple fixpoint solver
-    * - wl: tries to create an analysis which uses the worklist solver
-    * - wli: tries to create an analysis which uses the worklist solver with init
-    * - wliw: tries to create an analysis which uses the worklist solver with init and widening
-    * - wliwn: tries to create an analysis which uses the worklist solver with init, widening, and narrowing
-    * - wlip: tries to create an analysis which uses the worklist solver with init and propagation
-    * - iwli: tries to create an analysis which uses the worklist solver with init, interprocedural version
-    * - iwlip: tries to create an analysis which uses the worklist solver with init and propagation, interprocedural version
+    * - Enabled: use the simple fixpoint solver
+    * - wl: use the worklist solver
+    * - wli: use the worklist solver with init
+    * - wliw: use the worklist solver with init and widening
+    * - wliwn: use the worklist solver with init, widening, and narrowing
+    * - wlip: use the worklist solver with init and propagation
+    * - iwli: use the worklist solver with init, interprocedural version
+    * - iwlip: use the worklist solver with init and propagation, interprocedural version
     */
   object AnalysisOption extends Enumeration {
     val simple, Disabled, wl, wli, wliw, wliwn, wlip, iwli, iwlip = Value

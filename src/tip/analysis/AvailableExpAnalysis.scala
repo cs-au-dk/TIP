@@ -3,13 +3,13 @@ package tip.analysis
 import tip.ast._
 import tip.cfg._
 import tip.lattices.{ReversePowersetLattice, MapLattice}
-import tip.solvers.{WorklistFixpointSolver, MapLatticeUpdateFunction, SimpleFixpointSolver}
+import tip.solvers.{SimpleWorklistFixpointSolver, SimpleMapLatticeFixpointSolver}
 import tip.ast.AstNodeData.DeclarationData
 
 /**
   * Base class for available expressions analysis
   */
-abstract class AvailableExpAnalysis(cfg: IntraproceduralProgramCfg)(implicit declData: DeclarationData) extends FlowSensitiveAnalysis(cfg) {
+abstract class AvailableExpAnalysis(cfg: IntraproceduralProgramCfg)(implicit declData: DeclarationData) extends FlowSensitiveAnalysis[CfgNode](cfg) {
 
   import tip.cfg.CfgOps._
   import tip.ast.AstOps._
@@ -21,14 +21,7 @@ abstract class AvailableExpAnalysis(cfg: IntraproceduralProgramCfg)(implicit dec
 
   val lattice = new MapLattice(cfg.nodes, new ReversePowersetLattice(allExps))
 
-  def funsub(n: CfgNode, s: lattice.sublattice.Element, o: lattice.Element): lattice.sublattice.Element = {
-    val predStates = n.pred.map { x =>
-      o(x)
-    }
-    val joinState: Set[UnlabelledNode[AExpr]] = predStates.foldLeft(lattice.sublattice.bottom) { (lub, pred) =>
-      lattice.sublattice.lub(lub, pred)
-    }
-
+  def transfer(n: CfgNode, s: lattice.sublattice.Element): lattice.sublattice.Element = {
     n match {
       case _: CfgFunEntryNode => Set()
       case r: CfgStmtNode =>
@@ -36,20 +29,20 @@ abstract class AvailableExpAnalysis(cfg: IntraproceduralProgramCfg)(implicit dec
           case ass: AAssignStmt =>
             ass.left match {
               case Left(id) =>
-                (joinState union ass.right.appearingExpressions.map(UnlabelledNode[AExpr])).filter { e =>
+                (s union ass.right.appearingExpressions.map(UnlabelledNode[AExpr])).filter { e =>
                   !(id.appearingIds subsetOf e.n.appearingIds)
                 }
               case Right(_) => ???
             }
           case exp: AExpr =>
-            joinState union exp.appearingExpressions.map(UnlabelledNode[AExpr])
+            s union exp.appearingExpressions.map(UnlabelledNode[AExpr])
           case out: AOutputStmt =>
-            joinState union out.value.appearingExpressions.map(UnlabelledNode[AExpr])
+            s union out.value.appearingExpressions.map(UnlabelledNode[AExpr])
           case ret: AReturnStmt =>
-            joinState union ret.value.appearingExpressions.map(UnlabelledNode[AExpr])
-          case _ => joinState
+            s union ret.value.appearingExpressions.map(UnlabelledNode[AExpr])
+          case _ => s
         }
-      case _ => joinState
+      case _ => s
     }
   }
 }
@@ -59,13 +52,13 @@ abstract class AvailableExpAnalysis(cfg: IntraproceduralProgramCfg)(implicit dec
   */
 class AvailableExpAnalysisSimpleSolver(cfg: IntraproceduralProgramCfg)(implicit declData: DeclarationData)
     extends AvailableExpAnalysis(cfg)
-    with SimpleFixpointSolver
-    with MapLatticeUpdateFunction[CfgNode]
+    with SimpleMapLatticeFixpointSolver[CfgNode]
+    with ForwardDependencies
 
 /**
   * Available expressions analysis that uses the worklist solver.
   */
 class AvailableExpAnalysisWorklistSolver(cfg: IntraproceduralProgramCfg)(implicit declData: DeclarationData)
     extends AvailableExpAnalysis(cfg)
-    with WorklistFixpointSolver[CfgNode]
+    with SimpleWorklistFixpointSolver[CfgNode]
     with ForwardDependencies

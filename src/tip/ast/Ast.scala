@@ -58,7 +58,7 @@ object DerefOp extends Operator with UnaryOperator {
 /**
   * AST node.
   */
-sealed abstract class AstNode extends AnyRef {
+sealed abstract class AstNode extends AnyRef with Product {
 
   /**
     * Unique ID of the node.

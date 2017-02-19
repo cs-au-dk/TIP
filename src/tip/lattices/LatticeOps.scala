@@ -7,11 +7,11 @@ trait LatticeOps {
 
   type Element
 
-  def sum(a: Element, b: Element): Element
+  def plus(a: Element, b: Element): Element
 
-  def sub(a: Element, b: Element): Element
+  def minus(a: Element, b: Element): Element
 
-  def prod(a: Element, b: Element): Element
+  def times(a: Element, b: Element): Element
 
   def div(a: Element, b: Element): Element
 

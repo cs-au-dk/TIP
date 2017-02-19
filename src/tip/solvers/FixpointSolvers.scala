@@ -2,8 +2,15 @@ package tip.solvers
 
 import tip.analysis.Dependencies
 import tip.lattices._
+import tip.util.Log
 
 import scala.collection.immutable._
+
+object FixpointSolvers {
+
+  val log = Log.logger[this.type](Log.Level.Verbose) // set to Log.Level.Verbose to see output during analysis, or Log.Level.None to disable
+
+}
 
 /**
   * Base trait for lattice solvers.
@@ -51,7 +58,7 @@ trait SimpleFixpointSolver extends LatticeSolver {
   * Base trait for map lattice solvers.
   * @tparam N type of the elements in the map domain.
   */
-trait MapLatticeSolver[N] extends LatticeSolver {
+trait MapLatticeSolver[N] extends LatticeSolver with Dependencies[N] {
 
   /**
     * Must be a map lattice.
@@ -59,20 +66,35 @@ trait MapLatticeSolver[N] extends LatticeSolver {
   val lattice: MapLattice[N, Lattice]
 
   /**
+    * The transfer function.
+    */
+  def transfer(n: N, s: lattice.sublattice.Element): lattice.sublattice.Element
+
+  /**
     * The update function for individual elements in the map domain.
+    * First computes the join of the incoming elements and then applies the transfer function.
     * @param n the current location in the map domain
-    * @param s the input sublattice element at the current location in the map domain
-    * @param o the entire input lattice element
+    * @param x the current lattice element for all locations
     * @return the output sublattice element
     */
-  def funsub(n: N, s: lattice.sublattice.Element, o: lattice.Element): lattice.sublattice.Element
+  def funsub(n: N, x: lattice.Element): lattice.sublattice.Element = {
+    transfer(n, join(n, x))
+  }
+
+  /**
+    * Computes the least upper bound of the incoming elements.
+    */
+  def join(n: N, o: lattice.Element): lattice.sublattice.Element = {
+    val states = indep(n).map(o(_))
+    states.foldLeft(lattice.sublattice.bottom)((acc, pred) => lattice.sublattice.lub(acc, pred))
+  }
 }
 
 /**
-  * A general update function for map lattices.
+  * Simple fixpoint solver for map lattices where the update function is defined pointwise.
   * @tparam N type of the elements in the map domain.
   */
-trait MapLatticeUpdateFunction[N] extends MapLatticeSolver[N] {
+trait SimpleMapLatticeFixpointSolver[N] extends SimpleFixpointSolver with MapLatticeSolver[N] {
 
   /**
     * The map domain.
@@ -86,39 +108,36 @@ trait MapLatticeUpdateFunction[N] extends MapLatticeSolver[N] {
     * @return the output lattice element
     */
   def fun(x: lattice.Element): lattice.Element = {
-    domain.foldLeft(lattice.bottom)((m, a) => m + (a -> funsub(a, x(a), x)))
+    FixpointSolvers.log.verb(s"In state $x")
+    domain.foldLeft(lattice.bottom)(
+      (m, a) =>
+        m + (a -> {
+          FixpointSolvers.log.verb(s"Processing $a")
+          funsub(a, x)
+        })
+    )
   }
 }
 
 /**
-  * A general update function for map lattices with lifted co-domains.
+  * Base trait for solvers for map lattices with lifted co-domains.
   * @tparam N type of the elements in the map domain.
   */
-trait MapLiftLatticeUpdateFunction[N] extends Dependencies[N] {
+trait MapLiftLatticeSolver[N] extends MapLatticeSolver[N] with Dependencies[N] {
 
   val lattice: MapLattice[N, LiftLattice[Lattice]]
 
   /**
-    * The transfer function.
+    * The transfer function for the sub-sub-lattice.
     */
-  def transfer(n: N, s: lattice.sublattice.sublattice.Element): lattice.sublattice.sublattice.Element
+  def transferUnlifted(n: N, s: lattice.sublattice.sublattice.Element): lattice.sublattice.sublattice.Element
 
-  /**
-    * Computes the least upper bound of the (implicitly) unlifted incoming elements.
-    */
-  def join(n: N, s: lattice.sublattice.Element, o: lattice.Element): lattice.sublattice.Element = {
+  def transfer(n: N, s: lattice.sublattice.Element): lattice.sublattice.Element = {
     import lattice.sublattice._
-    val states = indep(n).map(o(_))
-    states.foldLeft(lattice.sublattice.sublattice.bottom)((acc, pred) => lattice.sublattice.sublattice.lub(acc, pred))
-  }
-
-  /**
-    * Update function that first computes the join of the incoming elements and applies the transfer function.
-    * (Implicitly) unlifts/lifts before/after applying the transfer function.
-    */
-  def funsub(n: N, s: lattice.sublattice.Element, o: lattice.Element): lattice.sublattice.Element = {
-    import lattice.sublattice._
-    transfer(n, join(n, s, o))
+    s match {
+      case Bottom => Bottom
+      case Lift(a) => lift(transferUnlifted(n, unlift(s)))
+    }
   }
 }
 
@@ -160,10 +179,12 @@ trait ListSetWorklist[N] extends Worklist[N] {
   private var worklist = new ListSet[N]
 
   def add(n: N) = {
+    FixpointSolvers.log.verb(s"Adding $n to worklist")
     worklist += n
   }
 
   def add(ns: Set[N]) = {
+    FixpointSolvers.log.verb(s"Adding $ns to worklist")
     worklist ++= ns
   }
 
@@ -177,7 +198,7 @@ trait ListSetWorklist[N] extends Worklist[N] {
 }
 
 /**
-  * Worklist-based fixpoint solver.
+  * Base trait for worklist-based fixpoint solvers.
   * @tparam N type of the elements in the worklist.
   */
 trait WorklistFixpointSolver[N] extends MapLatticeSolver[N] with ListSetWorklist[N] with Dependencies[N] {
@@ -185,24 +206,59 @@ trait WorklistFixpointSolver[N] extends MapLatticeSolver[N] with ListSetWorklist
   /**
     * The current lattice element.
     */
-  var x = lattice.bottom
+  var x: lattice.Element = null
+
+  def apply(n: N) = {
+    val xn = x(n)
+    FixpointSolvers.log.verb(s"Processing $n in state $xn")
+    val y = funsub(n, x)
+    if (y != xn) {
+      x += n -> y
+      add(outdep(n))
+    }
+  }
+}
+
+/**
+  * Worklist-based fixpoint solver.
+  * @tparam N type of the elements in the worklist.
+  */
+trait SimpleWorklistFixpointSolver[N] extends WorklistFixpointSolver[N] {
 
   /**
     * The map domain.
     */
   val domain: Set[N]
 
-  def apply(n: N) = {
-    val xn = x(n)
-    val y = funsub(n, xn, x)
-    if (y != xn) {
-      x += n -> y
-      add(outdep(n))
-    }
+  def analyze(): lattice.Element = {
+    x = lattice.bottom
+    run(domain)
+    x
   }
+}
+
+/**
+  * The worklist-based fixpoint solver with initialization.
+  */
+trait WorklistFixpointSolverWithInit[N] extends WorklistFixpointSolver[N] with MapLiftLatticeSolver[N] {
+  import lattice.sublattice._
+
+  /**
+    * The start locations.
+    */
+  val first: Set[N]
+
+  /**
+    * The initial lattice element at the start locations.
+    * Default: lift(bottom).
+    */
+  val init = lift(lattice.sublattice.bottom)
 
   def analyze(): lattice.Element = {
-    run(domain)
+    x = first.foldLeft(lattice.bottom) { (l, cur) =>
+      l + (cur -> init)
+    }
+    run(first.flatMap(outdep)) // initialize worklist with the *successors* of the first nodes
     x
   }
 }
@@ -213,14 +269,7 @@ trait WorklistFixpointSolver[N] extends MapLatticeSolver[N] with ListSetWorklist
   * Note that with this approach, each abstract state represents the program point *after* the node
   * (for a forward analysis, and opposite for a backward analysis).
   */
-trait WorklistFixpointPropagationSolver[N] extends WorklistFixpointSolver[N] {
-
-  val lattice: MapLattice[N, LiftLattice[Lattice]]
-
-  /**
-    * The transfer function.
-    */
-  def transfer(n: N, s: lattice.sublattice.sublattice.Element): lattice.sublattice.sublattice.Element
+trait WorklistFixpointPropagationSolver[N] extends WorklistFixpointSolverWithInit[N] {
 
   /**
     * Propagates lattice element y to node m.
@@ -242,39 +291,17 @@ trait WorklistFixpointPropagationSolver[N] extends WorklistFixpointSolver[N] {
     // read the current lattice element
     val xn = x(n)
     // apply the transfer function
-    import lattice.sublattice._
+    FixpointSolvers.log.verb(s"Processing $n in state $xn")
     val y = transfer(n, xn)
     // propagate to all nodes that depend on this one
     for (m <- outdep(n)) propagate(y, m)
   }
-}
-
-/**
-  * The worklist-based fixpoint solver with initialization.
-  */
-trait WorklistFixpointSolverWithInit[N] extends WorklistFixpointSolver[N] {
-
-  /**
-    * Must be a map lattice, with a lifted state.
-    */
-  val lattice: MapLattice[N, LiftLattice[_]]
-
-  /**
-    * The start locations.
-    */
-  val first: Set[N]
-
-  /**
-    * The initial lattice element at the start location.
-    * Default: bottom.
-    */
-  val init = lattice.sublattice.bottom
 
   override def analyze(): lattice.Element = {
     x = first.foldLeft(lattice.bottom) { (l, cur) =>
       l + (cur -> init)
     }
-    run(first)
+    run(first) // initialize worklist with the first nodes
     x
   }
 }
@@ -298,7 +325,8 @@ trait WorklistFixpointSolverWithInitAndSimpleWidening[N] extends WorklistFixpoin
 
   override def apply(n: N) = {
     val xn = x(n)
-    val y = funsub(n, xn, x)
+    FixpointSolvers.log.verb(s"Processing $n in state $xn")
+    val y = funsub(n, x)
     if (y != xn) {
       x += n -> (if (outdep(n).exists(backedge(n, _))) widen(y) else y)
       add(outdep(n))
@@ -307,9 +335,16 @@ trait WorklistFixpointSolverWithInitAndSimpleWidening[N] extends WorklistFixpoin
 }
 
 /**
-  * Provides method for narrowing.
+  * The worklist-based fixpoint solver with initialization, simple widening, and narrowing.
   */
-trait MapLatticeNarrowing[N] extends MapLatticeUpdateFunction[N] {
+trait WorklistFixpointSolverWithInitAndSimpleWideningAndNarrowing[N]
+    extends WorklistFixpointSolverWithInitAndSimpleWidening[N]
+    with SimpleMapLatticeFixpointSolver[N] {
+
+  /**
+    * Number of narrowing steps.
+    */
+  val narrowingSteps: Int
 
   /**
     * Performs narrowing on the given lattice element
@@ -317,23 +352,10 @@ trait MapLatticeNarrowing[N] extends MapLatticeUpdateFunction[N] {
     * @param i number of iterations
     */
   def narrow(x: lattice.Element, i: Int): lattice.Element = {
-    if (i <= 0) x else narrow(fun(x), i - 1)
+    if (i <= 0) x else narrow(fun(x), i - 1) // uses the simple definition of 'fun' from SimpleMapLatticeFixpointSolver
   }
-}
-
-/**
-  * The worklist-based fixpoint solver with initialization, simple widening, and narrowing.
-  */
-trait WorklistFixpointSolverWithInitAndSimpleWideningAndNarrowing[N]
-    extends WorklistFixpointSolverWithInitAndSimpleWidening[N]
-    with MapLatticeNarrowing[N] {
-
-  /**
-    * Number of narrowing steps.
-    */
-  val narrowingSteps: Int
 
   override def analyze(): lattice.Element = {
-    narrow(super.analyze(), narrowingSteps)
+    narrow(super[WorklistFixpointSolverWithInitAndSimpleWidening].analyze(), narrowingSteps)
   }
 }

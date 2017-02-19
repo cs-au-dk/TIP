@@ -9,7 +9,7 @@ import tip.ast.AstNodeData.{AstNodeWithDeclaration, DeclarationData}
 /**
   * The base class for interval analysis.
   */
-abstract class IntervalAnalysis(cfg: FragmentCfg)(implicit declData: DeclarationData) extends FlowSensitiveAnalysis(cfg) {
+abstract class IntervalAnalysis(cfg: FragmentCfg)(implicit declData: DeclarationData) extends FlowSensitiveAnalysis[CfgNode](cfg) {
 
   import tip.cfg.CfgOps._
 
@@ -17,31 +17,24 @@ abstract class IntervalAnalysis(cfg: FragmentCfg)(implicit declData: Declaration
 
   val lattice = new MapLattice(cfg.nodes, new LiftLattice(new MapLattice(declaredVars, new IntervalLattice())))
 
-  def funsub(n: CfgNode, s: lattice.sublattice.Element, o: lattice.Element): lattice.sublattice.Element = {
-    import lattice.sublattice._
-    val predStates = n.pred.map { x =>
-      o(x)
-    }
-    // Whenever the transfer is called, the program point becomes "reached",
-    // so compute the join state starting from the *sub-lattice* bottom element
-    val reached: lattice.sublattice.Element = lattice.sublattice.sublattice.bottom
-    val joinState = predStates.foldLeft(reached) { (lub, pred) =>
-      lattice.sublattice.lub(lub, pred)
-    }
-
+  def transferUnlifted(n: CfgNode, s: lattice.sublattice.sublattice.Element): lattice.sublattice.sublattice.Element = {
     n match {
       case r: CfgStmtNode =>
         r.data match {
+          case varr: AVarStmt =>
+            varr.declIds.foldLeft(s) { (acc, id) =>
+              acc + (id -> lattice.sublattice.sublattice.sublattice.FullInterval)
+            }
           case ass: AAssignStmt =>
             ass.left match {
               case Left(id) =>
                 val vdef = id.declaration
-                joinState + (vdef -> absEval(ass.right, joinState))
+                s + (vdef -> absEval(ass.right, s))
               case Right(_) => ???
             }
-          case _ => joinState
+          case _ => s
         }
-      case _ => joinState
+      case _ => s
     }
   }
 
@@ -54,6 +47,8 @@ abstract class IntervalAnalysis(cfg: FragmentCfg)(implicit declData: Declaration
   private def absEval(exp: AExpr,
                       env: Map[ADeclaration, lattice.sublattice.sublattice.sublattice.Element]): lattice.sublattice.sublattice.sublattice.Element = {
     exp match {
+      case id: AIdentifier => env(id.declaration)
+      case num: ANumber => (lattice.sublattice.sublattice.sublattice.IntNum(num.value), lattice.sublattice.sublattice.sublattice.IntNum(num.value))
       case bin: ABinaryOp =>
         val left = absEval(bin.left, env)
         val right = absEval(bin.right, env)
@@ -61,20 +56,26 @@ abstract class IntervalAnalysis(cfg: FragmentCfg)(implicit declData: Declaration
           case Eqq => lattice.sublattice.sublattice.sublattice.eqq(left, right)
           case GreatThan => lattice.sublattice.sublattice.sublattice.gt(left, right)
           case Divide => lattice.sublattice.sublattice.sublattice.div(left, right)
-          case Minus => lattice.sublattice.sublattice.sublattice.sub(left, right)
-          case Plus => lattice.sublattice.sublattice.sublattice.sum(left, right)
-          case Times => lattice.sublattice.sublattice.sublattice.prod(left, right)
+          case Minus => lattice.sublattice.sublattice.sublattice.minus(left, right)
+          case Plus => lattice.sublattice.sublattice.sublattice.plus(left, right)
+          case Times => lattice.sublattice.sublattice.sublattice.times(left, right)
           case _ => ???
         }
-      case id: AIdentifier =>
-        val defId = id.declaration
-        env(defId)
-      case _: AInput => lattice.sublattice.sublattice.sublattice.FullInterval
-      case num: ANumber =>
-        (lattice.sublattice.sublattice.sublattice.IntNum(num.value), lattice.sublattice.sublattice.sublattice.IntNum(num.value))
+      case input: AInput => lattice.sublattice.sublattice.sublattice.FullInterval
       case _ => ???
     }
   }
+}
+
+/**
+  * Interval analysis, using the worklist solver with init and widening.
+  */
+class IntervalAnalysisWorklistSolverWithInit(cfg: ProgramCfg)(implicit declData: DeclarationData)
+    extends IntervalAnalysis(cfg)
+    with WorklistFixpointSolverWithInit[CfgNode]
+    with ForwardDependencies {
+
+  val first = cfg.funEntries.values.toSet[CfgNode]
 }
 
 /**
@@ -124,5 +125,5 @@ class IntervalAnalysisWorklistSolverWithWideningAndNarrowing(cfg: ProgramCfg)(im
     extends IntervalAnalysisWorklistSolverWithWidening(cfg)
     with WorklistFixpointSolverWithInitAndSimpleWideningAndNarrowing[CfgNode] {
 
-  val narrowingSteps = 3
+  val narrowingSteps = 5
 }

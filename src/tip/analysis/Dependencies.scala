@@ -58,12 +58,12 @@ trait InterproceduralForwardDependencies extends Dependencies[CfgNode] {
     * A call node has an outdep to its after-call node.
     */
   override def outdep(n: CfgNode) = {
-    val intraDep = n match {
+    val interDep = n match {
       case call: CfgCallNode => call.callees
       case exit: CfgFunExitNode => exit.callersAfterCall
       case _ => Set()
     }
-    intraDep ++ n.succ.toSet
+    interDep ++ n.succ.toSet
   }
 
   /**

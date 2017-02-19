@@ -7,6 +7,11 @@ import scala.collection.mutable
 object AstOps {
 
   /**
+    * Special 'result' variable, for function return values.
+    */
+  val returnId = AIdentifierDeclaration(s"#result", Loc(0, 0))
+
+  /**
     * An implicit class with convenience methods for collecting information in AST subtrees.
     */
   implicit class AstOp(n: AstNode) {
@@ -129,12 +134,9 @@ object AstOps {
       * The members of the node, excluding `loc`.
       */
     lazy val nonLocMembers =
-      n.asInstanceOf[Product]
-        .productIterator
-        .filter { x =>
-          if (x.isInstanceOf[Loc]) false else true
-        }
-        .toList
+      n.productIterator.filter { x =>
+        if (x.isInstanceOf[Loc]) false else true
+      }.toList
 
     /**
       * Compares objects structurally, but ignores `loc`.

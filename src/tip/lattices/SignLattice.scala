@@ -64,7 +64,7 @@ object SignLattice extends FlatLattice[SignElement.Value] with LatticeOps {
     List(Bot, Top, Top, Top, Top)
   )
 
-  private val absGT: List[List[FlatElement]] = List(
+  private val absGt: List[List[FlatElement]] = List(
     List(Bot, Bot, Bot, Bot, Bot),
     List(Bot, Zero, Pos, Zero, Top),
     List(Bot, Zero, Top, Zero, Top),
@@ -80,17 +80,17 @@ object SignLattice extends FlatLattice[SignElement.Value] with LatticeOps {
     List(Bot, Top, Top, Top, Top)
   )
 
-  override def sum(a: SignLattice.Element, b: SignLattice.Element) = abs(absPlus, a, b)
+  override def plus(a: SignLattice.Element, b: SignLattice.Element) = abs(absPlus, a, b)
 
-  override def sub(a: SignLattice.Element, b: SignLattice.Element) = abs(absMinus, a, b)
+  override def minus(a: SignLattice.Element, b: SignLattice.Element) = abs(absMinus, a, b)
 
-  override def prod(a: SignLattice.Element, b: SignLattice.Element) = abs(absTimes, a, b)
+  override def times(a: SignLattice.Element, b: SignLattice.Element) = abs(absTimes, a, b)
 
   override def div(a: SignLattice.Element, b: SignLattice.Element) = abs(absDivide, a, b)
 
   override def eqq(a: SignLattice.Element, b: SignLattice.Element) = abs(absEq, a, b)
 
-  override def gt(a: SignLattice.Element, b: SignLattice.Element) = abs(absGT, a, b)
+  override def gt(a: SignLattice.Element, b: SignLattice.Element) = abs(absGt, a, b)
 
   /**
     * Returns the sign of `i`.
@@ -109,17 +109,16 @@ object SignLattice extends FlatLattice[SignElement.Value] with LatticeOps {
     */
   def eval[A](exp: AExpr, env: Map[ADeclaration, Element])(implicit declData: DeclarationData): Element = {
     exp match {
-      case id: AIdentifier =>
-        env(id.declaration)
-      case intc: ANumber => sign(intc.value)
+      case id: AIdentifier => env(id.declaration)
+      case num: ANumber => sign(num.value)
       case bin: ABinaryOp =>
         bin.operator match {
           case Plus =>
-            sum(eval(bin.left, env), eval(bin.right, env))
+            plus(eval(bin.left, env), eval(bin.right, env))
           case Minus =>
-            sub(eval(bin.left, env), eval(bin.right, env))
+            minus(eval(bin.left, env), eval(bin.right, env))
           case Times =>
-            prod(eval(bin.left, env), eval(bin.right, env))
+            times(eval(bin.left, env), eval(bin.right, env))
           case Divide =>
             div(eval(bin.left, env), eval(bin.right, env))
           case GreatThan =>
@@ -128,6 +127,7 @@ object SignLattice extends FlatLattice[SignElement.Value] with LatticeOps {
             eqq(eval(bin.left, env), eval(bin.right, env))
           case _ => ???
         }
+      case input: AInput => Top
       case _ => ???
     }
   }

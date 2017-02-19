@@ -59,7 +59,7 @@ case class CfgStmtNode(override val id: Int = CfgNode.uid,
                        data: AstNode)
     extends CfgNode {
 
-  override def toString: String = data.toString
+  override def toString: String = s"[Stmt] $data"
 }
 
 /**
@@ -72,7 +72,7 @@ case class CfgCallNode(override val id: Int = CfgNode.uid,
                        data: AAssignStmt)
     extends CfgNode {
 
-  override def toString: String = s"Call-$data"
+  override def toString: String = s"[Call] $data"
 }
 
 /**
@@ -85,7 +85,7 @@ case class CfgAfterCallNode(override val id: Int = CfgNode.uid,
                             data: AAssignStmt)
     extends CfgNode {
 
-  override def toString: String = s"AfterCall-$data"
+  override def toString: String = s"[AfterCall] $data"
 }
 
 /**
@@ -97,7 +97,7 @@ case class CfgFunEntryNode(override val id: Int = CfgNode.uid,
                            data: AFunDeclaration)
     extends CfgNode {
 
-  override def toString: String = s"FunEntry-$data"
+  override def toString: String = s"[FunEntry] $data"
 }
 
 /**
@@ -109,5 +109,5 @@ case class CfgFunExitNode(override val id: Int = CfgNode.uid,
                           data: AFunDeclaration)
     extends CfgNode {
 
-  override def toString: String = s"FunExit-$data"
+  override def toString: String = s"[FunExit] $data"
 }

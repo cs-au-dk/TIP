@@ -175,7 +175,7 @@ object Tip extends App {
                 if (!dfo.interprocedural(v)) {
                   FlowSensitiveAnalysis.select(s, v, wcfg).foreach { an =>
                     // run the analysis
-                    val res = an.analyze()
+                    val res = an.analyze().asInstanceOf[Map[CfgNode, _]]
                     Output.output(file, DataFlowOutput(s), wcfg.toDot(Output.labeler(res), Output.dotIder), options.out)
                   }
                 }
@@ -203,7 +203,7 @@ object Tip extends App {
                 if (dfo.interprocedural(v)) {
                   FlowSensitiveAnalysis.select(s, v, wcfg).foreach { an =>
                     // run the analysis
-                    val res = an.analyze()
+                    val res = an.analyze().asInstanceOf[Map[CfgNode, _]]
                     Output.output(file, DataFlowOutput(s), wcfg.toDot(Output.labeler(res), Output.dotIder), options.out)
                   }
                 }
