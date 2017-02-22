@@ -33,9 +33,9 @@ object Log {
   */
 final case class Logger(var tag: String, level: Log.Level.Level) {
 
-  val TAG_MAX_LEN = 30
-
-  tag = s"[${tag.padTo(TAG_MAX_LEN, ' ')}]"
+//  val TAG_MAX_LEN = 30
+//
+//  tag = s"[${tag.padTo(TAG_MAX_LEN, ' ')}]"
 
   private def log(message: String, t: Throwable, msgLev: Log.Level.Level): Unit = {
     if (msgLev.id <= level.id || msgLev.id < Log.defaultLevel.id) {
@@ -47,14 +47,19 @@ final case class Logger(var tag: String, level: Log.Level.Level) {
           account -= 9; Console.BOLD + Console.YELLOW
         case Level.Info =>
           account -= 9; Console.BOLD + Console.BLUE
+        case Level.Verbose =>
+          account -= 9; Console.BOLD + Console.BLUE
         case _ => account -= 1; Console.RESET
       }
-      val preamble = s"$color$tag ${msgLev.toString.toUpperCase}: "
-      val space = (1 to (preamble.length + account)).map(_ => " ").mkString("")
-      val nmessage = message.replace("\r", "").replace("\n", s"\r\n$space")
-      println(s"$preamble$nmessage" + Console.RESET)
+//      val preamble = s"$color$tag ${msgLev.toString.toLowerCase}: "
+//      val space = (1 to (preamble.length + account)).map(_ => " ").mkString("")
+//      val nmessage = message.replace("\r", "").replace("\n", s"\r\n$space")
+//      println(s"$preamble$nmessage" + Console.RESET)
+      print(s"$color[${msgLev.toString.toLowerCase}] ")
+      print(Console.RESET)
+      println(message)
     }
-    if (t != null) t.printStackTrace()
+    if (t != null) t.printStackTrace(System.out)
 
   }
 

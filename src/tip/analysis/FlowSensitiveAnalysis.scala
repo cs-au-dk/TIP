@@ -28,6 +28,7 @@ abstract class FlowSensitiveAnalysis[N](cfg: FragmentCfg) extends Analysis[Any] 
     * @inheritdoc
     */
   def analyze(): lattice.Element
+
 }
 
 /**
@@ -127,6 +128,14 @@ object FlowSensitiveAnalysis {
       v match {
         case `iwli` => true
         case `iwlip` => true
+        case _ => false
+      }
+    }
+
+    def withWidening(v: Value): Boolean = {
+      v match {
+        case `wliw` => true
+        case `wliwn` => true
         case _ => false
       }
     }

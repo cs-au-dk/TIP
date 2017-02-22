@@ -136,12 +136,12 @@ trait InterprocSignAnalysisFunctionsWithPropagation
           propagate(evalArgs(entry.data.args, call.invocation.args, s), entry)
           returnflow(entry.exit, call.afterCallNode) // make sure existing return flow gets propagated
         }
-        lattice.sublattice.bottom // no flow directly to the after-call node
+        lattice.sublattice.sublattice.bottom // no flow directly to the after-call node
 
       // function exit nodes
       case funexit: CfgFunExitNode =>
         for (aftercall <- funexit.callersAfterCall) returnflow(funexit, aftercall)
-        lattice.sublattice.bottom // no successors for this kind of node, but we have to return something
+        lattice.sublattice.sublattice.bottom // no successors for this kind of node, but we have to return something
 
       // return statement
       case CfgStmtNode(_, _, _, ret: AReturnStmt) =>
@@ -177,12 +177,23 @@ abstract class SimpleSignAnalysis(cfg: ProgramCfg)(implicit val declData: Declar
   */
 abstract class LiftedSignAnalysis(cfg: ProgramCfg)(implicit val declData: DeclarationData)
     extends FlowSensitiveAnalysis[CfgNode](cfg)
+    with MapLatticeSolver[CfgNode]
     with IntraprocSignAnalysisFunctions
     with ForwardDependencies {
 
   val lattice = new MapLattice(cfg.nodes, new LiftLattice(statelattice))
 
   val first = cfg.funEntries.values.toSet[CfgNode]
+
+  override def funsub(n: CfgNode, x: lattice.Element): lattice.sublattice.Element = {
+    import lattice.sublattice._
+    n match {
+      // function entry nodes are always reachable (if intra-procedural analysis)
+      case funentry: CfgFunEntryNode => lift(lattice.sublattice.sublattice.bottom)
+      // all other nodes are processed with join+transfer
+      case _ => super.funsub(n, x)
+    }
+  }
 }
 
 /**
@@ -205,8 +216,7 @@ class IntraprocSignAnalysisWorklistSolver(cfg: ProgramCfg)(override implicit val
   */
 class IntraprocSignAnalysisWorklistSolverWithInit(cfg: ProgramCfg)(override implicit val declData: DeclarationData)
     extends LiftedSignAnalysis(cfg)
-    with WorklistFixpointSolverWithInit[CfgNode]
-    with MapLiftLatticeSolver[CfgNode] {
+    with WorklistFixpointSolverWithInit[CfgNode] {
 
   def transferUnlifted(n: CfgNode, s: lattice.sublattice.sublattice.Element): lattice.sublattice.sublattice.Element = localTransfer(n, s)
 }
@@ -216,10 +226,7 @@ class IntraprocSignAnalysisWorklistSolverWithInit(cfg: ProgramCfg)(override impl
   */
 class IntraprocSignAnalysisWorklistSolverWithInitAndPropagation(cfg: ProgramCfg)(override implicit val declData: DeclarationData)
     extends IntraprocSignAnalysisWorklistSolverWithInit(cfg)
-    with WorklistFixpointPropagationSolver[CfgNode] {
-
-  override val init = lattice.sublattice.Lift(lattice.sublattice.sublattice.bottom)
-}
+    with WorklistFixpointPropagationSolver[CfgNode]
 
 /**
   * Interprocedural sign analysis that uses [[tip.solvers.WorklistFixpointSolverWithInit]].

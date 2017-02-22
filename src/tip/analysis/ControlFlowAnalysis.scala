@@ -9,7 +9,7 @@ class ControlFlowAnalysis(program: AProgram)(implicit declData: DeclarationData)
     extends DepthFirstAstVisitor[Null]
     with Analysis[Map[AstNode, Set[AFunDeclaration]]] {
 
-  val log = Log.logger[this.type](Log.Level.Info)
+  val log = Log.logger[this.type]()
 
   case class Decl(fun: AFunDeclaration) {
     override def toString = s"Decl(${fun.name}:${fun.loc})"

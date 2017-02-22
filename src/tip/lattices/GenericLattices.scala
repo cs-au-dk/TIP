@@ -59,11 +59,11 @@ class FlatLattice[X] extends Lattice {
     override def toString = el.toString
   }
 
-  object Top extends FlatElement {
+  final case object Top extends FlatElement {
     override def toString = "Top"
   }
 
-  object Bot extends FlatElement {
+  final case object Bot extends FlatElement {
     override def toString = "Bot"
   }
 
@@ -159,7 +159,7 @@ class LiftLattice[+L <: Lattice](val sublattice: L) extends Lattice {
 
   sealed trait Lifted
 
-  object Bottom extends Lifted {
+  case object Bottom extends Lifted {
     override def toString = "LiftBot"
   }
 
@@ -181,12 +181,11 @@ class LiftLattice[+L <: Lattice](val sublattice: L) extends Lattice {
   implicit def lift(x: sublattice.Element): Element = Lift(x)
 
   /**
-    * Un-lift elements of this lattice to the sublattice, converting bottom to bottom.
+    * Un-lift elements of this lattice to the sublattice.
+    * @throws IllegalArgumentException if trying to unlift the bottom element
     */
-  implicit def unlift(x: Element): sublattice.Element = {
-    x match {
-      case Lift(s) => s
-      case Bottom => sublattice.bottom
-    }
+  implicit def unlift(x: Element): sublattice.Element = x match {
+    case Lift(s) => s
+    case Bottom => throw new IllegalArgumentException("Cannot unlift bottom")
   }
 }

@@ -13,7 +13,7 @@ import tip.util.Log
   */
 class TypeAnalysis(program: AProgram)(implicit declData: DeclarationData) extends DepthFirstAstVisitor[Null] with Analysis[TypeData] {
 
-  val log = Log.logger[this.type](Log.Level.Debug)
+  val log = Log.logger[this.type]()
 
   val solver = new UnionFindSolver[TipType]
 
@@ -44,7 +44,7 @@ class TypeAnalysis(program: AProgram)(implicit declData: DeclarationData) extend
       }
     }
 
-    log.info(s"Inferred types are:\n${ret.map { case (k, v) => s"$k: ${v.get}" }.mkString("\n")}")
+    log.info(s"Inferred types are:\n${ret.map { case (k, v) => s"  [[$k]] = ${v.get}" }.mkString("\n")}")
     ret
   }
 
@@ -54,7 +54,7 @@ class TypeAnalysis(program: AProgram)(implicit declData: DeclarationData) extend
     * @param arg unused for this visitor
     */
   override def visit(node: AstNode, arg: Null): Unit = {
-    log.debug(s"Visiting ${node.getClass.getSimpleName} at ${node.loc}")
+    log.verb(s"Visiting ${node.getClass.getSimpleName} at ${node.loc}")
     node match {
       case _: ANumber => ??? // <--- Complete here
       case _: AInput => ??? // <--- Complete here
@@ -83,7 +83,7 @@ class TypeAnalysis(program: AProgram)(implicit declData: DeclarationData) extend
   }
 
   private def unify(t1: Term[TipType], t2: Term[TipType]): Unit = {
-    log.debug(s"Generating constraint $t1 = $t2")
+    log.verb(s"Generating constraint $t1 = $t2")
     solver.unify(t1, t2)
   }
 }

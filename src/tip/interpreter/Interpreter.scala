@@ -11,7 +11,7 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
 
   val spec: ValueSpecification // specification of values and operations used by the interpreter
 
-  val log = Log.logger[this.type](Log.Level.Info)
+  val log = Log.logger[this.type]()
 
   import spec._
   type Env = Map[ADeclaration, Location] // environments map from identifier declarations to locations

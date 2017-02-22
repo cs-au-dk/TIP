@@ -7,7 +7,7 @@ import SMTSolver.Symbol
 
 class ConcolicEngine(val program: AProgram)(implicit declData: DeclarationData) extends SymbolicInterpreter(program) {
 
-  override val log = Log.logger[this.type](Log.Level.Info)
+  override val log = Log.logger[this.type]()
 
   def nextExplorationTarget(lastExplored: ExecutionTree, root: ExecutionTreeRoot): Option[(Branch, Boolean)] = {
     lastExplored.parent match {

@@ -12,7 +12,7 @@ import scala.language.implicitConversions
   */
 class CubicSolver[V, T]() {
 
-  val log = Log.logger[this.type](Log.Level.Verbose)
+  val log = Log.logger[this.type]()
 
   var lastTknId = -1
 
@@ -80,7 +80,7 @@ class CubicSolver[V, T]() {
     */
   private def collapseCycle(cycle: Set[V]) {
     if (cycle.nonEmpty) {
-      log.debug(s"Collapsing cycle $cycle")
+      log.verb(s"Collapsing cycle $cycle")
       val first = getOrPutNode(cycle.head)
       cycle.tail.foreach { cso =>
         val oldState = getOrPutNode(cso)
@@ -128,7 +128,7 @@ class CubicSolver[V, T]() {
     * Adds a constraint of type <i>t</i> &#8712; <i>x</i>
     */
   def addConstantConstraint(t: T, x: V): Unit = {
-    log.debug(s"Adding constraint $t \u2208 $x")
+    log.verb(s"Adding constraint $t \u2208 $x")
     val bs = new mutable.BitSet()
     bs.add(t)
     addAndPropagateBits(bs, x)
@@ -138,7 +138,7 @@ class CubicSolver[V, T]() {
     * Adds a constraint of type <i>x</i> &#8838; <i>y</i>
     */
   def addSubsetConstraint(x: V, y: V): Unit = {
-    log.debug(s"Adding constraint $x \u2286 $y ")
+    log.verb(s"Adding constraint $x \u2286 $y ")
     val nx = getOrPutNode(x)
     getOrPutNode(y)
 
@@ -157,7 +157,7 @@ class CubicSolver[V, T]() {
     * Adds a constraint of type <i>t</i> &#8712; <i>x</i> &#8658; <i>y</i> &#8838; <i>z</i>
     */
   def addConditionalConstraint(t: T, x: V, y: V, z: V): Unit = {
-    log.debug(s"Adding constraint $t \u2208 $x => $y \u2286 $z ")
+    log.verb(s"Adding constraint $t \u2208 $x => $y \u2286 $z ")
     val xn = getOrPutNode(x)
     if (xn.tokenSol.contains(t)) {
       // Already enabled

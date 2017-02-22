@@ -58,7 +58,7 @@ object FragmentCfg {
           }
           val guardedTrue = ifGuard ~ trueBranch
           val guardedFalse = falseBranch.map(fb => ifGuard ~ fb)
-          guardedFalse.fold(guardedTrue)(guardedTrue | _)
+          guardedFalse.fold(guardedTrue | ifGuard)(guardedTrue | _)
         case _: AOutputStmt =>
           nodeBuilder(CfgStmtNode(data = node))
         case _: AReturnStmt =>

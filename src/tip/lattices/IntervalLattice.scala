@@ -55,11 +55,11 @@ class IntervalLattice extends Lattice with LatticeOps {
     override def toString = s"$i"
   }
 
-  object PInf extends Num {
+  case object PInf extends Num {
     override def toString = "+inf"
   }
 
-  object MInf extends Num {
+  case object MInf extends Num {
     override def toString = "-inf"
   }
 

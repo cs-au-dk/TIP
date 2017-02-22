@@ -10,7 +10,7 @@ import scala.collection.mutable
   */
 class UnionFindSolver[A] {
 
-  val log = Log.logger[this.type](Log.Level.Debug)
+  val log = Log.logger[this.type]()
 
   /**
     * This map holds the graph structure for the union-find algorithm.
@@ -24,7 +24,7 @@ class UnionFindSolver[A] {
     * When unifying a variable and a non-variable term, the non-variable term has higher priority for becoming the representative.
     */
   def unify(t1: Term[A], t2: Term[A]): Unit = {
-    log.debug(s"Unifying $t1 and $t2")
+    log.verb(s"Unifying $t1 and $t2")
 
     mkSet(t1)
     mkSet(t2)

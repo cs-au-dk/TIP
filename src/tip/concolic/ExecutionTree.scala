@@ -7,7 +7,7 @@ import tip.util.Log
 import scala.collection.mutable
 
 object ExecutionTree {
-  val log = Log.logger[this.type](Log.Level.Info)
+  val log = Log.logger[this.type]()
 }
 
 /**

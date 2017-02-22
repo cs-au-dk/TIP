@@ -23,35 +23,35 @@ sealed trait Operator
 sealed trait BinaryOperator
 sealed trait UnaryOperator
 
-object Plus extends Operator with BinaryOperator {
+case object Plus extends Operator with BinaryOperator {
   override def toString: String = "+"
 }
 
-object Minus extends Operator with BinaryOperator {
+case object Minus extends Operator with BinaryOperator {
   override def toString: String = "-"
 }
 
-object Times extends Operator with BinaryOperator {
+case object Times extends Operator with BinaryOperator {
   override def toString: String = "*"
 }
 
-object Divide extends Operator with BinaryOperator {
+case object Divide extends Operator with BinaryOperator {
   override def toString: String = "/"
 }
 
-object Eqq extends Operator with BinaryOperator {
+case object Eqq extends Operator with BinaryOperator {
   override def toString: String = "=="
 }
 
-object GreatThan extends Operator with BinaryOperator {
+case object GreatThan extends Operator with BinaryOperator {
   override def toString: String = ">"
 }
 
-object RefOp extends Operator with UnaryOperator {
+case object RefOp extends Operator with UnaryOperator {
   override def toString: String = "&"
 }
 
-object DerefOp extends Operator with UnaryOperator {
+case object DerefOp extends Operator with UnaryOperator {
   override def toString: String = "*"
 }
 

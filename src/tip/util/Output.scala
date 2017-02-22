@@ -10,7 +10,7 @@ import tip.cfg._
   */
 object Output {
 
-  val log = Log.logger[this.type](Log.Level.Info)
+  val log = Log.logger[this.type]()
 
   /**
     * Generate an output to a file.
@@ -20,9 +20,9 @@ object Output {
     */
   def output(file: File, kind: OutputKind, content: String, outFolder: File): Unit = {
     val extension = kind match {
-      case OtherOutput(OutputKindE.Cfg) => "_cfg.dot"
-      case OtherOutput(OutputKindE.Icfg) => "_icfg.dot"
-      case OtherOutput(OutputKindE.Ast) => "_type.ttip"
+      case OtherOutput(OutputKindE.`cfg`) => "_cfg.dot"
+      case OtherOutput(OutputKindE.`icfg`) => "_icfg.dot"
+      case OtherOutput(OutputKindE.`types`) => "_types.ttip"
       case DataFlowOutput(k) =>
         s"_$k.dot"
       case _ => ???
@@ -31,7 +31,7 @@ object Output {
     val pw = new PrintWriter(outFile, "UTF-8")
     pw.write(content)
     pw.close()
-    log.info(s"Results of $kind for $file written into $outFile")
+    log.info(s"Results of $kind analysis of $file written to $outFile")
   }
 
   /**
@@ -108,7 +108,7 @@ object Output {
   * Different kinds of output (determine output file names).
   */
 object OutputKindE extends Enumeration {
-  val Cfg, Icfg, Ast = Value
+  val cfg, icfg, types = Value
 }
 
 sealed trait OutputKind

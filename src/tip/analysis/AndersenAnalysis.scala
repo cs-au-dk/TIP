@@ -7,7 +7,7 @@ import tip.ast.AstNodeData.{AstNodeWithDeclaration, DeclarationData}
 
 class AndersenAnalysis(program: AProgram)(implicit declData: DeclarationData) extends DepthFirstAstVisitor[Null] with PointsToAnalysis {
 
-  val log = Log.logger[this.type](Log.Level.Info)
+  val log = Log.logger[this.type]()
 
   trait Target
   case class Malloc(malloc: AMalloc) extends Target {

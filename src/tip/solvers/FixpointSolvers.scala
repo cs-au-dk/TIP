@@ -8,7 +8,7 @@ import scala.collection.immutable._
 
 object FixpointSolvers {
 
-  val log = Log.logger[this.type](Log.Level.Verbose) // set to Log.Level.Verbose to see output during analysis, or Log.Level.None to disable
+  val log = Log.logger[this.type]()
 
 }
 
@@ -135,7 +135,7 @@ trait MapLiftLatticeSolver[N] extends MapLatticeSolver[N] with Dependencies[N] {
   def transfer(n: N, s: lattice.sublattice.Element): lattice.sublattice.Element = {
     import lattice.sublattice._
     s match {
-      case Bottom => Bottom
+      case Bottom => Bottom // unreachable as input implied unreachable at output
       case Lift(a) => lift(transferUnlifted(n, unlift(s)))
     }
   }
@@ -150,7 +150,7 @@ trait Worklist[N] {
   /**
     * Called by [[run]] to process an item from the worklist.
     */
-  def apply(n: N)
+  def process(n: N)
 
   /**
     * Adds an item to the worklist.
@@ -192,7 +192,7 @@ trait ListSetWorklist[N] extends Worklist[N] {
     worklist = new ListSet[N] ++ first
     while (worklist.nonEmpty) {
       val n = worklist.head; worklist = worklist.tail
-      apply(n)
+      process(n)
     }
   }
 }
@@ -208,7 +208,7 @@ trait WorklistFixpointSolver[N] extends MapLatticeSolver[N] with ListSetWorklist
     */
   var x: lattice.Element = null
 
-  def apply(n: N) = {
+  def process(n: N) = {
     val xn = x(n)
     FixpointSolvers.log.verb(s"Processing $n in state $xn")
     val y = funsub(n, x)
@@ -241,24 +241,15 @@ trait SimpleWorklistFixpointSolver[N] extends WorklistFixpointSolver[N] {
   * The worklist-based fixpoint solver with initialization.
   */
 trait WorklistFixpointSolverWithInit[N] extends WorklistFixpointSolver[N] with MapLiftLatticeSolver[N] {
-  import lattice.sublattice._
 
   /**
     * The start locations.
     */
   val first: Set[N]
 
-  /**
-    * The initial lattice element at the start locations.
-    * Default: lift(bottom).
-    */
-  val init = lift(lattice.sublattice.bottom)
-
   def analyze(): lattice.Element = {
-    x = first.foldLeft(lattice.bottom) { (l, cur) =>
-      l + (cur -> init)
-    }
-    run(first.flatMap(outdep)) // initialize worklist with the *successors* of the first nodes
+    x = lattice.bottom
+    run(first)
     x
   }
 }
@@ -270,6 +261,13 @@ trait WorklistFixpointSolverWithInit[N] extends WorklistFixpointSolver[N] with M
   * (for a forward analysis, and opposite for a backward analysis).
   */
 trait WorklistFixpointPropagationSolver[N] extends WorklistFixpointSolverWithInit[N] {
+  import lattice.sublattice._
+
+  /**
+    * The initial lattice element at the start locations.
+    * Default: lift(bottom).
+    */
+  val init = lift(lattice.sublattice.sublattice.bottom)
 
   /**
     * Propagates lattice element y to node m.
@@ -287,7 +285,7 @@ trait WorklistFixpointPropagationSolver[N] extends WorklistFixpointSolverWithIni
     * This method overrides the one from [[WorklistFixpointSolver]].
     * Called by the worklist solver when a node is visited.
     */
-  override def apply(n: N) = {
+  override def process(n: N) = {
     // read the current lattice element
     val xn = x(n)
     // apply the transfer function
@@ -301,7 +299,7 @@ trait WorklistFixpointPropagationSolver[N] extends WorklistFixpointSolverWithIni
     x = first.foldLeft(lattice.bottom) { (l, cur) =>
       l + (cur -> init)
     }
-    run(first) // initialize worklist with the first nodes
+    run(first)
     x
   }
 }
@@ -323,7 +321,7 @@ trait WorklistFixpointSolverWithInitAndSimpleWidening[N] extends WorklistFixpoin
     */
   def backedge(src: N, dst: N): Boolean
 
-  override def apply(n: N) = {
+  override def process(n: N) = {
     val xn = x(n)
     FixpointSolvers.log.verb(s"Processing $n in state $xn")
     val y = funsub(n, x)

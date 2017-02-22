@@ -14,7 +14,7 @@ import scala.language.implicitConversions
   */
 class SteensgaardAnalysis(program: AProgram)(implicit declData: DeclarationData) extends DepthFirstAstVisitor[Null] with PointsToAnalysis {
 
-  val log = Log.logger[this.type](Log.Level.Debug)
+  val log = Log.logger[this.type]()
 
   val solver = new UnionFindSolver[StTerm]
 
@@ -40,7 +40,7 @@ class SteensgaardAnalysis(program: AProgram)(implicit declData: DeclarationData)
       */
     implicit def pdef(id: AIdentifier): ADeclaration = id.declaration
 
-    log.debug(s"Visiting ${node.getClass.getSimpleName} at ${node.loc}")
+    log.verb(s"Visiting ${node.getClass.getSimpleName} at ${node.loc}")
     node match {
       case AAssignStmt(Left(id1), malloc: AMalloc, _) => ??? //<--- Complete here
       case AAssignStmt(Left(id1), AUnaryOp(RefOp, id2: AIdentifier, _), _) => ??? //<--- Complete here
@@ -55,7 +55,7 @@ class SteensgaardAnalysis(program: AProgram)(implicit declData: DeclarationData)
   }
 
   private def unify(t1: Term[StTerm], t2: Term[StTerm]): Unit = {
-    log.debug(s"Generating constraint $t1 = $t2")
+    log.verb(s"Generating constraint $t1 = $t2")
     solver.unify(t1, t2) // note that unification cannot fail, because there is only one kind of term constructor and no constants
   }
 

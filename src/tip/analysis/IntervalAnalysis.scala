@@ -9,7 +9,9 @@ import tip.ast.AstNodeData.{AstNodeWithDeclaration, DeclarationData}
 /**
   * The base class for interval analysis.
   */
-abstract class IntervalAnalysis(cfg: FragmentCfg)(implicit declData: DeclarationData) extends FlowSensitiveAnalysis[CfgNode](cfg) {
+abstract class IntervalAnalysis(cfg: FragmentCfg)(implicit declData: DeclarationData)
+    extends FlowSensitiveAnalysis[CfgNode](cfg)
+    with MapLatticeSolver[CfgNode] {
 
   import tip.cfg.CfgOps._
 
@@ -35,6 +37,16 @@ abstract class IntervalAnalysis(cfg: FragmentCfg)(implicit declData: Declaration
           case _ => s
         }
       case _ => s
+    }
+  }
+
+  override def funsub(n: CfgNode, x: lattice.Element): lattice.sublattice.Element = {
+    import lattice.sublattice._
+    n match {
+      // function entry nodes are always reachable
+      case funentry: CfgFunEntryNode => lift(lattice.sublattice.sublattice.bottom)
+      // all other nodes are processed with join+transfer
+      case _ => super.funsub(n, x)
     }
   }
 

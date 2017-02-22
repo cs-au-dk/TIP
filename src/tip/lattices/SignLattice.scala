@@ -26,7 +26,7 @@ object SignLattice extends FlatLattice[SignElement.Value] with LatticeOps {
       Top
   }
 
-  private val signValues = Map(Bot -> 0, FlatEl(Zero) -> 1, FlatEl(Neg) -> 2, FlatEl(Pos) -> 3, Top -> 4)
+  private val signValues: Map[FlatElement, Int] = Map(Bot -> 0, FlatEl(Zero) -> 1, FlatEl(Neg) -> 2, FlatEl(Pos) -> 3, Top -> 4)
 
   private def abs(op: List[List[SignLattice.Element]], x: SignLattice.Element, y: SignLattice.Element): SignLattice.Element = {
     op(signValues(x))(signValues(y))
@@ -127,7 +127,7 @@ object SignLattice extends FlatLattice[SignElement.Value] with LatticeOps {
             eqq(eval(bin.left, env), eval(bin.right, env))
           case _ => ???
         }
-      case input: AInput => Top
+      case _: AInput => Top
       case _ => ???
     }
   }

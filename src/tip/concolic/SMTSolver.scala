@@ -10,7 +10,7 @@ import tip.util.Log
 
 object SMTSolver {
 
-  val log = Log.logger[this.type](Log.Level.Info)
+  val log = Log.logger[this.type]()
 
   /**
     * Expressions extended with symbols

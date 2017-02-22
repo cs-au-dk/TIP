@@ -2,7 +2,7 @@ package tip
 
 import java.io.{File, FileFilter}
 
-import org.parboiled2.{ErrorFormatter, ParseError}
+import org.parboiled2.ParseError
 import tip.analysis.FlowSensitiveAnalysis.{Analysis => dfa, AnalysisOption => dfo}
 import tip.analysis._
 import tip.ast.AstNodeData._
@@ -20,7 +20,7 @@ import scala.util.{Failure, Success}
   * Options for running the TIP system.
   */
 class RunOption {
-  val log = Log.logger[this.type](Log.Level.Info)
+  val log = Log.logger[this.type]()
 
   /**
     * If set, construct the (intraprocedural) control-flow graph after parsing.
@@ -92,10 +92,10 @@ class RunOption {
   */
 object Tip extends App {
 
-  val log = Log.logger[this.type](Log.Level.Info)
+  val log = Log.logger[this.type]()
 
   def printUsage() = {
-    println("""
+    print("""
         | Usage:
         | tip <options> <source> [out]
         |
@@ -137,6 +137,9 @@ object Tip extends App {
         | -run               run the program as the last step
         | -concolic          perform concolic testing (search for failing inputs using dynamic symbolic execution)
         |
+        | Other options:
+        |
+        | -verbose           verbose output
       """.stripMargin)
   }
 
@@ -153,9 +156,11 @@ object Tip extends App {
 
       res match {
         case Failure(e: ParseError) =>
-          log.warn(s"Failure parsing the program: $file\n$program\n${tipParser.formatError(e, new ErrorFormatter(showTraces = true))}")
+          log.error(s"Failure parsing the program: $file\n${tipParser.formatError(e)}")
+          sys.exit(1)
         case Failure(e: Throwable) =>
-          log.warn(s"Failure parsing the program: $file\n$program", e)
+          log.error(s"Failure parsing the program: $file", e)
+          sys.exit(1)
         case Success(programNode: AProgram) =>
           // run declaration analysis
           implicit val declData = new DeclarationAnalysis(programNode).analyze()
@@ -166,14 +171,14 @@ object Tip extends App {
             // generate control-flow graph
             val wcfg = IntraproceduralProgramCfg.generateFromProgram(programNode)
             if (options.cfg)
-              Output.output(file, OtherOutput(OutputKindE.Cfg), wcfg.toDot({ x =>
+              Output.output(file, OtherOutput(OutputKindE.cfg), wcfg.toDot({ x =>
                 x.toString
               }, Output.dotIder), options.out)
 
             options.dfAnalysis.foreach {
               case (s: dfa.Value, v: dfo.Value) =>
                 if (!dfo.interprocedural(v)) {
-                  FlowSensitiveAnalysis.select(s, v, wcfg).foreach { an =>
+                  FlowSensitiveAnalysis.select(s, v, wcfg).map { an =>
                     // run the analysis
                     val res = an.analyze().asInstanceOf[Map[CfgNode, _]]
                     Output.output(file, DataFlowOutput(s), wcfg.toDot(Output.labeler(res), Output.dotIder), options.out)
@@ -193,7 +198,7 @@ object Tip extends App {
             }
 
             if (options.icfg) {
-              Output.output(file, OtherOutput(OutputKindE.Icfg), wcfg.toDot({ x =>
+              Output.output(file, OtherOutput(OutputKindE.icfg), wcfg.toDot({ x =>
                 x.toString
               }, Output.dotIder), options.out)
             }
@@ -201,7 +206,7 @@ object Tip extends App {
             options.dfAnalysis.foreach {
               case (s: dfa.Value, v: dfo.Value) =>
                 if (dfo.interprocedural(v)) {
-                  FlowSensitiveAnalysis.select(s, v, wcfg).foreach { an =>
+                  FlowSensitiveAnalysis.select(s, v, wcfg).map { an =>
                     // run the analysis
                     val res = an.analyze().asInstanceOf[Map[CfgNode, _]]
                     Output.output(file, DataFlowOutput(s), wcfg.toDot(Output.labeler(res), Output.dotIder), options.out)
@@ -213,7 +218,7 @@ object Tip extends App {
           // run type analysis, if selected
           if (options.types) {
             implicit val typeData = new TypeAnalysis(programNode).analyze()
-            Output.output(file, OtherOutput(OutputKindE.Ast), programNode.toTypedString, options.out)
+            Output.output(file, OtherOutput(OutputKindE.types), programNode.toTypedString, options.out)
           }
 
           // run Andersen analysis, if selected
@@ -251,51 +256,57 @@ object Tip extends App {
       }
     } catch {
       case e: Exception =>
-        log.error(s"Error processing $file\n", e)
+        log.error(s"Error: ${e.getMessage}", e)
+        sys.exit(1)
     }
   }
 
   // parse options
+  Log.defaultLevel = Log.Level.Info
   val options = new RunOption()
   var i = 0
   while (i < args.length) {
-    args(i) match {
-      case "-cfg" =>
-        options.cfg = true
-      case "-icfg" =>
-        options.icfg = true
-      case "-types" =>
-        options.types = true
-      case "-cfa" =>
-        options.cfa = true
-      case "-andersen" =>
-        options.andersen = true
-      case "-steensgaard" =>
-        options.steensgaard = true
-      case "-sign" | "-livevars" | "-available" | "-vbusy" | "-reaching" | "-constprop" | "-interval" =>
-        options.dfAnalysis += dfa.withName(args(i).drop(1)) -> {
-          if (i + 1 < args.length && dfo.values.map(_.toString()).contains(args(i + 1))) {
-            i = i + 1
-            dfo.withName(args(i))
-          } else
-            dfo.simple
-        }
-      case "-run" =>
-        options.run = true
-      case "-concolic" =>
-        options.concolic = true
-      case "-verbose" =>
-        Log.defaultLevel = Log.Level.Verbose
-      case s: String =>
-        if (i == args.length - 1 && options.source != null)
-          options.out = new File(s)
-        else if ((i == args.length - 1 && options.source == null) || i == args.length - 2)
-          options.source = new File(s)
-        else {
+    val s = args(i)
+    if (s.head == '-')
+      s match {
+        case "-cfg" =>
+          options.cfg = true
+        case "-icfg" =>
+          options.icfg = true
+        case "-types" =>
+          options.types = true
+        case "-cfa" =>
+          options.cfa = true
+        case "-andersen" =>
+          options.andersen = true
+        case "-steensgaard" =>
+          options.steensgaard = true
+        case "-sign" | "-livevars" | "-available" | "-vbusy" | "-reaching" | "-constprop" | "-interval" =>
+          options.dfAnalysis += dfa.withName(args(i).drop(1)) -> {
+            if (i + 1 < args.length && dfo.values.map(_.toString()).contains(args(i + 1))) {
+              i = i + 1
+              dfo.withName(args(i))
+            } else
+              dfo.simple
+          }
+        case "-run" =>
+          options.run = true
+        case "-concolic" =>
+          options.concolic = true
+        case "-verbose" =>
+          Log.defaultLevel = Log.Level.Verbose
+        case _ =>
           log.error(s"Unrecognized option $s")
           printUsage()
           sys.exit(1)
-        }
+      } else if (i == args.length - 1 && options.source != null)
+      options.out = new File(s)
+    else if ((i == args.length - 1 && options.source == null) || i == args.length - 2)
+      options.source = new File(s)
+    else {
+      log.error(s"Unexpected argument $s")
+      printUsage()
+      sys.exit(1)
     }
     i += 1
   }
