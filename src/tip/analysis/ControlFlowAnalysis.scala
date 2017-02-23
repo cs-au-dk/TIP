@@ -12,13 +12,13 @@ class ControlFlowAnalysis(program: AProgram)(implicit declData: DeclarationData)
   val log = Log.logger[this.type]()
 
   case class Decl(fun: AFunDeclaration) {
-    override def toString = s"Decl(${fun.name}:${fun.loc})"
+    override def toString = s"${fun.name}:${fun.loc}"
   }
 
   case class AstVariable(n: AstNode) {
     override def toString = n match {
-      case fun: AFunDeclaration => s"Var(${fun.name}:${fun.loc})"
-      case _ => s"Var($n:${n.loc})"
+      case fun: AFunDeclaration => s"${fun.name}:${fun.loc}"
+      case _ => n.toString
     }
   }
 
@@ -33,8 +33,9 @@ class ControlFlowAnalysis(program: AProgram)(implicit declData: DeclarationData)
     */
   def analyze() = {
     visit(program, null)
-    log.info(s"Solution is:\n$solver")
-    solver.getSolution.map(vardecl => vardecl._1.n -> vardecl._2.map(_.fun))
+    val sol = solver.getSolution
+    log.info(s"Solution is:\n${sol.map { case (k, v) => s"  [[$k]] = {${v.mkString(",")}}" }.mkString("\n")}")
+    sol.map(vardecl => vardecl._1.n -> vardecl._2.map(_.fun))
   }
 
   /**
@@ -56,14 +57,29 @@ class ControlFlowAnalysis(program: AProgram)(implicit declData: DeclarationData)
 
     node match {
       case fun: AFunDeclaration => ??? //<--- Complete here
-      case AAssignStmt(Left(id1), e, _) => ??? //<--- Complete here
+      case AAssignStmt(Left(id1), e: AIdentifier, _) => ??? //<--- Complete here
       case ACallFuncExpr(id2: AIdentifier, args, _) =>
         id2.declaration match {
           case fun: AFunDeclaration => // Simple call, using function name directly
+            // Add the constraints concerning parameters
+            fun.args.zip(args).foreach {
+              case (formalParam, actualParam) =>
+                actualParam match {
+                  case actualParamId: AIdentifier =>
+                    solver.addSubsetConstraint(AstVariable(decl(actualParamId)), AstVariable(formalParam))
+                  case _: AAtomicExpr =>
+                  case _: AExpr => NormalizedForPointsToAnalysis.LanguageRestrictionViolation(s"Unexpected expression as parameter: $node")
+                }
+            }
+            // Add the constraints concerning the return
+            val ret = fun.stmts.ret
+            ret.value match {
+              case retId: AIdentifier =>
+                solver.addSubsetConstraint(AstVariable(decl(retId)), AstVariable(node))
+              case _: AExpr =>
+            }
+          case _: AIdentifierDeclaration => // Computed call, using function pointer
             ??? //<--- Complete here
-          case _: AIdentifier => // Computed call, using function pointer
-            ??? //<--- Complete here
-          case _ => ???
         }
       case _ =>
     }

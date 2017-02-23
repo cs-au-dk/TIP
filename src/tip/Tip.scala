@@ -178,7 +178,7 @@ object Tip extends App {
             options.dfAnalysis.foreach {
               case (s: dfa.Value, v: dfo.Value) =>
                 if (!dfo.interprocedural(v)) {
-                  FlowSensitiveAnalysis.select(s, v, wcfg).map { an =>
+                  FlowSensitiveAnalysis.select(s, v, wcfg).foreach { an =>
                     // run the analysis
                     val res = an.analyze().asInstanceOf[Map[CfgNode, _]]
                     Output.output(file, DataFlowOutput(s), wcfg.toDot(Output.labeler(res), Output.dotIder), options.out)
@@ -206,7 +206,7 @@ object Tip extends App {
             options.dfAnalysis.foreach {
               case (s: dfa.Value, v: dfo.Value) =>
                 if (dfo.interprocedural(v)) {
-                  FlowSensitiveAnalysis.select(s, v, wcfg).map { an =>
+                  FlowSensitiveAnalysis.select(s, v, wcfg).foreach { an =>
                     // run the analysis
                     val res = an.analyze().asInstanceOf[Map[CfgNode, _]]
                     Output.output(file, DataFlowOutput(s), wcfg.toDot(Output.labeler(res), Output.dotIder), options.out)
@@ -226,7 +226,6 @@ object Tip extends App {
             val s = new AndersenAnalysis(programNode)
             s.analyze()
             s.pointsTo()
-
           }
 
           // run Steensgaard analysis, if selected
@@ -238,7 +237,8 @@ object Tip extends App {
 
           // run control-flow analysis, if selected
           if (options.cfa) {
-            new ControlFlowAnalysis(programNode)
+            val s = new ControlFlowAnalysis(programNode)
+            s.analyze()
           }
 
           // execute the program, if selected

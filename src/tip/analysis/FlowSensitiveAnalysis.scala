@@ -63,7 +63,7 @@ object FlowSensitiveAnalysis {
           //case Analysis.vbusy => new VeryBusyExpAnalysisSimpleSolver(typedCfg.left.get) <--- Complete here
           //case Analysis.reaching => new ReachingDefAnalysisSimpleSolver(typedCfg.left.get) <--- Complete here
           case Analysis.constprop => new ConstantPropagationAnalysisSimpleSolver(typedCfg.left.get)
-          case _ => throw new RuntimeException(s"Unsupported option for the analysis $kind")
+          case _ => throw new RuntimeException(s"Unsupported solver option `$options` for the analysis $kind")
         })
       case AnalysisOption.`wl` =>
         Some(kind match {
@@ -73,38 +73,38 @@ object FlowSensitiveAnalysis {
           //case Analysis.vbusy => new VeryBusyExpAnalysisWorklistSolver(typedCfg.left.get) <--- Complete here
           //case Analysis.reaching => new ReachingDefAnalysisWorklistSolver(typedCfg.left.get) <--- Complete here
           case Analysis.constprop => new ConstantPropagationAnalysisWorklistSolver(typedCfg.left.get)
-          case _ => throw new RuntimeException(s"Unsupported option for the analysis $kind")
+          case _ => throw new RuntimeException(s"Unsupported solver option `$options` for the analysis $kind")
         })
       case AnalysisOption.`wli` =>
         Some(kind match {
           case Analysis.sign => new IntraprocSignAnalysisWorklistSolverWithInit(typedCfg.left.get)
           case Analysis.interval => new IntervalAnalysisWorklistSolverWithInit(typedCfg.left.get)
-          case _ => throw new RuntimeException(s"Unsupported option for the analysis $kind")
+          case _ => throw new RuntimeException(s"Unsupported solver option `$options` for the analysis $kind")
         })
       case AnalysisOption.`wliw` =>
         Some(kind match {
           case Analysis.interval => new IntervalAnalysisWorklistSolverWithWidening(typedCfg.left.get)
-          case _ => throw new RuntimeException(s"Unsupported option for the analysis $kind")
+          case _ => throw new RuntimeException(s"Unsupported solver option `$options` for the analysis $kind")
         })
       case AnalysisOption.`wliwn` =>
         Some(kind match {
           case Analysis.interval => new IntervalAnalysisWorklistSolverWithWideningAndNarrowing(typedCfg.left.get)
-          case _ => throw new RuntimeException(s"Unsupported option for the analysis $kind")
+          case _ => throw new RuntimeException(s"Unsupported solver option `$options` for the analysis $kind")
         })
       case AnalysisOption.`wlip` =>
         Some(kind match {
           case Analysis.sign => new IntraprocSignAnalysisWorklistSolverWithInitAndPropagation(typedCfg.left.get)
-          case _ => throw new RuntimeException(s"Unsupported option for the analysis $kind")
+          case _ => throw new RuntimeException(s"Unsupported solver option `$options` for the analysis $kind")
         })
       case AnalysisOption.`iwli` =>
         Some(kind match {
           case Analysis.sign => new InterprocSignAnalysisWorklistSolverWithInit(typedCfg.right.get)
-          case _ => throw new RuntimeException(s"Unsupported option for the analysis $kind")
+          case _ => throw new RuntimeException(s"Unsupported solver option `$options` for the analysis $kind")
         })
       case AnalysisOption.`iwlip` =>
         Some(kind match {
           case Analysis.sign => new InterprocSignAnalysisWorklistSolverWithInitAndPropagation(typedCfg.right.get)
-          case _ => throw new RuntimeException(s"Unsupported option for the analysis $kind")
+          case _ => throw new RuntimeException(s"Unsupported solver option `$options` for the analysis $kind")
         })
     }
   }

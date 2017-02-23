@@ -39,24 +39,22 @@ class CubicSolver[V, T]() {
 
   /**
     * Returns the index associated with the given token.
+    * Allocates a fresh index if the token hasn't been seen before.
     */
   implicit private def getTokenInt(tkn: T): Int = {
-    tokenToInt.getOrElse(tkn, {
-      tokenToInt += (tkn -> nextTokenId); tokenToInt(tkn)
-    })
+    tokenToInt.getOrElseUpdate(tkn, nextTokenId)
   }
 
   /**
-    * Retrieve the node associated with the given variable.
+    * Retrieves the node associated with the given variable.
+    * Allocates a fresh node if the variable hasn't been seen before.
     */
   private def getOrPutNode(x: V): Node = {
-    nodeState.getOrElse(x, {
-      nodeState(x) = new Node(); nodeState(x)
-    })
+    nodeState.getOrElseUpdate(x, new Node())
   }
 
   /**
-    * Detect a cycle along the graph
+    * Detects a cycle along the graph.
     */
   private def detectCycles(first: V, current: V, visited: Set[V]): Set[V] = {
     val currentNode = getOrPutNode(current)
@@ -74,9 +72,7 @@ class CubicSolver[V, T]() {
   }
 
   /**
-    * Collapses a cycle and returns one of the variable
-    * together with all the tokens that need to be propagated
-    * due to the collapsing.
+    * Collapses the given cycle (if nonempty).
     */
   private def collapseCycle(cycle: Set[V]) {
     if (cycle.nonEmpty) {
@@ -95,18 +91,18 @@ class CubicSolver[V, T]() {
   }
 
   /**
-    * Add the set of tokens s to the variable x and propagate along the graph
+    * Adds the set of tokens `s` to the variable `x` and propagates along the graph.
     */
   private def addAndPropagateBits(s: mutable.BitSet, x: V) {
     val state = getOrPutNode(x)
     val old = state.tokenSol.clone()
     val newTokens = old | s
     if (newTokens != old) {
+      // Set the new bits
       state.tokenSol |= s
-
       val diff = newTokens &~ old
 
-      // Add edges
+      // Add edges from pending lists, then clear the lists
       diff.foreach { t =>
         state.conditionals.getOrElse(t, Set()).foreach {
           case (v1, v2) =>
@@ -117,7 +113,7 @@ class CubicSolver[V, T]() {
         state.conditionals.remove(t)
       }
 
-      // Flow
+      // Propagate to successors
       state.succ.foreach { s =>
         addAndPropagateBits(newTokens, s)
       }
@@ -125,24 +121,25 @@ class CubicSolver[V, T]() {
   }
 
   /**
-    * Adds a constraint of type <i>t</i> &#8712; <i>x</i>
+    * Adds a constraint of type <i>t</i> &#8712; <i>x</i>.
     */
   def addConstantConstraint(t: T, x: V): Unit = {
-    log.verb(s"Adding constraint $t \u2208 $x")
+    log.verb(s"Adding constraint $t \u2208 [[$x]]")
     val bs = new mutable.BitSet()
     bs.add(t)
     addAndPropagateBits(bs, x)
   }
 
   /**
-    * Adds a constraint of type <i>x</i> &#8838; <i>y</i>
+    * Adds a constraint of type <i>x</i> &#8838; <i>y</i>.
     */
   def addSubsetConstraint(x: V, y: V): Unit = {
-    log.verb(s"Adding constraint $x \u2286 $y ")
+    log.verb(s"Adding constraint [[$x]] \u2286 [[$y]]")
     val nx = getOrPutNode(x)
     getOrPutNode(y)
 
     // Add the edge
+    log.verb(s"Adding edge $x -> $y")
     nx.succ += y
 
     // Collapse newly introduced cycle
@@ -150,43 +147,31 @@ class CubicSolver[V, T]() {
 
     // Propagate the bits
     addAndPropagateBits(nx.tokenSol, y)
-
   }
 
   /**
-    * Adds a constraint of type <i>t</i> &#8712; <i>x</i> &#8658; <i>y</i> &#8838; <i>z</i>
+    * Adds a constraint of type <i>t</i> &#8712; <i>x</i> &#8658; <i>y</i> &#8838; <i>z</i>.
     */
   def addConditionalConstraint(t: T, x: V, y: V, z: V): Unit = {
-    log.verb(s"Adding constraint $t \u2208 $x => $y \u2286 $z ")
+    log.verb(s"Adding constraint $t \u2208 [[$x]] => [[$y]] \u2286 [[$z]]")
     val xn = getOrPutNode(x)
     if (xn.tokenSol.contains(t)) {
       // Already enabled
       addSubsetConstraint(y, z)
     } else {
-      // Not yet enabled, add to list
+      // Not yet enabled, add to pending list
+      log.verb(s"Condition $t \u2208 [[$x]] not yet enabled, adding ([[$y]],[[$z]]) to pending")
       xn.conditionals
-        .getOrElse(t, {
-          xn.conditionals(t) = mutable.Set(); xn.conditionals(t)
-        })
+        .getOrElseUpdate(t, mutable.Set[(V, V)]())
         .add((y, z))
     }
   }
 
   /**
-    * Returns the (partial) solution
+    * Returns the current solution as a map from variables to token sets.
     */
   def getSolution: Map[V, Set[T]] = {
     val intToToken = tokenToInt.map(p => p._2 -> p._1).toMap[Int, T]
     nodeState.keys.map(v => v -> getOrPutNode(v).tokenSol.map(i => intToToken(i)).toSet).toMap
-  }
-
-  override def toString = {
-    val intToToken = tokenToInt.map(p => p._2 -> p._1).toMap[Int, T]
-    nodeState
-      .map {
-        case (v, n) =>
-          s"$v = { ${n.tokenSol.map(i => intToToken(i)).mkString(", ")} }"
-      }
-      .mkString("\n")
   }
 }
