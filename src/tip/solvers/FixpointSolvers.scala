@@ -267,12 +267,13 @@ trait WorklistFixpointPropagationSolver[N] extends WorklistFixpointSolverWithIni
     * The initial lattice element at the start locations.
     * Default: lift(bottom).
     */
-  val init = lift(lattice.sublattice.sublattice.bottom)
+  def init = lift(lattice.sublattice.sublattice.bottom)
 
   /**
     * Propagates lattice element y to node m.
     */
   def propagate(y: lattice.sublattice.Element, m: N) = {
+    FixpointSolvers.log.verb(s"Propagating $y to $m")
     val xm = x(m)
     val t = lattice.sublattice.lub(xm, y)
     if (t != xm) {

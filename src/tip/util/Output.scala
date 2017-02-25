@@ -2,7 +2,7 @@ package tip.util
 
 import java.io.{File, PrintWriter}
 
-import tip.analysis.FlowSensitiveAnalysis
+import tip.analysis.{CallContext, FlowSensitiveAnalysis}
 import tip.cfg._
 
 /**
@@ -88,6 +88,18 @@ object Output {
       case exit: CfgFunExitNode => s"Function ${exit.data.name} exit\n${res(n)}"
       case _ => s"$n\n${res(n)}"
     }
+  }
+
+  /**
+    * Transforms a map from pairs of call contexts and CFG nodes to values into a map from CFG nodes to strings.
+    */
+  def transform(res: Map[(CallContext, CfgNode), _]): Map[CfgNode, String] = {
+    val m = collection.mutable.Map[CfgNode, List[String]]().withDefaultValue(Nil)
+    res.foreach {
+      case ((c, n), v) => { m += n -> (s"$c: $v" :: m(n)) }
+      case _ => ???
+    }
+    m.toMap.mapValues { _.mkString("\n") }.withDefaultValue("")
   }
 
   /**

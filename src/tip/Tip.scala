@@ -129,6 +129,8 @@ object Tip extends App {
         | wlip     use the worklist solver with init and propagation
         | iwli     use the worklist solver with init, interprocedural version
         | iwlip    use the worklist solver with init and propagation, interprocedural version
+        | csiwlip  use the worklist solver with init and propagation, context-sensitive (with call string) interprocedural version
+        | cfiwlip  use the worklist solver with init and propagation, context-sensitive (with functional approach) interprocedural version
         |
         | e.g. -sign wl  will run the sign analysis using the basic worklist solver
         |
@@ -208,8 +210,13 @@ object Tip extends App {
                 if (dfo.interprocedural(v)) {
                   FlowSensitiveAnalysis.select(s, v, wcfg).foreach { an =>
                     // run the analysis
-                    val res = an.analyze().asInstanceOf[Map[CfgNode, _]]
-                    Output.output(file, DataFlowOutput(s), wcfg.toDot(Output.labeler(res), Output.dotIder), options.out)
+                    val res = an.analyze()
+                    val res2 =
+                      if (dfo.contextsensitive(v))
+                        Output.transform(res.asInstanceOf[Map[(CallContext, CfgNode), _]])
+                      else
+                        res.asInstanceOf[Map[CfgNode, _]]
+                    Output.output(file, DataFlowOutput(s), wcfg.toDot(Output.labeler(res2), Output.dotIder), options.out)
                   }
                 }
             }

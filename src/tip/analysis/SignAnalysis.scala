@@ -7,8 +7,6 @@ import tip.lattices.{SignLattice, _}
 import tip.solvers._
 import tip.ast.AstNodeData.{AstNodeWithDeclaration, DeclarationData}
 
-object SignAnalysisCommons {}
-
 /**
   * Transfer functions for sign analysis (intraprocedural only).
   */
@@ -124,17 +122,23 @@ trait InterprocSignAnalysisFunctionsWithPropagation
 
     // helper function that propagates dataflow from a function exit node to an after-call node
     def returnflow(funexit: CfgFunExitNode, aftercall: CfgAfterCallNode) {
-      val id = aftercall.targetIdentifier
-      propagate(x(aftercall.pred.head) + (id.declaration -> s(AstOps.returnId)), aftercall)
+      x(funexit) match {
+        case Lift(exitState) =>
+          val newState = x(aftercall.pred.head) + (aftercall.targetIdentifier.declaration -> exitState(AstOps.returnId))
+          propagate(newState, aftercall)
+        case Bottom => // not (yet) any dataflow at funexit
+      }
     }
 
     n match {
       // call nodes
       case call: CfgCallNode =>
-        val calledEntries = call.callees
-        calledEntries.foreach { entry =>
-          propagate(evalArgs(entry.data.args, call.invocation.args, s), entry)
-          returnflow(entry.exit, call.afterCallNode) // make sure existing return flow gets propagated
+        call.callees.foreach { entry =>
+          // build entry state and new call context, then propagate to function entry
+          val newState = evalArgs(entry.data.args, call.invocation.args, s)
+          propagate(newState, entry)
+          // make sure existing return flow gets propagated
+          returnflow(entry.exit, call.afterCallNode)
         }
         lattice.sublattice.sublattice.bottom // no flow directly to the after-call node
 
@@ -155,6 +159,78 @@ trait InterprocSignAnalysisFunctionsWithPropagation
 
       // all other nodes
       case _ => localTransfer(n, s)
+    }
+  }
+}
+
+/**
+  * Context-sensitive variant of [[InterprocSignAnalysisFunctionsWithPropagation]].
+  * @tparam C type of call contexts
+  */
+trait ContextSensitiveSignAnalysisFunctions[C <: CallContext]
+    extends MapLiftLatticeSolver[(C, CfgNode)]
+    with WorklistFixpointPropagationSolver[(C, CfgNode)]
+    with InterprocSignAnalysisMisc[(C, CfgNode)]
+    with IntraprocSignAnalysisFunctions
+    with CallContextFunctions[C, MapLattice[ADeclaration, SignLattice.type]] {
+
+  /**
+    * Collect (reverse) call edges, such that we don't have to search through the global lattice element to find the relevant call contexts.
+    */
+  val returnEdges = new collection.mutable.HashMap[(C, CfgFunExitNode), collection.mutable.Set[(C, CfgAfterCallNode)]]
+  with collection.mutable.MultiMap[(C, CfgFunExitNode), (C, CfgAfterCallNode)]
+
+  override def transferUnlifted(n: (C, CfgNode), s: statelattice.Element): statelattice.Element = {
+    import cfg._
+    import lattice.sublattice._
+
+    // helper function that propagates dataflow from a function exit node to an after-call node
+    def returnflow(exitContext: C, funexit: CfgFunExitNode, callerContext: C, aftercall: CfgAfterCallNode) {
+      x(exitContext, funexit) match {
+        case Lift(exitState) =>
+          val newState = x(callerContext, aftercall.pred.head) + (aftercall.targetIdentifier.declaration -> exitState(AstOps.returnId))
+          propagate(newState, (callerContext, aftercall))
+        case Bottom => // not (yet) any dataflow at funexit
+      }
+    }
+
+    val currentContext = n._1
+    n._2 match {
+      // call nodes
+      case call: CfgCallNode =>
+        call.callees.foreach { entry =>
+          // build entry state and new call context, then propagate to function entry
+          val newState = evalArgs(entry.data.args, call.invocation.args, s)
+          val newContext = makeCallContext(currentContext, call, newState, entry)
+          propagate(newState, (newContext, entry))
+          // record the (reverse) call edge, and make sure existing return flow gets propagated
+          returnEdges.addBinding((newContext, entry.exit), (currentContext, call.afterCallNode))
+          returnflow(newContext, entry.exit, currentContext, call.afterCallNode)
+        }
+        lattice.sublattice.sublattice.bottom // no successors for this kind of node, but we have to return something
+
+      // function exit nodes
+      case funexit: CfgFunExitNode =>
+        returnEdges.get((currentContext, funexit)).foreach {
+          _.foreach {
+            case (callerContext, aftercall) =>
+              returnflow(currentContext, funexit, callerContext, aftercall)
+          }
+        }
+        lattice.sublattice.sublattice.bottom // no successors for this kind of node, but we have to return something
+
+      // return statement
+      case CfgStmtNode(_, _, _, ret: AReturnStmt) =>
+        s + (AstOps.returnId -> lattice.sublattice.sublattice.sublattice.eval(ret.value, s))
+
+      // function entry nodes (like no-op here)
+      case _: CfgFunEntryNode => s
+
+      // after-call nodes (like no-op here)
+      case _: CfgAfterCallNode => s
+
+      // all other nodes
+      case m => localTransfer(m, s)
     }
   }
 }
@@ -194,6 +270,19 @@ abstract class LiftedSignAnalysis(cfg: ProgramCfg)(implicit val declData: Declar
       case _ => super.funsub(n, x)
     }
   }
+}
+
+/**
+  * Base class for sign analysis with context sensitivity and lifted lattice.
+  */
+abstract class ContextSensitiveSignAnalysis[C <: CallContext](cfg: InterproceduralProgramCfg)(implicit val declData: DeclarationData)
+    extends FlowSensitiveAnalysis[(C, CfgNode)](cfg)
+    with ContextSensitiveSignAnalysisFunctions[C]
+    with ContextSensitiveForwardDependencies[C] {
+
+  val lattice = new MapLattice({ _: (C, CfgNode) =>
+    true // in principle, we should check that the node is in the CFG, but this function is not called anyway...
+  }, new LiftLattice(statelattice))
 }
 
 /**
@@ -250,4 +339,31 @@ class InterprocSignAnalysisWorklistSolverWithInitAndPropagation(val cfg: Interpr
     with ForwardDependencies {
 
   override val first = Set[CfgNode](cfg.funEntries(cfg.program.mainFunction))
+}
+
+/**
+  * Context-sensitive sign analysis with call-string approach.
+  */
+class CallStringSignAnalysis(val cfg: InterproceduralProgramCfg)(override implicit val declData: DeclarationData)
+    extends ContextSensitiveSignAnalysis[CallStringContext](cfg)
+    with CallStringFunctions[MapLattice[ADeclaration, SignLattice.type]] {
+
+  override def init = lattice.sublattice.Lift(lattice.sublattice.sublattice.bottom)
+
+  override val first = Set[(CallStringContext, CfgNode)]((initialContext, cfg.funEntries(cfg.program.mainFunction)))
+
+  override val maxCallStringLength = 2; // overriding default from CallStringFunctions
+}
+
+/**
+  * Context-sensitive sign analysis with functional approach.
+  */
+class FunctionalSignAnalysis(val cfg: InterproceduralProgramCfg)(override implicit val declData: DeclarationData)
+    extends ContextSensitiveSignAnalysis[FunctionalContext](cfg)
+    with FunctionalFunctions[MapLattice[ADeclaration, SignLattice.type]] {
+
+  override def init = lattice.sublattice.Lift(lattice.sublattice.sublattice.bottom)
+
+  override val first =
+    Set[(FunctionalContext, CfgNode)]((initialContext, cfg.funEntries(cfg.program.mainFunction)))
 }

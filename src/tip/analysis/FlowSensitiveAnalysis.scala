@@ -41,7 +41,7 @@ object FlowSensitiveAnalysis {
   ): Option[FlowSensitiveAnalysis[_]] = {
 
     val typedCfg = options match { // FIXME
-      case AnalysisOption.iwli | AnalysisOption.iwlip =>
+      case AnalysisOption.iwli | AnalysisOption.iwlip | AnalysisOption.`csiwlip` | AnalysisOption.`cfiwlip` =>
         cfg match {
           case w: InterproceduralProgramCfg => Right(w)
           case _ => throw new RuntimeException(s"Whole CFG needed")
@@ -106,6 +106,16 @@ object FlowSensitiveAnalysis {
           case Analysis.sign => new InterprocSignAnalysisWorklistSolverWithInitAndPropagation(typedCfg.right.get)
           case _ => throw new RuntimeException(s"Unsupported solver option `$options` for the analysis $kind")
         })
+      case AnalysisOption.`csiwlip` =>
+        Some(kind match {
+          case Analysis.sign => new CallStringSignAnalysis(typedCfg.right.get)
+          case _ => throw new RuntimeException(s"Unsupported solver option `$options` for the analysis $kind")
+        })
+      case AnalysisOption.`cfiwlip` =>
+        Some(kind match {
+          case Analysis.sign => new FunctionalSignAnalysis(typedCfg.right.get)
+          case _ => throw new RuntimeException(s"Unsupported solver option `$options` for the analysis $kind")
+        })
     }
   }
 
@@ -120,14 +130,26 @@ object FlowSensitiveAnalysis {
     * - wlip: use the worklist solver with init and propagation
     * - iwli: use the worklist solver with init, interprocedural version
     * - iwlip: use the worklist solver with init and propagation, interprocedural version
+    * - csiwlip: use the worklist solver with init and propagation, context-sensitive (with call string) interprocedural version
+    * - cfiwlip: use the worklist solver with init and propagation, context-sensitive (with functional approach) interprocedural version
     */
   object AnalysisOption extends Enumeration {
-    val simple, Disabled, wl, wli, wliw, wliwn, wlip, iwli, iwlip = Value
+    val simple, Disabled, wl, wli, wliw, wliwn, wlip, iwli, iwlip, csiwlip, cfiwlip = Value
 
     def interprocedural(v: Value): Boolean = {
       v match {
         case `iwli` => true
         case `iwlip` => true
+        case `csiwlip` => true
+        case `cfiwlip` => true
+        case _ => false
+      }
+    }
+
+    def contextsensitive(v: Value): Boolean = {
+      v match {
+        case `csiwlip` => true
+        case `cfiwlip` => true
         case _ => false
       }
     }

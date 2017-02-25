@@ -76,3 +76,31 @@ trait InterproceduralForwardDependencies extends Dependencies[CfgNode] {
     }
   }
 }
+
+/**
+  * Variant of [[ForwardDependencies]] for context-sensitive interprocedural analysis.
+  */
+trait ContextSensitiveForwardDependencies[C <: CallContext] extends Dependencies[(C, CfgNode)] {
+
+  val cfg: InterproceduralProgramCfg
+
+  /**
+    * Like [[InterproceduralForwardDependencies.outdep]] but returning an empty set for call nodes and function exit nodes,
+    * and using the same context as the given pair.
+    */
+  override def outdep(n: (C, CfgNode)) = {
+    (n._2 match {
+      case call: CfgCallNode => Set()
+      case _ => n._2.succ.toSet
+    }).map { d =>
+      (n._1, d)
+    }
+  }
+
+  /**
+    * (Not implemented as it is not used by any existing analysis.)
+    */
+  override def indep(n: (C, CfgNode)) = {
+    ???
+  }
+}

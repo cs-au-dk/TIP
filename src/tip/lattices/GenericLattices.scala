@@ -115,7 +115,7 @@ class PairLattice[L1 <: Lattice, L2 <: Lattice](val sublattice1: L1, val sublatt
 class MapLattice[A, +L <: Lattice](ch: A => Boolean, val sublattice: L) extends Lattice {
   // note: 'ch' isn't used in the class, but having it as a class parameter avoids a lot of type annotations
 
-  type Element = Map[A, sublattice.Element] // TODO: replace this with a more type safe solution
+  type Element = Map[A, sublattice.Element] // TODO: replace this with a more type safe solution?
 
   override def bottom: Element = Map().withDefaultValue(sublattice.bottom)
 
@@ -182,7 +182,7 @@ class LiftLattice[+L <: Lattice](val sublattice: L) extends Lattice {
 
   /**
     * Un-lift elements of this lattice to the sublattice.
-    * @throws IllegalArgumentException if trying to unlift the bottom element
+    * Throws an IllegalArgumentException if trying to unlift the bottom element
     */
   implicit def unlift(x: Element): sublattice.Element = x match {
     case Lift(s) => s
