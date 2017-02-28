@@ -7,10 +7,12 @@ import scala.language.implicitConversions
 
 /**
   * The cubic solver.
+  *
+  * @param cycleElimination: whether to use cycle elimination or not
   * @tparam V type of variables
   * @tparam T type of tokens
   */
-class CubicSolver[V, T]() {
+class CubicSolver[V, T](cycleElimination: Boolean = true) {
 
   val log = Log.logger[this.type]()
 
@@ -22,15 +24,21 @@ class CubicSolver[V, T]() {
 
   class Node(val succ: mutable.Set[V] = mutable.Set(), // note: the edges between nodes go via the variables
              val tokenSol: mutable.BitSet = new mutable.BitSet(), // the current solution bitvector
-             val conditionals: mutable.Map[Int, mutable.Set[(V, V)]] = mutable.Map() // the pending conditional constraints
+             val conditionals: mutable.Map[Int, mutable.Set[(V, V)]] = mutable.Map(), // the pending conditional constraints
+             val vars: mutable.Set[V] = mutable.Set() // the variables belonging to this node
   ) {
-    override def toString = this.hashCode().toString
+    def this(x: V) {
+      this()
+      vars += x
+    }
+
+    override def toString = this.hashCode.toString
   }
 
   /**
     * The map from variables to nodes.
     */
-  val nodeState: mutable.Map[V, Node] = mutable.Map()
+  val varToNode: mutable.Map[V, Node] = mutable.Map()
 
   /**
     * Provides an index for each token that we have seen.
@@ -50,42 +58,63 @@ class CubicSolver[V, T]() {
     * Allocates a fresh node if the variable hasn't been seen before.
     */
   private def getOrPutNode(x: V): Node = {
-    nodeState.getOrElseUpdate(x, new Node())
+    varToNode.getOrElseUpdate(x, new Node(x))
   }
 
   /**
-    * Detects a cycle along the graph.
+    * Attempts to detect a path from `from` to `to` in the graph.
+    * @return the list of variables in the path if such path is found, an empty list otherwise.
     */
-  private def detectCycles(first: V, current: V, visited: Set[V]): Set[V] = {
-    val currentNode = getOrPutNode(current)
-    val firstNode = getOrPutNode(first)
-    if (currentNode != firstNode && visited.contains(current)) {
-      Set()
-    } else if (currentNode == firstNode && visited.contains(current)) {
-      visited
-    } else {
-      val cycles = currentNode.succ.toSet.map { v: V =>
-        detectCycles(first, v, visited + current)
+  private def detectPath(from: Node, to: Node): List[Node] = {
+    val visited: mutable.Set[Node] = mutable.Set()
+
+    def detectPathRec(current: Node): List[Node] = {
+      if (current == to) {
+        // Detected a path from from to to
+        List(current)
+      } else {
+        visited += current
+        // Search for the first cycle we can find, and save it
+        // If no cycle is found, return the empty list
+        var toReturn: List[Node] = List()
+        current.succ
+          .map(varToNode(_))
+          .toSet
+          .filter(!visited.contains(_))
+          .exists { n: Node =>
+            val cycleVisited = detectPathRec(n)
+            if (cycleVisited.nonEmpty) {
+              // Cycle found
+              toReturn = current :: cycleVisited
+              true
+            } else false // keep searching
+          }
+        toReturn
       }
-      cycles.flatten
     }
+    val res = detectPathRec(from)
+    res
   }
 
   /**
     * Collapses the given cycle (if nonempty).
     */
-  private def collapseCycle(cycle: Set[V]) {
+  private def collapseCycle(cycle: List[Node]) {
     if (cycle.nonEmpty) {
       log.verb(s"Collapsing cycle $cycle")
-      val first = getOrPutNode(cycle.head)
-      cycle.tail.foreach { cso =>
-        val oldState = getOrPutNode(cso)
-        first.succ ++= oldState.succ
+      val first = cycle.head
+      cycle.tail.foreach { oldNode =>
+        // Merge oldNode into first
+        first.succ ++= oldNode.succ
         first.conditionals.keys.foreach { k =>
-          first.conditionals(k) ++= oldState.conditionals(k)
+          first.conditionals(k) ++= oldNode.conditionals(k)
         }
-        first.tokenSol |= oldState.tokenSol
-        nodeState(cso) = first
+        first.tokenSol |= oldNode.tokenSol
+        // Redirect all the variables that were pointing to this node to the new one
+        oldNode.vars.foreach { v =>
+          varToNode(v) = first
+          first.vars += v
+        }
       }
     }
   }
@@ -94,27 +123,27 @@ class CubicSolver[V, T]() {
     * Adds the set of tokens `s` to the variable `x` and propagates along the graph.
     */
   private def addAndPropagateBits(s: mutable.BitSet, x: V) {
-    val state = getOrPutNode(x)
-    val old = state.tokenSol.clone()
+    val node = getOrPutNode(x)
+    val old = node.tokenSol.clone()
     val newTokens = old | s
     if (newTokens != old) {
       // Set the new bits
-      state.tokenSol |= s
+      node.tokenSol |= s
       val diff = newTokens &~ old
 
       // Add edges from pending lists, then clear the lists
       diff.foreach { t =>
-        state.conditionals.getOrElse(t, Set()).foreach {
+        node.conditionals.getOrElse(t, Set()).foreach {
           case (v1, v2) =>
             addSubsetConstraint(v1, v2)
         }
       }
       diff.foreach { t =>
-        state.conditionals.remove(t)
+        node.conditionals.remove(t)
       }
 
       // Propagate to successors
-      state.succ.foreach { s =>
+      node.succ.foreach { s =>
         addAndPropagateBits(newTokens, s)
       }
     }
@@ -136,17 +165,20 @@ class CubicSolver[V, T]() {
   def addSubsetConstraint(x: V, y: V): Unit = {
     log.verb(s"Adding constraint [[$x]] \u2286 [[$y]]")
     val nx = getOrPutNode(x)
-    getOrPutNode(y)
+    val ny = getOrPutNode(y)
 
-    // Add the edge
-    log.verb(s"Adding edge $x -> $y")
-    nx.succ += y
+    if (nx != ny) {
+      // Add the edge
+      log.verb(s"Adding edge $x -> $y")
+      nx.succ += y
 
-    // Collapse newly introduced cycle
-    collapseCycle(detectCycles(x, x, Set()))
+      // Propagate the bits
+      addAndPropagateBits(nx.tokenSol, y)
 
-    // Propagate the bits
-    addAndPropagateBits(nx.tokenSol, y)
+      // Collapse newly introduced cycle, if any
+      if (cycleElimination)
+        collapseCycle(detectPath(ny, nx))
+    }
   }
 
   /**
@@ -158,7 +190,7 @@ class CubicSolver[V, T]() {
     if (xn.tokenSol.contains(t)) {
       // Already enabled
       addSubsetConstraint(y, z)
-    } else {
+    } else if (y != z) {
       // Not yet enabled, add to pending list
       log.verb(s"Condition $t \u2208 [[$x]] not yet enabled, adding ([[$y]],[[$z]]) to pending")
       xn.conditionals
@@ -172,6 +204,6 @@ class CubicSolver[V, T]() {
     */
   def getSolution: Map[V, Set[T]] = {
     val intToToken = tokenToInt.map(p => p._2 -> p._1).toMap[Int, T]
-    nodeState.keys.map(v => v -> getOrPutNode(v).tokenSol.map(i => intToToken(i)).toSet).toMap
+    varToNode.keys.map(v => v -> getOrPutNode(v).tokenSol.map(i => intToToken(i)).toSet).toMap
   }
 }

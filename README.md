@@ -9,6 +9,7 @@ lecture notes on [Static Program Analysis](http://cs.au.dk/~amoeller/spa/).
 ## Getting started
 
 Prerequisites:
+- Java 8
 - [Scala 2.11](http://www.scala-lang.org/download/)
 - [SBT](http://www.scala-sbt.org/)
 
