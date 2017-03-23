@@ -11,8 +11,7 @@ object FragmentCfg {
   /**
     * Generates a CFG for each function in the given program.
     */
-  def generateFromProgram(prog: AProgram,
-                          nodeBuilder: CfgNode => FragmentCfg)(implicit declData: DeclarationData): Map[AFunDeclaration, FragmentCfg] = {
+  def generateFromProgram(prog: AProgram, nodeBuilder: CfgNode => FragmentCfg)(implicit declData: DeclarationData): Map[AFunDeclaration, FragmentCfg] = {
     prog.funs.map { f =>
       f -> FragmentCfg.generateFromFunction(f, nodeBuilder)
     }.toMap
@@ -122,20 +121,19 @@ class FragmentCfg(private[cfg] val graphEntries: Set[CfgNode], private[cfg] val 
     * Returns the set of nodes in the CFG.
     */
   def nodes: Set[CfgNode] = {
-    val visited = mutable.Set[CfgNode]()
-    graphEntries.foreach { entry =>
-      nodesRec(entry, visited)
+    graphEntries.flatMap { entry =>
+      nodesRec(entry).toSet
     }
-    visited.toSet
   }
 
-  private def nodesRec(n: CfgNode, visited: mutable.Set[CfgNode]): Unit = {
+  protected def nodesRec(n: CfgNode, visited: mutable.Set[CfgNode] = mutable.Set()): mutable.Set[CfgNode] = {
     if (!visited.contains(n)) {
       visited += n
       n.succ.foreach { n =>
         nodesRec(n, visited)
       }
     }
+    visited
   }
 
   /**
@@ -186,7 +184,4 @@ class FragmentCfg(private[cfg] val graphEntries: Set[CfgNode], private[cfg] val 
   * @param funEntries map from AST function declarations to CFG function entry nodes
   * @param funExits map from AST function declarations to CFG function exit nodes
   */
-abstract class ProgramCfg(val prog: AProgram,
-                          val funEntries: Map[AFunDeclaration, CfgFunEntryNode],
-                          val funExits: Map[AFunDeclaration, CfgFunExitNode])
-    extends FragmentCfg(funEntries.values.toSet[CfgNode], funEntries.values.toSet[CfgNode])
+abstract class ProgramCfg(val prog: AProgram, val funEntries: Map[AFunDeclaration, CfgFunEntryNode], val funExits: Map[AFunDeclaration, CfgFunExitNode]) extends FragmentCfg(funEntries.values.toSet[CfgNode], funEntries.values.toSet[CfgNode])

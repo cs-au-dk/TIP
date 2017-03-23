@@ -1,0 +1,36 @@
+main() {
+  var x,y,z,a,b,c,t,u;
+  output 123;
+  x = f(87);
+  y = x;
+  z = x + 1;
+  t = f(x);
+  t = g(t);
+  u = g(123);
+  u = u;
+  output z;
+  if (z) {
+    a = x;
+    b = f(y);
+    c = z;
+  } else {
+    a = g(1);
+    b = 2;
+    c = 1;
+  }
+  output x;
+  output y;
+  output z;
+  output a;
+  output b;
+  output c;
+  output t;
+  output u;
+  return x;
+}
+
+f(x) { return 555; }
+
+g(p) { return p; }
+
+h() { return 1234; }

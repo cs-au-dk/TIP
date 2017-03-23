@@ -84,9 +84,9 @@ object Output {
     */
   def labeler(res: Map[CfgNode, _])(n: CfgNode) = {
     n match {
-      case entry: CfgFunEntryNode => s"Function ${entry.data.name} entry\n${res(n)}"
-      case exit: CfgFunExitNode => s"Function ${exit.data.name} exit\n${res(n)}"
-      case _ => s"$n\n${res(n)}"
+      case entry: CfgFunEntryNode => s"Function ${entry.data.name} entry\n${res.getOrElse(n, "-")}"
+      case exit: CfgFunExitNode => s"Function ${exit.data.name} exit\n${res.getOrElse(n, "-")}"
+      case _ => s"$n\n${res.getOrElse(n, "-")}"
     }
   }
 
@@ -96,7 +96,7 @@ object Output {
   def transform(res: Map[(CallContext, CfgNode), _]): Map[CfgNode, String] = {
     val m = collection.mutable.Map[CfgNode, List[String]]().withDefaultValue(Nil)
     res.foreach {
-      case ((c, n), v) => { m += n -> (s"$c: $v" :: m(n)) }
+      case ((c, n), v) => m += n -> (s"$c: $v" :: m(n))
       case _ => ???
     }
     m.toMap.mapValues { _.mkString("\n") }.withDefaultValue("")

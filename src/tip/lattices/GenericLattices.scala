@@ -13,9 +13,21 @@ trait Lattice {
   type Element
 
   /**
+    * The characteristic function of the set of lattice elements.
+    * Default implementation: returns true for all elements of the right type
+    */
+  def ch(e: Element) = true
+
+  /**
     * The bottom element of this lattice.
     */
   def bottom: Element
+
+  /**
+    * The top element of this lattice.
+    * Default: not implemented.
+    */
+  def top: Element = ???
 
   /**
     * The least upper bound of `x` and `y`.
@@ -84,6 +96,8 @@ class FlatLattice[X] extends Lattice {
   }
 
   override def bottom: Element = Bot
+
+  override def top: Element = Top
 
   override def lub(x: Element, y: Element) = {
     if (x == Bot || y == Top || x == y)

@@ -1,4 +1,4 @@
-#TIP
+# TIP
 
 TIP is a tiny imperative programming language aimed at teaching the
 fundamental concepts of static program analysis. This code accompanies the
@@ -100,5 +100,5 @@ with contributions from
 
 - [Coen De Roover](http://soft.vub.ac.be/~cderoove/)
 - [Quentin Stievenart](http://awesom.eu/~acieroid/)
-- Erik Krogh Kristensen (interpreter)
-- Christian Budde Christensen (interpreter)
+- Erik Krogh Kristensen
+- Christian Budde Christensen

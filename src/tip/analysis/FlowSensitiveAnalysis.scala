@@ -20,15 +20,9 @@ abstract class FlowSensitiveAnalysis[N](cfg: FragmentCfg) extends Analysis[Any] 
   val domain = cfg.nodes
 
   /**
-    * The local update function.
-    */
-  def funsub(n: N, x: lattice.Element): lattice.sublattice.Element
-
-  /**
     * @inheritdoc
     */
   def analyze(): lattice.Element
-
 }
 
 /**
@@ -41,7 +35,7 @@ object FlowSensitiveAnalysis {
   ): Option[FlowSensitiveAnalysis[_]] = {
 
     val typedCfg = options match { // FIXME
-      case AnalysisOption.iwli | AnalysisOption.iwlip | AnalysisOption.`csiwlip` | AnalysisOption.`cfiwlip` =>
+      case AnalysisOption.iwli | AnalysisOption.iwlip | AnalysisOption.`csiwlip` | AnalysisOption.`cfiwlip` | AnalysisOption.`ide` =>
         cfg match {
           case w: InterproceduralProgramCfg => Right(w)
           case _ => throw new RuntimeException(s"Whole CFG needed")
@@ -116,6 +110,11 @@ object FlowSensitiveAnalysis {
           case Analysis.sign => new FunctionalSignAnalysis(typedCfg.right.get)
           case _ => throw new RuntimeException(s"Unsupported solver option `$options` for the analysis $kind")
         })
+      case AnalysisOption.`ide` =>
+        Some(kind match {
+          case Analysis.copyconstprop => new CopyConstantPropagationIDEAnalysis(typedCfg.right.get)
+          case _ => throw new RuntimeException(s"Unsupported solver option `$options` for the analysis $kind")
+        })
     }
   }
 
@@ -132,9 +131,10 @@ object FlowSensitiveAnalysis {
     * - iwlip: use the worklist solver with init and propagation, interprocedural version
     * - csiwlip: use the worklist solver with init and propagation, context-sensitive (with call string) interprocedural version
     * - cfiwlip: use the worklist solver with init and propagation, context-sensitive (with functional approach) interprocedural version
+    * - ide: use the IDE solver
     */
   object AnalysisOption extends Enumeration {
-    val simple, Disabled, wl, wli, wliw, wliwn, wlip, iwli, iwlip, csiwlip, cfiwlip = Value
+    val simple, Disabled, wl, wli, wliw, wliwn, wlip, iwli, iwlip, csiwlip, cfiwlip, ide = Value
 
     def interprocedural(v: Value): Boolean = {
       v match {
@@ -142,6 +142,7 @@ object FlowSensitiveAnalysis {
         case `iwlip` => true
         case `csiwlip` => true
         case `cfiwlip` => true
+        case `ide` => true
         case _ => false
       }
     }
@@ -167,6 +168,6 @@ object FlowSensitiveAnalysis {
     * A flow sensitive analysis kind
     */
   object Analysis extends Enumeration {
-    val sign, livevars, available, vbusy, reaching, constprop, interval = Value
+    val sign, livevars, available, vbusy, reaching, constprop, interval, copyconstprop = Value
   }
 }

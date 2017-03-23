@@ -206,7 +206,7 @@ trait WorklistFixpointSolver[N] extends MapLatticeSolver[N] with ListSetWorklist
   /**
     * The current lattice element.
     */
-  var x: lattice.Element = null
+  var x: lattice.Element = _
 
   def process(n: N) = {
     val xn = x(n)
@@ -255,19 +255,29 @@ trait WorklistFixpointSolverWithInit[N] extends WorklistFixpointSolver[N] with M
 }
 
 /**
-  * Worklist-based fixpoint solver that performs propagation after transfer instead of join before transfer.
-  * This results in fewer join operations when nodes have many dependencies.
-  * Note that with this approach, each abstract state represents the program point *after* the node
-  * (for a forward analysis, and opposite for a backward analysis).
+  * Functions for propagation solvers.
   */
-trait WorklistFixpointPropagationSolver[N] extends WorklistFixpointSolverWithInit[N] {
-  import lattice.sublattice._
+trait WorklistFixpointPropagationFunctions[N] extends ListSetWorklist[N] {
+
+  /**
+    * Must be a map lattice.
+    */
+  val lattice: MapLattice[N, Lattice]
+
+  /**
+    * The current lattice element.
+    */
+  var x: lattice.Element
+
+  /**
+    * The start locations.
+    */
+  val first: Set[N]
 
   /**
     * The initial lattice element at the start locations.
-    * Default: lift(bottom).
     */
-  def init = lift(lattice.sublattice.sublattice.bottom)
+  def init: lattice.sublattice.Element
 
   /**
     * Propagates lattice element y to node m.
@@ -281,6 +291,31 @@ trait WorklistFixpointPropagationSolver[N] extends WorklistFixpointSolverWithIni
       x += m -> t
     }
   }
+
+  def analyze(): lattice.Element = {
+    x = first.foldLeft(lattice.bottom) { (l, cur) =>
+      l + (cur -> init)
+    }
+    run(first)
+    x
+  }
+}
+
+/**
+  * Worklist-based fixpoint solver that performs propagation after transfer instead of join before transfer.
+  * This results in fewer join operations when nodes have many dependencies.
+  * Note that with this approach, each abstract state represents the program point *after* the node
+  * (for a forward analysis, and opposite for a backward analysis).
+  */
+trait WorklistFixpointPropagationSolver[N] extends WorklistFixpointSolverWithInit[N] with WorklistFixpointPropagationFunctions[N] {
+
+  val lattice: MapLattice[N, LiftLattice[Lattice]]
+
+  /**
+    * The initial lattice element at the start locations.
+    * Default: lift(bottom).
+    */
+  def init = lattice.sublattice.lift(lattice.sublattice.sublattice.bottom)
 
   /**
     * This method overrides the one from [[WorklistFixpointSolver]].

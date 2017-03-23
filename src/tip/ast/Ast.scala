@@ -76,7 +76,9 @@ sealed abstract class AstNode extends AnyRef with Product {
 
 //////////////// Expressions //////////////////////////
 
-sealed trait AExpr extends AstNode
+sealed trait AExprOrIdentifierDeclaration extends AstNode
+
+sealed trait AExpr extends AExprOrIdentifierDeclaration
 
 sealed trait AAtomicExpr extends AExpr
 
@@ -91,7 +93,7 @@ case class ACallFuncExpr(targetFun: AExpr, args: List[AExpr], loc: Loc) extends 
     })
 }
 
-case class AIdentifierDeclaration(value: String, loc: Loc) extends ADeclaration {
+case class AIdentifierDeclaration(value: String, loc: Loc) extends ADeclaration with AExprOrIdentifierDeclaration {
   override def toString: String = s"${toCustomString(PartialFunction.empty)}:$loc"
 
   def toCustomString(printer: PartialFunction[AstNode, String]): String =

@@ -364,6 +364,5 @@ class FunctionalSignAnalysis(val cfg: InterproceduralProgramCfg)(override implic
 
   override def init = lattice.sublattice.Lift(lattice.sublattice.sublattice.bottom)
 
-  override val first =
-    Set[(FunctionalContext, CfgNode)]((initialContext, cfg.funEntries(cfg.program.mainFunction)))
+  override val first = Set[(FunctionalContext, CfgNode)]((initialContext, cfg.funEntries(cfg.program.mainFunction)))
 }

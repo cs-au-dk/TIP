@@ -3,6 +3,7 @@ package tip.cfg
 import tip.analysis.ControlFlowAnalysis
 import tip.ast.AstNodeData._
 import tip.ast._
+import tip.util.MapUtils._
 
 object InterproceduralProgramCfg {
 
@@ -20,10 +21,10 @@ object InterproceduralProgramCfg {
       case normal: CfgStmtNode =>
         normal.data match {
           case w: AWhileStmt =>
-            assert(!w.containsInvocation)
+            assert(!w.guard.containsInvocation)
             FragmentCfg.nodeToGraph(CfgStmtNode(data = w.guard))
           case i: AIfStmt =>
-            assert(!i.containsInvocation)
+            assert(!i.guard.containsInvocation)
             FragmentCfg.nodeToGraph(CfgStmtNode(data = i.guard))
           case ass: AAssignStmt =>
             ass.right match {
@@ -116,10 +117,7 @@ object InterproceduralProgramCfg {
   * @param declData the declaration data
   * @param callInfo call graph
   */
-class InterproceduralProgramCfg(funEntries: Map[AFunDeclaration, CfgFunEntryNode],
-                                funExits: Map[AFunDeclaration, CfgFunExitNode],
-                                val program: AProgram,
-                                val callInfo: AAssignStmt => Set[AFunDeclaration])(implicit declData: DeclarationData)
+class InterproceduralProgramCfg(funEntries: Map[AFunDeclaration, CfgFunEntryNode], funExits: Map[AFunDeclaration, CfgFunExitNode], val program: AProgram, val callInfo: AAssignStmt => Set[AFunDeclaration])(implicit declData: DeclarationData)
     extends ProgramCfg(program, funEntries, funExits) { graph =>
 
   // Check the calls are normalized
@@ -150,6 +148,11 @@ class InterproceduralProgramCfg(funEntries: Map[AFunDeclaration, CfgFunEntryNode
     */
   var callerAfterCalls = Map[CfgFunExitNode, Set[CfgAfterCallNode]]().withDefaultValue(Set[CfgAfterCallNode]())
 
+  /**
+    * Map from [[tip.cfg.CfgNode]] to the enclosing function entry node.
+    */
+  var enclosingFunctionEntry = Map[CfgNode, CfgFunEntryNode]()
+
   private def initdeps(): Unit = {
     nodes.foreach {
       case callNode: CfgCallNode =>
@@ -168,6 +171,16 @@ class InterproceduralProgramCfg(funEntries: Map[AFunDeclaration, CfgFunEntryNode
         }
       case _ =>
     }
+    enclosingFunctionEntry = functionNodes.reverse.mapValues(_.head)
+  }
+
+  /**
+    * Maps a function to the set of its nodes.
+    */
+  private def functionNodes: Map[CfgFunEntryNode, Set[CfgNode]] = {
+    funEntries.values.map { entry =>
+      entry -> nodesRec(entry).toSet
+    }.toMap
   }
 
   initdeps()
@@ -245,7 +258,7 @@ class InterproceduralProgramCfg(funEntries: Map[AFunDeclaration, CfgFunEntryNode
     /**
       * Returns the entry node of the function associated with this exit node
       */
-    def exit: CfgFunEntryNode = funEntries(nd.data)
+    def entry: CfgFunEntryNode = funEntries(nd.data)
   }
 
   implicit class CallNodeContainsAssigment(nd: CfgCallNode) {

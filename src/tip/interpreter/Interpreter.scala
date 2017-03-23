@@ -93,7 +93,7 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
         gv match {
           case x: IntValue if spec.eqqInt(x, spec.constInt(0)) =>
             elseBranch.map(stmt => semc(stmt, env, s1)).getOrElse((env, s1))
-          case x: IntValue if spec.eqqInt(x, spec.constInt(1)) =>
+          case _: IntValue =>
             semc(ifBranch, env, s1)
           case _ => errorConditionNotInt(loc)
         }
@@ -119,7 +119,7 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
         val (ov, s1) = semeright(value, env, store)
         ov match {
           case y: IntValue =>
-            log.info(s"Program out: $y")
+            log.info(s"Program out: ${y.i}")
             (env, s1)
           case _ => errorOutputNotInt()
         }

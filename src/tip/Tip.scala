@@ -118,6 +118,7 @@ object Tip extends App {
         | -reaching          enable reaching definitions analysis
         | -constprop         enable constant propagation analysis
         | -interval          enable interval analysis
+        | -copyconstprop     enable copy constant propagation analysis
         |
         | For the dataflow analyses, the choice of fixpoint solver can be chosen by these modifiers
         | immediately after the analysis name (default: use the simple fixpoint solver):
@@ -131,6 +132,7 @@ object Tip extends App {
         | iwlip    use the worklist solver with init and propagation, interprocedural version
         | csiwlip  use the worklist solver with init and propagation, context-sensitive (with call string) interprocedural version
         | cfiwlip  use the worklist solver with init and propagation, context-sensitive (with functional approach) interprocedural version
+        | ide      use the IDE solver
         |
         | e.g. -sign wl  will run the sign analysis using the basic worklist solver
         |
@@ -288,7 +290,7 @@ object Tip extends App {
           options.andersen = true
         case "-steensgaard" =>
           options.steensgaard = true
-        case "-sign" | "-livevars" | "-available" | "-vbusy" | "-reaching" | "-constprop" | "-interval" =>
+        case "-sign" | "-livevars" | "-available" | "-vbusy" | "-reaching" | "-constprop" | "-interval" | "-copyconstprop" =>
           options.dfAnalysis += dfa.withName(args(i).drop(1)) -> {
             if (i + 1 < args.length && dfo.values.map(_.toString()).contains(args(i + 1))) {
               i = i + 1

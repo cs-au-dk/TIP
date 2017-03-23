@@ -52,7 +52,7 @@ trait CallStringFunctions[L <: Lattice] extends CallContextFunctions[CallStringC
   /**
     * Default maximum length for call strings: 1.
     */
-  val maxCallStringLength = 1;
+  val maxCallStringLength = 1
 
   /**
     * Creates a context as the empty list.

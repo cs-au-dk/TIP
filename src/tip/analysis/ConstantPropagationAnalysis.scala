@@ -11,7 +11,7 @@ abstract class ConstantPropagationAnalysis(cfg: IntraproceduralProgramCfg)(impli
 
   import tip.cfg.CfgOps._
 
-  val declaredVars: Set[ADeclaration] = cfg.nodes.flatMap(_.declaredVars).toSet
+  val declaredVars: Set[ADeclaration] = cfg.nodes.flatMap(_.declaredVars)
 
   val lattice = new MapLattice(cfg.nodes, new MapLattice(declaredVars, new FlatLattice[Int]()))
 
