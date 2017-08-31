@@ -3,7 +3,7 @@ f() {
     a = &d;
     b = &e;
     a = b;
-    tmp = malloc;
+    tmp = alloc;
     *a = tmp;
     return 0;
 }

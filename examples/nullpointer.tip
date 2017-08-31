@@ -1,6 +1,6 @@
 main() {
     var p,q,r,n;
-    p = malloc;
+    p = alloc;
     q = &p;
     n = null;
     *q = n;

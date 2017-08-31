@@ -1,10 +1,10 @@
 main() {
     var x,y,n,p,q;
-    x = malloc; y = malloc;
+    x = alloc; y = alloc;
     *x = null; *y = y;
     n = input;
     while (n>0) {
-        p = malloc; q = malloc;
+        p = alloc; q = alloc;
         *p = x; *q = y;
         x = p; y = q;
         n = n-1;

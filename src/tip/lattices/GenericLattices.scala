@@ -123,7 +123,7 @@ class PairLattice[L1 <: Lattice, L2 <: Lattice](val sublattice1: L1, val sublatt
 
 /**
   * A lattice of maps from the set `X` to the lattice `sublattice`.
-  * The set `X` a subset of `A` and it is defined by the characteristic function `ch`, i.e. `a` is in `X` if and only if `ch(a)` returns true.
+  * The set `X` is a subset of `A` and it is defined by the characteristic function `ch`, i.e. `a` is in `X` if and only if `ch(a)` returns true.
   * Bottom is the default value.
   */
 class MapLattice[A, +L <: Lattice](ch: A => Boolean, val sublattice: L) extends Lattice {

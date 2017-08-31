@@ -1,6 +1,6 @@
 main(){
     var p;
-    p = malloc;
+    p = alloc;
     *p=p;
     return 0;
 }

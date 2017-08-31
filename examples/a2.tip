@@ -8,7 +8,7 @@ unnormalized(){
     var d;
     
     d = *x;
-    *d = (*foo)(&x,bar(malloc));
+    *d = (*foo)(&x,bar(alloc));
     
     return 10;
 }
@@ -26,7 +26,7 @@ normalized(){
     f1 = bar;
     f2 = *foo;
 
-    m = malloc;
+    m = alloc;
     
     a1 = &x;
     a2 = (f1)(m);

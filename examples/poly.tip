@@ -4,7 +4,7 @@ poly(p){
 
 poly2(q){
     var n;
-    //n=malloc;
+    //n=alloc;
     n=poly;
     return *q;
 }

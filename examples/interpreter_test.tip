@@ -3,7 +3,7 @@ f(x) {
 }
 g(x) {
     var y;
-    y = malloc;
+    y = alloc;
     *y = x;
     return y;
 }

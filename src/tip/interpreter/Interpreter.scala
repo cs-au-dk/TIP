@@ -4,6 +4,8 @@ import tip.ast.AstNodeData._
 import tip.ast._
 import tip.util.Log
 
+import scala.util.{Failure, Success, Try}
+
 /**
   * Interpreter for TIP programs.
   */
@@ -26,16 +28,27 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
     val boundEnv = program.funs.foldLeft(Map(): Env) { (a: Env, f: AFunDeclaration) =>
       a + (f -> newLoc())
     }
+    // Create a location for each formal argument of main
+    val envWithInputArgs = program.mainFunction.args.foldLeft(boundEnv) { (a: Env, id: AIdentifierDeclaration) =>
+      a + (id -> newLoc())
+    }
     // Store the functions in the associated locations
     val boundStore = program.funs.foldLeft(Map(): Store) { (s: Store, f: AFunDeclaration) =>
       s + (boundEnv(f) -> spec.mkFun(f))
     }
+    // Store the input in the associated argument locations
+    val storeWithInputArgs = program.mainFunction.args.foldLeft(boundStore) { (s: Store, id: AIdentifierDeclaration) =>
+      s + (envWithInputArgs(id) -> input())
+    }
     // Execute the main function
-    val (_, cs) = semc(program.mainFunction.stmts, boundEnv, boundStore)
+    val (_, cs) = semc(program.mainFunction.stmts, envWithInputArgs, storeWithInputArgs)
     // Return the result, if type int
     cs(returnLoc) match {
-      case x: IntValue => x
-      case _ => errorReturnNotInt(program.mainFunction)
+      case x: IntValue =>
+        output(x)
+        x
+      case _ =>
+        errorReturnNotInt(program.mainFunction)
     }
   }
 
@@ -119,7 +132,7 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
         val (ov, s1) = semeright(value, env, store)
         ov match {
           case y: IntValue =>
-            log.info(s"Program out: ${y.i}")
+            output(y)
             (env, s1)
           case _ => errorOutputNotInt()
         }
@@ -180,10 +193,9 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
         }
         (cval, s2)
       case AInput(_) =>
-        val line = scala.io.StdIn.readLine()
-        val cval = if (line == null) spec.constInt(0) else spec.constInt(line.toInt)
+        val cval = input()
         (cval, store)
-      case AMalloc(_) => (newLoc(), store)
+      case AAlloc(_) => (newLoc(), store)
       case ANull(_) => (spec.nullValue, store)
       case ANumber(value, _) => (spec.constInt(value), store)
       case AUnaryOp(_: RefOp.type, e: AExpr, _) =>
@@ -211,12 +223,37 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
     }
   }
 
+  /**
+    * Output `y` to stdout.
+    */
+  private def output(y: IntValue): Unit = {
+    println(s"Program output: ${y.i}")
+  }
+
+  /**
+    * Takes an integer input from stdin.
+    */
+  private def input(): IntValue = {
+    print(s"Enter input: ")
+    val line = scala.io.StdIn.readLine()
+    if (line == null) {
+      spec.constInt(0)
+    } else {
+      Try(line.toInt) match {
+        case Success(i) => spec.constInt(i)
+        case Failure(_) => errorInputNotInt()
+      }
+    }
+  }
+
   def errorCallNotFunction(funValue: EValue) =
     throw new RuntimeException(s"Call to a non-function $funValue")
   def errorBadLeftHand(x: Any) =
     throw new RuntimeException(s"Bad left-hand-side $x of assignment")
   def errorOutputNotInt() =
     throw new RuntimeException(s"Output not supported for non-integer values")
+  def errorInputNotInt() =
+    throw new RuntimeException(s"Input not supported for non-integer values")
   def errorErrorNonInt(v: Any) =
     throw new RuntimeException(s"Error statement expects integer value as error code, given $v")
   def errorNonRefable(exp: AExpr) =

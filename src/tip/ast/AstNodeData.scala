@@ -1,5 +1,6 @@
 package tip.ast
 
+import tip.ast.AstPrinters._
 import tip.types.TipType
 
 object AstNodeData {
@@ -32,10 +33,10 @@ object AstNodeData {
     private def printer: PartialFunction[AstNode, String] = {
       case id: AIdentifierDeclaration => s"${id.value}: ${id.theType.getOrElse("??")}"
       case f: AFunDeclaration =>
-        s"${f.name} (${f.args.map(_.value).mkString(",")}) : ${f.theType.getOrElse("??")}\n${f.stmts.toCustomString(printer)}"
+        s"${f.name}(${f.args.map(_.value).mkString(",")}): ${f.theType.getOrElse("??")}\n${f.stmts.print(printer)}"
     }
 
-    def toTypedString: String = n.toCustomString(printer)
+    def toTypedString: String = n.print(printer)
 
   }
 

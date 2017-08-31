@@ -72,7 +72,7 @@ class TypeAnalysis(program: AProgram)(implicit declData: DeclarationData) extend
           case RefOp => ??? // <--- Complete here
           case DerefOp => ??? // <--- Complete here
         }
-      case _: AMalloc => ??? // <--- Complete here
+      case _: AAlloc => ??? // <--- Complete here
       case _: ANull => ??? // <--- Complete here
       case fun: AFunDeclaration => ??? // <--- Complete here
       case call: ACallFuncExpr => ??? // <--- Complete here

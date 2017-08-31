@@ -10,8 +10,8 @@ class AndersenAnalysis(program: AProgram)(implicit declData: DeclarationData) ex
   val log = Log.logger[this.type]()
 
   trait Target
-  case class Malloc(malloc: AMalloc) extends Target {
-    override def toString = s"malloc-${malloc.loc}"
+  case class Alloc(alloc: AAlloc) extends Target {
+    override def toString = s"alloc-${alloc.loc}"
   }
   case class Var(id: ADeclaration) extends Target {
     override def toString = id.toString
@@ -20,7 +20,7 @@ class AndersenAnalysis(program: AProgram)(implicit declData: DeclarationData) ex
   val solver = new CubicSolver[Target, Target]
 
   import AstOps._
-  val allTargets = (program.appearingIds.map(Var): Set[Target]) union program.appearingMallocs.map(Malloc)
+  val allTargets = (program.appearingIds.map(Var): Set[Target]) union program.appearingAllocs.map(Alloc)
 
   NormalizedForPointsToAnalysis.assertContainsProgram(program)
 
@@ -32,7 +32,7 @@ class AndersenAnalysis(program: AProgram)(implicit declData: DeclarationData) ex
   override def visit(node: AstNode, arg: Null): Unit = {
 
     node match {
-      case AAssignStmt(Left(id), malloc: AMalloc, _) => ??? //<--- Complete here
+      case AAssignStmt(Left(id), alloc: AAlloc, _) => ??? //<--- Complete here
       case AAssignStmt(Left(id1), AUnaryOp(RefOp, id2: AIdentifier, _), _) => ??? //<--- Complete here
       case AAssignStmt(Left(id1), id2: AIdentifier, _) => ??? //<--- Complete here
       case AAssignStmt(Left(id1), AUnaryOp(DerefOp, id2: AIdentifier, _), _) => ??? //<--- Complete here
@@ -53,7 +53,7 @@ class AndersenAnalysis(program: AProgram)(implicit declData: DeclarationData) ex
       case (v: Var, ts: Set[Target]) =>
         v.id -> ts.map {
           case Var(x) => x
-          case Malloc(m) => m
+          case Alloc(m) => m
         }
     }
     println(s"Points-to:\n${pointsTo.mapValues(v => s"{${v.mkString(",")}}").mkString("\n")}")

@@ -42,7 +42,7 @@ class SteensgaardAnalysis(program: AProgram)(implicit declData: DeclarationData)
 
     log.verb(s"Visiting ${node.getClass.getSimpleName} at ${node.loc}")
     node match {
-      case AAssignStmt(Left(id1), malloc: AMalloc, _) => ??? //<--- Complete here
+      case AAssignStmt(Left(id1), alloc: AAlloc, _) => ??? //<--- Complete here
       case AAssignStmt(Left(id1), AUnaryOp(RefOp, id2: AIdentifier, _), _) => ??? //<--- Complete here
       case AAssignStmt(Left(id1), id2: AIdentifier, _) => ??? //<--- Complete here
       case AAssignStmt(Left(id1), AUnaryOp(DerefOp, id2: AIdentifier, _), _) => ??? //<--- Complete here
@@ -76,7 +76,7 @@ class SteensgaardAnalysis(program: AProgram)(implicit declData: DeclarationData)
     val pointsto = vars.foldLeft(Map[ADeclaration, Set[AstNode]]()) {
       case (a, v: IdentifierVariable) =>
         val pt = unifications(solution(v))
-          .collect({ case PointerRef(IdentifierVariable(id)) => id; case PointerRef(MallocVariable(malloc)) => malloc })
+          .collect({ case PointerRef(IdentifierVariable(id)) => id; case PointerRef(AllocVariable(alloc)) => alloc })
           .toSet
         a + (v.id -> pt)
     }
@@ -115,11 +115,11 @@ object Fresh {
 sealed trait StTerm
 
 /**
-  * A term variable that represents a malloc in the program.
+  * A term variable that represents an alloc in the program.
   */
-case class MallocVariable(malloc: AMalloc) extends StTerm with Var[StTerm] {
+case class AllocVariable(alloc: AAlloc) extends StTerm with Var[StTerm] {
 
-  override def toString: String = s"[[malloc:${malloc.loc}]]"
+  override def toString: String = s"[[alloc:${alloc.loc}]]"
 }
 
 /**

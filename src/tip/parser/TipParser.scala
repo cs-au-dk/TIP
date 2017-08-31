@@ -39,7 +39,7 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
   }
 
   def keywords = rule {
-    "malloc" | "input" | "while" | "if" | "else" | "var" | "return" | "null" | "output"
+    "alloc" | "input" | "while" | "if" | "else" | "var" | "return" | "null" | "output"
   }
 
   def OptSpace = rule {
@@ -119,7 +119,7 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
   }
 
   def ZeraryPointerExpression = rule {
-    (push(cursor) ~ wspStr("malloc") ~> ((cur: Int) => AMalloc(cur))
+    (push(cursor) ~ wspStr("alloc") ~> ((cur: Int) => AAlloc(cur))
       | push(cursor) ~ wspStr("null") ~> ((cur: Int) => ANull(cur)))
   }
 

@@ -1,7 +1,7 @@
 main() {
     var p,q,x,y,z,d1,d2,l,s,v,w;
-    p = malloc;
-    l = malloc;
+    p = alloc;
+    l = alloc;
     x = y;
     x = z;
     *p = z;

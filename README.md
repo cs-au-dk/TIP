@@ -18,16 +18,20 @@ options are viable.
 
 ### IntelliJ IDEA
 
-- Install the Scala end the SBT plugins in IntelliJ.
-- Import the project from the SBT model.
-- Since the `.idea` folder is regenerated from scrach, in order to keep the
-  inspection profiles you need to checkout the `.idea/inspectionProfiles`
-  folder and the `.idea/codeStyleSettings.xml` file from the original repo,
-  leaving untouched the other generated folders.
-- Follow the IDE instructions to download the Scala plugin and to set-up the
-  Scala SDK, if needed.
+- Install the Scala and the SBT plugins in IntelliJ.
+- Clone this repository (File -> New -> Project from Version Control -> GitHub).
+  **Important: due to a bug in the SBT plugin, it is important that you choose a directory name without uppercase letters, e.g. `tip` (otherwise, the following step will fail).**
+- IntelliJ should then detect an SBT project. Click 'Import SBT project' and follow the instructions.
+  (If this is your first Scala project, you will need to setup the Scala SDK.)
 - Right-click on `Tip.scala` in `src/tip`, then select `Run 'Tip'`. To supply
   arguments, use `Edit Configurations` in the `Run` menu.
+  
+If you clone the repository using git instead of IntelliJ, you will need to import the project from the SBT model 
+(File -> New -> Project from Existing Sources). 
+Since the `.idea` folder is then regenerated from scrach, in order to keep the
+inspection profiles you need to checkout the `.idea/inspectionProfiles`
+folder and the `.idea/codeStyleSettings.xml` file from the original repo,
+leaving untouched the other generated folders.
 
 #### IntelliJ performance
 
@@ -63,7 +67,7 @@ TIP with the given arguments.
 
 Example:
 ```
-./tip -types examples/a1.tip
+./tip -run examples/fib.tip
 ```
 
 To build:

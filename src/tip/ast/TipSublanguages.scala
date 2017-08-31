@@ -54,7 +54,7 @@ case class NoFunctionPointers(implicit declData: DeclarationData) extends TipSub
 /**
   * In this sub-language, the only allowed statements are the following:
   *
-  * id = malloc
+  * id = alloc
   * id1 = &id2
   * id1 = id2
   * id1 = *id2
@@ -65,7 +65,7 @@ object NormalizedForPointsToAnalysis extends TipSublanguages {
 
   def visit(ast: AstNode, x: Any): Unit = {
     ast match {
-      case AAssignStmt(Left(_), _: AMalloc, _) =>
+      case AAssignStmt(Left(_), _: AAlloc, _) =>
       case AAssignStmt(Left(_), AUnaryOp(RefOp, _: AIdentifier, _), _) =>
       case AAssignStmt(Left(_), _: AIdentifier, _) =>
       case AAssignStmt(Left(_), AUnaryOp(DerefOp, _: AIdentifier, _), _) =>

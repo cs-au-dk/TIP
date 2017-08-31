@@ -69,20 +69,20 @@ object AstOps {
     }
 
     /**
-      * Returns the set of mallocs appearing in the subtree of the node.
+      * Returns the set of allocs appearing in the subtree of the node.
       */
-    def appearingMallocs: Set[AMalloc] = {
-      val mallocs = mutable.Set[AMalloc]()
-      val mallocsFinder = new DepthFirstAstVisitor[Null] {
+    def appearingAllocs: Set[AAlloc] = {
+      val allocs = mutable.Set[AAlloc]()
+      val allocsFinder = new DepthFirstAstVisitor[Null] {
         override def visit(node: AstNode, arg: Null): Unit = {
           node match {
-            case malloc: AMalloc => mallocs += malloc
+            case alloc: AAlloc => allocs += alloc
             case _ => visitChildren(node, null)
           }
         }
       }
-      mallocsFinder.visit(n, null)
-      mallocs.toSet
+      allocsFinder.visit(n, null)
+      allocs.toSet
     }
 
     /**
