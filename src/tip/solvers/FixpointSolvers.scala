@@ -9,7 +9,6 @@ import scala.collection.immutable._
 object FixpointSolvers {
 
   val log = Log.logger[this.type]()
-
 }
 
 /**
@@ -23,7 +22,7 @@ trait LatticeSolver {
   val lattice: Lattice
 
   /**
-    * The solver function.
+    * The analyze function.
     */
   def analyze(): lattice.Element
 }
@@ -34,14 +33,14 @@ trait LatticeSolver {
 trait SimpleFixpointSolver extends LatticeSolver {
 
   /**
-    * The update function for which the least fixpoint is to be computed.
+    * The constraint function for which the least fixpoint is to be computed.
     * @param x the input lattice element
     * @return the output lattice element
     */
   def fun(x: lattice.Element): lattice.Element
 
   /**
-    * The basic Knaster-Tarski/Kleene fixpoint solver.
+    * The basic Kleene fixpoint solver.
     */
   def analyze(): lattice.Element = {
     var x = lattice.bottom
@@ -71,7 +70,7 @@ trait MapLatticeSolver[N] extends LatticeSolver with Dependencies[N] {
   def transfer(n: N, s: lattice.sublattice.Element): lattice.sublattice.Element
 
   /**
-    * The update function for individual elements in the map domain.
+    * The constraint function for individual elements in the map domain.
     * First computes the join of the incoming elements and then applies the transfer function.
     * @param n the current location in the map domain
     * @param x the current lattice element for all locations
@@ -91,7 +90,7 @@ trait MapLatticeSolver[N] extends LatticeSolver with Dependencies[N] {
 }
 
 /**
-  * Simple fixpoint solver for map lattices where the update function is defined pointwise.
+  * Simple fixpoint solver for map lattices where the constraint function is defined pointwise.
   * @tparam N type of the elements in the map domain.
   */
 trait SimpleMapLatticeFixpointSolver[N] extends SimpleFixpointSolver with MapLatticeSolver[N] {
@@ -103,7 +102,7 @@ trait SimpleMapLatticeFixpointSolver[N] extends SimpleFixpointSolver with MapLat
 
   /**
     * The function for which the least fixpoint is to be computed.
-    * Applies the sublattice update function pointwise to each entry.
+    * Applies the sublattice constraint function pointwise to each entry.
     * @param x the input lattice element
     * @return the output lattice element
     */
@@ -136,7 +135,7 @@ trait MapLiftLatticeSolver[N] extends MapLatticeSolver[N] with Dependencies[N] {
     import lattice.sublattice._
     s match {
       case Bottom => Bottom // unreachable as input implied unreachable at output
-      case Lift(a) => lift(transferUnlifted(n, unlift(s)))
+      case Lift(a) => lift(transferUnlifted(n, a))
     }
   }
 }
@@ -170,7 +169,7 @@ trait Worklist[N] {
 }
 
 /**
-  * A simple worklist algorithm based on a `scala.collection.immutable.ListSet`.
+  * A simple worklist algorithm based on `scala.collection.immutable.ListSet`.
   * (Using a priority queue would typically be faster.)
   * @tparam N type of the elements in the worklist.
   */
@@ -255,7 +254,7 @@ trait WorklistFixpointSolverWithInit[N] extends WorklistFixpointSolver[N] with M
 }
 
 /**
-  * Functions for propagation solvers.
+  * Functions for solvers that perform propagation after transfer instead of join before transfer.
   */
 trait WorklistFixpointPropagationFunctions[N] extends ListSetWorklist[N] {
 

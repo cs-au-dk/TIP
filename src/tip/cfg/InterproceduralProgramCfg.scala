@@ -11,7 +11,7 @@ object InterproceduralProgramCfg {
     * Converts the given CFG node into a [[tip.cfg.FragmentCfg]].
     * Builds call and after-call nodes, and checks that the program is properly normalized.
     */
-  def callreturnNodeBuilder(n: CfgNode)(implicit declData: DeclarationData): FragmentCfg = {
+  private def callreturnNodeBuilder(n: CfgNode)(implicit declData: DeclarationData): FragmentCfg = {
     import AstOps._
     n match {
       case fentry: CfgFunEntryNode =>
@@ -47,7 +47,7 @@ object InterproceduralProgramCfg {
     }
   }
 
-  def usingFunctionDeclarationCallInfo()(implicit declData: DeclarationData): AAssignStmt => Set[AFunDeclaration] = {
+  private def usingFunctionDeclarationCallInfo()(implicit declData: DeclarationData): AAssignStmt => Set[AFunDeclaration] = {
     { s: AAssignStmt =>
       s.right match {
         case ACallFuncExpr(target: AIdentifier, _, loc) =>
@@ -67,7 +67,7 @@ object InterproceduralProgramCfg {
   def generateFromProgram(prog: AProgram)(implicit declData: DeclarationData): InterproceduralProgramCfg = {
     val funGraphs = FragmentCfg.generateFromProgram(prog, callreturnNodeBuilder)
     val allEntries = funGraphs.mapValues(cfg => { assert(cfg.graphEntries.size == 1); cfg.graphEntries.head.asInstanceOf[CfgFunEntryNode] })
-    val allExits = funGraphs.mapValues(cfg => { assert(cfg.graphExists.size == 1); cfg.graphExists.head.asInstanceOf[CfgFunExitNode] })
+    val allExits = funGraphs.mapValues(cfg => { assert(cfg.graphExits.size == 1); cfg.graphExits.head.asInstanceOf[CfgFunExitNode] })
 
     // ensure that there are no function pointers or indirect calls
     NormalizedCalls().assertContainsProgram(prog)
@@ -84,7 +84,7 @@ object InterproceduralProgramCfg {
   def generateFromProgramWithCfa(prog: AProgram)(implicit declData: DeclarationData): InterproceduralProgramCfg = {
     val funGraphs = FragmentCfg.generateFromProgram(prog, callreturnNodeBuilder)
     val allEntries = funGraphs.mapValues(cfg => { assert(cfg.graphEntries.size == 1); cfg.graphEntries.head.asInstanceOf[CfgFunEntryNode] })
-    val allExits = funGraphs.mapValues(cfg => { assert(cfg.graphExists.size == 1); cfg.graphExists.head.asInstanceOf[CfgFunExitNode] })
+    val allExits = funGraphs.mapValues(cfg => { assert(cfg.graphExits.size == 1); cfg.graphExits.head.asInstanceOf[CfgFunExitNode] })
 
     // ensure that there are no function pointers or indirect calls
     NormalizedCalls().assertContainsProgram(prog)
@@ -266,30 +266,27 @@ class InterproceduralProgramCfg(funEntries: Map[AFunDeclaration, CfgFunEntryNode
     def targetIdentifier: AIdentifier = {
       nd.data match {
         case AAssignStmt(Left(id), _, _) => id
-        case _ => ???
+        case _ => throw new IllegalArgumentException("Expected left-hand-side of call assignment to be an identifier")
       }
     }
 
     def assignment: AAssignStmt = {
       nd.data match {
         case ass: AAssignStmt => ass
-        case _ => ???
       }
     }
 
     def invocation: ACallFuncExpr = {
       this.assignment.right match {
-        case call: ACallFuncExpr =>
-          call
-        case _ => ???
+        case call: ACallFuncExpr => call
+        case _ => throw new IllegalArgumentException("Expected right-hand-side of call assignment to be a call")
       }
     }
 
     def invokedFunctionIdentifier: AIdentifier = {
       this.assignment.right match {
-        case ACallFuncExpr(id: AIdentifier, _, _) =>
-          id
-        case _ => ???
+        case ACallFuncExpr(id: AIdentifier, _, _) => id
+        case _ => throw new IllegalArgumentException("Expected direct call at call assignment")
       }
     }
   }
@@ -299,30 +296,27 @@ class InterproceduralProgramCfg(funEntries: Map[AFunDeclaration, CfgFunEntryNode
     def targetIdentifier: AIdentifier = {
       nd.data match {
         case AAssignStmt(Left(id), _, _) => id
-        case _ => ???
+        case _ => throw new IllegalArgumentException("Expected left-hand-side of call assignment to be an identifier")
       }
     }
 
     def assignment: AAssignStmt = {
       nd.data match {
         case ass: AAssignStmt => ass
-        case _ => ???
       }
     }
 
     def invocation: ACallFuncExpr = {
       this.assignment.right match {
-        case call: ACallFuncExpr =>
-          call
-        case _ => ???
+        case call: ACallFuncExpr => call
+        case _ => throw new IllegalArgumentException("Expected right-hand-side of call assignment to be a call")
       }
     }
 
     def invokedFunctionIdentifier: AIdentifier = {
       this.assignment.right match {
-        case ACallFuncExpr(id: AIdentifier, _, _) =>
-          id
-        case _ => ???
+        case ACallFuncExpr(id: AIdentifier, _, _) => id
+        case _ => throw new IllegalArgumentException("Expected direct call at call assignment")
       }
     }
   }

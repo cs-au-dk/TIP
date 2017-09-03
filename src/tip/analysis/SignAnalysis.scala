@@ -68,7 +68,7 @@ trait InterprocSignAnalysisMisc[N] {
 }
 
 /**
-  * Update function for sign analysis (including interprocedural).
+  * Constraint functions for sign analysis (including interprocedural).
   * This version is for the basic worklist algorithm.
   */
 trait InterprocSignAnalysisFunctions
@@ -107,7 +107,7 @@ trait InterprocSignAnalysisFunctions
 }
 
 /**
-  * Update functions for sign analysis (including interprocedural), propagation style.
+  * Constraint functions for sign analysis (including interprocedural), propagation style.
   * This is a variant of [[InterprocSignAnalysisFunctions]] for use with [[tip.solvers.WorklistFixpointPropagationSolver]].
   */
 trait InterprocSignAnalysisFunctionsWithPropagation

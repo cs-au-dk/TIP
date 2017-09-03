@@ -167,7 +167,8 @@ object Tip extends App {
           sys.exit(1)
         case Success(programNode: AProgram) =>
           // run declaration analysis
-          implicit val declData = new DeclarationAnalysis(programNode).analyze()
+          // (for information about the use of 'implicit', see [[tip.analysis.TypeAnalysis]])
+          implicit val declData: DeclarationData = new DeclarationAnalysis(programNode).analyze()
 
           // run selected intraprocedural flow-sensitive analyses
           if (options.cfg | options.dfAnalysis.exists(p => p._2 != dfo.Disabled && !dfo.interprocedural(p._2))) {
@@ -226,7 +227,8 @@ object Tip extends App {
 
           // run type analysis, if selected
           if (options.types) {
-            implicit val typeData = new TypeAnalysis(programNode).analyze()
+            // (for information about the use of 'implicit', see [[tip.analysis.TypeAnalysis]])
+            implicit val typeData: TypeData = new TypeAnalysis(programNode).analyze()
             Output.output(file, OtherOutput(OutputKindE.types), programNode.toTypedString, options.out)
           }
 

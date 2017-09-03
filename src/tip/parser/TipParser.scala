@@ -29,6 +29,9 @@ trait Comments { this: Parser =>
   def Comment: Rule0 = rule(BlockComment | "//" ~ zeroOrMore(noneOf("\n\r")) ~ NewLine)
 }
 
+/**
+  *  Parser for TIP programs, implemented using the parboiled2 parser generator ([[http://parboiled2.org]]).
+  */
 class TipParser(val input: ParserInput) extends Parser with Comments {
   def InputLine = rule {
     Program ~ EOI

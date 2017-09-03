@@ -14,6 +14,11 @@ object AstPrinters {
       s"${n.print(PartialFunction.empty)}:${n.loc}"
   }
 
+  /**
+    * Implicit class that makes a 'print' method available on 'AstNode' objects.
+    *
+    * (For information about implicit classes, see [[tip.ast.AstNodeData.AstNodeWithDeclaration]].)
+    */
   implicit class DefaultRecursivePrinter(n: AstNode) {
 
     def print(printer: PartialFunction[AstNode, String]): String = {

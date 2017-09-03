@@ -1,7 +1,13 @@
 package tip.util
 
+/**
+  * Implicit classes providing convenience methods for maps.
+  */
 object MapUtils {
 
+  /**
+    * Makes a 'reverse' method available on objects of type `Map[A, Set[B]]`.
+    */
   implicit class ReverseOp[A, B](m: Map[A, Set[B]]) {
     def reverse: Map[B, Set[A]] = {
       var res = Map[B, Set[A]]()
@@ -15,6 +21,9 @@ object MapUtils {
     }
   }
 
+  /**
+    * Makes a 'reverse' method available on objects of type `Map[A, B]`.
+    */
   implicit class ReverseOp2[A, B](m: Map[A, B]) {
     def reverse: Map[B, Set[A]] = {
       var res = Map[B, Set[A]]()

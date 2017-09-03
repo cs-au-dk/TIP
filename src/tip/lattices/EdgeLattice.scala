@@ -2,7 +2,7 @@ package tip.lattices
 
 /**
   * The lattice of edge functions, used by [[tip.solvers.IDEAnalysis]].
-  * Technically a map lattice, but we don't bother implementing it as extension of MapLattice
+  * Technically a map lattice, but we don't bother implementing it as extension of MapLattice.
   */
 class EdgeLattice[L <: Lattice](val valuelattice: L) extends Lattice {
 

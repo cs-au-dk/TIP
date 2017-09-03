@@ -30,7 +30,7 @@ object IntraproceduralProgramCfg {
   def generateFromProgram(prog: AProgram)(implicit declData: DeclarationData): IntraproceduralProgramCfg = {
     val funGraphs = FragmentCfg.generateFromProgram(prog, simpleNodeBuilder)
     val allEntries = funGraphs.mapValues(cfg => { assert(cfg.graphEntries.size == 1); cfg.graphEntries.head.asInstanceOf[CfgFunEntryNode] })
-    val allExits = funGraphs.mapValues(cfg => { assert(cfg.graphExists.size == 1); cfg.graphExists.head.asInstanceOf[CfgFunExitNode] })
+    val allExits = funGraphs.mapValues(cfg => { assert(cfg.graphExits.size == 1); cfg.graphExits.head.asInstanceOf[CfgFunExitNode] })
     new IntraproceduralProgramCfg(prog, allEntries, allExits)
   }
 }

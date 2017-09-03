@@ -64,7 +64,7 @@ class IntervalLattice extends Lattice with LatticeOps {
   }
 
   /**
-    * Abstract `+` on intervals.
+    * Abstract binary `+` on intervals.
     */
   override def plus(a: Element, b: Element): Element = {
     val low = (a._1, b._1) match {

@@ -4,6 +4,9 @@ import tip.ast.AstNodeData.{AstNodeWithDeclaration, DeclarationData}
 
 import scala.collection.mutable
 
+/**
+  * Convenience operations related to ASTs.
+  */
 object AstOps {
 
   /**
@@ -13,6 +16,8 @@ object AstOps {
 
   /**
     * An implicit class with convenience methods for collecting information in AST subtrees.
+    *
+    * (For information about Scala's implicit classes, see [[tip.ast.AstNodeData.AstNodeWithDeclaration]].)
     */
   implicit class AstOp(n: AstNode) {
 
@@ -86,7 +91,7 @@ object AstOps {
     }
 
     /**
-      * Returns the set of constants appearing in subtree of the node.
+      * Returns the set of constants appearing in the subtree of the node.
       */
     def appearingConstants: Set[ANumber] = {
       val numbers = mutable.Set[ANumber]()
@@ -127,6 +132,8 @@ object AstOps {
     * The unlabelled node represents `n` but without the source code location.
     * Thereby two nodes become "equal" if they are structurally the same even though they appear in different parts of the code.
     * Identifiers are compared using their declarations.
+    *
+    * (For information about Scala's implicit classes, see [[tip.ast.AstNodeData.AstNodeWithDeclaration]].)
     */
   implicit class UnlabelledNode[X <: AstNode](val n: X)(implicit declData: DeclarationData) {
 

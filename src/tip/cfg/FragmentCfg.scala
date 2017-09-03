@@ -84,16 +84,16 @@ object FragmentCfg {
   * Describes a fragment of a TIP program, for example one or more statements or function bodies.
   *
   * @param graphEntries map from AST function declarations to corresponding CFG function entry nodes
-  * @param graphExists map from AST function declarations to corresponding CFG function exit nodes
+  * @param graphExits map from AST function declarations to corresponding CFG function exit nodes
   *
   * @see [[tip.cfg.InterproceduralProgramCfg]], [[tip.cfg.IntraproceduralProgramCfg]]
   */
-class FragmentCfg(private[cfg] val graphEntries: Set[CfgNode], private[cfg] val graphExists: Set[CfgNode]) {
+class FragmentCfg(private[cfg] val graphEntries: Set[CfgNode], private[cfg] val graphExits: Set[CfgNode]) {
 
   /**
     * Returns true if this is the unit CFG w.r.t. to concatenation.
     */
-  def isUnit = graphEntries.isEmpty && graphExists.isEmpty
+  def isUnit = graphEntries.isEmpty && graphExits.isEmpty
 
   /**
     * Returns the concatenation of this CFG with `after`.
@@ -104,9 +104,9 @@ class FragmentCfg(private[cfg] val graphEntries: Set[CfgNode], private[cfg] val 
     else if (after.isUnit)
       this
     else {
-      graphExists.foreach(_.succ ++= after.graphEntries)
-      after.graphEntries.foreach(_.pred ++= graphExists)
-      new FragmentCfg(graphEntries, after.graphExists)
+      graphExits.foreach(_.succ ++= after.graphEntries)
+      after.graphEntries.foreach(_.pred ++= graphExits)
+      new FragmentCfg(graphEntries, after.graphExits)
     }
   }
 
@@ -114,7 +114,7 @@ class FragmentCfg(private[cfg] val graphEntries: Set[CfgNode], private[cfg] val 
     * Returns the union of this CFG with `other`.
     */
   def |(other: FragmentCfg): FragmentCfg = {
-    new FragmentCfg(other.graphEntries.union(graphEntries), other.graphExists.union(graphExists))
+    new FragmentCfg(other.graphEntries.union(graphEntries), other.graphExits.union(graphExits))
   }
 
   /**

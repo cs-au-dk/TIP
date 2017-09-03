@@ -34,7 +34,7 @@ object FlowSensitiveAnalysis {
     implicit declData: DeclarationData
   ): Option[FlowSensitiveAnalysis[_]] = {
 
-    val typedCfg = options match { // FIXME
+    val typedCfg = options match {
       case AnalysisOption.iwli | AnalysisOption.iwlip | AnalysisOption.`csiwlip` | AnalysisOption.`cfiwlip` | AnalysisOption.`ide` =>
         cfg match {
           case w: InterproceduralProgramCfg => Right(w)

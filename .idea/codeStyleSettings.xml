@@ -5,10 +5,9 @@
       <value>
         <option name="RIGHT_MARGIN" value="250" />
         <ScalaCodeStyleSettings>
-          <option name="PUBLIC_PROPERTY_TYPE_ANNOTATION" value="0" />
-          <option name="PROTECTED_PROPERTY_TYPE_ANNOTATION" value="0" />
-          <option name="PUBLIC_METHOD_TYPE_ANNOTATION" value="0" />
-          <option name="PROTECTED_METHOD_TYPE_ANNOTATION" value="0" />
+          <option name="TYPE_ANNOTATION_PUBLIC_MEMBER" value="false" />
+          <option name="TYPE_ANNOTATION_PROTECTED_MEMBER" value="false" />
+          <option name="TYPE_ANNOTATION_UNIT_TYPE" value="false" />
         </ScalaCodeStyleSettings>
       </value>
     </option>

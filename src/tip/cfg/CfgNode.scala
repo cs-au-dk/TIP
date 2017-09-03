@@ -51,7 +51,7 @@ trait CfgNode {
 
 /**
   * Node in a CFG representing a program statement.
-  * The `data` field hold the statement, or in case of if/while instructions, the branch condition.
+  * The `data` field holds the statement, or in case of if/while instructions, the branch condition.
   */
 case class CfgStmtNode(override val id: Int = CfgNode.uid,
                        override val pred: mutable.Set[CfgNode] = mutable.Set[CfgNode](),

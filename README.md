@@ -86,6 +86,22 @@ where `<source>` can be a file or a directory containing `.tip` files and
 
 To see the possible options, run `tip` without options.
 
+## Help to Scala novices
+
+This implementation takes advantage of many cool Scala language features that allow the code to be concise and flexible. 
+Many of these language features are quite intuitive and easy to understand for anyone familiar with 
+object oriented and functional programming, even without prior knowledge of Scala.
+Still, the following language features deserve some extra attention:
+
+- [traits](https://docs.scala-lang.org/tour/traits.html)
+- [case classes](https://docs.scala-lang.org/tour/case-classes.html)
+- [companion objects](https://docs.scala-lang.org/tour/singleton-objects.html)
+- [implicit parameters](https://docs.scala-lang.org/tour/implicit-parameters.html) (see e.g. [TypeAnalysis.scala](src/tip/analysis/TypeAnalysis.scala))
+- [implicit conversions](https://docs.scala-lang.org/tour/implicit-conversions.html) (see e.g. [TipType.ast2typevar](src/tip/types/Types.scala))
+- [implicit classes](https://docs.scala-lang.org/overviews/core/implicit-classes.html) (see e.g. [AstNodeData.AstNodeWithDeclaration](src/tip/ast/AstNodeData.scala))
+
+Tutorials and extensive documentation for Scala are available at [http://docs.scala-lang.org/](http://docs.scala-lang.org/).
+
 ## Code style
 
 To avoid using inconsistent code styles and meaningless diffs caused

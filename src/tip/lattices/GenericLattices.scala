@@ -14,7 +14,7 @@ trait Lattice {
 
   /**
     * The characteristic function of the set of lattice elements.
-    * Default implementation: returns true for all elements of the right type
+    * Default implementation: returns true for all elements of the right type.
     */
   def ch(e: Element) = true
 
@@ -35,7 +35,7 @@ trait Lattice {
   def lub(x: Element, y: Element): Element
 
   /**
-    * Returns true whenever `x` <= `y` in the lattice.
+    * Returns true whenever `x` <= `y`.
     */
   def leq(x: Element, y: Element): Boolean = lub(x, y) == y // rarely used, but easy to implement :-)
 }
@@ -89,6 +89,7 @@ class FlatLattice[X] extends Lattice {
   /**
     * Un-lift an element of the lattice to an element of `X`.
     * If the element is Top or Bot then IllegalArgumentException is thrown.
+    * Note that this method is declared as implicit, so the conversion can be done automatically.
     */
   implicit def unlift(a: Element): X = a match {
     case FlatEl(n) => n
@@ -139,7 +140,7 @@ class MapLattice[A, +L <: Lattice](ch: A => Boolean, val sublattice: L) extends 
 }
 
 /**
-  * The powerset lattice of `X`, where `X` is the subset of `A` defined by the characteristic function `ch`.
+  * The powerset lattice of `X`, where `X` is the subset of `A` defined by the characteristic function `ch`, with subset ordering.
   */
 class PowersetLattice[A](ch: A => Boolean) extends Lattice {
   // note: 'ch' isn't used in the class, but having it as a class parameter avoids a lot of type annotations
@@ -152,7 +153,7 @@ class PowersetLattice[A](ch: A => Boolean) extends Lattice {
 }
 
 /**
-  * The powerset lattice of `X`, where `X` is the subset of `A` defined by the characteristic function ch, with reverse subset ordering.
+  * The powerset lattice of `X`, where `X` is the subset of `A` defined by the characteristic function `ch`, with superset ordering.
   */
 class ReversePowersetLattice[A](s: Set[A]) extends Lattice {
 
@@ -191,12 +192,14 @@ class LiftLattice[+L <: Lattice](val sublattice: L) extends Lattice {
 
   /**
     * Lift elements of the sublattice to this lattice.
+    * Note that this method is declared as implicit, so the conversion can be done automatically.
     */
   implicit def lift(x: sublattice.Element): Element = Lift(x)
 
   /**
     * Un-lift elements of this lattice to the sublattice.
     * Throws an IllegalArgumentException if trying to unlift the bottom element
+    * Note that this method is declared as implicit, so the conversion can be done automatically.
     */
   implicit def unlift(x: Element): sublattice.Element = x match {
     case Lift(s) => s

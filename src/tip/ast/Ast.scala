@@ -58,8 +58,10 @@ case object DerefOp extends Operator with UnaryOperator {
 
 /**
   * AST node.
+  *
+  * (The class extends [[Product]] to enable functionality used by [[AstOps.UnlabelledNode]].)
   */
-sealed abstract class AstNode extends AnyRef with Product {
+sealed abstract class AstNode extends Product {
 
   /**
     * Unique ID of the node.

@@ -8,9 +8,15 @@ import scala.language.implicitConversions
 object TipType {
 
   /**
-    * Implicitly convert any AstNode to its type variable.
+    * Implicitly converts any AstNode to its type variable.
     * For identifiers the type variable is associated with the declaration;
     * for any other kind of AST node the type variable is associated with the node itself.
+    *
+    * To novice Scala programmers:
+    * The keyword `implicit` in front of this function definition enables "implicit conversion" from `AstNode` to `Var[TipType]`.
+    * This means that whenever Scala finds something of type `AstNode` but needs something of type `Var[TipType]`, this
+    * function will be invoked implicitly to make the conversion (provided that the function is imported).
+    * For more information about implicit conversions in Scala, see [[https://docs.scala-lang.org/tour/implicit-conversions.html]].
     */
   implicit def ast2typevar(node: AstNode)(implicit declData: DeclarationData): Var[TipType] = {
     node match {

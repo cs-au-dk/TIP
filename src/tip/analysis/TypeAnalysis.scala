@@ -10,6 +10,14 @@ import tip.util.Log
   * Unification-based type analysis.
   * The analysis associates a [[tip.types.TipType]] with each variable declaration and expression node in the AST.
   * It is implemented using [[tip.solvers.UnionFindSolver]].
+  *
+  * To novice Scala programmers:
+  * The parameter `declData` is declared as "implicit", which means that invocations of `TypeAnalysis` obtain its value implicitly:
+  * The call to `new TypeAnalysis` in Tip.scala does not explicitly provide this parameter, but it is in scope of
+  * `implicit val declData: TypeData = new DeclarationAnalysis(programNode).analyze()`.
+  * The TIP implementation uses implicit parameters many places to provide easy access to the declaration information produced
+  * by `DeclarationAnalysis` and the type information produced by `TypeAnalysis`.
+  * For more information about implicit parameters in Scala, see [[https://docs.scala-lang.org/tour/implicit-parameters.html]].
   */
 class TypeAnalysis(program: AProgram)(implicit declData: DeclarationData) extends DepthFirstAstVisitor[Null] with Analysis[TypeData] {
 

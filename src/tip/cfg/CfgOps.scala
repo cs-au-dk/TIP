@@ -8,6 +8,8 @@ object CfgOps {
 
   /**
     * An implicit class with convenience methods for operations on CFG nodes.
+    *
+    * (For information about implicit classes, see [[tip.ast.AstNodeData.AstNodeWithDeclaration]].)
     */
   implicit class CfgNodeOps(n: CfgNode) {
 
@@ -23,7 +25,7 @@ object CfgOps {
     }
 
     /**
-      * Returns the set of identifiers declared by the node, including local variables, function parameters and function identifiers.
+      * Returns the set of identifiers declared by the node, including local variables, function parameters, and function identifiers.
       */
     def declaredVarsAndParams(implicit declData: DeclarationData): Set[ADeclaration] = {
       n match {
