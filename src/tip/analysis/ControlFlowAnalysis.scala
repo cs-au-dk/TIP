@@ -3,7 +3,7 @@ package tip.analysis
 import tip.ast.{AAssignStmt, AIdentifier, AProgram, AstNode, DepthFirstAstVisitor, NormalizedForPointsToAnalysis, _}
 import tip.solvers.CubicSolver
 import tip.util.Log
-import tip.ast.AstNodeData._
+import tip.ast.AstNodeData.{AstNodeWithDeclaration, DeclarationData}
 
 class ControlFlowAnalysis(program: AProgram)(implicit declData: DeclarationData)
     extends DepthFirstAstVisitor[Null]

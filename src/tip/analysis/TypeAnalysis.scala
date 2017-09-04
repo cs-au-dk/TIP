@@ -84,7 +84,7 @@ class TypeAnalysis(program: AProgram)(implicit declData: DeclarationData) extend
       case _: ANull => ??? // <--- Complete here
       case fun: AFunDeclaration => ??? // <--- Complete here
       case call: ACallFuncExpr => ??? // <--- Complete here
-      case _: AReturnStmt => ??? // <--- Complete here
+      case _: AReturnStmt =>
       case _ =>
     }
     visitChildren(node, null)
