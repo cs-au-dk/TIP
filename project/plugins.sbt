@@ -1,3 +1,3 @@
 logLevel := Level.Warn
 
-addSbtPlugin("com.geirsson" % "sbt-scalafmt" % "0.5.1")
+addSbtPlugin("com.lucidchart" % "sbt-scalafmt" % "1.10")

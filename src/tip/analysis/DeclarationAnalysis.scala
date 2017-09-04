@@ -66,7 +66,7 @@ class DeclarationAnalysis(prog: AProgram) extends DepthFirstAstVisitor[Map[Strin
           case e: Exception =>
             throw new RuntimeException(s"Error retrieving definition of $ident in ${env.keys}", e)
         }
-      case AAssignStmt(Left(id), _, loc) =>
+      case AAssignStmt(id: AIdentifier, _, loc) =>
         if (env.contains(id.value)) {
           env(id.value) match {
             case f: AFunDeclaration =>

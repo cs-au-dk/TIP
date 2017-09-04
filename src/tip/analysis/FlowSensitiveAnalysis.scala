@@ -30,9 +30,7 @@ abstract class FlowSensitiveAnalysis[N](cfg: FragmentCfg) extends Analysis[Any] 
   */
 object FlowSensitiveAnalysis {
 
-  def select(kind: Analysis.Value, options: AnalysisOption.Value, cfg: FragmentCfg)(
-    implicit declData: DeclarationData
-  ): Option[FlowSensitiveAnalysis[_]] = {
+  def select(kind: Analysis.Value, options: AnalysisOption.Value, cfg: FragmentCfg)(implicit declData: DeclarationData): Option[FlowSensitiveAnalysis[_]] = {
 
     val typedCfg = options match {
       case AnalysisOption.iwli | AnalysisOption.iwlip | AnalysisOption.`csiwlip` | AnalysisOption.`cfiwlip` | AnalysisOption.`ide` =>

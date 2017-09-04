@@ -6,8 +6,7 @@ import tip.lattices.{FlatLattice, MapLattice}
 import tip.solvers.{SimpleMapLatticeFixpointSolver, SimpleWorklistFixpointSolver}
 import tip.ast.AstNodeData.{AstNodeWithDeclaration, DeclarationData}
 
-abstract class ConstantPropagationAnalysis(cfg: IntraproceduralProgramCfg)(implicit declData: DeclarationData)
-    extends FlowSensitiveAnalysis[CfgNode](cfg) {
+abstract class ConstantPropagationAnalysis(cfg: IntraproceduralProgramCfg)(implicit declData: DeclarationData) extends FlowSensitiveAnalysis[CfgNode](cfg) {
 
   import tip.cfg.CfgOps._
 
@@ -25,10 +24,10 @@ abstract class ConstantPropagationAnalysis(cfg: IntraproceduralProgramCfg)(impli
             }
           case ass: AAssignStmt =>
             ass.left match {
-              case Left(id: AIdentifier) =>
+              case id: AIdentifier =>
                 val vdef: ADeclaration = id.declaration
                 s + (vdef -> absEval(ass.right, s))
-              case Right(_) => ???
+              case _ => ???
             }
           case _ => s
         }

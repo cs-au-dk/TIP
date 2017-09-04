@@ -29,10 +29,10 @@ abstract class IntervalAnalysis(cfg: FragmentCfg)(implicit declData: Declaration
             }
           case ass: AAssignStmt =>
             ass.left match {
-              case Left(id) =>
+              case id: AIdentifier =>
                 val vdef = id.declaration
                 s + (vdef -> absEval(ass.right, s))
-              case Right(_) => ???
+              case _ => ???
             }
           case _ => s
         }
@@ -56,8 +56,7 @@ abstract class IntervalAnalysis(cfg: FragmentCfg)(implicit declData: Declaration
     * @param env the current abstract environment
     * @return the result of the evaluation
     */
-  private def absEval(exp: AExpr,
-                      env: Map[ADeclaration, lattice.sublattice.sublattice.sublattice.Element]): lattice.sublattice.sublattice.sublattice.Element = {
+  private def absEval(exp: AExpr, env: Map[ADeclaration, lattice.sublattice.sublattice.sublattice.Element]): lattice.sublattice.sublattice.sublattice.Element = {
     exp match {
       case id: AIdentifier => env(id.declaration)
       case num: ANumber => (lattice.sublattice.sublattice.sublattice.IntNum(num.value), lattice.sublattice.sublattice.sublattice.IntNum(num.value))

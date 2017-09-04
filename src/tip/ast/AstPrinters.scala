@@ -46,7 +46,7 @@ object AstPrinters {
             case AFunDeclaration(name, args, stmts, _) =>
               s"$name(${args.map(_.print(printer)).mkString(",")})\n${stmts.print(printer)}"
             case AAssignStmt(left, right, _) =>
-              s"${left.fold(_.print(printer), _.print(printer))} = ${right.print(printer)};"
+              s"${left.print(printer)} = ${right.print(printer)};"
             case AIfStmt(guard, ifBranch, elseBranch, _) =>
               val elseb = elseBranch.map(x => "else " + x.print(printer)).getOrElse("")
               s"if (${guard.print(printer)}) ${ifBranch.print(printer)}  $elseb"

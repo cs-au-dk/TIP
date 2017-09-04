@@ -42,12 +42,12 @@ class SteensgaardAnalysis(program: AProgram)(implicit declData: DeclarationData)
 
     log.verb(s"Visiting ${node.getClass.getSimpleName} at ${node.loc}")
     node match {
-      case AAssignStmt(Left(id1), alloc: AAlloc, _) => ??? //<--- Complete here
-      case AAssignStmt(Left(id1), AUnaryOp(RefOp, id2: AIdentifier, _), _) => ??? //<--- Complete here
-      case AAssignStmt(Left(id1), id2: AIdentifier, _) => ??? //<--- Complete here
-      case AAssignStmt(Left(id1), AUnaryOp(DerefOp, id2: AIdentifier, _), _) => ??? //<--- Complete here
-      case AAssignStmt(Right(AUnaryOp(_, id1: AIdentifier, _)), id2: AIdentifier, _) => ??? //<--- Complete here
-      case AAssignStmt(Left(_), _, _) => // ignore other assignments where left-hand-side is an identifier
+      case AAssignStmt(id1: AIdentifier, alloc: AAlloc, _) => ??? //<--- Complete here
+      case AAssignStmt(id1: AIdentifier, AUnaryOp(RefOp, id2: AIdentifier, _), _) => ??? //<--- Complete here
+      case AAssignStmt(id1: AIdentifier, id2: AIdentifier, _) => ??? //<--- Complete here
+      case AAssignStmt(id1: AIdentifier, AUnaryOp(DerefOp, id2: AIdentifier, _), _) => ??? //<--- Complete here
+      case AAssignStmt(AUnaryOp(_, id1: AIdentifier, _), id2: AIdentifier, _) => ??? //<--- Complete here
+      case AAssignStmt(_: AIdentifier, _, _) => // ignore other assignments where left-hand-side is an identifier
       case ass: AAssignStmt => NormalizedForPointsToAnalysis.LanguageRestrictionViolation(s"Not expecting other kinds of assignment: $ass")
       case _ => // ignore other kinds of nodes
     }

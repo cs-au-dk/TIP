@@ -32,13 +32,13 @@ class AndersenAnalysis(program: AProgram)(implicit declData: DeclarationData) ex
   override def visit(node: AstNode, arg: Null): Unit = {
 
     node match {
-      case AAssignStmt(Left(id), alloc: AAlloc, _) => ??? //<--- Complete here
-      case AAssignStmt(Left(id1), AUnaryOp(RefOp, id2: AIdentifier, _), _) => ??? //<--- Complete here
-      case AAssignStmt(Left(id1), id2: AIdentifier, _) => ??? //<--- Complete here
-      case AAssignStmt(Left(id1), AUnaryOp(DerefOp, id2: AIdentifier, _), _) => ??? //<--- Complete here
-      case AAssignStmt(Right(AUnaryOp(_, id1: AIdentifier, _)), id2: AIdentifier, _) => ??? //<--- Complete here
-      case AAssignStmt(Left(_), ANull(_), _) =>
-      case AAssignStmt(Left(_), _: AAtomicExpr, _) =>
+      case AAssignStmt(id: AIdentifier, alloc: AAlloc, _) => ??? //<--- Complete here
+      case AAssignStmt(id1: AIdentifier, AUnaryOp(RefOp, id2: AIdentifier, _), _) => ??? //<--- Complete here
+      case AAssignStmt(id1: AIdentifier, id2: AIdentifier, _) => ??? //<--- Complete here
+      case AAssignStmt(id1: AIdentifier, AUnaryOp(DerefOp, id2: AIdentifier, _), _) => ??? //<--- Complete here
+      case AAssignStmt(AUnaryOp(_, id1: AIdentifier, _), id2: AIdentifier, _) => ??? //<--- Complete here
+      case AAssignStmt(_: AIdentifier, ANull(_), _) =>
+      case AAssignStmt(_: AIdentifier, _: AAtomicExpr, _) =>
       case ass: AAssignStmt => NormalizedForPointsToAnalysis.LanguageRestrictionViolation(s"Assignment $ass not expected")
       case _ =>
     }

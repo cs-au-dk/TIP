@@ -28,11 +28,11 @@ abstract class AvailableExpAnalysis(cfg: IntraproceduralProgramCfg)(implicit dec
         r.data match {
           case ass: AAssignStmt =>
             ass.left match {
-              case Left(id) =>
+              case id: AIdentifier =>
                 (s union ass.right.appearingExpressions.map(UnlabelledNode[AExpr])).filter { e =>
                   !(id.appearingIds subsetOf e.n.appearingIds)
                 }
-              case Right(_) => ???
+              case _ => ???
             }
           case exp: AExpr =>
             s union exp.appearingExpressions.map(UnlabelledNode[AExpr])

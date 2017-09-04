@@ -28,8 +28,8 @@ abstract class LiveVarsAnalysis(cfg: IntraproceduralProgramCfg)(implicit declDat
           case cond: ABinaryOp => ??? //<--- Complete here
           case ass: AAssignStmt =>
             ass.left match {
-              case Left(id) => ??? //<--- Complete here
-              case Right(deref) => ???
+              case id: AIdentifier => ??? //<--- Complete here
+              case _ => ???
             }
           case varr: AVarStmt => ??? //<--- Complete here
           case ret: AReturnStmt => ??? //<--- Complete here

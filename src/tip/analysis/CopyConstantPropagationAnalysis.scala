@@ -63,7 +63,7 @@ trait CopyConstantPropagationAnalysisFunctions extends IDEAnalysis[ADeclaration,
           // assignments
           case ass: AAssignStmt =>
             ass match {
-              case AAssignStmt(Left(id), right, _) =>
+              case AAssignStmt(id: AIdentifier, right, _) =>
                 val edges = assign(d, id.declaration, right)
                 d match {
                   case Left(a) if id != a =>
@@ -71,7 +71,7 @@ trait CopyConstantPropagationAnalysisFunctions extends IDEAnalysis[ADeclaration,
                   case _ =>
                     edges
                 }
-              case AAssignStmt(Right(_), _, _) => NoPointers.LanguageRestrictionViolation(s"$ass not allowed")
+              case AAssignStmt(_, _, _) => NoPointers.LanguageRestrictionViolation(s"$ass not allowed")
             }
 
           // return statement

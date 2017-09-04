@@ -184,4 +184,5 @@ class FragmentCfg(private[cfg] val graphEntries: Set[CfgNode], private[cfg] val 
   * @param funEntries map from AST function declarations to CFG function entry nodes
   * @param funExits map from AST function declarations to CFG function exit nodes
   */
-abstract class ProgramCfg(val prog: AProgram, val funEntries: Map[AFunDeclaration, CfgFunEntryNode], val funExits: Map[AFunDeclaration, CfgFunExitNode]) extends FragmentCfg(funEntries.values.toSet[CfgNode], funEntries.values.toSet[CfgNode])
+abstract class ProgramCfg(val prog: AProgram, val funEntries: Map[AFunDeclaration, CfgFunEntryNode], val funExits: Map[AFunDeclaration, CfgFunExitNode])
+    extends FragmentCfg(funEntries.values.toSet[CfgNode], funEntries.values.toSet[CfgNode])

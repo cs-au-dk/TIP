@@ -53,11 +53,11 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
     OptSpace ~ str(s) ~ OptSpace
   }
 
-  def AssignableExpression: Rule1[AstNode.Assignable] = rule {
+  def AssignableExpression: Rule1[Assignable[DerefOp.type]] = rule {
     (Identifier | LeftHandUnaryPointerExpression) ~> { x: AstNode =>
       x match {
-        case id: AIdentifier => Left(id)
-        case AUnaryOp(DerefOp, t, l) => Right(AUnaryOp(DerefOp, t, l))
+        case id: AIdentifier => id
+        case AUnaryOp(DerefOp, t, l) => AUnaryOp(DerefOp, t, l)
         case _ => ??? // unexpected, this should never be the case
       }
     }
@@ -108,12 +108,12 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
   }
 
   def Identifier: Rule1[AIdentifier] = rule {
-    push(cursor) ~ OptSpace ~ !keywords ~ capture(CharPredicate.Alpha ~ zeroOrMore(CharPredicate.AlphaNum)) ~> ((cur: Int, id: String) =>
-                                                                                                                  AIdentifier(id, cur))
+    push(cursor) ~ OptSpace ~ !keywords ~ capture(CharPredicate.Alpha ~ zeroOrMore(CharPredicate.AlphaNum)) ~> ((cur: Int, id: String) => AIdentifier(id, cur))
   }
 
   def IdentifierDeclaration: Rule1[AIdentifierDeclaration] = rule {
-    push(cursor) ~ OptSpace ~ !keywords ~ capture(CharPredicate.Alpha ~ zeroOrMore(CharPredicate.AlphaNum)) ~> ((cur: Int, id: String) =>
+    push(cursor) ~ OptSpace ~ !keywords ~ capture(CharPredicate.Alpha ~ zeroOrMore(CharPredicate.AlphaNum)) ~> ((cur: Int,
+                                                                                                                 id: String) =>
                                                                                                                   AIdentifierDeclaration(id, cur))
   }
 
@@ -159,7 +159,7 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
   }
 
   def Assigment: Rule1[AStmtInNestedBlock] = rule {
-    push(cursor) ~ AssignableExpression ~ "=" ~ Expression ~ ";" ~> { (cur: Int, e1: AstNode.Assignable, e2: AExpr) =>
+    push(cursor) ~ AssignableExpression ~ "=" ~ Expression ~ ";" ~> { (cur: Int, e1: Assignable[DerefOp.type], e2: AExpr) =>
       AAssignStmt(e1, e2, cur)
     }
   }
@@ -169,9 +169,10 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
   }
 
   def FunBlock: Rule1[AFunBlockStmt] = rule {
-    push(cursor) ~ "{" ~ VarStatements ~ Statements ~ Return ~ "}" ~> ((cur: Int, declarations: Seq[AVarStmt], others: Seq[AStmtInNestedBlock],
-                                                                        ret: AReturnStmt) =>
-                                                                         AFunBlockStmt(declarations.toList, others.toList, ret, cur))
+    push(cursor) ~ "{" ~ VarStatements ~ Statements ~ Return ~ "}" ~> ((cur: Int,
+                                                                        declarations: Seq[AVarStmt],
+                                                                        others: Seq[AStmtInNestedBlock],
+                                                                        ret: AReturnStmt) => AFunBlockStmt(declarations.toList, others.toList, ret, cur))
   }
 
   def Declaration: Rule1[AVarStmt] = rule {

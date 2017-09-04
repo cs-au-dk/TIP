@@ -23,8 +23,8 @@ options are viable.
   **Important: due to a bug in the SBT plugin, it is important that you choose a directory name without uppercase letters, e.g. `tip` (otherwise, the following step will fail).**
 - IntelliJ should then detect an SBT project. Click 'Import SBT project' and follow the instructions.
   (If this is your first Scala project, you will need to setup the Scala SDK.)
-- Right-click on `Tip.scala` in `src/tip`, then select `Run 'Tip'`. To supply
-  arguments, use `Edit Configurations` in the `Run` menu.
+- Right-click on `Tip.scala` in `src/tip`, then select "Run 'Tip'". To supply
+  arguments, use Run... -> Edit Configurations in the Run menu.
   
 If you clone the repository using git instead of IntelliJ, you will need to import the project from the SBT model 
 (File -> New -> Project from Existing Sources). 
@@ -40,12 +40,12 @@ following tweaks might be useful:
 
 - Disable type-aware highlighting by clicking on the small `[T]` icon on the
   bottom right corner of the window.
-- Go to `Help -> Edit Custom VM Options` and increase the JVM memory at least
+- Go to Help -> Edit Custom VM Options and increase the JVM memory at least
   with the following values:
 ```
 -Xms500m -Xmx1500m
 ```
-- If still nothing works, try `File -> Power Save Mode`.
+- If still nothing works, try File -> Power Save Mode.
 
 #### IntelliJ Import optimization
 
@@ -57,8 +57,8 @@ compilation.
 
 - Check that you have installed the [scala-plugin](http://scala-ide.org/) for
   Eclipse.
-- To run TIP from within Eclipse, feed the [arguments](#tipcmd) into the `Run
-  Arguments` dialog.
+- To run TIP from within Eclipse, feed the [arguments](#tipcmd) into the Run
+  Arguments dialog.
 
 ### Working from the command-line
 
@@ -105,11 +105,14 @@ Tutorials and extensive documentation for Scala are available at [http://docs.sc
 ## Code style
 
 To avoid using inconsistent code styles and meaningless diffs caused
-by IDE reformatting we use [scalafmt](https://olafurpg.github.io/scalafmt/).
-Before committing, please double-check that all the code is in the right
-format by executing `sbt scalafmt` or by installing the `scalafmt` IDE plugin
-and enabling the `Format on save` option as explained
-[here](https://olafurpg.github.io/scalafmt/#IntelliJ).
+by IDE reformatting we use [scalafmt](http://scalameta.org/scalafmt/).
+
+The code is automatically formatted upon compilation by SBT.
+In IntelliJ you need to ensure that SBT is used for compiling: in File -> Settings... -> Build Tools -> SBT, check the option "Use SBT shell for build and import".
+
+Before committing, please double-check that all the code is in the right format by executing `sbt scalafmt`. 
+By installing the scalafmt IntelliJ plugin and enabling the "Format on save" option as explained
+[here](https://olafurpg.github.io/scalafmt/#IntelliJ) the code is automatically formatted when the file is saved (unfortunately the formatting is only triggered when the file is *explicitly* saved with Ctrl-S).
 
 ## Authors
 

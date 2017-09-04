@@ -35,8 +35,8 @@ trait IntraprocSignAnalysisFunctions {
           case varr: AVarStmt => ??? //<--- Complete here
 
           // assignments
-          case AAssignStmt(Left(id), right, _) => ??? //<--- Complete here
-          case AAssignStmt(Right(_), _, _) => NoPointers.LanguageRestrictionViolation(s"${r.data} not allowed")
+          case AAssignStmt(id: AIdentifier, right, _) => ??? //<--- Complete here
+          case AAssignStmt(_: AUnaryOp[_], _, _) => NoPointers.LanguageRestrictionViolation(s"${r.data} not allowed")
 
           // all others: like no-ops
           case _ => s
@@ -71,10 +71,7 @@ trait InterprocSignAnalysisMisc[N] {
   * Constraint functions for sign analysis (including interprocedural).
   * This version is for the basic worklist algorithm.
   */
-trait InterprocSignAnalysisFunctions
-    extends MapLiftLatticeSolver[CfgNode]
-    with InterprocSignAnalysisMisc[CfgNode]
-    with InterproceduralForwardDependencies {
+trait InterprocSignAnalysisFunctions extends MapLiftLatticeSolver[CfgNode] with InterprocSignAnalysisMisc[CfgNode] with InterproceduralForwardDependencies {
 
   override def funsub(n: CfgNode, x: lattice.Element): lattice.sublattice.Element = {
     import lattice.sublattice._

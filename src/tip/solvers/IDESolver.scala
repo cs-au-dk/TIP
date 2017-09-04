@@ -59,7 +59,7 @@ trait IDEAnalysis[D, L <: Lattice] {
   * Phase 1 of the IDE algorithm.
   */
 abstract class IDEPhase1Analysis[D, L <: Lattice](val cfg: InterproceduralProgramCfg)(implicit val declData: DeclarationData)
-  extends FlowSensitiveAnalysis[(CfgNode, Either[D, Lambda], Either[D, Lambda])](cfg)
+    extends FlowSensitiveAnalysis[(CfgNode, Either[D, Lambda], Either[D, Lambda])](cfg)
     with IDEAnalysis[D, L]
     with WorklistFixpointPropagationFunctions[(CfgNode, Either[D, Lambda], Either[D, Lambda])] {
 
@@ -120,7 +120,7 @@ abstract class IDEPhase1Analysis[D, L <: Lattice](val cfg: InterproceduralProgra
     callJumpCache.getOrElseUpdate((funexit.entry, d1, aftercall.callNode), mutable.Map[DL, edgelattice.Edge]()).foreach {
       case (d3, e12) => // d3 is now an item at the caller function entry, and e12 is the composed edge to d1 at the callee entry
         val e3 = x(funexit, d1, d2) // summary edge from d1 to d2 at the callee function
-      val e123 = e3.composeWith(e12)
+        val e123 = e3.composeWith(e12)
         edgesExitToAfterCall(d2, funexit, aftercall).foreach {
           case (d4, e4) => // d4 is now an item at the aftercall node, and e4 is the edge from the function exit to the aftercall node
             val e = e4.composeWith(e123) // e is now the composed edge from e3 at the caller entry to d4 at the aftercall node
@@ -196,7 +196,11 @@ abstract class IDEPhase1Analysis[D, L <: Lattice](val cfg: InterproceduralProgra
           case _ => // ignore other node kinds
         }
     }
-    FixpointSolvers.log.verb(s"Function summaries:\n${res.map { case (f, s) => s"  function $f:\n${s.map { case (d1, m) => s"${m.map { case (d2, e) => s"    ($d1,$d2): $e" }.mkString("\n")}" }.mkString("\n")}" }.mkString("\n")} ")
+    FixpointSolvers.log.verb(s"Function summaries:\n${res
+      .map {
+        case (f, s) => s"  function $f:\n${s.map { case (d1, m) => s"${m.map { case (d2, e) => s"    ($d1,$d2): $e" }.mkString("\n")}" }.mkString("\n")}"
+      }
+      .mkString("\n")} ")
     res
   }
 }
@@ -207,8 +211,8 @@ abstract class IDEPhase1Analysis[D, L <: Lattice](val cfg: InterproceduralProgra
   * The original RHS version of IDE uses jump functions for all nodes, not only at exits, but the analysis result and complexity is the same.
   */
 class IDEPhase2Analysis[D, L <: Lattice](val cfg: InterproceduralProgramCfg, val phase1: IDEPhase1Analysis[D, L])(implicit val declData: DeclarationData)
-  extends FlowSensitiveAnalysis[(CfgNode, Either[D, Lambda])](cfg)
-  with WorklistFixpointPropagationFunctions[(CfgNode, Either[D, Lambda])] {
+    extends FlowSensitiveAnalysis[(CfgNode, Either[D, Lambda])](cfg)
+    with WorklistFixpointPropagationFunctions[(CfgNode, Either[D, Lambda])] {
 
   import phase1._
   import edgelattice.Edge
@@ -251,11 +255,12 @@ class IDEPhase2Analysis[D, L <: Lattice](val cfg: InterproceduralProgramCfg, val
                   // propagate to function entry
                   propagate(e(xnd), (entry, d2))
                   // propagate to after-call, via the function summary and exit edges
-                  summaries(entry.data)(d2).foreach { case (d3, e2) =>
-                    edgesExitToAfterCall(d3, entry.exit, call.afterCallNode).foreach {
-                      case (d4, e3) =>
-                        propagate(e3(e2(e(xnd))), (call.afterCallNode, d4))
-                    }
+                  summaries(entry.data)(d2).foreach {
+                    case (d3, e2) =>
+                      edgesExitToAfterCall(d3, entry.exit, call.afterCallNode).foreach {
+                        case (d4, e3) =>
+                          propagate(e3(e2(e(xnd))), (call.afterCallNode, d4))
+                      }
                   }
               }
             }
@@ -270,26 +275,31 @@ class IDEPhase2Analysis[D, L <: Lattice](val cfg: InterproceduralProgramCfg, val
 
           // all other nodes, just use the micro-transformer edges
           case _ =>
-            edgesOther(d, n).foreach{ case (d2, e) =>
-              n.succ.foreach { m =>
-                propagate(e(xnd), (m, d2))
-              }
+            edgesOther(d, n).foreach {
+              case (d2, e) =>
+                n.succ.foreach { m =>
+                  propagate(e(xnd), (m, d2))
+                }
             }
         }
     }
   }
 
-  val restructedlattice = new MapLattice(cfg.nodes, new MapLattice({ _: D => true }, lattice.sublattice))
+  val restructedlattice = new MapLattice(cfg.nodes, new MapLattice({ _: D =>
+    true
+  }, lattice.sublattice))
 
   /**
     * Restructures the analysis output to match `restructedlattice`.
     */
   def restructure(y: lattice.Element): restructedlattice.Element = {
-    y.foldLeft(Map[CfgNode, Map[D, lattice.sublattice.Element]]()) { case (acc, ((n, dl), e)) =>
-      dl match {
-        case Left(d) => acc + (n -> (acc.getOrElse(n, Map[D, lattice.sublattice.Element]()) + (d -> e)))
-        case _ => acc // FIXME: use lifted lattice and map this to unreachable?
+    y.foldLeft(Map[CfgNode, Map[D, lattice.sublattice.Element]]()) {
+        case (acc, ((n, dl), e)) =>
+          dl match {
+            case Left(d) => acc + (n -> (acc.getOrElse(n, Map[D, lattice.sublattice.Element]()) + (d -> e)))
+            case _ => acc // FIXME: use lifted lattice and map this to unreachable?
+          }
       }
-    }.asInstanceOf[restructedlattice.Element] // FIXME: avoid this asInstanceOf
+      .asInstanceOf[restructedlattice.Element] // FIXME: avoid this asInstanceOf
   }
 }

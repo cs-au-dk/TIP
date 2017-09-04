@@ -26,7 +26,7 @@ trait DepthFirstAstVisitor[A] {
         visit(un.target, arg)
       case ass: AAssignStmt =>
         visit(ass.right, arg)
-        visit(ass.left.fold(identity, identity), arg)
+        visit(ass.left, arg)
       case block: ABlock =>
         block.body.foreach(visit(_, arg))
       case iff: AIfStmt =>

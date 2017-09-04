@@ -72,13 +72,14 @@ object SignLattice extends FlatLattice[SignElement.Value] with LatticeOps {
     List(Bot, Top, Top, Top, Top)
   )
 
-  private val absEq: List[List[FlatElement]] = List(
-    List(Bot, Bot, Bot, Bot, Bot),
-    List(Bot, Pos, Zero, Zero, Top),
-    List(Bot, Zero, Top, Zero, Top),
-    List(Bot, Zero, Zero, Top, Top),
-    List(Bot, Top, Top, Top, Top)
-  )
+  private val absEq: List[List[FlatElement]] =
+    List(
+      List(Bot, Bot, Bot, Bot, Bot),
+      List(Bot, Pos, Zero, Zero, Top),
+      List(Bot, Zero, Top, Zero, Top),
+      List(Bot, Zero, Zero, Top, Top),
+      List(Bot, Top, Top, Top, Top)
+    )
 
   override def plus(a: SignLattice.Element, b: SignLattice.Element) = abs(absPlus, a, b)
 

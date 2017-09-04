@@ -57,7 +57,7 @@ class ControlFlowAnalysis(program: AProgram)(implicit declData: DeclarationData)
 
     node match {
       case fun: AFunDeclaration => ??? //<--- Complete here
-      case AAssignStmt(Left(id1), e: AIdentifier, _) => ??? //<--- Complete here
+      case AAssignStmt(id1: AIdentifier, e: AIdentifier, _) => ??? //<--- Complete here
       case ACallFuncExpr(id2: AIdentifier, args, _) =>
         id2.declaration match {
           case fun: AFunDeclaration => // Simple call, using function name directly

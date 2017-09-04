@@ -96,7 +96,7 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
   protected def semc(stm: AStmt, env: Env, store: Store): (Env, Store) = {
     stm match {
       case AAssignStmt(left, right: AExpr, _) =>
-        val (lv, s1) = semeref(left.fold(identity, identity), env, store)
+        val (lv, s1) = semeref(left, env, store)
         val (rv, s2) = semeright(right, env, s1)
         (env, s2 + (lv -> rv))
       case block: ABlock =>

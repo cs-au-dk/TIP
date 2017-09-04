@@ -117,7 +117,10 @@ object InterproceduralProgramCfg {
   * @param declData the declaration data
   * @param callInfo call graph
   */
-class InterproceduralProgramCfg(funEntries: Map[AFunDeclaration, CfgFunEntryNode], funExits: Map[AFunDeclaration, CfgFunExitNode], val program: AProgram, val callInfo: AAssignStmt => Set[AFunDeclaration])(implicit declData: DeclarationData)
+class InterproceduralProgramCfg(funEntries: Map[AFunDeclaration, CfgFunEntryNode],
+                                funExits: Map[AFunDeclaration, CfgFunExitNode],
+                                val program: AProgram,
+                                val callInfo: AAssignStmt => Set[AFunDeclaration])(implicit declData: DeclarationData)
     extends ProgramCfg(program, funEntries, funExits) { graph =>
 
   // Check the calls are normalized
@@ -265,7 +268,7 @@ class InterproceduralProgramCfg(funEntries: Map[AFunDeclaration, CfgFunEntryNode
 
     def targetIdentifier: AIdentifier = {
       nd.data match {
-        case AAssignStmt(Left(id), _, _) => id
+        case AAssignStmt(id: AIdentifier, _, _) => id
         case _ => throw new IllegalArgumentException("Expected left-hand-side of call assignment to be an identifier")
       }
     }
@@ -295,7 +298,7 @@ class InterproceduralProgramCfg(funEntries: Map[AFunDeclaration, CfgFunEntryNode
 
     def targetIdentifier: AIdentifier = {
       nd.data match {
-        case AAssignStmt(Left(id), _, _) => id
+        case AAssignStmt(id: AIdentifier, _, _) => id
         case _ => throw new IllegalArgumentException("Expected left-hand-side of call assignment to be an identifier")
       }
     }

@@ -17,3 +17,5 @@ libraryDependencies += "org.scalatest" % "scalatest_2.11" % "3.0.0"
 
 scalaSource in Compile := baseDirectory.value / "src"
 scalaSource in Test := baseDirectory.value / "test"
+
+scalafmtOnCompile in ThisBuild := true // format on compile

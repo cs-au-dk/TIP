@@ -4,13 +4,6 @@ import tip.ast.AstPrinters._
 object AstNode {
 
   var lastUid: Int = 0
-
-  /**
-    * Only `AIdentifier` and `AUnaryOp[DerefOp.type]` are legal left-hand-sides of assignments.
-    * An AST node of type `Assignable` matches `Left(id)` if it is an identifier `id`, and
-    * it matches `Right(AUnaryOp(DerefOp, e, _))` if it is a dereference of `e`.
-    */
-  type Assignable = Either[AIdentifier, AUnaryOp[DerefOp.type]]
 }
 
 /**
@@ -85,6 +78,8 @@ sealed trait AExprOrIdentifierDeclaration extends AstNode
 
 sealed trait AExpr extends AExprOrIdentifierDeclaration
 
+sealed trait Assignable[+T] extends AExpr
+
 sealed trait AAtomicExpr extends AExpr
 
 sealed trait ADeclaration extends AstNode
@@ -93,11 +88,11 @@ case class ACallFuncExpr(targetFun: AExpr, args: List[AExpr], loc: Loc) extends 
 
 case class AIdentifierDeclaration(value: String, loc: Loc) extends ADeclaration with AExprOrIdentifierDeclaration
 
-case class AIdentifier(value: String, loc: Loc) extends AExpr with AAtomicExpr
+case class AIdentifier(value: String, loc: Loc) extends AExpr with AAtomicExpr with Assignable[Nothing]
 
 case class ABinaryOp(operator: BinaryOperator, left: AExpr, right: AExpr, loc: Loc) extends AExpr
 
-case class AUnaryOp[+T <: UnaryOperator](operator: T, target: AExpr, loc: Loc) extends AExpr
+case class AUnaryOp[+T <: UnaryOperator](operator: T, target: AExpr, loc: Loc) extends AExpr with Assignable[T]
 
 case class ANumber(value: Int, loc: Loc) extends AExpr with AAtomicExpr
 
@@ -116,7 +111,7 @@ sealed trait AStmt extends AstNode
   */
 sealed trait AStmtInNestedBlock extends AStmt
 
-case class AAssignStmt(left: AstNode.Assignable, right: AExpr, loc: Loc) extends AStmtInNestedBlock
+case class AAssignStmt(left: Assignable[DerefOp.type], right: AExpr, loc: Loc) extends AStmtInNestedBlock
 
 sealed trait ABlock extends AStmt {
 

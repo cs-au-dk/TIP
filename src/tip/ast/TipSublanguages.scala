@@ -65,12 +65,12 @@ object NormalizedForPointsToAnalysis extends TipSublanguages {
 
   def visit(ast: AstNode, x: Any): Unit = {
     ast match {
-      case AAssignStmt(Left(_), _: AAlloc, _) =>
-      case AAssignStmt(Left(_), AUnaryOp(RefOp, _: AIdentifier, _), _) =>
-      case AAssignStmt(Left(_), _: AIdentifier, _) =>
-      case AAssignStmt(Left(_), AUnaryOp(DerefOp, _: AIdentifier, _), _) =>
-      case AAssignStmt(Right(AUnaryOp(_, _: AIdentifier, _)), _: AIdentifier, _) =>
-      case AAssignStmt(Left(_), _: ANull, _) =>
+      case AAssignStmt(_: AIdentifier, _: AAlloc, _) =>
+      case AAssignStmt(_: AIdentifier, AUnaryOp(RefOp, _: AIdentifier, _), _) =>
+      case AAssignStmt(_: AIdentifier, _: AIdentifier, _) =>
+      case AAssignStmt(_: AIdentifier, AUnaryOp(DerefOp, _: AIdentifier, _), _) =>
+      case AAssignStmt(AUnaryOp(_, _: AIdentifier, _), _: AIdentifier, _) =>
+      case AAssignStmt(_: AIdentifier, _: ANull, _) =>
       case _: ABlock =>
       case _: AVarStmt =>
       case x: AStmt =>
@@ -122,7 +122,7 @@ case class NormalizedCalls(implicit declData: DeclarationData) extends TipSublan
 
   def visit(ast: AstNode, x: Any): Unit = {
     ast match {
-      case AAssignStmt(Left(_), ACallFuncExpr(f: AIdentifier, args, _), _) =>
+      case AAssignStmt(_: AIdentifier, ACallFuncExpr(f: AIdentifier, args, _), _) =>
         if (args.exists(!_.isInstanceOf[AAtomicExpr]))
           LanguageRestrictionViolation(s"One of the arguments $args is not atomic")
         if (!f.declaration.isInstanceOf[AFunDeclaration])
