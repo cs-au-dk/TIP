@@ -25,8 +25,13 @@ object AstPrinters {
       printer.applyOrElse(n, {
         n: AstNode =>
           n match {
-            case ACallFuncExpr(targetFun, args, _) =>
-              s"${targetFun.print(printer)}(${args.map(_.print(printer)).mkString(",")})"
+            case ACallFuncExpr(targetFun, args, indirect, _) =>
+              val targetStr =
+                if (indirect)
+                  s"(${targetFun.print(printer)})"
+                else
+                  s"${targetFun.print(printer)}"
+              s"$targetStr(${args.map(_.print(printer)).mkString(",")})"
             case AIdentifier(value, _) =>
               value
             case ABinaryOp(operator, left, right, _) =>

@@ -64,6 +64,7 @@ class TypeAnalysis(program: AProgram)(implicit declData: DeclarationData) extend
   override def visit(node: AstNode, arg: Null): Unit = {
     log.verb(s"Visiting ${node.getClass.getSimpleName} at ${node.loc}")
     node match {
+      case program: AProgram => ??? // <--- Complete here
       case _: ANumber => ??? // <--- Complete here
       case _: AInput => ??? // <--- Complete here
       case iff: AIfStmt => ??? // <--- Complete here

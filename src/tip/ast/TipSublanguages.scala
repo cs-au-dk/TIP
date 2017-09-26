@@ -33,13 +33,10 @@ case class NoFunctionPointers(implicit declData: DeclarationData) extends TipSub
 
   def visit(ast: AstNode, x: Any): Unit = {
     ast match {
-      case ACallFuncExpr(id: AIdentifier, args, _) =>
-        id.declaration match {
-          case _: AFunDeclaration =>
-          case _ => LanguageRestrictionViolation(s"Identifier $id is not a function identifier")
-        }
+      case ACallFuncExpr(e, args, false, _) =>
+      case ACallFuncExpr(e, args, true, _) =>
+        LanguageRestrictionViolation(s"Indirect call of thr form $ast are not supported")
         args.foreach(visit(_, x))
-      case c: ACallFuncExpr => LanguageRestrictionViolation(s"Call of the form $c is not allowed")
       case id: AIdentifier =>
         id.declaration match {
           case _: AFunDeclaration =>
@@ -87,8 +84,10 @@ object NoPointers extends TipSublanguages {
 
   def visit(ast: AstNode, x: Any): Unit = {
     ast match {
-      case un: AUnaryOp[_] =>
-        LanguageRestrictionViolation(s"Pointer operation $un is not allowed")
+      case AUnaryOp(deref: DerefOp.type, _, _) =>
+        LanguageRestrictionViolation(s"Pointer operation $deref is not allowed")
+      case AUnaryOp(ref: RefOp.type, _, _) =>
+        LanguageRestrictionViolation(s"Pointer operation $ref is not allowed")
       case _ =>
     }
     visitChildren(ast, x)
@@ -122,11 +121,11 @@ case class NormalizedCalls(implicit declData: DeclarationData) extends TipSublan
 
   def visit(ast: AstNode, x: Any): Unit = {
     ast match {
-      case AAssignStmt(_: AIdentifier, ACallFuncExpr(f: AIdentifier, args, _), _) =>
+      case AAssignStmt(_: AIdentifier, ACallFuncExpr(f, args, false, _), _) =>
         if (args.exists(!_.isInstanceOf[AAtomicExpr]))
           LanguageRestrictionViolation(s"One of the arguments $args is not atomic")
-        if (!f.declaration.isInstanceOf[AFunDeclaration])
-          LanguageRestrictionViolation(s"Call with non-function identifier $f")
+      case AAssignStmt(_: AIdentifier, ACallFuncExpr(f, args, true, _), _) =>
+        LanguageRestrictionViolation(s"Indirect call to expression $f")
       case call: ACallFuncExpr => LanguageRestrictionViolation(s"Call $call outside an assignment is not allowed")
       case _ => visitChildren(ast, x)
     }

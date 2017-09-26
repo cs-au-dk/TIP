@@ -206,8 +206,8 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
   }
 
   def FunApp: Rule1[AExpr] = rule {
-    (push(cursor) ~ Parens ~ FunActualArgs ~> ((cur: Int, fun: AExpr, args: Seq[AExpr]) => ACallFuncExpr(fun, args.toList, cur))
-      | push(cursor) ~ Identifier ~ FunActualArgs ~> ((cur: Int, id: AIdentifier, args: Seq[AExpr]) => ACallFuncExpr(id, args.toList, cur)))
+    (push(cursor) ~ Parens ~ FunActualArgs ~> ((cur: Int, fun: AExpr, args: Seq[AExpr]) => ACallFuncExpr(fun, args.toList, true, cur))
+      | push(cursor) ~ Identifier ~ FunActualArgs ~> ((cur: Int, id: AIdentifier, args: Seq[AExpr]) => ACallFuncExpr(id, args.toList, false, cur)))
   }
 
   def FunActualArgs: Rule1[Seq[AExpr]] = rule {

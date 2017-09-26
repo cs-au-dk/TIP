@@ -135,7 +135,7 @@ class MapLattice[A, +L <: Lattice](ch: A => Boolean, val sublattice: L) extends 
   override def bottom: Element = Map().withDefaultValue(sublattice.bottom)
 
   override def lub(x: Element, y: Element) = {
-    x.keys.foldLeft(y)((m, a) => m + (a -> sublattice.lub(x(a), y(a))))
+    x.keys.foldLeft(y)((m, a) => m + (a -> sublattice.lub(x(a), y(a)))).withDefaultValue(sublattice.bottom)
   }
 }
 

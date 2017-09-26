@@ -53,7 +53,7 @@ main() {
     // Functions fun
     u = h;
     v = h;
-    k = v(5);
+    k = (v)(5);
     if((k - 5) > 0) {
         ret = -8;
     }

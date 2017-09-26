@@ -17,15 +17,6 @@ object SignLattice extends FlatLattice[SignElement.Value] with LatticeOps {
 
   import SignElement._
 
-  override def lub(x: Element, y: Element) = {
-    if (x == Bot || y == Top || x == y)
-      y
-    else if (y == Bot || x == Top)
-      x
-    else
-      Top
-  }
-
   private val signValues: Map[FlatElement, Int] = Map(Bot -> 0, FlatEl(Zero) -> 1, FlatEl(Neg) -> 2, FlatEl(Pos) -> 3, Top -> 4)
 
   private def abs(op: List[List[SignLattice.Element]], x: SignLattice.Element, y: SignLattice.Element): SignLattice.Element = {
@@ -58,10 +49,10 @@ object SignLattice extends FlatLattice[SignElement.Value] with LatticeOps {
 
   private val absDivide: List[List[FlatElement]] = List(
     List(Bot, Bot, Bot, Bot, Bot),
-    List(Bot, Top, Zero, Zero, Top),
-    List(Bot, Top, Top, Top, Top),
-    List(Bot, Top, Top, Top, Top),
-    List(Bot, Top, Top, Top, Top)
+    List(Bot, Bot, Zero, Zero, Top),
+    List(Bot, Bot, Top, Top, Top),
+    List(Bot, Bot, Top, Top, Top),
+    List(Bot, Bot, Top, Top, Top)
   )
 
   private val absGt: List[List[FlatElement]] = List(
@@ -126,10 +117,13 @@ object SignLattice extends FlatLattice[SignElement.Value] with LatticeOps {
             gt(eval(bin.left, env), eval(bin.right, env))
           case Eqq =>
             eqq(eval(bin.left, env), eval(bin.right, env))
-          case _ => ???
         }
       case _: AInput => Top
-      case _ => ???
+      case _: AUnaryOp[_] => NoPointers.LanguageRestrictionViolation(s"No pointers allowed in eval $exp")
+      case _: ACallFuncExpr => NoCalls.LanguageRestrictionViolation(s"No calls allowed in eval $exp")
+      case _ => throw UnexpectedUnsupportedExpressionException(s"Unexpected expression $exp in eval")
     }
   }
+
+  case class UnexpectedUnsupportedExpressionException(msg: String) extends RuntimeException(msg)
 }

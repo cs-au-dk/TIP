@@ -50,12 +50,12 @@ object InterproceduralProgramCfg {
   private def usingFunctionDeclarationCallInfo()(implicit declData: DeclarationData): AAssignStmt => Set[AFunDeclaration] = {
     { s: AAssignStmt =>
       s.right match {
-        case ACallFuncExpr(target: AIdentifier, _, loc) =>
+        case ACallFuncExpr(target: AIdentifier, _, false, loc) =>
           declData(target) match {
             case d: AFunDeclaration => Set(d)
             case _ => NoFunctionPointers().LanguageRestrictionViolation(s"$target is not a function identifier at $loc")
           }
-        case ACallFuncExpr(target, _, loc) => throw new RuntimeException(s"$target is not an identifer at $loc")
+        case ACallFuncExpr(target, _, true, loc) => NoFunctionPointers().LanguageRestrictionViolation(s"Indirect call to $target not supported at $loc")
         case _ => Set[AFunDeclaration]()
       }
     }
@@ -96,7 +96,7 @@ object InterproceduralProgramCfg {
     new DepthFirstAstVisitor[Null] {
       override def visit(node: AstNode, arg: Null) = {
         node match {
-          case a @ AAssignStmt(_, c @ ACallFuncExpr(id: AIdentifier, _, _), _) =>
+          case a @ AAssignStmt(_, c @ ACallFuncExpr(id: AIdentifier, _, _, _), _) =>
             callInfo += a -> cfaSolution(id.declaration)
           case _ => visitChildren(node, arg)
         }
@@ -288,7 +288,7 @@ class InterproceduralProgramCfg(funEntries: Map[AFunDeclaration, CfgFunEntryNode
 
     def invokedFunctionIdentifier: AIdentifier = {
       this.assignment.right match {
-        case ACallFuncExpr(id: AIdentifier, _, _) => id
+        case ACallFuncExpr(id: AIdentifier, _, false, _) => id
         case _ => throw new IllegalArgumentException("Expected direct call at call assignment")
       }
     }
@@ -318,7 +318,7 @@ class InterproceduralProgramCfg(funEntries: Map[AFunDeclaration, CfgFunEntryNode
 
     def invokedFunctionIdentifier: AIdentifier = {
       this.assignment.right match {
-        case ACallFuncExpr(id: AIdentifier, _, _) => id
+        case ACallFuncExpr(id: AIdentifier, _, false, _) => id
         case _ => throw new IllegalArgumentException("Expected direct call at call assignment")
       }
     }

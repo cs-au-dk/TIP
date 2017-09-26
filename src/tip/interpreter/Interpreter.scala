@@ -203,7 +203,7 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
       case op @ AUnaryOp(_: DerefOp.type, _, _) =>
         val (l, s1) = semeref(op, env, store)
         (s1.getOrElse(l, errorDerefNotPointer(exp.loc, s1, l)), s1)
-      case ACallFuncExpr(target, actualParams, _) =>
+      case ACallFuncExpr(target, actualParams, _, _) =>
         val (funValue, s1) = semeright(target, env, store)
         funValue match {
           case f: FunValue =>
@@ -267,7 +267,7 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
   def errorConditionNotInt(loc: Loc) =
     throw new RuntimeException(s"Branch condition at $loc not evaluating to an integer")
   def errorDerefNotPointer(loc: Loc, store: Store, x: Any) =
-    throw new RuntimeException(s"Dereferencing non or bad pointer at $loc: $x in $store")
+    throw new RuntimeException(s"Dereferencing non-pointer at $loc: $x in $store")
 
   case class ExecutionError(code: IntValue) extends RuntimeException(s"Execution error, code: $code")
 }

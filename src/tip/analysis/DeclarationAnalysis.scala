@@ -83,6 +83,17 @@ class DeclarationAnalysis(prog: AProgram) extends DepthFirstAstVisitor[Map[Strin
           case _ => ??? // unexpected, only identifiers are allowed here by the parser
         }
         visitChildren(node, env)
+      case ACallFuncExpr(target, _, indirect, loc) =>
+        if (!indirect) {
+          target match {
+            case id: AIdentifier =>
+              if (!env(id.value).isInstanceOf[AFunDeclaration])
+                throw new RuntimeException(s"Direct call with a non-function identifier at $loc")
+            case _ =>
+              throw new RuntimeException(s"Direct call is not possible without a function identifier at $loc")
+          }
+        }
+        visitChildren(node, env)
       case _ =>
         // There is no alteration of the environment, just visit the children in the current environment
         visitChildren(node, env)

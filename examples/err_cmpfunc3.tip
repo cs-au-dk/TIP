@@ -1,6 +1,6 @@
 
 f(z){
-    return z(4);
+    return (z)(4);
 }
 
 g(j){
