@@ -75,6 +75,18 @@ To build:
 sbt compile
 ```
 
+#### Faster runs
+
+Build once with:
+
+```
+sbt assembly
+```
+Run with:
+```
+java -jar target/scala-2.11/tip-assembly-2.0.0.jar -run example/fib.tip
+```
+
 ## Command-line arguments <a name="tipcmd"></a>
 
 Usage:
