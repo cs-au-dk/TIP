@@ -64,7 +64,7 @@ class DeclarationAnalysis(prog: AProgram) extends DepthFirstAstVisitor[Map[Strin
           declResult += ident -> env(ident.value)
         } catch {
           case e: Exception =>
-            throw new RuntimeException(s"Error retrieving definition of $ident in ${env.keys}", e)
+            throw new RuntimeException(s"Identifier $ident not declared", e)
         }
       case AAssignStmt(id: AIdentifier, _, loc) =>
         if (env.contains(id.value)) {
@@ -81,17 +81,6 @@ class DeclarationAnalysis(prog: AProgram) extends DepthFirstAstVisitor[Map[Strin
             throw new RuntimeException(s"Cannot take address of function ${env(id.value)} at $loc")
           case _: AIdentifier => // no problem
           case _ => ??? // unexpected, only identifiers are allowed here by the parser
-        }
-        visitChildren(node, env)
-      case ACallFuncExpr(target, _, indirect, loc) =>
-        if (!indirect) {
-          target match {
-            case id: AIdentifier =>
-              if (!env(id.value).isInstanceOf[AFunDeclaration])
-                throw new RuntimeException(s"Direct call with a non-function identifier at $loc")
-            case _ =>
-              throw new RuntimeException(s"Direct call is not possible without a function identifier at $loc")
-          }
         }
         visitChildren(node, env)
       case _ =>

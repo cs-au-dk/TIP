@@ -33,10 +33,15 @@ case class NoFunctionPointers(implicit declData: DeclarationData) extends TipSub
 
   def visit(ast: AstNode, x: Any): Unit = {
     ast match {
-      case ACallFuncExpr(e, args, false, _) =>
-      case ACallFuncExpr(e, args, true, _) =>
-        LanguageRestrictionViolation(s"Indirect call of thr form $ast are not supported")
+      case ACallFuncExpr(targetFun: AIdentifier, args, _) =>
+        targetFun.declaration match {
+          case _: AFunDeclaration =>
+          case _ =>
+            LanguageRestrictionViolation(s"Indirect call not allowed, $targetFun is not a function")
+        }
         args.foreach(visit(_, x))
+      case ACallFuncExpr(targetFun, args, _) =>
+        LanguageRestrictionViolation(s"Indirect call not allowed, $targetFun is not a function")
       case id: AIdentifier =>
         id.declaration match {
           case _: AFunDeclaration =>
@@ -121,11 +126,16 @@ case class NormalizedCalls(implicit declData: DeclarationData) extends TipSublan
 
   def visit(ast: AstNode, x: Any): Unit = {
     ast match {
-      case AAssignStmt(_: AIdentifier, ACallFuncExpr(f, args, false, _), _) =>
+      case AAssignStmt(_: AIdentifier, ACallFuncExpr(targetFun: AIdentifier, args, _), _) =>
+        targetFun.declaration match {
+          case _: AFunDeclaration =>
+          case _ =>
+            LanguageRestrictionViolation(s"Indirect call not allowed, $targetFun is not a function")
+        }
         if (args.exists(!_.isInstanceOf[AAtomicExpr]))
           LanguageRestrictionViolation(s"One of the arguments $args is not atomic")
-      case AAssignStmt(_: AIdentifier, ACallFuncExpr(f, args, true, _), _) =>
-        LanguageRestrictionViolation(s"Indirect call to expression $f")
+      case AAssignStmt(_: AIdentifier, ACallFuncExpr(targetFun, args, _), _) =>
+        LanguageRestrictionViolation(s"Indirect call not allowed, $targetFun is not a function")
       case call: ACallFuncExpr => LanguageRestrictionViolation(s"Call $call outside an assignment is not allowed")
       case _ => visitChildren(ast, x)
     }

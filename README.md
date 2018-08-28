@@ -33,6 +33,11 @@ inspection profiles you need to checkout the `.idea/inspectionProfiles`
 folder and the `.idea/codeStyleSettings.xml` file from the original repo,
 leaving untouched the other generated folders.
 
+#### IntelliJ Scala bugs
+
+**Important: if you experience spurious type errors reported by IntelliJ for code involving Scala implicits, try disabling type-aware highlighting**
+by clicking on the small `[T]` icon on the bottom right corner of the window.
+
 #### IntelliJ performance
 
 If your IntelliJ has high-CPU and high-memory peaks while editing, the
@@ -101,6 +106,11 @@ Still, the following language features deserve some extra attention:
 - [implicit classes](https://docs.scala-lang.org/overviews/core/implicit-classes.html) (see e.g. [AstNodeData.AstNodeWithDeclaration](src/tip/ast/AstNodeData.scala))
 
 Tutorials and extensive documentation for Scala are available at [http://docs.scala-lang.org/](http://docs.scala-lang.org/).
+
+Useful tips: 
+  - You can see what type Scala has inferred for an expression by selecting the expression and pressing Alt+Equals 
+(depending on keyboard settings in Settings -> Keymap -> Scala -> Type Info).
+  - You can see what implicit conversion Scala is applying and which ones are available by selecting an expression and pressing Ctrl+Q (depending on keyboard settings in Setting -> Keymap -> Scala -> Implicit Conversion). Expressions on which an implicit is applied are underlined.
 
 ## Code style
 

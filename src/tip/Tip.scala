@@ -247,7 +247,7 @@ object Tip extends App {
           }
 
           // run control-flow analysis, if selected
-          if (options.cfa) {
+          if (options.cfa) { // TODO: skip if InterproceduralProgramCfg.generateFromProgramWithCfa has been executed above
             val s = new ControlFlowAnalysis(programNode)
             s.analyze()
           }

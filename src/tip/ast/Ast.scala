@@ -84,7 +84,7 @@ sealed trait AAtomicExpr extends AExpr
 
 sealed trait ADeclaration extends AstNode
 
-case class ACallFuncExpr(targetFun: AExpr, args: List[AExpr], indirect: Boolean, loc: Loc) extends AExpr
+case class ACallFuncExpr(targetFun: AExpr, args: List[AExpr], loc: Loc) extends AExpr
 
 case class AIdentifierDeclaration(value: String, loc: Loc) extends ADeclaration with AExprOrIdentifierDeclaration
 

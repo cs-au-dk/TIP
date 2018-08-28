@@ -1,5 +1,5 @@
 apply(f,a){
-    return (f)(a);
+    return f(a);
 }
 
 fib(n){

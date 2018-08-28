@@ -8,7 +8,7 @@ trapExit := false
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature")
 
 ////// runtime dependencies ////
-libraryDependencies += "org.parboiled" %% "parboiled" % "2.1.3"
+libraryDependencies += "org.parboiled" %% "parboiled" % "2.1.4"
 libraryDependencies += "com.regblanc" % "scala-smtlib_2.11" % "0.2.1"
 
 ////// test dependencies ///////

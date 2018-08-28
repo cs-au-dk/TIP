@@ -50,12 +50,12 @@ object InterproceduralProgramCfg {
   private def usingFunctionDeclarationCallInfo()(implicit declData: DeclarationData): AAssignStmt => Set[AFunDeclaration] = {
     { s: AAssignStmt =>
       s.right match {
-        case ACallFuncExpr(target: AIdentifier, _, false, loc) =>
+        case ACallFuncExpr(target: AIdentifier, _, loc) =>
           declData(target) match {
             case d: AFunDeclaration => Set(d)
             case _ => NoFunctionPointers().LanguageRestrictionViolation(s"$target is not a function identifier at $loc")
           }
-        case ACallFuncExpr(target, _, true, loc) => NoFunctionPointers().LanguageRestrictionViolation(s"Indirect call to $target not supported at $loc")
+        case ACallFuncExpr(target, _, loc) => NoFunctionPointers().LanguageRestrictionViolation(s"Indirect call to $target not supported at $loc")
         case _ => Set[AFunDeclaration]()
       }
     }
@@ -86,7 +86,7 @@ object InterproceduralProgramCfg {
     val allEntries = funGraphs.mapValues(cfg => { assert(cfg.graphEntries.size == 1); cfg.graphEntries.head.asInstanceOf[CfgFunEntryNode] })
     val allExits = funGraphs.mapValues(cfg => { assert(cfg.graphExits.size == 1); cfg.graphExits.head.asInstanceOf[CfgFunExitNode] })
 
-    // ensure that there are no function pointers or indirect calls
+    // ensure that there are no function pointers
     NormalizedCalls().assertContainsProgram(prog)
 
     val cfaSolution = new ControlFlowAnalysis(prog).analyze()
@@ -96,7 +96,7 @@ object InterproceduralProgramCfg {
     new DepthFirstAstVisitor[Null] {
       override def visit(node: AstNode, arg: Null) = {
         node match {
-          case a @ AAssignStmt(_, c @ ACallFuncExpr(id: AIdentifier, _, _, _), _) =>
+          case a @ AAssignStmt(_, c @ ACallFuncExpr(id: AIdentifier, _, _), _) =>
             callInfo += a -> cfaSolution(id.declaration)
           case _ => visitChildren(node, arg)
         }
@@ -122,9 +122,6 @@ class InterproceduralProgramCfg(funEntries: Map[AFunDeclaration, CfgFunEntryNode
                                 val program: AProgram,
                                 val callInfo: AAssignStmt => Set[AFunDeclaration])(implicit declData: DeclarationData)
     extends ProgramCfg(program, funEntries, funExits) { graph =>
-
-  // Check the calls are normalized
-  NormalizedCalls().assertContainsProgram(program)
 
   /**
     * The node corresponding to entry of the main function.
@@ -285,13 +282,6 @@ class InterproceduralProgramCfg(funEntries: Map[AFunDeclaration, CfgFunEntryNode
         case _ => throw new IllegalArgumentException("Expected right-hand-side of call assignment to be a call")
       }
     }
-
-    def invokedFunctionIdentifier: AIdentifier = {
-      this.assignment.right match {
-        case ACallFuncExpr(id: AIdentifier, _, false, _) => id
-        case _ => throw new IllegalArgumentException("Expected direct call at call assignment")
-      }
-    }
   }
 
   implicit class AfterCallNodeContainsAssigment(nd: CfgAfterCallNode) {
@@ -313,13 +303,6 @@ class InterproceduralProgramCfg(funEntries: Map[AFunDeclaration, CfgFunEntryNode
       this.assignment.right match {
         case call: ACallFuncExpr => call
         case _ => throw new IllegalArgumentException("Expected right-hand-side of call assignment to be a call")
-      }
-    }
-
-    def invokedFunctionIdentifier: AIdentifier = {
-      this.assignment.right match {
-        case ACallFuncExpr(id: AIdentifier, _, false, _) => id
-        case _ => throw new IllegalArgumentException("Expected direct call at call assignment")
       }
     }
   }

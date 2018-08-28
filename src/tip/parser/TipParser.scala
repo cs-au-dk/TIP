@@ -95,6 +95,11 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
       | PointersExpression)
   }
 
+  def SimpleAtom: Rule1[AExpr] = rule {
+    (Parens
+      | Identifier)
+  }
+
   def Parens = rule {
     "(" ~ Expression ~ ")" ~> (a => a)
   }
@@ -206,8 +211,7 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
   }
 
   def FunApp: Rule1[AExpr] = rule {
-    (push(cursor) ~ Parens ~ FunActualArgs ~> ((cur: Int, fun: AExpr, args: Seq[AExpr]) => ACallFuncExpr(fun, args.toList, true, cur))
-      | push(cursor) ~ Identifier ~ FunActualArgs ~> ((cur: Int, id: AIdentifier, args: Seq[AExpr]) => ACallFuncExpr(id, args.toList, false, cur)))
+    push(cursor) ~ SimpleAtom ~ FunActualArgs ~> ((cur: Int, fun: AExpr, args: Seq[AExpr]) => ACallFuncExpr(fun, args.toList, cur))
   }
 
   def FunActualArgs: Rule1[Seq[AExpr]] = rule {

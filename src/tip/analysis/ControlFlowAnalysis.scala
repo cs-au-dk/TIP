@@ -63,22 +63,7 @@ class ControlFlowAnalysis(program: AProgram)(implicit declData: DeclarationData)
     node match {
       case fun: AFunDeclaration => ??? //<--- Complete here
       case AAssignStmt(id: AIdentifier, e, _) => ??? //<--- Complete here
-      case ACallFuncExpr(target, args, false, _) =>
-        // Simple call, resolving function name directly
-        decl(target) match {
-          case fun: AFunDeclaration =>
-            // Add the constraints concerning parameters
-            fun.args.zip(args).foreach {
-              case (formalParam, actualParam) =>
-                solver.addSubsetConstraint(decl(actualParam), formalParam)
-            }
-            // Add the constraints concerning the return
-            solver.addSubsetConstraint(decl(fun.stmts.ret.value), node)
-          case _ => ???
-        }
-      case ACallFuncExpr(target, args, true, _) =>
-        // Indirect call, using function pointer
-        ??? //<--- Complete here
+      case ACallFuncExpr(targetFun, args, _) => ??? //<--- Complete here
       case _ =>
     }
     visitChildren(node, null)

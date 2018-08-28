@@ -25,19 +25,14 @@ object AstPrinters {
       printer.applyOrElse(n, {
         n: AstNode =>
           n match {
-            case ACallFuncExpr(targetFun, args, indirect, _) =>
-              val targetStr =
-                if (indirect)
-                  s"(${targetFun.print(printer)})"
-                else
-                  s"${targetFun.print(printer)}"
-              s"$targetStr(${args.map(_.print(printer)).mkString(",")})"
+            case ACallFuncExpr(targetFun, args, _) =>
+              s"${targetFun.print(printer)}(${args.map(_.print(printer)).mkString(",")})"
             case AIdentifier(value, _) =>
               value
             case ABinaryOp(operator, left, right, _) =>
-              left.print(printer) + " " + operator + " " + right.print(printer)
+              s"(${left.print(printer)} $operator ${right.print(printer)})"
             case AUnaryOp(operator, target, _) =>
-              s"$operator${target.print(printer)}"
+              s"($operator${target.print(printer)})"
             case ANumber(value, _) =>
               value.toString
             case AInput(_) =>
@@ -54,7 +49,7 @@ object AstPrinters {
               s"${left.print(printer)} = ${right.print(printer)};"
             case AIfStmt(guard, ifBranch, elseBranch, _) =>
               val elseb = elseBranch.map(x => "else " + x.print(printer)).getOrElse("")
-              s"if (${guard.print(printer)}) ${ifBranch.print(printer)}  $elseb"
+              s"if (${guard.print(printer)}) ${ifBranch.print(printer)} $elseb"
             case AOutputStmt(value, _) =>
               s"output ${value.print(printer)};"
             case AErrorStmt(value, _) =>
