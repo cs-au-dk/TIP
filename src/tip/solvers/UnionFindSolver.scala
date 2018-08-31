@@ -68,42 +68,37 @@ class UnionFindSolver[A] {
     * We assume `t1` and `t2` to be distinct canonical elements.
     * This implementation does not use [[https://en.wikipedia.org/wiki/Disjoint-set_data_structure union-by-rank]].
     */
-  private def mkUnion(t1: Term[A], t2: Term[A]): Unit = {
+  private def mkUnion(t1: Term[A], t2: Term[A]): Unit =
     parent += t1 -> t2
-  }
 
   /**
     * Creates an equivalence class for the term `t`, if it does not exists already.
     */
-  private def mkSet(t: Term[A]): Unit = {
+  private def mkSet(t: Term[A]): Unit =
     if (!parent.contains(t))
       parent += (t -> t)
-  }
 
   /**
     * Returns the solution of the solver.
     * Note that the terms in the solution have not yet been closed, i.e. they may contain constraint variables.
     * @return a map associating to each variable the representative of its equivalence class
     */
-  def solution(): Map[Var[A], Term[A]] = {
+  def solution(): Map[Var[A], Term[A]] =
     // for each constraint variable, find its canonical representative (using the variable itself as default)
     parent.keys.collect { case v: Var[A] => (v, find(v)) }.toMap.withDefault(v => v)
-  }
 
   /**
     * Returns all the unifications of the solution.
     * @return a map from representative to equivalence class
     */
-  def unifications(): Map[Term[A], Traversable[Term[A]]] = {
+  def unifications(): Map[Term[A], Traversable[Term[A]]] =
     parent.keys.groupBy(find).withDefault(Set(_))
-  }
 
   /**
     * Produces a string representation of the solution.
     */
-  override def toString = {
+  override def toString =
     solution().map(p => s"${p._1} = ${p._2}").mkString("\n")
-  }
 }
 
 /**

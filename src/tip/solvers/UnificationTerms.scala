@@ -25,9 +25,8 @@ trait Var[A] extends Term[A] {
 
   val fv: Set[Var[A]] = Set(this)
 
-  def subst(v: Var[A], t: Term[A]): Term[A] = {
+  def subst(v: Var[A], t: Term[A]): Term[A] =
     if (v == this) t else this
-  }
 }
 
 /**
@@ -44,16 +43,15 @@ trait Cons[A] extends Term[A] {
   /**
     * The arity of the constructor.
     */
-  def arity = args.length
+  def arity: Int = args.length
 
   lazy val fv: Set[Var[A]] = args.flatMap(_.fv).toSet
 
   /**
     * Checks whether the term `t` matches this term, meaning that it has the same constructor class and the same arity.
     */
-  def doMatch(t: Term[A]): Boolean = {
+  def doMatch(t: Term[A]): Boolean =
     this.getClass == t.getClass && arity == t.asInstanceOf[Cons[A]].arity
-  }
 }
 
 /**
@@ -112,7 +110,7 @@ trait TermOps[A] {
     * @param env     environment, map from variables to terms
     * @param visited the set of already visited variables (empty by default)
     */
-  private def closeRec(t: Term[A], env: Map[Var[A], Term[A]], visited: Set[Var[A]] = Set()): Term[A] = {
+  private def closeRec(t: Term[A], env: Map[Var[A], Term[A]], visited: Set[Var[A]] = Set()): Term[A] =
     t match {
       case v: Var[A] =>
         if (!visited.contains(v) && env(v) != v) {
@@ -136,5 +134,4 @@ trait TermOps[A] {
       case m: Mu[A] =>
         makeMu(m.v, closeRec(m.t, env, visited))
     }
-  }
 }

@@ -20,28 +20,25 @@ trait CopyConstantPropagationAnalysisFunctions extends IDEAnalysis[ADeclaration,
   lazy val edgelattice: EdgeLattice[valuelattice.type] = new EdgeLattice(valuelattice)
 
   import cfg._
-  import edgelattice.{Edge, IdEdge, ConstEdge}
+  import edgelattice.{ConstEdge, Edge, IdEdge}
   import edgelattice.valuelattice.{FlatEl, Top}
 
-  def edgesCallToEntry(d: DL, call: CfgCallNode, entry: CfgFunEntryNode): List[(DL, edgelattice.Edge)] = {
+  def edgesCallToEntry(d: DL, call: CfgCallNode, entry: CfgFunEntryNode): List[(DL, edgelattice.Edge)] =
     entry.data.args.zip(call.invocation.args).foldLeft(List[(DL, edgelattice.Edge)]()) {
       case (acc, (id, exp)) =>
         acc ++ assign(d, id, exp)
     }
-  }
 
-  def edgesExitToAfterCall(d: DL, exit: CfgFunExitNode, aftercall: CfgAfterCallNode): List[(DL, edgelattice.Edge)] = {
+  def edgesExitToAfterCall(d: DL, exit: CfgFunExitNode, aftercall: CfgAfterCallNode): List[(DL, edgelattice.Edge)] =
     assign(d, aftercall.targetIdentifier.declaration, AstOps.returnId)
-  }
 
-  def edgesCallToAfterCall(d2: DL, call: CfgCallNode, aftercall: CfgAfterCallNode): List[(DL, edgelattice.Edge)] = {
+  def edgesCallToAfterCall(d2: DL, call: CfgCallNode, aftercall: CfgAfterCallNode): List[(DL, edgelattice.Edge)] =
     d2 match {
       case Right(_) => List((d2, IdEdge()))
       case Left(a) => if (a == aftercall.targetIdentifier.declaration) List() else List((d2, IdEdge()))
     }
-  }
 
-  def edgesOther(d: DL, n: CfgNode): List[(DL, edgelattice.Edge)] = {
+  def edgesOther(d: DL, n: CfgNode): List[(DL, edgelattice.Edge)] =
     n match {
       case r: CfgStmtNode =>
         r.data match {
@@ -83,7 +80,6 @@ trait CopyConstantPropagationAnalysisFunctions extends IDEAnalysis[ADeclaration,
       // all other kinds of nodes: like no-ops
       case _ => List((d, IdEdge()))
     }
-  }
 
   /**
     * Micro-transfer-functions for assigning an expression to an identifier.
@@ -128,11 +124,11 @@ class CopyConstantPropagationIDEAnalysis(val cfg: InterproceduralProgramCfg)(imp
   val phase1 = new IDEPhase1Analysis[ADeclaration, FlatLattice[Int]](cfg) with CopyConstantPropagationAnalysisFunctions
   val phase2 = new IDEPhase2Analysis[ADeclaration, FlatLattice[Int]](cfg, phase1) with CopyConstantPropagationAnalysisFunctions
 
-  val declaredVars = domain.flatMap(_.declaredVarsAndParams)
+  val declaredVars: Set[ADeclaration] = domain.flatMap(_.declaredVarsAndParams)
 
   val lattice: MapLattice[CfgNode, MapLattice[ADeclaration, FlatLattice[Int]]] = phase2.restructedlattice
 
-  def analyze() = {
+  def analyze(): lattice.Element = {
     FixpointSolvers.log.verb(s"IDE phase 1")
     phase1.analyze()
     FixpointSolvers.log.verb(s"IDE phase 2")

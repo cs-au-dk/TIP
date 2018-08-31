@@ -2,8 +2,8 @@ package tip.analysis
 
 import tip.ast._
 import tip.cfg._
-import tip.lattices.{ReversePowersetLattice, MapLattice}
-import tip.solvers.{SimpleWorklistFixpointSolver, SimpleMapLatticeFixpointSolver}
+import tip.lattices.{MapLattice, ReversePowersetLattice}
+import tip.solvers.{SimpleMapLatticeFixpointSolver, SimpleWorklistFixpointSolver}
 import tip.ast.AstNodeData.DeclarationData
 
 /**
@@ -16,12 +16,12 @@ abstract class AvailableExpAnalysis(cfg: IntraproceduralProgramCfg)(implicit dec
 
   val allExps: Set[UnlabelledNode[AExpr]] = cfg.nodes.flatMap(_.appearingExpressions.map(UnlabelledNode[AExpr]))
 
-  // Analysis does not accept pointers.
   NoPointers.assertContainsProgram(cfg.prog)
+  NoRecords.assertContainsProgram(cfg.prog)
 
   val lattice = new MapLattice(cfg.nodes, new ReversePowersetLattice(allExps))
 
-  def transfer(n: CfgNode, s: lattice.sublattice.Element): lattice.sublattice.Element = {
+  def transfer(n: CfgNode, s: lattice.sublattice.Element): lattice.sublattice.Element =
     n match {
       case _: CfgFunEntryNode => Set()
       case r: CfgStmtNode =>
@@ -44,7 +44,6 @@ abstract class AvailableExpAnalysis(cfg: IntraproceduralProgramCfg)(implicit dec
         }
       case _ => s
     }
-  }
 }
 
 /**

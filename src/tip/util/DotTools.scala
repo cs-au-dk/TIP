@@ -33,7 +33,7 @@ class DotNode(val id: String, val label: String, val additionalParams: Map[Strin
 
   def this() = this("")
 
-  def equals(other: DotNode) = toDotString.equals(other.toDotString)
+  def equals(other: DotNode): Boolean = toDotString.equals(other.toDotString)
 
   override def toString: String = toDotString
 
@@ -48,7 +48,7 @@ class DotNode(val id: String, val label: String, val additionalParams: Map[Strin
   */
 class DotArrow(val fromNode: DotNode, arrow: String, val toNode: DotNode, val label: String) extends DotElement {
 
-  def equals(other: DotArrow) = toDotString.equals(other.toDotString)
+  def equals(other: DotArrow): Boolean = toDotString.equals(other.toDotString)
 
   def toDotString: String = fromNode.id + " " + arrow + " " + toNode.id + "[label=\"" + Output.escape(label) + "\"]"
 }
@@ -77,14 +77,14 @@ class DotGraph(val title: String, val nodes: Iterable[DotNode], val edges: Itera
   }
 
   def addNode(n: DotNode): DotGraph =
-    if (nodes.exists((a) => n.equals(a))) this
+    if (nodes.exists(a => n.equals(a))) this
     else new DotGraph(title, nodes ++ List(n), edges)
 
   def addEdge(e: DotArrow): DotGraph =
-    if (edges.exists((a) => e.equals(a))) this
+    if (edges.exists(a => e.equals(a))) this
     else new DotGraph(title, nodes, edges ++ List(e))
 
   override def toString: String = toDotString
 
-  def toDotString = "digraph " + title + "{" + (nodes ++ edges).foldLeft("")((str, elm) => str + elm.toDotString + "\n") + "}"
+  def toDotString: String = "digraph " + title + "{" + (nodes ++ edges).foldLeft("")((str, elm) => str + elm.toDotString + "\n") + "}"
 }

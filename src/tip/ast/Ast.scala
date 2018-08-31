@@ -67,9 +67,8 @@ sealed abstract class AstNode extends Product {
     */
   val loc: Loc
 
-  override def toString: String = {
+  override def toString: String =
     s"${this.print(PartialFunction.empty)}:$loc"
-  }
 }
 
 //////////////// Expressions //////////////////////////
@@ -78,7 +77,7 @@ sealed trait AExprOrIdentifierDeclaration extends AstNode
 
 sealed trait AExpr extends AExprOrIdentifierDeclaration
 
-sealed trait Assignable[+T] extends AExpr
+sealed trait Assignable extends AExpr
 
 sealed trait AAtomicExpr extends AExpr
 
@@ -88,19 +87,25 @@ case class ACallFuncExpr(targetFun: AExpr, args: List[AExpr], loc: Loc) extends 
 
 case class AIdentifierDeclaration(value: String, loc: Loc) extends ADeclaration with AExprOrIdentifierDeclaration
 
-case class AIdentifier(value: String, loc: Loc) extends AExpr with AAtomicExpr with Assignable[Nothing]
+case class AIdentifier(value: String, loc: Loc) extends AExpr with AAtomicExpr with Assignable
 
 case class ABinaryOp(operator: BinaryOperator, left: AExpr, right: AExpr, loc: Loc) extends AExpr
 
-case class AUnaryOp[+T <: UnaryOperator](operator: T, target: AExpr, loc: Loc) extends AExpr with Assignable[T]
+case class AUnaryOp(operator: UnaryOperator, target: AExpr, loc: Loc) extends AExpr with Assignable
 
 case class ANumber(value: Int, loc: Loc) extends AExpr with AAtomicExpr
 
 case class AInput(loc: Loc) extends AExpr with AAtomicExpr
 
-case class AAlloc(loc: Loc) extends AExpr with AAtomicExpr
+case class AAlloc(exp: AExpr, loc: Loc) extends AExpr with AAtomicExpr
 
 case class ANull(loc: Loc) extends AExpr with AAtomicExpr
+
+case class ARecord(fields: List[ARecordField], loc: Loc) extends AExpr
+
+case class ARecordField(field: String, exp: AExpr, loc: Loc)
+
+case class AAccess(record: AExpr, field: String, loc: Loc) extends AExpr with AAtomicExpr
 
 //////////////// Statements //////////////////////////
 
@@ -111,7 +116,7 @@ sealed trait AStmt extends AstNode
   */
 sealed trait AStmtInNestedBlock extends AStmt
 
-case class AAssignStmt(left: Assignable[DerefOp.type], right: AExpr, loc: Loc) extends AStmtInNestedBlock
+case class AAssignStmt(left: Assignable, right: AExpr, loc: Loc) extends AStmtInNestedBlock
 
 sealed trait ABlock extends AStmt {
 
@@ -154,16 +159,14 @@ case class AProgram(funs: List[AFunDeclaration], loc: Loc) extends AstNode {
     else throw new RuntimeException(s"Missing main function, declared functions are $funs")
   }
 
-  def hasMainFunction: Boolean = {
+  def hasMainFunction: Boolean =
     findMainFunction().isDefined
-  }
 
-  private def findMainFunction(): Option[AFunDeclaration] = {
+  private def findMainFunction(): Option[AFunDeclaration] =
     funs.find(decl => decl.name == "main")
-  }
 
 }
 
 case class AFunDeclaration(name: String, args: List[AIdentifierDeclaration], stmts: AFunBlockStmt, loc: Loc) extends ADeclaration {
-  override def toString: String = s"$name (${args.mkString(",")}){...}"
+  override def toString: String = s"$name(${args.mkString(",")}){...}:$loc"
 }

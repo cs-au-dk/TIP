@@ -76,9 +76,8 @@ trait MapLatticeSolver[N] extends LatticeSolver with Dependencies[N] {
     * @param x the current lattice element for all locations
     * @return the output sublattice element
     */
-  def funsub(n: N, x: lattice.Element): lattice.sublattice.Element = {
+  def funsub(n: N, x: lattice.Element): lattice.sublattice.Element =
     transfer(n, join(n, x))
-  }
 
   /**
     * Computes the least upper bound of the incoming elements.
@@ -314,7 +313,7 @@ trait WorklistFixpointPropagationSolver[N] extends WorklistFixpointSolverWithIni
     * The initial lattice element at the start locations.
     * Default: lift(bottom).
     */
-  def init = lattice.sublattice.lift(lattice.sublattice.sublattice.bottom)
+  def init: lattice.sublattice.Element = lattice.sublattice.lift(lattice.sublattice.sublattice.bottom)
 
   /**
     * This method overrides the one from [[WorklistFixpointSolver]].
@@ -384,11 +383,9 @@ trait WorklistFixpointSolverWithInitAndSimpleWideningAndNarrowing[N]
     * @param x the lattice element
     * @param i number of iterations
     */
-  def narrow(x: lattice.Element, i: Int): lattice.Element = {
+  def narrow(x: lattice.Element, i: Int): lattice.Element =
     if (i <= 0) x else narrow(fun(x), i - 1) // uses the simple definition of 'fun' from SimpleMapLatticeFixpointSolver
-  }
 
-  override def analyze(): lattice.Element = {
+  override def analyze(): lattice.Element =
     narrow(super[WorklistFixpointSolverWithInitAndSimpleWidening].analyze(), narrowingSteps)
-  }
 }

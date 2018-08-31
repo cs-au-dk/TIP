@@ -21,7 +21,7 @@ object AstPrinters {
     */
   implicit class DefaultRecursivePrinter(n: AstNode) {
 
-    def print(printer: PartialFunction[AstNode, String]): String = {
+    def print(printer: PartialFunction[AstNode, String]): String =
       printer.applyOrElse(n, {
         n: AstNode =>
           n match {
@@ -37,8 +37,14 @@ object AstPrinters {
               value.toString
             case AInput(_) =>
               "input"
-            case AAlloc(_) =>
-              "alloc"
+            case AAlloc(e, _) =>
+              s"alloc ${e.print(printer)}"
+            case ARecord(fields, _) =>
+              fields.map { f =>
+                s"${f.field}:${f.exp.print(printer)}"
+              }.mkString("{", ",", "}")
+            case AAccess(record, field, _) =>
+              s"${record.print(printer)}.$field"
             case ANull(_) =>
               "null"
             case AIdentifierDeclaration(value, _) =>
@@ -66,6 +72,5 @@ object AstPrinters {
               s"${funs.map(_.print(printer)).mkString("\n\n")}"
           }
       })
-    }
   }
 }

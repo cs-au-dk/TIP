@@ -17,7 +17,7 @@ sealed trait ExecutionTree { self =>
 
   def parent: ExecutionTree
 
-  def pathCondition(suffix: List[(AExpr, Boolean)] = Nil): List[(AExpr, Boolean)] = {
+  def pathCondition(suffix: List[(AExpr, Boolean)] = Nil): List[(AExpr, Boolean)] =
     parent match {
       case b: Branch if b.branches(true) == self =>
         // self node is in the true branch
@@ -27,7 +27,6 @@ sealed trait ExecutionTree { self =>
         (b.symcond, false) :: b.pathCondition(suffix)
       case _ => parent.pathCondition(suffix)
     }
-  }
 
   def children: List[ExecutionTree]
 
@@ -89,12 +88,13 @@ class UnsatSubTree(val parent: Branch) extends ExecutionTree {
 /**
   * A node representing a branching in the execution tree
   */
-class Branch(val condition: AExpr,
-             val symcond: AExpr,
-             val parent: ExecutionTree,
-             val branches: mutable.Map[Boolean, ExecutionTree] = mutable.Map(),
-             val count: mutable.Map[Boolean, Int] = mutable.Map())
-    extends ExecutionTree {
+class Branch(
+  val condition: AExpr,
+  val symcond: AExpr,
+  val parent: ExecutionTree,
+  val branches: mutable.Map[Boolean, ExecutionTree] = mutable.Map(),
+  val count: mutable.Map[Boolean, Int] = mutable.Map()
+) extends ExecutionTree {
 
   branches(true) = new SubTreePlaceholder(this)
   branches(false) = new SubTreePlaceholder(this)
@@ -112,7 +112,7 @@ class Branch(val condition: AExpr,
     branches(value)
   }
 
-  def unsat(branch: Boolean): ExecutionTree = {
+  def unsat(branch: Boolean): ExecutionTree =
     branches(branch) match {
       case _: SubTreePlaceholder =>
         branches(branch) = new UnsatSubTree(this)
@@ -120,7 +120,6 @@ class Branch(val condition: AExpr,
       case _ =>
         ??? // Impossible: previously satisfiable branch becomes unsatisfiable
     }
-  }
 
 }
 
@@ -129,7 +128,7 @@ object ExecutionTreePrinter {
     val str = treeNode match {
       case n: SubTreePlaceholder =>
         if (n.parent.branches(true) == treeNode && n.parent.count(true) > 0
-            || n.parent.branches(false) == treeNode && n.parent.count(false) > 0)
+          || n.parent.branches(false) == treeNode && n.parent.count(false) > 0)
           "<visited>"
         else
           "<??>"

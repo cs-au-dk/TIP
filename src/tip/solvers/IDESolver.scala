@@ -104,9 +104,8 @@ abstract class IDEPhase1Analysis[D, L <: Lattice](val cfg: InterproceduralProgra
   /**
     * Adds the given item to the exit jump cache.
     */
-  private def storeExitJump(funentry: CfgFunEntryNode, d1: DL, d2: DL) = {
+  private def storeExitJump(funentry: CfgFunEntryNode, d1: DL, d2: DL) =
     exitJumpCache.getOrElseUpdate((funentry, d1), mutable.Set[DL]()) += d2
-  }
 
   /**
     * Models flow from function exit to aftercall node.
@@ -129,7 +128,7 @@ abstract class IDEPhase1Analysis[D, L <: Lattice](val cfg: InterproceduralProgra
     }
   }
 
-  override def process(nab: (CfgNode, DL, DL)) = {
+  def process(nab: (CfgNode, DL, DL)) = {
     import cfg._
     nab match {
       case (n, d1, d2) =>
@@ -196,11 +195,9 @@ abstract class IDEPhase1Analysis[D, L <: Lattice](val cfg: InterproceduralProgra
           case _ => // ignore other node kinds
         }
     }
-    FixpointSolvers.log.verb(s"Function summaries:\n${res
-      .map {
-        case (f, s) => s"  function $f:\n${s.map { case (d1, m) => s"${m.map { case (d2, e) => s"    ($d1,$d2): $e" }.mkString("\n")}" }.mkString("\n")}"
-      }
-      .mkString("\n")} ")
+    FixpointSolvers.log.verb(s"Function summaries:\n${res.map {
+      case (f, s) => s"  function $f:\n${s.map { case (d1, m) => s"${m.map { case (d2, e) => s"    ($d1,$d2): $e" }.mkString("\n")}" }.mkString("\n")}"
+    }.mkString("\n")} ")
     res
   }
 }
@@ -237,7 +234,7 @@ class IDEPhase2Analysis[D, L <: Lattice](val cfg: InterproceduralProgramCfg, val
 
   val first: Set[(CfgNode, DL)] = Set((cfg.funEntries(cfg.program.mainFunction), Right(Lambda())))
 
-  val init = lattice.sublattice.top
+  val init: lattice.sublattice.Element = lattice.sublattice.top
 
   def process(nd: (CfgNode, DL)) = {
     import cfg._
@@ -292,7 +289,7 @@ class IDEPhase2Analysis[D, L <: Lattice](val cfg: InterproceduralProgramCfg, val
   /**
     * Restructures the analysis output to match `restructedlattice`.
     */
-  def restructure(y: lattice.Element): restructedlattice.Element = {
+  def restructure(y: lattice.Element): restructedlattice.Element =
     y.foldLeft(Map[CfgNode, Map[D, lattice.sublattice.Element]]()) {
         case (acc, ((n, dl), e)) =>
           dl match {
@@ -301,5 +298,4 @@ class IDEPhase2Analysis[D, L <: Lattice](val cfg: InterproceduralProgramCfg, val
           }
       }
       .asInstanceOf[restructedlattice.Element] // FIXME: avoid this asInstanceOf
-  }
 }

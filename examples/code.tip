@@ -37,7 +37,7 @@ main(){
     return test(5);
 /*
     var a,b,c;
-    b = alloc;
+    b = alloc null;
     a=100;
     //c=g(b);
     c=g(&a);

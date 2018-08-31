@@ -19,9 +19,8 @@ object SignLattice extends FlatLattice[SignElement.Value] with LatticeOps {
 
   private val signValues: Map[FlatElement, Int] = Map(Bot -> 0, FlatEl(Zero) -> 1, FlatEl(Neg) -> 2, FlatEl(Pos) -> 3, Top -> 4)
 
-  private def abs(op: List[List[SignLattice.Element]], x: SignLattice.Element, y: SignLattice.Element): SignLattice.Element = {
+  private def abs(op: List[List[SignLattice.Element]], x: SignLattice.Element, y: SignLattice.Element): SignLattice.Element =
     op(signValues(x))(signValues(y))
-  }
 
   private val absPlus: List[List[FlatElement]] = List(
     List(Bot, Bot, Bot, Bot, Bot),
@@ -72,34 +71,33 @@ object SignLattice extends FlatLattice[SignElement.Value] with LatticeOps {
       List(Bot, Top, Top, Top, Top)
     )
 
-  override def plus(a: SignLattice.Element, b: SignLattice.Element) = abs(absPlus, a, b)
+  def plus(a: SignLattice.Element, b: SignLattice.Element): SignLattice.Element = abs(absPlus, a, b)
 
-  override def minus(a: SignLattice.Element, b: SignLattice.Element) = abs(absMinus, a, b)
+  def minus(a: SignLattice.Element, b: SignLattice.Element): SignLattice.Element = abs(absMinus, a, b)
 
-  override def times(a: SignLattice.Element, b: SignLattice.Element) = abs(absTimes, a, b)
+  def times(a: SignLattice.Element, b: SignLattice.Element): SignLattice.Element = abs(absTimes, a, b)
 
-  override def div(a: SignLattice.Element, b: SignLattice.Element) = abs(absDivide, a, b)
+  def div(a: SignLattice.Element, b: SignLattice.Element): SignLattice.Element = abs(absDivide, a, b)
 
-  override def eqq(a: SignLattice.Element, b: SignLattice.Element) = abs(absEq, a, b)
+  def eqq(a: SignLattice.Element, b: SignLattice.Element): SignLattice.Element = abs(absEq, a, b)
 
-  override def gt(a: SignLattice.Element, b: SignLattice.Element) = abs(absGt, a, b)
+  def gt(a: SignLattice.Element, b: SignLattice.Element): SignLattice.Element = abs(absGt, a, b)
 
   /**
     * Returns the sign of `i`.
     */
-  private def sign(i: Int): Element = {
+  private def sign(i: Int): Element =
     if (i == 0)
       Zero
     else if (i > 0)
       Pos
     else
       Neg
-  }
 
   /**
     * Evaluates the expression `exp` in the abstract domain of signs, using `env` as the current environment.
     */
-  def eval[A](exp: AExpr, env: Map[ADeclaration, Element])(implicit declData: DeclarationData): Element = {
+  def eval[A](exp: AExpr, env: Map[ADeclaration, Element])(implicit declData: DeclarationData): Element =
     exp match {
       case id: AIdentifier => env(id.declaration)
       case num: ANumber => sign(num.value)
@@ -119,11 +117,11 @@ object SignLattice extends FlatLattice[SignElement.Value] with LatticeOps {
             eqq(eval(bin.left, env), eval(bin.right, env))
         }
       case _: AInput => Top
-      case _: AUnaryOp[_] => NoPointers.LanguageRestrictionViolation(s"No pointers allowed in eval $exp")
+      case AUnaryOp(RefOp, _, _) | AUnaryOp(DerefOp, _, _) | ANull(_) | AAlloc(_, _) | AAccess(_, _, _) =>
+        NoPointers.LanguageRestrictionViolation(s"No pointers allowed in eval $exp")
       case _: ACallFuncExpr => NoCalls.LanguageRestrictionViolation(s"No calls allowed in eval $exp")
       case _ => throw UnexpectedUnsupportedExpressionException(s"Unexpected expression $exp in eval")
     }
-  }
 
   case class UnexpectedUnsupportedExpressionException(msg: String) extends RuntimeException(msg)
 }

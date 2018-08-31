@@ -29,9 +29,9 @@ trait Dependencies[N] {
   */
 trait ForwardDependencies extends Dependencies[CfgNode] {
 
-  def outdep(n: CfgNode) = n.succ.toSet
+  def outdep(n: CfgNode): Set[CfgNode] = n.succ.toSet
 
-  def indep(n: CfgNode) = n.pred.toSet
+  def indep(n: CfgNode): Set[CfgNode] = n.pred.toSet
 }
 
 /**
@@ -39,9 +39,9 @@ trait ForwardDependencies extends Dependencies[CfgNode] {
   */
 trait BackwardDependencies extends Dependencies[CfgNode] {
 
-  def outdep(n: CfgNode) = n.pred.toSet
+  def outdep(n: CfgNode): Set[CfgNode] = n.pred.toSet
 
-  def indep(n: CfgNode) = n.succ.toSet
+  def indep(n: CfgNode): Set[CfgNode] = n.succ.toSet
 }
 
 /**
@@ -57,7 +57,7 @@ trait InterproceduralForwardDependencies extends Dependencies[CfgNode] {
     * Like [[ForwardDependencies.outdep]] but with call and return edges.
     * A call node has an outdep to its after-call node.
     */
-  override def outdep(n: CfgNode) = {
+  override def outdep(n: CfgNode): Set[CfgNode] = {
     val interDep = n match {
       case call: CfgCallNode => call.callees
       case exit: CfgFunExitNode => exit.callersAfterCall
@@ -69,12 +69,11 @@ trait InterproceduralForwardDependencies extends Dependencies[CfgNode] {
   /**
     * Like [[ForwardDependencies.indep]] but returning an empty set for after-call nodes.
     */
-  override def indep(n: CfgNode) = {
+  override def indep(n: CfgNode): Set[CfgNode] =
     n match {
       case _: CfgAfterCallNode => Set()
       case _ => n.pred.toSet
     }
-  }
 }
 
 /**
@@ -88,19 +87,17 @@ trait ContextSensitiveForwardDependencies[C <: CallContext] extends Dependencies
     * Like [[InterproceduralForwardDependencies.outdep]] but returning an empty set for call nodes and function exit nodes,
     * and using the same context as the given pair.
     */
-  override def outdep(n: (C, CfgNode)) = {
+  override def outdep(n: (C, CfgNode)): Set[(C, CfgNode)] =
     (n._2 match {
       case call: CfgCallNode => Set()
       case _ => n._2.succ.toSet
     }).map { d =>
       (n._1, d)
     }
-  }
 
   /**
     * (Not implemented as it is not used by any existing analysis.)
     */
-  override def indep(n: (C, CfgNode)) = {
+  override def indep(n: (C, CfgNode)): Set[(C, CfgNode)] =
     ???
-  }
 }

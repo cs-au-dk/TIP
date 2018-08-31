@@ -5,6 +5,7 @@ import tip.solvers._
 import tip.types._
 import tip.ast.AstNodeData._
 import tip.util.Log
+import AstOps._
 
 /**
   * Unification-based type analysis.
@@ -25,6 +26,8 @@ class TypeAnalysis(program: AProgram)(implicit declData: DeclarationData) extend
 
   val solver = new UnionFindSolver[TipType]
 
+  implicit val allFieldNames: List[String] = program.appearingFields.toList.sorted
+
   /**
     * @inheritdoc
     */
@@ -37,7 +40,7 @@ class TypeAnalysis(program: AProgram)(implicit declData: DeclarationData) extend
 
     // close the terms and create the TypeData
     new DepthFirstAstVisitor[Null] {
-      val sol = solver.solution()
+      val sol: Map[Var[TipType], Term[TipType]] = solver.solution()
       visit(program, null)
 
       // extract the type for each identifier declaration and each non-identifier expression
@@ -61,7 +64,7 @@ class TypeAnalysis(program: AProgram)(implicit declData: DeclarationData) extend
     * @param node the node for which it generates the constraints
     * @param arg unused for this visitor
     */
-  override def visit(node: AstNode, arg: Null): Unit = {
+  def visit(node: AstNode, arg: Null): Unit = {
     log.verb(s"Visiting ${node.getClass.getSimpleName} at ${node.loc}")
     node match {
       case program: AProgram => ??? // <--- Complete here
@@ -76,16 +79,27 @@ class TypeAnalysis(program: AProgram)(implicit declData: DeclarationData) extend
           case Eqq => ??? // <--- Complete here
           case _ => ??? // <--- Complete here
         }
-      case un: AUnaryOp[_] =>
+      case un: AUnaryOp =>
         un.operator match {
           case RefOp => ??? // <--- Complete here
           case DerefOp => ??? // <--- Complete here
         }
-      case _: AAlloc => ??? // <--- Complete here
+      case alloc: AAlloc => ??? // <--- Complete here
       case _: ANull => ??? // <--- Complete here
       case fun: AFunDeclaration => ??? // <--- Complete here
       case call: ACallFuncExpr => ??? // <--- Complete here
       case _: AReturnStmt =>
+      case rec: ARecord =>
+        val fieldmap = rec.fields.foldLeft(Map[String, Term[TipType]]()) { (a, b) =>
+          a + (b.field -> b.exp)
+        }
+        unify(rec, TipRecord(allFieldNames.map { f =>
+          fieldmap.getOrElse(f, TipAlpha(rec, f))
+        }))
+      case ac: AAccess =>
+        unify(ac.record, TipRecord(allFieldNames.map { f =>
+          if (f == ac.field) TipVar(ac) else TipAlpha(ac, f)
+        }))
       case _ =>
     }
     visitChildren(node, null)

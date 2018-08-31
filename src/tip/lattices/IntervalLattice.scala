@@ -15,15 +15,15 @@ class IntervalLattice extends Lattice with LatticeOps {
     */
   type Element = (Num, Num)
 
-  val FullInterval = (MInf, PInf)
+  val FullInterval: Element = (MInf, PInf)
 
-  val EmptyInterval = (PInf, MInf)
+  val EmptyInterval: Element = (PInf, MInf)
 
   implicit def int2num(i: Int): IntNum = IntNum(i)
 
-  override def bottom: Element = EmptyInterval
+  val bottom: Element = EmptyInterval
 
-  override def lub(x: Element, y: Element) = {
+  def lub(x: Element, y: Element): Element =
     (x, y) match {
       case (FullInterval, _) => FullInterval
       case (EmptyInterval, a) => a
@@ -33,13 +33,12 @@ class IntervalLattice extends Lattice with LatticeOps {
       case ((IntNum(l1), IntNum(h1)), (IntNum(l2), IntNum(h2))) => (IntNum(math.min(l1, l2)), IntNum(math.max(h1, h2)))
       case _ => lub(y, x)
     }
-  }
 
   /**
     * A Num is an int, +infinity, or -infinity.
     */
-  trait Num extends Ordered[Num] {
-    override def compare(that: Num) = {
+  sealed trait Num extends Ordered[Num] {
+    def compare(that: Num): Int =
       (this, that) match {
         case (x, y) if x == y => 0
         case (IntNum(a), IntNum(b)) => a - b
@@ -48,7 +47,6 @@ class IntervalLattice extends Lattice with LatticeOps {
         case (PInf, _) => 1
         case (_, MInf) => 1
       }
-    }
   }
 
   case class IntNum(i: Int) extends Num {
@@ -66,7 +64,7 @@ class IntervalLattice extends Lattice with LatticeOps {
   /**
     * Abstract binary `+` on intervals.
     */
-  override def plus(a: Element, b: Element): Element = {
+  def plus(a: Element, b: Element): Element = {
     val low = (a._1, b._1) match {
       case (_, MInf) | (MInf, _) => MInf
       case (_, PInf) | (PInf, _) => PInf
@@ -83,12 +81,12 @@ class IntervalLattice extends Lattice with LatticeOps {
   /**
     * Abstract binary `-` on intervals.
     */
-  override def minus(a: Element, b: Element): Element = plus(a, inv(b))
+  def minus(a: Element, b: Element): Element = plus(a, inv(b))
 
   /**
     * Abstract `/` on intervals.
     */
-  override def div(a: Element, b: Element): Element = {
+  def div(a: Element, b: Element): Element =
     (a, b) match {
       case ((PInf, _), _) => EmptyInterval
       case (_, (PInf, _)) => EmptyInterval
@@ -105,12 +103,11 @@ class IntervalLattice extends Lattice with LatticeOps {
           x._2
         }))
     }
-  }
 
   /**
     * Finds the minimum of the given set of Num values.
     */
-  def min(s: Set[Num]): Num = {
+  def min(s: Set[Num]): Num =
     if (s.isEmpty) PInf
     else {
       s.reduce { (a, b) =>
@@ -122,12 +119,11 @@ class IntervalLattice extends Lattice with LatticeOps {
         }
       }
     }
-  }
 
   /**
     * Finds the maximum of the given set of Num values.
     */
-  def max(s: Set[Num]): Num = {
+  def max(s: Set[Num]): Num =
     if (s.isEmpty) MInf
     else {
       s.reduce { (a, b) =>
@@ -139,40 +135,41 @@ class IntervalLattice extends Lattice with LatticeOps {
         }
       }
     }
-  }
 
   /**
     * Returns the set of signs of the integers in the given interval.
     */
-  private def signs(a: Element): Set[Int] = {
+  private def signs(a: Element): Set[Int] =
     a match {
-      case FullInterval => Set(-1, 0, +1)
+      case (MInf, PInf) => Set(-1, 0, +1)
       case (MInf, IntNum(x)) => if (x > 0) Set(-1, 0, +1, x) else if (x == 0) Set(-1, 0) else Set(x, -1)
       case (IntNum(x), PInf) => if (x < 0) Set(x, -1, 0, +1) else if (x == 0) Set(0, +1, x) else Set(+1, x)
       case (IntNum(l), IntNum(h)) =>
         Set(-1, +1, 0, l, h).filter { x =>
           x <= h && x >= l
         }
+      case (MInf, MInf) => Set(-1)
+      case (PInf, PInf) => Set(+1)
+      case _ => ???
     }
-  }
 
   /**
     * Apples the binary operator `op` on the interval `a` and the int `b`.
     */
-  private def opNum(a: Element, b: Int, op: (Int, Int) => Int): Element = {
+  private def opNum(a: Element, b: Int, op: (Int, Int) => Int): Element =
     a match {
       case (PInf, _) => EmptyInterval
-      case FullInterval => FullInterval
+      case (_, MInf) => EmptyInterval
+      case (MInf, PInf) => FullInterval
       case (MInf, IntNum(x)) => if (b == 0) (0, 0) else if (b < 0) (op(x, b), PInf) else (MInf, op(x, b))
       case (IntNum(x), PInf) => if (b == 0) (0, 0) else if (b < 0) (MInf, op(x, b)) else (op(x, b), PInf)
       case (IntNum(x), IntNum(y)) => (min(Set(op(x, b), op(y, b))), max(Set(op(x, b), op(y, b))))
     }
-  }
 
   /**
     * Abstract `*` on intervals;
     */
-  override def times(a: Element, b: Element): Element = {
+  def times(a: Element, b: Element): Element =
     (a, b) match {
       case ((PInf, _), _) => EmptyInterval
       case (_, (PInf, _)) => EmptyInterval
@@ -190,25 +187,26 @@ class IntervalLattice extends Lattice with LatticeOps {
           x._2
         }))
     }
-  }
 
   /**
     * Abstract unary `-` on intervals.
     */
-  private def inv(b: Element): Element = {
+  private def inv(b: Element): Element =
     b match {
-      case FullInterval => FullInterval
-      case EmptyInterval => EmptyInterval
+      case (MInf, PInf) => FullInterval
+      case (PInf, MInf) => EmptyInterval
       case (IntNum(j), PInf) => (MInf, IntNum(-j))
       case (MInf, IntNum(j)) => (IntNum(-j), PInf)
       case (IntNum(l), IntNum(h)) => (IntNum(math.min(-h, -l)), IntNum(math.max(-h, -l)))
+      case (MInf, MInf) => (PInf, PInf)
+      case (PInf, PInf) => (MInf, MInf)
+      case _ => ???
     }
-  }
 
   /**
     * Abstract `==` on intervals;
     */
-  override def eqq(a: Element, b: Element): Element = {
+  def eqq(a: Element, b: Element): Element =
     (a, b) match {
       case (FullInterval, _) => FullInterval
       case (_, FullInterval) => FullInterval
@@ -220,12 +218,11 @@ class IntervalLattice extends Lattice with LatticeOps {
       case _ =>
         (IntNum(0), IntNum(1))
     }
-  }
 
   /**
     * Abstract `>` on intervals;
     */
-  override def gt(a: Element, b: Element): Element = {
+  def gt(a: Element, b: Element): Element =
     (a, b) match {
       case (FullInterval, _) => FullInterval
       case (_, FullInterval) => FullInterval
@@ -240,5 +237,4 @@ class IntervalLattice extends Lattice with LatticeOps {
         //TODO: We can be more precise here
         (IntNum(0), IntNum(1))
     }
-  }
 }

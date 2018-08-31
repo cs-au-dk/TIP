@@ -18,7 +18,7 @@ main() {
   n = 42;
   while (n>0) {
     n = n-1;
-    h = alloc;
+    h = alloc null;
     *h = t;
     t = h;
   }

@@ -9,7 +9,7 @@ class ConcolicEngine(val program: AProgram)(implicit declData: DeclarationData) 
 
   override val log = Log.logger[this.type]()
 
-  def nextExplorationTarget(lastExplored: ExecutionTree, root: ExecutionTreeRoot): Option[(Branch, Boolean)] = {
+  def nextExplorationTarget(lastExplored: ExecutionTree, root: ExecutionTreeRoot): Option[(Branch, Boolean)] =
     lastExplored.parent match {
       case b: Branch =>
         (b.branches(true), b.branches(false)) match {
@@ -19,7 +19,6 @@ class ConcolicEngine(val program: AProgram)(implicit declData: DeclarationData) 
         }
       case _ => None
     }
-  }
 
   def newInputs(symbols: List[Symbol], lastNode: ExecutionTree, root: ExecutionTreeRoot): Option[List[Int]] = {
     if (lastNode == root) {

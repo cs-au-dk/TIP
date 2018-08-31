@@ -11,15 +11,17 @@ abstract class SymbolicInterpreter(program: AProgram)(implicit declData: Declara
 
   import spec._
 
-  case class ConcolicState(var symbols: List[Symbol] = Nil,
-                           var ct: ExecutionTree,
-                           var counter: Int = 0,
-                           var inputs: List[Int] = Nil,
-                           var usedInputs: List[Int] = Nil)
+  case class ConcolicState(
+    var symbols: List[Symbol] = Nil,
+    var ct: ExecutionTree,
+    var counter: Int = 0,
+    var inputs: List[Int] = Nil,
+    var usedInputs: List[Int] = Nil
+  )
 
   var cState: ConcolicState
 
-  override protected def semc(stm: AStmt, env: Env, store: Store): (Env, Store) = {
+  override protected def semc(stm: AStmt, env: Env, store: Store): (Env, Store) =
     stm match {
       case AIfStmt(guard, ifBranch, elseBranch, loc) =>
         val (gv, s1) = semeright(guard, env, store)
@@ -53,9 +55,8 @@ abstract class SymbolicInterpreter(program: AProgram)(implicit declData: Declara
         }
       case _ => super.semc(stm, env, store)
     }
-  }
 
-  override protected def semeright(exp: AExpr, env: Env, store: Store): (EValue, Store) = {
+  override protected def semeright(exp: AExpr, env: Env, store: Store): (EValue, Store) =
     exp match {
       case AInput(_) =>
         val newSymbol = new Symbol(exp.loc, cState.counter)
@@ -72,7 +73,6 @@ abstract class SymbolicInterpreter(program: AProgram)(implicit declData: Declara
         (v, store)
       case _ => super.semeright(exp, env, store)
     }
-  }
 
   case class SymbolicInterpreterException(code: Int, message: String) extends RuntimeException(message)
 

@@ -16,11 +16,11 @@ abstract class LiveVarsAnalysis(cfg: IntraproceduralProgramCfg)(implicit declDat
 
   import AstNodeData._
 
-  val allVars = cfg.nodes.flatMap(_.appearingIds)
+  val allVars: Set[ADeclaration] = cfg.nodes.flatMap(_.appearingIds)
 
   val lattice = new MapLattice(cfg.nodes, new PowersetLattice(allVars))
 
-  def transfer(n: CfgNode, s: lattice.sublattice.Element): lattice.sublattice.Element = {
+  def transfer(n: CfgNode, s: lattice.sublattice.Element): lattice.sublattice.Element =
     n match {
       case _: CfgFunExitNode => lattice.sublattice.bottom
       case r: CfgStmtNode =>
@@ -38,7 +38,6 @@ abstract class LiveVarsAnalysis(cfg: IntraproceduralProgramCfg)(implicit declDat
         }
       case _ => s
     }
-  }
 }
 
 /**

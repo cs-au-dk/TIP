@@ -21,7 +21,7 @@ trait Lattice {
   /**
     * The bottom element of this lattice.
     */
-  def bottom: Element
+  val bottom: Element
 
   /**
     * The top element of this lattice.
@@ -47,9 +47,9 @@ class UniformProductLattice[L <: Lattice](val sublattice: L, n: Int) extends Lat
 
   type Element = List[sublattice.Element]
 
-  override def bottom: Element = List.fill(n)(sublattice.bottom)
+  val bottom: Element = List.fill(n)(sublattice.bottom)
 
-  override def lub(x: Element, y: Element) = {
+  def lub(x: Element, y: Element): Element = {
     if (x.length != y.length)
       error()
     (x zip y).map { case (xc, yc) => sublattice.lub(xc, yc) }
@@ -96,18 +96,17 @@ class FlatLattice[X] extends Lattice {
     case _ => throw new IllegalArgumentException(s"cannot unlift $a")
   }
 
-  override def bottom: Element = Bot
+  val bottom: Element = Bot
 
-  override def top: Element = Top
+  override val top: Element = Top
 
-  override def lub(x: Element, y: Element) = {
+  def lub(x: Element, y: Element): Element =
     if (x == Bot || y == Top || x == y)
       y
     else if (y == Bot || x == Top)
       x
     else
       Top
-  }
 }
 
 /**
@@ -117,9 +116,9 @@ class PairLattice[L1 <: Lattice, L2 <: Lattice](val sublattice1: L1, val sublatt
 
   type Element = (sublattice1.Element, sublattice2.Element)
 
-  override def bottom: Element = (sublattice1.bottom, sublattice2.bottom)
+  val bottom: Element = (sublattice1.bottom, sublattice2.bottom)
 
-  override def lub(x: Element, y: Element) = (sublattice1.lub(x._1, y._1), sublattice2.lub(x._2, y._2))
+  def lub(x: Element, y: Element): Element = (sublattice1.lub(x._1, y._1), sublattice2.lub(x._2, y._2))
 }
 
 /**
@@ -132,11 +131,10 @@ class MapLattice[A, +L <: Lattice](ch: A => Boolean, val sublattice: L) extends 
 
   type Element = Map[A, sublattice.Element] // TODO: replace this with a more type safe solution?
 
-  override def bottom: Element = Map().withDefaultValue(sublattice.bottom)
+  val bottom: Element = Map().withDefaultValue(sublattice.bottom)
 
-  override def lub(x: Element, y: Element) = {
+  def lub(x: Element, y: Element): Element =
     x.keys.foldLeft(y)((m, a) => m + (a -> sublattice.lub(x(a), y(a)))).withDefaultValue(sublattice.bottom)
-  }
 }
 
 /**
@@ -147,9 +145,9 @@ class PowersetLattice[A](ch: A => Boolean) extends Lattice {
 
   type Element = Set[A]
 
-  override def bottom: Element = ??? //<--- Complete here
+  val bottom: Element = ??? //<--- Complete here
 
-  override def lub(x: Element, y: Element) = ??? //<--- Complete here
+  def lub(x: Element, y: Element): Element = ??? //<--- Complete here
 }
 
 /**
@@ -159,9 +157,9 @@ class ReversePowersetLattice[A](s: Set[A]) extends Lattice {
 
   type Element = Set[A]
 
-  override def bottom: Element = s
+  val bottom: Element = s
 
-  override def lub(x: Element, y: Element) = x intersect y
+  def lub(x: Element, y: Element): Element = x intersect y
 }
 
 /**
@@ -180,15 +178,14 @@ class LiftLattice[+L <: Lattice](val sublattice: L) extends Lattice {
 
   case class Lift(n: sublattice.Element) extends Lifted
 
-  override def bottom: Element = Bottom
+  val bottom: Element = Bottom
 
-  override def lub(x: Element, y: Element) = {
+  def lub(x: Element, y: Element): Element =
     (x, y) match {
       case (Bottom, t) => t
       case (t, Bottom) => t
       case (Lift(a), Lift(b)) => Lift(sublattice.lub(a, b))
     }
-  }
 
   /**
     * Lift elements of the sublattice to this lattice.

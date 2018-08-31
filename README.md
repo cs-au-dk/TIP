@@ -4,13 +4,11 @@ TIP is a tiny imperative programming language aimed at teaching the
 fundamental concepts of static program analysis. This code accompanies the
 lecture notes on [Static Program Analysis](http://cs.au.dk/~amoeller/spa/).
 
-[![Build Status](https://travis-ci.org/cs-au-dk/TIP.svg)](https://travis-ci.org/cs-au-dk/TIP)
-
 ## Getting started
 
 Prerequisites:
 - Java 8
-- [Scala 2.11](http://www.scala-lang.org/download/)
+- [Scala 2.12](http://www.scala-lang.org/download/)
 - [SBT](http://www.scala-sbt.org/)
 
 We suggest you to use IntelliJ for working on TIP, but all the following

@@ -19,21 +19,21 @@ class SteensgaardAnalysis(program: AProgram)(implicit declData: DeclarationData)
   val solver = new UnionFindSolver[StTerm]
 
   NormalizedForPointsToAnalysis.assertContainsProgram(program)
+  NoRecords.assertContainsProgram(program)
 
   /**
     * @inheritdoc
     */
-  def analyze(): Unit = {
+  def analyze(): Unit =
     // generate the constraints by traversing the AST and solve them on-the-fly
     visit(program, null)
-  }
 
   /**
     * Generates the constraints for the given sub-AST.
     * @param node the node for which it generates the constraints
     * @param arg unused for this visitor
     */
-  override def visit(node: AstNode, arg: Null): Unit = {
+  def visit(node: AstNode, arg: Null): Unit = {
 
     /**
       * Implicitly convert from `AIdentifier` to `ADeclaration` by extracting the declaration node for the given identifier node.
@@ -66,11 +66,9 @@ class SteensgaardAnalysis(program: AProgram)(implicit declData: DeclarationData)
     val solution = solver.solution()
     val unifications = solver.unifications()
     log.info(s"Solution: \n${solution.mkString(",\n")}")
-    log.info(s"Sets: \n${unifications.values
-      .map { s =>
-        s"{ ${s.mkString(",")} }"
-      }
-      .mkString(", ")}")
+    log.info(s"Sets: \n${unifications.values.map { s =>
+      s"{ ${s.mkString(",")} }"
+    }.mkString(", ")}")
 
     val vars = solution.keys.collect { case id: IdentifierVariable => id }
     val pointsto = vars.foldLeft(Map[ADeclaration, Set[AstNode]]()) {
@@ -103,7 +101,7 @@ object Fresh {
 
   var n = 0
 
-  def next = {
+  def next: Int = {
     n += 1
     n
   }

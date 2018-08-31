@@ -78,13 +78,12 @@ class RunOption {
     * Checks that a source file or directory has been provided.
     * @return true if success
     */
-  def check(): Boolean = {
+  def check(): Boolean =
     if (source == null) {
       log.error(s"Source file/directory missing")
       false
     } else
       true
-  }
 }
 
 /**
@@ -94,7 +93,7 @@ object Tip extends App {
 
   val log = Log.logger[this.type]()
 
-  def printUsage() = {
+  def printUsage() =
     print("""
         | Usage:
         | tip <options> <source> [out]
@@ -145,7 +144,6 @@ object Tip extends App {
         |
         | -verbose           verbose output
       """.stripMargin)
-  }
 
   /**
     * Process the given file according to the specified options.

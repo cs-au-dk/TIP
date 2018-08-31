@@ -3,7 +3,7 @@ package tip.interpreter
 import tip.ast.AFunDeclaration
 
 /**
-  * Ca of values.
+  * Specification of values.
   * (Using the classic terminology by Strachey.)
   */
 trait ValueSpecification {
@@ -32,29 +32,39 @@ trait ValueSpecification {
   /**
     * Null: expressible and storable, but not denotable.
     */
-  trait NullValue <: EValue
+  trait NullValue extends EValue
 
   /**
     * Integers: expressible and storable, but not denotable.
     */
-  trait IntValue <: EValue {
+  trait IntValue extends EValue {
+
     val i: Int
+
   }
 
   /**
     * Reference: expressible, storable and denotable.
     */
-  trait ReferenceValue <: EValue
+  trait ReferenceValue extends EValue
 
   /**
     * Functions: expressible and storable, but not denotable.
     */
-  trait FunValue <: EValue {
+  trait FunValue extends EValue {
 
     /**
       * The function that this value represents
       */
     val fun: AFunDeclaration
+  }
+
+  /**
+    * Record values: expressible and storable, but not denotable.
+    */
+  trait RecordValue extends EValue {
+
+    val fields: Map[String, EValue]
   }
 
   /**
@@ -116,4 +126,10 @@ trait ValueSpecification {
     * Makes a function value from a function declaration in the program code.
     */
   def mkFun(fun: AFunDeclaration): FunValue
+
+  /**
+    * Makes a new record value.
+    */
+  def mkRecord(fields: Map[String, EValue]): RecordValue
+
 }

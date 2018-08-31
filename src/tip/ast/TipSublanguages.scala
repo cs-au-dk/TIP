@@ -11,27 +11,25 @@ trait TipSublanguages extends DepthFirstAstVisitor[Any] {
   /**
     * Throws an exception if `prog` is not in the sub-language.
     */
-  def assertContainsProgram(prog: AProgram) = {
+  def assertContainsProgram(prog: AProgram): Unit =
     visit(prog, null)
-  }
 
   /**
     * Throws an exception if the AST node `n` is not in the sub-language.
     */
-  def assertContainsNode(n: AstNode) = {
+  def assertContainsNode(n: AstNode): Unit =
     visit(n, null)
-  }
 
   def LanguageRestrictionViolation(message: String): Nothing =
-    throw new IllegalArgumentException(s"The TIP program is required to be in the ${this.getClass} sub-language.\n   $message")
+    throw new IllegalArgumentException(s"The TIP program is required to be in the ${this.getClass} sub-language\n   $message")
 }
 
 /**
   * In this sub-language, function identifiers can only be used in direct calls, and indirect calls are prohibited.
   */
-case class NoFunctionPointers(implicit declData: DeclarationData) extends TipSublanguages {
+class NoFunctionPointers(implicit declData: DeclarationData) extends TipSublanguages {
 
-  def visit(ast: AstNode, x: Any): Unit = {
+  def visit(ast: AstNode, x: Any): Unit =
     ast match {
       case ACallFuncExpr(targetFun: AIdentifier, args, _) =>
         targetFun.declaration match {
@@ -50,13 +48,12 @@ case class NoFunctionPointers(implicit declData: DeclarationData) extends TipSub
         }
       case _ => visitChildren(ast, x)
     }
-  }
 }
 
 /**
   * In this sub-language, the only allowed statements are the following:
   *
-  * id = alloc
+  * id = alloc P where P is null or an integer constant
   * id1 = &id2
   * id1 = id2
   * id1 = *id2
@@ -67,7 +64,7 @@ object NormalizedForPointsToAnalysis extends TipSublanguages {
 
   def visit(ast: AstNode, x: Any): Unit = {
     ast match {
-      case AAssignStmt(_: AIdentifier, _: AAlloc, _) =>
+      case AAssignStmt(_: AIdentifier, AAlloc(ANull(_) | ANumber(_, _), _), _) =>
       case AAssignStmt(_: AIdentifier, AUnaryOp(RefOp, _: AIdentifier, _), _) =>
       case AAssignStmt(_: AIdentifier, _: AIdentifier, _) =>
       case AAssignStmt(_: AIdentifier, AUnaryOp(DerefOp, _: AIdentifier, _), _) =>
@@ -75,10 +72,12 @@ object NormalizedForPointsToAnalysis extends TipSublanguages {
       case AAssignStmt(_: AIdentifier, _: ANull, _) =>
       case _: ABlock =>
       case _: AVarStmt =>
+      case _: AReturnStmt =>
       case x: AStmt =>
         LanguageRestrictionViolation(s"Statement $x is not allowed")
-      case _ => visitChildren(ast, x)
+      case _ =>
     }
+    visitChildren(ast, x)
   }
 }
 
@@ -122,9 +121,9 @@ object NoCalls extends TipSublanguages {
   * where `f` is a function identifier, `x` is a variable identifier
   * and the parameters `e_i` are atomic expressions.
   */
-case class NormalizedCalls(implicit declData: DeclarationData) extends TipSublanguages {
+class NormalizedCalls(implicit declData: DeclarationData) extends TipSublanguages {
 
-  def visit(ast: AstNode, x: Any): Unit = {
+  def visit(ast: AstNode, x: Any): Unit =
     ast match {
       case AAssignStmt(_: AIdentifier, ACallFuncExpr(targetFun: AIdentifier, args, _), _) =>
         targetFun.declaration match {
@@ -139,5 +138,20 @@ case class NormalizedCalls(implicit declData: DeclarationData) extends TipSublan
       case call: ACallFuncExpr => LanguageRestrictionViolation(s"Call $call outside an assignment is not allowed")
       case _ => visitChildren(ast, x)
     }
+}
+
+/**
+  * This sub-language has no records and record accesses.
+  */
+object NoRecords extends TipSublanguages {
+  def visit(ast: AstNode, x: Any): Unit = {
+    ast match {
+      case _: ARecord =>
+        LanguageRestrictionViolation(s"Using records at: ${ast.loc}")
+      case _: AAccess =>
+        LanguageRestrictionViolation(s"Record access at: ${ast.loc}")
+      case _ =>
+    }
+    visitChildren(ast, x)
   }
 }

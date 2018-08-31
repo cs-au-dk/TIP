@@ -16,18 +16,17 @@ object CfgOps {
     /**
       * Returns the set of identifiers declared by the node, including only local variables.
       */
-    def declaredVars(implicit declData: DeclarationData): Set[ADeclaration] = {
+    def declaredVars(implicit declData: DeclarationData): Set[ADeclaration] =
       n match {
         case r: CfgStmtNode =>
           r.data.declaredLocals
         case _ => Set()
       }
-    }
 
     /**
       * Returns the set of identifiers declared by the node, including local variables, function parameters, and function identifiers.
       */
-    def declaredVarsAndParams(implicit declData: DeclarationData): Set[ADeclaration] = {
+    def declaredVarsAndParams(implicit declData: DeclarationData): Set[ADeclaration] =
       n match {
         case r: CfgStmtNode =>
           r.data.declaredLocals
@@ -35,34 +34,31 @@ object CfgOps {
           r.data.args.toSet + r.data
         case _ => Set()
       }
-    }
 
     /**
       * Returns the set of declarations of the identifiers that appear in the node.
       */
-    def appearingIds(implicit declData: DeclarationData): Set[ADeclaration] = {
+    def appearingIds(implicit declData: DeclarationData): Set[ADeclaration] =
       n match {
         case r: CfgStmtNode =>
           r.data.appearingIds
         case _ => Set()
       }
-    }
 
     /**
       * Returns the set of expressions that appear in the node.
       */
-    def appearingExpressions: Set[AExpr] = {
+    def appearingExpressions: Set[AExpr] =
       n match {
         case r: CfgStmtNode =>
           r.data.appearingExpressions
         case _ => Set()
       }
-    }
 
     /**
       * Returns the assignment that appears in the node, if any.
       */
-    def appearingAssignments: Option[AAssignStmt] = {
+    def appearingAssignments: Option[AAssignStmt] =
       n match {
         case r: CfgStmtNode =>
           r.data match {
@@ -71,17 +67,15 @@ object CfgOps {
           }
         case _ => None
       }
-    }
 
     /**
       * Returns the set of constants appearing in the node, if any.
       */
-    def appearingConstants: Set[ANumber] = {
+    def appearingConstants: Set[ANumber] =
       n match {
         case r: CfgStmtNode =>
           r.data.appearingConstants
         case _ => Set()
       }
-    }
   }
 }

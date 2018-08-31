@@ -30,6 +30,11 @@ object ConcreteValues extends ValueSpecification {
     */
   case class ConcreteFunValue(fun: AFunDeclaration) extends FunValue
 
+  /**
+    * Record value.
+    */
+  case class ConcreteRecordValue(fields: Map[String, EValue]) extends RecordValue
+
   val nullValue = ConcreteNullValue()
 
   val returnLoc = ConcreteReferenceValue(0)
@@ -42,22 +47,35 @@ object ConcreteValues extends ValueSpecification {
 
   def eqqInt(x: IntValue, y: IntValue): Boolean = (x, y) match {
     case (x: ConcreteIntValue, y: ConcreteIntValue) => x == y
+    case _ => ???
   }
+
   def divideInt(x: IntValue, y: IntValue): IntValue = (x, y) match {
     case (x: ConcreteIntValue, y: ConcreteIntValue) => ConcreteIntValue(x.i / y.i)
+    case _ => ???
   }
+
   def greatThanInt(x: IntValue, y: IntValue): IntValue = (x, y) match {
     case (x: ConcreteIntValue, y: ConcreteIntValue) => ConcreteIntValue(if (x.i > y.i) 1 else 0)
+    case _ => ???
   }
+
   def timesInt(x: IntValue, y: IntValue): IntValue = (x, y) match {
     case (x: ConcreteIntValue, y: ConcreteIntValue) => ConcreteIntValue(x.i * y.i)
+    case _ => ???
   }
+
   def plusInt(x: IntValue, y: IntValue): IntValue = (x, y) match {
     case (x: ConcreteIntValue, y: ConcreteIntValue) => ConcreteIntValue(x.i + y.i)
+    case _ => ???
   }
+
   def minusInt(x: IntValue, y: IntValue): IntValue = (x, y) match {
     case (x: ConcreteIntValue, y: ConcreteIntValue) => ConcreteIntValue(x.i - y.i)
+    case _ => ???
   }
 
   def mkFun(f: AFunDeclaration): FunValue = ConcreteFunValue(f)
+
+  def mkRecord(fields: Map[String, EValue]) = ConcreteRecordValue(fields)
 }

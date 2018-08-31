@@ -21,7 +21,7 @@ main() {
     y = &z;
     x = &y;
     
-    **x = (*foo)(&x,bar(alloc));
+    **x = (*foo)(&x,bar(alloc 0));
     
     return **x;
     //return 1;

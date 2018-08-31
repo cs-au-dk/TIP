@@ -9,7 +9,7 @@ object IntraproceduralProgramCfg {
     * Converts the given CFG node into a [[tip.cfg.FragmentCfg]].
     * No call and after-call nodes are generated.
     */
-  private def simpleNodeBuilder(n: CfgNode): FragmentCfg = {
+  private def simpleNodeBuilder(n: CfgNode): FragmentCfg =
     n match {
       case fentry: CfgFunEntryNode =>
         FragmentCfg.nodeToGraph(CfgFunEntryNode(data = fentry.data))
@@ -22,7 +22,6 @@ object IntraproceduralProgramCfg {
           case o => FragmentCfg.nodeToGraph(CfgStmtNode(data = o))
         }
     }
-  }
 
   /**
     * Generates an [[IntraproceduralProgramCfg]] from a program.

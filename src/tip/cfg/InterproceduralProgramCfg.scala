@@ -47,17 +47,15 @@ object InterproceduralProgramCfg {
     }
   }
 
-  private def usingFunctionDeclarationCallInfo()(implicit declData: DeclarationData): AAssignStmt => Set[AFunDeclaration] = {
-    { s: AAssignStmt =>
-      s.right match {
-        case ACallFuncExpr(target: AIdentifier, _, loc) =>
-          declData(target) match {
-            case d: AFunDeclaration => Set(d)
-            case _ => NoFunctionPointers().LanguageRestrictionViolation(s"$target is not a function identifier at $loc")
-          }
-        case ACallFuncExpr(target, _, loc) => NoFunctionPointers().LanguageRestrictionViolation(s"Indirect call to $target not supported at $loc")
-        case _ => Set[AFunDeclaration]()
-      }
+  private def usingFunctionDeclarationCallInfo()(implicit declData: DeclarationData): AAssignStmt => Set[AFunDeclaration] = { s: AAssignStmt =>
+    s.right match {
+      case ACallFuncExpr(target: AIdentifier, _, loc) =>
+        declData(target) match {
+          case d: AFunDeclaration => Set(d)
+          case _ => new NoFunctionPointers().LanguageRestrictionViolation(s"$target is not a function identifier at $loc")
+        }
+      case ACallFuncExpr(target, _, loc) => new NoFunctionPointers().LanguageRestrictionViolation(s"Indirect call to $target not supported at $loc")
+      case _ => Set[AFunDeclaration]()
     }
   }
 
@@ -70,8 +68,8 @@ object InterproceduralProgramCfg {
     val allExits = funGraphs.mapValues(cfg => { assert(cfg.graphExits.size == 1); cfg.graphExits.head.asInstanceOf[CfgFunExitNode] })
 
     // ensure that there are no function pointers or indirect calls
-    NormalizedCalls().assertContainsProgram(prog)
-    NoFunctionPointers().assertContainsProgram(prog)
+    new NormalizedCalls().assertContainsProgram(prog)
+    new NoFunctionPointers().assertContainsProgram(prog)
 
     val callInfo = usingFunctionDeclarationCallInfo()
 
@@ -87,20 +85,19 @@ object InterproceduralProgramCfg {
     val allExits = funGraphs.mapValues(cfg => { assert(cfg.graphExits.size == 1); cfg.graphExits.head.asInstanceOf[CfgFunExitNode] })
 
     // ensure that there are no function pointers
-    NormalizedCalls().assertContainsProgram(prog)
+    new NormalizedCalls().assertContainsProgram(prog)
 
     val cfaSolution = new ControlFlowAnalysis(prog).analyze()
     var callInfo: Map[AAssignStmt, Set[AFunDeclaration]] = Map()
 
     // Using result of CFA to build callInfo
     new DepthFirstAstVisitor[Null] {
-      override def visit(node: AstNode, arg: Null) = {
+      override def visit(node: AstNode, arg: Null): Unit =
         node match {
           case a @ AAssignStmt(_, c @ ACallFuncExpr(id: AIdentifier, _, _), _) =>
             callInfo += a -> cfaSolution(id.declaration)
           case _ => visitChildren(node, arg)
         }
-      }
     }.visit(prog, null)
 
     new InterproceduralProgramCfg(allEntries, allExits, prog, callInfo)
@@ -117,10 +114,12 @@ object InterproceduralProgramCfg {
   * @param declData the declaration data
   * @param callInfo call graph
   */
-class InterproceduralProgramCfg(funEntries: Map[AFunDeclaration, CfgFunEntryNode],
-                                funExits: Map[AFunDeclaration, CfgFunExitNode],
-                                val program: AProgram,
-                                val callInfo: AAssignStmt => Set[AFunDeclaration])(implicit declData: DeclarationData)
+class InterproceduralProgramCfg(
+  funEntries: Map[AFunDeclaration, CfgFunEntryNode],
+  funExits: Map[AFunDeclaration, CfgFunExitNode],
+  val program: AProgram,
+  val callInfo: AAssignStmt => Set[AFunDeclaration]
+)(implicit declData: DeclarationData)
     extends ProgramCfg(program, funEntries, funExits) { graph =>
 
   /**
@@ -177,11 +176,10 @@ class InterproceduralProgramCfg(funEntries: Map[AFunDeclaration, CfgFunEntryNode
   /**
     * Maps a function to the set of its nodes.
     */
-  private def functionNodes: Map[CfgFunEntryNode, Set[CfgNode]] = {
+  private def functionNodes: Map[CfgFunEntryNode, Set[CfgNode]] =
     funEntries.values.map { entry =>
       entry -> nodesRec(entry).toSet
     }.toMap
-  }
 
   initdeps()
 
@@ -193,9 +191,8 @@ class InterproceduralProgramCfg(funEntries: Map[AFunDeclaration, CfgFunEntryNode
     /**
       * Returns the set of [[tip.cfg.CfgCallNode]]s of the called functions.
       */
-    def callers: Set[CfgCallNode] = {
+    def callers: Set[CfgCallNode] =
       graph.callers(nd)
-    }
 
     /**
       * Returns the exit node of the function associated with this entry node
@@ -211,16 +208,14 @@ class InterproceduralProgramCfg(funEntries: Map[AFunDeclaration, CfgFunEntryNode
     /**
       * Returns the set of [[tip.cfg.CfgFunEntryNode]] of the called functions.
       */
-    def callees: Set[CfgFunEntryNode] = {
+    def callees: Set[CfgFunEntryNode] =
       graph.callees(nd)
-    }
 
     /**
       * Returns the after-call node of this call node.
       */
-    def afterCallNode: CfgAfterCallNode = {
+    def afterCallNode: CfgAfterCallNode =
       nd.succ.head.asInstanceOf[CfgAfterCallNode]
-    }
   }
 
   /**
@@ -231,16 +226,14 @@ class InterproceduralProgramCfg(funEntries: Map[AFunDeclaration, CfgFunEntryNode
     /**
       * Returns the [[tip.cfg.CfgFunExitNode]] of the called function.
       */
-    def calledExit: Set[CfgFunExitNode] = {
+    def calledExit: Set[CfgFunExitNode] =
       graph.calleeExits(nd)
-    }
 
     /**
       * Returns the call node of this after call node
       */
-    def callNode: CfgCallNode = {
+    def callNode: CfgCallNode =
       nd.pred.head.asInstanceOf[CfgCallNode]
-    }
   }
 
   /**
@@ -251,9 +244,8 @@ class InterproceduralProgramCfg(funEntries: Map[AFunDeclaration, CfgFunEntryNode
     /**
       * Map from [[tip.cfg.CfgFunExitNode]] to the set of [[tip.cfg.CfgAfterCallNode]]s of the calling function.
       */
-    def callersAfterCall: Set[CfgAfterCallNode] = {
+    def callersAfterCall: Set[CfgAfterCallNode] =
       graph.callerAfterCalls(nd)
-    }
 
     /**
       * Returns the entry node of the function associated with this exit node
@@ -263,47 +255,41 @@ class InterproceduralProgramCfg(funEntries: Map[AFunDeclaration, CfgFunEntryNode
 
   implicit class CallNodeContainsAssigment(nd: CfgCallNode) {
 
-    def targetIdentifier: AIdentifier = {
+    def targetIdentifier: AIdentifier =
       nd.data match {
         case AAssignStmt(id: AIdentifier, _, _) => id
         case _ => throw new IllegalArgumentException("Expected left-hand-side of call assignment to be an identifier")
       }
-    }
 
-    def assignment: AAssignStmt = {
+    def assignment: AAssignStmt =
       nd.data match {
         case ass: AAssignStmt => ass
       }
-    }
 
-    def invocation: ACallFuncExpr = {
+    def invocation: ACallFuncExpr =
       this.assignment.right match {
         case call: ACallFuncExpr => call
         case _ => throw new IllegalArgumentException("Expected right-hand-side of call assignment to be a call")
       }
-    }
   }
 
   implicit class AfterCallNodeContainsAssigment(nd: CfgAfterCallNode) {
 
-    def targetIdentifier: AIdentifier = {
+    def targetIdentifier: AIdentifier =
       nd.data match {
         case AAssignStmt(id: AIdentifier, _, _) => id
         case _ => throw new IllegalArgumentException("Expected left-hand-side of call assignment to be an identifier")
       }
-    }
 
-    def assignment: AAssignStmt = {
+    def assignment: AAssignStmt =
       nd.data match {
         case ass: AAssignStmt => ass
       }
-    }
 
-    def invocation: ACallFuncExpr = {
+    def invocation: ACallFuncExpr =
       this.assignment.right match {
         case call: ACallFuncExpr => call
         case _ => throw new IllegalArgumentException("Expected right-hand-side of call assignment to be a call")
       }
-    }
   }
 }

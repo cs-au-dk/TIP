@@ -2,7 +2,7 @@ foo(p,x) {
     var f,q; 
     if (*p==0) { f=1; } 
     else { 
-        q = alloc;
+        q = alloc 0;
         *q = (*p)-1;
         f=(*p)*((x)(q,x));
     }

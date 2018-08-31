@@ -17,7 +17,7 @@ abstract class FlowSensitiveAnalysis[N](cfg: FragmentCfg) extends Analysis[Any] 
   /**
     * The domain of the map lattice.
     */
-  val domain = cfg.nodes
+  val domain: Set[CfgNode] = cfg.nodes
 
   /**
     * @inheritdoc
@@ -134,7 +134,7 @@ object FlowSensitiveAnalysis {
   object AnalysisOption extends Enumeration {
     val simple, Disabled, wl, wli, wliw, wliwn, wlip, iwli, iwlip, csiwlip, cfiwlip, ide = Value
 
-    def interprocedural(v: Value): Boolean = {
+    def interprocedural(v: Value): Boolean =
       v match {
         case `iwli` => true
         case `iwlip` => true
@@ -143,23 +143,20 @@ object FlowSensitiveAnalysis {
         case `ide` => true
         case _ => false
       }
-    }
 
-    def contextsensitive(v: Value): Boolean = {
+    def contextsensitive(v: Value): Boolean =
       v match {
         case `csiwlip` => true
         case `cfiwlip` => true
         case _ => false
       }
-    }
 
-    def withWidening(v: Value): Boolean = {
+    def withWidening(v: Value): Boolean =
       v match {
         case `wliw` => true
         case `wliwn` => true
         case _ => false
       }
-    }
   }
 
   /**

@@ -1,10 +1,10 @@
 package tip.analysis
 
+import tip.ast.AstNodeData.{AstNodeWithDeclaration, DeclarationData}
 import tip.ast._
 import tip.cfg._
 import tip.lattices._
 import tip.solvers._
-import tip.ast.AstNodeData.{AstNodeWithDeclaration, DeclarationData}
 
 /**
   * The base class for interval analysis.
@@ -15,11 +15,11 @@ abstract class IntervalAnalysis(cfg: FragmentCfg)(implicit declData: Declaration
 
   import tip.cfg.CfgOps._
 
-  val declaredVars = cfg.nodes.flatMap(_.declaredVars)
+  val declaredVars: Set[ADeclaration] = cfg.nodes.flatMap(_.declaredVars)
 
   val lattice = new MapLattice(cfg.nodes, new LiftLattice(new MapLattice(declaredVars, new IntervalLattice())))
 
-  def transferUnlifted(n: CfgNode, s: lattice.sublattice.sublattice.Element): lattice.sublattice.sublattice.Element = {
+  def transferUnlifted(n: CfgNode, s: lattice.sublattice.sublattice.Element): lattice.sublattice.sublattice.Element =
     n match {
       case r: CfgStmtNode =>
         r.data match {
@@ -38,7 +38,6 @@ abstract class IntervalAnalysis(cfg: FragmentCfg)(implicit declData: Declaration
         }
       case _ => s
     }
-  }
 
   override def funsub(n: CfgNode, x: lattice.Element): lattice.sublattice.Element = {
     import lattice.sublattice._
@@ -56,7 +55,7 @@ abstract class IntervalAnalysis(cfg: FragmentCfg)(implicit declData: Declaration
     * @param env the current abstract environment
     * @return the result of the evaluation
     */
-  private def absEval(exp: AExpr, env: Map[ADeclaration, lattice.sublattice.sublattice.sublattice.Element]): lattice.sublattice.sublattice.sublattice.Element = {
+  private def absEval(exp: AExpr, env: Map[ADeclaration, lattice.sublattice.sublattice.sublattice.Element]): lattice.sublattice.sublattice.sublattice.Element =
     exp match {
       case id: AIdentifier => env(id.declaration)
       case num: ANumber => (lattice.sublattice.sublattice.sublattice.IntNum(num.value), lattice.sublattice.sublattice.sublattice.IntNum(num.value))
@@ -75,7 +74,6 @@ abstract class IntervalAnalysis(cfg: FragmentCfg)(implicit declData: Declaration
       case input: AInput => lattice.sublattice.sublattice.sublattice.FullInterval
       case _ => ???
     }
-  }
 }
 
 /**

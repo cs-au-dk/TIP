@@ -23,9 +23,8 @@ object Log {
     * @param forcedLevel log level
     * @param ct class the logger belongs to
     */
-  def logger[A: ClassTag](forcedLevel: Level.Level = defaultLevel)(implicit ct: ClassTag[A]): Logger = {
+  def logger[A: ClassTag](forcedLevel: Level.Level = defaultLevel)(implicit ct: ClassTag[A]): Logger =
     Logger(ct.runtimeClass.getSimpleName, forcedLevel)
-  }
 }
 
 /**

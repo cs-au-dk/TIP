@@ -27,13 +27,12 @@ object AstOps {
     def containsInvocation: Boolean = {
       var found = false
       val invocationFinder = new DepthFirstAstVisitor[Null] {
-        override def visit(node: AstNode, arg: Null): Unit = {
+        override def visit(node: AstNode, arg: Null): Unit =
           node match {
             case _: ACallFuncExpr =>
               found = true
             case _ => visitChildren(node, null)
           }
-        }
       }
       invocationFinder.visit(n, null)
       found
@@ -42,12 +41,11 @@ object AstOps {
     /**
       * Returns the set of local variable identifiers declared by the node (excluding function parameters and function identifiers).
       */
-    def declaredLocals: Set[ADeclaration] = {
+    def declaredLocals: Set[ADeclaration] =
       n match {
         case varr: AVarStmt => varr.declIds.toSet
         case _ => Set()
       }
-    }
 
     /**
       * Returns the set of identifier declarations appearing in the subtree of the node.
@@ -79,12 +77,11 @@ object AstOps {
     def appearingAllocs: Set[AAlloc] = {
       val allocs = mutable.Set[AAlloc]()
       val allocsFinder = new DepthFirstAstVisitor[Null] {
-        override def visit(node: AstNode, arg: Null): Unit = {
+        override def visit(node: AstNode, arg: Null): Unit =
           node match {
             case alloc: AAlloc => allocs += alloc
             case _ => visitChildren(node, null)
           }
-        }
       }
       allocsFinder.visit(n, null)
       allocs.toSet
@@ -96,12 +93,11 @@ object AstOps {
     def appearingConstants: Set[ANumber] = {
       val numbers = mutable.Set[ANumber]()
       val numFinder = new DepthFirstAstVisitor[Null] {
-        override def visit(node: AstNode, arg: Null): Unit = {
+        override def visit(node: AstNode, arg: Null): Unit =
           node match {
             case num: ANumber => numbers += num
             case _ => visitChildren(node, null)
           }
-        }
       }
       numFinder.visit(n, null)
       numbers.toSet
@@ -113,17 +109,37 @@ object AstOps {
     def appearingExpressions: Set[AExpr] = {
       val exps = mutable.Set[AExpr]()
       val expFinder = new DepthFirstAstVisitor[Null] {
-        override def visit(node: AstNode, arg: Null): Unit = {
+        override def visit(node: AstNode, arg: Null): Unit =
           node match {
             case exp: ABinaryOp =>
               exps += exp
               visitChildren(exp, null)
             case _ => visitChildren(node, null)
           }
-        }
       }
       expFinder.visit(n, null)
       exps.toSet
+    }
+
+    /**
+      * Returns the set of record field names appearing in the subtree of the node.
+      */
+    def appearingFields: Set[String] = {
+      val fields = mutable.Set[String]()
+      val expFinder = new DepthFirstAstVisitor[Null] {
+        override def visit(node: AstNode, arg: Null): Unit =
+          node match {
+            case exp: AAccess =>
+              fields += exp.field
+              visitChildren(exp, null)
+            case rec: ARecord =>
+              fields ++= rec.fields.map { _.field }
+              visitChildren(rec, null)
+            case _ => visitChildren(node, null)
+          }
+      }
+      expFinder.visit(n, null)
+      fields.toSet
     }
   }
 
@@ -140,7 +156,7 @@ object AstOps {
     /**
       * The members of the node, excluding `loc`.
       */
-    lazy val nonLocMembers =
+    lazy val nonLocMembers: List[Any] =
       n.productIterator.filter { x =>
         if (x.isInstanceOf[Loc]) false else true
       }.toList
@@ -149,7 +165,7 @@ object AstOps {
       * Compares objects structurally, but ignores `loc`.
       * Identifiers are compared using their declarations.
       */
-    override def equals(obj: scala.Any): Boolean = {
+    override def equals(obj: scala.Any): Boolean =
       obj match {
         case n: UnlabelledNode[_] =>
           (this.n, n.n) match {
@@ -170,7 +186,6 @@ object AstOps {
           }
         case _ => false
       }
-    }
 
     override lazy val hashCode: Int =
       n.getClass.hashCode * (nonLocMembers map {

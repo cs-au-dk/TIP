@@ -18,12 +18,11 @@ object TipType {
     * function will be invoked implicitly to make the conversion (provided that the function is imported).
     * For more information about implicit conversions in Scala, see [[https://docs.scala-lang.org/tour/implicit-conversions.html]].
     */
-  implicit def ast2typevar(node: AstNode)(implicit declData: DeclarationData): Var[TipType] = {
+  implicit def ast2typevar(node: AstNode)(implicit declData: DeclarationData): Var[TipType] =
     node match {
       case id: AIdentifier => TipVar(declData(id))
       case _ => TipVar(node)
     }
-  }
 }
 
 /**
@@ -58,33 +57,47 @@ case class TipInt() extends TipType with Cons[TipType] {
   */
 case class TipFunction(params: List[Term[TipType]], ret: Term[TipType]) extends TipType with Cons[TipType] {
 
-  val args: List[Term[TipType]] = {
-    ret :: params
-  }
+  val args: List[Term[TipType]] = ret :: params
 
-  def subst(v: Var[TipType], t: Term[TipType]): Term[TipType] = {
+  def subst(v: Var[TipType], t: Term[TipType]): Term[TipType] =
     TipFunction(params.map { p =>
       p.subst(v, t)
     }, ret.subst(v, t))
-  }
 
   override def toString: String = s"(${params.mkString(",")}) -> $ret"
 }
 
 /**
-  * Pointer reference type.
+  * Pointer type.
   */
 case class TipRef(of: Term[TipType]) extends TipType with Cons[TipType] {
 
-  val args: List[Term[TipType]] = {
-    List(of)
-  }
+  val args: List[Term[TipType]] = List(of)
 
-  def subst(v: Var[TipType], t: Term[TipType]): Term[TipType] = {
-    TipRef(of.subst(v, t))
-  }
+  def subst(v: Var[TipType], t: Term[TipType]): Term[TipType] = TipRef(of.subst(v, t))
 
   override def toString: String = s"&$of"
+}
+
+/**
+  * Record type.
+  *
+  * A record type is represented as a term with a sub-term for every field name in the entire program.
+  */
+case class TipRecord(args: List[Term[TipType]])(implicit allFieldNames: List[String]) extends TipType with Cons[TipType] {
+
+  def subst(v: Var[TipType], t: Term[TipType]): Term[TipType] =
+    TipRecord(args.map { p =>
+      p.subst(v, t)
+    })
+
+  override def toString: String =
+    s"{${allFieldNames
+      .zip(args)
+      .map(p => {
+        s"${p._1}:${p._2}"
+      })
+      .mkString(",")}}"
 }
 
 /**
@@ -100,8 +113,7 @@ case class TipVar(node: AstNode) extends TipType with Var[TipType] {
   */
 case class TipAlpha(x: Any) extends TipType with Var[TipType] {
 
-  override def toString: String =
-    s"\u03B1<$x>"
+  override def toString: String = s"\u03B1<$x>"
 }
 
 /**
@@ -109,7 +121,6 @@ case class TipAlpha(x: Any) extends TipType with Var[TipType] {
   */
 case class TipMu(v: Var[TipType], t: Term[TipType]) extends TipType with Mu[TipType] {
 
-  def subst(sv: Var[TipType], to: Term[TipType]): Term[TipType] = {
+  def subst(sv: Var[TipType], to: Term[TipType]): Term[TipType] =
     if (sv == v) this else TipMu(v, t.subst(sv, to))
-  }
 }

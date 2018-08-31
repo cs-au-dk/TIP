@@ -26,15 +26,15 @@ class ControlFlowAnalysis(program: AProgram)(implicit declData: DeclarationData)
 
   private val solver = new CubicSolver[AstVariable, Decl]
 
-  val allFunctions = program.funs.toSet
+  val allFunctions: Set[AFunDeclaration] = program.funs.toSet
 
-  // Analysis does not accept pointers.
   NoPointers.assertContainsProgram(program)
+  NoRecords.assertContainsProgram(program)
 
   /**
     * @inheritdoc
     */
-  def analyze() = {
+  def analyze(): Map[AstNode, Set[AFunDeclaration]] = {
     visit(program, null)
     val sol = solver.getSolution
     log.info(s"Solution is:\n${sol.map { case (k, v) => s"  [[$k]] = {${v.mkString(",")}}" }.mkString("\n")}")
@@ -46,7 +46,7 @@ class ControlFlowAnalysis(program: AProgram)(implicit declData: DeclarationData)
     * @param node the node for which it generates the constraints
     * @param arg unused for this visitor
     */
-  override def visit(node: AstNode, arg: Null) {
+  def visit(node: AstNode, arg: Null) {
 
     /**
       * Get the declaration if the supplied AstNode is an identifier,

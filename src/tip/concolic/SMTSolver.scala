@@ -20,14 +20,13 @@ object SMTSolver {
   }
 
   def pathToSMT(vars: List[Symbol], path: List[(AExpr, Boolean)]): String = {
-    def opToSexp(op: BinaryOperator): String = {
+    def opToSexp(op: BinaryOperator): String =
       op match {
         case Eqq => "="
         case _ => op.toString
       }
-    }
 
-    def expToSexp(exp: AExpr): String = {
+    def expToSexp(exp: AExpr): String =
       exp match {
         case ABinaryOp(op, left, right, _) =>
           s"(${opToSexp(op)} ${expToSexp(left)} ${expToSexp(right)})"
@@ -35,11 +34,9 @@ object SMTSolver {
         case n: Symbol => n.value.toString
         case _ => exp.toString
       }
-    }
 
-    def symbolsToSMT(vars: List[Symbol]): String = {
+    def symbolsToSMT(vars: List[Symbol]): String =
       vars.map(sv => s"(declare-const ${sv.value} Int)").mkString("\n")
-    }
 
     path.foldLeft(symbolsToSMT(vars))((script: String, cond: (AExpr, Boolean)) => {
       val branchrecord =

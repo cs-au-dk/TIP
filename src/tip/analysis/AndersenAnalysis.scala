@@ -23,13 +23,14 @@ class AndersenAnalysis(program: AProgram)(implicit declData: DeclarationData) ex
   val allTargets = (program.appearingIds.map(Var): Set[Target]) union program.appearingAllocs.map(Alloc)
 
   NormalizedForPointsToAnalysis.assertContainsProgram(program)
+  NoRecords.assertContainsProgram(program)
 
   /**
     * Generates the constraints for the given sub-AST.
     * @param node the node for which it generates the constraints
     * @param arg unused for this visitor
     */
-  override def visit(node: AstNode, arg: Null): Unit = {
+  def visit(node: AstNode, arg: Null): Unit = {
 
     node match {
       case AAssignStmt(id: AIdentifier, alloc: AAlloc, _) => ??? //<--- Complete here
@@ -48,7 +49,7 @@ class AndersenAnalysis(program: AProgram)(implicit declData: DeclarationData) ex
   /**
     * @inheritdoc
     */
-  def pointsTo() = {
+  def pointsTo(): Map[ADeclaration, Set[AstNode]] = {
     val pointsTo = solver.getSolution.collect {
       case (v: Var, ts: Set[Target]) =>
         v.id -> ts.map {
@@ -70,7 +71,6 @@ class AndersenAnalysis(program: AProgram)(implicit declData: DeclarationData) ex
   /**
     * @inheritdoc
     */
-  override def analyze() = {
+  def analyze(): Unit =
     visit(program, null)
-  }
 }

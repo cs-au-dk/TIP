@@ -1,7 +1,7 @@
 main() {
     var p,q,x,y,z,d1,d2,l,s,v,w;
-    p = alloc;
-    l = alloc;
+    p = alloc null;
+    l = alloc null;
     x = y;
     x = z;
     *p = z;

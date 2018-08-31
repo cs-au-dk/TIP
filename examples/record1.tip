@@ -1,0 +1,6 @@
+main() {
+    var n, r1;
+    n = {p: 5, q: 2};
+    r1 = n.p; // output 5
+    return r1;
+}

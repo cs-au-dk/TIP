@@ -1,6 +1,6 @@
 main() {
     var x,y,p,q;
-    q = alloc;
+    q = alloc null;
     y = &q;
     x = *y;
     p = null;

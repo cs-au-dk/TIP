@@ -6,16 +6,16 @@ package tip.lattices
   */
 class EdgeLattice[L <: Lattice](val valuelattice: L) extends Lattice {
 
-  override type Element = Edge
+  type Element = Edge
 
-  override def bottom = ConstEdge(valuelattice.bottom)
+  val bottom = ConstEdge(valuelattice.bottom)
 
-  override def lub(x: Element, y: Element) = x.joinWith(y)
+  def lub(x: Element, y: Element): Element = x.joinWith(y)
 
   /**
     * An "edge" represents a function L -> L where L is the value lattice.
     */
-  trait Edge extends ((valuelattice.Element) => valuelattice.Element) {
+  trait Edge extends (valuelattice.Element => valuelattice.Element) {
 
     /**
       * Applies the function to the given lattice element.
@@ -39,14 +39,13 @@ class EdgeLattice[L <: Lattice](val valuelattice: L) extends Lattice {
     */
   case class IdEdge() extends Edge {
 
-    def apply(x: valuelattice.Element) = x
+    def apply(x: valuelattice.Element): valuelattice.Element = x
 
-    def composeWith(e: Edge) = e
+    def composeWith(e: Edge): Edge = e
 
-    def joinWith(e: Edge) = {
+    def joinWith(e: Edge): Edge =
       if (e == this) this
       else e.joinWith(this)
-    }
 
     override def toString = "IdEdge()"
   }
@@ -56,11 +55,11 @@ class EdgeLattice[L <: Lattice](val valuelattice: L) extends Lattice {
     */
   case class ConstEdge(c: valuelattice.Element) extends Edge {
 
-    def apply(x: valuelattice.Element) = c
+    def apply(x: valuelattice.Element): valuelattice.Element = c
 
-    def composeWith(e: Edge) = this
+    def composeWith(e: Edge): Edge = this
 
-    def joinWith(e: Edge) = {
+    def joinWith(e: Edge): Edge =
       if (e == this || c == valuelattice.top) this
       else if (c == valuelattice.bottom) e
       else
@@ -69,7 +68,6 @@ class EdgeLattice[L <: Lattice](val valuelattice: L) extends Lattice {
           case ConstEdge(ec) => ConstEdge(valuelattice.lub(c, ec))
           case _ => e.joinWith(this)
         }
-    }
 
     override def toString = s"ConstEdge($c)"
   }

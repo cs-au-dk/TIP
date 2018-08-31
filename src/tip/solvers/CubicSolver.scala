@@ -16,16 +16,17 @@ class CubicSolver[V, T](cycleElimination: Boolean = true) {
 
   val log = Log.logger[this.type]()
 
-  var lastTknId = -1
+  var lastTknId: Int = -1
 
-  def nextTokenId = {
+  def nextTokenId: Int = {
     lastTknId += 1; lastTknId
   }
 
-  class Node(val succ: mutable.Set[V] = mutable.Set(), // note: the edges between nodes go via the variables
-             val tokenSol: mutable.BitSet = new mutable.BitSet(), // the current solution bitvector
-             val conditionals: mutable.Map[Int, mutable.Set[(V, V)]] = mutable.Map(), // the pending conditional constraints
-             val vars: mutable.Set[V] = mutable.Set() // the variables belonging to this node
+  class Node(
+    val succ: mutable.Set[V] = mutable.Set(), // note: the edges between nodes go via the variables
+    val tokenSol: mutable.BitSet = new mutable.BitSet(), // the current solution bitvector
+    val conditionals: mutable.Map[Int, mutable.Set[(V, V)]] = mutable.Map(), // the pending conditional constraints
+    val vars: mutable.Set[V] = mutable.Set() // the variables belonging to this node
   ) {
     def this(x: V) {
       this()
@@ -49,17 +50,15 @@ class CubicSolver[V, T](cycleElimination: Boolean = true) {
     * Returns the index associated with the given token.
     * Allocates a fresh index if the token hasn't been seen before.
     */
-  implicit private def getTokenInt(tkn: T): Int = {
+  implicit private def getTokenInt(tkn: T): Int =
     tokenToInt.getOrElseUpdate(tkn, nextTokenId)
-  }
 
   /**
     * Retrieves the node associated with the given variable.
     * Allocates a fresh node if the variable hasn't been seen before.
     */
-  private def getOrPutNode(x: V): Node = {
+  private def getOrPutNode(x: V): Node =
     varToNode.getOrElseUpdate(x, new Node(x))
-  }
 
   /**
     * Attempts to detect a path from `from` to `to` in the graph.
@@ -68,7 +67,7 @@ class CubicSolver[V, T](cycleElimination: Boolean = true) {
   private def detectPath(from: Node, to: Node): List[Node] = {
     val visited: mutable.Set[Node] = mutable.Set()
 
-    def detectPathRec(current: Node): List[Node] = {
+    def detectPathRec(current: Node): List[Node] =
       if (current == to) {
         // Detected a path from from to to
         List(current)
@@ -91,7 +90,6 @@ class CubicSolver[V, T](cycleElimination: Boolean = true) {
           }
         toReturn
       }
-    }
     val res = detectPathRec(from)
     res
   }

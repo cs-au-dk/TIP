@@ -1,7 +1,7 @@
 package tip.analysis
 
 import tip.ast._
-import tip.cfg.{IntraproceduralProgramCfg, CfgNode, CfgStmtNode}
+import tip.cfg.{CfgNode, CfgStmtNode, IntraproceduralProgramCfg}
 import tip.lattices.{FlatLattice, MapLattice}
 import tip.solvers.{SimpleMapLatticeFixpointSolver, SimpleWorklistFixpointSolver}
 import tip.ast.AstNodeData.{AstNodeWithDeclaration, DeclarationData}
@@ -14,7 +14,7 @@ abstract class ConstantPropagationAnalysis(cfg: IntraproceduralProgramCfg)(impli
 
   val lattice = new MapLattice(cfg.nodes, new MapLattice(declaredVars, new FlatLattice[Int]()))
 
-  def transfer(n: CfgNode, s: lattice.sublattice.Element): lattice.sublattice.Element = {
+  def transfer(n: CfgNode, s: lattice.sublattice.Element): lattice.sublattice.Element =
     n match {
       case r: CfgStmtNode =>
         r.data match {
@@ -33,9 +33,8 @@ abstract class ConstantPropagationAnalysis(cfg: IntraproceduralProgramCfg)(impli
         }
       case _ => s
     }
-  }
 
-  private def absEval(exp: AExpr, env: Map[ADeclaration, lattice.sublattice.sublattice.Element]): lattice.sublattice.sublattice.Element = {
+  private def absEval(exp: AExpr, env: Map[ADeclaration, lattice.sublattice.sublattice.Element]): lattice.sublattice.sublattice.Element =
     exp match {
       case id: AIdentifier => env(id.declaration)
       case num: ANumber => lattice.sublattice.sublattice.FlatEl(num.value)
@@ -62,7 +61,6 @@ abstract class ConstantPropagationAnalysis(cfg: IntraproceduralProgramCfg)(impli
       case _ => ???
 
     }
-  }
 }
 
 /**

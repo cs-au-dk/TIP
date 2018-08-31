@@ -18,7 +18,7 @@ trait IntraprocSignAnalysisFunctions {
 
   val domain: Set[CfgNode]
 
-  val declaredVars = domain.flatMap(_.declaredVarsAndParams)
+  val declaredVars: Set[ADeclaration] = domain.flatMap(_.declaredVarsAndParams)
 
   val statelattice = new MapLattice(declaredVars, SignLattice)
 
@@ -28,6 +28,7 @@ trait IntraprocSignAnalysisFunctions {
   def localTransfer(n: CfgNode, s: statelattice.Element): statelattice.Element = {
     NoPointers.assertContainsNode(n.data)
     NoCalls.assertContainsNode(n.data)
+    NoRecords.assertContainsNode(n.data)
     n match {
       case r: CfgStmtNode =>
         r.data match {
@@ -36,7 +37,7 @@ trait IntraprocSignAnalysisFunctions {
 
           // assignments
           case AAssignStmt(id: AIdentifier, right, _) => ??? //<--- Complete here
-          case AAssignStmt(_: AUnaryOp[_], _, _) => NoPointers.LanguageRestrictionViolation(s"${r.data} not allowed")
+          case AAssignStmt(_: AUnaryOp, _, _) => NoPointers.LanguageRestrictionViolation(s"${r.data} not allowed")
 
           // all others: like no-ops
           case _ => s
@@ -57,14 +58,11 @@ trait InterprocSignAnalysisMisc[N] {
 
   implicit val declData: DeclarationData
 
-  def evalArgs(formalParams: Seq[ADeclaration],
-               actualParams: Seq[AExpr],
-               state: lattice.sublattice.sublattice.Element): lattice.sublattice.sublattice.Element = {
+  def evalArgs(formalParams: Seq[ADeclaration], actualParams: Seq[AExpr], state: lattice.sublattice.sublattice.Element): lattice.sublattice.sublattice.Element =
     formalParams.zip(actualParams).foldLeft(lattice.sublattice.sublattice.bottom) {
       case (acc, (id, exp)) =>
         acc + (id -> lattice.sublattice.sublattice.sublattice.eval(exp, state))
     }
-  }
 }
 
 /**
@@ -77,7 +75,7 @@ trait InterprocSignAnalysisFunctions extends MapLiftLatticeSolver[CfgNode] with 
     import lattice.sublattice._
     import cfg._
 
-    NormalizedCalls().assertContainsNode(n.data)
+    new NormalizedCalls().assertContainsNode(n.data)
 
     n match {
       // function entry nodes
@@ -256,7 +254,7 @@ abstract class LiftedSignAnalysis(cfg: ProgramCfg)(implicit val declData: Declar
 
   val lattice = new MapLattice(cfg.nodes, new LiftLattice(statelattice))
 
-  val first = cfg.funEntries.values.toSet[CfgNode]
+  val first: Set[CfgNode] = cfg.funEntries.values.toSet[CfgNode]
 
   override def funsub(n: CfgNode, x: lattice.Element): lattice.sublattice.Element = {
     import lattice.sublattice._
@@ -285,14 +283,14 @@ abstract class ContextSensitiveSignAnalysis[C <: CallContext](cfg: Interprocedur
 /**
   * Intraprocedural sign analysis that uses [[tip.solvers.SimpleFixpointSolver]].
   */
-class IntraprocSignAnalysisSimpleSolver(cfg: ProgramCfg)(override implicit val declData: DeclarationData)
+class IntraprocSignAnalysisSimpleSolver(cfg: ProgramCfg)(implicit override val declData: DeclarationData)
     extends SimpleSignAnalysis(cfg)
     with SimpleMapLatticeFixpointSolver[CfgNode]
 
 /**
   * Intraprocedural sign analysis that uses [[tip.solvers.SimpleWorklistFixpointSolver]].
   */
-class IntraprocSignAnalysisWorklistSolver(cfg: ProgramCfg)(override implicit val declData: DeclarationData)
+class IntraprocSignAnalysisWorklistSolver(cfg: ProgramCfg)(implicit override val declData: DeclarationData)
     extends SimpleSignAnalysis(cfg)
     with SimpleWorklistFixpointSolver[CfgNode]
 
@@ -300,7 +298,7 @@ class IntraprocSignAnalysisWorklistSolver(cfg: ProgramCfg)(override implicit val
   * Intraprocedural sign analysis that uses [[tip.solvers.WorklistFixpointSolverWithInit]],
   * with all function entries as start nodes.
   */
-class IntraprocSignAnalysisWorklistSolverWithInit(cfg: ProgramCfg)(override implicit val declData: DeclarationData)
+class IntraprocSignAnalysisWorklistSolverWithInit(cfg: ProgramCfg)(implicit override val declData: DeclarationData)
     extends LiftedSignAnalysis(cfg)
     with WorklistFixpointSolverWithInit[CfgNode] {
 
@@ -310,14 +308,14 @@ class IntraprocSignAnalysisWorklistSolverWithInit(cfg: ProgramCfg)(override impl
 /**
   * Intraprocedural sign analysis that uses [[tip.solvers.WorklistFixpointPropagationSolver]].
   */
-class IntraprocSignAnalysisWorklistSolverWithInitAndPropagation(cfg: ProgramCfg)(override implicit val declData: DeclarationData)
+class IntraprocSignAnalysisWorklistSolverWithInitAndPropagation(cfg: ProgramCfg)(implicit override val declData: DeclarationData)
     extends IntraprocSignAnalysisWorklistSolverWithInit(cfg)
     with WorklistFixpointPropagationSolver[CfgNode]
 
 /**
   * Interprocedural sign analysis that uses [[tip.solvers.WorklistFixpointSolverWithInit]].
   */
-class InterprocSignAnalysisWorklistSolverWithInit(val cfg: InterproceduralProgramCfg)(override implicit val declData: DeclarationData)
+class InterprocSignAnalysisWorklistSolverWithInit(val cfg: InterproceduralProgramCfg)(implicit override val declData: DeclarationData)
     extends IntraprocSignAnalysisWorklistSolverWithInit(cfg)
     with InterprocSignAnalysisFunctions
     with InterproceduralForwardDependencies {
@@ -330,7 +328,7 @@ class InterprocSignAnalysisWorklistSolverWithInit(val cfg: InterproceduralProgra
   * Note that this class uses [[tip.analysis.ForwardDependencies]] which has no interprocedural outdeps,
   * and it does not use indeps.
   */
-class InterprocSignAnalysisWorklistSolverWithInitAndPropagation(val cfg: InterproceduralProgramCfg)(override implicit val declData: DeclarationData)
+class InterprocSignAnalysisWorklistSolverWithInitAndPropagation(val cfg: InterproceduralProgramCfg)(implicit override val declData: DeclarationData)
     extends IntraprocSignAnalysisWorklistSolverWithInitAndPropagation(cfg)
     with InterprocSignAnalysisFunctionsWithPropagation
     with ForwardDependencies {
@@ -341,7 +339,7 @@ class InterprocSignAnalysisWorklistSolverWithInitAndPropagation(val cfg: Interpr
 /**
   * Context-sensitive sign analysis with call-string approach.
   */
-class CallStringSignAnalysis(val cfg: InterproceduralProgramCfg)(override implicit val declData: DeclarationData)
+class CallStringSignAnalysis(val cfg: InterproceduralProgramCfg)(implicit override val declData: DeclarationData)
     extends ContextSensitiveSignAnalysis[CallStringContext](cfg)
     with CallStringFunctions[MapLattice[ADeclaration, SignLattice.type]] {
 
@@ -355,7 +353,7 @@ class CallStringSignAnalysis(val cfg: InterproceduralProgramCfg)(override implic
 /**
   * Context-sensitive sign analysis with functional approach.
   */
-class FunctionalSignAnalysis(val cfg: InterproceduralProgramCfg)(override implicit val declData: DeclarationData)
+class FunctionalSignAnalysis(val cfg: InterproceduralProgramCfg)(implicit override val declData: DeclarationData)
     extends ContextSensitiveSignAnalysis[FunctionalContext](cfg)
     with FunctionalFunctions[MapLattice[ADeclaration, SignLattice.type]] {
 

@@ -14,7 +14,7 @@ trait DepthFirstAstVisitor[A] {
     * @param node the node whose children need to be visited
     * @param arg the argument to be passed to all sub-nodes
     */
-  def visitChildren(node: AstNode, arg: A): Unit = {
+  def visitChildren(node: AstNode, arg: A): Unit =
     node match {
       case call: ACallFuncExpr =>
         visit(call.targetFun, arg)
@@ -22,7 +22,7 @@ trait DepthFirstAstVisitor[A] {
       case bin: ABinaryOp =>
         visit(bin.left, arg)
         visit(bin.right, arg)
-      case un: AUnaryOp[_] =>
+      case un: AUnaryOp =>
         visit(un.target, arg)
       case ass: AAssignStmt =>
         visit(ass.right, arg)
@@ -49,7 +49,14 @@ trait DepthFirstAstVisitor[A] {
         visit(funDec.stmts, arg)
       case p: AProgram =>
         p.funs.foreach(visit(_, arg))
+      case acc: AAccess =>
+        visit(acc.record, arg)
+      case rec: ARecord =>
+        rec.fields.foreach { f =>
+          visit(f.exp, arg)
+        }
+      case alloc: AAlloc =>
+        visit(alloc.exp, arg)
       case _: AAtomicExpr | _: AIdentifierDeclaration =>
     }
-  }
 }

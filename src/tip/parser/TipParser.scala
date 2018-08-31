@@ -1,9 +1,10 @@
 package tip.parser
 
 import org.parboiled2._
-import scala.language.implicitConversions
 import tip.ast._
+
 import scala.collection._
+import scala.language.implicitConversions
 
 trait Comments { this: Parser =>
 
@@ -33,6 +34,20 @@ trait Comments { this: Parser =>
   *  Parser for TIP programs, implemented using the parboiled2 parser generator ([[http://parboiled2.org]]).
   */
 class TipParser(val input: ParserInput) extends Parser with Comments {
+
+  object LanguageKeywords {
+    val KALLOC = "alloc"
+    val KINPUT = "input"
+    val KWHILE = "while"
+    val KIF = "if"
+    val KELSE = "else"
+    val KVAR = "var"
+    val KRETURN = "return"
+    val KNULL = "null"
+    val KOUTPUT = "output"
+    val KERROR = "error"
+  }
+
   def InputLine = rule {
     Program ~ EOI
   }
@@ -42,7 +57,16 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
   }
 
   def keywords = rule {
-    "alloc" | "input" | "while" | "if" | "else" | "var" | "return" | "null" | "output"
+    LanguageKeywords.KALLOC |
+      LanguageKeywords.KINPUT |
+      LanguageKeywords.KWHILE |
+      LanguageKeywords.KIF |
+      LanguageKeywords.KELSE |
+      LanguageKeywords.KVAR |
+      LanguageKeywords.KRETURN |
+      LanguageKeywords.KNULL |
+      LanguageKeywords.KOUTPUT |
+      LanguageKeywords.KERROR
   }
 
   def OptSpace = rule {
@@ -53,13 +77,9 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
     OptSpace ~ str(s) ~ OptSpace
   }
 
-  def AssignableExpression: Rule1[Assignable[DerefOp.type]] = rule {
-    (Identifier | LeftHandUnaryPointerExpression) ~> { x: AstNode =>
-      x match {
-        case id: AIdentifier => id
-        case AUnaryOp(DerefOp, t, l) => AUnaryOp(DerefOp, t, l)
-        case _ => ??? // unexpected, this should never be the case
-      }
+  def AssignableExpression: Rule1[Assignable] = rule {
+    (Identifier | DeRef) ~> { x: Assignable =>
+      x
     }
   }
 
@@ -71,6 +91,24 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
       )
   }
 
+  def Record: Rule1[ARecord] = rule {
+    push(cursor) ~ "{" ~ zeroOrMore(Field).separatedBy(wspStr(",")) ~ "}" ~> ((cur: Int, fields: Seq[ARecordField]) => ARecord(fields.toList, cur))
+  }
+
+  def Access: Rule1[AAccess] =
+    rule {
+      (Identifier | DeRef | Parens) ~ oneOrMore("." ~ Identifier) ~> (
+        (
+          e1: AExpr,
+          fs: Seq[AIdentifier]
+        ) => fs.foldLeft(e1)((e: AExpr, f: AIdentifier) => AAccess(e, f.value, f.loc))
+      )
+    }.asInstanceOf[Rule1[AAccess]]
+
+  def Field: Rule1[ARecordField] = rule {
+    push(cursor) ~ Identifier ~ wspStr(":") ~ Expression ~> ((cur: Int, id: AIdentifier, expr: AExpr) => ARecordField(id.value, expr, id.loc))
+  }
+
   def Operation: Rule1[AExpr] = rule {
     Term ~
       optional(
@@ -80,10 +118,10 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
   }
 
   def Term: Rule1[AExpr] = rule {
-    Atom ~ optional(
+    Access | (Atom ~ optional(
       push(cursor) ~ "*" ~ Term ~> ((e1: AExpr, cur: Int, e2: AExpr) => ABinaryOp(Times, e1, e2, cur))
         | push(cursor) ~ "/" ~ Term ~> ((e1: AExpr, cur: Int, e2: AExpr) => ABinaryOp(Divide, e1, e2, cur))
-    )
+    ))
   }
 
   def Atom: Rule1[AExpr] = rule {
@@ -91,13 +129,9 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
       | Number
       | Parens
       | Identifier
-      | push(cursor) ~ wspStr("input") ~> ((cur: Int) => AInput(cur))
-      | PointersExpression)
-  }
-
-  def SimpleAtom: Rule1[AExpr] = rule {
-    (Parens
-      | Identifier)
+      | push(cursor) ~ wspStr(LanguageKeywords.KINPUT) ~> ((cur: Int) => AInput(cur))
+      | PointersExpression
+      | Record)
   }
 
   def Parens = rule {
@@ -117,27 +151,27 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
   }
 
   def IdentifierDeclaration: Rule1[AIdentifierDeclaration] = rule {
-    push(cursor) ~ OptSpace ~ !keywords ~ capture(CharPredicate.Alpha ~ zeroOrMore(CharPredicate.AlphaNum)) ~> ((cur: Int,
-                                                                                                                 id: String) =>
-                                                                                                                  AIdentifierDeclaration(id, cur))
+    push(cursor) ~ OptSpace ~ !keywords ~ capture(CharPredicate.Alpha ~ zeroOrMore(CharPredicate.AlphaNum)) ~> (
+      (
+        cur: Int,
+        id: String
+      ) => AIdentifierDeclaration(id, cur)
+    )
   }
 
   def PointersExpression = rule {
-    ZeraryPointerExpression | UnaryPointerExpression
+    (push(cursor) ~ wspStr(LanguageKeywords.KALLOC) ~ Expression ~> ((cur: Int, exp: AExpr) => AAlloc(exp, cur))
+      | push(cursor) ~ wspStr("null") ~> ((cur: Int) => ANull(cur))
+      | Ref
+      | DeRef)
   }
 
-  def ZeraryPointerExpression = rule {
-    (push(cursor) ~ wspStr("alloc") ~> ((cur: Int) => AAlloc(cur))
-      | push(cursor) ~ wspStr("null") ~> ((cur: Int) => ANull(cur)))
+  def Ref = rule {
+    push(cursor) ~ "&" ~ Identifier ~> ((cur: Int, id: AIdentifier) => AUnaryOp(RefOp, id, cur))
   }
 
-  def UnaryPointerExpression = rule {
-    ((push(cursor) ~ "&" ~ Identifier ~> ((cur: Int, id: AIdentifier) => AUnaryOp(RefOp, id, cur)))
-      | (push(cursor) ~ "*" ~ Atom ~> ((cur: Int, e: AExpr) => AUnaryOp(DerefOp, e, cur))))
-  }
-
-  def LeftHandUnaryPointerExpression: Rule1[AUnaryOp[DerefOp.type]] = rule {
-    push(cursor) ~ "*" ~ Atom ~> ((cur: Int, e: AExpr) => AUnaryOp[DerefOp.type](DerefOp, e, cur))
+  def DeRef: Rule1[AUnaryOp] = rule {
+    push(cursor) ~ "*" ~ Atom ~> ((cur: Int, e: AExpr) => AUnaryOp(DerefOp, e, cur))
   }
 
   def Program: Rule1[AProgram] = rule {
@@ -164,7 +198,7 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
   }
 
   def Assigment: Rule1[AStmtInNestedBlock] = rule {
-    push(cursor) ~ AssignableExpression ~ "=" ~ Expression ~ ";" ~> { (cur: Int, e1: Assignable[DerefOp.type], e2: AExpr) =>
+    push(cursor) ~ AssignableExpression ~ "=" ~ Expression ~ ";" ~> { (cur: Int, e1: Assignable, e2: AExpr) =>
       AAssignStmt(e1, e2, cur)
     }
   }
@@ -174,23 +208,27 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
   }
 
   def FunBlock: Rule1[AFunBlockStmt] = rule {
-    push(cursor) ~ "{" ~ VarStatements ~ Statements ~ Return ~ "}" ~> ((cur: Int,
-                                                                        declarations: Seq[AVarStmt],
-                                                                        others: Seq[AStmtInNestedBlock],
-                                                                        ret: AReturnStmt) => AFunBlockStmt(declarations.toList, others.toList, ret, cur))
+    push(cursor) ~ "{" ~ VarStatements ~ Statements ~ Return ~ "}" ~> (
+      (
+        cur: Int,
+        declarations: Seq[AVarStmt],
+        others: Seq[AStmtInNestedBlock],
+        ret: AReturnStmt
+      ) => AFunBlockStmt(declarations.toList, others.toList, ret, cur)
+    )
   }
 
   def Declaration: Rule1[AVarStmt] = rule {
-    push(cursor) ~ "var" ~ oneOrMore(IdentifierDeclaration)
+    push(cursor) ~ LanguageKeywords.KVAR ~ oneOrMore(IdentifierDeclaration)
       .separatedBy(",") ~ ";" ~> ((cur: Int, idSeq: Seq[AIdentifierDeclaration]) => AVarStmt(idSeq.toList, cur))
   }
 
   def While: Rule1[AStmtInNestedBlock] = rule {
-    push(cursor) ~ "while" ~ "(" ~ Expression ~ ")" ~ Statement ~> ((cur: Int, e: AExpr, b: AStmtInNestedBlock) => AWhileStmt(e, b, cur))
+    push(cursor) ~ LanguageKeywords.KWHILE ~ "(" ~ Expression ~ ")" ~ Statement ~> ((cur: Int, e: AExpr, b: AStmtInNestedBlock) => AWhileStmt(e, b, cur))
   }
 
   def If: Rule1[AStmtInNestedBlock] = rule {
-    (push(cursor) ~ "if" ~ "(" ~ Expression ~ ")" ~ Statement ~ optional("else" ~ Statement)) ~> {
+    (push(cursor) ~ LanguageKeywords.KIF ~ "(" ~ Expression ~ ")" ~ Statement ~ optional(LanguageKeywords.KELSE ~ Statement)) ~> {
       (cur: Int, e: AExpr, bt: AStmtInNestedBlock, bf: Option[AStmtInNestedBlock]) =>
         {
           AIfStmt(e, bt, bf, cur)
@@ -199,19 +237,19 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
   }
 
   def Output: Rule1[AStmtInNestedBlock] = rule {
-    push(cursor) ~ "output" ~ Expression ~ ";" ~> ((cur: Int, e: AExpr) => AOutputStmt(e, cur))
+    push(cursor) ~ LanguageKeywords.KOUTPUT ~ Expression ~ ";" ~> ((cur: Int, e: AExpr) => AOutputStmt(e, cur))
   }
 
   def Return: Rule1[AReturnStmt] = rule {
-    push(cursor) ~ "return" ~ Expression ~ ";" ~> ((cur: Int, e: AExpr) => AReturnStmt(e, cur))
+    push(cursor) ~ LanguageKeywords.KRETURN ~ Expression ~ ";" ~> ((cur: Int, e: AExpr) => AReturnStmt(e, cur))
   }
 
   def Error: Rule1[AStmtInNestedBlock] = rule {
-    push(cursor) ~ "error" ~ Expression ~ ";" ~> ((cur: Int, e: AExpr) => AErrorStmt(e, cur))
+    push(cursor) ~ LanguageKeywords.KERROR ~ Expression ~ ";" ~> ((cur: Int, e: AExpr) => AErrorStmt(e, cur))
   }
 
   def FunApp: Rule1[AExpr] = rule {
-    push(cursor) ~ SimpleAtom ~ FunActualArgs ~> ((cur: Int, fun: AExpr, args: Seq[AExpr]) => ACallFuncExpr(fun, args.toList, cur))
+    push(cursor) ~ (Parens | Identifier) ~ FunActualArgs ~> ((cur: Int, fun: AExpr, args: Seq[AExpr]) => ACallFuncExpr(fun, args.toList, cur))
   }
 
   def FunActualArgs: Rule1[Seq[AExpr]] = rule {

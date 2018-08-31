@@ -11,32 +11,29 @@ object FragmentCfg {
   /**
     * Generates a CFG for each function in the given program.
     */
-  def generateFromProgram(prog: AProgram, nodeBuilder: CfgNode => FragmentCfg)(implicit declData: DeclarationData): Map[AFunDeclaration, FragmentCfg] = {
+  def generateFromProgram(prog: AProgram, nodeBuilder: CfgNode => FragmentCfg)(implicit declData: DeclarationData): Map[AFunDeclaration, FragmentCfg] =
     prog.funs.map { f =>
       f -> FragmentCfg.generateFromFunction(f, nodeBuilder)
     }.toMap
-  }
 
   /**
     * Constructs an empty CFG.
     */
-  private def seqUnit(): FragmentCfg = {
+  private def seqUnit(): FragmentCfg =
     new FragmentCfg(Set(), Set())
-  }
 
   /**
     * Converts a CFG node to a one-node CFG.
     */
-  def nodeToGraph(node: CfgNode): FragmentCfg = {
+  def nodeToGraph(node: CfgNode): FragmentCfg =
     new FragmentCfg(Set(node), Set(node))
-  }
 
   /**
     * Generates a CFG from the body of a function.
     */
-  def generateFromFunction(fun: AFunDeclaration, nodeBuilder: CfgNode => FragmentCfg) = {
+  def generateFromFunction(fun: AFunDeclaration, nodeBuilder: CfgNode => FragmentCfg): FragmentCfg = {
 
-    def recGen(node: AstNode): FragmentCfg = {
+    def recGen(node: AstNode): FragmentCfg =
       node match {
         case fun: AFunDeclaration =>
           val blk = recGen(fun.stmts)
@@ -73,7 +70,6 @@ object FragmentCfg {
           nodeBuilder(CfgStmtNode(data = node))
         case _: AExpr | _: AIdentifierDeclaration | _: AProgram => ???
       }
-    }
 
     recGen(fun)
   }
@@ -93,12 +89,12 @@ class FragmentCfg(private[cfg] val graphEntries: Set[CfgNode], private[cfg] val 
   /**
     * Returns true if this is the unit CFG w.r.t. to concatenation.
     */
-  def isUnit = graphEntries.isEmpty && graphExits.isEmpty
+  def isUnit: Boolean = graphEntries.isEmpty && graphExits.isEmpty
 
   /**
     * Returns the concatenation of this CFG with `after`.
     */
-  def ~(after: FragmentCfg): FragmentCfg = {
+  def ~(after: FragmentCfg): FragmentCfg =
     if (isUnit)
       after
     else if (after.isUnit)
@@ -108,23 +104,20 @@ class FragmentCfg(private[cfg] val graphEntries: Set[CfgNode], private[cfg] val 
       after.graphEntries.foreach(_.pred ++= graphExits)
       new FragmentCfg(graphEntries, after.graphExits)
     }
-  }
 
   /**
     * Returns the union of this CFG with `other`.
     */
-  def |(other: FragmentCfg): FragmentCfg = {
+  def |(other: FragmentCfg): FragmentCfg =
     new FragmentCfg(other.graphEntries.union(graphEntries), other.graphExits.union(graphExits))
-  }
 
   /**
     * Returns the set of nodes in the CFG.
     */
-  def nodes: Set[CfgNode] = {
+  def nodes: Set[CfgNode] =
     graphEntries.flatMap { entry =>
       nodesRec(entry).toSet
     }
-  }
 
   protected def nodesRec(n: CfgNode, visited: mutable.Set[CfgNode] = mutable.Set()): mutable.Set[CfgNode] = {
     if (!visited.contains(n)) {
@@ -160,7 +153,7 @@ class FragmentCfg(private[cfg] val graphEntries: Set[CfgNode], private[cfg] val 
     * Returns a Graphviz dot representation of the CFG.
     * Each node is labeled using the given function labeler.
     */
-  def toDot(labeler: (CfgNode => String), idGen: CfgNode => String): String = {
+  def toDot(labeler: CfgNode => String, idGen: CfgNode => String): String = {
     val dotNodes = mutable.Map[CfgNode, DotNode]()
     var dotArrows = mutable.MutableList[DotArrow]()
     nodes.foreach { n =>

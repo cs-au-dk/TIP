@@ -28,7 +28,7 @@ class DeclarationAnalysis(prog: AProgram) extends DepthFirstAstVisitor[Map[Strin
     * @param node the node to visit
     * @param env the environment associating with each name its declaration in the current scope
     */
-  override def visit(node: AstNode, env: Map[String, ADeclaration]): Unit = {
+  def visit(node: AstNode, env: Map[String, ADeclaration]): Unit =
     node match {
       case block: ABlock =>
         // Extend the environment with the initial declarations in the block, if present
@@ -87,7 +87,6 @@ class DeclarationAnalysis(prog: AProgram) extends DepthFirstAstVisitor[Map[Strin
         // There is no alteration of the environment, just visit the children in the current environment
         visitChildren(node, env)
     }
-  }
 
   /**
     * Extend the environment `env` with the bindings in `ext`, checking that no re-definitions occur.
