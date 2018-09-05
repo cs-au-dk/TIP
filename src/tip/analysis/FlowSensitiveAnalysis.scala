@@ -33,7 +33,7 @@ object FlowSensitiveAnalysis {
   def select(kind: Analysis.Value, options: AnalysisOption.Value, cfg: FragmentCfg)(implicit declData: DeclarationData): Option[FlowSensitiveAnalysis[_]] = {
 
     val typedCfg = options match {
-      case AnalysisOption.iwli | AnalysisOption.iwlip | AnalysisOption.`csiwlip` | AnalysisOption.`cfiwlip` | AnalysisOption.`ide` =>
+      case AnalysisOption.`iwlr` | AnalysisOption.`iwlrp` | AnalysisOption.`csiwlrp` | AnalysisOption.`cfiwlrp` | AnalysisOption.`ide` =>
         cfg match {
           case w: InterproceduralProgramCfg => Right(w)
           case _ => throw new RuntimeException(s"Whole CFG needed")
@@ -67,43 +67,43 @@ object FlowSensitiveAnalysis {
           case Analysis.constprop => new ConstantPropagationAnalysisWorklistSolver(typedCfg.left.get)
           case _ => throw new RuntimeException(s"Unsupported solver option `$options` for the analysis $kind")
         })
-      case AnalysisOption.`wli` =>
+      case AnalysisOption.`wlr` =>
         Some(kind match {
-          case Analysis.sign => new IntraprocSignAnalysisWorklistSolverWithInit(typedCfg.left.get)
-          case Analysis.interval => new IntervalAnalysisWorklistSolverWithInit(typedCfg.left.get)
+          case Analysis.sign => new IntraprocSignAnalysisWorklistSolverWithReachability(typedCfg.left.get)
+          case Analysis.interval => new IntervalAnalysisWorklistSolverWithReachability(typedCfg.left.get)
           case _ => throw new RuntimeException(s"Unsupported solver option `$options` for the analysis $kind")
         })
-      case AnalysisOption.`wliw` =>
+      case AnalysisOption.`wlrw` =>
         Some(kind match {
           case Analysis.interval => new IntervalAnalysisWorklistSolverWithWidening(typedCfg.left.get)
           case _ => throw new RuntimeException(s"Unsupported solver option `$options` for the analysis $kind")
         })
-      case AnalysisOption.`wliwn` =>
+      case AnalysisOption.`wlrwn` =>
         Some(kind match {
           case Analysis.interval => new IntervalAnalysisWorklistSolverWithWideningAndNarrowing(typedCfg.left.get)
           case _ => throw new RuntimeException(s"Unsupported solver option `$options` for the analysis $kind")
         })
-      case AnalysisOption.`wlip` =>
+      case AnalysisOption.`wlrp` =>
         Some(kind match {
-          case Analysis.sign => new IntraprocSignAnalysisWorklistSolverWithInitAndPropagation(typedCfg.left.get)
+          case Analysis.sign => new IntraprocSignAnalysisWorklistSolverWithReachabilityAndPropagation(typedCfg.left.get)
           case _ => throw new RuntimeException(s"Unsupported solver option `$options` for the analysis $kind")
         })
-      case AnalysisOption.`iwli` =>
+      case AnalysisOption.`iwlr` =>
         Some(kind match {
-          case Analysis.sign => new InterprocSignAnalysisWorklistSolverWithInit(typedCfg.right.get)
+          case Analysis.sign => new InterprocSignAnalysisWorklistSolverWithReachability(typedCfg.right.get)
           case _ => throw new RuntimeException(s"Unsupported solver option `$options` for the analysis $kind")
         })
-      case AnalysisOption.`iwlip` =>
+      case AnalysisOption.`iwlrp` =>
         Some(kind match {
-          case Analysis.sign => new InterprocSignAnalysisWorklistSolverWithInitAndPropagation(typedCfg.right.get)
+          case Analysis.sign => new InterprocSignAnalysisWorklistSolverWithReachabilityAndPropagation(typedCfg.right.get)
           case _ => throw new RuntimeException(s"Unsupported solver option `$options` for the analysis $kind")
         })
-      case AnalysisOption.`csiwlip` =>
+      case AnalysisOption.`csiwlrp` =>
         Some(kind match {
           case Analysis.sign => new CallStringSignAnalysis(typedCfg.right.get)
           case _ => throw new RuntimeException(s"Unsupported solver option `$options` for the analysis $kind")
         })
-      case AnalysisOption.`cfiwlip` =>
+      case AnalysisOption.`cfiwlrp` =>
         Some(kind match {
           case Analysis.sign => new FunctionalSignAnalysis(typedCfg.right.get)
           case _ => throw new RuntimeException(s"Unsupported solver option `$options` for the analysis $kind")
@@ -121,40 +121,40 @@ object FlowSensitiveAnalysis {
     *
     * - Enabled: use the simple fixpoint solver
     * - wl: use the worklist solver
-    * - wli: use the worklist solver with init
-    * - wliw: use the worklist solver with init and widening
-    * - wliwn: use the worklist solver with init, widening, and narrowing
-    * - wlip: use the worklist solver with init and propagation
-    * - iwli: use the worklist solver with init, interprocedural version
-    * - iwlip: use the worklist solver with init and propagation, interprocedural version
-    * - csiwlip: use the worklist solver with init and propagation, context-sensitive (with call string) interprocedural version
-    * - cfiwlip: use the worklist solver with init and propagation, context-sensitive (with functional approach) interprocedural version
+    * - wlr: use the worklist solver with reachability
+    * - wlrw: use the worklist solver with reachability and widening
+    * - wlrwn: use the worklist solver with reachability, widening, and narrowing
+    * - wlrp: use the worklist solver with reachability and propagation
+    * - iwlr: use the worklist solver with reachability, interprocedural version
+    * - iwlrp: use the worklist solver with reachability and propagation, interprocedural version
+    * - csiwlrp: use the worklist solver with reachability and propagation, context-sensitive (with call string) interprocedural version
+    * - cfiwlrp: use the worklist solver with reachability and propagation, context-sensitive (with functional approach) interprocedural version
     * - ide: use the IDE solver
     */
   object AnalysisOption extends Enumeration {
-    val simple, Disabled, wl, wli, wliw, wliwn, wlip, iwli, iwlip, csiwlip, cfiwlip, ide = Value
+    val simple, Disabled, wl, wlr, wlrw, wlrwn, wlrp, iwlr, iwlrp, csiwlrp, cfiwlrp, ide = Value
 
     def interprocedural(v: Value): Boolean =
       v match {
-        case `iwli` => true
-        case `iwlip` => true
-        case `csiwlip` => true
-        case `cfiwlip` => true
+        case `iwlr` => true
+        case `iwlrp` => true
+        case `csiwlrp` => true
+        case `cfiwlrp` => true
         case `ide` => true
         case _ => false
       }
 
     def contextsensitive(v: Value): Boolean =
       v match {
-        case `csiwlip` => true
-        case `cfiwlip` => true
+        case `csiwlrp` => true
+        case `cfiwlrp` => true
         case _ => false
       }
 
     def withWidening(v: Value): Boolean =
       v match {
-        case `wliw` => true
-        case `wliwn` => true
+        case `wlrw` => true
+        case `wlrwn` => true
         case _ => false
       }
   }

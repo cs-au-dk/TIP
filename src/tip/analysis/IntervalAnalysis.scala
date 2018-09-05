@@ -79,9 +79,9 @@ abstract class IntervalAnalysis(cfg: FragmentCfg)(implicit declData: Declaration
 /**
   * Interval analysis, using the worklist solver with init and widening.
   */
-class IntervalAnalysisWorklistSolverWithInit(cfg: ProgramCfg)(implicit declData: DeclarationData)
+class IntervalAnalysisWorklistSolverWithReachability(cfg: ProgramCfg)(implicit declData: DeclarationData)
     extends IntervalAnalysis(cfg)
-    with WorklistFixpointSolverWithInit[CfgNode]
+    with WorklistFixpointSolverWithReachability[CfgNode]
     with ForwardDependencies {
 
   val first = cfg.funEntries.values.toSet[CfgNode]
@@ -92,7 +92,7 @@ class IntervalAnalysisWorklistSolverWithInit(cfg: ProgramCfg)(implicit declData:
   */
 class IntervalAnalysisWorklistSolverWithWidening(cfg: ProgramCfg)(implicit declData: DeclarationData)
     extends IntervalAnalysis(cfg)
-    with WorklistFixpointSolverWithInitAndSimpleWidening[CfgNode]
+    with WorklistFixpointSolverWithReachabilityAndWidening[CfgNode]
     with ForwardDependencies {
 
   import tip.cfg.CfgOps._
@@ -111,20 +111,30 @@ class IntervalAnalysisWorklistSolverWithWidening(cfg: ProgramCfg)(implicit declD
     }
   }
 
-  def backedge(src: CfgNode, dst: CfgNode): Boolean = cfg.rank(src) > cfg.rank(dst)
+  def loophead(n: CfgNode): Boolean = indep(n).exists(cfg.rank(_) > cfg.rank(n))
+
+  type IntervalLatticeElement = lattice.sublattice.sublattice.sublattice.Element
 
   private def minB(b: lattice.sublattice.sublattice.sublattice.Num) = B.filter(b <= _).min
 
   private def maxB(a: lattice.sublattice.sublattice.sublattice.Num) = B.filter(_ <= a).max
 
-  def widen(s: lattice.sublattice.Element): lattice.sublattice.Element = {
-    import lattice.sublattice.sublattice.sublattice._
-    import lattice.sublattice._
-    s match {
-      case lattice.sublattice.Bottom => s
-      case lattice.sublattice.Lift(m) => ??? //<--- Complete here
+  def widenInterval(x: IntervalLatticeElement, y: IntervalLatticeElement): IntervalLatticeElement =
+    (x, y) match {
+      case (lattice.sublattice.sublattice.sublattice.EmptyInterval, _) => y
+      case (_, lattice.sublattice.sublattice.sublattice.EmptyInterval) => x
+      case ((l1, h1), (l2, h2)) => ??? //<--- Complete here
     }
-  }
+
+  def widen(x: lattice.sublattice.Element, y: lattice.sublattice.Element): lattice.sublattice.Element =
+    (x, y) match {
+      case (lattice.sublattice.Bottom, _) => y
+      case (_, lattice.sublattice.Bottom) => x
+      case (lattice.sublattice.Lift(xm), lattice.sublattice.Lift(ym)) =>
+        lattice.sublattice.Lift(declaredVars.map { v =>
+          v -> widenInterval(xm(v), ym(v))
+        }.toMap)
+    }
 }
 
 /**
@@ -132,7 +142,7 @@ class IntervalAnalysisWorklistSolverWithWidening(cfg: ProgramCfg)(implicit declD
   */
 class IntervalAnalysisWorklistSolverWithWideningAndNarrowing(cfg: ProgramCfg)(implicit declData: DeclarationData)
     extends IntervalAnalysisWorklistSolverWithWidening(cfg)
-    with WorklistFixpointSolverWithInitAndSimpleWideningAndNarrowing[CfgNode] {
+    with WorklistFixpointSolverWithReachabilityAndWideningAndNarrowing[CfgNode] {
 
   val narrowingSteps = 5
 }

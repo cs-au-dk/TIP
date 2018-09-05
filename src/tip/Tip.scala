@@ -123,14 +123,14 @@ object Tip extends App {
         | immediately after the analysis name (default: use the simple fixpoint solver):
         |
         | wl       use the worklist solver
-        | wli      use the worklist solver with init
-        | wliw     use the worklist solver with init and widening
-        | wliwn    use the worklist solver with init, widening, and narrowing
-        | wlip     use the worklist solver with init and propagation
-        | iwli     use the worklist solver with init, interprocedural version
-        | iwlip    use the worklist solver with init and propagation, interprocedural version
-        | csiwlip  use the worklist solver with init and propagation, context-sensitive (with call string) interprocedural version
-        | cfiwlip  use the worklist solver with init and propagation, context-sensitive (with functional approach) interprocedural version
+        | wlr      use the worklist solver with reachability
+        | wlrw     use the worklist solver with reachability and widening
+        | wlrwn    use the worklist solver with reachability, widening, and narrowing
+        | wlrp     use the worklist solver with reachability and propagation
+        | iwlr     use the worklist solver with reachability, interprocedural version
+        | iwlrp    use the worklist solver with reachability and propagation, interprocedural version
+        | csiwlrp  use the worklist solver with reachability and propagation, context-sensitive (with call string) interprocedural version
+        | cfiwlrp  use the worklist solver with reachability and propagation, context-sensitive (with functional approach) interprocedural version
         | ide      use the IDE solver
         |
         | e.g. -sign wl  will run the sign analysis using the basic worklist solver

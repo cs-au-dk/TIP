@@ -244,7 +244,7 @@ abstract class SimpleSignAnalysis(cfg: ProgramCfg)(implicit val declData: Declar
 }
 
 /**
-  * Base class for sign analysis with lifted lattice.
+  * Base class for sign analysis with lifted lattice, where the extra bottom element represents "unreachable".
   */
 abstract class LiftedSignAnalysis(cfg: ProgramCfg)(implicit val declData: DeclarationData)
     extends FlowSensitiveAnalysis[CfgNode](cfg)
@@ -295,12 +295,12 @@ class IntraprocSignAnalysisWorklistSolver(cfg: ProgramCfg)(implicit override val
     with SimpleWorklistFixpointSolver[CfgNode]
 
 /**
-  * Intraprocedural sign analysis that uses [[tip.solvers.WorklistFixpointSolverWithInit]],
+  * Intraprocedural sign analysis that uses [[tip.solvers.WorklistFixpointSolverWithReachability]],
   * with all function entries as start nodes.
   */
-class IntraprocSignAnalysisWorklistSolverWithInit(cfg: ProgramCfg)(implicit override val declData: DeclarationData)
+class IntraprocSignAnalysisWorklistSolverWithReachability(cfg: ProgramCfg)(implicit override val declData: DeclarationData)
     extends LiftedSignAnalysis(cfg)
-    with WorklistFixpointSolverWithInit[CfgNode] {
+    with WorklistFixpointSolverWithReachability[CfgNode] {
 
   def transferUnlifted(n: CfgNode, s: lattice.sublattice.sublattice.Element): lattice.sublattice.sublattice.Element = localTransfer(n, s)
 }
@@ -308,15 +308,16 @@ class IntraprocSignAnalysisWorklistSolverWithInit(cfg: ProgramCfg)(implicit over
 /**
   * Intraprocedural sign analysis that uses [[tip.solvers.WorklistFixpointPropagationSolver]].
   */
-class IntraprocSignAnalysisWorklistSolverWithInitAndPropagation(cfg: ProgramCfg)(implicit override val declData: DeclarationData)
-    extends IntraprocSignAnalysisWorklistSolverWithInit(cfg)
+class IntraprocSignAnalysisWorklistSolverWithReachabilityAndPropagation(cfg: ProgramCfg)(implicit override val declData: DeclarationData)
+    extends IntraprocSignAnalysisWorklistSolverWithReachability(cfg)
     with WorklistFixpointPropagationSolver[CfgNode]
 
 /**
-  * Interprocedural sign analysis that uses [[tip.solvers.WorklistFixpointSolverWithInit]].
+  * Interprocedural sign analysis that uses [[tip.solvers.WorklistFixpointSolverWithReachability]],
+  * with the entry of the main function as the only start node.
   */
-class InterprocSignAnalysisWorklistSolverWithInit(val cfg: InterproceduralProgramCfg)(implicit override val declData: DeclarationData)
-    extends IntraprocSignAnalysisWorklistSolverWithInit(cfg)
+class InterprocSignAnalysisWorklistSolverWithReachability(val cfg: InterproceduralProgramCfg)(implicit override val declData: DeclarationData)
+    extends IntraprocSignAnalysisWorklistSolverWithReachability(cfg)
     with InterprocSignAnalysisFunctions
     with InterproceduralForwardDependencies {
 
@@ -328,8 +329,8 @@ class InterprocSignAnalysisWorklistSolverWithInit(val cfg: InterproceduralProgra
   * Note that this class uses [[tip.analysis.ForwardDependencies]] which has no interprocedural outdeps,
   * and it does not use indeps.
   */
-class InterprocSignAnalysisWorklistSolverWithInitAndPropagation(val cfg: InterproceduralProgramCfg)(implicit override val declData: DeclarationData)
-    extends IntraprocSignAnalysisWorklistSolverWithInitAndPropagation(cfg)
+class InterprocSignAnalysisWorklistSolverWithReachabilityAndPropagation(val cfg: InterproceduralProgramCfg)(implicit override val declData: DeclarationData)
+    extends IntraprocSignAnalysisWorklistSolverWithReachabilityAndPropagation(cfg)
     with InterprocSignAnalysisFunctionsWithPropagation
     with ForwardDependencies {
 

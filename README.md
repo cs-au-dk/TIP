@@ -88,6 +88,7 @@ where `<source>` can be a file or a directory containing `.tip` files and
 `[out]` is an output directory (default: ./out).
 
 To see the possible options, run `tip` without options.
+Option `-verbose` is recommended when developing and testing analyses.
 
 ## Help to Scala novices
 

@@ -135,7 +135,7 @@ class FragmentCfg(private[cfg] val graphEntries: Set[CfgNode], private[cfg] val 
     * rank(x) < rank(y) iff y is visited after x in a depth-first
     * visit of the control-flow graph
     */
-  def rank: Map[CfgNode, Int] = {
+  lazy val rank: Map[CfgNode, Int] = {
     def rankRec(elems: List[CfgNode], visited: List[List[CfgNode]], level: Int): Map[CfgNode, Int] = {
       val curLevel = elems.map { x =>
         x -> level

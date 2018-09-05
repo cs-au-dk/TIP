@@ -236,12 +236,14 @@ trait SimpleWorklistFixpointSolver[N] extends WorklistFixpointSolver[N] {
 }
 
 /**
-  * The worklist-based fixpoint solver with initialization.
+  * The worklist-based fixpoint solver with reachability.
+  *
+  * This solver works for map lattices with lifted co-domains, where the extra bottom element typically represents "unreachable".
   */
-trait WorklistFixpointSolverWithInit[N] extends WorklistFixpointSolver[N] with MapLiftLatticeSolver[N] {
+trait WorklistFixpointSolverWithReachability[N] extends WorklistFixpointSolver[N] with MapLiftLatticeSolver[N] {
 
   /**
-    * The start locations.
+    * The start locations, used as the initial contents of the worklist.
     */
   val first: Set[N]
 
@@ -305,7 +307,7 @@ trait WorklistFixpointPropagationFunctions[N] extends ListSetWorklist[N] {
   * Note that with this approach, each abstract state represents the program point *after* the node
   * (for a forward analysis, and opposite for a backward analysis).
   */
-trait WorklistFixpointPropagationSolver[N] extends WorklistFixpointSolverWithInit[N] with WorklistFixpointPropagationFunctions[N] {
+trait WorklistFixpointPropagationSolver[N] extends WorklistFixpointSolverWithReachability[N] with WorklistFixpointPropagationFunctions[N] {
 
   val lattice: MapLattice[N, LiftLattice[Lattice]]
 
@@ -339,38 +341,39 @@ trait WorklistFixpointPropagationSolver[N] extends WorklistFixpointSolverWithIni
 }
 
 /**
-  * Worklist-based fixpoint solver with initialization and simple widening.
+  * Worklist-based fixpoint solver with reachability and widening.
   */
-trait WorklistFixpointSolverWithInitAndSimpleWidening[N] extends WorklistFixpointSolverWithInit[N] {
+trait WorklistFixpointSolverWithReachabilityAndWidening[N] extends WorklistFixpointSolverWithReachability[N] {
 
   /**
-    * Set widening function.
-    * @param s input lattice element
+    * Widening function.
+    * @param x lattice element from previous iteration
+    * @param y lattice element from this iteration
     * @return output lattice element
     */
-  def widen(s: lattice.sublattice.Element): lattice.sublattice.Element
+  def widen(x: lattice.sublattice.Element, y: lattice.sublattice.Element): lattice.sublattice.Element
 
   /**
-    * Tells whether (src,dst) is a back-edge.
+    * Tells whether `n` is a loop-head.
     */
-  def backedge(src: N, dst: N): Boolean
+  def loophead(n: N): Boolean
 
   override def process(n: N) = {
     val xn = x(n)
     FixpointSolvers.log.verb(s"Processing $n in state $xn")
     val y = funsub(n, x)
     if (y != xn) {
-      x += n -> (if (outdep(n).exists(backedge(n, _))) widen(y) else y)
+      x += n -> (if (loophead(n)) widen(xn, y) else y)
       add(outdep(n))
     }
   }
 }
 
 /**
-  * The worklist-based fixpoint solver with initialization, simple widening, and narrowing.
+  * The worklist-based fixpoint solver with reachability, widening, and (simple) narrowing.
   */
-trait WorklistFixpointSolverWithInitAndSimpleWideningAndNarrowing[N]
-    extends WorklistFixpointSolverWithInitAndSimpleWidening[N]
+trait WorklistFixpointSolverWithReachabilityAndWideningAndNarrowing[N]
+    extends WorklistFixpointSolverWithReachabilityAndWidening[N]
     with SimpleMapLatticeFixpointSolver[N] {
 
   /**
@@ -387,5 +390,5 @@ trait WorklistFixpointSolverWithInitAndSimpleWideningAndNarrowing[N]
     if (i <= 0) x else narrow(fun(x), i - 1) // uses the simple definition of 'fun' from SimpleMapLatticeFixpointSolver
 
   override def analyze(): lattice.Element =
-    narrow(super[WorklistFixpointSolverWithInitAndSimpleWidening].analyze(), narrowingSteps)
+    narrow(super[WorklistFixpointSolverWithReachabilityAndWidening].analyze(), narrowingSteps)
 }
