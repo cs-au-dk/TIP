@@ -23,6 +23,7 @@ object Output {
       case OtherOutput(OutputKindE.`cfg`) => "_cfg.dot"
       case OtherOutput(OutputKindE.`icfg`) => "_icfg.dot"
       case OtherOutput(OutputKindE.`types`) => "_types.ttip"
+      case OtherOutput(OutputKindE.`normalized`) => "_normalized.tip"
       case DataFlowOutput(k) =>
         s"_$k.dot"
       case _ => ???
@@ -118,7 +119,7 @@ object Output {
   * Different kinds of output (determine output file names).
   */
 object OutputKindE extends Enumeration {
-  val cfg, icfg, types = Value
+  val cfg, icfg, types, normalized = Value
 }
 
 sealed trait OutputKind

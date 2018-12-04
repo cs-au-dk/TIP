@@ -269,6 +269,7 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
     */
   private def input(): IntValue = {
     print(s"Enter input: ")
+    Console.flush()
     val line = scala.io.StdIn.readLine()
     if (line == null) {
       spec.constInt(0)

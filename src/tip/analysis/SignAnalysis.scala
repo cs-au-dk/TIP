@@ -72,8 +72,8 @@ trait InterprocSignAnalysisMisc[N] {
 trait InterprocSignAnalysisFunctions extends MapLiftLatticeSolver[CfgNode] with InterprocSignAnalysisMisc[CfgNode] with InterproceduralForwardDependencies {
 
   override def funsub(n: CfgNode, x: lattice.Element): lattice.sublattice.Element = {
-    import lattice.sublattice._
-    import cfg._
+    import lattice.sublattice._ // with this import, 'sublattice' refers to the lattice of abstract states
+    import cfg._ // gives easy access to the functionality in InterproceduralProgramCfg
 
     new NormalizedCalls().assertContainsNode(n.data)
 
@@ -87,7 +87,7 @@ trait InterprocSignAnalysisFunctions extends MapLiftLatticeSolver[CfgNode] with 
       // return node
       case CfgStmtNode(_, _, _, ret: AReturnStmt) =>
         val j = join(n, x)
-        j + (AstOps.returnId -> lattice.sublattice.sublattice.sublattice.eval(ret.value, j))
+        j + (AstOps.returnId -> sublattice.sublattice.eval(ret.value, j))
 
       // call nodes (like no-ops here)
       case _: CfgCallNode => join(n, x)

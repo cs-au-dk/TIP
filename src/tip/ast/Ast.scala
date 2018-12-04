@@ -165,6 +165,8 @@ case class AProgram(funs: List[AFunDeclaration], loc: Loc) extends AstNode {
   private def findMainFunction(): Option[AFunDeclaration] =
     funs.find(decl => decl.name == "main")
 
+  override def toString: String =
+    s"${this.print(PartialFunction.empty)}"
 }
 
 case class AFunDeclaration(name: String, args: List[AIdentifierDeclaration], stmts: AFunBlockStmt, loc: Loc) extends ADeclaration {

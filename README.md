@@ -90,6 +90,31 @@ where `<source>` can be a file or a directory containing `.tip` files and
 To see the possible options, run `tip` without options.
 Option `-verbose` is recommended when developing and testing analyses.
 
+## Visualizing control flow graphs and analysis results
+
+The main function `Tip.scala` emits control flow graphs and analysis results as ".dot" files 
+that can be processed by [Graphviz](https://www.graphviz.org/) to produce images, for example using the Graphviz dot command-line tool:
+```
+dot -O -Tpng out/example.tip__sign.dot
+```
+
+## Program normalization
+
+Some analyses require the programs use restricted subsets of TIP. 
+The following kinds of normalization can be performed automatically:
+
+- `-normalizecalls`: 
+  normalizes function calls to be top-level only and such that arguments are identifiers 
+  (e.g. `id1 = id2(id3,id4)`)
+- `-normalizereturns`: 
+  normalizes return expressions to be identifiers 
+  (e.g. `return id`)
+- `-normalizepointers`: 
+  normalizes pointer operations to primitive statements
+  (`id = alloc P` where `P` is null or an integer constant, `id1 = &id2`, `id1 = id2`, `id1 = *id2`, `*id1 = id2`, or`id = null`) 
+ 
+If one or more of these options are enabled, the normalized program is printed to e.g. `out/example.tip__normalized.tip`. 
+ 
 ## Help to Scala novices
 
 This implementation takes advantage of many cool Scala language features that allow the code to be concise and flexible. 
@@ -100,6 +125,7 @@ Still, the following language features deserve some extra attention:
 - [traits](https://docs.scala-lang.org/tour/traits.html)
 - [case classes](https://docs.scala-lang.org/tour/case-classes.html)
 - [companion objects](https://docs.scala-lang.org/tour/singleton-objects.html)
+- [abstract type members](https://docs.scala-lang.org/tour/abstract-types.html) (see e.g. [GenericLattices.scala](src/tip/lattices/GenericLattices.scala))
 - [implicit parameters](https://docs.scala-lang.org/tour/implicit-parameters.html) (see e.g. [TypeAnalysis.scala](src/tip/analysis/TypeAnalysis.scala))
 - [implicit conversions](https://docs.scala-lang.org/tour/implicit-conversions.html) (see e.g. [TipType.ast2typevar](src/tip/types/Types.scala))
 - [implicit classes](https://docs.scala-lang.org/overviews/core/implicit-classes.html) (see e.g. [AstNodeData.AstNodeWithDeclaration](src/tip/ast/AstNodeData.scala))

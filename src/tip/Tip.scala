@@ -74,6 +74,8 @@ class RunOption {
     */
   var concolic = false
 
+  var normalizer: tip.ast.Normalizer = tip.ast.NoNormalizer
+
   /**
     * Checks that a source file or directory has been provided.
     * @return true if success
@@ -104,8 +106,6 @@ object Tip extends App {
         |
         | Options for analyzing programs:
         |
-        | -cfg               construct the (intraprocedural) control-flow graph, but do not perform any analysis
-        | -icfg              construct the interprocedural control-flow graph, but do not perform any analysis
         | -types             enable type analysis
         | -cfa               enable control-flow analysis (interprocedural analyses use the call-graph obtained by this analysis)
         | -andersen          enable Andersen pointer analysis
@@ -140,8 +140,16 @@ object Tip extends App {
         | -run               run the program as the last step
         | -concolic          perform concolic testing (search for failing inputs using dynamic symbolic execution)
         |
+        | Options for normalizing programs (can be combined):
+        |
+        | -normalizereturns  normalize return statements
+        | -normalizecalls    normalize function calls
+        | -normalizepointers normalize pointer usages
+        |
         | Other options:
         |
+        | -cfg               construct the (intraprocedural) control-flow graph, but do not perform any analysis
+        | -icfg              construct the interprocedural control-flow graph, but do not perform any analysis
         | -verbose           verbose output
       """.stripMargin)
 
@@ -163,7 +171,11 @@ object Tip extends App {
         case Failure(e: Throwable) =>
           log.error(s"Failure parsing the program: $file", e)
           sys.exit(1)
-        case Success(programNode: AProgram) =>
+        case Success(parsedNode: AProgram) =>
+          // run normalizer
+          val programNode = options.normalizer.normalizeProgram(parsedNode)
+          Output.output(file, OtherOutput(OutputKindE.normalized), programNode.toString, options.out)
+
           // run declaration analysis
           // (for information about the use of 'implicit', see [[tip.analysis.TypeAnalysis]])
           implicit val declData: DeclarationData = new DeclarationAnalysis(programNode).analyze()
@@ -278,6 +290,12 @@ object Tip extends App {
     val s = args(i)
     if (s.head == '-')
       s match {
+        case "-normalizepointers" =>
+          options.normalizer = new tip.ast.CombineNormalizers(options.normalizer, tip.ast.PointersNormalizer)
+        case "-normalizecalls" =>
+          options.normalizer = new tip.ast.CombineNormalizers(options.normalizer, tip.ast.CallsNormalizer)
+        case "-normalizereturns" =>
+          options.normalizer = new tip.ast.CombineNormalizers(options.normalizer, tip.ast.ReturnsNormalizer)
         case "-cfg" =>
           options.cfg = true
         case "-icfg" =>

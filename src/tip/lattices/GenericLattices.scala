@@ -9,6 +9,11 @@ trait Lattice {
 
   /**
     * The type of the elements of this lattice.
+    *
+    * To novice Scala programmers:
+    * This is an example of an abstract type member. In this trait, `Element` is just a name for a type.
+    * It is constrained in sub-traits and sub-classes, similarly to type parameters in generic classes.
+    * For more information about abstract type members in Scala, see [[https://docs.scala-lang.org/tour/abstract-types.html]].
     */
   type Element
 
