@@ -11,11 +11,15 @@ trait CallContext
 /**
   * Functions for creating call contexts.
   * @tparam C the type for call contexts
-  * @tparam L the type for the abstract state lattice
   */
-trait CallContextFunctions[C <: CallContext, L <: Lattice] {
+trait CallContextFunctions[C <: CallContext] {
 
-  val statelattice: L
+  /**
+    * The type for the abstract state lattice.
+    */
+  type statelatticetype = Lattice
+
+  val statelattice: statelatticetype
 
   /**
     * Initial context, for the main function.
@@ -47,7 +51,7 @@ case class CallStringContext(cs: List[CfgCallNode]) extends CallContext {
 /**
   * Call context construction for call strings.
   */
-trait CallStringFunctions[L <: Lattice] extends CallContextFunctions[CallStringContext, L] {
+trait CallStringFunctions extends CallContextFunctions[CallStringContext] {
 
   /**
     * Default maximum length for call strings: 1.
@@ -78,7 +82,7 @@ case class FunctionalContext(x: Any) extends CallContext { // TODO: find some wa
 /**
   * Call context construction for functional approach.
   */
-trait FunctionalFunctions[L <: Lattice] extends CallContextFunctions[FunctionalContext, L] {
+trait FunctionalFunctions extends CallContextFunctions[FunctionalContext] {
 
   /**
     * Creates a context as the empty abstract state.

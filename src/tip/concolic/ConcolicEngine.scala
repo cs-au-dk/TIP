@@ -46,20 +46,14 @@ class ConcolicEngine(val program: AProgram)(implicit declData: DeclarationData) 
     }
   }
 
-  var cState: ConcolicState = ConcolicState(ct = new ExecutionTreeRoot())
-
   def test(budget: Int = 20): Unit = {
     val root = new ExecutionTreeRoot()
-    cState = ConcolicState(ct = root)
 
     var runs = 0
+    var inputs: List[Int] = Nil
     var results: List[ExecutionResult] = Nil
     while (runs <= budget) {
 
-      cState.counter = 0
-      cState.ct = root
-      cState.symbols = Nil
-      cState.usedInputs = Nil
       runs += 1
 
       log.info("\n")
@@ -67,28 +61,23 @@ class ConcolicEngine(val program: AProgram)(implicit declData: DeclarationData) 
 
       val result: ExecutionResult =
         try {
-          val ret = semp()
-          ret match {
-            case spec.SymbIntValue(i, _) =>
+          semp(root, inputs) match {
+            case (spec.SymbIntValue(i, _), store) =>
               log.info(s"Program ran successfully, result: $i")
-              ExSuccess(cState, i)
+              ExSuccess(store.extra, i)
             case _ => ???
           }
         } catch {
-          case sexp: SymbolicInterpreterException =>
-            log.info(s"Error statement found: $sexp")
-            ExFailure(cState, sexp.message)
-          case exc: RuntimeException =>
-            log.info(s"Exception found: $exc")
-            ExFailure(cState, s"Exception while running the program: $exc")
-
+          case err: ExecutionError =>
+            log.info(s"Error found: $err")
+            ExFailure(err.store.extra, err.message)
         }
 
       results = result :: results
       newInputs(result.symbolicVars, result.lastNode, root) match {
         case Some(values) =>
           log.info(s"New input for ${result.symbolicVars}: $values")
-          cState.inputs = values
+          inputs = values
         case None =>
           log.info(s"Finished exhaustive exploration in $runs runs.\n")
           reportExplorationStatistics(results)

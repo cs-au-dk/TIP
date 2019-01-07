@@ -5,7 +5,7 @@ import scala.language.implicitConversions
 /**
   * The interval lattice.
   */
-class IntervalLattice extends Lattice with LatticeOps {
+object IntervalLattice extends LatticeWithOps {
 
   /**
     * The element of the IntervalLattice.
@@ -22,6 +22,8 @@ class IntervalLattice extends Lattice with LatticeOps {
   implicit def int2num(i: Int): IntNum = IntNum(i)
 
   val bottom: Element = EmptyInterval
+
+  override def top: Element = FullInterval
 
   def lub(x: Element, y: Element): Element =
     (x, y) match {
@@ -60,6 +62,11 @@ class IntervalLattice extends Lattice with LatticeOps {
   case object MInf extends Num {
     override def toString = "-inf"
   }
+
+  /**
+    * Number as interval.
+    */
+  def num(i: Int): Element = (IntNum(i), IntNum(i))
 
   /**
     * Abstract binary `+` on intervals.

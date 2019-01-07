@@ -143,7 +143,7 @@ object ReturnsNormalizer extends Normalizer {
 }
 
 /**
-  * Normalize function calls to fit into the NormalizedCalls sub-language, in which all function calls should have the form [[id = id(id1, id2, ...)]].
+  * Normalize function calls to fit into the NormalizedCalls sub-language, in which all function calls should have the form `id = id(id1, id2, ...)`.
   */
 object CallsNormalizer extends Normalizer {
   override def normalizeExpr(e: AExpr): AExpr =

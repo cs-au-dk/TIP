@@ -52,7 +52,7 @@ case object DerefOp extends Operator with UnaryOperator {
 /**
   * AST node.
   *
-  * (The class extends [[Product]] to enable functionality used by [[AstOps.UnlabelledNode]].)
+  * (The class extends `Product` to enable functionality used by [[AstOps.UnlabelledNode]].)
   */
 sealed abstract class AstNode extends Product {
 

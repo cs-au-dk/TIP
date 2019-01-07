@@ -70,9 +70,11 @@ object NormalizedForPointsToAnalysis extends TipSublanguages {
       case AAssignStmt(_: AIdentifier, AUnaryOp(DerefOp, _: AIdentifier, _), _) =>
       case AAssignStmt(AUnaryOp(_, _: AIdentifier, _), _: AIdentifier, _) =>
       case AAssignStmt(_: AIdentifier, _: ANull, _) =>
+      case AAssignStmt(_: AIdentifier, _: AAtomicExpr, _) =>
       case _: ABlock =>
       case _: AVarStmt =>
       case _: AReturnStmt =>
+      case _: AIfStmt =>
       case x: AStmt =>
         LanguageRestrictionViolation(s"Statement $x is not allowed")
       case _ =>

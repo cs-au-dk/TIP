@@ -5,6 +5,8 @@ import tip.solvers._
 import tip.util.Log
 import tip.ast.AstNodeData.{AstNodeWithDeclaration, DeclarationData}
 
+import scala.language.implicitConversions
+
 class AndersenAnalysis(program: AProgram)(implicit declData: DeclarationData) extends DepthFirstAstVisitor[Null] with PointsToAnalysis {
 
   val log = Log.logger[this.type]()
@@ -31,6 +33,11 @@ class AndersenAnalysis(program: AProgram)(implicit declData: DeclarationData) ex
     * @param arg unused for this visitor
     */
   def visit(node: AstNode, arg: Null): Unit = {
+
+    /**
+      * Implicitly convert from `AIdentifier` to `ADeclaration` by extracting the declaration node for the given identifier node.
+      */
+    implicit def pdef(id: AIdentifier): ADeclaration = id.declaration
 
     node match {
       case AAssignStmt(id: AIdentifier, alloc: AAlloc, _) => ??? //<--- Complete here
