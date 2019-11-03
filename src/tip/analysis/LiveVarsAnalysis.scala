@@ -10,7 +10,7 @@ import tip.solvers._
 import tip.cfg._
 
 /**
-  * Base class for the live variables analysis
+  * Base class for live variables analysis.
   */
 abstract class LiveVarsAnalysis(cfg: IntraproceduralProgramCfg)(implicit declData: DeclarationData) extends FlowSensitiveAnalysis[CfgNode](cfg) {
 

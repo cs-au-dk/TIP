@@ -24,7 +24,7 @@ trait CopyConstantPropagationAnalysisFunctions extends IDEAnalysis[ADeclaration,
   import edgelattice.valuelattice.{FlatEl, Top}
 
   def edgesCallToEntry(d: DL, call: CfgCallNode, entry: CfgFunEntryNode): List[(DL, edgelattice.Edge)] =
-    entry.data.args.zip(call.invocation.args).foldLeft(List[(DL, edgelattice.Edge)]()) {
+    entry.data.params.zip(call.invocation.args).foldLeft(List[(DL, edgelattice.Edge)]()) {
       case (acc, (id, exp)) =>
         acc ++ assign(d, id, exp)
     }

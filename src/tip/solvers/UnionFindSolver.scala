@@ -44,6 +44,7 @@ class UnionFindSolver[A] {
         mkUnion(f1, f2)
         f1.args.zip(f2.args).foreach {
           case (a1, a2) =>
+            log.verb(s"Unifying subterms $a1 and $a2")
             unify(a1, a2)
         }
       case (x, y) =>

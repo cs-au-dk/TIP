@@ -7,7 +7,7 @@ lecture notes on [Static Program Analysis](http://cs.au.dk/~amoeller/spa/).
 ## Getting started
 
 Prerequisites:
-- Java 8
+- Java 8 (or newer)
 - [Scala 2.12](http://www.scala-lang.org/download/)
 - [SBT](http://www.scala-sbt.org/)
 
@@ -18,7 +18,7 @@ options are viable.
 
 - Install the Scala and the SBT plugins in IntelliJ.
 - Clone this repository (File -> New -> Project from Version Control -> GitHub).
-  **Important: due to a bug in the SBT plugin, it is important that you choose a directory name without uppercase letters, e.g. `tip` (otherwise, the following step will fail).**
+  Choose the directory name `tip`. (**If you use another directory name, then the next step may fail!**)
 - IntelliJ should then detect an SBT project. Click 'Import SBT project' and follow the instructions.
   (If this is your first Scala project, you will need to setup the Scala SDK.)
 - Right-click on `Tip.scala` in `src/tip`, then select "Run 'Tip'". To supply
@@ -28,8 +28,8 @@ If you clone the repository using git instead of IntelliJ, you will need to impo
 (File -> New -> Project from Existing Sources). 
 Since the `.idea` folder is then regenerated from scrach, in order to keep the
 inspection profiles you need to checkout the `.idea/inspectionProfiles`
-folder and the `.idea/codeStyleSettings.xml` file from the original repo,
-leaving untouched the other generated folders.
+folder and the `.idea/codeStyles` folder from the original repo,
+leaving the other generated folders untouched.
 
 #### IntelliJ Scala bugs
 
@@ -135,7 +135,7 @@ Tutorials and extensive documentation for Scala are available at [http://docs.sc
 Useful tips: 
   - You can see what type Scala has inferred for an expression by selecting the expression and pressing Alt+Equals 
 (depending on keyboard settings in Settings -> Keymap -> Scala -> Type Info).
-  - You can see what implicit conversion Scala is applying and which ones are available by selecting an expression and pressing Ctrl+Q (depending on keyboard settings in Setting -> Keymap -> Scala -> Implicit Conversion). Expressions on which an implicit is applied are underlined.
+  - You can see what implicit conversion Scala is applying by enabling View -> Show Implicit Hints (and View -> Expand Implicit Hints, for full information).
 
 ## Code style
 

@@ -3,8 +3,7 @@ package tip.analysis
 import tip.ast.{ADeclaration, DepthFirstAstVisitor, _}
 import tip.solvers._
 import tip.util.Log
-import tip.ast.AstNodeData.{AstNodeWithDeclaration, DeclarationData}
-
+import tip.ast.AstNodeData.DeclarationData
 import scala.language.implicitConversions
 
 /**
@@ -35,10 +34,8 @@ class SteensgaardAnalysis(program: AProgram)(implicit declData: DeclarationData)
     */
   def visit(node: AstNode, arg: Null): Unit = {
 
-    /**
-      * Implicitly convert from `AIdentifier` to `ADeclaration` by extracting the declaration node for the given identifier node.
-      */
-    implicit def pdef(id: AIdentifier): ADeclaration = id.declaration
+    implicit def identifierToTerm(id: AIdentifier): Term[StTerm] = IdentifierVariable(id)
+    implicit def allocToTerm(alloc: AAlloc): Term[StTerm] = AllocVariable(alloc)
 
     log.verb(s"Visiting ${node.getClass.getSimpleName} at ${node.loc}")
     node match {

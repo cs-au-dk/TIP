@@ -23,7 +23,7 @@ trait PointsToAnalysis extends Analysis[Unit] {
 
   /**
     * Builds the points-to map.
-    * For each identifier, the points-to map gives the set of locations the identifier may point to.
+    * For each identifier, the points-to map gives the set of cells the identifier may point to.
     */
   def pointsTo(): Map[ADeclaration, Set[AstNode]]
 

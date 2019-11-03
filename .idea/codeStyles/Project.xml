@@ -1,0 +1,11 @@
+<component name="ProjectCodeStyleConfiguration">
+  <code_scheme name="Project" version="173">
+    <option name="RIGHT_MARGIN" value="250" />
+    <ScalaCodeStyleSettings>
+      <option name="FORMATTER" value="1" />
+      <option name="TYPE_ANNOTATION_PUBLIC_MEMBER" value="false" />
+      <option name="TYPE_ANNOTATION_PROTECTED_MEMBER" value="false" />
+      <option name="TYPE_ANNOTATION_UNIT_TYPE" value="false" />
+    </ScalaCodeStyleSettings>
+  </code_scheme>
+</component>

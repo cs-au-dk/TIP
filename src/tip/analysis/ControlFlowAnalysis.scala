@@ -46,7 +46,7 @@ class ControlFlowAnalysis(program: AProgram)(implicit declData: DeclarationData)
     * @param node the node for which it generates the constraints
     * @param arg unused for this visitor
     */
-  def visit(node: AstNode, arg: Null) {
+  def visit(node: AstNode, arg: Null) = {
 
     /**
       * Get the declaration if the supplied AstNode is an identifier,

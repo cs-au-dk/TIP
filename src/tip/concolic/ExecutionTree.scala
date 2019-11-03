@@ -140,7 +140,7 @@ object ExecutionTreePrinter {
     out.append('\n')
   }
 
-  private def printTree(treeNode: ExecutionTree, out: StringBuffer, isTrue: Boolean = true, indent: String = "", root: Boolean = false) {
+  private def printTree(treeNode: ExecutionTree, out: StringBuffer, isTrue: Boolean = true, indent: String = "", root: Boolean = false): Unit = {
     treeNode match {
       case b: Branch =>
         printTree(b.branches(true), out, true, indent + (if (isTrue) "          " else " |        "))
