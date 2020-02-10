@@ -79,7 +79,7 @@ class TypeAnalysis(program: AProgram)(implicit declData: DeclarationData) extend
         bin.operator match {
           case Eqq =>
             unify(bin.left, bin.right)
-            unify(bin, TipInt) 
+            unify(bin, TipInt())
           case _ =>
             unify(bin.left, TipInt()) 
             unify(bin.right, TipInt()) 
@@ -90,8 +90,8 @@ class TypeAnalysis(program: AProgram)(implicit declData: DeclarationData) extend
           case RefOp => unify(un, TipRef(un.target)) 
           case DerefOp => unify(un.target, TipRef(un)) 
         }
-      case alloc: AAlloc => unify(alloc, TipRef(TipAlpha())) 
-      case _: ANull => unify(node, TipRef(TipAlpha())) 
+      case alloc: AAlloc => unify(alloc, TipRef(TipTypeOps.makeAlpha(node)))
+      case _: ANull => unify(node, TipRef(TipTypeOps.makeAlpha(node)))
       case fun: AFunDeclaration => unify(fun, TipFunction(
         fun.params.map(TipType.ast2typevar(_)),
         fun.stmts.ret.value)) 
