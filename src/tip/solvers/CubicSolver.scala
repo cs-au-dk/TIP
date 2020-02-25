@@ -97,7 +97,7 @@ class CubicSolver[V, T](cycleElimination: Boolean = true) {
   /**
     * Collapses the given cycle (if nonempty).
     */
-  private def collapseCycle(cycle: List[Node]) {
+  private def collapseCycle(cycle: List[Node]) =
     if (cycle.nonEmpty) {
       log.verb(s"Collapsing cycle $cycle")
       val first = cycle.head
@@ -115,12 +115,11 @@ class CubicSolver[V, T](cycleElimination: Boolean = true) {
         }
       }
     }
-  }
 
   /**
     * Adds the set of tokens `s` to the variable `x` and propagates along the graph.
     */
-  private def addAndPropagateBits(s: mutable.BitSet, x: V) {
+  private def addAndPropagateBits(s: mutable.BitSet, x: V): Unit = {
     val node = getOrPutNode(x)
     val old = node.tokenSol.clone()
     val newTokens = old | s
@@ -202,6 +201,6 @@ class CubicSolver[V, T](cycleElimination: Boolean = true) {
     */
   def getSolution: Map[V, Set[T]] = {
     val intToToken = tokenToInt.map(p => p._2 -> p._1).toMap[Int, T]
-    varToNode.keys.map(v => v -> getOrPutNode(v).tokenSol.map(i => intToToken(i)).toSet).toMap
+    varToNode.keys.map(v => v -> getOrPutNode(v).tokenSol.map(intToToken).toSet).toMap
   }
 }

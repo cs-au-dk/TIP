@@ -132,7 +132,7 @@ case class ANestedBlockStmt(body: List[AStmtInNestedBlock], loc: Loc) extends AB
 case class AFunBlockStmt(declarations: List[AVarStmt], others: List[AStmtInNestedBlock], ret: AReturnStmt, loc: Loc) extends ABlock {
 
   /**
-    * The contents of the block, not partitioned into declarations, others and return
+    * The contents of the block: declarations, others, and return.
     */
   val body: List[AStmt] = declarations ++ (others :+ ret)
 }
@@ -169,6 +169,6 @@ case class AProgram(funs: List[AFunDeclaration], loc: Loc) extends AstNode {
     s"${this.print(PartialFunction.empty)}"
 }
 
-case class AFunDeclaration(name: String, args: List[AIdentifierDeclaration], stmts: AFunBlockStmt, loc: Loc) extends ADeclaration {
-  override def toString: String = s"$name(${args.mkString(",")}){...}:$loc"
+case class AFunDeclaration(name: String, params: List[AIdentifierDeclaration], stmts: AFunBlockStmt, loc: Loc) extends ADeclaration {
+  override def toString: String = s"$name(${params.mkString(",")}){...}:$loc"
 }

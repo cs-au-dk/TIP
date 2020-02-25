@@ -7,7 +7,7 @@ import tip.solvers.{SimpleMapLatticeFixpointSolver, SimpleWorklistFixpointSolver
 import tip.ast.AstNodeData.DeclarationData
 
 /**
-  * Base class for available expressions analysis
+  * Base class for available expressions analysis.
   */
 abstract class AvailableExpAnalysis(cfg: IntraproceduralProgramCfg)(implicit declData: DeclarationData) extends FlowSensitiveAnalysis[CfgNode](cfg) {
 

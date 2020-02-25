@@ -41,7 +41,7 @@ object AstNodeData {
     private def printer: PartialFunction[AstNode, String] = {
       case id: AIdentifierDeclaration => s"${id.value}: ${id.theType.getOrElse("??")}"
       case f: AFunDeclaration =>
-        s"${f.name}(${f.args.map(_.value).mkString(",")}): ${f.theType.getOrElse("??")}\n${f.stmts.print(printer)}"
+        s"${f.name}(${f.params.map(_.value).mkString(",")}): ${f.theType.getOrElse("??")}\n${f.stmts.print(printer)}"
     }
 
     def toTypedString: String = n.print(printer)

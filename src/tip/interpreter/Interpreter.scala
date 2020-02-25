@@ -51,7 +51,7 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
       a + (f -> newLoc())
     }
     // Create a location for each formal argument of main
-    val envWithInputArgs = program.mainFunction.args.foldLeft(boundEnv) { (a: Env, id: AIdentifierDeclaration) =>
+    val envWithInputArgs = program.mainFunction.params.foldLeft(boundEnv) { (a: Env, id: AIdentifierDeclaration) =>
       a + (id -> newLoc())
     }
     // Store the functions in the associated locations
@@ -59,7 +59,7 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
       s + (boundEnv(f) -> spec.mkFun(f))
     }
     // Store the input in the associated argument locations
-    val storeWithInputArgs = program.mainFunction.args.foldLeft(boundStore) { (s: Store, id: AIdentifierDeclaration) =>
+    val storeWithInputArgs = program.mainFunction.params.foldLeft(boundStore) { (s: Store, id: AIdentifierDeclaration) =>
       val (v, s2) = input(AIdentifier(id.value, id.loc), boundEnv, boundStore)
       s2 + (envWithInputArgs(id) -> v)
     }
@@ -88,7 +88,7 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
     // Extend the environment with ...
     val extEnv = (
       // ... the formal parameters
-      f.args.map { id =>
+      f.params.map { id =>
         id -> newLoc()
       }
         ++
@@ -101,7 +101,7 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
     ).toMap
     val nEnv = env ++ extEnv
     // Write the actual parameters to the corresponding locations in the store
-    val nStore = f.args.zip(actualParams).foldLeft(store) { (ns: Store, p: (AIdentifierDeclaration, EValue)) =>
+    val nStore = f.params.zip(actualParams).foldLeft(store) { (ns: Store, p: (AIdentifierDeclaration, EValue)) =>
       ns + (extEnv(p._1) -> p._2)
     }
     // Execute the body

@@ -44,7 +44,7 @@ class DeclarationAnalysis(prog: AProgram) extends DepthFirstAstVisitor[Map[Strin
         }
       case funDec: AFunDeclaration =>
         // Associate to each parameter itself as definition
-        val argsMap = funDec.args.foldLeft(Map[String, ADeclaration]()) { (acc, cur: AIdentifierDeclaration) =>
+        val argsMap = funDec.params.foldLeft(Map[String, ADeclaration]()) { (acc, cur: AIdentifierDeclaration) =>
           extendEnv(acc, cur.value -> cur)
         }
         // Visit the function body in the extended environment

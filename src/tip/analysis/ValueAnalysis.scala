@@ -9,7 +9,6 @@ import tip.ast.AstNodeData.{AstNodeWithDeclaration, DeclarationData}
 
 /**
   * General definitions for value analysis.
-  * @tparam L value lattice type
   */
 trait ValueAnalysisMisc {
 
@@ -170,21 +169,20 @@ trait InterprocValueAnalysisFunctionsWithPropagation
     import liftedstatelattice._
 
     // helper function that propagates dataflow from a function exit node to an after-call node
-    def returnflow(funexit: CfgFunExitNode, aftercall: CfgAfterCallNode) {
+    def returnflow(funexit: CfgFunExitNode, aftercall: CfgAfterCallNode) =
       x(funexit) match {
         case Lift(exitState) =>
           val newState = x(aftercall.pred.head) + (aftercall.targetIdentifier.declaration -> exitState(AstOps.returnId))
           propagate(newState, aftercall)
         case Bottom => // not (yet) any dataflow at funexit
       }
-    }
 
     n match {
       // call nodes
       case call: CfgCallNode =>
         call.callees.foreach { entry =>
           // build entry state and new call context, then propagate to function entry
-          val newState = evalArgs(entry.data.args, call.invocation.args, s)
+          val newState = evalArgs(entry.data.params, call.invocation.args, s)
           propagate(newState, entry)
           // make sure existing return flow gets propagated
           returnflow(entry.exit, call.afterCallNode)
@@ -327,14 +325,13 @@ abstract class ContextSensitiveValueAnalysis[C <: CallContext, L <: LatticeWithO
     import liftedstatelattice._
 
     // helper function that propagates dataflow from a function exit node to an after-call node
-    def returnflow(exitContext: C, funexit: CfgFunExitNode, callerContext: C, aftercall: CfgAfterCallNode) {
+    def returnflow(exitContext: C, funexit: CfgFunExitNode, callerContext: C, aftercall: CfgAfterCallNode) =
       x(exitContext, funexit) match {
         case Lift(exitState) =>
           val newState = x(callerContext, aftercall.pred.head) + (aftercall.targetIdentifier.declaration -> exitState(AstOps.returnId))
           propagate(newState, (callerContext, aftercall))
         case Bottom => // not (yet) any dataflow at funexit
       }
-    }
 
     val currentContext = n._1
     n._2 match {
@@ -342,7 +339,7 @@ abstract class ContextSensitiveValueAnalysis[C <: CallContext, L <: LatticeWithO
       case call: CfgCallNode =>
         call.callees.foreach { entry =>
           // build entry state and new call context, then propagate to function entry
-          val newState = evalArgs(entry.data.args, call.invocation.args, s)
+          val newState = evalArgs(entry.data.params, call.invocation.args, s)
           val newContext = makeCallContext(currentContext, call, newState, entry)
           propagate(newState, (newContext, entry))
           // record the (reverse) call edge, and make sure existing return flow gets propagated

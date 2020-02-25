@@ -48,6 +48,19 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
     val KERROR = "error"
   }
 
+  val keywords = Set(
+    LanguageKeywords.KALLOC,
+    LanguageKeywords.KINPUT,
+    LanguageKeywords.KWHILE,
+    LanguageKeywords.KIF,
+    LanguageKeywords.KELSE,
+    LanguageKeywords.KVAR,
+    LanguageKeywords.KRETURN,
+    LanguageKeywords.KNULL,
+    LanguageKeywords.KOUTPUT,
+    LanguageKeywords.KERROR
+  )
+
   def InputLine = rule {
     Program ~ EOI
   }
@@ -56,25 +69,12 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
     NewLine | CharPredicate(" \t\f") | Comment
   }
 
-  def keywords = rule {
-    LanguageKeywords.KALLOC |
-      LanguageKeywords.KINPUT |
-      LanguageKeywords.KWHILE |
-      LanguageKeywords.KIF |
-      LanguageKeywords.KELSE |
-      LanguageKeywords.KVAR |
-      LanguageKeywords.KRETURN |
-      LanguageKeywords.KNULL |
-      LanguageKeywords.KOUTPUT |
-      LanguageKeywords.KERROR
-  }
-
   def OptSpace = rule {
-    zeroOrMore(WS)
+    quiet(zeroOrMore(WS))
   }
 
   implicit def wspStr(s: String): Rule0 = rule {
-    OptSpace ~ str(s) ~ OptSpace
+    quiet(OptSpace ~ str(s) ~ OptSpace)
   }
 
   def AssignableExpression: Rule1[Assignable] = rule {
@@ -128,9 +128,9 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
     (FunApp
       | Number
       | Parens
-      | Identifier
-      | push(cursor) ~ wspStr(LanguageKeywords.KINPUT) ~> ((cur: Int) => AInput(cur))
       | PointersExpression
+      | push(cursor) ~ wspStr(LanguageKeywords.KINPUT) ~> ((cur: Int) => AInput(cur))
+      | Identifier
       | Record)
   }
 
@@ -146,17 +146,20 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
     optional("-") ~ oneOrMore(CharPredicate.Digit)
   }
 
+  private var c: Int = _
+
+  def Id: Rule1[String] = rule {
+    run(c = cursor) ~ atomic(capture((CharPredicate.Alpha | '_') ~ zeroOrMore(CharPredicate.AlphaNum | '_')).named("identifier")) ~ quiet(
+      test(!keywords.contains(input.sliceString(c, cursor)))
+    )
+  }
+
   def Identifier: Rule1[AIdentifier] = rule {
-    push(cursor) ~ OptSpace ~ !keywords ~ capture(CharPredicate.Alpha ~ zeroOrMore(CharPredicate.AlphaNum)) ~> ((cur: Int, id: String) => AIdentifier(id, cur))
+    push(cursor) ~ OptSpace ~ Id ~> ((cur: Int, id: String) => AIdentifier(id, cur))
   }
 
   def IdentifierDeclaration: Rule1[AIdentifierDeclaration] = rule {
-    push(cursor) ~ OptSpace ~ !keywords ~ capture(CharPredicate.Alpha ~ zeroOrMore(CharPredicate.AlphaNum)) ~> (
-      (
-        cur: Int,
-        id: String
-      ) => AIdentifierDeclaration(id, cur)
-    )
+    push(cursor) ~ OptSpace ~ Id ~> ((cur: Int, id: String) => AIdentifierDeclaration(id, cur))
   }
 
   def PointersExpression = rule {

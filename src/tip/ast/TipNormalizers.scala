@@ -8,20 +8,28 @@ class Normalizer {
     s"tmp_$lastUid"
   }
 
-  /** The list of declarations that have to be added in the current function */
+  /** The list of declarations that have to be added in the current function. */
   val declarations: scala.collection.mutable.ListBuffer[AIdentifierDeclaration] = scala.collection.mutable.ListBuffer.empty
 
-  /** Adds a declaration */
+  /**
+    * Adds a declaration.
+    */
   def addDeclaration(decl: AIdentifierDeclaration): Unit = declarations += decl
 
-  /** The list of statements to be added in the current block.
-    * This will mostly be assignments but can be any statement that can be in a nested block */
+  /**
+    * The list of statements to be added in the current block.
+    * This will mostly be assignments but can be any statement that can be in a nested block.
+    */
   val statements: scala.collection.mutable.ListBuffer[AStmtInNestedBlock] = scala.collection.mutable.ListBuffer.empty
 
-  /** Adds a statement */
+  /**
+    * Adds a statement.
+    */
   def addStatement(stmt: AStmtInNestedBlock): Unit = statements += stmt
 
-  /** Normalizes an AExpr */
+  /**
+    * Normalizes an AExpr.
+    */
   def normalizeExpr(e: AExpr): AExpr =
     e match {
       case a: Assignable => normalizeAssignable(a)
@@ -31,7 +39,9 @@ class Normalizer {
       case _ => e
     }
 
-  /** Normalizes an AExpr into an AIdentifier. This is not used by the Normalizer class but useful for subclasses, as this is a common operation */
+  /**
+    * Normalizes an AExpr into an AIdentifier. This is not used by the Normalizer class but useful for subclasses, as this is a common operation.
+    */
   def normalizeToIdentifier(right: AExpr): AIdentifier =
     right match {
       case id: AIdentifier => id
@@ -43,18 +53,24 @@ class Normalizer {
         id
     }
 
-  /** Normalizes an ARecordField. */
+  /**
+    * Normalizes an ARecordField.
+    */
   def normalizeRecordField(f: ARecordField): ARecordField =
     f.copy(exp = normalizeExpr(f.exp))
 
-  /** Normalizes an Assignable. */
+  /**
+    * Normalizes an Assignable.
+    */
   def normalizeAssignable(e: Assignable): Assignable =
     e match {
       case _: AIdentifier => e
       case uop: AUnaryOp => uop.copy(target = normalizeExpr(uop.target))
     }
 
-  /** Helper function to insert statements if there are any to insert before `stmt`. Otherwise, returns the same statement. */
+  /**
+    * Helper function to insert statements if there are any to insert before `stmt`. Otherwise, returns the same statement.
+    */
   def nestedBlock(stmt: AStmtInNestedBlock): AStmtInNestedBlock =
     if (statements.isEmpty) { stmt } else {
       val res = ANestedBlockStmt(statements.toList :+ stmt, stmt.loc)
@@ -62,7 +78,9 @@ class Normalizer {
       res
     }
 
-  /** Normalizes an AStmtInNestedBlock. */
+  /**
+    * Normalizes an AStmtInNestedBlock.
+    */
   def normalizeStmtInNestedBlock(stmt: AStmtInNestedBlock): AStmtInNestedBlock =
     stmt match {
       case stmt: AAssignStmt =>
@@ -83,11 +101,15 @@ class Normalizer {
         nestedBlock(stmt.copy(guard = normalizeExpr(stmt.guard), innerBlock = innerBlock2))
     }
 
-  /** Normalizes a AReturnStmt */
+  /**
+    * Normalizes an AReturnStmt.
+    */
   def normalizeReturnStmt(ret: AReturnStmt): AReturnStmt =
     ret.copy(value = normalizeExpr(ret.value))
 
-  /** Normalizes a AFunBlockStmt */
+  /**
+    * Normalizes an AFunBlockStmt.
+    */
   def normalizeFunBlockStmt(stmt: AFunBlockStmt): AFunBlockStmt = {
     // Normalizes its body
     val others2 = stmt.others.map(normalizeStmtInNestedBlock)
@@ -110,11 +132,15 @@ class Normalizer {
     stmt.copy(declarations = declarations2, others = others3, ret = ret2)
   }
 
-  /** Normalizes a AFunDeclaration */
+  /**
+    * Normalizes an AFunDeclaration.
+    */
   def normalizeDeclaration(decl: AFunDeclaration): AFunDeclaration =
     decl.copy(stmts = normalizeFunBlockStmt(decl.stmts))
 
-  /** Normalizes a AProgram */
+  /**
+    * Normalizes an AProgram.
+    */
   def normalizeProgram(program: AProgram): AProgram =
     program.copy(funs = program.funs.map(normalizeDeclaration))
 }
@@ -127,14 +153,16 @@ class CombineNormalizers(normalizer1: Normalizer, normalizer2: Normalizer) exten
     normalizer2.normalizeProgram(normalizer1.normalizeProgram(program))
 }
 
-/** A normalizer that does nothing. */
+/**
+  * A normalizer that does nothing.
+  */
 object NoNormalizer extends Normalizer {
   // We don't *have* to redefine normalizeProgram, because its definition in Normalizer ends up returning the same program, but this makes things clearer.
   override def normalizeProgram(program: AProgram): AProgram = program
 }
 
 /**
-  * Normalize return statements so that we only have returns of the form `return id` where id is an identifier
+  * Normalizes return statements so that we only have returns of the form `return id` where id is an identifier.
   */
 object ReturnsNormalizer extends Normalizer {
   override def normalizeReturnStmt(ret: AReturnStmt): AReturnStmt =
@@ -143,7 +171,7 @@ object ReturnsNormalizer extends Normalizer {
 }
 
 /**
-  * Normalize function calls to fit into the NormalizedCalls sub-language, in which all function calls should have the form `id = id(id1, id2, ...)`.
+  * Normalizes function calls to fit into the NormalizedCalls sub-language, in which all function calls should have the form `id = id(id1, id2, ...)`.
   */
 object CallsNormalizer extends Normalizer {
   override def normalizeExpr(e: AExpr): AExpr =
@@ -159,7 +187,7 @@ object CallsNormalizer extends Normalizer {
     // [[e(e1, e2, ...)]] becomes [[id(id1, id2, ...)]]
     f.copy(targetFun = normalizeToIdentifier(f.targetFun), args = f.args.map(normalizeToIdentifier))
 
-  override def normalizeStmtInNestedBlock(stmt: AStmtInNestedBlock) =
+  override def normalizeStmtInNestedBlock(stmt: AStmtInNestedBlock): AStmtInNestedBlock =
     stmt match {
       case AAssignStmt(left: AIdentifier, right: ACallFuncExpr, loc) =>
         // [[id = e(e1, e2, ...)]] form, normalize the call e(e1, e2, ...) to id(id1, id2, ...)
@@ -182,7 +210,9 @@ object CallsNormalizer extends Normalizer {
   */
 object PointersNormalizer extends Normalizer {
 
-  /** Normalizes the left-hand side of an assignment so that it has the form id or *id */
+  /**
+    * Normalizes the left-hand side of an assignment so that it has the form id or *id.
+    */
   def normalizeLeft(left: Assignable): Assignable =
     left match {
       case _: AIdentifier => left
@@ -195,7 +225,9 @@ object PointersNormalizer extends Normalizer {
         AUnaryOp(op, id, left.loc)
     }
 
-  /** Normalize the right-hand side of an assignment so that it has one of the form alloc P, null, &id, *id, or id. */
+  /**
+    * Normalizes the right-hand side of an assignment so that it has one of the form alloc P, null, &id, *id, or id.
+    */
   def normalizeRight(right: AExpr): AExpr =
     right match {
       case op: AUnaryOp =>
@@ -208,7 +240,7 @@ object PointersNormalizer extends Normalizer {
         right
     }
 
-  override def normalizeStmtInNestedBlock(stmt: AStmtInNestedBlock) =
+  override def normalizeStmtInNestedBlock(stmt: AStmtInNestedBlock): AStmtInNestedBlock =
     stmt match {
       case AAssignStmt(left: AIdentifier, right, _) =>
         // [[id = right]] form, normalizes right only

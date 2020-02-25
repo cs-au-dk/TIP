@@ -148,23 +148,23 @@ trait Worklist[N] {
   /**
     * Called by [[run]] to process an item from the worklist.
     */
-  def process(n: N)
+  def process(n: N): Unit
 
   /**
     * Adds an item to the worklist.
     */
-  def add(n: N)
+  def add(n: N): Unit
 
   /**
     * Adds a set of items to the worklist.
     */
-  def add(ns: Set[N])
+  def add(ns: Set[N]): Unit
 
   /**
     * Iterates until there is no more work to do.
     * @param first the initial contents of the worklist
     */
-  def run(first: Set[N])
+  def run(first: Set[N]): Unit
 }
 
 /**

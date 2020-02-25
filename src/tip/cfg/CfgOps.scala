@@ -31,7 +31,7 @@ object CfgOps {
         case r: CfgStmtNode =>
           r.data.declaredLocals
         case r: CfgFunEntryNode =>
-          r.data.args.toSet + r.data
+          r.data.params.toSet + r.data
         case _ => Set()
       }
 

@@ -1,7 +1,7 @@
 package tip.ast
 
 /**
-  * A depth-first visitor for ASTs
+  * A depth-first visitor for ASTs.
   * @tparam A argument type
   */
 trait DepthFirstAstVisitor[A] {
@@ -45,7 +45,7 @@ trait DepthFirstAstVisitor[A] {
         visit(whl.guard, arg)
         visit(whl.innerBlock, arg)
       case funDec: AFunDeclaration =>
-        funDec.args.foreach(visit(_, arg))
+        funDec.params.foreach(visit(_, arg))
         visit(funDec.stmts, arg)
       case p: AProgram =>
         p.funs.foreach(visit(_, arg))
