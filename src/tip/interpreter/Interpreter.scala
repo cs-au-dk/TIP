@@ -61,7 +61,7 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
     // Store the input in the associated argument locations
     val storeWithInputArgs = program.mainFunction.params.foldLeft(boundStore) { (s: Store, id: AIdentifierDeclaration) =>
       val (v, s2) = input(AIdentifier(id.value, id.loc), boundEnv, boundStore)
-      s2 + (envWithInputArgs(id) -> v)
+      s + (envWithInputArgs(id) -> v)
     }
     // Execute the main function
     val (_, cs) = semc(program.mainFunction.stmts, envWithInputArgs, storeWithInputArgs)
