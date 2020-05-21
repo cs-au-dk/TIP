@@ -21,10 +21,10 @@ sealed trait ExecutionTree { self =>
     parent match {
       case b: Branch if b.branches(true) == self =>
         // self node is in the true branch
-        (b.symcond, true) :: b.pathCondition(suffix)
+        (b.symcondition, true) :: b.pathCondition(suffix)
       case b: Branch if b.branches(false) == self =>
         // self node is in the false branch
-        (b.symcond, false) :: b.pathCondition(suffix)
+        (b.symcondition, false) :: b.pathCondition(suffix)
       case _ => parent.pathCondition(suffix)
     }
 
@@ -90,7 +90,7 @@ class UnsatSubTree(val parent: Branch) extends ExecutionTree {
   */
 class Branch(
   val condition: AExpr,
-  val symcond: AExpr,
+  val symcondition: AExpr,
   val parent: ExecutionTree,
   val branches: mutable.Map[Boolean, ExecutionTree] = mutable.Map(),
   val count: mutable.Map[Boolean, Int] = mutable.Map()
@@ -105,7 +105,7 @@ class Branch(
 
   override def branch(cond: AExpr, symcond: AExpr, value: Boolean): ExecutionTree = {
     assert(cond == condition)
-    assert(symcond == symcond)
+    assert(symcondition == symcond)
     log.info(s"Encountered seen branching condition: $cond")
     log.info(s"Exploring ${if (count(value) == 0) "unseen " else ""}$value branch")
     count(value) += 1
@@ -133,7 +133,7 @@ object ExecutionTreePrinter {
         else
           "<??>"
       case _: UnsatSubTree => "<unsat>"
-      case b: Branch => s"${b.symcond} (${b.condition})"
+      case b: Branch => s"${b.symcondition} (${b.condition})"
       case _ => ???
     }
     out.append(str)
