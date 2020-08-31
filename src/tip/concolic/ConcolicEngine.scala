@@ -29,7 +29,7 @@ class ConcolicEngine(val program: AProgram)(implicit declData: DeclarationData) 
     log.info(s"Execution tree status: \n${ExecutionTreePrinter.printExecutionTree(root)}")
     target match {
       case Some((targetNode, value)) =>
-        val pc = targetNode.pathCondition(List((targetNode.symcond, value)))
+        val pc = targetNode.pathCondition(List((targetNode.symcondition, value)))
         log.info(s"Path condition for next run: $pc")
         val smt = SMTSolver.pathToSMT(symbols, pc)
         log.info(s"SMT script for next run: \n$smt")
