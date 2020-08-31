@@ -1,6 +1,6 @@
 name := "tip"
 
-scalaVersion := "2.12.8"
+scalaVersion := "2.12.9"
 
 trapExit := false
 
