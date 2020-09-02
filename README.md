@@ -16,21 +16,15 @@ options are viable.
 
 ### IntelliJ IDEA
 
-- Install the Scala and the SBT plugins in IntelliJ.
-- Clone this repository (File -> New -> Project from Version Control -> GitHub).
-  Choose the directory name `tip`. (**If you use another directory name, then the next step may fail!**)
-- IntelliJ should then detect an SBT project. Click 'Import SBT project' and follow the instructions.
-  (If this is your first Scala project, you will need to setup the Scala SDK.)
-- Right-click on `Tip.scala` in `src/tip`, then select "Run 'Tip'". To supply
-  arguments, use Run... -> Edit Configurations in the Run menu.
+- Install the Scala plugin in IntelliJ. (Follow the instructions on [how to install IntelliJ plugins](https://www.jetbrains.com/help/idea/installing-updating-and-uninstalling-repository-plugins.html), search for "Scala" in the plugins menu.)
+- Open a terminal, navigate to the directory where you want to store the TIP project.
+- Run `git clone https://github.com/cs-au-dk/TIP.git tip`
+- In IntelliJ, click File -> New -> Project from Existing Sources..., choose your new 'tip' directory, click OK, choose 'Import project from external model', then 'sbt' and 'Next'.
+- Select a 'Project JDK' (1.8 or newer), and make sure 'builds' is enabled under 'sbt shell", 'use for' before clicking 'Finish'.
+- In the IntelliJ Project overview, move the contents of 'ideafiles' into '.idea', overwriting the existing files.
+- Now reload the project by clicking File -> Invalidate Caches / Restart... -> Just Restart. (Yes, this step is necessary, because of a bug in IntelliJ.)
+- Right-click on `Tip.scala` in `src/tip`, then select "Run 'Tip'". To supply arguments, use Run... -> Edit Configurations in the Run menu.
   
-If you clone the repository using git instead of IntelliJ, you will need to import the project from the SBT model 
-(File -> New -> Project from Existing Sources). 
-Since the `.idea` folder is then regenerated from scrach, in order to keep the
-inspection profiles you need to checkout the `.idea/inspectionProfiles`
-folder and the `.idea/codeStyles` folder from the original repo,
-leaving the other generated folders untouched.
-
 #### IntelliJ Scala bugs
 
 **Important: if you experience spurious type errors reported by IntelliJ for code involving Scala implicits, try disabling type-aware highlighting**
@@ -143,11 +137,9 @@ To avoid using inconsistent code styles and meaningless diffs caused
 by IDE reformatting we use [scalafmt](http://scalameta.org/scalafmt/).
 
 The code is automatically formatted upon compilation by SBT.
-In IntelliJ you need to ensure that SBT is used for compiling: in File -> Settings... -> Build Tools -> SBT, check the option "Use SBT shell for build and import".
 
 Before committing, please double-check that all the code is in the right format by executing `sbt scalafmt`. 
-By installing the scalafmt IntelliJ plugin and enabling the "Format on save" option as explained
-[here](https://olafurpg.github.io/scalafmt/#IntelliJ) the code is automatically formatted when the file is saved (unfortunately the formatting is only triggered when the file is *explicitly* saved with Ctrl-S).
+To automatically format when the file is saved, go to File -> Settings..., under 'Editor', 'Code Style', 'Scala', make sure 'Scalafmt' is selected under 'Formatter'. (Unfortunately the formatting is only triggered when the file is *explicitly* saved with Ctrl-S.)
 
 ## Authors
 
