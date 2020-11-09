@@ -47,13 +47,13 @@ object SignAnalysis {
 
     /**
       * Interprocedural analysis that uses the worklist solver with reachability and propagation-style.
-      * with call-string context sensivity.
+      * with call-string context sensitivity.
       */
     class CallString(cfg: InterproceduralProgramCfg)(implicit declData: DeclarationData) extends CallStringValueAnalysis(cfg, SignLattice)
 
     /**
       * Interprocedural analysis that uses the worklist solver with reachability and propagation-style.
-      * with functional-approach context sensivity.
+      * with functional-approach context sensitivity.
       */
     class Functional(cfg: InterproceduralProgramCfg)(implicit declData: DeclarationData) extends FunctionalValueAnalysis(cfg, SignLattice)
   }

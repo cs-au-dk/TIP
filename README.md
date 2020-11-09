@@ -143,8 +143,8 @@ To automatically format when the file is saved, go to File -> Settings..., under
 
 ## Authors
 
-- [Gianluca Mezzetti](http://gmezzetti.name/)
 - [Anders M&oslash;ller](http://cs.au.dk/~amoeller/)
+- [Gianluca Mezzetti](http://gmezzetti.name/)
 
 with contributions from
 

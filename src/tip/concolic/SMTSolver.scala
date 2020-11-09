@@ -2,6 +2,7 @@ package tip.concolic
 
 import tip.ast._
 import smtlib.Interpreter
+import smtlib.interpreters.Z3Interpreter
 import smtlib.parser.Parser
 import smtlib.parser.Commands._
 import smtlib.parser.CommandsResponses._
@@ -13,7 +14,7 @@ object SMTSolver {
   val log = Log.logger[this.type]()
 
   /**
-    * Expressions extended with symbols
+    * Expressions extended with symbols.
     */
   class Symbol(location: Loc, counter: Int) extends AIdentifier(s"s$counter", location) {
     override def toString: String = s"s$counter"
@@ -31,12 +32,12 @@ object SMTSolver {
         case ABinaryOp(op, left, right, _) =>
           s"(${opToSexp(op)} ${expToSexp(left)} ${expToSexp(right)})"
         case n: ANumber => n.value.toString
-        case n: Symbol => n.value.toString
+        case n: Symbol => n.name.toString
         case _ => exp.toString
       }
 
     def symbolsToSMT(vars: List[Symbol]): String =
-      vars.map(sv => s"(declare-const ${sv.value} Int)").mkString("\n")
+      vars.map(sv => s"(declare-const ${sv.name} Int)").mkString("\n")
 
     path.foldLeft(symbolsToSMT(vars))((script: String, cond: (AExpr, Boolean)) => {
       val branchrecord =
@@ -95,7 +96,7 @@ object SMTSolver {
     }
   }
 
-  implicit lazy val z3 = smtlib.interpreters.Z3Interpreter.buildDefault
+  implicit lazy val z3: Z3Interpreter = smtlib.interpreters.Z3Interpreter.buildDefault
 
   /** Solves a SMTLib script */
   def solve(script: Script): Option[Map[String, BigInt]] = {
@@ -112,9 +113,7 @@ object SMTSolver {
     solve(Parser.fromString(s).parseScript)
 
   /**
-    * Reset the status of the solver. If not called, previous constraints still
-    * hold.
+    * Reset the status of the solver. If not called, previous constraints still hold.
     */
   def reset(): Unit = z3.eval(Reset())
-
 }

@@ -2,6 +2,7 @@ package tip.analysis
 
 import tip.ast.DepthFirstAstVisitor
 import tip.ast._
+import tip.util.TipProgramException
 
 /**
   * Declaration analysis, binds identifiers to their declarations.
@@ -45,7 +46,7 @@ class DeclarationAnalysis(prog: AProgram) extends DepthFirstAstVisitor[Map[Strin
       case funDec: AFunDeclaration =>
         // Associate to each parameter itself as definition
         val argsMap = funDec.params.foldLeft(Map[String, ADeclaration]()) { (acc, cur: AIdentifierDeclaration) =>
-          extendEnv(acc, cur.value -> cur)
+          extendEnv(acc, cur.name -> cur)
         }
         // Visit the function body in the extended environment
         val extendedEnv = extendEnv(env, argsMap)
@@ -58,30 +59,33 @@ class DeclarationAnalysis(prog: AProgram) extends DepthFirstAstVisitor[Map[Strin
         p.funs.foreach { fd =>
           visit(fd, extended)
         }
-      case ident: AIdentifier =>
+      case ident @ AIdentifier(name, loc) =>
         // Associate with each identifier the definition in the environment
         try {
-          declResult += ident -> env(ident.value)
+          declResult += ident -> env(name)
         } catch {
-          case e: Exception =>
-            throw new RuntimeException(s"Identifier $ident not declared", e)
+          case _: Exception =>
+            throw new DeclarationError(s"Identifier ${ident.name} not declared ${loc.toStringLong}")
         }
       case AAssignStmt(id: AIdentifier, _, loc) =>
-        if (env.contains(id.value)) {
-          env(id.value) match {
+        if (env.contains(id.name)) {
+          env(id.name) match {
             case f: AFunDeclaration =>
-              throw new RuntimeException(s"Function identifier for function $f can not appears on the left-hand side of an assignment at $loc")
+              throw new DeclarationError(s"Function $f cannot appear on the left-hand side of an assignment ${loc.toStringLong}")
             case _ =>
           }
         }
         visitChildren(node, env)
-      case AUnaryOp(RefOp, id, loc) =>
-        id match {
-          case id: AIdentifier if env.contains(id.value) && env(id.value).isInstanceOf[AFunDeclaration] =>
-            throw new RuntimeException(s"Cannot take address of function ${env(id.value)} at $loc")
-          case _: AIdentifier => // no problem
-          case _ => ??? // unexpected, only identifiers are allowed here by the parser
-        }
+      case AVarRef(id, loc) =>
+        if (env.contains(id.name) && env(id.name).isInstanceOf[AFunDeclaration])
+          throw new DeclarationError(s"Cannot take address of function ${env(id.name)} ${loc.toStringLong}")
+        visitChildren(node, env)
+      case ARecord(fields, _) =>
+        fields.foldLeft(Set[String]())((s, f) => {
+          if (s.contains(f.field))
+            throw new DeclarationError(s"Duplicate field name ${f.field} ${f.loc.toStringLong}")
+          s + f.field
+        })
         visitChildren(node, env)
       case _ =>
         // There is no alteration of the environment, just visit the children in the current environment
@@ -92,38 +96,35 @@ class DeclarationAnalysis(prog: AProgram) extends DepthFirstAstVisitor[Map[Strin
     * Extend the environment `env` with the bindings in `ext`, checking that no re-definitions occur.
     * @param env the environment to extend
     * @param ext the bindings to add
-    * @return the extended environment if no conflict occurs, throws a RuntimeException otherwise
+    * @return the extended environment if no conflict occurs, throws a DeclarationError otherwise
     */
-  def extendEnv(env: Map[String, ADeclaration], ext: Map[String, ADeclaration]): Map[String, ADeclaration] = {
-    // Check for conflicts
-    val conflicts = env.keys.toSet.intersect(ext.keys.toSet)
-    if (conflicts.nonEmpty) redefinition(conflicts.map(env(_)))
-    env ++ ext
-  }
+  def extendEnv(env: Map[String, ADeclaration], ext: Map[String, ADeclaration]): Map[String, ADeclaration] =
+    ext.foldLeft(env)((e, p) => extendEnv(e, p))
 
   /**
     * Extend the environment `env` with the binding `pair`, checking that no re-definition occurs.
     * @param env the environment to extend
     * @param pair the binding to add
-    * @return the extended environment if no conflict occurs, throws a RuntimeException otherwise
+    * @return the extended environment if no conflict occurs, throws a DeclarationError otherwise
     */
   def extendEnv(env: Map[String, ADeclaration], pair: (String, ADeclaration)): Map[String, ADeclaration] = {
-    if (env.contains(pair._1)) redefinition(Set(env(pair._1)))
+    if (env.contains(pair._1))
+      throw new DeclarationError(s"Redefinition of identifier ${pair._1} ${pair._2.loc.toStringLong}")
     env + pair
   }
 
   /**
     * Returns a map containing the new declarations contained in the given sequence of variable declaration statements.
-    * If a variable is re-defined, a RuntimeException is thrown.
+    * If a variable is re-defined, a DeclarationError is thrown.
     * @param decls the sequence of variable declaration statements
     * @return a map associating with each name the node that declares it
     */
   private def peekDecl(decls: Seq[AVarStmt]): Map[String, ADeclaration] = {
-    val allDecls = decls.flatMap(v => v.declIds.map(id => id.value -> id))
+    val allDecls = decls.flatMap(v => v.declIds.map(id => id.name -> id))
     allDecls.foldLeft(Map[String, ADeclaration]()) { (map, pair) =>
       extendEnv(map, pair)
     }
   }
-
-  def redefinition(conflicting: Set[ADeclaration]) = throw new RuntimeException(s"Redefinition of identifiers $conflicting")
 }
+
+class DeclarationError(message: String) extends TipProgramException(s"Symbol error: $message")

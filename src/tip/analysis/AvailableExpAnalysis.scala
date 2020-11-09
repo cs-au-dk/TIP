@@ -14,7 +14,7 @@ abstract class AvailableExpAnalysis(cfg: IntraproceduralProgramCfg)(implicit dec
   import tip.cfg.CfgOps._
   import tip.ast.AstOps._
 
-  val allExps: Set[UnlabelledNode[AExpr]] = cfg.nodes.flatMap(_.appearingExpressions.map(UnlabelledNode[AExpr]))
+  val allExps: Set[UnlabelledNode[AExpr]] = cfg.nodes.flatMap(_.appearingNonInputExpressions.map(UnlabelledNode[AExpr]))
 
   NoPointers.assertContainsProgram(cfg.prog)
   NoRecords.assertContainsProgram(cfg.prog)
@@ -26,20 +26,20 @@ abstract class AvailableExpAnalysis(cfg: IntraproceduralProgramCfg)(implicit dec
       case _: CfgFunEntryNode => Set()
       case r: CfgStmtNode =>
         r.data match {
-          case ass: AAssignStmt =>
-            ass.left match {
+          case as: AAssignStmt =>
+            as.left match {
               case id: AIdentifier =>
-                (s union ass.right.appearingExpressions.map(UnlabelledNode[AExpr])).filter { e =>
+                (s union as.right.appearingNonInputExpressions.map(UnlabelledNode[AExpr])).filter { e =>
                   !(id.appearingIds subsetOf e.n.appearingIds)
                 }
               case _ => ???
             }
           case exp: AExpr =>
-            s union exp.appearingExpressions.map(UnlabelledNode[AExpr])
+            s union exp.appearingNonInputExpressions.map(UnlabelledNode[AExpr])
           case out: AOutputStmt =>
-            s union out.value.appearingExpressions.map(UnlabelledNode[AExpr])
+            s union out.exp.appearingNonInputExpressions.map(UnlabelledNode[AExpr])
           case ret: AReturnStmt =>
-            s union ret.value.appearingExpressions.map(UnlabelledNode[AExpr])
+            s union ret.exp.appearingNonInputExpressions.map(UnlabelledNode[AExpr])
           case _ => s
         }
       case _ => s

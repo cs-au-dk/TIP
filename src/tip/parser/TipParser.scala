@@ -78,9 +78,27 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
   }
 
   def AssignableExpression: Rule1[Assignable] = rule {
-    (Identifier | DeRef) ~> { x: Assignable =>
+    (DirectFieldWrite | IndirectFieldWrite | Identifier | DerefWrite) ~> { x: Assignable =>
       x
     }
+  }
+
+  def DirectFieldWrite: Rule1[ADirectFieldWrite] = rule {
+    push(cursor) ~ Identifier ~ wspStr(".") ~ Identifier ~> ((cur: Int, id: AIdentifier, field: AIdentifier) => ADirectFieldWrite(id, field.name, cur))
+  }
+
+  def IndirectFieldWrite: Rule1[AIndirectFieldWrite] = rule {
+    push(cursor) ~ wspStr("(") ~ wspStr("*") ~ Expression ~ wspStr(")") ~ wspStr(".") ~ Identifier ~> (
+      (
+        cur: Int,
+        exp: AExpr,
+        field: AIdentifier
+      ) => AIndirectFieldWrite(exp, field.name, cur)
+    )
+  }
+
+  def DerefWrite: Rule1[ADerefWrite] = rule {
+    push(cursor) ~ wspStr("*") ~ Expression ~> ((cur: Int, exp: AExpr) => ADerefWrite(exp, cur))
   }
 
   def Expression: Rule1[AExpr] = rule {
@@ -95,18 +113,18 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
     push(cursor) ~ "{" ~ zeroOrMore(Field).separatedBy(wspStr(",")) ~ "}" ~> ((cur: Int, fields: Seq[ARecordField]) => ARecord(fields.toList, cur))
   }
 
-  def Access: Rule1[AAccess] =
+  def Access: Rule1[AFieldAccess] =
     rule {
       (Identifier | DeRef | Parens) ~ oneOrMore("." ~ Identifier) ~> (
         (
           e1: AExpr,
           fs: Seq[AIdentifier]
-        ) => fs.foldLeft(e1)((e: AExpr, f: AIdentifier) => AAccess(e, f.value, f.loc))
+        ) => fs.foldLeft(e1)((e: AExpr, f: AIdentifier) => AFieldAccess(e, f.name, f.loc))
       )
-    }.asInstanceOf[Rule1[AAccess]]
+    }.asInstanceOf[Rule1[AFieldAccess]]
 
   def Field: Rule1[ARecordField] = rule {
-    push(cursor) ~ Identifier ~ wspStr(":") ~ Expression ~> ((cur: Int, id: AIdentifier, expr: AExpr) => ARecordField(id.value, expr, id.loc))
+    push(cursor) ~ Identifier ~ wspStr(":") ~ Expression ~> ((cur: Int, id: AIdentifier, expr: AExpr) => ARecordField(id.name, expr, id.loc))
   }
 
   def Operation: Rule1[AExpr] = rule {
@@ -170,7 +188,7 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
   }
 
   def Ref = rule {
-    push(cursor) ~ "&" ~ Identifier ~> ((cur: Int, id: AIdentifier) => AUnaryOp(RefOp, id, cur))
+    push(cursor) ~ "&" ~ Identifier ~> ((cur: Int, id: AIdentifier) => AVarRef(id, cur))
   }
 
   def DeRef: Rule1[AUnaryOp] = rule {
@@ -184,7 +202,7 @@ class TipParser(val input: ParserInput) extends Parser with Comments {
   def TipFunction: Rule1[AFunDeclaration] = rule {
     push(cursor) ~ Identifier ~ "(" ~ zeroOrMore(IdentifierDeclaration).separatedBy(",") ~ ")" ~ FunBlock ~> {
       (cur: Int, id: AIdentifier, args: Seq[AIdentifierDeclaration], b: AFunBlockStmt) =>
-        AFunDeclaration(id.value, args.toList, b, cur)
+        AFunDeclaration(id.name, args.toList, b, cur)
     }
   }
 

@@ -11,7 +11,7 @@ import scala.language.implicitConversions
   * The analysis associates an [[StTerm]] with each variable declaration and expression node in the AST.
   * It is implemented using [[tip.solvers.UnionFindSolver]].
   */
-class SteensgaardAnalysis(program: AProgram)(implicit declData: DeclarationData) extends DepthFirstAstVisitor[Null] with PointsToAnalysis {
+class SteensgaardAnalysis(program: AProgram)(implicit declData: DeclarationData) extends DepthFirstAstVisitor[Unit] with PointsToAnalysis {
 
   val log = Log.logger[this.type]()
 
@@ -25,14 +25,14 @@ class SteensgaardAnalysis(program: AProgram)(implicit declData: DeclarationData)
     */
   def analyze(): Unit =
     // generate the constraints by traversing the AST and solve them on-the-fly
-    visit(program, null)
+    visit(program, ())
 
   /**
     * Generates the constraints for the given sub-AST.
     * @param node the node for which it generates the constraints
     * @param arg unused for this visitor
     */
-  def visit(node: AstNode, arg: Null): Unit = {
+  def visit(node: AstNode, arg: Unit): Unit = {
 
     implicit def identifierToTerm(id: AIdentifier): Term[StTerm] = IdentifierVariable(id)
     implicit def allocToTerm(alloc: AAlloc): Term[StTerm] = AllocVariable(alloc)
@@ -40,15 +40,13 @@ class SteensgaardAnalysis(program: AProgram)(implicit declData: DeclarationData)
     log.verb(s"Visiting ${node.getClass.getSimpleName} at ${node.loc}")
     node match {
       case AAssignStmt(id1: AIdentifier, alloc: AAlloc, _) => ??? //<--- Complete here
-      case AAssignStmt(id1: AIdentifier, AUnaryOp(RefOp, id2: AIdentifier, _), _) => ??? //<--- Complete here
+      case AAssignStmt(id1: AIdentifier, AVarRef(id2: AIdentifier, _), _) => ??? //<--- Complete here
       case AAssignStmt(id1: AIdentifier, id2: AIdentifier, _) => ??? //<--- Complete here
       case AAssignStmt(id1: AIdentifier, AUnaryOp(DerefOp, id2: AIdentifier, _), _) => ??? //<--- Complete here
-      case AAssignStmt(AUnaryOp(_, id1: AIdentifier, _), id2: AIdentifier, _) => ??? //<--- Complete here
-      case AAssignStmt(_: AIdentifier, _, _) => // ignore other assignments where left-hand-side is an identifier
-      case ass: AAssignStmt => NormalizedForPointsToAnalysis.LanguageRestrictionViolation(s"Not expecting other kinds of assignment: $ass")
+      case AAssignStmt(ADerefWrite(id1: AIdentifier, _), id2: AIdentifier, _) => ??? //<--- Complete here
       case _ => // ignore other kinds of nodes
     }
-    visitChildren(node, null)
+    visitChildren(node, ())
   }
 
   private def unify(t1: Term[StTerm], t2: Term[StTerm]): Unit = {
@@ -98,7 +96,7 @@ object Fresh {
 
   var n = 0
 
-  def next: Int = {
+  def next(): Int = {
     n += 1
     n
   }
@@ -114,7 +112,7 @@ sealed trait StTerm
   */
 case class AllocVariable(alloc: AAlloc) extends StTerm with Var[StTerm] {
 
-  override def toString: String = s"[[alloc:${alloc.loc}]]"
+  override def toString: String = s"\u27E6alloc{${alloc.loc}}]]"
 }
 
 /**
@@ -122,7 +120,7 @@ case class AllocVariable(alloc: AAlloc) extends StTerm with Var[StTerm] {
   */
 case class IdentifierVariable(id: ADeclaration) extends StTerm with Var[StTerm] {
 
-  override def toString: String = s"[[$id]]"
+  override def toString: String = s"\u27E6$id\u27E7"
 }
 
 /**
@@ -130,9 +128,9 @@ case class IdentifierVariable(id: ADeclaration) extends StTerm with Var[StTerm] 
   */
 case class FreshVariable(var id: Int = 0) extends StTerm with Var[StTerm] {
 
-  id = Fresh.next
+  id = Fresh.next()
 
-  override def toString: String = s"\u03B1$id"
+  override def toString: String = s"x$id"
 }
 
 /**
@@ -142,7 +140,7 @@ case class PointerRef(of: Term[StTerm]) extends StTerm with Cons[StTerm] {
 
   val args: List[Term[StTerm]] = List(of)
 
-  def subst(v: Var[StTerm], t: Term[StTerm]): Term[StTerm] = PointerRef(of.subst(v, t)) // currently not used
+  def subst(v: Var[StTerm], t: Term[StTerm]): Term[StTerm] = PointerRef(of.subst(v, t))
 
-  override def toString: String = s"&$of"
+  override def toString: String = s"\u2B61$of"
 }

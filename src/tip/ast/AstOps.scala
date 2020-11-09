@@ -26,15 +26,15 @@ object AstOps {
       */
     def containsInvocation: Boolean = {
       var found = false
-      val invocationFinder = new DepthFirstAstVisitor[Null] {
-        override def visit(node: AstNode, arg: Null): Unit =
+      val invocationFinder = new DepthFirstAstVisitor[Unit] {
+        override def visit(node: AstNode, arg: Unit): Unit =
           node match {
             case _: ACallFuncExpr =>
               found = true
-            case _ => visitChildren(node, null)
+            case _ => visitChildren(node, ())
           }
       }
-      invocationFinder.visit(n, null)
+      invocationFinder.visit(n, ())
       found
     }
 
@@ -52,8 +52,8 @@ object AstOps {
       */
     def appearingIds(implicit declData: DeclarationData): Set[ADeclaration] = {
       val ids = mutable.Set[ADeclaration]()
-      val idFinder = new DepthFirstAstVisitor[Null] {
-        override def visit(node: AstNode, arg: Null): Unit = {
+      val idFinder = new DepthFirstAstVisitor[Unit] {
+        override def visit(node: AstNode, arg: Unit): Unit = {
           node match {
             case id: AIdentifier =>
               id.declaration match {
@@ -64,10 +64,10 @@ object AstOps {
             case fun: AFunDeclaration => ids += fun
             case _ =>
           }
-          visitChildren(node, null)
+          visitChildren(node, ())
         }
       }
-      idFinder.visit(n, null)
+      idFinder.visit(n, ())
       ids.toSet
     }
 
@@ -76,14 +76,14 @@ object AstOps {
       */
     def appearingAllocs: Set[AAlloc] = {
       val allocs = mutable.Set[AAlloc]()
-      val allocsFinder = new DepthFirstAstVisitor[Null] {
-        override def visit(node: AstNode, arg: Null): Unit =
+      val allocsFinder = new DepthFirstAstVisitor[Unit] {
+        override def visit(node: AstNode, arg: Unit): Unit =
           node match {
             case alloc: AAlloc => allocs += alloc
-            case _ => visitChildren(node, null)
+            case _ => visitChildren(node, ())
           }
       }
-      allocsFinder.visit(n, null)
+      allocsFinder.visit(n, ())
       allocs.toSet
     }
 
@@ -92,14 +92,14 @@ object AstOps {
       */
     def appearingConstants: Set[ANumber] = {
       val numbers = mutable.Set[ANumber]()
-      val numFinder = new DepthFirstAstVisitor[Null] {
-        override def visit(node: AstNode, arg: Null): Unit =
+      val numFinder = new DepthFirstAstVisitor[Unit] {
+        override def visit(node: AstNode, arg: Unit): Unit =
           node match {
             case num: ANumber => numbers += num
-            case _ => visitChildren(node, null)
+            case _ => visitChildren(node, ())
           }
       }
-      numFinder.visit(n, null)
+      numFinder.visit(n, ())
       numbers.toSet
     }
 
@@ -108,17 +108,38 @@ object AstOps {
       */
     def appearingExpressions: Set[AExpr] = {
       val exps = mutable.Set[AExpr]()
-      val expFinder = new DepthFirstAstVisitor[Null] {
-        override def visit(node: AstNode, arg: Null): Unit =
+      val expFinder = new DepthFirstAstVisitor[Unit] {
+        override def visit(node: AstNode, arg: Unit): Unit =
           node match {
             case exp: ABinaryOp =>
               exps += exp
-              visitChildren(exp, null)
-            case _ => visitChildren(node, null)
+              visitChildren(exp, ())
+            case _ => visitChildren(node, ())
           }
       }
-      expFinder.visit(n, null)
+      expFinder.visit(n, ())
       exps.toSet
+    }
+
+    /**
+      * Returns the set of non-'input' expressions appearing in the subtree of the node.
+      */
+    def appearingNonInputExpressions: Set[AExpr] =
+      appearingExpressions.filterNot(e => e.containsInput)
+
+    /**
+      * Checks whether the subtree of the node contains an 'input' expression.
+      */
+    def containsInput: Boolean = {
+      var res = false;
+      new DepthFirstAstVisitor[Unit] {
+        override def visit(node: AstNode, arg: Unit): Unit =
+          node match {
+            case _: AInput => res = true;
+            case _ => visitChildren(node, ())
+          }
+      }.visit(n, ())
+      res
     }
 
     /**
@@ -126,19 +147,19 @@ object AstOps {
       */
     def appearingFields: Set[String] = {
       val fields = mutable.Set[String]()
-      val expFinder = new DepthFirstAstVisitor[Null] {
-        override def visit(node: AstNode, arg: Null): Unit =
+      val expFinder = new DepthFirstAstVisitor[Unit] {
+        override def visit(node: AstNode, arg: Unit): Unit =
           node match {
-            case exp: AAccess =>
+            case exp: AFieldAccess =>
               fields += exp.field
-              visitChildren(exp, null)
+              visitChildren(exp, ())
             case rec: ARecord =>
               fields ++= rec.fields.map { _.field }
-              visitChildren(rec, null)
-            case _ => visitChildren(node, null)
+              visitChildren(rec, ())
+            case _ => visitChildren(node, ())
           }
       }
-      expFinder.visit(n, null)
+      expFinder.visit(n, ())
       fields.toSet
     }
   }

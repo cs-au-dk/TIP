@@ -1,7 +1,7 @@
 package tip.ast
 
 import tip.ast.AstPrinters._
-import tip.types.TipType
+import tip.types.Type
 
 object AstNodeData {
 
@@ -15,7 +15,7 @@ object AstNodeData {
     * Map from AST node to type, if available.
     * @see [[tip.analysis.TypeAnalysis]]
     */
-  type TypeData = Map[AstNode, Option[TipType]]
+  type TypeData = Map[AstNode, Option[Type]]
 
   /**
     * Implicitly make declaration data available on identifier AST nodes.
@@ -36,12 +36,12 @@ object AstNodeData {
     * (For information about Scala's implicit classes, see [[tip.ast.AstNodeData.AstNodeWithDeclaration]].)
     */
   implicit class AstNodeWithType(n: AstNode)(implicit val data: TypeData) {
-    def theType: Option[TipType] = data.getOrElse(n, None)
+    def theType: Option[Type] = data.getOrElse(n, None)
 
     private def printer: PartialFunction[AstNode, String] = {
-      case id: AIdentifierDeclaration => s"${id.value}: ${id.theType.getOrElse("??")}"
+      case id: AIdentifierDeclaration => s"${id.name}: ${id.theType.getOrElse("??")}"
       case f: AFunDeclaration =>
-        s"${f.name}(${f.params.map(_.value).mkString(",")}): ${f.theType.getOrElse("??")}\n${f.stmts.print(printer)}"
+        s"${f.name}(${f.params.map(_.name).mkString(",")}): ${f.theType.getOrElse("??")}\n${f.stmts.print(printer)}"
     }
 
     def toTypedString: String = n.print(printer)

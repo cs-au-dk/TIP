@@ -2,7 +2,7 @@ package tip.interpreter
 
 import tip.ast.AstNodeData._
 import tip.ast._
-import tip.util.Log
+import tip.util.{Log, TipProgramException}
 
 import scala.util.{Failure, Success, Try}
 
@@ -60,7 +60,7 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
     }
     // Store the input in the associated argument locations
     val storeWithInputArgs = program.mainFunction.params.foldLeft(boundStore) { (s: Store, id: AIdentifierDeclaration) =>
-      val (v, s2) = input(AIdentifier(id.value, id.loc), boundEnv, s)
+      val (v, s2) = input(AIdentifier(id.name, id.loc), boundEnv, s)
       s2 + (envWithInputArgs(id) -> v)
     }
     // Execute the main function
@@ -71,7 +71,7 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
         output(x)
         (x, cs)
       case _ =>
-        errorReturnNotInt(program.mainFunction, cs)
+        errorReturnNotInt(program.mainFunction.stmts.ret.exp.loc, program.mainFunction, cs)
     }
   }
 
@@ -123,7 +123,17 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
     */
   protected def semc(stm: AStmt, env: Env, store: Store): (Env, Store) =
     stm match {
-      case AAssignStmt(left, right: AExpr, _) =>
+      case AAssignStmt(left: FieldAssignable, right: AExpr, _) =>
+        val (lv, field, s1) = semeref(left, env, store)
+        store.getOrElse(lv, errorUninitializedLocation(stm.loc, s1)) match {
+          case rec: RecordValue =>
+            val (rv, s2) = semeright(right, env, s1)
+            if (rv.isInstanceOf[RecordValue]) errorWriteFieldRecord(stm.loc, rv, s2)
+            (env, s2 + (lv -> mkRecord(rec.fields + (field -> rv))))
+          case _ =>
+            errorAccessNonRecord(stm.loc, lv, s1)
+        }
+      case AAssignStmt(left: ReferenceAssignable, right: AExpr, _) =>
         val (lv, s1) = semeref(left, env, store)
         val (rv, s2) = semeright(right, env, s1)
         (env, s2 + (lv -> rv))
@@ -141,13 +151,13 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
           case _ => errorConditionNotInt(loc, s1)
         }
       case ret: AReturnStmt =>
-        val (v, s1) = semeright(ret.value, env, store)
+        val (v, s1) = semeright(ret.exp, env, store)
         (env, s1 + (returnLoc -> v))
       case err: AErrorStmt =>
-        val (ev, s1) = semeright(err.value, env, store)
+        val (ev, s1) = semeright(err.exp, env, store)
         ev match {
-          case i: IntValue => throw ExecutionError(s"Execution error, code: ${i.i}", s1)
-          case _ => errorErrorNonInt(ev, store)
+          case i: IntValue => throw new ExecutionError(s"Execution error, code: ${i.i}", s1)
+          case _ => errorErrorNonInt(stm.loc, ev, store)
         }
       case w: AWhileStmt =>
         val (gv, s1) = semeright(w.guard, env, store)
@@ -161,8 +171,8 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
             semc(w, env1, s3)
           case _ => errorConditionNotInt(w.loc, s1)
         }
-      case AOutputStmt(value, _) =>
-        val (ov, s1) = semeright(value, env, store)
+      case AOutputStmt(exp, _) =>
+        val (ov, s1) = semeright(exp, env, store)
         ov match {
           case y: IntValue =>
             output(y)
@@ -170,7 +180,7 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
           case y: ReferenceValue =>
             output(y)
             (env, s1)
-          case _ => errorOutputNotInt(s1)
+          case _ => errorOutputNotInt(exp.loc, s1)
         }
       case AVarStmt(ids, _) =>
         (ids.foldLeft(env) { (accenv, id) =>
@@ -179,27 +189,47 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
     }
 
   /**
-    * Semantics for left-hand-side expressions.
+    * Semantics for ordinary lvalue expressions.
     *
-    * @param exp   the expression to execute
+    * @param exp   the lvalue expression to execute
     * @param env   the environment
     * @param store the initial store
     * @return the resulting location and store
     */
-  protected def semeref(exp: AExpr, env: Env, store: Store): (ReferenceValue, Store) =
+  protected def semeref(exp: ReferenceAssignable, env: Env, store: Store): (ReferenceValue, Store) =
     exp match {
       case id: AIdentifier => (env(id.declaration), store)
-      case AUnaryOp(_: DerefOp.type, target, loc) =>
-        semeright(target, env, store) match {
+      case ADerefWrite(subexp, loc) =>
+        semeright(subexp, env, store) match {
           case (pref: ReferenceValue, s1) => (pref, s1)
           case (_: NullValue, s1) => errorNullDereference(loc, s1)
-          case (x, s1) => errorDerefNotPointer(loc, target, x, s1)
+          case (x, s1) => errorDerefNotPointer(loc, x, s1)
         }
       case _ => ???
     }
 
   /**
+    * Semantics for field lvalue expressions.
+    *
+    * @param exp   the lvalue expression to execute
+    * @param env   the environment
+    * @param store the initial store
+    * @return the resulting location, field, and store
+    */
+  protected def semeref(exp: FieldAssignable, env: Env, store: Store): (ReferenceValue, String, Store) =
+    exp match {
+      case ADirectFieldWrite(id, field, _) => (env(id.declaration), field, store)
+      case AIndirectFieldWrite(fexp, field, loc) =>
+        semeright(fexp, env, store) match {
+          case (pref: ReferenceValue, s1) => (pref, field, s1)
+          case (_: NullValue, s1) => errorNullDereference(loc, s1)
+          case (x, s1) => errorDerefNotPointer(loc, x, s1)
+        }
+    }
+
+  /**
     * Semantics for right-hand-side expressions.
+    *
     * @param exp the expression to execute
     * @param env the environment
     * @param store the initial store
@@ -207,7 +237,7 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
     */
   protected def semeright(exp: AExpr, env: Env, store: Store): (EValue, Store) =
     exp match {
-      case access: AAccess =>
+      case access: AFieldAccess =>
         val (tv, s1) = semeright(access.record, env, store)
         tv match {
           case rec: RecordValue =>
@@ -235,17 +265,28 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
             (left, right) match {
               case (lv: IntValue, rv: IntValue) =>
                 op match {
+                  case Eqq => spec.eqq(lv, rv)
                   case Divide => spec.divideInt(lv, rv)
                   case GreatThan => spec.greatThanInt(lv, rv)
                   case Minus => spec.minusInt(lv, rv)
                   case Plus => spec.plusInt(lv, rv)
                   case Times => spec.timesInt(lv, rv)
-                  case _ => ???
                 }
-              case _ => errorArithmeticOnNonInt(op, s2)
+              case _ => errorArithmeticOnNonInt(exp.loc, op, s2)
             }
         }
         (cval, s2)
+      case e: AUnaryOp =>
+        val (sub, s1) = semeright(e.subexp, env, store)
+        val cval = e.operator match {
+          case DerefOp =>
+            sub match {
+              case crv: ReferenceValue =>
+                s1.getOrElse(crv, errorUninitializedLocation(exp.loc, s1))
+              case _ => errorDerefNotPointer(exp.loc, sub, s1)
+            }
+        }
+        (cval, s1)
       case AInput(_) =>
         input(exp, env, store)
       case AAlloc(content, _) =>
@@ -254,11 +295,8 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
         (l, s1 + (l -> cv))
       case ANull(_) => (spec.nullValue, store)
       case ANumber(value, _) => (spec.constInt(value), store)
-      case AUnaryOp(_: RefOp.type, e: AExpr, _) =>
-        semeref(e, env, store)
-      case op @ AUnaryOp(_: DerefOp.type, _, _) =>
-        val (l, s1) = semeref(op, env, store)
-        (s1.getOrElse(l, errorDerefNotPointer(exp.loc, op, l, s1)), s1)
+      case AVarRef(e: AIdentifier, _) =>
+        (env(e.declaration), store)
       case ACallFuncExpr(target, actualParams, _) =>
         val (funValue, s1) = semeright(target, env, store)
         funValue match {
@@ -271,11 +309,11 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
               }
             val finStore = semf(f.fun, actualParamsValues, env, computedStore)
             (finStore(returnLoc), finStore)
-          case _ => errorCallNotFunction(funValue, s1)
+          case _ => errorCallNotFunction(target.loc, funValue, s1)
         }
       case id: AIdentifier =>
-        val (l, s1) = semeref(id, env, store)
-        (s1.getOrElse(l, errorDerefNotPointer(exp.loc, id, l, s1)), s1)
+        val l = env(id.declaration)
+        (store.getOrElse(l, errorUninitializedLocation(exp.loc, store)), store)
     }
 
   /**
@@ -301,48 +339,51 @@ abstract class Interpreter(program: AProgram)(implicit declData: DeclarationData
     } else {
       Try(line.toInt) match {
         case Success(i) => (spec.constInt(i), store)
-        case Failure(_) => errorInputNotInt(store)
+        case Failure(_) => errorInputNotInt(exp.loc, store)
       }
     }
   }
 
-  case class ExecutionError(message: String, store: Store) extends RuntimeException(message)
+  class ExecutionError(message: String, val store: Store) extends TipProgramException(s"Runtime error: $message")
 
-  def errorCallNotFunction(funValue: EValue, store: Store) =
-    throw ExecutionError(s"Call to a non-function $funValue", store)
+  def errorCallNotFunction(loc: Loc, funValue: EValue, store: Store) =
+    throw new ExecutionError(s"Call to a non-function $funValue ${loc.toStringLong}", store)
 
-  def errorOutputNotInt(store: Store) =
-    throw ExecutionError(s"Output not supported for non-integer values", store)
+  def errorOutputNotInt(loc: Loc, store: Store) =
+    throw new ExecutionError(s"Output not supported for non-integer values ${loc.toStringLong}", store)
 
-  def errorInputNotInt(store: Store) =
-    throw ExecutionError(s"Input not supported for non-integer values", store)
+  def errorInputNotInt(loc: Loc, store: Store) =
+    throw new ExecutionError(s"Input not supported for non-integer values ${loc.toStringLong}", store)
 
-  def errorErrorNonInt(v: EValue, store: Store) =
-    throw ExecutionError(s"Error statement expects integer value as error code, given $v", store)
+  def errorErrorNonInt(loc: Loc, v: EValue, store: Store) =
+    throw new ExecutionError(s"Error statement non-integer value $v ${loc.toStringLong}", store)
 
-  def errorNonRefable(exp: AExpr, store: Store) =
-    throw ExecutionError(s"Cannot take the address of an expression at $exp", store)
+  def errorArithmeticOnNonInt(loc: Loc, op: BinaryOperator, store: Store) =
+    throw new ExecutionError(s"Unable to apply the operator $op to non-integer value ${loc.toStringLong}", store)
 
-  def errorArithmeticOnNonInt(op: BinaryOperator, store: Store) =
-    throw ExecutionError(s"Unable to apply the operator $op to non-integer values", store)
-
-  def errorReturnNotInt(fun: AFunDeclaration, store: Store) =
-    throw ExecutionError(s"Return statement returning non-integer in function ${fun.name}", store)
+  def errorReturnNotInt(loc: Loc, fun: AFunDeclaration, store: Store) =
+    throw new ExecutionError(s"Return statement returning non-integer in function ${fun.name} ${loc.toStringLong}", store)
 
   def errorNullDereference(loc: Loc, store: Store) =
-    throw ExecutionError(s"Null pointer error at $loc", store)
+    throw new ExecutionError(s"Null pointer dereference ${loc.toStringLong}", store)
 
   def errorConditionNotInt(loc: Loc, store: Store) =
-    throw ExecutionError(s"Branch condition at $loc not evaluating to an integer", store)
+    throw new ExecutionError(s"Branch condition not evaluating to an integer ${loc.toStringLong}", store)
 
-  def errorDerefNotPointer(loc: Loc, target: AExpr, x: EValue, store: Store) =
-    throw ExecutionError(s"Dereferencing non-pointer $target at $loc: $x", store)
+  def errorDerefNotPointer(loc: Loc, x: EValue, store: Store) =
+    throw new ExecutionError(s"Dereferencing non-pointer $x ${loc.toStringLong}", store)
 
   def errorAccessNonRecord(loc: Loc, x: EValue, store: Store) =
-    throw ExecutionError(s"Accessing field on a value that is not a record at $loc: $x", store)
+    throw new ExecutionError(s"Accessing field on non-record value $x ${loc.toStringLong}", store)
+
+  def errorWriteFieldRecord(loc: Loc, x: EValue, store: Store) =
+    throw new ExecutionError(s"Writing record to field $x ${loc.toStringLong}", store)
 
   def errorAccessMissingField(loc: Loc, rec: RecordValue, field: String, store: Store) =
-    throw ExecutionError(s"Missing field $field in record $rec at $loc", store)
+    throw new ExecutionError(s"Accessing missing field $field in record $rec ${loc.toStringLong}", store)
+
+  def errorUninitializedLocation(loc: Loc, store: Store) =
+    throw new ExecutionError(s"Accessing uninitialized memory location ${loc.toStringLong}", store)
 }
 
 /**

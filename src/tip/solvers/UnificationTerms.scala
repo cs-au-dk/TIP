@@ -1,5 +1,7 @@
 package tip.solvers
 
+import scala.collection.mutable
+
 /**
   * A generic term: a variable [[Var]], a constructor [[Cons]], or a recursive term [[Mu]].
   *
@@ -87,51 +89,50 @@ trait TermOps[A] {
   def makeMu(v: Var[A], t: Term[A]): Mu[A]
 
   /**
-    * Constructor for fresh variables.
-    * The identity of the variable is uniquely determined by `x`.
+    * Constructor for fresh term variables.
     */
-  def makeAlpha(x: Var[A]): Var[A]
+  def makeFreshVar(): Var[A]
 
   /**
     * Closes the term by replacing each free variable with its value in the given environment.
-    * Whenever a recursive type is detected, a [[Mu]] term is generated.
+    * Whenever a recursive term is detected, a [[Mu]] term is generated.
     * Remaining free variables are replaced by fresh variables that are implicitly universally quantified.
     *
-    * @param t       the term to close
-    * @param env     environment, map from variables to terms
+    * @param t         the term to close
+    * @param env       environment, map from term variables to terms
+    * @param freshvars map from recursive and unconstrained term variables to fresh term variables
     */
-  def close(t: Term[A], env: Map[Var[A], Term[A]]): Term[A] = closeRec(t, env)
+  def close(t: Term[A], env: Map[Var[A], Term[A]], freshvars: mutable.Map[Var[A], Var[A]]): Term[A] = {
 
-  /**
-    * Closes the term by replacing each variable that appears as a subterm of with its value in the given environment.
-    * Whenever a recursive type is detected, a [[Mu]] term is generated.
-    *
-    * @param t       the term to close
-    * @param env     environment, map from variables to terms
-    * @param visited the set of already visited variables (empty by default)
-    */
-  private def closeRec(t: Term[A], env: Map[Var[A], Term[A]], visited: Set[Var[A]] = Set()): Term[A] =
-    t match {
-      case v: Var[A] =>
-        if (!visited.contains(v) && env(v) != v) {
-          // no cycle found, and the variable does not map to itself
-          val cterm = closeRec(env(v), env, visited + v)
-          val newV = makeAlpha(v)
-          if (cterm.fv.contains(newV)) {
-            // recursive term found, make a [[Mu]]
-            makeMu(newV, cterm.subst(v, newV))
-          } else
-            cterm
-        } else {
-          // an unconstrained (i.e. universally quantified) variable
-          makeAlpha(v)
-        }
-      case c: Cons[A] =>
-        // substitute each free variable with its closed term
-        c.fv.foldLeft(t: Term[A]) { (acc, v) =>
-          acc.subst(v, closeRec(v, env, visited))
-        }
-      case m: Mu[A] =>
-        makeMu(m.v, closeRec(m.t, env, visited))
-    }
+    def closeRec(t: Term[A], visited: Set[Var[A]] = Set()): Term[A] =
+      t match {
+        case v: Var[A] =>
+          if (!visited.contains(v) && env(v) != v) {
+            // no recursion found, and the variable does not map to itself
+            val cterm = closeRec(env(v), visited + v)
+            val f = freshvars.get(v)
+            if (f.isDefined && cterm.fv.contains(f.get)) {
+              // recursive term found, make a [[Mu]]
+              makeMu(f.get, cterm.subst(v, f.get))
+            } else
+              cterm
+          } else {
+            // recursive or unconstrained term variables, make a fresh term variable
+            freshvars.getOrElse(v, {
+              val w = makeFreshVar()
+              freshvars += v -> w
+              w
+            })
+          }
+        case c: Cons[A] =>
+          // substitute each free variable with its closed term
+          c.fv.foldLeft(t) { (acc, v) =>
+            acc.subst(v, closeRec(v, visited))
+          }
+        case m: Mu[A] =>
+          makeMu(m.v, closeRec(m.t, visited))
+      }
+
+    closeRec(t)
+  }
 }

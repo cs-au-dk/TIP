@@ -5,7 +5,7 @@ import tip.solvers._
 import tip.ast.AstNodeData._
 import scala.language.implicitConversions
 
-object TipType {
+object Type {
 
   /**
     * Implicitly converts any AstNode to its type variable.
@@ -18,36 +18,49 @@ object TipType {
     * function will be invoked implicitly to make the conversion (provided that the function is imported).
     * For more information about implicit conversions in Scala, see [[https://docs.scala-lang.org/tour/implicit-conversions.html]].
     */
-  implicit def ast2typevar(node: AstNode)(implicit declData: DeclarationData): Var[TipType] =
+  implicit def ast2typevar(node: AstNode)(implicit declData: DeclarationData): Var[Type] =
     node match {
-      case id: AIdentifier => TipVar(declData(id))
-      case _ => TipVar(node)
+      case id: AIdentifier => VarType(declData(id))
+      case _ => VarType(node)
     }
+
+  implicit def ast2typevar(nodes: List[AstNode])(implicit declData: DeclarationData): List[Var[Type]] =
+    nodes.map(ast2typevar)
+}
+
+/**
+  * Counter for producing fresh IDs.
+  */
+object Fresh {
+
+  var n = 0
+
+  def next(): Int = {
+    n += 1
+    n
+  }
 }
 
 /**
   * A type for a TIP variable or expression.
   */
-sealed trait TipType
+sealed trait Type
 
-object TipTypeOps extends TermOps[TipType] {
+object TipTypeOps extends TermOps[Type] {
 
-  def makeAlpha(node: Var[TipType]): Var[TipType] = node match {
-    case v: TipVar => TipAlpha(v.node.uid)
-    case alpha: TipAlpha => alpha
-  }
+  def makeFreshVar(): Var[Type] = FreshVarType()
 
-  def makeMu(v: Var[TipType], t: Term[TipType]): Mu[TipType] = TipMu(v, t)
+  def makeMu(v: Var[Type], t: Term[Type]): Mu[Type] = RecursiveType(v, t)
 }
 
 /**
   * Int type.
   */
-case class TipInt() extends TipType with Cons[TipType] {
+case class IntType() extends Type with Cons[Type] {
 
-  val args: List[Term[TipType]] = List()
+  val args: List[Term[Type]] = List()
 
-  def subst(v: Var[TipType], t: Term[TipType]): Term[TipType] = this
+  def subst(v: Var[Type], t: Term[Type]): Term[Type] = this
 
   override def toString: String = "int"
 }
@@ -55,12 +68,12 @@ case class TipInt() extends TipType with Cons[TipType] {
 /**
   * Function type.
   */
-case class TipFunction(params: List[Term[TipType]], ret: Term[TipType]) extends TipType with Cons[TipType] {
+case class FunctionType(params: List[Term[Type]], ret: Term[Type]) extends Type with Cons[Type] {
 
-  val args: List[Term[TipType]] = ret :: params
+  val args: List[Term[Type]] = ret :: params
 
-  def subst(v: Var[TipType], t: Term[TipType]): Term[TipType] =
-    TipFunction(params.map { p =>
+  def subst(v: Var[Type], t: Term[Type]): Term[Type] =
+    FunctionType(params.map { p =>
       p.subst(v, t)
     }, ret.subst(v, t))
 
@@ -70,24 +83,25 @@ case class TipFunction(params: List[Term[TipType]], ret: Term[TipType]) extends 
 /**
   * Pointer type.
   */
-case class TipRef(of: Term[TipType]) extends TipType with Cons[TipType] {
+case class PointerType(of: Term[Type]) extends Type with Cons[Type] {
 
-  val args: List[Term[TipType]] = List(of)
+  val args: List[Term[Type]] = List(of)
 
-  def subst(v: Var[TipType], t: Term[TipType]): Term[TipType] = TipRef(of.subst(v, t))
+  def subst(v: Var[Type], t: Term[Type]): Term[Type] = PointerType(of.subst(v, t))
 
-  override def toString: String = s"&$of"
+  override def toString: String = s"\u2B61$of"
 }
 
 /**
   * Record type.
   *
   * A record type is represented as a term with a sub-term for every field name in the entire program.
+  * (This could be represented more concisely by using AbsentFieldType as a default.)
   */
-case class TipRecord(args: List[Term[TipType]])(implicit allFieldNames: List[String]) extends TipType with Cons[TipType] {
+case class RecordType(args: List[Term[Type]])(implicit allFieldNames: List[String]) extends Type with Cons[Type] {
 
-  def subst(v: Var[TipType], t: Term[TipType]): Term[TipType] =
-    TipRecord(args.map { p =>
+  def subst(v: Var[Type], t: Term[Type]): Term[Type] =
+    RecordType(args.map { p =>
       p.subst(v, t)
     })
 
@@ -100,27 +114,40 @@ case class TipRecord(args: List[Term[TipType]])(implicit allFieldNames: List[Str
       .mkString(",")}}"
 }
 
-/**
-  * Type variable for a program variable or expression.
-  */
-case class TipVar(node: AstNode) extends TipType with Var[TipType] {
+case object AbsentFieldType extends Type with Cons[Type] {
 
-  override def toString: String = s"[[$node]]"
+  val args: List[Term[Type]] = List()
+
+  def subst(v: Var[Type], t: Term[Type]): Term[Type] = this
+
+  override def toString: String = "\u25C7"
 }
 
 /**
-  * Fresh type variable, whose identity is uniquely determined by `x`.
+  * Type variable for a program variable or expression.
   */
-case class TipAlpha(x: Any) extends TipType with Var[TipType] {
+case class VarType(node: AstNode) extends Type with Var[Type] {
 
-  override def toString: String = s"\u03B1<$x>"
+  require(!node.isInstanceOf[AIdentifier], "Trying to construct type variable for identifier expression");
+
+  override def toString: String = s"\u27E6$node\u27E7"
+}
+
+/**
+  * Fresh type variable.
+  */
+case class FreshVarType(var id: Int = 0) extends Type with Var[Type] {
+
+  id = Fresh.next()
+
+  override def toString: String = s"x$id"
 }
 
 /**
   * Recursive type (only created when closing terms).
   */
-case class TipMu(v: Var[TipType], t: Term[TipType]) extends TipType with Mu[TipType] {
+case class RecursiveType(v: Var[Type], t: Term[Type]) extends Type with Mu[Type] {
 
-  def subst(sv: Var[TipType], to: Term[TipType]): Term[TipType] =
-    if (sv == v) this else TipMu(v, t.subst(sv, to))
+  def subst(sv: Var[Type], to: Term[Type]): Term[Type] =
+    if (sv == v) this else RecursiveType(v, t.subst(sv, to))
 }

@@ -3,7 +3,7 @@ package tip.analysis
 import tip.cfg.CfgOps._
 import tip.cfg.{CfgNode, CfgStmtNode, ProgramCfg}
 import tip.lattices.{MapLattice, SignLattice}
-import tip.ast.AstNodeData.{AstNodeWithDeclaration, DeclarationData}
+import tip.ast.AstNodeData.DeclarationData
 import tip.ast._
 import tip.solvers.FixpointSolvers
 
@@ -43,7 +43,7 @@ class SimpleSignAnalysis(cfg: ProgramCfg)(implicit declData: DeclarationData) ex
   def eval(exp: AExpr, env: statelattice.Element)(implicit declData: DeclarationData): valuelattice.Element = {
     import valuelattice._
     exp match {
-      case id: AIdentifier => env(id.declaration)
+      case id: AIdentifier => env(id)
       case n: ANumber => num(n.value)
       case bin: ABinaryOp =>
         val left = eval(bin.left, env)
@@ -58,9 +58,6 @@ class SimpleSignAnalysis(cfg: ProgramCfg)(implicit declData: DeclarationData) ex
           case _ => ???
         }
       case _: AInput => valuelattice.top
-      case AUnaryOp(RefOp, _, _) | AUnaryOp(DerefOp, _, _) | ANull(_) | AAlloc(_, _) | AAccess(_, _, _) =>
-        NoPointers.LanguageRestrictionViolation(s"No pointers allowed in eval $exp")
-      case _: ACallFuncExpr => NoCalls.LanguageRestrictionViolation(s"No calls allowed in eval $exp")
       case _ => ???
     }
   }
@@ -87,7 +84,6 @@ class SimpleSignAnalysis(cfg: ProgramCfg)(implicit declData: DeclarationData) ex
 
           // assignments
           case AAssignStmt(id: AIdentifier, right, _) => ??? //<--- Complete here
-          case AAssignStmt(_: AUnaryOp, _, _) => NoPointers.LanguageRestrictionViolation(s"${r.data} not allowed")
 
           // all others: like no-ops
           case _ => s

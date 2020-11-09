@@ -2,7 +2,6 @@ package tip.analysis
 
 import tip.ast._
 import tip.cfg.CfgOps._
-import tip.ast.AstOps._
 import tip.lattices._
 import tip.ast.AstNodeData.DeclarationData
 
@@ -14,11 +13,12 @@ import tip.cfg._
   */
 abstract class LiveVarsAnalysis(cfg: IntraproceduralProgramCfg)(implicit declData: DeclarationData) extends FlowSensitiveAnalysis[CfgNode](cfg) {
 
-  import AstNodeData._
-
   val allVars: Set[ADeclaration] = cfg.nodes.flatMap(_.appearingIds)
 
   val lattice = new MapLattice(cfg.nodes, new PowersetLattice(allVars))
+
+  NoPointers.assertContainsProgram(cfg.prog)
+  NoRecords.assertContainsProgram(cfg.prog)
 
   def transfer(n: CfgNode, s: lattice.sublattice.Element): lattice.sublattice.Element =
     n match {
@@ -26,8 +26,8 @@ abstract class LiveVarsAnalysis(cfg: IntraproceduralProgramCfg)(implicit declDat
       case r: CfgStmtNode =>
         r.data match {
           case cond: AExpr => ??? //<--- Complete here
-          case ass: AAssignStmt =>
-            ass.left match {
+          case as: AAssignStmt =>
+            as.left match {
               case id: AIdentifier => ??? //<--- Complete here
               case _ => ???
             }

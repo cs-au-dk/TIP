@@ -23,10 +23,19 @@ trait DepthFirstAstVisitor[A] {
         visit(bin.left, arg)
         visit(bin.right, arg)
       case un: AUnaryOp =>
-        visit(un.target, arg)
-      case ass: AAssignStmt =>
-        visit(ass.right, arg)
-        visit(ass.left, arg)
+        visit(un.subexp, arg)
+      case as: AAssignStmt =>
+        as.left match {
+          case id: AIdentifier =>
+            visit(id, arg)
+          case dw: ADerefWrite =>
+            visit(dw.exp, arg)
+          case dfw: ADirectFieldWrite =>
+            visit(dfw.id, arg)
+          case ifw: AIndirectFieldWrite =>
+            visit(ifw.exp, arg)
+        }
+        visit(as.right, arg)
       case block: ABlock =>
         block.body.foreach(visit(_, arg))
       case iff: AIfStmt =>
@@ -34,11 +43,11 @@ trait DepthFirstAstVisitor[A] {
         visit(iff.ifBranch, arg)
         iff.elseBranch.foreach(visit(_, arg))
       case out: AOutputStmt =>
-        visit(out.value, arg)
+        visit(out.exp, arg)
       case ret: AReturnStmt =>
-        visit(ret.value, arg)
+        visit(ret.exp, arg)
       case err: AErrorStmt =>
-        visit(err.value, arg)
+        visit(err.exp, arg)
       case varr: AVarStmt =>
         varr.declIds.foreach(visit(_, arg))
       case whl: AWhileStmt =>
@@ -49,14 +58,14 @@ trait DepthFirstAstVisitor[A] {
         visit(funDec.stmts, arg)
       case p: AProgram =>
         p.funs.foreach(visit(_, arg))
-      case acc: AAccess =>
+      case acc: AFieldAccess =>
         visit(acc.record, arg)
       case rec: ARecord =>
-        rec.fields.foreach { f =>
-          visit(f.exp, arg)
-        }
+        rec.fields.foreach(f => visit(f.exp, arg))
       case alloc: AAlloc =>
         visit(alloc.exp, arg)
+      case ref: AVarRef =>
+        visit(ref.id, arg)
       case _: AAtomicExpr | _: AIdentifierDeclaration =>
     }
 }

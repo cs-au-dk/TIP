@@ -16,7 +16,7 @@ object Log {
     val None, Error, Warn, Info, Debug, Verbose = Value
   }
 
-  var defaultLevel = Level.None
+  var defaultLevel = Level.Info
 
   /**
     * Constructs a new logger.
@@ -30,7 +30,7 @@ object Log {
 /**
   * A logger.
   */
-final case class Logger(var tag: String, level: Log.Level.Level) {
+final case class Logger(var tag: String, var level: Log.Level.Level) {
 
 //  val TAG_MAX_LEN = 30
 //

@@ -48,7 +48,7 @@ class UnionFindSolver[A] {
             unify(a1, a2)
         }
       case (x, y) =>
-        throw new UnificationFailure(s"Can't unify $t1 and $t2 (with representatives $x and $y)")
+        throw new UnificationFailure(s"Cannot unify $t1 and $t2 (with representatives $x and $y)")
     }
   }
 
@@ -105,4 +105,4 @@ class UnionFindSolver[A] {
 /**
   * Exception thrown in case of unification failure.
   */
-class UnificationFailure(message: String = null, cause: Throwable = null) extends RuntimeException(message, cause)
+class UnificationFailure(message: String = null) extends RuntimeException(message)

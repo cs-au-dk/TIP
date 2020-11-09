@@ -35,12 +35,12 @@ class ConcolicEngine(val program: AProgram)(implicit declData: DeclarationData) 
         log.info(s"SMT script for next run: \n$smt")
         SMTSolver.solve(smt) match {
           case None =>
-            log.info(s"Path condition is unsatisfiable.")
+            log.info(s"Path condition is unsatisfiable")
             targetNode.unsat(value)
             newInputs(symbols, lastNode, root)
           case Some(mapping) =>
             log.info(s"Model: $mapping")
-            Some(symbols.map(v => mapping.get(v.value).map(_.toInt).getOrElse(scala.util.Random.nextInt)))
+            Some(symbols.map(v => mapping.get(v.name).map(_.toInt).getOrElse(scala.util.Random.nextInt)))
         }
       case _ => None
     }
@@ -70,7 +70,7 @@ class ConcolicEngine(val program: AProgram)(implicit declData: DeclarationData) 
         } catch {
           case err: ExecutionError =>
             log.info(s"Error found: $err")
-            ExFailure(err.store.extra, err.message)
+            ExFailure(err.store.extra, err.getMessage)
         }
 
       results = result :: results
@@ -79,22 +79,22 @@ class ConcolicEngine(val program: AProgram)(implicit declData: DeclarationData) 
           log.info(s"New input for ${result.symbolicVars}: $values")
           inputs = values
         case None =>
-          log.info(s"Finished exhaustive exploration in $runs runs.\n")
+          log.info(s"Finished exhaustive exploration in $runs runs")
           reportExplorationStatistics(results)
           return
       }
     }
-    log.info(s"Exhausted search budget after $runs runs.\n")
+    log.info(s"Exhausted search budget after $runs runs")
     reportExplorationStatistics(results)
   }
 
   private def reportExplorationStatistics(results: List[ExecutionResult]): Unit = {
     val successes = results.collect { case s: ExSuccess => s }
-    log.info(s"Found ${successes.length} successful input sequences.")
+    log.info(s"Found ${successes.length} successful input sequences")
     successes.foreach(s => log.info(s"Input sequence ${s.usedInputs} produces: \n${s.value}"))
     val failures = results.collect { case f: ExFailure => f }
     log.info(s"Found ${failures.length} failure-inducing input sequences.")
-    failures.foreach(f => log.info(s"Input sequence ${f.usedInputs} fails with: \n${f.message}."))
+    failures.foreach(f => log.info(s"Input sequence ${f.usedInputs} fails: \n${f.message}."))
   }
 
   abstract class ExecutionResult(val concolicState: ConcolicState) {

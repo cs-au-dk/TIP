@@ -48,10 +48,10 @@ object CfgOps {
     /**
       * Returns the set of expressions that appear in the node.
       */
-    def appearingExpressions: Set[AExpr] =
+    def appearingNonInputExpressions: Set[AExpr] =
       n match {
         case r: CfgStmtNode =>
-          r.data.appearingExpressions
+          r.data.appearingNonInputExpressions
         case _ => Set()
       }
 
@@ -62,7 +62,7 @@ object CfgOps {
       n match {
         case r: CfgStmtNode =>
           r.data match {
-            case ass: AAssignStmt => Some(ass)
+            case as: AAssignStmt => Some(as)
             case _ => None
           }
         case _ => None

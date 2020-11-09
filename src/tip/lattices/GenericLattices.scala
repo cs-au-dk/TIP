@@ -60,7 +60,7 @@ class UniformProductLattice[L <: Lattice](val sublattice: L, n: Int) extends Lat
     (x zip y).map { case (xc, yc) => sublattice.lub(xc, yc) }
   }
 
-  private def error() = throw new IllegalArgumentException("products not of same length")
+  private def error() = throw new IllegalArgumentException("Products not of same length")
 }
 
 /**
@@ -98,7 +98,7 @@ class FlatLattice[X] extends Lattice {
     */
   implicit def unwrap(a: Element): X = a match {
     case FlatEl(n) => n
-    case _ => throw new IllegalArgumentException(s"cannot unlift $a")
+    case _ => throw new IllegalArgumentException(s"Cannot unlift $a")
   }
 
   val bottom: Element = Bot

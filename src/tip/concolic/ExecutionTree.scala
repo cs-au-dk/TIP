@@ -52,7 +52,6 @@ class ExecutionTreeRoot() extends ExecutionTree {
     log.info(s"Exploring ${if (node.count(value) == 0) "unseen " else ""}$value branch")
     node.count(value) += 1
     node.branches(value)
-
   }
 }
 
@@ -120,7 +119,6 @@ class Branch(
       case _ =>
         ??? // Impossible: previously satisfiable branch becomes unsatisfiable
     }
-
 }
 
 object ExecutionTreePrinter {
@@ -171,5 +169,4 @@ object ExecutionTreePrinter {
     printTree(treeNode.children.last, sb, root = true)
     sb.toString
   }
-
 }

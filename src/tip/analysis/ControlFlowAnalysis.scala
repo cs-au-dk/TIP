@@ -8,7 +8,7 @@ import tip.ast.AstNodeData.{AstNodeWithDeclaration, DeclarationData}
 import scala.language.implicitConversions
 
 class ControlFlowAnalysis(program: AProgram)(implicit declData: DeclarationData)
-    extends DepthFirstAstVisitor[Null]
+    extends DepthFirstAstVisitor[Unit]
     with Analysis[Map[AstNode, Set[AFunDeclaration]]] {
 
   val log = Log.logger[this.type]()
@@ -35,9 +35,9 @@ class ControlFlowAnalysis(program: AProgram)(implicit declData: DeclarationData)
     * @inheritdoc
     */
   def analyze(): Map[AstNode, Set[AFunDeclaration]] = {
-    visit(program, null)
+    visit(program, ())
     val sol = solver.getSolution
-    log.info(s"Solution is:\n${sol.map { case (k, v) => s"  [[$k]] = {${v.mkString(",")}}" }.mkString("\n")}")
+    log.info(s"Solution is:\n${sol.map { case (k, v) => s"  \u27E6$k\u27E7 = {${v.mkString(",")}}" }.mkString("\n")}")
     sol.map(vardecl => vardecl._1.n -> vardecl._2.map(_.fun))
   }
 
@@ -46,7 +46,7 @@ class ControlFlowAnalysis(program: AProgram)(implicit declData: DeclarationData)
     * @param node the node for which it generates the constraints
     * @param arg unused for this visitor
     */
-  def visit(node: AstNode, arg: Null) = {
+  def visit(node: AstNode, arg: Unit) = {
 
     /**
       * Get the declaration if the supplied AstNode is an identifier,
@@ -63,9 +63,10 @@ class ControlFlowAnalysis(program: AProgram)(implicit declData: DeclarationData)
     node match {
       case fun: AFunDeclaration => ??? //<--- Complete here
       case AAssignStmt(id: AIdentifier, e, _) => ??? //<--- Complete here
+      case ACallFuncExpr(targetFun: AIdentifier, args, _) if decl(targetFun).isInstanceOf[AFunDeclaration] => ??? //<--- Complete here (or remove this case)
       case ACallFuncExpr(targetFun, args, _) => ??? //<--- Complete here
       case _ =>
     }
-    visitChildren(node, null)
+    visitChildren(node, ())
   }
 }

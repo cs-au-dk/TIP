@@ -150,7 +150,7 @@ class CubicSolver[V, T](cycleElimination: Boolean = true) {
     * Adds a constraint of type <i>t</i> &#8712; <i>x</i>.
     */
   def addConstantConstraint(t: T, x: V): Unit = {
-    log.verb(s"Adding constraint $t \u2208 [[$x]]")
+    log.verb(s"Adding constraint $t \u2208 \u27E6$x\u27E7")
     val bs = new mutable.BitSet()
     bs.add(t)
     addAndPropagateBits(bs, x)
@@ -160,7 +160,7 @@ class CubicSolver[V, T](cycleElimination: Boolean = true) {
     * Adds a constraint of type <i>x</i> &#8838; <i>y</i>.
     */
   def addSubsetConstraint(x: V, y: V): Unit = {
-    log.verb(s"Adding constraint [[$x]] \u2286 [[$y]]")
+    log.verb(s"Adding constraint \u27E6$x\u27E7 \u2286 \u27E6$y\u27E7")
     val nx = getOrPutNode(x)
     val ny = getOrPutNode(y)
 
@@ -182,14 +182,14 @@ class CubicSolver[V, T](cycleElimination: Boolean = true) {
     * Adds a constraint of type <i>t</i> &#8712; <i>x</i> &#8658; <i>y</i> &#8838; <i>z</i>.
     */
   def addConditionalConstraint(t: T, x: V, y: V, z: V): Unit = {
-    log.verb(s"Adding constraint $t \u2208 [[$x]] => [[$y]] \u2286 [[$z]]")
+    log.verb(s"Adding constraint $t \u2208 \u27E6$x\u27E7 => \u27E6$y\u27E7 \u2286 \u27E6$z\u27E7")
     val xn = getOrPutNode(x)
     if (xn.tokenSol.contains(t)) {
       // Already enabled
       addSubsetConstraint(y, z)
     } else if (y != z) {
       // Not yet enabled, add to pending list
-      log.verb(s"Condition $t \u2208 [[$x]] not yet enabled, adding ([[$y]],[[$z]]) to pending")
+      log.verb(s"Condition $t \u2208 \u27E6$x\u27E7 not yet enabled, adding (\u27E6$y\u27E7,\u27E6$z\u27E7) to pending")
       xn.conditionals
         .getOrElseUpdate(t, mutable.Set[(V, V)]())
         .add((y, z))

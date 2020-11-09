@@ -40,7 +40,6 @@ trait ValueSpecification {
   trait IntValue extends EValue {
 
     val i: Int
-
   }
 
   /**

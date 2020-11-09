@@ -4,6 +4,7 @@ import tip.analysis.ControlFlowAnalysis
 import tip.ast.AstNodeData._
 import tip.ast._
 import tip.util.MapUtils._
+import tip.util.TipProgramException
 
 object InterproceduralProgramCfg {
 
@@ -26,19 +27,19 @@ object InterproceduralProgramCfg {
           case i: AIfStmt =>
             assert(!i.guard.containsInvocation)
             FragmentCfg.nodeToGraph(CfgStmtNode(data = i.guard))
-          case ass: AAssignStmt =>
-            ass.right match {
+          case as: AAssignStmt =>
+            as.right match {
               case call: ACallFuncExpr =>
                 assert(
                   !call.targetFun.containsInvocation
                     && call.args.forall(!_.containsInvocation)
                 )
-                val cnode = CfgCallNode(data = ass)
-                val retnode = CfgAfterCallNode(data = ass)
+                val cnode = CfgCallNode(data = as)
+                val retnode = CfgAfterCallNode(data = as)
                 FragmentCfg.nodeToGraph(cnode) ~ FragmentCfg.nodeToGraph(retnode)
               case _ =>
-                assert(!ass.containsInvocation)
-                FragmentCfg.nodeToGraph(CfgStmtNode(data = ass))
+                assert(!as.containsInvocation)
+                FragmentCfg.nodeToGraph(CfgStmtNode(data = as))
             }
           case _ =>
             assert(!normal.data.containsInvocation)
@@ -52,9 +53,9 @@ object InterproceduralProgramCfg {
       case ACallFuncExpr(target: AIdentifier, _, loc) =>
         declData(target) match {
           case d: AFunDeclaration => Set(d)
-          case _ => new NoFunctionPointers().LanguageRestrictionViolation(s"$target is not a function identifier at $loc")
+          case _ => new NoFunctionPointers().LanguageRestrictionViolation(s"$target is not a function identifier", loc)
         }
-      case ACallFuncExpr(target, _, loc) => new NoFunctionPointers().LanguageRestrictionViolation(s"Indirect call to $target not supported at $loc")
+      case ACallFuncExpr(target, _, loc) => new NoFunctionPointers().LanguageRestrictionViolation(s"Indirect call to $target not supported", loc)
       case _ => Set[AFunDeclaration]()
     }
   }
@@ -84,21 +85,18 @@ object InterproceduralProgramCfg {
     val allEntries = funGraphs.mapValues(cfg => { assert(cfg.graphEntries.size == 1); cfg.graphEntries.head.asInstanceOf[CfgFunEntryNode] })
     val allExits = funGraphs.mapValues(cfg => { assert(cfg.graphExits.size == 1); cfg.graphExits.head.asInstanceOf[CfgFunExitNode] })
 
-    // ensure that there are no function pointers
-    new NormalizedCalls().assertContainsProgram(prog)
-
     val cfaSolution = new ControlFlowAnalysis(prog).analyze()
     var callInfo: Map[AAssignStmt, Set[AFunDeclaration]] = Map()
 
     // Using result of CFA to build callInfo
-    new DepthFirstAstVisitor[Null] {
-      override def visit(node: AstNode, arg: Null): Unit =
+    new DepthFirstAstVisitor[Unit] {
+      override def visit(node: AstNode, arg: Unit): Unit =
         node match {
-          case a @ AAssignStmt(_, c @ ACallFuncExpr(id: AIdentifier, _, _), _) =>
+          case a @ AAssignStmt(_, ACallFuncExpr(id: AIdentifier, _, _), _) =>
             callInfo += a -> cfaSolution(id.declaration)
           case _ => visitChildren(node, arg)
         }
-    }.visit(prog, null)
+    }.visit(prog, ())
 
     new InterproceduralProgramCfg(allEntries, allExits, prog, callInfo)
   }
@@ -258,18 +256,18 @@ class InterproceduralProgramCfg(
     def targetIdentifier: AIdentifier =
       nd.data match {
         case AAssignStmt(id: AIdentifier, _, _) => id
-        case _ => throw new IllegalArgumentException("Expected left-hand-side of call assignment to be an identifier")
+        case _ => throw new TipProgramException("Expected left-hand-side of call assignment to be an identifier")
       }
 
     def assignment: AAssignStmt =
       nd.data match {
-        case ass: AAssignStmt => ass
+        case as: AAssignStmt => as
       }
 
     def invocation: ACallFuncExpr =
       this.assignment.right match {
         case call: ACallFuncExpr => call
-        case _ => throw new IllegalArgumentException("Expected right-hand-side of call assignment to be a call")
+        case _ => throw new TipProgramException("Expected right-hand-side of call assignment to be a call")
       }
   }
 
@@ -278,18 +276,18 @@ class InterproceduralProgramCfg(
     def targetIdentifier: AIdentifier =
       nd.data match {
         case AAssignStmt(id: AIdentifier, _, _) => id
-        case _ => throw new IllegalArgumentException("Expected left-hand-side of call assignment to be an identifier")
+        case _ => throw new TipProgramException("Expected left-hand-side of call assignment to be an identifier")
       }
 
     def assignment: AAssignStmt =
       nd.data match {
-        case ass: AAssignStmt => ass
+        case as: AAssignStmt => as
       }
 
     def invocation: ACallFuncExpr =
       this.assignment.right match {
         case call: ACallFuncExpr => call
-        case _ => throw new IllegalArgumentException("Expected right-hand-side of call assignment to be a call")
+        case _ => throw new TipProgramException("Expected right-hand-side of call assignment to be a call")
       }
   }
 }

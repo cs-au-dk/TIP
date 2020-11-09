@@ -32,10 +32,11 @@ class Normalizer {
     */
   def normalizeExpr(e: AExpr): AExpr =
     e match {
-      case a: Assignable => normalizeAssignable(a)
+      case _: AIdentifier => e
+      case uop: AUnaryOp => uop.copy(subexp = normalizeExpr(uop.subexp))
+      case bop: ABinaryOp => bop.copy(left = normalizeExpr(bop.left), right = normalizeExpr(bop.right))
       case r: ARecord => r.copy(fields = r.fields.map(normalizeRecordField))
       case call: ACallFuncExpr => call.copy(targetFun = normalizeExpr(call.targetFun), args = call.args.map(normalizeExpr))
-      case op: ABinaryOp => op.copy(left = normalizeExpr(op.left), right = normalizeExpr(op.right))
       case _ => e
     }
 
@@ -64,8 +65,9 @@ class Normalizer {
     */
   def normalizeAssignable(e: Assignable): Assignable =
     e match {
-      case _: AIdentifier => e
-      case uop: AUnaryOp => uop.copy(target = normalizeExpr(uop.target))
+      case _: AIdentifier | _: ADirectFieldWrite => e
+      case dw: ADerefWrite => dw.copy(exp = normalizeExpr(dw.exp))
+      case ifw: AIndirectFieldWrite => ifw.copy(exp = normalizeExpr(ifw.exp))
     }
 
   /**
@@ -93,9 +95,9 @@ class Normalizer {
         val elseBranch2 = stmt.elseBranch.map(normalizeStmtInNestedBlock)
         nestedBlock(stmt.copy(guard = normalizeExpr(stmt.guard), ifBranch = ifBranch2, elseBranch = elseBranch2))
       case stmt: AOutputStmt =>
-        nestedBlock(stmt.copy(value = normalizeExpr(stmt.value)))
+        nestedBlock(stmt.copy(exp = normalizeExpr(stmt.exp)))
       case stmt: AErrorStmt =>
-        nestedBlock(stmt.copy(value = normalizeExpr(stmt.value)))
+        nestedBlock(stmt.copy(exp = normalizeExpr(stmt.exp)))
       case stmt: AWhileStmt =>
         val innerBlock2 = normalizeStmtInNestedBlock(stmt.innerBlock)
         nestedBlock(stmt.copy(guard = normalizeExpr(stmt.guard), innerBlock = innerBlock2))
@@ -105,7 +107,7 @@ class Normalizer {
     * Normalizes an AReturnStmt.
     */
   def normalizeReturnStmt(ret: AReturnStmt): AReturnStmt =
-    ret.copy(value = normalizeExpr(ret.value))
+    ret.copy(exp = normalizeExpr(ret.exp))
 
   /**
     * Normalizes an AFunBlockStmt.
@@ -167,7 +169,7 @@ object NoNormalizer extends Normalizer {
 object ReturnsNormalizer extends Normalizer {
   override def normalizeReturnStmt(ret: AReturnStmt): AReturnStmt =
     // [[return e]] becomes [[return id]]
-    ret.copy(value = normalizeToIdentifier(ret.value))
+    ret.copy(exp = normalizeToIdentifier(ret.exp))
 }
 
 /**
@@ -211,18 +213,32 @@ object CallsNormalizer extends Normalizer {
 object PointersNormalizer extends Normalizer {
 
   /**
-    * Normalizes the left-hand side of an assignment so that it has the form id or *id.
+    * Normalizes the left-hand side of an assignment so that it has the form id, *id, id.id, or (*id).id.
     */
   def normalizeLeft(left: Assignable): Assignable =
     left match {
-      case _: AIdentifier => left
-      case AUnaryOp(_, _: AIdentifier, _) => left
-      case AUnaryOp(op, target, loc) =>
-        val tmpVar = newVariable()
-        val id = AIdentifier(tmpVar, left.loc)
-        addDeclaration(AIdentifierDeclaration(tmpVar, left.loc))
-        addStatement(normalizeStmtInNestedBlock(AAssignStmt(id, target, left.loc)))
-        AUnaryOp(op, id, left.loc)
+      case AIdentifier(_, _) => left
+      case ADerefWrite(exp, loc) =>
+        exp match {
+          case AIdentifier(_, _) => left
+          case _ =>
+            val tmpVar = newVariable()
+            val id = AIdentifier(tmpVar, loc)
+            addDeclaration(AIdentifierDeclaration(tmpVar, loc))
+            addStatement(normalizeStmtInNestedBlock(AAssignStmt(id, exp, loc)))
+            ADerefWrite(id, loc)
+        }
+      case ADirectFieldWrite(_, _, _) => left
+      case AIndirectFieldWrite(exp, field, loc) =>
+        exp match {
+          case AIdentifier(_, _) => left
+          case _ =>
+            val tmpVar = newVariable()
+            val id = AIdentifier(tmpVar, loc)
+            addDeclaration(AIdentifierDeclaration(tmpVar, loc))
+            addStatement(normalizeStmtInNestedBlock(AAssignStmt(id, exp, loc)))
+            AIndirectFieldWrite(id, field, loc)
+        }
     }
 
   /**
@@ -231,7 +247,7 @@ object PointersNormalizer extends Normalizer {
   def normalizeRight(right: AExpr): AExpr =
     right match {
       case op: AUnaryOp =>
-        op.copy(target = normalizeToIdentifier(op.target))
+        op.copy(subexp = normalizeToIdentifier(op.subexp))
       case _: AIdentifier => right
       case _: ANull => right
       case _: AAlloc => right

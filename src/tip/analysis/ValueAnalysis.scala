@@ -37,7 +37,7 @@ trait ValueAnalysisMisc {
   def eval(exp: AExpr, env: statelattice.Element)(implicit declData: DeclarationData): valuelattice.Element = {
     import valuelattice._
     exp match {
-      case id: AIdentifier => env(id.declaration)
+      case id: AIdentifier => env(id)
       case n: ANumber => num(n.value)
       case bin: ABinaryOp =>
         val left = eval(bin.left, env)
@@ -52,9 +52,6 @@ trait ValueAnalysisMisc {
           case _ => ???
         }
       case _: AInput => valuelattice.top
-      case AUnaryOp(RefOp, _, _) | AUnaryOp(DerefOp, _, _) | ANull(_) | AAlloc(_, _) | AAccess(_, _, _) =>
-        NoPointers.LanguageRestrictionViolation(s"No pointers allowed in eval $exp")
-      case _: ACallFuncExpr => NoCalls.LanguageRestrictionViolation(s"No calls allowed in eval $exp")
       case _ => ???
     }
   }
@@ -74,7 +71,6 @@ trait ValueAnalysisMisc {
 
           // assignments
           case AAssignStmt(id: AIdentifier, right, _) => ??? //<--- Complete here
-          case AAssignStmt(_: AUnaryOp, _, _) => NoPointers.LanguageRestrictionViolation(s"${r.data} not allowed")
 
           // all others: like no-ops
           case _ => s
@@ -123,7 +119,7 @@ trait InterprocValueAnalysisFunctions[L <: LatticeWithOps] extends MapLiftLattic
     * Overrides `funsub` from [[tip.solvers.MapLatticeSolver]] adding support for function calls and returns.
     */
   override def funsub(n: CfgNode, x: lattice.Element): liftedstatelattice.Element = {
-    import cfg._ // gives easy access to the functionality in InterproceduralProgramCfg
+    //import cfg._ // gives easy access to the functionality in InterproceduralProgramCfg
     import liftedstatelattice._
 
     new NormalizedCalls().assertContainsNode(n.data)
@@ -138,7 +134,7 @@ trait InterprocValueAnalysisFunctions[L <: LatticeWithOps] extends MapLiftLattic
       // return node
       case CfgStmtNode(_, _, _, ret: AReturnStmt) =>
         val j = join(n, x)
-        j + (AstOps.returnId -> eval(ret.value, j))
+        j + (AstOps.returnId -> eval(ret.exp, j))
 
       // call nodes (like no-ops here)
       case _: CfgCallNode => join(n, x)
@@ -196,7 +192,7 @@ trait InterprocValueAnalysisFunctionsWithPropagation
 
       // return statement
       case CfgStmtNode(_, _, _, ret: AReturnStmt) =>
-        s + (AstOps.returnId -> eval(ret.value, s))
+        s + (AstOps.returnId -> eval(ret.exp, s))
 
       // function entry nodes (like no-op here)
       case _: CfgFunEntryNode => s
@@ -259,7 +255,7 @@ abstract class LiftedValueAnalysis[P <: ProgramCfg](val cfg: P)(implicit val dec
     import liftedstatelattice._
     n match {
       // function entry nodes are always reachable (if intra-procedural analysis)
-      case funentry: CfgFunEntryNode => lift(statelattice.bottom)
+      case _: CfgFunEntryNode => lift(statelattice.bottom)
       // all other nodes are processed with join+transfer
       case _ => super.funsub(n, x)
     }
@@ -360,7 +356,7 @@ abstract class ContextSensitiveValueAnalysis[C <: CallContext, L <: LatticeWithO
 
       // return statement
       case CfgStmtNode(_, _, _, ret: AReturnStmt) =>
-        s + (AstOps.returnId -> eval(ret.value, s))
+        s + (AstOps.returnId -> eval(ret.exp, s))
 
       // function entry nodes (like no-op here)
       case _: CfgFunEntryNode => s

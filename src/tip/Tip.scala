@@ -6,7 +6,7 @@ import org.parboiled2.ParseError
 import tip.analysis.FlowSensitiveAnalysis.{Analysis => dfa, AnalysisOption => dfo}
 import tip.analysis._
 import tip.ast.AstNodeData._
-import tip.ast.AProgram
+import tip.ast.{AProgram, NoNormalizer}
 import tip.concolic.ConcolicEngine
 import tip.cfg._
 import tip.interpreter.ConcreteInterpreter
@@ -20,7 +20,6 @@ import scala.util.{Failure, Success}
   * Options for running the TIP system.
   */
 class RunOption {
-  val log = Log.logger[this.type]()
 
   /**
     * If set, construct the (intraprocedural) control-flow graph after parsing.
@@ -82,7 +81,7 @@ class RunOption {
     */
   def check(): Boolean =
     if (source == null) {
-      log.error(s"Source file/directory missing")
+      Tip.log.error(s"Source file/directory missing")
       false
     } else
       true
@@ -158,9 +157,17 @@ object Tip extends App {
     */
   def processFile(file: File, options: RunOption) = {
     try {
-      val program = Source.fromFile(file).mkString
+      val program = {
+        val bs = Source.fromFile(file)
+        try {
+          bs.mkString
+        } finally {
+          bs.close()
+        }
+      }
 
       // parse the program
+      log.verb("Parsing")
       val tipParser = new TipParser(program)
       val res = tipParser.InputLine.run()
 
@@ -173,17 +180,21 @@ object Tip extends App {
           sys.exit(1)
         case Success(parsedNode: AProgram) =>
           // run normalizer
+          log.verb("Normalizing")
           val programNode = options.normalizer.normalizeProgram(parsedNode)
-          Output.output(file, OtherOutput(OutputKindE.normalized), programNode.toString, options.out)
+          if (options.normalizer != NoNormalizer)
+            Output.output(file, OtherOutput(OutputKindE.normalized), programNode.toString, options.out)
 
           // run declaration analysis
           // (for information about the use of 'implicit', see [[tip.analysis.TypeAnalysis]])
+          log.verb("Declaration analysis")
           implicit val declData: DeclarationData = new DeclarationAnalysis(programNode).analyze()
 
           // run selected intraprocedural flow-sensitive analyses
           if (options.cfg | options.dfAnalysis.exists(p => p._2 != dfo.Disabled && !dfo.interprocedural(p._2))) {
 
             // generate control-flow graph
+            log.verb("Building intraprocedural control flow graphs")
             val wcfg = IntraproceduralProgramCfg.generateFromProgram(programNode)
             if (options.cfg)
               Output.output(file, OtherOutput(OutputKindE.cfg), wcfg.toDot({ x =>
@@ -195,6 +206,7 @@ object Tip extends App {
                 if (!dfo.interprocedural(v)) {
                   FlowSensitiveAnalysis.select(s, v, wcfg).foreach { an =>
                     // run the analysis
+                    log.verb(s"Performing ${an.getClass.getSimpleName}")
                     val res = an.analyze().asInstanceOf[Map[CfgNode, _]]
                     Output.output(file, DataFlowOutput(s), wcfg.toDot(Output.labeler(res), Output.dotIder), options.out)
                   }
@@ -207,8 +219,10 @@ object Tip extends App {
 
             // generate control-flow graph
             val wcfg = if (options.cfa) {
+              log.verb("Building interprocedural control flow graph using control flow analysis")
               InterproceduralProgramCfg.generateFromProgramWithCfa(programNode)
             } else {
+              log.verb("Building interprocedural control flow graph")
               InterproceduralProgramCfg.generateFromProgram(programNode)
             }
 
@@ -223,6 +237,7 @@ object Tip extends App {
                 if (dfo.interprocedural(v)) {
                   FlowSensitiveAnalysis.select(s, v, wcfg).foreach { an =>
                     // run the analysis
+                    log.verb(s"Starting ${an.getClass.getSimpleName}")
                     val res = an.analyze()
                     val res2 =
                       if (dfo.contextsensitive(v))
@@ -238,12 +253,14 @@ object Tip extends App {
           // run type analysis, if selected
           if (options.types) {
             // (for information about the use of 'implicit', see [[tip.analysis.TypeAnalysis]])
+            log.verb("Starting TypeAnalysis")
             implicit val typeData: TypeData = new TypeAnalysis(programNode).analyze()
             Output.output(file, OtherOutput(OutputKindE.types), programNode.toTypedString, options.out)
           }
 
           // run Andersen analysis, if selected
           if (options.andersen) {
+            log.verb("Starting AndersenAnalysis")
             val s = new AndersenAnalysis(programNode)
             s.analyze()
             s.pointsTo()
@@ -251,6 +268,7 @@ object Tip extends App {
 
           // run Steensgaard analysis, if selected
           if (options.steensgaard) {
+            log.verb("Starting SteensgaardAnalysis")
             val s = new SteensgaardAnalysis(programNode)
             s.analyze()
             s.pointsTo()
@@ -259,31 +277,34 @@ object Tip extends App {
           // run control-flow analysis, if selected
           if (options.cfa) { // TODO: skip if InterproceduralProgramCfg.generateFromProgramWithCfa has been executed above
             val s = new ControlFlowAnalysis(programNode)
+            log.verb("Starting ControlFlowAnalysis")
             s.analyze()
           }
 
           // execute the program, if selected
           if (options.run) {
+            log.verb("Starting ConcreteInterpreter")
             val intp = new ConcreteInterpreter(programNode)
             intp.semp()
           }
 
           // concolically execute the program, if selected
           if (options.concolic) {
+            log.verb("Starting ConcolicEngine")
             new ConcolicEngine(programNode).test()
           }
-
-          log.info("Success")
       }
     } catch {
+      case e: TipProgramException =>
+        log.error(e.getMessage)
+        sys.exit(1)
       case e: Exception =>
-        log.error(s"Error: ${e.getMessage}", e)
+        log.error(s"Internal error: ${e.getMessage}", e)
         sys.exit(1)
     }
   }
 
   // parse options
-  Log.defaultLevel = Log.Level.Info
   val options = new RunOption()
   var i = 0
   while (i < args.length) {
@@ -322,6 +343,7 @@ object Tip extends App {
           options.concolic = true
         case "-verbose" =>
           Log.defaultLevel = Log.Level.Verbose
+          log.level = Log.Level.Verbose
         case _ =>
           log.error(s"Unrecognized option $s")
           printUsage()

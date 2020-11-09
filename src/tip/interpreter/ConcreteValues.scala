@@ -26,6 +26,11 @@ object ConcreteValues extends ValueSpecification {
   case class ConcreteReferenceValue(i: Int) extends ReferenceValue
 
   /**
+    * Reference to field.
+    */
+  case class ConcreteReferenceFieldValue(i: Int, field: String) extends ReferenceValue
+
+  /**
     * Function value.
     */
   case class ConcreteFunValue(fun: AFunDeclaration) extends FunValue

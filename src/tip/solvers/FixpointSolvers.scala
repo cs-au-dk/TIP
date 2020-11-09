@@ -208,8 +208,9 @@ trait WorklistFixpointSolver[N] extends MapLatticeSolver[N] with ListSetWorklist
 
   def process(n: N) = {
     val xn = x(n)
-    FixpointSolvers.log.verb(s"Processing $n in state $xn")
+    FixpointSolvers.log.verb(s"Processing $n, current state: $xn")
     val y = funsub(n, x)
+    FixpointSolvers.log.verb(s"New state: $y")
     if (y != xn) {
       x += n -> y
       add(outdep(n))
@@ -327,6 +328,7 @@ trait WorklistFixpointPropagationSolver[N] extends WorklistFixpointSolverWithRea
     // apply the transfer function
     FixpointSolvers.log.verb(s"Processing $n in state $xn")
     val y = transfer(n, xn)
+    FixpointSolvers.log.verb(s"Resulting state: $y")
     // propagate to all nodes that depend on this one
     for (m <- outdep(n)) propagate(y, m)
   }
@@ -360,8 +362,9 @@ trait WorklistFixpointSolverWithReachabilityAndWidening[N] extends WorklistFixpo
 
   override def process(n: N) = {
     val xn = x(n)
-    FixpointSolvers.log.verb(s"Processing $n in state $xn")
+    FixpointSolvers.log.verb(s"Processing $n, current state $xn")
     val y = funsub(n, x)
+    FixpointSolvers.log.verb(s"New state: $y")
     if (y != xn) {
       x += n -> (if (loophead(n)) widen(xn, y) else y)
       add(outdep(n))
