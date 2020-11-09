@@ -8,17 +8,17 @@
           <meta name="keywords" content="" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
+      
       <link href="../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
       <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
       <link href="../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
-      <script type="text/javascript" src="../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../lib/jquery.min.js"></script>
       <script type="text/javascript" src="../../lib/jquery.panzoom.min.js"></script>
       <script type="text/javascript" src="../../lib/jquery.mousewheel.min.js"></script>
       <script type="text/javascript" src="../../lib/index.js"></script>
       <script type="text/javascript" src="../../index.js"></script>
       <script type="text/javascript" src="../../lib/scheduler.js"></script>
       <script type="text/javascript" src="../../lib/template.js"></script>
-      <script type="text/javascript" src="../../lib/tools.tooltip.js"></script>
       
       <script type="text/javascript">
         /* this variable can be used by the JS to determine the path to the root document */
@@ -56,7 +56,7 @@
                 <li name="_root_.root" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="_root_"></a><a id="root:_root_"></a>
       <span class="permalink">
-      <a href="index.html#_root_" title="Permalink">
+      <a href="../../index.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -72,7 +72,7 @@
     </li><li name="_root_.tip" visbl="pub" class="indented1 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tip"></a><a id="tip:tip"></a>
       <span class="permalink">
-      <a href="index.html#tip" title="Permalink">
+      <a href="../../tip/index.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -88,7 +88,7 @@
     </li><li name="tip.concolic" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="concolic"></a><a id="concolic:concolic"></a>
       <span class="permalink">
-      <a href="../tip/index.html#concolic" title="Permalink">
+      <a href="../../tip/concolic/index.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -248,7 +248,7 @@
               <ol><li name="tip.concolic.SymbolicInterpreter.ConcolicState" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="ConcolicStateextendsProductwithSerializable"></a><a id="ConcolicState:ConcolicState"></a>
       <span class="permalink">
-      <a href="../../tip/concolic/SymbolicInterpreter.html#ConcolicStateextendsProductwithSerializable" title="Permalink">
+      <a href="../../tip/concolic/SymbolicInterpreter$ConcolicState.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -294,25 +294,25 @@
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.concolic.SymbolicInterpreter">SymbolicInterpreter</a> → <a href="../interpreter/Interpreter.html" class="extype" name="tip.interpreter.Interpreter">Interpreter</a></dd></dl></div>
     </li><li name="tip.interpreter.Interpreter.ExecutionError" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="ExecutionErrorextendsRuntimeExceptionwithProductwithSerializable"></a><a id="ExecutionError:ExecutionError"></a>
+      <a id="ExecutionErrorextendsTipProgramException"></a><a id="ExecutionError:ExecutionError"></a>
       <span class="permalink">
-      <a href="../../tip/interpreter/Interpreter.html#ExecutionErrorextendsRuntimeExceptionwithProductwithSerializable" title="Permalink">
+      <a href="../../tip/interpreter/Interpreter$ExecutionError.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">case class</span>
+        <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="" href="../interpreter/Interpreter$ExecutionError.html"><span class="name">ExecutionError</span></a><span class="params">(<span name="message">message: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="store">store: <a href="../interpreter/Interpreter$Store.html" class="extype" name="tip.interpreter.Interpreter.Store">Store</a></span>)</span><span class="result"> extends <span class="extype" name="scala.RuntimeException">RuntimeException</span> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="../interpreter/Interpreter$ExecutionError.html"><span class="name">ExecutionError</span></a><span class="result"> extends <a href="../util/TipProgramException.html" class="extype" name="tip.util.TipProgramException">TipProgramException</a></span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../interpreter/Interpreter.html" class="extype" name="tip.interpreter.Interpreter">Interpreter</a></dd></dl></div>
     </li><li name="tip.interpreter.Interpreter.Store" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="StoreextendsProductwithSerializable"></a><a id="Store:Store"></a>
       <span class="permalink">
-      <a href="../../tip/interpreter/Interpreter.html#StoreextendsProductwithSerializable" title="Permalink">
+      <a href="../../tip/interpreter/Interpreter$Store.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -444,13 +444,15 @@
         <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java/lang/index.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
-                <span class="name">@native</span><span class="args">()</span>
-              
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<span class="extype" name="java.lang">lang</span>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
       <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
     </span>)</span>
+              
+                <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -518,9 +520,9 @@
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../interpreter/Interpreter.html" class="extype" name="tip.interpreter.Interpreter">Interpreter</a></dd></dl></div>
     </li><li name="tip.interpreter.Interpreter#errorArithmeticOnNonInt" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="errorArithmeticOnNonInt(op:tip.ast.BinaryOperator,store:Interpreter.this.Store):Nothing"></a><a id="errorArithmeticOnNonInt(BinaryOperator,Store):Nothing"></a>
+      <a id="errorArithmeticOnNonInt(loc:tip.ast.Loc,op:tip.ast.BinaryOperator,store:Interpreter.this.Store):Nothing"></a><a id="errorArithmeticOnNonInt(Loc,BinaryOperator,Store):Nothing"></a>
       <span class="permalink">
-      <a href="../../tip/concolic/SymbolicInterpreter.html#errorArithmeticOnNonInt(op:tip.ast.BinaryOperator,store:Interpreter.this.Store):Nothing" title="Permalink">
+      <a href="../../tip/concolic/SymbolicInterpreter.html#errorArithmeticOnNonInt(loc:tip.ast.Loc,op:tip.ast.BinaryOperator,store:Interpreter.this.Store):Nothing" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -529,14 +531,14 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">errorArithmeticOnNonInt</span><span class="params">(<span name="op">op: <a href="../ast/BinaryOperator.html" class="extype" name="tip.ast.BinaryOperator">BinaryOperator</a></span>, <span name="store">store: <a href="#StoreextendsProductwithSerializable" class="extmbr" name="tip.interpreter.Interpreter.Store">Store</a></span>)</span><span class="result">: <span class="extype" name="scala.Nothing">Nothing</span></span>
+        <span class="name">errorArithmeticOnNonInt</span><span class="params">(<span name="loc">loc: <a href="../ast/Loc.html" class="extype" name="tip.ast.Loc">Loc</a></span>, <span name="op">op: <a href="../ast/BinaryOperator.html" class="extype" name="tip.ast.BinaryOperator">BinaryOperator</a></span>, <span name="store">store: <a href="#StoreextendsProductwithSerializable" class="extmbr" name="tip.interpreter.Interpreter.Store">Store</a></span>)</span><span class="result">: <span class="extype" name="scala.Nothing">Nothing</span></span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../interpreter/Interpreter.html" class="extype" name="tip.interpreter.Interpreter">Interpreter</a></dd></dl></div>
     </li><li name="tip.interpreter.Interpreter#errorCallNotFunction" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="errorCallNotFunction(funValue:Interpreter.this.spec.EValue,store:Interpreter.this.Store):Nothing"></a><a id="errorCallNotFunction(SymbolicValues.EValue,Store):Nothing"></a>
+      <a id="errorCallNotFunction(loc:tip.ast.Loc,funValue:Interpreter.this.spec.EValue,store:Interpreter.this.Store):Nothing"></a><a id="errorCallNotFunction(Loc,SymbolicValues.EValue,Store):Nothing"></a>
       <span class="permalink">
-      <a href="../../tip/concolic/SymbolicInterpreter.html#errorCallNotFunction(funValue:Interpreter.this.spec.EValue,store:Interpreter.this.Store):Nothing" title="Permalink">
+      <a href="../../tip/concolic/SymbolicInterpreter.html#errorCallNotFunction(loc:tip.ast.Loc,funValue:Interpreter.this.spec.EValue,store:Interpreter.this.Store):Nothing" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -545,7 +547,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">errorCallNotFunction</span><span class="params">(<span name="funValue">funValue: <a href="SymbolicValues$.html#EValueextendsAnyRef" class="extmbr" name="tip.interpreter.ValueSpecification.EValue">SymbolicValues.EValue</a></span>, <span name="store">store: <a href="#StoreextendsProductwithSerializable" class="extmbr" name="tip.interpreter.Interpreter.Store">Store</a></span>)</span><span class="result">: <span class="extype" name="scala.Nothing">Nothing</span></span>
+        <span class="name">errorCallNotFunction</span><span class="params">(<span name="loc">loc: <a href="../ast/Loc.html" class="extype" name="tip.ast.Loc">Loc</a></span>, <span name="funValue">funValue: <a href="SymbolicValues$.html#EValueextendsAnyRef" class="extmbr" name="tip.interpreter.ValueSpecification.EValue">SymbolicValues.EValue</a></span>, <span name="store">store: <a href="#StoreextendsProductwithSerializable" class="extmbr" name="tip.interpreter.Interpreter.Store">Store</a></span>)</span><span class="result">: <span class="extype" name="scala.Nothing">Nothing</span></span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../interpreter/Interpreter.html" class="extype" name="tip.interpreter.Interpreter">Interpreter</a></dd></dl></div>
@@ -566,9 +568,9 @@
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../interpreter/Interpreter.html" class="extype" name="tip.interpreter.Interpreter">Interpreter</a></dd></dl></div>
     </li><li name="tip.interpreter.Interpreter#errorDerefNotPointer" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="errorDerefNotPointer(loc:tip.ast.Loc,target:tip.ast.AExpr,x:Interpreter.this.spec.EValue,store:Interpreter.this.Store):Nothing"></a><a id="errorDerefNotPointer(Loc,AExpr,SymbolicValues.EValue,Store):Nothing"></a>
+      <a id="errorDerefNotPointer(loc:tip.ast.Loc,x:Interpreter.this.spec.EValue,store:Interpreter.this.Store):Nothing"></a><a id="errorDerefNotPointer(Loc,SymbolicValues.EValue,Store):Nothing"></a>
       <span class="permalink">
-      <a href="../../tip/concolic/SymbolicInterpreter.html#errorDerefNotPointer(loc:tip.ast.Loc,target:tip.ast.AExpr,x:Interpreter.this.spec.EValue,store:Interpreter.this.Store):Nothing" title="Permalink">
+      <a href="../../tip/concolic/SymbolicInterpreter.html#errorDerefNotPointer(loc:tip.ast.Loc,x:Interpreter.this.spec.EValue,store:Interpreter.this.Store):Nothing" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -577,14 +579,14 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">errorDerefNotPointer</span><span class="params">(<span name="loc">loc: <a href="../ast/Loc.html" class="extype" name="tip.ast.Loc">Loc</a></span>, <span name="target">target: <a href="../ast/AExpr.html" class="extype" name="tip.ast.AExpr">AExpr</a></span>, <span name="x">x: <a href="SymbolicValues$.html#EValueextendsAnyRef" class="extmbr" name="tip.interpreter.ValueSpecification.EValue">SymbolicValues.EValue</a></span>, <span name="store">store: <a href="#StoreextendsProductwithSerializable" class="extmbr" name="tip.interpreter.Interpreter.Store">Store</a></span>)</span><span class="result">: <span class="extype" name="scala.Nothing">Nothing</span></span>
+        <span class="name">errorDerefNotPointer</span><span class="params">(<span name="loc">loc: <a href="../ast/Loc.html" class="extype" name="tip.ast.Loc">Loc</a></span>, <span name="x">x: <a href="SymbolicValues$.html#EValueextendsAnyRef" class="extmbr" name="tip.interpreter.ValueSpecification.EValue">SymbolicValues.EValue</a></span>, <span name="store">store: <a href="#StoreextendsProductwithSerializable" class="extmbr" name="tip.interpreter.Interpreter.Store">Store</a></span>)</span><span class="result">: <span class="extype" name="scala.Nothing">Nothing</span></span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../interpreter/Interpreter.html" class="extype" name="tip.interpreter.Interpreter">Interpreter</a></dd></dl></div>
     </li><li name="tip.interpreter.Interpreter#errorErrorNonInt" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="errorErrorNonInt(v:Interpreter.this.spec.EValue,store:Interpreter.this.Store):Nothing"></a><a id="errorErrorNonInt(SymbolicValues.EValue,Store):Nothing"></a>
+      <a id="errorErrorNonInt(loc:tip.ast.Loc,v:Interpreter.this.spec.EValue,store:Interpreter.this.Store):Nothing"></a><a id="errorErrorNonInt(Loc,SymbolicValues.EValue,Store):Nothing"></a>
       <span class="permalink">
-      <a href="../../tip/concolic/SymbolicInterpreter.html#errorErrorNonInt(v:Interpreter.this.spec.EValue,store:Interpreter.this.Store):Nothing" title="Permalink">
+      <a href="../../tip/concolic/SymbolicInterpreter.html#errorErrorNonInt(loc:tip.ast.Loc,v:Interpreter.this.spec.EValue,store:Interpreter.this.Store):Nothing" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -593,14 +595,14 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">errorErrorNonInt</span><span class="params">(<span name="v">v: <a href="SymbolicValues$.html#EValueextendsAnyRef" class="extmbr" name="tip.interpreter.ValueSpecification.EValue">SymbolicValues.EValue</a></span>, <span name="store">store: <a href="#StoreextendsProductwithSerializable" class="extmbr" name="tip.interpreter.Interpreter.Store">Store</a></span>)</span><span class="result">: <span class="extype" name="scala.Nothing">Nothing</span></span>
+        <span class="name">errorErrorNonInt</span><span class="params">(<span name="loc">loc: <a href="../ast/Loc.html" class="extype" name="tip.ast.Loc">Loc</a></span>, <span name="v">v: <a href="SymbolicValues$.html#EValueextendsAnyRef" class="extmbr" name="tip.interpreter.ValueSpecification.EValue">SymbolicValues.EValue</a></span>, <span name="store">store: <a href="#StoreextendsProductwithSerializable" class="extmbr" name="tip.interpreter.Interpreter.Store">Store</a></span>)</span><span class="result">: <span class="extype" name="scala.Nothing">Nothing</span></span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../interpreter/Interpreter.html" class="extype" name="tip.interpreter.Interpreter">Interpreter</a></dd></dl></div>
     </li><li name="tip.interpreter.Interpreter#errorInputNotInt" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="errorInputNotInt(store:Interpreter.this.Store):Nothing"></a><a id="errorInputNotInt(Store):Nothing"></a>
+      <a id="errorInputNotInt(loc:tip.ast.Loc,store:Interpreter.this.Store):Nothing"></a><a id="errorInputNotInt(Loc,Store):Nothing"></a>
       <span class="permalink">
-      <a href="../../tip/concolic/SymbolicInterpreter.html#errorInputNotInt(store:Interpreter.this.Store):Nothing" title="Permalink">
+      <a href="../../tip/concolic/SymbolicInterpreter.html#errorInputNotInt(loc:tip.ast.Loc,store:Interpreter.this.Store):Nothing" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -609,23 +611,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">errorInputNotInt</span><span class="params">(<span name="store">store: <a href="#StoreextendsProductwithSerializable" class="extmbr" name="tip.interpreter.Interpreter.Store">Store</a></span>)</span><span class="result">: <span class="extype" name="scala.Nothing">Nothing</span></span>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../interpreter/Interpreter.html" class="extype" name="tip.interpreter.Interpreter">Interpreter</a></dd></dl></div>
-    </li><li name="tip.interpreter.Interpreter#errorNonRefable" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="errorNonRefable(exp:tip.ast.AExpr,store:Interpreter.this.Store):Nothing"></a><a id="errorNonRefable(AExpr,Store):Nothing"></a>
-      <span class="permalink">
-      <a href="../../tip/concolic/SymbolicInterpreter.html#errorNonRefable(exp:tip.ast.AExpr,store:Interpreter.this.Store):Nothing" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">errorNonRefable</span><span class="params">(<span name="exp">exp: <a href="../ast/AExpr.html" class="extype" name="tip.ast.AExpr">AExpr</a></span>, <span name="store">store: <a href="#StoreextendsProductwithSerializable" class="extmbr" name="tip.interpreter.Interpreter.Store">Store</a></span>)</span><span class="result">: <span class="extype" name="scala.Nothing">Nothing</span></span>
+        <span class="name">errorInputNotInt</span><span class="params">(<span name="loc">loc: <a href="../ast/Loc.html" class="extype" name="tip.ast.Loc">Loc</a></span>, <span name="store">store: <a href="#StoreextendsProductwithSerializable" class="extmbr" name="tip.interpreter.Interpreter.Store">Store</a></span>)</span><span class="result">: <span class="extype" name="scala.Nothing">Nothing</span></span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../interpreter/Interpreter.html" class="extype" name="tip.interpreter.Interpreter">Interpreter</a></dd></dl></div>
@@ -646,9 +632,9 @@
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../interpreter/Interpreter.html" class="extype" name="tip.interpreter.Interpreter">Interpreter</a></dd></dl></div>
     </li><li name="tip.interpreter.Interpreter#errorOutputNotInt" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="errorOutputNotInt(store:Interpreter.this.Store):Nothing"></a><a id="errorOutputNotInt(Store):Nothing"></a>
+      <a id="errorOutputNotInt(loc:tip.ast.Loc,store:Interpreter.this.Store):Nothing"></a><a id="errorOutputNotInt(Loc,Store):Nothing"></a>
       <span class="permalink">
-      <a href="../../tip/concolic/SymbolicInterpreter.html#errorOutputNotInt(store:Interpreter.this.Store):Nothing" title="Permalink">
+      <a href="../../tip/concolic/SymbolicInterpreter.html#errorOutputNotInt(loc:tip.ast.Loc,store:Interpreter.this.Store):Nothing" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -657,14 +643,14 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">errorOutputNotInt</span><span class="params">(<span name="store">store: <a href="#StoreextendsProductwithSerializable" class="extmbr" name="tip.interpreter.Interpreter.Store">Store</a></span>)</span><span class="result">: <span class="extype" name="scala.Nothing">Nothing</span></span>
+        <span class="name">errorOutputNotInt</span><span class="params">(<span name="loc">loc: <a href="../ast/Loc.html" class="extype" name="tip.ast.Loc">Loc</a></span>, <span name="store">store: <a href="#StoreextendsProductwithSerializable" class="extmbr" name="tip.interpreter.Interpreter.Store">Store</a></span>)</span><span class="result">: <span class="extype" name="scala.Nothing">Nothing</span></span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../interpreter/Interpreter.html" class="extype" name="tip.interpreter.Interpreter">Interpreter</a></dd></dl></div>
     </li><li name="tip.interpreter.Interpreter#errorReturnNotInt" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="errorReturnNotInt(fun:tip.ast.AFunDeclaration,store:Interpreter.this.Store):Nothing"></a><a id="errorReturnNotInt(AFunDeclaration,Store):Nothing"></a>
+      <a id="errorReturnNotInt(loc:tip.ast.Loc,fun:tip.ast.AFunDeclaration,store:Interpreter.this.Store):Nothing"></a><a id="errorReturnNotInt(Loc,AFunDeclaration,Store):Nothing"></a>
       <span class="permalink">
-      <a href="../../tip/concolic/SymbolicInterpreter.html#errorReturnNotInt(fun:tip.ast.AFunDeclaration,store:Interpreter.this.Store):Nothing" title="Permalink">
+      <a href="../../tip/concolic/SymbolicInterpreter.html#errorReturnNotInt(loc:tip.ast.Loc,fun:tip.ast.AFunDeclaration,store:Interpreter.this.Store):Nothing" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -673,14 +659,14 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">errorReturnNotInt</span><span class="params">(<span name="fun">fun: <a href="../ast/AFunDeclaration.html" class="extype" name="tip.ast.AFunDeclaration">AFunDeclaration</a></span>, <span name="store">store: <a href="#StoreextendsProductwithSerializable" class="extmbr" name="tip.interpreter.Interpreter.Store">Store</a></span>)</span><span class="result">: <span class="extype" name="scala.Nothing">Nothing</span></span>
+        <span class="name">errorReturnNotInt</span><span class="params">(<span name="loc">loc: <a href="../ast/Loc.html" class="extype" name="tip.ast.Loc">Loc</a></span>, <span name="fun">fun: <a href="../ast/AFunDeclaration.html" class="extype" name="tip.ast.AFunDeclaration">AFunDeclaration</a></span>, <span name="store">store: <a href="#StoreextendsProductwithSerializable" class="extmbr" name="tip.interpreter.Interpreter.Store">Store</a></span>)</span><span class="result">: <span class="extype" name="scala.Nothing">Nothing</span></span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../interpreter/Interpreter.html" class="extype" name="tip.interpreter.Interpreter">Interpreter</a></dd></dl></div>
-    </li><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="finalize():Unit"></a>
+    </li><li name="tip.interpreter.Interpreter#errorUninitializedLocation" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="errorUninitializedLocation(loc:tip.ast.Loc,store:Interpreter.this.Store):Nothing"></a><a id="errorUninitializedLocation(Loc,Store):Nothing"></a>
       <span class="permalink">
-      <a href="../../tip/concolic/SymbolicInterpreter.html#finalize():Unit" title="Permalink">
+      <a href="../../tip/concolic/SymbolicInterpreter.html#errorUninitializedLocation(loc:tip.ast.Loc,store:Interpreter.this.Store):Nothing" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -689,16 +675,26 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">errorUninitializedLocation</span><span class="params">(<span name="loc">loc: <a href="../ast/Loc.html" class="extype" name="tip.ast.Loc">Loc</a></span>, <span name="store">store: <a href="#StoreextendsProductwithSerializable" class="extmbr" name="tip.interpreter.Interpreter.Store">Store</a></span>)</span><span class="result">: <span class="extype" name="scala.Nothing">Nothing</span></span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java/lang/index.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
-                <span class="name">@throws</span><span class="args">(<span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../interpreter/Interpreter.html" class="extype" name="tip.interpreter.Interpreter">Interpreter</a></dd></dl></div>
+    </li><li name="tip.interpreter.Interpreter#errorWriteFieldRecord" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="errorWriteFieldRecord(loc:tip.ast.Loc,x:Interpreter.this.spec.EValue,store:Interpreter.this.Store):Nothing"></a><a id="errorWriteFieldRecord(Loc,SymbolicValues.EValue,Store):Nothing"></a>
+      <span class="permalink">
+      <a href="../../tip/concolic/SymbolicInterpreter.html#errorWriteFieldRecord(loc:tip.ast.Loc,x:Interpreter.this.spec.EValue,store:Interpreter.this.Store):Nothing" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">errorWriteFieldRecord</span><span class="params">(<span name="loc">loc: <a href="../ast/Loc.html" class="extype" name="tip.ast.Loc">Loc</a></span>, <span name="x">x: <a href="SymbolicValues$.html#EValueextendsAnyRef" class="extmbr" name="tip.interpreter.ValueSpecification.EValue">SymbolicValues.EValue</a></span>, <span name="store">store: <a href="#StoreextendsProductwithSerializable" class="extmbr" name="tip.interpreter.Interpreter.Store">Store</a></span>)</span><span class="result">: <span class="extype" name="scala.Nothing">Nothing</span></span>
+      </span>
       
-      <span class="symbol">classOf[java.lang.Throwable]</span>
-    </span>)</span>
-              
-        </dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../interpreter/Interpreter.html" class="extype" name="tip.interpreter.Interpreter">Interpreter</a></dd></dl></div>
     </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <span class="permalink">
@@ -716,6 +712,8 @@
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -735,6 +733,8 @@
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="tip.concolic.SymbolicInterpreter#input" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -820,6 +820,8 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+              
         </dd></dl></div>
     </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notifyAll():Unit"></a>
@@ -838,6 +840,8 @@
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="tip.interpreter.Interpreter#semc" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -858,9 +862,9 @@
       <p class="shortcomment cmt">Semantics for statements (including local variable declarations).</p><div class="fullcomment"><div class="comment cmt"><p>Semantics for statements (including local variable declarations).
 </p></div><dl class="paramcmts block"><dt class="param">stm</dt><dd class="cmt"><p>the statement to execute</p></dd><dt class="param">env</dt><dd class="cmt"><p>the initial environment</p></dd><dt class="param">store</dt><dd class="cmt"><p>the initial store</p></dd><dt>returns</dt><dd class="cmt"><p>the resulting environment and store</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="../interpreter/Interpreter.html" class="extype" name="tip.interpreter.Interpreter">Interpreter</a></dd></dl></div>
     </li><li name="tip.interpreter.Interpreter#semeref" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="semeref(exp:tip.ast.AExpr,env:Interpreter.this.Env,store:Interpreter.this.Store):(Interpreter.this.spec.ReferenceValue,Interpreter.this.Store)"></a><a id="semeref(AExpr,Env,Store):(SymbolicValues.ReferenceValue,Store)"></a>
+      <a id="semeref(exp:tip.ast.FieldAssignable,env:Interpreter.this.Env,store:Interpreter.this.Store):(Interpreter.this.spec.ReferenceValue,String,Interpreter.this.Store)"></a><a id="semeref(FieldAssignable,Env,Store):(SymbolicValues.ReferenceValue,String,Store)"></a>
       <span class="permalink">
-      <a href="../../tip/concolic/SymbolicInterpreter.html#semeref(exp:tip.ast.AExpr,env:Interpreter.this.Env,store:Interpreter.this.Store):(Interpreter.this.spec.ReferenceValue,Interpreter.this.Store)" title="Permalink">
+      <a href="../../tip/concolic/SymbolicInterpreter.html#semeref(exp:tip.ast.FieldAssignable,env:Interpreter.this.Env,store:Interpreter.this.Store):(Interpreter.this.spec.ReferenceValue,String,Interpreter.this.Store)" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -869,11 +873,28 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">semeref</span><span class="params">(<span name="exp">exp: <a href="../ast/AExpr.html" class="extype" name="tip.ast.AExpr">AExpr</a></span>, <span name="env">env: <a href="#Env=Map[tip.ast.ADeclaration,Interpreter.this.spec.Location]" class="extmbr" name="tip.concolic.SymbolicInterpreter.Env">Env</a></span>, <span name="store">store: <a href="#StoreextendsProductwithSerializable" class="extmbr" name="tip.interpreter.Interpreter.Store">Store</a></span>)</span><span class="result">: (<a href="SymbolicValues$.html#ReferenceValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.ReferenceValue">SymbolicValues.ReferenceValue</a>, <a href="#StoreextendsProductwithSerializable" class="extmbr" name="tip.interpreter.Interpreter.Store">Store</a>)</span>
+        <span class="name">semeref</span><span class="params">(<span name="exp">exp: <a href="../ast/FieldAssignable.html" class="extype" name="tip.ast.FieldAssignable">FieldAssignable</a></span>, <span name="env">env: <a href="#Env=Map[tip.ast.ADeclaration,Interpreter.this.spec.Location]" class="extmbr" name="tip.concolic.SymbolicInterpreter.Env">Env</a></span>, <span name="store">store: <a href="#StoreextendsProductwithSerializable" class="extmbr" name="tip.interpreter.Interpreter.Store">Store</a></span>)</span><span class="result">: (<a href="SymbolicValues$.html#ReferenceValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.ReferenceValue">SymbolicValues.ReferenceValue</a>, <span class="extype" name="scala.Predef.String">String</span>, <a href="#StoreextendsProductwithSerializable" class="extmbr" name="tip.interpreter.Interpreter.Store">Store</a>)</span>
       </span>
       
-      <p class="shortcomment cmt">Semantics for left-hand-side expressions.</p><div class="fullcomment"><div class="comment cmt"><p>Semantics for left-hand-side expressions.
-</p></div><dl class="paramcmts block"><dt class="param">exp</dt><dd class="cmt"><p>the expression to execute</p></dd><dt class="param">env</dt><dd class="cmt"><p>the environment</p></dd><dt class="param">store</dt><dd class="cmt"><p>the initial store</p></dd><dt>returns</dt><dd class="cmt"><p>the resulting location and store</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="../interpreter/Interpreter.html" class="extype" name="tip.interpreter.Interpreter">Interpreter</a></dd></dl></div>
+      <p class="shortcomment cmt">Semantics for field lvalue expressions.</p><div class="fullcomment"><div class="comment cmt"><p>Semantics for field lvalue expressions.
+</p></div><dl class="paramcmts block"><dt class="param">exp</dt><dd class="cmt"><p>the lvalue expression to execute</p></dd><dt class="param">env</dt><dd class="cmt"><p>the environment</p></dd><dt class="param">store</dt><dd class="cmt"><p>the initial store</p></dd><dt>returns</dt><dd class="cmt"><p>the resulting location, field, and store</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="../interpreter/Interpreter.html" class="extype" name="tip.interpreter.Interpreter">Interpreter</a></dd></dl></div>
+    </li><li name="tip.interpreter.Interpreter#semeref" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="semeref(exp:tip.ast.ReferenceAssignable,env:Interpreter.this.Env,store:Interpreter.this.Store):(Interpreter.this.spec.ReferenceValue,Interpreter.this.Store)"></a><a id="semeref(ReferenceAssignable,Env,Store):(SymbolicValues.ReferenceValue,Store)"></a>
+      <span class="permalink">
+      <a href="../../tip/concolic/SymbolicInterpreter.html#semeref(exp:tip.ast.ReferenceAssignable,env:Interpreter.this.Env,store:Interpreter.this.Store):(Interpreter.this.spec.ReferenceValue,Interpreter.this.Store)" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">semeref</span><span class="params">(<span name="exp">exp: <a href="../ast/ReferenceAssignable.html" class="extype" name="tip.ast.ReferenceAssignable">ReferenceAssignable</a></span>, <span name="env">env: <a href="#Env=Map[tip.ast.ADeclaration,Interpreter.this.spec.Location]" class="extmbr" name="tip.concolic.SymbolicInterpreter.Env">Env</a></span>, <span name="store">store: <a href="#StoreextendsProductwithSerializable" class="extmbr" name="tip.interpreter.Interpreter.Store">Store</a></span>)</span><span class="result">: (<a href="SymbolicValues$.html#ReferenceValueextendsValueSpecification.this.EValue" class="extmbr" name="tip.interpreter.ValueSpecification.ReferenceValue">SymbolicValues.ReferenceValue</a>, <a href="#StoreextendsProductwithSerializable" class="extmbr" name="tip.interpreter.Interpreter.Store">Store</a>)</span>
+      </span>
+      
+      <p class="shortcomment cmt">Semantics for ordinary lvalue expressions.</p><div class="fullcomment"><div class="comment cmt"><p>Semantics for ordinary lvalue expressions.
+</p></div><dl class="paramcmts block"><dt class="param">exp</dt><dd class="cmt"><p>the lvalue expression to execute</p></dd><dt class="param">env</dt><dd class="cmt"><p>the environment</p></dd><dt class="param">store</dt><dd class="cmt"><p>the initial store</p></dd><dt>returns</dt><dd class="cmt"><p>the resulting location and store</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="../interpreter/Interpreter.html" class="extype" name="tip.interpreter.Interpreter">Interpreter</a></dd></dl></div>
     </li><li name="tip.interpreter.Interpreter#semeright" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="semeright(exp:tip.ast.AExpr,env:Interpreter.this.Env,store:Interpreter.this.Store):(Interpreter.this.spec.EValue,Interpreter.this.Store)"></a><a id="semeright(AExpr,Env,Store):(SymbolicValues.EValue,Store)"></a>
       <span class="permalink">
@@ -889,7 +910,8 @@
         <span class="name">semeright</span><span class="params">(<span name="exp">exp: <a href="../ast/AExpr.html" class="extype" name="tip.ast.AExpr">AExpr</a></span>, <span name="env">env: <a href="#Env=Map[tip.ast.ADeclaration,Interpreter.this.spec.Location]" class="extmbr" name="tip.concolic.SymbolicInterpreter.Env">Env</a></span>, <span name="store">store: <a href="#StoreextendsProductwithSerializable" class="extmbr" name="tip.interpreter.Interpreter.Store">Store</a></span>)</span><span class="result">: (<a href="SymbolicValues$.html#EValueextendsAnyRef" class="extmbr" name="tip.interpreter.ValueSpecification.EValue">SymbolicValues.EValue</a>, <a href="#StoreextendsProductwithSerializable" class="extmbr" name="tip.interpreter.Interpreter.Store">Store</a>)</span>
       </span>
       
-      <p class="shortcomment cmt">Semantics for right-hand-side expressions.</p><div class="fullcomment"><div class="comment cmt"><p>Semantics for right-hand-side expressions.</p></div><dl class="paramcmts block"><dt class="param">exp</dt><dd class="cmt"><p>the expression to execute</p></dd><dt class="param">env</dt><dd class="cmt"><p>the environment</p></dd><dt class="param">store</dt><dd class="cmt"><p>the initial store</p></dd><dt>returns</dt><dd class="cmt"><p>the resulting value and store</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="../interpreter/Interpreter.html" class="extype" name="tip.interpreter.Interpreter">Interpreter</a></dd></dl></div>
+      <p class="shortcomment cmt">Semantics for right-hand-side expressions.</p><div class="fullcomment"><div class="comment cmt"><p>Semantics for right-hand-side expressions.
+</p></div><dl class="paramcmts block"><dt class="param">exp</dt><dd class="cmt"><p>the expression to execute</p></dd><dt class="param">env</dt><dd class="cmt"><p>the environment</p></dd><dt class="param">store</dt><dd class="cmt"><p>the initial store</p></dd><dt>returns</dt><dd class="cmt"><p>the resulting value and store</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="../interpreter/Interpreter.html" class="extype" name="tip.interpreter.Interpreter">Interpreter</a></dd></dl></div>
     </li><li name="tip.concolic.SymbolicInterpreter#semp" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="semp():SymbolicInterpreter.this.spec.IntValue"></a><a id="semp():SymbolicValues.IntValue"></a>
       <span class="permalink">
@@ -988,28 +1010,6 @@
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="wait():Unit"></a>
-      <span class="permalink">
-      <a href="../../tip/concolic/SymbolicInterpreter.html#wait():Unit" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier">final </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
-                <span class="name">@throws</span><span class="args">(<span>
-      
-      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
-    </span>)</span>
-              
-        </dd></dl></div>
-    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
       <span class="permalink">
       <a href="../../tip/concolic/SymbolicInterpreter.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
@@ -1047,8 +1047,30 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
                 <span class="name">@native</span><span class="args">()</span>
               
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <span class="permalink">
+      <a href="../../tip/concolic/SymbolicInterpreter.html#wait():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
       <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
@@ -1061,7 +1083,34 @@
 
         
 
-        
+        <div class="values members">
+              <h3>Deprecated Value Members</h3>
+              <ol><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <span class="permalink">
+      <a href="../../tip/concolic/SymbolicInterpreter.html#finalize():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name deprecated" title="Deprecated: ">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<span class="extype" name="java.lang">lang</span>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+                <span class="name">@Deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"></dd></dl></div>
+    </li></ol>
+            </div>
         </div>
 
         <div id="inheritedMembers">

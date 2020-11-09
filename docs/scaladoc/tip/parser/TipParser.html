@@ -8,17 +8,17 @@
           <meta name="keywords" content="" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
+      
       <link href="../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
       <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
       <link href="../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
-      <script type="text/javascript" src="../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../lib/jquery.min.js"></script>
       <script type="text/javascript" src="../../lib/jquery.panzoom.min.js"></script>
       <script type="text/javascript" src="../../lib/jquery.mousewheel.min.js"></script>
       <script type="text/javascript" src="../../lib/index.js"></script>
       <script type="text/javascript" src="../../index.js"></script>
       <script type="text/javascript" src="../../lib/scheduler.js"></script>
       <script type="text/javascript" src="../../lib/template.js"></script>
-      <script type="text/javascript" src="../../lib/tools.tooltip.js"></script>
       
       <script type="text/javascript">
         /* this variable can be used by the JS to determine the path to the root document */
@@ -56,7 +56,7 @@
                 <li name="_root_.root" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="_root_"></a><a id="root:_root_"></a>
       <span class="permalink">
-      <a href="index.html#_root_" title="Permalink">
+      <a href="../../index.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -72,7 +72,7 @@
     </li><li name="_root_.tip" visbl="pub" class="indented1 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tip"></a><a id="tip:tip"></a>
       <span class="permalink">
-      <a href="index.html#tip" title="Permalink">
+      <a href="../../tip/index.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -88,7 +88,7 @@
     </li><li name="tip.parser" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="parser"></a><a id="parser:parser"></a>
       <span class="permalink">
-      <a href="../tip/index.html#parser" title="Permalink">
+      <a href="../../tip/parser/index.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -406,9 +406,9 @@
               
         </dd></dl></div>
     </li><li name="tip.parser.TipParser#Access" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="Access:org.parboiled2.Rule1[tip.ast.AAccess]"></a><a id="Access:Rule1[AAccess]"></a>
+      <a id="Access:org.parboiled2.Rule1[tip.ast.AFieldAccess]"></a><a id="Access:Rule1[AFieldAccess]"></a>
       <span class="permalink">
-      <a href="../../tip/parser/TipParser.html#Access:org.parboiled2.Rule1[tip.ast.AAccess]" title="Permalink">
+      <a href="../../tip/parser/TipParser.html#Access:org.parboiled2.Rule1[tip.ast.AFieldAccess]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -417,7 +417,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">Access</span><span class="result">: <span class="extype" name="org.parboiled2.Rule1">Rule1</span>[<a href="../ast/AAccess.html" class="extype" name="tip.ast.AAccess">AAccess</a>]</span>
+        <span class="name">Access</span><span class="result">: <span class="extype" name="org.parboiled2.Rule1">Rule1</span>[<a href="../ast/AFieldAccess.html" class="extype" name="tip.ast.AFieldAccess">AFieldAccess</a>]</span>
       </span>
       
       
@@ -549,6 +549,22 @@
       </span>
       
       
+    </li><li name="tip.parser.TipParser#DerefWrite" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DerefWrite:org.parboiled2.Rule1[tip.ast.ADerefWrite]"></a><a id="DerefWrite:Rule1[ADerefWrite]"></a>
+      <span class="permalink">
+      <a href="../../tip/parser/TipParser.html#DerefWrite:org.parboiled2.Rule1[tip.ast.ADerefWrite]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">DerefWrite</span><span class="result">: <span class="extype" name="org.parboiled2.Rule1">Rule1</span>[<a href="../ast/ADerefWrite.html" class="extype" name="tip.ast.ADerefWrite">ADerefWrite</a>]</span>
+      </span>
+      
+      
     </li><li name="tip.parser.TipParser#Digits" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Digits:org.parboiled2.Rule[shapeless.HNil,shapeless.HNil]"></a><a id="Digits:Rule[HNil,HNil]"></a>
       <span class="permalink">
@@ -562,6 +578,22 @@
       </span>
       <span class="symbol">
         <span class="name">Digits</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="shapeless.HNil">HNil</span>, <span class="extype" name="shapeless.HNil">HNil</span>]</span>
+      </span>
+      
+      
+    </li><li name="tip.parser.TipParser#DirectFieldWrite" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DirectFieldWrite:org.parboiled2.Rule1[tip.ast.ADirectFieldWrite]"></a><a id="DirectFieldWrite:Rule1[ADirectFieldWrite]"></a>
+      <span class="permalink">
+      <a href="../../tip/parser/TipParser.html#DirectFieldWrite:org.parboiled2.Rule1[tip.ast.ADirectFieldWrite]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">DirectFieldWrite</span><span class="result">: <span class="extype" name="org.parboiled2.Rule1">Rule1</span>[<a href="../ast/ADirectFieldWrite.html" class="extype" name="tip.ast.ADirectFieldWrite">ADirectFieldWrite</a>]</span>
       </span>
       
       
@@ -677,6 +709,22 @@
       </span>
       
       
+    </li><li name="tip.parser.TipParser#Id" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Id:org.parboiled2.Rule1[String]"></a><a id="Id:Rule1[String]"></a>
+      <span class="permalink">
+      <a href="../../tip/parser/TipParser.html#Id:org.parboiled2.Rule1[String]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Id</span><span class="result">: <span class="extype" name="org.parboiled2.Rule1">Rule1</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      
+      
     </li><li name="tip.parser.TipParser#Identifier" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Identifier:org.parboiled2.Rule1[tip.ast.AIdentifier]"></a><a id="Identifier:Rule1[AIdentifier]"></a>
       <span class="permalink">
@@ -722,6 +770,22 @@
       </span>
       <span class="symbol">
         <span class="name">If</span><span class="result">: <span class="extype" name="org.parboiled2.Rule1">Rule1</span>[<a href="../ast/AStmtInNestedBlock.html" class="extype" name="tip.ast.AStmtInNestedBlock">AStmtInNestedBlock</a>]</span>
+      </span>
+      
+      
+    </li><li name="tip.parser.TipParser#IndirectFieldWrite" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="IndirectFieldWrite:org.parboiled2.Rule1[tip.ast.AIndirectFieldWrite]"></a><a id="IndirectFieldWrite:Rule1[AIndirectFieldWrite]"></a>
+      <span class="permalink">
+      <a href="../../tip/parser/TipParser.html#IndirectFieldWrite:org.parboiled2.Rule1[tip.ast.AIndirectFieldWrite]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">IndirectFieldWrite</span><span class="result">: <span class="extype" name="org.parboiled2.Rule1">Rule1</span>[<a href="../ast/AIndirectFieldWrite.html" class="extype" name="tip.ast.AIndirectFieldWrite">AIndirectFieldWrite</a>]</span>
       </span>
       
       
@@ -950,9 +1014,9 @@
       
       
     </li><li name="tip.parser.TipParser#Ref" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="Ref:org.parboiled2.Rule[shapeless.HNil,tip.ast.AUnaryOp::shapeless.HNil]"></a><a id="Ref:Rule[HNil,::[AUnaryOp,HNil]]"></a>
+      <a id="Ref:org.parboiled2.Rule[shapeless.HNil,tip.ast.AVarRef::shapeless.HNil]"></a><a id="Ref:Rule[HNil,::[AVarRef,HNil]]"></a>
       <span class="permalink">
-      <a href="../../tip/parser/TipParser.html#Ref:org.parboiled2.Rule[shapeless.HNil,tip.ast.AUnaryOp::shapeless.HNil]" title="Permalink">
+      <a href="../../tip/parser/TipParser.html#Ref:org.parboiled2.Rule[shapeless.HNil,tip.ast.AVarRef::shapeless.HNil]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -961,7 +1025,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">Ref</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="shapeless.HNil">HNil</span>, <span class="extype" name="shapeless.::">::</span>[<a href="../ast/AUnaryOp.html" class="extype" name="tip.ast.AUnaryOp">AUnaryOp</a>, <span class="extype" name="shapeless.HNil">HNil</span>]]</span>
+        <span class="name">Ref</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="shapeless.HNil">HNil</span>, <span class="extype" name="shapeless.::">::</span>[<a href="../ast/AVarRef.html" class="extype" name="tip.ast.AVarRef">AVarRef</a>, <span class="extype" name="shapeless.HNil">HNil</span>]]</span>
       </span>
       
       
@@ -1327,9 +1391,9 @@
               
         </dd></dl></div>
     </li><li name="org.parboiled2.Parser#__matchMap" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="__matchMap(m:Map[String,Any]):Boolean"></a><a id="__matchMap(Map[String,Any]):Boolean"></a>
+      <a id="__matchMap(m:Map[String,Any],ignoreCase:Boolean):Boolean"></a><a id="__matchMap(Map[String,Any],Boolean):Boolean"></a>
       <span class="permalink">
-      <a href="../../tip/parser/TipParser.html#__matchMap(m:Map[String,Any]):Boolean" title="Permalink">
+      <a href="../../tip/parser/TipParser.html#__matchMap(m:Map[String,Any],ignoreCase:Boolean):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -1338,14 +1402,14 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">__matchMap</span><span class="params">(<span name="m">m: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Any">Any</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">__matchMap</span><span class="params">(<span name="m">m: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Any">Any</span>]</span>, <span name="ignoreCase">ignoreCase: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
     </li><li name="org.parboiled2.Parser#__matchMapWrapped" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="__matchMapWrapped(m:Map[String,Any]):Boolean"></a><a id="__matchMapWrapped(Map[String,Any]):Boolean"></a>
+      <a id="__matchMapWrapped(m:Map[String,Any],ignoreCase:Boolean):Boolean"></a><a id="__matchMapWrapped(Map[String,Any],Boolean):Boolean"></a>
       <span class="permalink">
-      <a href="../../tip/parser/TipParser.html#__matchMapWrapped(m:Map[String,Any]):Boolean" title="Permalink">
+      <a href="../../tip/parser/TipParser.html#__matchMapWrapped(m:Map[String,Any],ignoreCase:Boolean):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -1354,7 +1418,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">__matchMapWrapped</span><span class="params">(<span name="m">m: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Any">Any</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">__matchMapWrapped</span><span class="params">(<span name="m">m: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Any">Any</span>]</span>, <span name="ignoreCase">ignoreCase: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
@@ -1662,13 +1726,15 @@
         <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java/lang/index.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
-                <span class="name">@native</span><span class="args">()</span>
-              
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<span class="extype" name="java.lang">lang</span>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
       <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
     </span>)</span>
+              
+                <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="org.parboiled2.Parser#copyStateFrom" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -1821,28 +1887,6 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLBasics</dd></dl></div>
-    </li><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="finalize():Unit"></a>
-      <span class="permalink">
-      <a href="../../tip/parser/TipParser.html#finalize():Unit" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java/lang/index.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
-                <span class="name">@throws</span><span class="args">(<span>
-      
-      <span class="symbol">classOf[java.lang.Throwable]</span>
-    </span>)</span>
-              
-        </dd></dl></div>
     </li><li name="org.parboiled2.Parser#formatError" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="formatError(error:org.parboiled2.ParseError,formatter:org.parboiled2.ErrorFormatter):String"></a><a id="formatError(ParseError,ErrorFormatter):String"></a>
       <span class="permalink">
@@ -1877,6 +1921,8 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+              
         </dd></dl></div>
     </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="hashCode():Int"></a>
@@ -1895,6 +1941,8 @@
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="org.parboiled2.RuleDSLBasics#ignoreCase" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -1996,18 +2044,18 @@
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
     </li><li name="tip.parser.TipParser#keywords" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="keywords:org.parboiled2.Rule[shapeless.HNil,shapeless.HNil]"></a><a id="keywords:Rule[HNil,HNil]"></a>
+      <a id="keywords:scala.collection.Set[String]"></a><a id="keywords:Set[String]"></a>
       <span class="permalink">
-      <a href="../../tip/parser/TipParser.html#keywords:org.parboiled2.Rule[shapeless.HNil,shapeless.HNil]" title="Permalink">
+      <a href="../../tip/parser/TipParser.html#keywords:scala.collection.Set[String]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">def</span>
+        <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">keywords</span><span class="result">: <span class="extype" name="org.parboiled2.Rule">Rule</span>[<span class="extype" name="shapeless.HNil">HNil</span>, <span class="extype" name="shapeless.HNil">HNil</span>]</span>
+        <span class="name">keywords</span><span class="result">: <span class="extype" name="scala.collection.Set">Set</span>[<span class="extype" name="java.lang.String">String</span>]</span>
       </span>
       
       
@@ -2115,6 +2163,8 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+              
         </dd></dl></div>
     </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notifyAll():Unit"></a>
@@ -2133,6 +2183,8 @@
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="tip.parser.Comments#offset2Loc" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -2486,6 +2538,28 @@
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="org.parboiled2.RuleDSLBasics#valueMap" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="valueMap[T](m:Map[String,T],ignoreCase:Boolean)(implicith:org.parboiled2.support.HListable[T]):org.parboiled2.RuleN[h.Out]"></a><a id="valueMap[T](Map[String,T],Boolean)(HListable[T]):RuleN[Out]"></a>
+      <span class="permalink">
+      <a href="../../tip/parser/TipParser.html#valueMap[T](m:Map[String,T],ignoreCase:Boolean)(implicith:org.parboiled2.support.HListable[T]):org.parboiled2.RuleN[h.Out]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">valueMap</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="m">m: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="org.parboiled2.RuleDSLBasics.valueMap.T">T</span>]</span>, <span name="ignoreCase">ignoreCase: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="h">h: <span class="extype" name="org.parboiled2.support.HListable">HListable</span>[<span class="extype" name="org.parboiled2.RuleDSLBasics.valueMap.T">T</span>]</span>)</span><span class="result">: <span class="extype" name="org.parboiled2.RuleN">RuleN</span>[<span class="extype" name="org.parboiled2.support.HListable.Out">Out</span>]</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>RuleDSLBasics</dd><dt>Annotations</dt><dd>
+                <span class="name">@compileTimeOnly</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Calls to `valueMap` must be inside `rule` macro&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.parboiled2.RuleDSLBasics#valueMap" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="valueMap[T](m:Map[String,T])(implicith:org.parboiled2.support.HListable[T]):org.parboiled2.RuleN[h.Out]"></a><a id="valueMap[T](Map[String,T])(HListable[T]):RuleN[Out]"></a>
       <span class="permalink">
       <a href="../../tip/parser/TipParser.html#valueMap[T](m:Map[String,T])(implicith:org.parboiled2.support.HListable[T]):org.parboiled2.RuleN[h.Out]" title="Permalink">
@@ -2524,28 +2598,6 @@
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parser</dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="wait():Unit"></a>
-      <span class="permalink">
-      <a href="../../tip/parser/TipParser.html#wait():Unit" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier">final </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
-                <span class="name">@throws</span><span class="args">(<span>
-      
-      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
-    </span>)</span>
-              
-        </dd></dl></div>
-    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
       <span class="permalink">
       <a href="../../tip/parser/TipParser.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
@@ -2583,8 +2635,30 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
                 <span class="name">@native</span><span class="args">()</span>
               
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <span class="permalink">
+      <a href="../../tip/parser/TipParser.html#wait():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
       <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
@@ -2632,7 +2706,7 @@
     </li><li name="tip.parser.TipParser.LanguageKeywords" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="LanguageKeywords"></a><a id="LanguageKeywords:LanguageKeywords"></a>
       <span class="permalink">
-      <a href="../../tip/parser/TipParser.html#LanguageKeywords" title="Permalink">
+      <a href="../../tip/parser/TipParser$LanguageKeywords$.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -2651,7 +2725,34 @@
 
         
 
-        
+        <div class="values members">
+              <h3>Deprecated Value Members</h3>
+              <ol><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <span class="permalink">
+      <a href="../../tip/parser/TipParser.html#finalize():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name deprecated" title="Deprecated: ">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<span class="extype" name="java.lang">lang</span>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+                <span class="name">@Deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"></dd></dl></div>
+    </li></ol>
+            </div>
         </div>
 
         <div id="inheritedMembers">
