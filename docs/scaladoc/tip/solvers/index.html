@@ -219,10 +219,6 @@
                         <a href="Cons.html" title="An n-ary term constructor.">Cons</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="class" href="CubicSolver.html" title="The cubic solver."></a>
-                        <a href="CubicSolver.html" title="The cubic solver.">CubicSolver</a>
-                      </li><li class="current-entities indented2">
-                        <span class="separator"></span>
                         <a class="object" href="FixpointSolvers$.html" title=""></a>
                         <a href="FixpointSolvers$.html" title="">FixpointSolvers</a>
                       </li><li class="current-entities indented2">
@@ -263,6 +259,10 @@
                         <a href="Mu.html" title="Recursive term.">Mu</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
+                        <a class="class" href="SimpleCubicSolver.html" title="Simple cubic solver."></a>
+                        <a href="SimpleCubicSolver.html" title="Simple cubic solver.">SimpleCubicSolver</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
                         <a class="trait" href="SimpleFixpointSolver.html" title="Simple fixpoint solver."></a>
                         <a href="SimpleFixpointSolver.html" title="Simple fixpoint solver.">SimpleFixpointSolver</a>
                       </li><li class="current-entities indented2">
@@ -273,6 +273,10 @@
                         <span class="separator"></span>
                         <a class="trait" href="SimpleWorklistFixpointSolver.html" title="Worklist-based fixpoint solver."></a>
                         <a href="SimpleWorklistFixpointSolver.html" title="Worklist-based fixpoint solver.">SimpleWorklistFixpointSolver</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="SpecialCubicSolver.html" title="Special cubic solver."></a>
+                        <a href="SpecialCubicSolver.html" title="Special cubic solver.">SpecialCubicSolver</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
                         <a class="trait" href="Term.html" title="A generic term: a variable Var, a constructor Cons, or a recursive term Mu."></a>
@@ -434,23 +438,6 @@
       <p class="shortcomment cmt">An n-ary term constructor.</p><div class="fullcomment"><div class="comment cmt"><p>An n-ary term constructor.
 0-ary constructors are constants.
 </p></div></div>
-    </li><li name="tip.solvers.CubicSolver" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="CubicSolver[V,T]extendsAnyRef"></a><a id="CubicSolver[V,T]:CubicSolver[V,T]"></a>
-      <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">class</span>
-      </span>
-      <span class="symbol">
-        <a title="The cubic solver." href="CubicSolver.html"><span class="name">CubicSolver</span></a><span class="tparams">[<span name="V">V</span>, <span name="T">T</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
-      </span>
-      
-      <p class="shortcomment cmt">The cubic solver.</p><div class="fullcomment"><div class="comment cmt"><p>The cubic solver.
-</p></div><dl class="paramcmts block"><dt class="tparam">V</dt><dd class="cmt"><p>type of variables</p></dd><dt class="tparam">T</dt><dd class="cmt"><p>type of tokens</p></dd></dl></div>
     </li><li name="tip.solvers.IDEAnalysis" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="IDEAnalysis[D,L&lt;:tip.lattices.Lattice]extendsAnyRef"></a><a id="IDEAnalysis[D,L&lt;:Lattice]:IDEAnalysis[D,L]"></a>
       <span class="permalink">
@@ -602,6 +589,23 @@ The original RHS version of IDE uses jump functions for all nodes, not only at e
 Whenever a term is such that v = t[v] where v appears free in t[v], then we represent it finitely as μ v. t[v].
 v is a binder in the term, and the copy rule holds: μ v. t[v] == t [ μ v. t[v] ]
 </p></div></div>
+    </li><li name="tip.solvers.SimpleCubicSolver" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="SimpleCubicSolver[V,T]extendsAnyRef"></a><a id="SimpleCubicSolver[V,T]:SimpleCubicSolver[V,T]"></a>
+      <span class="permalink">
+      <a href="../../tip/solvers/SimpleCubicSolver.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a title="Simple cubic solver." href="SimpleCubicSolver.html"><span class="name">SimpleCubicSolver</span></a><span class="tparams">[<span name="V">V</span>, <span name="T">T</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Simple cubic solver.</p><div class="fullcomment"><div class="comment cmt"><p>Simple cubic solver.
+</p></div><dl class="paramcmts block"><dt class="tparam">V</dt><dd class="cmt"><p>type of variables</p></dd><dt class="tparam">T</dt><dd class="cmt"><p>type of tokens</p></dd></dl></div>
     </li><li name="tip.solvers.SimpleFixpointSolver" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="SimpleFixpointSolverextendsLatticeSolver"></a><a id="SimpleFixpointSolver:SimpleFixpointSolver"></a>
       <span class="permalink">
@@ -650,6 +654,23 @@ v is a binder in the term, and the copy rule holds: μ v. t[v] == t [ μ v. t[v]
       </span>
       
       <p class="shortcomment cmt">Worklist-based fixpoint solver.</p><div class="fullcomment"><div class="comment cmt"><p>Worklist-based fixpoint solver.</p></div><dl class="paramcmts block"><dt class="tparam">N</dt><dd class="cmt"><p>type of the elements in the worklist.</p></dd></dl></div>
+    </li><li name="tip.solvers.SpecialCubicSolver" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="SpecialCubicSolver[V]extendsAnyRef"></a><a id="SpecialCubicSolver[V]:SpecialCubicSolver[V]"></a>
+      <span class="permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a title="Special cubic solver." href="SpecialCubicSolver.html"><span class="name">SpecialCubicSolver</span></a><span class="tparams">[<span name="V">V</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Special cubic solver.</p><div class="fullcomment"><div class="comment cmt"><p>Special cubic solver.
+</p></div><dl class="paramcmts block"><dt class="tparam">V</dt><dd class="cmt"><p>type of variables (tokens are a subset of variables)</p></dd></dl></div>
     </li><li name="tip.solvers.Term" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="Term[A]extendsAnyRef"></a><a id="Term[A]:Term[A]"></a>
       <span class="permalink">

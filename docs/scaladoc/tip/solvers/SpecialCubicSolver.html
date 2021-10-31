@@ -107,10 +107,6 @@
                         <a href="Cons.html" title="An n-ary term constructor.">Cons</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="class" href="" title="The cubic solver."></a>
-                        <a href="" title="The cubic solver.">CubicSolver</a>
-                      </li><li class="current-entities indented2">
-                        <span class="separator"></span>
                         <a class="object" href="FixpointSolvers$.html" title=""></a>
                         <a href="FixpointSolvers$.html" title="">FixpointSolvers</a>
                       </li><li class="current-entities indented2">
@@ -151,6 +147,10 @@
                         <a href="Mu.html" title="Recursive term.">Mu</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
+                        <a class="class" href="SimpleCubicSolver.html" title="Simple cubic solver."></a>
+                        <a href="SimpleCubicSolver.html" title="Simple cubic solver.">SimpleCubicSolver</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
                         <a class="trait" href="SimpleFixpointSolver.html" title="Simple fixpoint solver."></a>
                         <a href="SimpleFixpointSolver.html" title="Simple fixpoint solver.">SimpleFixpointSolver</a>
                       </li><li class="current-entities indented2">
@@ -161,6 +161,10 @@
                         <span class="separator"></span>
                         <a class="trait" href="SimpleWorklistFixpointSolver.html" title="Worklist-based fixpoint solver."></a>
                         <a href="SimpleWorklistFixpointSolver.html" title="Worklist-based fixpoint solver.">SimpleWorklistFixpointSolver</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="" title="Special cubic solver."></a>
+                        <a href="" title="Special cubic solver.">SpecialCubicSolver</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
                         <a class="trait" href="Term.html" title="A generic term: a variable Var, a constructor Cons, or a recursive term Mu."></a>
@@ -218,8 +222,8 @@
       <div id="definition">
         <div class="big-circle class">c</div>
         <p id="owner"><a href="../index.html" class="extype" name="tip">tip</a>.<a href="index.html" class="extype" name="tip.solvers">solvers</a></p>
-        <h1>CubicSolver<span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html" title="Permalink">
+        <h1>SpecialCubicSolver<span class="permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span></h1>
@@ -232,13 +236,13 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">CubicSolver</span><span class="tparams">[<span name="V">V</span>, <span name="T">T</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <span class="name">SpecialCubicSolver</span><span class="tparams">[<span name="V">V</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       </h4>
 
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The cubic solver.
-</p></div><dl class="paramcmts block"><dt class="tparam">V</dt><dd class="cmt"><p>type of variables</p></dd><dt class="tparam">T</dt><dd class="cmt"><p>type of tokens</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Special cubic solver.
+</p></div><dl class="paramcmts block"><dt class="tparam">V</dt><dd class="cmt"><p>type of variables (tokens are a subset of variables)</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>
@@ -268,7 +272,7 @@
                   <span class="filtertype">Inherited<br />
                   </span>
                   <ol id="linearization">
-                    <li class="in" name="tip.solvers.CubicSolver"><span>CubicSolver</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                    <li class="in" name="tip.solvers.SpecialCubicSolver"><span>SpecialCubicSolver</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                   </ol>
                 </div><div class="ancestors">
               <span class="filtertype"></span>
@@ -288,10 +292,10 @@
         <div id="allMembers">
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
-              <ol><li name="tip.solvers.CubicSolver#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(cycleElimination:Boolean):tip.solvers.CubicSolver[V,T]"></a><a id="&lt;init&gt;:CubicSolver[V,T]"></a>
+              <ol><li name="tip.solvers.SpecialCubicSolver#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;():tip.solvers.SpecialCubicSolver[V]"></a><a id="&lt;init&gt;:SpecialCubicSolver[V]"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#&lt;init&gt;(cycleElimination:Boolean):tip.solvers.CubicSolver[V,T]" title="Permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html#&lt;init&gt;():tip.solvers.SpecialCubicSolver[V]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -300,33 +304,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">CubicSolver</span><span class="params">(<span name="cycleElimination">cycleElimination: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">true</span></span>)</span>
+        <span class="name">SpecialCubicSolver</span><span class="params">()</span>
       </span>
       
       <p class="shortcomment cmt"></p>
     </li></ol>
             </div>
 
-        <div id="types" class="types members">
-              <h3>Type Members</h3>
-              <ol><li name="tip.solvers.CubicSolver.Node" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="NodeextendsAnyRef"></a><a id="Node:Node"></a>
-      <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver$Node.html" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">class</span>
-      </span>
-      <span class="symbol">
-        <a title="" href="CubicSolver$Node.html"><span class="name">Node</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
-      </span>
-      
-      
-    </li></ol>
-            </div>
+        
 
         
 
@@ -336,7 +321,7 @@
                 <li name="scala.AnyRef#!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#!=(x$1:Any):Boolean" title="Permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html#!=(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -352,7 +337,7 @@
     </li><li name="scala.AnyRef###" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="##():Int"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html###():Int" title="Permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html###():Int" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -368,7 +353,7 @@
     </li><li name="scala.AnyRef#==" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="==(x$1:Any):Boolean"></a><a id="==(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#==(x$1:Any):Boolean" title="Permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html#==(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -381,10 +366,10 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="tip.solvers.CubicSolver#addConditionalConstraint" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="addConditionalConstraint(t:T,x:V,y:V,z:V):Unit"></a><a id="addConditionalConstraint(T,V,V,V):Unit"></a>
+    </li><li name="tip.solvers.SpecialCubicSolver#addConstantConstraint" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="addConstantConstraint(t:V,x:V):Unit"></a><a id="addConstantConstraint(V,V):Unit"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#addConditionalConstraint(t:T,x:V,y:V,z:V):Unit" title="Permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html#addConstantConstraint(t:V,x:V):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -393,30 +378,14 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">addConditionalConstraint</span><span class="params">(<span name="t">t: <span class="extype" name="tip.solvers.CubicSolver.T">T</span></span>, <span name="x">x: <span class="extype" name="tip.solvers.CubicSolver.V">V</span></span>, <span name="y">y: <span class="extype" name="tip.solvers.CubicSolver.V">V</span></span>, <span name="z">z: <span class="extype" name="tip.solvers.CubicSolver.V">V</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">addConstantConstraint</span><span class="params">(<span name="t">t: <span class="extype" name="tip.solvers.SpecialCubicSolver.V">V</span></span>, <span name="x">x: <span class="extype" name="tip.solvers.SpecialCubicSolver.V">V</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       
-      <p class="shortcomment cmt">Adds a constraint of type <i>t</i> &#8712; <i>x</i> &#8658; <i>y</i> &#8838; <i>z</i>.</p>
-    </li><li name="tip.solvers.CubicSolver#addConstantConstraint" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="addConstantConstraint(t:T,x:V):Unit"></a><a id="addConstantConstraint(T,V):Unit"></a>
-      <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#addConstantConstraint(t:T,x:V):Unit" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">addConstantConstraint</span><span class="params">(<span name="t">t: <span class="extype" name="tip.solvers.CubicSolver.T">T</span></span>, <span name="x">x: <span class="extype" name="tip.solvers.CubicSolver.V">V</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
-      </span>
-      
-      <p class="shortcomment cmt">Adds a constraint of type <i>t</i> &#8712; <i>x</i>.</p>
-    </li><li name="tip.solvers.CubicSolver#addSubsetConstraint" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Adds a constraint of type t&#8712;&#10214;x&#10215;.</p>
+    </li><li name="tip.solvers.SpecialCubicSolver#addSubsetConstraint" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="addSubsetConstraint(x:V,y:V):Unit"></a><a id="addSubsetConstraint(V,V):Unit"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#addSubsetConstraint(x:V,y:V):Unit" title="Permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html#addSubsetConstraint(x:V,y:V):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -425,14 +394,46 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">addSubsetConstraint</span><span class="params">(<span name="x">x: <span class="extype" name="tip.solvers.CubicSolver.V">V</span></span>, <span name="y">y: <span class="extype" name="tip.solvers.CubicSolver.V">V</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">addSubsetConstraint</span><span class="params">(<span name="x">x: <span class="extype" name="tip.solvers.SpecialCubicSolver.V">V</span></span>, <span name="y">y: <span class="extype" name="tip.solvers.SpecialCubicSolver.V">V</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       
-      <p class="shortcomment cmt">Adds a constraint of type <i>x</i> &#8838; <i>y</i>.</p>
+      <p class="shortcomment cmt">Adds a constraint of type &#10214;x&#10215;&#8838;&#10214;y&#10215;.</p>
+    </li><li name="tip.solvers.SpecialCubicSolver#addUniversallyQuantifiedFromConstraint" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="addUniversallyQuantifiedFromConstraint(x:V,y:V):Unit"></a><a id="addUniversallyQuantifiedFromConstraint(V,V):Unit"></a>
+      <span class="permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html#addUniversallyQuantifiedFromConstraint(x:V,y:V):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">addUniversallyQuantifiedFromConstraint</span><span class="params">(<span name="x">x: <span class="extype" name="tip.solvers.SpecialCubicSolver.V">V</span></span>, <span name="y">y: <span class="extype" name="tip.solvers.SpecialCubicSolver.V">V</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Adds a constraint of type &#8704;<i>t</i>&#8712;&#10214;x&#10215;: &#10214;<i>t</i>&#10215;&#8838;&#10214;y&#10215;.</p>
+    </li><li name="tip.solvers.SpecialCubicSolver#addUniversallyQuantifiedToConstraint" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="addUniversallyQuantifiedToConstraint(x:V,y:V):Unit"></a><a id="addUniversallyQuantifiedToConstraint(V,V):Unit"></a>
+      <span class="permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html#addUniversallyQuantifiedToConstraint(x:V,y:V):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">addUniversallyQuantifiedToConstraint</span><span class="params">(<span name="x">x: <span class="extype" name="tip.solvers.SpecialCubicSolver.V">V</span></span>, <span name="y">y: <span class="extype" name="tip.solvers.SpecialCubicSolver.V">V</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Adds a constraint of type &#8704;<i>t</i>&#8712;&#10214;x&#10215;: &#10214;y&#10215;&#8838;&#10214;<i>t</i>&#10215;.</p>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#asInstanceOf[T0]:T0" title="Permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html#asInstanceOf[T0]:T0" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -448,7 +449,7 @@
     </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a><a id="clone():AnyRef"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#clone():Object" title="Permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html#clone():Object" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -468,13 +469,13 @@
               
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#eq(x$1:AnyRef):Boolean" title="Permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html#eq(x$1:AnyRef):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -490,7 +491,7 @@
     </li><li name="scala.AnyRef#equals" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="equals(x$1:Any):Boolean"></a><a id="equals(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#equals(x$1:Any):Boolean" title="Permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html#equals(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -506,7 +507,7 @@
     </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#getClass():Class[_]" title="Permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html#getClass():Class[_]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -521,13 +522,13 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="tip.solvers.CubicSolver#getSolution" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="getSolution:Map[V,Set[T]]"></a>
+    </li><li name="tip.solvers.SpecialCubicSolver#getSolution" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="getSolution:Map[V,Set[V]]"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#getSolution:Map[V,Set[T]]" title="Permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html#getSolution:Map[V,Set[V]]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -536,14 +537,14 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getSolution</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="tip.solvers.CubicSolver.V">V</span>, <span class="extype" name="scala.Predef.Set">Set</span>[<span class="extype" name="tip.solvers.CubicSolver.T">T</span>]]</span>
+        <span class="name">getSolution</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="tip.solvers.SpecialCubicSolver.V">V</span>, <span class="extype" name="scala.Predef.Set">Set</span>[<span class="extype" name="tip.solvers.SpecialCubicSolver.V">V</span>]]</span>
       </span>
       
       <p class="shortcomment cmt">Returns the current solution as a map from variables to token sets.</p>
     </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="hashCode():Int"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#hashCode():Int" title="Permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html#hashCode():Int" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -558,13 +559,13 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#isInstanceOf[T0]:Boolean" title="Permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html#isInstanceOf[T0]:Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -577,42 +578,10 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="tip.solvers.CubicSolver#lastTknId" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="lastTknId:Int"></a>
-      <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#lastTknId:Int" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">var</span>
-      </span>
-      <span class="symbol">
-        <span class="name">lastTknId</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
-      </span>
-      
-      
-    </li><li name="tip.solvers.CubicSolver#log" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="log:tip.util.Logger"></a><a id="log:Logger"></a>
-      <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#log:tip.util.Logger" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">log</span><span class="result">: <a href="../util/Logger.html" class="extype" name="tip.util.Logger">Logger</a></span>
-      </span>
-      
-      
     </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#ne(x$1:AnyRef):Boolean" title="Permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html#ne(x$1:AnyRef):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -625,26 +594,10 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="tip.solvers.CubicSolver#nextTokenId" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="nextTokenId:Int"></a>
-      <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#nextTokenId:Int" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">nextTokenId</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
-      </span>
-      
-      
     </li><li name="scala.AnyRef#notify" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notify():Unit"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#notify():Unit" title="Permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html#notify():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -659,13 +612,13 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notifyAll():Unit"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#notifyAll():Unit" title="Permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html#notifyAll():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -680,13 +633,13 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -702,7 +655,7 @@
     </li><li name="scala.AnyRef#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#toString():String" title="Permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html#toString():String" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -715,42 +668,10 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="tip.solvers.CubicSolver#tokenToInt" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="tokenToInt:scala.collection.mutable.Map[T,Int]"></a><a id="tokenToInt:Map[T,Int]"></a>
-      <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#tokenToInt:scala.collection.mutable.Map[T,Int]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">tokenToInt</span><span class="result">: <span class="extype" name="scala.collection.mutable.Map">Map</span>[<span class="extype" name="tip.solvers.CubicSolver.T">T</span>, <span class="extype" name="scala.Int">Int</span>]</span>
-      </span>
-      
-      <p class="shortcomment cmt">Provides an index for each token that we have seen.</p>
-    </li><li name="tip.solvers.CubicSolver#varToNode" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="varToNode:scala.collection.mutable.Map[V,CubicSolver.this.Node]"></a><a id="varToNode:Map[V,Node]"></a>
-      <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#varToNode:scala.collection.mutable.Map[V,CubicSolver.this.Node]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">varToNode</span><span class="result">: <span class="extype" name="scala.collection.mutable.Map">Map</span>[<span class="extype" name="tip.solvers.CubicSolver.V">V</span>, <a href="CubicSolver$Node.html" class="extype" name="tip.solvers.CubicSolver.Node">Node</a>]</span>
-      </span>
-      
-      <p class="shortcomment cmt">The map from variables to nodes.</p>
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -772,7 +693,7 @@
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait(x$1:Long):Unit"></a><a id="wait(Long):Unit"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#wait(x$1:Long):Unit" title="Permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html#wait(x$1:Long):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -796,7 +717,7 @@
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#wait():Unit" title="Permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html#wait():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -826,7 +747,7 @@
               <ol><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/CubicSolver.html#finalize():Unit" title="Permalink">
+      <a href="../../tip/solvers/SpecialCubicSolver.html#finalize():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
