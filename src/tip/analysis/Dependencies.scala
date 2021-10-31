@@ -89,7 +89,7 @@ trait ContextSensitiveForwardDependencies[C <: CallContext] extends Dependencies
     */
   override def outdep(n: (C, CfgNode)): Set[(C, CfgNode)] =
     (n._2 match {
-      case call: CfgCallNode => Set()
+      case _: CfgCallNode => Set()
       case _ => n._2.succ.toSet
     }).map { d =>
       (n._1, d)

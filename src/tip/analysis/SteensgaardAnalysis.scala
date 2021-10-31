@@ -112,7 +112,7 @@ sealed trait StTerm
   */
 case class AllocVariable(alloc: AAlloc) extends StTerm with Var[StTerm] {
 
-  override def toString: String = s"\u27E6alloc{${alloc.loc}}]]"
+  override def toString: String = s"\u27E6alloc{${alloc.loc}}\u27E7"
 }
 
 /**

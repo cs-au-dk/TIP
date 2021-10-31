@@ -63,7 +63,7 @@ trait CopyConstantPropagationAnalysisFunctions extends IDEAnalysis[ADeclaration,
               case AAssignStmt(id: AIdentifier, right, _) =>
                 val edges = assign(d, id.declaration, right)
                 d match {
-                  case Left(a) if id != a =>
+                  case Left(a) if id.declaration != a =>
                     edges :+ ((d, IdEdge())) // not at the variable being written to, so add identity edge
                   case _ =>
                     edges

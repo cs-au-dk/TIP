@@ -39,7 +39,7 @@ class NoFunctionPointers(implicit declData: DeclarationData) extends TipSublangu
             LanguageRestrictionViolation(s"Indirect call not allowed, $targetFun is not a function", ast.loc)
         }
         args.foreach(visit(_, x))
-      case ACallFuncExpr(targetFun, args, _) =>
+      case ACallFuncExpr(targetFun, _, _) =>
         LanguageRestrictionViolation(s"Indirect call not allowed, $targetFun is not a function", ast.loc)
       case id: AIdentifier =>
         id.declaration match {

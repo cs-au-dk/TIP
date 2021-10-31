@@ -2,7 +2,7 @@ package tip.analysis
 
 import tip.ast._
 import tip.solvers._
-import tip.types.{AbsentFieldType, _}
+import tip.types._
 import tip.ast.AstNodeData._
 import tip.util.{Log, TipProgramException}
 import AstOps._

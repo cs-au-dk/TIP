@@ -183,14 +183,13 @@ abstract class IDEPhase1Analysis[D, L <: Lattice](val cfg: InterproceduralProgra
     */
   def summaries(): mutable.Map[AFunDeclaration, mutable.Map[DL, mutable.Map[DL, Edge]]] = {
     import edgelattice.Edge
-    import mutable.Map
-    val res = Map[AFunDeclaration, Map[DL, Map[DL, Edge]]]()
+    val res = mutable.Map[AFunDeclaration, mutable.Map[DL, mutable.Map[DL, Edge]]]()
     x.foreach {
       case ((n, d1, d2), e) =>
         n match {
           case funexit: CfgFunExitNode =>
-            val m1 = res.getOrElseUpdate(funexit.data, Map[DL, Map[DL, Edge]]().withDefaultValue(Map[DL, Edge]()))
-            val m2 = m1.getOrElseUpdate(d1, Map[DL, Edge]())
+            val m1 = res.getOrElseUpdate(funexit.data, mutable.Map[DL, mutable.Map[DL, Edge]]().withDefaultValue(mutable.Map[DL, Edge]()))
+            val m2 = m1.getOrElseUpdate(d1, mutable.Map[DL, Edge]())
             m2 += d2 -> e
           case _ => // ignore other node kinds
         }

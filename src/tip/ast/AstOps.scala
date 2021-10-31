@@ -131,7 +131,7 @@ object AstOps {
       * Checks whether the subtree of the node contains an 'input' expression.
       */
     def containsInput: Boolean = {
-      var res = false;
+      var res = false
       new DepthFirstAstVisitor[Unit] {
         override def visit(node: AstNode, arg: Unit): Unit =
           node match {
@@ -156,6 +156,15 @@ object AstOps {
             case rec: ARecord =>
               fields ++= rec.fields.map { _.field }
               visitChildren(rec, ())
+            case as: AAssignStmt =>
+              as.left match {
+                case dfw: ADirectFieldWrite =>
+                  fields += dfw.field
+                case ifw: AIndirectFieldWrite =>
+                  fields += ifw.field
+                case _ =>
+              }
+              visitChildren(as, ())
             case _ => visitChildren(node, ())
           }
       }

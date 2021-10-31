@@ -1,7 +1,7 @@
 package tip.analysis
 
 import tip.ast.{AAssignStmt, AIdentifier, AProgram, AstNode, DepthFirstAstVisitor, _}
-import tip.solvers.CubicSolver
+import tip.solvers.SimpleCubicSolver
 import tip.util.Log
 import tip.ast.AstNodeData.{AstNodeWithDeclaration, DeclarationData}
 
@@ -24,7 +24,7 @@ class ControlFlowAnalysis(program: AProgram)(implicit declData: DeclarationData)
     }
   }
 
-  private val solver = new CubicSolver[AstVariable, Decl]
+  private val solver = new SimpleCubicSolver[AstVariable, Decl]
 
   val allFunctions: Set[AFunDeclaration] = program.funs.toSet
 

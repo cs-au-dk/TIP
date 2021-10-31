@@ -18,7 +18,7 @@ class AndersenAnalysis(program: AProgram)(implicit declData: DeclarationData) ex
     override def toString = id.toString
   }
 
-  val solver = new CubicSolver[Cell, Cell]
+  val solver = new SimpleCubicSolver[Cell, Cell]
 
   import AstOps._
   val cells: Set[Cell] = (program.appearingIds.map(Var): Set[Cell]) union program.appearingAllocs.map(Alloc)

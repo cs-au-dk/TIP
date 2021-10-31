@@ -179,11 +179,15 @@ object Tip extends App {
           log.error(s"Failure parsing the program: $file", e)
           sys.exit(1)
         case Success(parsedNode: AProgram) =>
-          // run normalizer
-          log.verb("Normalizing")
-          val programNode = options.normalizer.normalizeProgram(parsedNode)
-          if (options.normalizer != NoNormalizer)
-            Output.output(file, OtherOutput(OutputKindE.normalized), programNode.toString, options.out)
+          val programNode =
+            if (options.normalizer == NoNormalizer) parsedNode
+            else {
+              // run normalizer
+              log.verb("Normalizing")
+              val p = options.normalizer.normalizeProgram(parsedNode)
+              Output.output(file, OtherOutput(OutputKindE.normalized), p.toString, options.out)
+              p
+            }
 
           // run declaration analysis
           // (for information about the use of 'implicit', see [[tip.analysis.TypeAnalysis]])
