@@ -115,6 +115,11 @@ class FlatLattice[X] extends Lattice {
 }
 
 /**
+  * The two-element lattice containing only Top and Bot.
+  */
+class TwoElementLattice extends FlatLattice[Nothing]
+
+/**
   * The product lattice made by `l1` and `l2`.
   */
 class PairLattice[L1 <: Lattice, L2 <: Lattice](val sublattice1: L1, val sublattice2: L2) extends Lattice {
@@ -127,14 +132,12 @@ class PairLattice[L1 <: Lattice, L2 <: Lattice](val sublattice1: L1, val sublatt
 }
 
 /**
-  * A lattice of maps from the set `X` to the lattice `sublattice`.
-  * The set `X` is a subset of `A` and it is defined by the characteristic function `ch`, i.e. `a` is in `X` if and only if `ch(a)` returns true.
+  * A lattice of maps from a set of elements of type `A` to the lattice `sublattice`.
   * Bottom is the default value.
   */
-class MapLattice[A, +L <: Lattice](ch: A => Boolean, val sublattice: L) extends Lattice {
-  // note: 'ch' isn't used in the class, but having it as a class parameter avoids a lot of type annotations
+class MapLattice[A, +L <: Lattice](val sublattice: L) extends Lattice {
 
-  type Element = Map[A, sublattice.Element] // TODO: replace this with a more type safe solution?
+  type Element = Map[A, sublattice.Element]
 
   val bottom: Element = Map().withDefaultValue(sublattice.bottom)
 
@@ -143,10 +146,9 @@ class MapLattice[A, +L <: Lattice](ch: A => Boolean, val sublattice: L) extends 
 }
 
 /**
-  * The powerset lattice of `X`, where `X` is the subset of `A` defined by the characteristic function `ch`, with subset ordering.
+  * The powerset lattice of a set of elements of type `A` with subset ordering.
   */
-class PowersetLattice[A](ch: A => Boolean) extends Lattice {
-  // note: 'ch' isn't used in the class, but having it as a class parameter avoids a lot of type annotations
+class PowersetLattice[A] extends Lattice {
 
   type Element = Set[A]
 
@@ -156,7 +158,7 @@ class PowersetLattice[A](ch: A => Boolean) extends Lattice {
 }
 
 /**
-  * The powerset lattice of `X`, where `X` is the subset of `A` defined by the characteristic function `ch`, with superset ordering.
+  * The powerset lattice of the given set of elements of type `A` with superset ordering.
   */
 class ReversePowersetLattice[A](s: Set[A]) extends Lattice {
 

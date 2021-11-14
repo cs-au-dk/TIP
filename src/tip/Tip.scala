@@ -117,6 +117,7 @@ object Tip extends App {
         | -constprop         enable constant propagation analysis
         | -interval          enable interval analysis
         | -copyconstprop     enable copy constant propagation analysis
+        | -uninitvars        enable possibly-uninitialized variables analysis
         |
         | For the dataflow analyses, the choice of fixpoint solver can be chosen by these modifiers
         | immediately after the analysis name (default: use the simple fixpoint solver):
@@ -212,7 +213,7 @@ object Tip extends App {
                     // run the analysis
                     log.verb(s"Performing ${an.getClass.getSimpleName}")
                     val res = an.analyze().asInstanceOf[Map[CfgNode, _]]
-                    Output.output(file, DataFlowOutput(s), wcfg.toDot(Output.labeler(res), Output.dotIder), options.out)
+                    Output.output(file, DataFlowOutput(s), wcfg.toDot(Output.labeler(res, an.stateAfterNode), Output.dotIder), options.out)
                   }
                 }
             }
@@ -248,7 +249,7 @@ object Tip extends App {
                         Output.transform(res.asInstanceOf[Map[(CallContext, CfgNode), _]])
                       else
                         res.asInstanceOf[Map[CfgNode, _]]
-                    Output.output(file, DataFlowOutput(s), wcfg.toDot(Output.labeler(res2), Output.dotIder), options.out)
+                    Output.output(file, DataFlowOutput(s), wcfg.toDot(Output.labeler(res2, an.stateAfterNode), Output.dotIder), options.out)
                   }
                 }
             }
@@ -333,7 +334,7 @@ object Tip extends App {
           options.andersen = true
         case "-steensgaard" =>
           options.steensgaard = true
-        case "-sign" | "-livevars" | "-available" | "-vbusy" | "-reaching" | "-constprop" | "-interval" | "-copyconstprop" =>
+        case "-sign" | "-livevars" | "-available" | "-vbusy" | "-reaching" | "-constprop" | "-interval" | "-copyconstprop" | "-uninitvars" =>
           options.dfAnalysis += dfa.withName(args(i).drop(1)) -> {
             if (i + 1 < args.length && dfo.values.map(_.toString()).contains(args(i + 1))) {
               i = i + 1

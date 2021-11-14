@@ -6,20 +6,24 @@ import tip.lattices.{MapLattice, ReversePowersetLattice}
 import tip.solvers.{SimpleMapLatticeFixpointSolver, SimpleWorklistFixpointSolver}
 import tip.ast.AstNodeData.DeclarationData
 
+import scala.collection.immutable.Set
+
 /**
   * Base class for available expressions analysis.
   */
-abstract class AvailableExpAnalysis(cfg: IntraproceduralProgramCfg)(implicit declData: DeclarationData) extends FlowSensitiveAnalysis[CfgNode](cfg) {
+abstract class AvailableExpAnalysis(cfg: IntraproceduralProgramCfg)(implicit declData: DeclarationData) extends FlowSensitiveAnalysis(true) {
 
   import tip.cfg.CfgOps._
   import tip.ast.AstOps._
 
   val allExps: Set[UnlabelledNode[AExpr]] = cfg.nodes.flatMap(_.appearingNonInputExpressions.map(UnlabelledNode[AExpr]))
 
+  val lattice: MapLattice[CfgNode, ReversePowersetLattice[UnlabelledNode[AExpr]]] = new MapLattice(new ReversePowersetLattice(allExps))
+
+  val domain: Set[CfgNode] = cfg.nodes
+
   NoPointers.assertContainsProgram(cfg.prog)
   NoRecords.assertContainsProgram(cfg.prog)
-
-  val lattice = new MapLattice(cfg.nodes, new ReversePowersetLattice(allExps))
 
   def transfer(n: CfgNode, s: lattice.sublattice.Element): lattice.sublattice.Element =
     n match {

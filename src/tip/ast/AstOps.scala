@@ -48,7 +48,7 @@ object AstOps {
       }
 
     /**
-      * Returns the set of identifier declarations appearing in the subtree of the node.
+      * Returns the set of identifiers (represented by their declarations) appearing in the subtree of the node.
       */
     def appearingIds(implicit declData: DeclarationData): Set[ADeclaration] = {
       val ids = mutable.Set[ADeclaration]()

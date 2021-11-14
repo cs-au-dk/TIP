@@ -1,36 +1,22 @@
 package tip.analysis
 
 import tip.cfg._
-import tip.lattices.{Lattice, MapLattice}
 import tip.ast.AstNodeData.DeclarationData
 
 /**
   * A flow-sensitive analysis.
+  * @param stateAfterNode true if the abstract state of a CFG node represents the program point <em>after</em> the node,
+  *                       false if represents the program point <em>before</em> the node
+  *                       (used when outputting analysis results)
   */
-abstract class FlowSensitiveAnalysis[N](cfg: FragmentCfg) extends Analysis[Any] {
-
-  /**
-    * The lattice used by the analysis.
-    */
-  val lattice: MapLattice[N, Lattice]
-
-  /**
-    * The domain of the map lattice.
-    */
-  val domain: Set[CfgNode] = cfg.nodes
-
-  /**
-    * @inheritdoc
-    */
-  def analyze(): lattice.Element
-}
+abstract class FlowSensitiveAnalysis(val stateAfterNode: Boolean) extends Analysis[Any]
 
 /**
   * A factory to create a specific flow-sensitive analysis that matches the options.
   */
 object FlowSensitiveAnalysis {
 
-  def select(kind: Analysis.Value, options: AnalysisOption.Value, cfg: FragmentCfg)(implicit declData: DeclarationData): Option[FlowSensitiveAnalysis[_]] = {
+  def select(kind: Analysis.Value, options: AnalysisOption.Value, cfg: FragmentCfg)(implicit declData: DeclarationData): Option[FlowSensitiveAnalysis] = {
 
     val typedCfg = options match {
       case AnalysisOption.`iwlr` | AnalysisOption.`iwlrp` | AnalysisOption.`csiwlrp` | AnalysisOption.`cfiwlrp` | AnalysisOption.`ide` =>
@@ -116,6 +102,7 @@ object FlowSensitiveAnalysis {
       case AnalysisOption.`ide` =>
         Some(kind match {
           case Analysis.copyconstprop => new CopyConstantPropagationIDEAnalysis(typedCfg.right.get)
+          case Analysis.uninitvars => new PossiblyUninitializedVarsIDEAnalysis(typedCfg.right.get)
           case _ => throw new RuntimeException(s"Unsupported solver option `$options` for the analysis $kind")
         })
     }
@@ -168,6 +155,6 @@ object FlowSensitiveAnalysis {
     * A flow sensitive analysis kind
     */
   object Analysis extends Enumeration {
-    val sign, livevars, available, vbusy, reaching, constprop, interval, copyconstprop = Value
+    val sign, livevars, available, vbusy, reaching, constprop, interval, copyconstprop, uninitvars = Value
   }
 }

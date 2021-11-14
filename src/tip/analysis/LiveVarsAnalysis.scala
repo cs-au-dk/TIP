@@ -1,21 +1,21 @@
 package tip.analysis
 
 import tip.ast._
-import tip.cfg.CfgOps._
 import tip.lattices._
 import tip.ast.AstNodeData.DeclarationData
-
 import tip.solvers._
 import tip.cfg._
+
+import scala.collection.immutable.Set
 
 /**
   * Base class for live variables analysis.
   */
-abstract class LiveVarsAnalysis(cfg: IntraproceduralProgramCfg)(implicit declData: DeclarationData) extends FlowSensitiveAnalysis[CfgNode](cfg) {
+abstract class LiveVarsAnalysis(cfg: IntraproceduralProgramCfg)(implicit declData: DeclarationData) extends FlowSensitiveAnalysis(false) {
 
-  val allVars: Set[ADeclaration] = cfg.nodes.flatMap(_.appearingIds)
+  val lattice: MapLattice[CfgNode, PowersetLattice[ADeclaration]] = new MapLattice(new PowersetLattice())
 
-  val lattice = new MapLattice(cfg.nodes, new PowersetLattice(allVars))
+  val domain: Set[CfgNode] = cfg.nodes
 
   NoPointers.assertContainsProgram(cfg.prog)
   NoRecords.assertContainsProgram(cfg.prog)

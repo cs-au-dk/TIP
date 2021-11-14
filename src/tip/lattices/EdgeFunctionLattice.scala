@@ -2,11 +2,12 @@ package tip.lattices
 
 /**
   * The lattice of edge functions, used by [[tip.solvers.IDEAnalysis]].
-  * Technically a map lattice, but we don't bother implementing it as extension of MapLattice.
+  * A map lattice, but maps are represent differently than in `MapLattice`.
+  * Currently only supports the identity function and constant functions.
   */
-class EdgeLattice[L <: Lattice](val valuelattice: L) extends Lattice {
+class EdgeFunctionLattice[L <: Lattice](val valuelattice: L) extends Lattice {
 
-  type Element = Edge
+  type Element = EdgeFunction
 
   val bottom = ConstEdge(valuelattice.bottom)
 
@@ -15,7 +16,7 @@ class EdgeLattice[L <: Lattice](val valuelattice: L) extends Lattice {
   /**
     * An "edge" represents a function L -> L where L is the value lattice.
     */
-  trait Edge extends (valuelattice.Element => valuelattice.Element) {
+  trait EdgeFunction extends (valuelattice.Element => valuelattice.Element) {
 
     /**
       * Applies the function to the given lattice element.
@@ -26,24 +27,24 @@ class EdgeLattice[L <: Lattice](val valuelattice: L) extends Lattice {
       * Composes this function with the given one.
       * The resulting function first applies `e` then this function.
       */
-    def composeWith(e: Edge): Edge
+    def composeWith(e: EdgeFunction): EdgeFunction
 
     /**
       * Finds the least upper bound of this function and the given one.
       */
-    def joinWith(e: Edge): Edge
+    def joinWith(e: EdgeFunction): EdgeFunction
   }
 
   /**
     * Edge labeled with identity function.
     */
-  case class IdEdge() extends Edge {
+  case class IdEdge() extends EdgeFunction {
 
     def apply(x: valuelattice.Element): valuelattice.Element = x
 
-    def composeWith(e: Edge): Edge = e
+    def composeWith(e: EdgeFunction): EdgeFunction = e
 
-    def joinWith(e: Edge): Edge =
+    def joinWith(e: EdgeFunction): EdgeFunction =
       if (e == this) this
       else e.joinWith(this)
 
@@ -53,13 +54,13 @@ class EdgeLattice[L <: Lattice](val valuelattice: L) extends Lattice {
   /**
     * Edge labeled with constant function.
     */
-  case class ConstEdge(c: valuelattice.Element) extends Edge {
+  case class ConstEdge(c: valuelattice.Element) extends EdgeFunction {
 
     def apply(x: valuelattice.Element): valuelattice.Element = c
 
-    def composeWith(e: Edge): Edge = this
+    def composeWith(e: EdgeFunction): EdgeFunction = this
 
-    def joinWith(e: Edge): Edge =
+    def joinWith(e: EdgeFunction): EdgeFunction =
       if (e == this || c == valuelattice.top) this
       else if (c == valuelattice.bottom) e
       else

@@ -15,7 +15,7 @@ import scala.collection.immutable.Set
   * This is a specialized version of `SignAnalysis.Intraprocedural.SimpleSolver`
   * where most of the involved traits, classes, methods, and fields have been inlined.
   */
-class SimpleSignAnalysis(cfg: ProgramCfg)(implicit declData: DeclarationData) extends FlowSensitiveAnalysis[CfgNode](cfg) {
+class SimpleSignAnalysis(cfg: ProgramCfg)(implicit declData: DeclarationData) extends FlowSensitiveAnalysis(true) {
 
   /**
     * The lattice of abstract values.
@@ -30,12 +30,17 @@ class SimpleSignAnalysis(cfg: ProgramCfg)(implicit declData: DeclarationData) ex
   /**
     * The lattice of abstract states.
     */
-  val statelattice: MapLattice[ADeclaration, SignLattice.type] = new MapLattice(declaredVars, valuelattice)
+  val statelattice: MapLattice[ADeclaration, SignLattice.type] = new MapLattice(valuelattice)
 
   /**
     * The program lattice.
     */
-  val lattice: MapLattice[CfgNode, statelattice.type] = new MapLattice(domain, statelattice)
+  val lattice: MapLattice[CfgNode, statelattice.type] = new MapLattice(statelattice)
+
+  /**
+    * The domain of the program lattice.
+    */
+  val domain: Set[CfgNode] = cfg.nodes
 
   /**
     * Abstract evaluation of expressions.

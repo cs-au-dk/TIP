@@ -83,12 +83,16 @@ object Output {
     * Helper function for producing string output for a control-flow graph node after an analysis.
     * @param res map from control-flow graph nodes to strings, as produced by the analysis
     */
-  def labeler(res: Map[CfgNode, _])(n: CfgNode): String =
-    n match {
-      case entry: CfgFunEntryNode => s"Function ${entry.data.name} entry\n${res.getOrElse(n, "-")}"
-      case exit: CfgFunExitNode => s"Function ${exit.data.name} exit\n${res.getOrElse(n, "-")}"
-      case _ => s"$n\n${res.getOrElse(n, "-")}"
+  def labeler(res: Map[CfgNode, _], stateAfterNode: Boolean)(n: CfgNode): String = {
+    val r = res.getOrElse(n, "-")
+    val desc = n match {
+      case entry: CfgFunEntryNode => s"Function ${entry.data.name} entry"
+      case exit: CfgFunExitNode => s"Function ${exit.data.name} exit"
+      case _ => n.toString
     }
+    if (stateAfterNode) s"$desc\n$r"
+    else s"$r\n$desc"
+  }
 
   /**
     * Transforms a map from pairs of call contexts and CFG nodes to values into a map from CFG nodes to strings.

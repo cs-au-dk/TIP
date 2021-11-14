@@ -5,20 +5,21 @@ import tip.cfg._
 import tip.lattices._
 import tip.solvers._
 import tip.ast.AstNodeData.{AstNodeWithDeclaration, DeclarationData}
+import tip.ast.AstOps.AstOp
 
 import scala.collection.mutable
 
 /**
-  * Micro-transfer-functions for copy-constant-propagation analysis.
+  * Micro-transfer-functions for possibly-uninitialized variables analysis.
   */
-trait CopyConstantPropagationAnalysisFunctions extends IDEAnalysis[ADeclaration, FlatLattice[Int]] {
+trait PossiblyUninitializedVarsAnalysisFunctions extends IDEAnalysis[ADeclaration, TwoElementLattice] {
 
   NoPointers.assertContainsProgram(cfg.prog)
   NoRecords.assertContainsProgram(cfg.prog)
 
   implicit val declData: DeclarationData
 
-  val valuelattice = new FlatLattice[Int]()
+  val valuelattice = new TwoElementLattice()
 
   val edgelattice: EdgeFunctionLattice[valuelattice.type] = new EdgeFunctionLattice(valuelattice)
 
@@ -92,33 +93,18 @@ trait CopyConstantPropagationAnalysisFunctions extends IDEAnalysis[ADeclaration,
     d match {
       case Right(_) =>
         edges += ((d, IdEdge())) // identity edge from lambda to lambda
-        exp match {
-          case AIdentifier(_, _) | AIdentifierDeclaration(_, _) => // if the expression is a variable, no additional edges from lambda
-          case num: ANumber => // TODO: could also handle cases like x = 1+2*3 using local constant-only constant folding
-            edges += ((Left(id), ConstEdge(FlatEl(num.value)))) // if the expression is a constant, add constant edge from lambda to the variable being assigned to
-          case _ =>
-            edges += ((Left(id), ConstEdge(Top))) // for other expressions, add top edge from lambda to the variable being assigned to
-        }
       case Left(a) =>
-        exp match {
-          case aid @ (AIdentifier(_, _) | AIdentifierDeclaration(_, _)) =>
-            val aiddecl = aid match {
-              case aid: AIdentifier => aid.declaration
-              case aid: AIdentifierDeclaration => aid
-              case _ => ??? // unreachable, aid is an AIdentifier or an AIdentifierDeclaration
-            }
-            if (aiddecl == a) // at the variable being read from?
-              edges += ((Left(id), IdEdge())) // identity edge to the variable being written to
-          case _ => // ignore other kinds of expressions
-        }
+        // identity edge from d to the variable being assigned to if d appears in exp
+        if (exp.appearingIds.contains(a))
+          edges += ((Left(id), IdEdge()))
     }
     edges.toList
   }
 }
 
 /**
-  * Copy-constant-propagation analysis using IDE solver.
+  * Possibly-uninitialized variables analysis using IDE solver.
   */
-class CopyConstantPropagationIDEAnalysis(cfg: InterproceduralProgramCfg)(implicit val declData: DeclarationData)
-    extends IDESolver[ADeclaration, FlatLattice[Int]](cfg)
-    with CopyConstantPropagationAnalysisFunctions
+class PossiblyUninitializedVarsIDEAnalysis(cfg: InterproceduralProgramCfg)(implicit val declData: DeclarationData)
+    extends IDESolver[ADeclaration, TwoElementLattice](cfg)
+    with PossiblyUninitializedVarsAnalysisFunctions
