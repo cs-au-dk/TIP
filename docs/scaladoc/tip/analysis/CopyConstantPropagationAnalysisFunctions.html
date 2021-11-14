@@ -163,8 +163,8 @@
                         <a href="ContextSensitiveValueAnalysis.html" title="Base class for value analysis with context sensitivity and lifted lattice.">ContextSensitiveValueAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="class" href="ControlFlowAnalysis.html" title=""></a>
-                        <a href="ControlFlowAnalysis.html" title="">ControlFlowAnalysis</a>
+                        <a class="class" href="ControlFlowAnalysis.html" title="Control flow analysis."></a>
+                        <a href="ControlFlowAnalysis.html" title="Control flow analysis.">ControlFlowAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
                         <a class="trait" href="" title="Micro-transfer-functions for copy-constant-propagation analysis."></a>
@@ -295,6 +295,14 @@
                         <a href="PointsToAnalysis.html" title="Trait for (may-)points-to analyses.">PointsToAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
+                        <a class="trait" href="PossiblyUninitializedVarsAnalysisFunctions.html" title="Micro-transfer-functions for possibly-uninitialized variables analysis."></a>
+                        <a href="PossiblyUninitializedVarsAnalysisFunctions.html" title="Micro-transfer-functions for possibly-uninitialized variables analysis.">PossiblyUninitializedVarsAnalysisFunctions</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="PossiblyUninitializedVarsIDEAnalysis.html" title="Possibly-uninitialized variables analysis using IDE solver."></a>
+                        <a href="PossiblyUninitializedVarsIDEAnalysis.html" title="Possibly-uninitialized variables analysis using IDE solver.">PossiblyUninitializedVarsIDEAnalysis</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
                         <a class="object" href="SignAnalysis$.html" title=""></a>
                         <a href="SignAnalysis$.html" title="">SignAnalysis</a>
                       </li><li class="current-entities indented2">
@@ -355,7 +363,12 @@
             Linear Supertypes
           </span>
           <div class="superTypes hiddenContent"><a href="../solvers/IDEAnalysis.html" class="extype" name="tip.solvers.IDEAnalysis">IDEAnalysis</a>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>, <a href="../lattices/FlatLattice.html" class="extype" name="tip.lattices.FlatLattice">FlatLattice</a>[<span class="extype" name="scala.Int">Int</span>]], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
-        </div></div>
+        </div><div class="toggleContainer block">
+            <span class="toggle">
+              Known Subclasses
+            </span>
+            <div class="subClasses hiddenContent"><a href="CopyConstantPropagationIDEAnalysis.html" class="extype" name="tip.analysis.CopyConstantPropagationIDEAnalysis">CopyConstantPropagationIDEAnalysis</a></div>
+          </div></div>
         
 
       <div id="mbrsel">
@@ -548,30 +561,30 @@
               
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="tip.analysis.CopyConstantPropagationAnalysisFunctions#edgelattice" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="edgelattice:tip.lattices.EdgeLattice[CopyConstantPropagationAnalysisFunctions.this.valuelattice.type]"></a><a id="edgelattice:EdgeLattice[valuelattice.type]"></a>
+      <a id="edgelattice:tip.lattices.EdgeFunctionLattice[CopyConstantPropagationAnalysisFunctions.this.valuelattice.type]"></a><a id="edgelattice:EdgeFunctionLattice[valuelattice.type]"></a>
       <span class="permalink">
-      <a href="../../tip/analysis/CopyConstantPropagationAnalysisFunctions.html#edgelattice:tip.lattices.EdgeLattice[CopyConstantPropagationAnalysisFunctions.this.valuelattice.type]" title="Permalink">
+      <a href="../../tip/analysis/CopyConstantPropagationAnalysisFunctions.html#edgelattice:tip.lattices.EdgeFunctionLattice[CopyConstantPropagationAnalysisFunctions.this.valuelattice.type]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">lazy val</span>
+        <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">edgelattice</span><span class="result">: <a href="../lattices/EdgeLattice.html" class="extype" name="tip.lattices.EdgeLattice">EdgeLattice</a>[<a href="#valuelattice:tip.lattices.FlatLattice[Int]" class="extmbr" name="tip.analysis.CopyConstantPropagationAnalysisFunctions#valuelattice">valuelattice</a>.type]</span>
+        <span class="name">edgelattice</span><span class="result">: <a href="../lattices/EdgeFunctionLattice.html" class="extype" name="tip.lattices.EdgeFunctionLattice">EdgeFunctionLattice</a>[<a href="#valuelattice:tip.lattices.FlatLattice[Int]" class="extmbr" name="tip.analysis.CopyConstantPropagationAnalysisFunctions#valuelattice">valuelattice</a>.type]</span>
       </span>
       
       <p class="shortcomment cmt">The edge lattice.</p><div class="fullcomment"><div class="comment cmt"><p>The edge lattice.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.CopyConstantPropagationAnalysisFunctions">CopyConstantPropagationAnalysisFunctions</a> → <a href="../solvers/IDEAnalysis.html" class="extype" name="tip.solvers.IDEAnalysis">IDEAnalysis</a></dd></dl></div>
     </li><li name="tip.analysis.CopyConstantPropagationAnalysisFunctions#edgesCallToAfterCall" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="edgesCallToAfterCall(d2:CopyConstantPropagationAnalysisFunctions.this.DL,call:tip.cfg.CfgCallNode,aftercall:tip.cfg.CfgAfterCallNode):List[(CopyConstantPropagationAnalysisFunctions.this.DL,CopyConstantPropagationAnalysisFunctions.this.edgelattice.Edge)]"></a><a id="edgesCallToAfterCall(DL,CfgCallNode,CfgAfterCallNode):List[(DL,Edge)]"></a>
+      <a id="edgesCallToAfterCall(d2:CopyConstantPropagationAnalysisFunctions.this.DL,call:tip.cfg.CfgCallNode,aftercall:tip.cfg.CfgAfterCallNode):List[(CopyConstantPropagationAnalysisFunctions.this.DL,CopyConstantPropagationAnalysisFunctions.this.edgelattice.EdgeFunction)]"></a><a id="edgesCallToAfterCall(DL,CfgCallNode,CfgAfterCallNode):List[(DL,EdgeFunction)]"></a>
       <span class="permalink">
-      <a href="../../tip/analysis/CopyConstantPropagationAnalysisFunctions.html#edgesCallToAfterCall(d2:CopyConstantPropagationAnalysisFunctions.this.DL,call:tip.cfg.CfgCallNode,aftercall:tip.cfg.CfgAfterCallNode):List[(CopyConstantPropagationAnalysisFunctions.this.DL,CopyConstantPropagationAnalysisFunctions.this.edgelattice.Edge)]" title="Permalink">
+      <a href="../../tip/analysis/CopyConstantPropagationAnalysisFunctions.html#edgesCallToAfterCall(d2:CopyConstantPropagationAnalysisFunctions.this.DL,call:tip.cfg.CfgCallNode,aftercall:tip.cfg.CfgAfterCallNode):List[(CopyConstantPropagationAnalysisFunctions.this.DL,CopyConstantPropagationAnalysisFunctions.this.edgelattice.EdgeFunction)]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -580,15 +593,15 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">edgesCallToAfterCall</span><span class="params">(<span name="d2">d2: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.CopyConstantPropagationAnalysisFunctions.DL">DL</a></span>, <span name="call">call: <a href="../cfg/CfgCallNode.html" class="extype" name="tip.cfg.CfgCallNode">CfgCallNode</a></span>, <span name="aftercall">aftercall: <a href="../cfg/CfgAfterCallNode.html" class="extype" name="tip.cfg.CfgAfterCallNode">CfgAfterCallNode</a></span>)</span><span class="result">: <span class="extype" name="scala.List">List</span>[(<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.CopyConstantPropagationAnalysisFunctions.DL">DL</a>, <a href="../lattices/EdgeLattice$Edge.html" class="extype" name="tip.lattices.EdgeLattice.Edge">Edge</a>)]</span>
+        <span class="name">edgesCallToAfterCall</span><span class="params">(<span name="d2">d2: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.CopyConstantPropagationAnalysisFunctions.DL">DL</a></span>, <span name="call">call: <a href="../cfg/CfgCallNode.html" class="extype" name="tip.cfg.CfgCallNode">CfgCallNode</a></span>, <span name="aftercall">aftercall: <a href="../cfg/CfgAfterCallNode.html" class="extype" name="tip.cfg.CfgAfterCallNode">CfgAfterCallNode</a></span>)</span><span class="result">: <span class="extype" name="scala.List">List</span>[(<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.CopyConstantPropagationAnalysisFunctions.DL">DL</a>, <a href="../lattices/EdgeFunctionLattice$EdgeFunction.html" class="extype" name="tip.lattices.EdgeFunctionLattice.EdgeFunction">EdgeFunction</a>)]</span>
       </span>
       
       <p class="shortcomment cmt">Edges for call-to-aftercall.</p><div class="fullcomment"><div class="comment cmt"><p>Edges for call-to-aftercall.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.CopyConstantPropagationAnalysisFunctions">CopyConstantPropagationAnalysisFunctions</a> → <a href="../solvers/IDEAnalysis.html" class="extype" name="tip.solvers.IDEAnalysis">IDEAnalysis</a></dd></dl></div>
     </li><li name="tip.analysis.CopyConstantPropagationAnalysisFunctions#edgesCallToEntry" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="edgesCallToEntry(d:CopyConstantPropagationAnalysisFunctions.this.DL,call:tip.cfg.CfgCallNode,entry:tip.cfg.CfgFunEntryNode):List[(CopyConstantPropagationAnalysisFunctions.this.DL,CopyConstantPropagationAnalysisFunctions.this.edgelattice.Edge)]"></a><a id="edgesCallToEntry(DL,CfgCallNode,CfgFunEntryNode):List[(DL,Edge)]"></a>
+      <a id="edgesCallToEntry(d:CopyConstantPropagationAnalysisFunctions.this.DL,call:tip.cfg.CfgCallNode,entry:tip.cfg.CfgFunEntryNode):List[(CopyConstantPropagationAnalysisFunctions.this.DL,CopyConstantPropagationAnalysisFunctions.this.edgelattice.EdgeFunction)]"></a><a id="edgesCallToEntry(DL,CfgCallNode,CfgFunEntryNode):List[(DL,EdgeFunction)]"></a>
       <span class="permalink">
-      <a href="../../tip/analysis/CopyConstantPropagationAnalysisFunctions.html#edgesCallToEntry(d:CopyConstantPropagationAnalysisFunctions.this.DL,call:tip.cfg.CfgCallNode,entry:tip.cfg.CfgFunEntryNode):List[(CopyConstantPropagationAnalysisFunctions.this.DL,CopyConstantPropagationAnalysisFunctions.this.edgelattice.Edge)]" title="Permalink">
+      <a href="../../tip/analysis/CopyConstantPropagationAnalysisFunctions.html#edgesCallToEntry(d:CopyConstantPropagationAnalysisFunctions.this.DL,call:tip.cfg.CfgCallNode,entry:tip.cfg.CfgFunEntryNode):List[(CopyConstantPropagationAnalysisFunctions.this.DL,CopyConstantPropagationAnalysisFunctions.this.edgelattice.EdgeFunction)]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -597,15 +610,15 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">edgesCallToEntry</span><span class="params">(<span name="d">d: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.CopyConstantPropagationAnalysisFunctions.DL">DL</a></span>, <span name="call">call: <a href="../cfg/CfgCallNode.html" class="extype" name="tip.cfg.CfgCallNode">CfgCallNode</a></span>, <span name="entry">entry: <a href="../cfg/CfgFunEntryNode.html" class="extype" name="tip.cfg.CfgFunEntryNode">CfgFunEntryNode</a></span>)</span><span class="result">: <span class="extype" name="scala.List">List</span>[(<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.CopyConstantPropagationAnalysisFunctions.DL">DL</a>, <a href="../lattices/EdgeLattice$Edge.html" class="extype" name="tip.lattices.EdgeLattice.Edge">Edge</a>)]</span>
+        <span class="name">edgesCallToEntry</span><span class="params">(<span name="d">d: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.CopyConstantPropagationAnalysisFunctions.DL">DL</a></span>, <span name="call">call: <a href="../cfg/CfgCallNode.html" class="extype" name="tip.cfg.CfgCallNode">CfgCallNode</a></span>, <span name="entry">entry: <a href="../cfg/CfgFunEntryNode.html" class="extype" name="tip.cfg.CfgFunEntryNode">CfgFunEntryNode</a></span>)</span><span class="result">: <span class="extype" name="scala.List">List</span>[(<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.CopyConstantPropagationAnalysisFunctions.DL">DL</a>, <a href="../lattices/EdgeFunctionLattice$EdgeFunction.html" class="extype" name="tip.lattices.EdgeFunctionLattice.EdgeFunction">EdgeFunction</a>)]</span>
       </span>
       
       <p class="shortcomment cmt">Edges for call-to-entry.</p><div class="fullcomment"><div class="comment cmt"><p>Edges for call-to-entry.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.CopyConstantPropagationAnalysisFunctions">CopyConstantPropagationAnalysisFunctions</a> → <a href="../solvers/IDEAnalysis.html" class="extype" name="tip.solvers.IDEAnalysis">IDEAnalysis</a></dd></dl></div>
     </li><li name="tip.analysis.CopyConstantPropagationAnalysisFunctions#edgesExitToAfterCall" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="edgesExitToAfterCall(d:CopyConstantPropagationAnalysisFunctions.this.DL,exit:tip.cfg.CfgFunExitNode,aftercall:tip.cfg.CfgAfterCallNode):List[(CopyConstantPropagationAnalysisFunctions.this.DL,CopyConstantPropagationAnalysisFunctions.this.edgelattice.Edge)]"></a><a id="edgesExitToAfterCall(DL,CfgFunExitNode,CfgAfterCallNode):List[(DL,Edge)]"></a>
+      <a id="edgesExitToAfterCall(d:CopyConstantPropagationAnalysisFunctions.this.DL,exit:tip.cfg.CfgFunExitNode,aftercall:tip.cfg.CfgAfterCallNode):List[(CopyConstantPropagationAnalysisFunctions.this.DL,CopyConstantPropagationAnalysisFunctions.this.edgelattice.EdgeFunction)]"></a><a id="edgesExitToAfterCall(DL,CfgFunExitNode,CfgAfterCallNode):List[(DL,EdgeFunction)]"></a>
       <span class="permalink">
-      <a href="../../tip/analysis/CopyConstantPropagationAnalysisFunctions.html#edgesExitToAfterCall(d:CopyConstantPropagationAnalysisFunctions.this.DL,exit:tip.cfg.CfgFunExitNode,aftercall:tip.cfg.CfgAfterCallNode):List[(CopyConstantPropagationAnalysisFunctions.this.DL,CopyConstantPropagationAnalysisFunctions.this.edgelattice.Edge)]" title="Permalink">
+      <a href="../../tip/analysis/CopyConstantPropagationAnalysisFunctions.html#edgesExitToAfterCall(d:CopyConstantPropagationAnalysisFunctions.this.DL,exit:tip.cfg.CfgFunExitNode,aftercall:tip.cfg.CfgAfterCallNode):List[(CopyConstantPropagationAnalysisFunctions.this.DL,CopyConstantPropagationAnalysisFunctions.this.edgelattice.EdgeFunction)]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -614,15 +627,15 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">edgesExitToAfterCall</span><span class="params">(<span name="d">d: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.CopyConstantPropagationAnalysisFunctions.DL">DL</a></span>, <span name="exit">exit: <a href="../cfg/CfgFunExitNode.html" class="extype" name="tip.cfg.CfgFunExitNode">CfgFunExitNode</a></span>, <span name="aftercall">aftercall: <a href="../cfg/CfgAfterCallNode.html" class="extype" name="tip.cfg.CfgAfterCallNode">CfgAfterCallNode</a></span>)</span><span class="result">: <span class="extype" name="scala.List">List</span>[(<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.CopyConstantPropagationAnalysisFunctions.DL">DL</a>, <a href="../lattices/EdgeLattice$Edge.html" class="extype" name="tip.lattices.EdgeLattice.Edge">Edge</a>)]</span>
+        <span class="name">edgesExitToAfterCall</span><span class="params">(<span name="d">d: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.CopyConstantPropagationAnalysisFunctions.DL">DL</a></span>, <span name="exit">exit: <a href="../cfg/CfgFunExitNode.html" class="extype" name="tip.cfg.CfgFunExitNode">CfgFunExitNode</a></span>, <span name="aftercall">aftercall: <a href="../cfg/CfgAfterCallNode.html" class="extype" name="tip.cfg.CfgAfterCallNode">CfgAfterCallNode</a></span>)</span><span class="result">: <span class="extype" name="scala.List">List</span>[(<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.CopyConstantPropagationAnalysisFunctions.DL">DL</a>, <a href="../lattices/EdgeFunctionLattice$EdgeFunction.html" class="extype" name="tip.lattices.EdgeFunctionLattice.EdgeFunction">EdgeFunction</a>)]</span>
       </span>
       
       <p class="shortcomment cmt">Edges for exit-to-aftercall.</p><div class="fullcomment"><div class="comment cmt"><p>Edges for exit-to-aftercall.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.CopyConstantPropagationAnalysisFunctions">CopyConstantPropagationAnalysisFunctions</a> → <a href="../solvers/IDEAnalysis.html" class="extype" name="tip.solvers.IDEAnalysis">IDEAnalysis</a></dd></dl></div>
     </li><li name="tip.analysis.CopyConstantPropagationAnalysisFunctions#edgesOther" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="edgesOther(d:CopyConstantPropagationAnalysisFunctions.this.DL,n:tip.cfg.CfgNode):List[(CopyConstantPropagationAnalysisFunctions.this.DL,CopyConstantPropagationAnalysisFunctions.this.edgelattice.Edge)]"></a><a id="edgesOther(DL,CfgNode):List[(DL,Edge)]"></a>
+      <a id="edgesOther(d:CopyConstantPropagationAnalysisFunctions.this.DL,n:tip.cfg.CfgNode):List[(CopyConstantPropagationAnalysisFunctions.this.DL,CopyConstantPropagationAnalysisFunctions.this.edgelattice.EdgeFunction)]"></a><a id="edgesOther(DL,CfgNode):List[(DL,EdgeFunction)]"></a>
       <span class="permalink">
-      <a href="../../tip/analysis/CopyConstantPropagationAnalysisFunctions.html#edgesOther(d:CopyConstantPropagationAnalysisFunctions.this.DL,n:tip.cfg.CfgNode):List[(CopyConstantPropagationAnalysisFunctions.this.DL,CopyConstantPropagationAnalysisFunctions.this.edgelattice.Edge)]" title="Permalink">
+      <a href="../../tip/analysis/CopyConstantPropagationAnalysisFunctions.html#edgesOther(d:CopyConstantPropagationAnalysisFunctions.this.DL,n:tip.cfg.CfgNode):List[(CopyConstantPropagationAnalysisFunctions.this.DL,CopyConstantPropagationAnalysisFunctions.this.edgelattice.EdgeFunction)]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -631,7 +644,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">edgesOther</span><span class="params">(<span name="d">d: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.CopyConstantPropagationAnalysisFunctions.DL">DL</a></span>, <span name="n">n: <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a></span>)</span><span class="result">: <span class="extype" name="scala.List">List</span>[(<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.CopyConstantPropagationAnalysisFunctions.DL">DL</a>, <a href="../lattices/EdgeLattice$Edge.html" class="extype" name="tip.lattices.EdgeLattice.Edge">Edge</a>)]</span>
+        <span class="name">edgesOther</span><span class="params">(<span name="d">d: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.CopyConstantPropagationAnalysisFunctions.DL">DL</a></span>, <span name="n">n: <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a></span>)</span><span class="result">: <span class="extype" name="scala.List">List</span>[(<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.CopyConstantPropagationAnalysisFunctions.DL">DL</a>, <a href="../lattices/EdgeFunctionLattice$EdgeFunction.html" class="extype" name="tip.lattices.EdgeFunctionLattice.EdgeFunction">EdgeFunction</a>)]</span>
       </span>
       
       <p class="shortcomment cmt">Edges for other CFG nodes.</p><div class="fullcomment"><div class="comment cmt"><p>Edges for other CFG nodes.
@@ -686,7 +699,7 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -707,7 +720,7 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -760,7 +773,7 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -781,7 +794,7 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -825,7 +838,7 @@
     </span>
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">lazy val</span>
+        <span class="kind">val</span>
       </span>
       <span class="symbol">
         <span class="name">valuelattice</span><span class="result">: <a href="../lattices/FlatLattice.html" class="extype" name="tip.lattices.FlatLattice">FlatLattice</a>[<span class="extype" name="scala.Int">Int</span>]</span>

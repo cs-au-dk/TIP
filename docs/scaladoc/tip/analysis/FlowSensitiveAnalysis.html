@@ -163,8 +163,8 @@
                         <a href="ContextSensitiveValueAnalysis.html" title="Base class for value analysis with context sensitivity and lifted lattice.">ContextSensitiveValueAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="class" href="ControlFlowAnalysis.html" title=""></a>
-                        <a href="ControlFlowAnalysis.html" title="">ControlFlowAnalysis</a>
+                        <a class="class" href="ControlFlowAnalysis.html" title="Control flow analysis."></a>
+                        <a href="ControlFlowAnalysis.html" title="Control flow analysis.">ControlFlowAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
                         <a class="trait" href="CopyConstantPropagationAnalysisFunctions.html" title="Micro-transfer-functions for copy-constant-propagation analysis."></a>
@@ -295,6 +295,14 @@
                         <a href="PointsToAnalysis.html" title="Trait for (may-)points-to analyses.">PointsToAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
+                        <a class="trait" href="PossiblyUninitializedVarsAnalysisFunctions.html" title="Micro-transfer-functions for possibly-uninitialized variables analysis."></a>
+                        <a href="PossiblyUninitializedVarsAnalysisFunctions.html" title="Micro-transfer-functions for possibly-uninitialized variables analysis.">PossiblyUninitializedVarsAnalysisFunctions</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="PossiblyUninitializedVarsIDEAnalysis.html" title="Possibly-uninitialized variables analysis using IDE solver."></a>
+                        <a href="PossiblyUninitializedVarsIDEAnalysis.html" title="Possibly-uninitialized variables analysis using IDE solver.">PossiblyUninitializedVarsIDEAnalysis</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
                         <a class="object" href="SignAnalysis$.html" title=""></a>
                         <a href="SignAnalysis$.html" title="">SignAnalysis</a>
                       </li><li class="current-entities indented2">
@@ -346,13 +354,12 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">FlowSensitiveAnalysis</span><span class="tparams">[<span name="N">N</span>]</span><span class="result"> extends <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Any">Any</span>]</span>
+        <span class="name">FlowSensitiveAnalysis</span><span class="result"> extends <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Any">Any</span>]</span>
       </span>
       </h4>
 
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A flow-sensitive analysis.
-</p></div><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A flow-sensitive analysis.</p></div><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>
@@ -361,7 +368,7 @@
             <span class="toggle">
               Known Subclasses
             </span>
-            <div class="subClasses hiddenContent"><a href="AvailableExpAnalysis.html" class="extype" name="tip.analysis.AvailableExpAnalysis">AvailableExpAnalysis</a>, <a href="AvailableExpAnalysisSimpleSolver.html" class="extype" name="tip.analysis.AvailableExpAnalysisSimpleSolver">AvailableExpAnalysisSimpleSolver</a>, <a href="AvailableExpAnalysisWorklistSolver.html" class="extype" name="tip.analysis.AvailableExpAnalysisWorklistSolver">AvailableExpAnalysisWorklistSolver</a>, <a href="CallStringValueAnalysis.html" class="extype" name="tip.analysis.CallStringValueAnalysis">CallStringValueAnalysis</a>, <a href="ConstantPropagationAnalysis$$Interprocedural$$CallString.html" class="extype" name="tip.analysis.ConstantPropagationAnalysis.Interprocedural.CallString">CallString</a>, <a href="ConstantPropagationAnalysis$$Interprocedural$$Functional.html" class="extype" name="tip.analysis.ConstantPropagationAnalysis.Interprocedural.Functional">Functional</a>, <a href="ConstantPropagationAnalysis$$Interprocedural$$WorklistSolverWithReachability.html" class="extype" name="tip.analysis.ConstantPropagationAnalysis.Interprocedural.WorklistSolverWithReachability">WorklistSolverWithReachability</a>, <a href="ConstantPropagationAnalysis$$Interprocedural$$WorklistSolverWithReachabilityAndPropagation.html" class="extype" name="tip.analysis.ConstantPropagationAnalysis.Interprocedural.WorklistSolverWithReachabilityAndPropagation">WorklistSolverWithReachabilityAndPropagation</a>, <a href="ConstantPropagationAnalysis$$Intraprocedural$$SimpleSolver.html" class="extype" name="tip.analysis.ConstantPropagationAnalysis.Intraprocedural.SimpleSolver">SimpleSolver</a>, <a href="ConstantPropagationAnalysis$$Intraprocedural$$WorklistSolver.html" class="extype" name="tip.analysis.ConstantPropagationAnalysis.Intraprocedural.WorklistSolver">WorklistSolver</a>, <a href="ConstantPropagationAnalysis$$Intraprocedural$$WorklistSolverWithReachability.html" class="extype" name="tip.analysis.ConstantPropagationAnalysis.Intraprocedural.WorklistSolverWithReachability">WorklistSolverWithReachability</a>, <a href="ConstantPropagationAnalysis$$Intraprocedural$$WorklistSolverWithReachabilityAndPropagation.html" class="extype" name="tip.analysis.ConstantPropagationAnalysis.Intraprocedural.WorklistSolverWithReachabilityAndPropagation">WorklistSolverWithReachabilityAndPropagation</a>, <a href="ContextSensitiveValueAnalysis.html" class="extype" name="tip.analysis.ContextSensitiveValueAnalysis">ContextSensitiveValueAnalysis</a>, <a href="CopyConstantPropagationIDEAnalysis.html" class="extype" name="tip.analysis.CopyConstantPropagationIDEAnalysis">CopyConstantPropagationIDEAnalysis</a>, <a href="FunctionalValueAnalysis.html" class="extype" name="tip.analysis.FunctionalValueAnalysis">FunctionalValueAnalysis</a>, <a href="InterprocValueAnalysisWorklistSolverWithReachability.html" class="extype" name="tip.analysis.InterprocValueAnalysisWorklistSolverWithReachability">InterprocValueAnalysisWorklistSolverWithReachability</a>, <a href="InterprocValueAnalysisWorklistSolverWithReachabilityAndPropagation.html" class="extype" name="tip.analysis.InterprocValueAnalysisWorklistSolverWithReachabilityAndPropagation">InterprocValueAnalysisWorklistSolverWithReachabilityAndPropagation</a>, <a href="IntervalAnalysis$$Intraprocedural$$WorklistSolverWithWidening.html" class="extype" name="tip.analysis.IntervalAnalysis.Intraprocedural.WorklistSolverWithWidening">WorklistSolverWithWidening</a>, <a href="IntervalAnalysis$$Intraprocedural$$WorklistSolverWithWideningAndNarrowing.html" class="extype" name="tip.analysis.IntervalAnalysis.Intraprocedural.WorklistSolverWithWideningAndNarrowing">WorklistSolverWithWideningAndNarrowing</a>, <a href="IntraprocValueAnalysisSimpleSolver.html" class="extype" name="tip.analysis.IntraprocValueAnalysisSimpleSolver">IntraprocValueAnalysisSimpleSolver</a>, <a href="IntraprocValueAnalysisWorklistSolver.html" class="extype" name="tip.analysis.IntraprocValueAnalysisWorklistSolver">IntraprocValueAnalysisWorklistSolver</a>, <a href="IntraprocValueAnalysisWorklistSolverWithReachability.html" class="extype" name="tip.analysis.IntraprocValueAnalysisWorklistSolverWithReachability">IntraprocValueAnalysisWorklistSolverWithReachability</a>, <a href="IntraprocValueAnalysisWorklistSolverWithReachabilityAndPropagation.html" class="extype" name="tip.analysis.IntraprocValueAnalysisWorklistSolverWithReachabilityAndPropagation">IntraprocValueAnalysisWorklistSolverWithReachabilityAndPropagation</a>, <a href="LiftedValueAnalysis.html" class="extype" name="tip.analysis.LiftedValueAnalysis">LiftedValueAnalysis</a>, <a href="LiveVarsAnalysis.html" class="extype" name="tip.analysis.LiveVarsAnalysis">LiveVarsAnalysis</a>, <a href="LiveVarsAnalysisSimpleSolver.html" class="extype" name="tip.analysis.LiveVarsAnalysisSimpleSolver">LiveVarsAnalysisSimpleSolver</a>, <a href="LiveVarsAnalysisWorklistSolver.html" class="extype" name="tip.analysis.LiveVarsAnalysisWorklistSolver">LiveVarsAnalysisWorklistSolver</a>, <a href="SignAnalysis$$Interprocedural$$CallString.html" class="extype" name="tip.analysis.SignAnalysis.Interprocedural.CallString">CallString</a>, <a href="SignAnalysis$$Interprocedural$$Functional.html" class="extype" name="tip.analysis.SignAnalysis.Interprocedural.Functional">Functional</a>, <a href="SignAnalysis$$Interprocedural$$WorklistSolverWithReachability.html" class="extype" name="tip.analysis.SignAnalysis.Interprocedural.WorklistSolverWithReachability">WorklistSolverWithReachability</a>, <a href="SignAnalysis$$Interprocedural$$WorklistSolverWithReachabilityAndPropagation.html" class="extype" name="tip.analysis.SignAnalysis.Interprocedural.WorklistSolverWithReachabilityAndPropagation">WorklistSolverWithReachabilityAndPropagation</a>, <a href="SignAnalysis$$Intraprocedural$$SimpleSolver.html" class="extype" name="tip.analysis.SignAnalysis.Intraprocedural.SimpleSolver">SimpleSolver</a>, <a href="SignAnalysis$$Intraprocedural$$WorklistSolver.html" class="extype" name="tip.analysis.SignAnalysis.Intraprocedural.WorklistSolver">WorklistSolver</a>, <a href="SignAnalysis$$Intraprocedural$$WorklistSolverWithReachability.html" class="extype" name="tip.analysis.SignAnalysis.Intraprocedural.WorklistSolverWithReachability">WorklistSolverWithReachability</a>, <a href="SignAnalysis$$Intraprocedural$$WorklistSolverWithReachabilityAndPropagation.html" class="extype" name="tip.analysis.SignAnalysis.Intraprocedural.WorklistSolverWithReachabilityAndPropagation">WorklistSolverWithReachabilityAndPropagation</a>, <a href="SimpleSignAnalysis.html" class="extype" name="tip.analysis.SimpleSignAnalysis">SimpleSignAnalysis</a>, <a href="SimpleValueAnalysis.html" class="extype" name="tip.analysis.SimpleValueAnalysis">SimpleValueAnalysis</a>, <a href="../solvers/IDEPhase1Analysis.html" class="extype" name="tip.solvers.IDEPhase1Analysis">IDEPhase1Analysis</a>, <a href="../solvers/IDEPhase2Analysis.html" class="extype" name="tip.solvers.IDEPhase2Analysis">IDEPhase2Analysis</a></div>
+            <div class="subClasses hiddenContent"><a href="AvailableExpAnalysis.html" class="extype" name="tip.analysis.AvailableExpAnalysis">AvailableExpAnalysis</a>, <a href="AvailableExpAnalysisSimpleSolver.html" class="extype" name="tip.analysis.AvailableExpAnalysisSimpleSolver">AvailableExpAnalysisSimpleSolver</a>, <a href="AvailableExpAnalysisWorklistSolver.html" class="extype" name="tip.analysis.AvailableExpAnalysisWorklistSolver">AvailableExpAnalysisWorklistSolver</a>, <a href="CallStringValueAnalysis.html" class="extype" name="tip.analysis.CallStringValueAnalysis">CallStringValueAnalysis</a>, <a href="ConstantPropagationAnalysis$$Interprocedural$$CallString.html" class="extype" name="tip.analysis.ConstantPropagationAnalysis.Interprocedural.CallString">CallString</a>, <a href="ConstantPropagationAnalysis$$Interprocedural$$Functional.html" class="extype" name="tip.analysis.ConstantPropagationAnalysis.Interprocedural.Functional">Functional</a>, <a href="ConstantPropagationAnalysis$$Interprocedural$$WorklistSolverWithReachability.html" class="extype" name="tip.analysis.ConstantPropagationAnalysis.Interprocedural.WorklistSolverWithReachability">WorklistSolverWithReachability</a>, <a href="ConstantPropagationAnalysis$$Interprocedural$$WorklistSolverWithReachabilityAndPropagation.html" class="extype" name="tip.analysis.ConstantPropagationAnalysis.Interprocedural.WorklistSolverWithReachabilityAndPropagation">WorklistSolverWithReachabilityAndPropagation</a>, <a href="ConstantPropagationAnalysis$$Intraprocedural$$SimpleSolver.html" class="extype" name="tip.analysis.ConstantPropagationAnalysis.Intraprocedural.SimpleSolver">SimpleSolver</a>, <a href="ConstantPropagationAnalysis$$Intraprocedural$$WorklistSolver.html" class="extype" name="tip.analysis.ConstantPropagationAnalysis.Intraprocedural.WorklistSolver">WorklistSolver</a>, <a href="ConstantPropagationAnalysis$$Intraprocedural$$WorklistSolverWithReachability.html" class="extype" name="tip.analysis.ConstantPropagationAnalysis.Intraprocedural.WorklistSolverWithReachability">WorklistSolverWithReachability</a>, <a href="ConstantPropagationAnalysis$$Intraprocedural$$WorklistSolverWithReachabilityAndPropagation.html" class="extype" name="tip.analysis.ConstantPropagationAnalysis.Intraprocedural.WorklistSolverWithReachabilityAndPropagation">WorklistSolverWithReachabilityAndPropagation</a>, <a href="ContextSensitiveValueAnalysis.html" class="extype" name="tip.analysis.ContextSensitiveValueAnalysis">ContextSensitiveValueAnalysis</a>, <a href="CopyConstantPropagationIDEAnalysis.html" class="extype" name="tip.analysis.CopyConstantPropagationIDEAnalysis">CopyConstantPropagationIDEAnalysis</a>, <a href="FunctionalValueAnalysis.html" class="extype" name="tip.analysis.FunctionalValueAnalysis">FunctionalValueAnalysis</a>, <a href="InterprocValueAnalysisWorklistSolverWithReachability.html" class="extype" name="tip.analysis.InterprocValueAnalysisWorklistSolverWithReachability">InterprocValueAnalysisWorklistSolverWithReachability</a>, <a href="InterprocValueAnalysisWorklistSolverWithReachabilityAndPropagation.html" class="extype" name="tip.analysis.InterprocValueAnalysisWorklistSolverWithReachabilityAndPropagation">InterprocValueAnalysisWorklistSolverWithReachabilityAndPropagation</a>, <a href="IntervalAnalysis$$Intraprocedural$$WorklistSolverWithWidening.html" class="extype" name="tip.analysis.IntervalAnalysis.Intraprocedural.WorklistSolverWithWidening">WorklistSolverWithWidening</a>, <a href="IntervalAnalysis$$Intraprocedural$$WorklistSolverWithWideningAndNarrowing.html" class="extype" name="tip.analysis.IntervalAnalysis.Intraprocedural.WorklistSolverWithWideningAndNarrowing">WorklistSolverWithWideningAndNarrowing</a>, <a href="IntraprocValueAnalysisSimpleSolver.html" class="extype" name="tip.analysis.IntraprocValueAnalysisSimpleSolver">IntraprocValueAnalysisSimpleSolver</a>, <a href="IntraprocValueAnalysisWorklistSolver.html" class="extype" name="tip.analysis.IntraprocValueAnalysisWorklistSolver">IntraprocValueAnalysisWorklistSolver</a>, <a href="IntraprocValueAnalysisWorklistSolverWithReachability.html" class="extype" name="tip.analysis.IntraprocValueAnalysisWorklistSolverWithReachability">IntraprocValueAnalysisWorklistSolverWithReachability</a>, <a href="IntraprocValueAnalysisWorklistSolverWithReachabilityAndPropagation.html" class="extype" name="tip.analysis.IntraprocValueAnalysisWorklistSolverWithReachabilityAndPropagation">IntraprocValueAnalysisWorklistSolverWithReachabilityAndPropagation</a>, <a href="LiftedValueAnalysis.html" class="extype" name="tip.analysis.LiftedValueAnalysis">LiftedValueAnalysis</a>, <a href="LiveVarsAnalysis.html" class="extype" name="tip.analysis.LiveVarsAnalysis">LiveVarsAnalysis</a>, <a href="LiveVarsAnalysisSimpleSolver.html" class="extype" name="tip.analysis.LiveVarsAnalysisSimpleSolver">LiveVarsAnalysisSimpleSolver</a>, <a href="LiveVarsAnalysisWorklistSolver.html" class="extype" name="tip.analysis.LiveVarsAnalysisWorklistSolver">LiveVarsAnalysisWorklistSolver</a>, <a href="PossiblyUninitializedVarsIDEAnalysis.html" class="extype" name="tip.analysis.PossiblyUninitializedVarsIDEAnalysis">PossiblyUninitializedVarsIDEAnalysis</a>, <a href="SignAnalysis$$Interprocedural$$CallString.html" class="extype" name="tip.analysis.SignAnalysis.Interprocedural.CallString">CallString</a>, <a href="SignAnalysis$$Interprocedural$$Functional.html" class="extype" name="tip.analysis.SignAnalysis.Interprocedural.Functional">Functional</a>, <a href="SignAnalysis$$Interprocedural$$WorklistSolverWithReachability.html" class="extype" name="tip.analysis.SignAnalysis.Interprocedural.WorklistSolverWithReachability">WorklistSolverWithReachability</a>, <a href="SignAnalysis$$Interprocedural$$WorklistSolverWithReachabilityAndPropagation.html" class="extype" name="tip.analysis.SignAnalysis.Interprocedural.WorklistSolverWithReachabilityAndPropagation">WorklistSolverWithReachabilityAndPropagation</a>, <a href="SignAnalysis$$Intraprocedural$$SimpleSolver.html" class="extype" name="tip.analysis.SignAnalysis.Intraprocedural.SimpleSolver">SimpleSolver</a>, <a href="SignAnalysis$$Intraprocedural$$WorklistSolver.html" class="extype" name="tip.analysis.SignAnalysis.Intraprocedural.WorklistSolver">WorklistSolver</a>, <a href="SignAnalysis$$Intraprocedural$$WorklistSolverWithReachability.html" class="extype" name="tip.analysis.SignAnalysis.Intraprocedural.WorklistSolverWithReachability">WorklistSolverWithReachability</a>, <a href="SignAnalysis$$Intraprocedural$$WorklistSolverWithReachabilityAndPropagation.html" class="extype" name="tip.analysis.SignAnalysis.Intraprocedural.WorklistSolverWithReachabilityAndPropagation">WorklistSolverWithReachabilityAndPropagation</a>, <a href="SimpleSignAnalysis.html" class="extype" name="tip.analysis.SimpleSignAnalysis">SimpleSignAnalysis</a>, <a href="SimpleValueAnalysis.html" class="extype" name="tip.analysis.SimpleValueAnalysis">SimpleValueAnalysis</a>, <a href="../solvers/IDESolver.html" class="extype" name="tip.solvers.IDESolver">IDESolver</a>, <a href="../solvers/IDESolver$IDEPhase2Analysis.html" class="extype" name="tip.solvers.IDESolver.IDEPhase2Analysis">IDEPhase2Analysis</a></div>
           </div></div>
         
 
@@ -407,10 +414,10 @@
         <div id="allMembers">
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
-              <ol><li name="tip.analysis.FlowSensitiveAnalysis#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(cfg:tip.cfg.FragmentCfg):tip.analysis.FlowSensitiveAnalysis[N]"></a><a id="&lt;init&gt;:FlowSensitiveAnalysis[N]"></a>
+              <ol><li name="tip.analysis.FlowSensitiveAnalysis#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="&lt;init&gt;(stateAfterNode:Boolean):tip.analysis.FlowSensitiveAnalysis"></a><a id="&lt;init&gt;:FlowSensitiveAnalysis"></a>
       <span class="permalink">
-      <a href="../../tip/analysis/FlowSensitiveAnalysis.html#&lt;init&gt;(cfg:tip.cfg.FragmentCfg):tip.analysis.FlowSensitiveAnalysis[N]" title="Permalink">
+      <a href="../../tip/analysis/FlowSensitiveAnalysis.html#&lt;init&gt;(stateAfterNode:Boolean):tip.analysis.FlowSensitiveAnalysis" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -419,10 +426,12 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">FlowSensitiveAnalysis</span><span class="params">(<span name="cfg">cfg: <a href="../cfg/FragmentCfg.html" class="extype" name="tip.cfg.FragmentCfg">FragmentCfg</a></span>)</span>
+        <span class="name">FlowSensitiveAnalysis</span><span class="params">(<span name="stateAfterNode">stateAfterNode: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span>
       </span>
       
-      
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">stateAfterNode</dt><dd class="cmt"><p>true if the abstract state of a CFG node represents the program point <em>after</em> the node,
+                      false if represents the program point <em>before</em> the node
+                      (used when outputting analysis results)</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -430,10 +439,10 @@
 
         <div class="values members">
               <h3>Abstract Value Members</h3>
-              <ol><li name="tip.analysis.FlowSensitiveAnalysis#analyze" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="analyze():FlowSensitiveAnalysis.this.lattice.Element"></a><a id="analyze():Element"></a>
+              <ol><li name="tip.analysis.Analysis#analyze" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="analyze():R"></a><a id="analyze():Any"></a>
       <span class="permalink">
-      <a href="../../tip/analysis/FlowSensitiveAnalysis.html#analyze():FlowSensitiveAnalysis.this.lattice.Element" title="Permalink">
+      <a href="../../tip/analysis/FlowSensitiveAnalysis.html#analyze():R" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -442,26 +451,11 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">analyze</span><span class="params">()</span><span class="result">: <a href="../lattices/MapLattice.html#Element=Map[A,MapLattice.this.sublattice.Element]" class="extmbr" name="tip.lattices.MapLattice.Element">Element</a></span>
+        <span class="name">analyze</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Any">Any</span></span>
       </span>
       
-      <p class="shortcomment cmt">Performs the analysis and returns the result.</p><div class="fullcomment"><div class="comment cmt"><p>Performs the analysis and returns the result.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a> → <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a></dd></dl></div>
-    </li><li name="tip.analysis.FlowSensitiveAnalysis#lattice" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="lattice:tip.lattices.MapLattice[N,tip.lattices.Lattice]"></a><a id="lattice:MapLattice[N,Lattice]"></a>
-      <span class="permalink">
-      <a href="../../tip/analysis/FlowSensitiveAnalysis.html#lattice:tip.lattices.MapLattice[N,tip.lattices.Lattice]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">lattice</span><span class="result">: <a href="../lattices/MapLattice.html" class="extype" name="tip.lattices.MapLattice">MapLattice</a>[<span class="extype" name="tip.analysis.FlowSensitiveAnalysis.N">N</span>, <a href="../lattices/Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a>]</span>
-      </span>
-      
-      <p class="shortcomment cmt">The lattice used by the analysis.</p>
+      <p class="shortcomment cmt">Performs the analysis and returns the result.</p><div class="fullcomment"><div class="comment cmt"><p>Performs the analysis and returns the result.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a></dd></dl></div>
     </li></ol>
             </div>
 
@@ -555,25 +549,9 @@
               
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="tip.analysis.FlowSensitiveAnalysis#domain" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="domain:Set[tip.cfg.CfgNode]"></a><a id="domain:Set[CfgNode]"></a>
-      <span class="permalink">
-      <a href="../../tip/analysis/FlowSensitiveAnalysis.html#domain:Set[tip.cfg.CfgNode]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">domain</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
-      </span>
-      
-      <p class="shortcomment cmt">The domain of the map lattice.</p>
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
       <span class="permalink">
@@ -624,7 +602,7 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -645,7 +623,7 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -698,7 +676,7 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -719,9 +697,25 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
+    </li><li name="tip.analysis.FlowSensitiveAnalysis#stateAfterNode" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="stateAfterNode:Boolean"></a>
+      <span class="permalink">
+      <a href="../../tip/analysis/FlowSensitiveAnalysis.html#stateAfterNode:Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">stateAfterNode</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">

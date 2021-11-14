@@ -227,16 +227,12 @@
                         <a href="IDEAnalysis.html" title="Base trait for IDE analyses.">IDEAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="class" href="IDEPhase1Analysis.html" title="Phase 1 of the IDE algorithm."></a>
-                        <a href="IDEPhase1Analysis.html" title="Phase 1 of the IDE algorithm.">IDEPhase1Analysis</a>
+                        <a class="class" href="IDESolver.html" title="(A variant of) the IDE analysis algorithm."></a>
+                        <a href="IDESolver.html" title="(A variant of) the IDE analysis algorithm.">IDESolver</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="class" href="IDEPhase2Analysis.html" title="Phase 2 of the IDE algorithm."></a>
-                        <a href="IDEPhase2Analysis.html" title="Phase 2 of the IDE algorithm.">IDEPhase2Analysis</a>
-                      </li><li class="current-entities indented2">
-                        <span class="separator"></span>
-                        <a class="class" href="Lambda.html" title="The special item representing the empty set in IDE."></a>
-                        <a href="Lambda.html" title="The special item representing the empty set in IDE.">Lambda</a>
+                        <a class="class" href="Lambda.html" title="The special item representing the empty element in IDE."></a>
+                        <a href="Lambda.html" title="The special item representing the empty element in IDE.">Lambda</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
                         <a class="trait" href="LatticeSolver.html" title="Base trait for lattice solvers."></a>
@@ -454,10 +450,10 @@
       </span>
       
       <p class="shortcomment cmt">Base trait for IDE analyses.</p><div class="fullcomment"><div class="comment cmt"><p>Base trait for IDE analyses.</p></div><dl class="paramcmts block"><dt class="tparam">D</dt><dd class="cmt"><p>the type of items</p></dd><dt class="tparam">L</dt><dd class="cmt"><p>the type of the value lattice</p></dd></dl></div>
-    </li><li name="tip.solvers.IDEPhase1Analysis" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="IDEPhase1Analysis[D,L&lt;:tip.lattices.Lattice]extendsFlowSensitiveAnalysis[(tip.cfg.CfgNode,Either[D,tip.solvers.Lambda],Either[D,tip.solvers.Lambda])]withIDEAnalysis[D,L]withWorklistFixpointPropagationFunctions[(tip.cfg.CfgNode,Either[D,tip.solvers.Lambda],Either[D,tip.solvers.Lambda])]"></a><a id="IDEPhase1Analysis[D,L&lt;:Lattice]:IDEPhase1Analysis[D,L]"></a>
+    </li><li name="tip.solvers.IDESolver" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="IDESolver[D,L&lt;:tip.lattices.Lattice]extendsFlowSensitiveAnalysiswithIDEAnalysis[D,L]"></a><a id="IDESolver[D,L&lt;:Lattice]:IDESolver[D,L]"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDEPhase1Analysis.html" title="Permalink">
+      <a href="../../tip/solvers/IDESolver.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -466,29 +462,10 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="Phase 1 of the IDE algorithm." href="IDEPhase1Analysis.html"><span class="name">IDEPhase1Analysis</span></a><span class="tparams">[<span name="D">D</span>, <span name="L">L &lt;: <a href="../lattices/Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></span>]</span><span class="result"> extends <a href="../analysis/FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDEPhase1Analysis.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>], <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDEPhase1Analysis.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])] with <a href="IDEAnalysis.html" class="extype" name="tip.solvers.IDEAnalysis">IDEAnalysis</a>[<span class="extype" name="tip.solvers.IDEPhase1Analysis.D">D</span>, <span class="extype" name="tip.solvers.IDEPhase1Analysis.L">L</span>] with <a href="WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDEPhase1Analysis.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>], <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDEPhase1Analysis.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])]</span>
+        <a title="(A variant of) the IDE analysis algorithm." href="IDESolver.html"><span class="name">IDESolver</span></a><span class="tparams">[<span name="D">D</span>, <span name="L">L &lt;: <a href="../lattices/Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></span>]</span><span class="result"> extends <a href="../analysis/FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a> with <a href="IDEAnalysis.html" class="extype" name="tip.solvers.IDEAnalysis">IDEAnalysis</a>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <span class="extype" name="tip.solvers.IDESolver.L">L</span>]</span>
       </span>
       
-      <p class="shortcomment cmt">Phase 1 of the IDE algorithm.</p>
-    </li><li name="tip.solvers.IDEPhase2Analysis" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="IDEPhase2Analysis[D,L&lt;:tip.lattices.Lattice]extendsFlowSensitiveAnalysis[(tip.cfg.CfgNode,Either[D,tip.solvers.Lambda])]withWorklistFixpointPropagationFunctions[(tip.cfg.CfgNode,Either[D,tip.solvers.Lambda])]"></a><a id="IDEPhase2Analysis[D,L&lt;:Lattice]:IDEPhase2Analysis[D,L]"></a>
-      <span class="permalink">
-      <a href="../../tip/solvers/IDEPhase2Analysis.html" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">class</span>
-      </span>
-      <span class="symbol">
-        <a title="Phase 2 of the IDE algorithm." href="IDEPhase2Analysis.html"><span class="name">IDEPhase2Analysis</span></a><span class="tparams">[<span name="D">D</span>, <span name="L">L &lt;: <a href="../lattices/Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></span>]</span><span class="result"> extends <a href="../analysis/FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDEPhase2Analysis.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])] with <a href="WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDEPhase2Analysis.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])]</span>
-      </span>
-      
-      <p class="shortcomment cmt">Phase 2 of the IDE algorithm.</p><div class="fullcomment"><div class="comment cmt"><p>Phase 2 of the IDE algorithm.
-Performs a forward dataflow analysis using the decomposed lattice and the micro-transformers.
-The original RHS version of IDE uses jump functions for all nodes, not only at exits, but the analysis result and complexity is the same.
-</p></div></div>
+      <p class="shortcomment cmt">(A variant of) the IDE analysis algorithm.</p>
     </li><li name="tip.solvers.Lambda" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="LambdaextendsProductwithSerializable"></a><a id="Lambda:Lambda"></a>
       <span class="permalink">
@@ -501,10 +478,10 @@ The original RHS version of IDE uses jump functions for all nodes, not only at e
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <a title="The special item representing the empty set in IDE." href="Lambda.html"><span class="name">Lambda</span></a><span class="params">()</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="The special item representing the empty element in IDE." href="Lambda.html"><span class="name">Lambda</span></a><span class="params">()</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
-      <p class="shortcomment cmt">The special item representing the empty set in IDE.</p>
+      <p class="shortcomment cmt">The special item representing the empty element in IDE.</p>
     </li><li name="tip.solvers.LatticeSolver" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="LatticeSolverextendsAnyRef"></a><a id="LatticeSolver:LatticeSolver"></a>
       <span class="permalink">

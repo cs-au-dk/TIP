@@ -108,7 +108,7 @@
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
                         <a class="class" href="" title="The lattice of edge functions, used by tip.solvers.IDEAnalysis."></a>
-                        <a href="" title="The lattice of edge functions, used by tip.solvers.IDEAnalysis.">EdgeLattice</a>
+                        <a href="" title="The lattice of edge functions, used by tip.solvers.IDEAnalysis.">EdgeFunctionLattice</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
                         <a class="class" href="FlatLattice.html" title="The flat lattice made of element of X."></a>
@@ -131,20 +131,20 @@
                         <a href="LiftLattice.html" title="The lift lattice for sublattice.">LiftLattice</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="class" href="MapLattice.html" title="A lattice of maps from the set X to the lattice sublattice."></a>
-                        <a href="MapLattice.html" title="A lattice of maps from the set X to the lattice sublattice.">MapLattice</a>
+                        <a class="class" href="MapLattice.html" title="A lattice of maps from a set of elements of type A to the lattice sublattice."></a>
+                        <a href="MapLattice.html" title="A lattice of maps from a set of elements of type A to the lattice sublattice.">MapLattice</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
                         <a class="class" href="PairLattice.html" title="The product lattice made by l1 and l2."></a>
                         <a href="PairLattice.html" title="The product lattice made by l1 and l2.">PairLattice</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="class" href="PowersetLattice.html" title="The powerset lattice of X, where X is the subset of A defined by the characteristic function ch, with subset ordering."></a>
-                        <a href="PowersetLattice.html" title="The powerset lattice of X, where X is the subset of A defined by the characteristic function ch, with subset ordering.">PowersetLattice</a>
+                        <a class="class" href="PowersetLattice.html" title="The powerset lattice of a set of elements of type A with subset ordering."></a>
+                        <a href="PowersetLattice.html" title="The powerset lattice of a set of elements of type A with subset ordering.">PowersetLattice</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="class" href="ReversePowersetLattice.html" title="The powerset lattice of X, where X is the subset of A defined by the characteristic function ch, with superset ordering."></a>
-                        <a href="ReversePowersetLattice.html" title="The powerset lattice of X, where X is the subset of A defined by the characteristic function ch, with superset ordering.">ReversePowersetLattice</a>
+                        <a class="class" href="ReversePowersetLattice.html" title="The powerset lattice of the given set of elements of type A with superset ordering."></a>
+                        <a href="ReversePowersetLattice.html" title="The powerset lattice of the given set of elements of type A with superset ordering.">ReversePowersetLattice</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
                         <a class="object" href="SignElement$.html" title="An element of the sign lattice."></a>
@@ -153,6 +153,10 @@
                         <span class="separator"></span>
                         <a class="object" href="SignLattice$.html" title="The sign lattice."></a>
                         <a href="SignLattice$.html" title="The sign lattice.">SignLattice</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="TwoElementLattice.html" title="The two-element lattice containing only Top and Bot."></a>
+                        <a href="TwoElementLattice.html" title="The two-element lattice containing only Top and Bot.">TwoElementLattice</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
                         <a class="class" href="UniformProductLattice.html" title="The n-th product lattice made of sublattice lattices."></a>
@@ -166,8 +170,8 @@
       <div id="definition">
         <div class="big-circle class">c</div>
         <p id="owner"><a href="../index.html" class="extype" name="tip">tip</a>.<a href="index.html" class="extype" name="tip.lattices">lattices</a></p>
-        <h1>EdgeLattice<span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html" title="Permalink">
+        <h1>EdgeFunctionLattice<span class="permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span></h1>
@@ -180,13 +184,14 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">EdgeLattice</span><span class="tparams">[<span name="L">L &lt;: <a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></span>]</span><span class="result"> extends <a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></span>
+        <span class="name">EdgeFunctionLattice</span><span class="tparams">[<span name="L">L &lt;: <a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></span>]</span><span class="result"> extends <a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></span>
       </span>
       </h4>
 
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The lattice of edge functions, used by <a href="../solvers/IDEAnalysis.html" class="extype" name="tip.solvers.IDEAnalysis">tip.solvers.IDEAnalysis</a>.
-Technically a map lattice, but we don't bother implementing it as extension of MapLattice.
+A map lattice, but maps are represent differently than in <code>MapLattice</code>.
+Currently only supports the identity function and constant functions.
 </p></div><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
@@ -217,7 +222,7 @@ Technically a map lattice, but we don't bother implementing it as extension of M
                   <span class="filtertype">Inherited<br />
                   </span>
                   <ol id="linearization">
-                    <li class="in" name="tip.lattices.EdgeLattice"><span>EdgeLattice</span></li><li class="in" name="tip.lattices.Lattice"><span>Lattice</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                    <li class="in" name="tip.lattices.EdgeFunctionLattice"><span>EdgeFunctionLattice</span></li><li class="in" name="tip.lattices.Lattice"><span>Lattice</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                   </ol>
                 </div><div class="ancestors">
               <span class="filtertype"></span>
@@ -237,10 +242,10 @@ Technically a map lattice, but we don't bother implementing it as extension of M
         <div id="allMembers">
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
-              <ol><li name="tip.lattices.EdgeLattice#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(valuelattice:L):tip.lattices.EdgeLattice[L]"></a><a id="&lt;init&gt;:EdgeLattice[L]"></a>
+              <ol><li name="tip.lattices.EdgeFunctionLattice#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;(valuelattice:L):tip.lattices.EdgeFunctionLattice[L]"></a><a id="&lt;init&gt;:EdgeFunctionLattice[L]"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html#&lt;init&gt;(valuelattice:L):tip.lattices.EdgeLattice[L]" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html#&lt;init&gt;(valuelattice:L):tip.lattices.EdgeFunctionLattice[L]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -249,7 +254,7 @@ Technically a map lattice, but we don't bother implementing it as extension of M
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">EdgeLattice</span><span class="params">(<span name="valuelattice">valuelattice: <span class="extype" name="tip.lattices.EdgeLattice.L">L</span></span>)</span>
+        <span class="name">EdgeFunctionLattice</span><span class="params">(<span name="valuelattice">valuelattice: <span class="extype" name="tip.lattices.EdgeFunctionLattice.L">L</span></span>)</span>
       </span>
       
       
@@ -258,10 +263,10 @@ Technically a map lattice, but we don't bother implementing it as extension of M
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="tip.lattices.EdgeLattice.ConstEdge" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="ConstEdgeextendsEdgeLattice.this.EdgewithProductwithSerializable"></a><a id="ConstEdge:ConstEdge"></a>
+              <ol><li name="tip.lattices.EdgeFunctionLattice.ConstEdge" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ConstEdgeextendsEdgeFunctionLattice.this.EdgeFunctionwithProductwithSerializable"></a><a id="ConstEdge:ConstEdge"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice$ConstEdge.html" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice$ConstEdge.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -270,14 +275,14 @@ Technically a map lattice, but we don't bother implementing it as extension of M
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <a title="Edge labeled with constant function." href="EdgeLattice$ConstEdge.html"><span class="name">ConstEdge</span></a><span class="params">(<span name="c">c: <span class="extype" name="tip.lattices.Lattice.Element">L.Element</span></span>)</span><span class="result"> extends <a href="EdgeLattice$Edge.html" class="extype" name="tip.lattices.EdgeLattice.Edge">Edge</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="Edge labeled with constant function." href="EdgeFunctionLattice$ConstEdge.html"><span class="name">ConstEdge</span></a><span class="params">(<span name="c">c: <span class="extype" name="tip.lattices.Lattice.Element">L.Element</span></span>)</span><span class="result"> extends <a href="EdgeFunctionLattice$EdgeFunction.html" class="extype" name="tip.lattices.EdgeFunctionLattice.EdgeFunction">EdgeFunction</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       <p class="shortcomment cmt">Edge labeled with constant function.</p>
-    </li><li name="tip.lattices.EdgeLattice.Edge" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="EdgeextendsEdgeLattice.this.valuelattice.Element=&gt;EdgeLattice.this.valuelattice.Element"></a><a id="Edge:Edge"></a>
+    </li><li name="tip.lattices.EdgeFunctionLattice.EdgeFunction" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="EdgeFunctionextendsEdgeFunctionLattice.this.valuelattice.Element=&gt;EdgeFunctionLattice.this.valuelattice.Element"></a><a id="EdgeFunction:EdgeFunction"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice$Edge.html" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice$EdgeFunction.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -286,14 +291,14 @@ Technically a map lattice, but we don't bother implementing it as extension of M
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <a title="An &quot;edge&quot; represents a function L -&gt; L where L is the value lattice." href="EdgeLattice$Edge.html"><span class="name">Edge</span></a><span class="result"> extends (<span class="extype" name="tip.lattices.Lattice.Element">L.Element</span>) ⇒ <span class="extype" name="tip.lattices.Lattice.Element">L.Element</span></span>
+        <a title="An &quot;edge&quot; represents a function L -&gt; L where L is the value lattice." href="EdgeFunctionLattice$EdgeFunction.html"><span class="name">EdgeFunction</span></a><span class="result"> extends (<span class="extype" name="tip.lattices.Lattice.Element">L.Element</span>) ⇒ <span class="extype" name="tip.lattices.Lattice.Element">L.Element</span></span>
       </span>
       
       <p class="shortcomment cmt">An &quot;edge&quot; represents a function L -&gt; L where L is the value lattice.</p>
-    </li><li name="tip.lattices.EdgeLattice.Element" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="Element=EdgeLattice.this.Edge"></a><a id="Element:Element"></a>
+    </li><li name="tip.lattices.EdgeFunctionLattice.Element" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="Element=EdgeFunctionLattice.this.EdgeFunction"></a><a id="Element:Element"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html#Element=EdgeLattice.this.Edge" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html#Element=EdgeFunctionLattice.this.EdgeFunction" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -302,18 +307,18 @@ Technically a map lattice, but we don't bother implementing it as extension of M
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">Element</span><span class="result alias"> = <a href="EdgeLattice$Edge.html" class="extype" name="tip.lattices.EdgeLattice.Edge">Edge</a></span>
+        <span class="name">Element</span><span class="result alias"> = <a href="EdgeFunctionLattice$EdgeFunction.html" class="extype" name="tip.lattices.EdgeFunctionLattice.EdgeFunction">EdgeFunction</a></span>
       </span>
       
       <p class="shortcomment cmt">The type of the elements of this lattice.</p><div class="fullcomment"><div class="comment cmt"><p>The type of the elements of this lattice.</p><p>To novice Scala programmers:
 This is an example of an abstract type member. In this trait, <code>Element</code> is just a name for a type.
 It is constrained in sub-traits and sub-classes, similarly to type parameters in generic classes.
 For more information about abstract type members in Scala, see <a href="https://docs.scala-lang.org/tour/abstract-types.html" target="_blank">https://docs.scala-lang.org/tour/abstract-types.html</a>.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.lattices.EdgeLattice">EdgeLattice</a> → <a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></dd></dl></div>
-    </li><li name="tip.lattices.EdgeLattice.IdEdge" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="IdEdgeextendsEdgeLattice.this.EdgewithProductwithSerializable"></a><a id="IdEdge:IdEdge"></a>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.lattices.EdgeFunctionLattice">EdgeFunctionLattice</a> → <a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></dd></dl></div>
+    </li><li name="tip.lattices.EdgeFunctionLattice.IdEdge" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="IdEdgeextendsEdgeFunctionLattice.this.EdgeFunctionwithProductwithSerializable"></a><a id="IdEdge:IdEdge"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice$IdEdge.html" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice$IdEdge.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -322,7 +327,7 @@ For more information about abstract type members in Scala, see <a href="https://
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <a title="Edge labeled with identity function." href="EdgeLattice$IdEdge.html"><span class="name">IdEdge</span></a><span class="params">()</span><span class="result"> extends <a href="EdgeLattice$Edge.html" class="extype" name="tip.lattices.EdgeLattice.Edge">Edge</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="Edge labeled with identity function." href="EdgeFunctionLattice$IdEdge.html"><span class="name">IdEdge</span></a><span class="params">()</span><span class="result"> extends <a href="EdgeFunctionLattice$EdgeFunction.html" class="extype" name="tip.lattices.EdgeFunctionLattice.EdgeFunction">EdgeFunction</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       <p class="shortcomment cmt">Edge labeled with identity function.</p>
@@ -337,7 +342,7 @@ For more information about abstract type members in Scala, see <a href="https://
                 <li name="scala.AnyRef#!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html#!=(x$1:Any):Boolean" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html#!=(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -353,7 +358,7 @@ For more information about abstract type members in Scala, see <a href="https://
     </li><li name="scala.AnyRef###" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="##():Int"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html###():Int" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html###():Int" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -369,7 +374,7 @@ For more information about abstract type members in Scala, see <a href="https://
     </li><li name="scala.AnyRef#==" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="==(x$1:Any):Boolean"></a><a id="==(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html#==(x$1:Any):Boolean" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html#==(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -385,7 +390,7 @@ For more information about abstract type members in Scala, see <a href="https://
     </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html#asInstanceOf[T0]:T0" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html#asInstanceOf[T0]:T0" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -398,10 +403,10 @@ For more information about abstract type members in Scala, see <a href="https://
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="tip.lattices.EdgeLattice#bottom" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="bottom:EdgeLattice.this.ConstEdge"></a><a id="bottom:ConstEdge"></a>
+    </li><li name="tip.lattices.EdgeFunctionLattice#bottom" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="bottom:EdgeFunctionLattice.this.ConstEdge"></a><a id="bottom:ConstEdge"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html#bottom:EdgeLattice.this.ConstEdge" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html#bottom:EdgeFunctionLattice.this.ConstEdge" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -410,15 +415,15 @@ For more information about abstract type members in Scala, see <a href="https://
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">bottom</span><span class="result">: <a href="EdgeLattice$ConstEdge.html" class="extype" name="tip.lattices.EdgeLattice.ConstEdge">ConstEdge</a></span>
+        <span class="name">bottom</span><span class="result">: <a href="EdgeFunctionLattice$ConstEdge.html" class="extype" name="tip.lattices.EdgeFunctionLattice.ConstEdge">ConstEdge</a></span>
       </span>
       
       <p class="shortcomment cmt">The bottom element of this lattice.</p><div class="fullcomment"><div class="comment cmt"><p>The bottom element of this lattice.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.lattices.EdgeLattice">EdgeLattice</a> → <a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></dd></dl></div>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.lattices.EdgeFunctionLattice">EdgeFunctionLattice</a> → <a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></dd></dl></div>
     </li><li name="tip.lattices.Lattice#ch" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ch(e:Lattice.this.Element):Boolean"></a><a id="ch(Element):Boolean"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html#ch(e:Lattice.this.Element):Boolean" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html#ch(e:Lattice.this.Element):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -427,7 +432,7 @@ For more information about abstract type members in Scala, see <a href="https://
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">ch</span><span class="params">(<span name="e">e: <a href="#Element=EdgeLattice.this.Edge" class="extmbr" name="tip.lattices.EdgeLattice.Element">Element</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">ch</span><span class="params">(<span name="e">e: <a href="#Element=EdgeFunctionLattice.this.EdgeFunction" class="extmbr" name="tip.lattices.EdgeFunctionLattice.Element">Element</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       
       <p class="shortcomment cmt">The characteristic function of the set of lattice elements.</p><div class="fullcomment"><div class="comment cmt"><p>The characteristic function of the set of lattice elements.
@@ -436,7 +441,7 @@ Default implementation: returns true for all elements of the right type.
     </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a><a id="clone():AnyRef"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html#clone():Object" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html#clone():Object" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -456,13 +461,13 @@ Default implementation: returns true for all elements of the right type.
               
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html#eq(x$1:AnyRef):Boolean" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html#eq(x$1:AnyRef):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -478,7 +483,7 @@ Default implementation: returns true for all elements of the right type.
     </li><li name="scala.AnyRef#equals" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="equals(x$1:Any):Boolean"></a><a id="equals(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html#equals(x$1:Any):Boolean" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html#equals(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -494,7 +499,7 @@ Default implementation: returns true for all elements of the right type.
     </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html#getClass():Class[_]" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html#getClass():Class[_]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -509,13 +514,13 @@ Default implementation: returns true for all elements of the right type.
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="hashCode():Int"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html#hashCode():Int" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html#hashCode():Int" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -530,13 +535,13 @@ Default implementation: returns true for all elements of the right type.
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html#isInstanceOf[T0]:Boolean" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html#isInstanceOf[T0]:Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -552,7 +557,7 @@ Default implementation: returns true for all elements of the right type.
     </li><li name="tip.lattices.Lattice#leq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="leq(x:Lattice.this.Element,y:Lattice.this.Element):Boolean"></a><a id="leq(Element,Element):Boolean"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html#leq(x:Lattice.this.Element,y:Lattice.this.Element):Boolean" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html#leq(x:Lattice.this.Element,y:Lattice.this.Element):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -561,15 +566,15 @@ Default implementation: returns true for all elements of the right type.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">leq</span><span class="params">(<span name="x">x: <a href="#Element=EdgeLattice.this.Edge" class="extmbr" name="tip.lattices.EdgeLattice.Element">Element</a></span>, <span name="y">y: <a href="#Element=EdgeLattice.this.Edge" class="extmbr" name="tip.lattices.EdgeLattice.Element">Element</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">leq</span><span class="params">(<span name="x">x: <a href="#Element=EdgeFunctionLattice.this.EdgeFunction" class="extmbr" name="tip.lattices.EdgeFunctionLattice.Element">Element</a></span>, <span name="y">y: <a href="#Element=EdgeFunctionLattice.this.EdgeFunction" class="extmbr" name="tip.lattices.EdgeFunctionLattice.Element">Element</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       
       <p class="shortcomment cmt">Returns true whenever <code>x</code> &lt;= <code>y</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Returns true whenever <code>x</code> &lt;= <code>y</code>.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></dd></dl></div>
-    </li><li name="tip.lattices.EdgeLattice#lub" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="lub(x:EdgeLattice.this.Element,y:EdgeLattice.this.Element):EdgeLattice.this.Element"></a><a id="lub(Element,Element):Element"></a>
+    </li><li name="tip.lattices.EdgeFunctionLattice#lub" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="lub(x:EdgeFunctionLattice.this.Element,y:EdgeFunctionLattice.this.Element):EdgeFunctionLattice.this.Element"></a><a id="lub(Element,Element):Element"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html#lub(x:EdgeLattice.this.Element,y:EdgeLattice.this.Element):EdgeLattice.this.Element" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html#lub(x:EdgeFunctionLattice.this.Element,y:EdgeFunctionLattice.this.Element):EdgeFunctionLattice.this.Element" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -578,15 +583,15 @@ Default implementation: returns true for all elements of the right type.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">lub</span><span class="params">(<span name="x">x: <a href="#Element=EdgeLattice.this.Edge" class="extmbr" name="tip.lattices.EdgeLattice.Element">Element</a></span>, <span name="y">y: <a href="#Element=EdgeLattice.this.Edge" class="extmbr" name="tip.lattices.EdgeLattice.Element">Element</a></span>)</span><span class="result">: <a href="#Element=EdgeLattice.this.Edge" class="extmbr" name="tip.lattices.EdgeLattice.Element">Element</a></span>
+        <span class="name">lub</span><span class="params">(<span name="x">x: <a href="#Element=EdgeFunctionLattice.this.EdgeFunction" class="extmbr" name="tip.lattices.EdgeFunctionLattice.Element">Element</a></span>, <span name="y">y: <a href="#Element=EdgeFunctionLattice.this.EdgeFunction" class="extmbr" name="tip.lattices.EdgeFunctionLattice.Element">Element</a></span>)</span><span class="result">: <a href="#Element=EdgeFunctionLattice.this.EdgeFunction" class="extmbr" name="tip.lattices.EdgeFunctionLattice.Element">Element</a></span>
       </span>
       
       <p class="shortcomment cmt">The least upper bound of <code>x</code> and <code>y</code>.</p><div class="fullcomment"><div class="comment cmt"><p>The least upper bound of <code>x</code> and <code>y</code>.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.lattices.EdgeLattice">EdgeLattice</a> → <a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></dd></dl></div>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.lattices.EdgeFunctionLattice">EdgeFunctionLattice</a> → <a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></dd></dl></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html#ne(x$1:AnyRef):Boolean" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html#ne(x$1:AnyRef):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -602,7 +607,7 @@ Default implementation: returns true for all elements of the right type.
     </li><li name="scala.AnyRef#notify" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notify():Unit"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html#notify():Unit" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html#notify():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -617,13 +622,13 @@ Default implementation: returns true for all elements of the right type.
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notifyAll():Unit"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html#notifyAll():Unit" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html#notifyAll():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -638,13 +643,13 @@ Default implementation: returns true for all elements of the right type.
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -660,7 +665,7 @@ Default implementation: returns true for all elements of the right type.
     </li><li name="scala.AnyRef#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html#toString():String" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html#toString():String" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -676,7 +681,7 @@ Default implementation: returns true for all elements of the right type.
     </li><li name="tip.lattices.Lattice#top" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="top:Lattice.this.Element"></a><a id="top:Element"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html#top:Lattice.this.Element" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html#top:Lattice.this.Element" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -685,16 +690,16 @@ Default implementation: returns true for all elements of the right type.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">top</span><span class="result">: <a href="#Element=EdgeLattice.this.Edge" class="extmbr" name="tip.lattices.EdgeLattice.Element">Element</a></span>
+        <span class="name">top</span><span class="result">: <a href="#Element=EdgeFunctionLattice.this.EdgeFunction" class="extmbr" name="tip.lattices.EdgeFunctionLattice.Element">Element</a></span>
       </span>
       
       <p class="shortcomment cmt">The top element of this lattice.</p><div class="fullcomment"><div class="comment cmt"><p>The top element of this lattice.
 Default: not implemented.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></dd></dl></div>
-    </li><li name="tip.lattices.EdgeLattice#valuelattice" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="tip.lattices.EdgeFunctionLattice#valuelattice" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="valuelattice:L"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html#valuelattice:L" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html#valuelattice:L" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -703,14 +708,14 @@ Default: not implemented.
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">valuelattice</span><span class="result">: <span class="extype" name="tip.lattices.EdgeLattice.L">L</span></span>
+        <span class="name">valuelattice</span><span class="result">: <span class="extype" name="tip.lattices.EdgeFunctionLattice.L">L</span></span>
       </span>
       
       
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -732,7 +737,7 @@ Default: not implemented.
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait(x$1:Long):Unit"></a><a id="wait(Long):Unit"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html#wait(x$1:Long):Unit" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html#wait(x$1:Long):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -756,7 +761,7 @@ Default: not implemented.
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html#wait():Unit" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html#wait():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -786,7 +791,7 @@ Default: not implemented.
               <ol><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <span class="permalink">
-      <a href="../../tip/lattices/EdgeLattice.html#finalize():Unit" title="Permalink">
+      <a href="../../tip/lattices/EdgeFunctionLattice.html#finalize():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>

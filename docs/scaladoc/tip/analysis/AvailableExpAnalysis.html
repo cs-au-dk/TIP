@@ -163,8 +163,8 @@
                         <a href="ContextSensitiveValueAnalysis.html" title="Base class for value analysis with context sensitivity and lifted lattice.">ContextSensitiveValueAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="class" href="ControlFlowAnalysis.html" title=""></a>
-                        <a href="ControlFlowAnalysis.html" title="">ControlFlowAnalysis</a>
+                        <a class="class" href="ControlFlowAnalysis.html" title="Control flow analysis."></a>
+                        <a href="ControlFlowAnalysis.html" title="Control flow analysis.">ControlFlowAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
                         <a class="trait" href="CopyConstantPropagationAnalysisFunctions.html" title="Micro-transfer-functions for copy-constant-propagation analysis."></a>
@@ -295,6 +295,14 @@
                         <a href="PointsToAnalysis.html" title="Trait for (may-)points-to analyses.">PointsToAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
+                        <a class="trait" href="PossiblyUninitializedVarsAnalysisFunctions.html" title="Micro-transfer-functions for possibly-uninitialized variables analysis."></a>
+                        <a href="PossiblyUninitializedVarsAnalysisFunctions.html" title="Micro-transfer-functions for possibly-uninitialized variables analysis.">PossiblyUninitializedVarsAnalysisFunctions</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="PossiblyUninitializedVarsIDEAnalysis.html" title="Possibly-uninitialized variables analysis using IDE solver."></a>
+                        <a href="PossiblyUninitializedVarsIDEAnalysis.html" title="Possibly-uninitialized variables analysis using IDE solver.">PossiblyUninitializedVarsIDEAnalysis</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
                         <a class="object" href="SignAnalysis$.html" title=""></a>
                         <a href="SignAnalysis$.html" title="">SignAnalysis</a>
                       </li><li class="current-entities indented2">
@@ -344,7 +352,7 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">AvailableExpAnalysis</span><span class="result"> extends <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
+        <span class="name">AvailableExpAnalysis</span><span class="result"> extends <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a></span>
       </span>
       </h4>
 
@@ -354,7 +362,7 @@
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>], <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Any">Any</span>], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a>, <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Any">Any</span>], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div><div class="toggleContainer block">
             <span class="toggle">
               Known Subclasses
@@ -428,10 +436,10 @@
 
         <div class="values members">
               <h3>Abstract Value Members</h3>
-              <ol><li name="tip.analysis.FlowSensitiveAnalysis#analyze" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="analyze():FlowSensitiveAnalysis.this.lattice.Element"></a><a id="analyze():Element"></a>
+              <ol><li name="tip.analysis.Analysis#analyze" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="analyze():R"></a><a id="analyze():Any"></a>
       <span class="permalink">
-      <a href="../../tip/analysis/AvailableExpAnalysis.html#analyze():FlowSensitiveAnalysis.this.lattice.Element" title="Permalink">
+      <a href="../../tip/analysis/AvailableExpAnalysis.html#analyze():R" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -440,10 +448,11 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">analyze</span><span class="params">()</span><span class="result">: <a href="../lattices/MapLattice.html#Element=Map[A,MapLattice.this.sublattice.Element]" class="extmbr" name="tip.lattices.MapLattice.Element">Element</a></span>
+        <span class="name">analyze</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Any">Any</span></span>
       </span>
       
-      <p class="shortcomment cmt">Performs the analysis and returns the result.</p><div class="fullcomment"><div class="comment cmt"><p>Performs the analysis and returns the result.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a> → <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a></dd></dl></div>
+      <p class="shortcomment cmt">Performs the analysis and returns the result.</p><div class="fullcomment"><div class="comment cmt"><p>Performs the analysis and returns the result.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a></dd></dl></div>
     </li></ol>
             </div>
 
@@ -499,9 +508,9 @@
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="tip.analysis.AvailableExpAnalysis#allExps" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="allExps:Set[tip.ast.AstOps.UnlabelledNode[tip.ast.AExpr]]"></a><a id="allExps:Set[UnlabelledNode[AExpr]]"></a>
+      <a id="allExps:scala.collection.immutable.Set[tip.ast.AstOps.UnlabelledNode[tip.ast.AExpr]]"></a><a id="allExps:Set[UnlabelledNode[AExpr]]"></a>
       <span class="permalink">
-      <a href="../../tip/analysis/AvailableExpAnalysis.html#allExps:Set[tip.ast.AstOps.UnlabelledNode[tip.ast.AExpr]]" title="Permalink">
+      <a href="../../tip/analysis/AvailableExpAnalysis.html#allExps:scala.collection.immutable.Set[tip.ast.AstOps.UnlabelledNode[tip.ast.AExpr]]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -510,7 +519,7 @@
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">allExps</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../ast/AstOps$$UnlabelledNode.html" class="extype" name="tip.ast.AstOps.UnlabelledNode">UnlabelledNode</a>[<a href="../ast/AExpr.html" class="extype" name="tip.ast.AExpr">AExpr</a>]]</span>
+        <span class="name">allExps</span><span class="result">: <span class="extype" name="scala.collection.immutable.Set">Set</span>[<a href="../ast/AstOps$$UnlabelledNode.html" class="extype" name="tip.ast.AstOps.UnlabelledNode">UnlabelledNode</a>[<a href="../ast/AExpr.html" class="extype" name="tip.ast.AExpr">AExpr</a>]]</span>
       </span>
       
       
@@ -553,13 +562,13 @@
               
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="tip.analysis.FlowSensitiveAnalysis#domain" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="domain:Set[tip.cfg.CfgNode]"></a><a id="domain:Set[CfgNode]"></a>
+    </li><li name="tip.analysis.AvailableExpAnalysis#domain" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="domain:scala.collection.immutable.Set[tip.cfg.CfgNode]"></a><a id="domain:Set[CfgNode]"></a>
       <span class="permalink">
-      <a href="../../tip/analysis/AvailableExpAnalysis.html#domain:Set[tip.cfg.CfgNode]" title="Permalink">
+      <a href="../../tip/analysis/AvailableExpAnalysis.html#domain:scala.collection.immutable.Set[tip.cfg.CfgNode]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -568,11 +577,10 @@
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">domain</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
+        <span class="name">domain</span><span class="result">: <span class="extype" name="scala.collection.immutable.Set">Set</span>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
       </span>
       
-      <p class="shortcomment cmt">The domain of the map lattice.</p><div class="fullcomment"><div class="comment cmt"><p>The domain of the map lattice.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a></dd></dl></div>
+      
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
       <span class="permalink">
@@ -623,7 +631,7 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -644,7 +652,7 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -663,7 +671,7 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="tip.analysis.AvailableExpAnalysis#lattice" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="tip.analysis.AvailableExpAnalysis#lattice" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="lattice:tip.lattices.MapLattice[tip.cfg.CfgNode,tip.lattices.ReversePowersetLattice[tip.ast.AstOps.UnlabelledNode[tip.ast.AExpr]]]"></a><a id="lattice:MapLattice[CfgNode,ReversePowersetLattice[UnlabelledNode[AExpr]]]"></a>
       <span class="permalink">
       <a href="../../tip/analysis/AvailableExpAnalysis.html#lattice:tip.lattices.MapLattice[tip.cfg.CfgNode,tip.lattices.ReversePowersetLattice[tip.ast.AstOps.UnlabelledNode[tip.ast.AExpr]]]" title="Permalink">
@@ -678,8 +686,7 @@
         <span class="name">lattice</span><span class="result">: <a href="../lattices/MapLattice.html" class="extype" name="tip.lattices.MapLattice">MapLattice</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <a href="../lattices/ReversePowersetLattice.html" class="extype" name="tip.lattices.ReversePowersetLattice">ReversePowersetLattice</a>[<a href="../ast/AstOps$$UnlabelledNode.html" class="extype" name="tip.ast.AstOps.UnlabelledNode">UnlabelledNode</a>[<a href="../ast/AExpr.html" class="extype" name="tip.ast.AExpr">AExpr</a>]]]</span>
       </span>
       
-      <p class="shortcomment cmt">The lattice used by the analysis.</p><div class="fullcomment"><div class="comment cmt"><p>The lattice used by the analysis.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.AvailableExpAnalysis">AvailableExpAnalysis</a> → <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a></dd></dl></div>
+      
     </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
       <span class="permalink">
@@ -714,7 +721,7 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -735,9 +742,25 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
+    </li><li name="tip.analysis.FlowSensitiveAnalysis#stateAfterNode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="stateAfterNode:Boolean"></a>
+      <span class="permalink">
+      <a href="../../tip/analysis/AvailableExpAnalysis.html#stateAfterNode:Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">stateAfterNode</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
@@ -892,7 +915,7 @@
 
         <div id="inheritedMembers">
         <div class="parent" name="tip.analysis.FlowSensitiveAnalysis">
-              <h3>Inherited from <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</h3>
+              <h3>Inherited from <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a></h3>
             </div><div class="parent" name="tip.analysis.Analysis">
               <h3>Inherited from <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Any">Any</span>]</h3>
             </div><div class="parent" name="scala.AnyRef">

@@ -163,8 +163,8 @@
                         <a href="ContextSensitiveValueAnalysis.html" title="Base class for value analysis with context sensitivity and lifted lattice.">ContextSensitiveValueAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="class" href="ControlFlowAnalysis.html" title=""></a>
-                        <a href="ControlFlowAnalysis.html" title="">ControlFlowAnalysis</a>
+                        <a class="class" href="ControlFlowAnalysis.html" title="Control flow analysis."></a>
+                        <a href="ControlFlowAnalysis.html" title="Control flow analysis.">ControlFlowAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
                         <a class="trait" href="CopyConstantPropagationAnalysisFunctions.html" title="Micro-transfer-functions for copy-constant-propagation analysis."></a>
@@ -295,6 +295,14 @@
                         <a href="PointsToAnalysis.html" title="Trait for (may-)points-to analyses.">PointsToAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
+                        <a class="trait" href="PossiblyUninitializedVarsAnalysisFunctions.html" title="Micro-transfer-functions for possibly-uninitialized variables analysis."></a>
+                        <a href="PossiblyUninitializedVarsAnalysisFunctions.html" title="Micro-transfer-functions for possibly-uninitialized variables analysis.">PossiblyUninitializedVarsAnalysisFunctions</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="PossiblyUninitializedVarsIDEAnalysis.html" title="Possibly-uninitialized variables analysis using IDE solver."></a>
+                        <a href="PossiblyUninitializedVarsIDEAnalysis.html" title="Possibly-uninitialized variables analysis using IDE solver.">PossiblyUninitializedVarsIDEAnalysis</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
                         <a class="object" href="SignAnalysis$.html" title=""></a>
                         <a href="SignAnalysis$.html" title="">SignAnalysis</a>
                       </li><li class="current-entities indented2">
@@ -344,7 +352,7 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">FunctionalValueAnalysis</span><span class="tparams">[<span name="L">L &lt;: <a href="../lattices/LatticeWithOps.html" class="extype" name="tip.lattices.LatticeWithOps">LatticeWithOps</a></span>]</span><span class="result"> extends <a href="ContextSensitiveValueAnalysis.html" class="extype" name="tip.analysis.ContextSensitiveValueAnalysis">ContextSensitiveValueAnalysis</a>[<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <span class="extype" name="tip.analysis.FunctionalValueAnalysis.L">L</span>] with <a href="FunctionalFunctions.html" class="extype" name="tip.analysis.FunctionalFunctions">FunctionalFunctions</a></span>
+        <span class="name">FunctionalValueAnalysis</span><span class="tparams">[<span name="L">L &lt;: <a href="../lattices/LatticeWithOps.html" class="extype" name="tip.lattices.LatticeWithOps">LatticeWithOps</a></span>]</span><span class="result"> extends <a href="ContextSensitiveValueAnalysis.html" class="extype" name="tip.analysis.ContextSensitiveValueAnalysis">ContextSensitiveValueAnalysis</a>[<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>] with <a href="FunctionalFunctions.html" class="extype" name="tip.analysis.FunctionalFunctions">FunctionalFunctions</a></span>
       </span>
       </h4>
 
@@ -354,7 +362,7 @@
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><a href="FunctionalFunctions.html" class="extype" name="tip.analysis.FunctionalFunctions">FunctionalFunctions</a>, <a href="ContextSensitiveValueAnalysis.html" class="extype" name="tip.analysis.ContextSensitiveValueAnalysis">ContextSensitiveValueAnalysis</a>[<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <span class="extype" name="tip.analysis.FunctionalValueAnalysis.L">L</span>], <a href="CallContextFunctions.html" class="extype" name="tip.analysis.CallContextFunctions">CallContextFunctions</a>[<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>], <a href="InterprocValueAnalysisMisc.html" class="extype" name="tip.analysis.InterprocValueAnalysisMisc">InterprocValueAnalysisMisc</a>[(<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)], <a href="ValueAnalysisMisc.html" class="extype" name="tip.analysis.ValueAnalysisMisc">ValueAnalysisMisc</a>, <a href="../solvers/WorklistFixpointPropagationSolver.html" class="extype" name="tip.solvers.WorklistFixpointPropagationSolver">WorklistFixpointPropagationSolver</a>[(<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)], <a href="../solvers/WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a>[(<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)], <a href="../solvers/WorklistFixpointSolverWithReachability.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithReachability">WorklistFixpointSolverWithReachability</a>[(<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)], <a href="../solvers/WorklistFixpointSolver.html" class="extype" name="tip.solvers.WorklistFixpointSolver">WorklistFixpointSolver</a>[(<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)], <a href="../solvers/ListSetWorklist.html" class="extype" name="tip.solvers.ListSetWorklist">ListSetWorklist</a>[(<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)], <a href="../solvers/Worklist.html" class="extype" name="tip.solvers.Worklist">Worklist</a>[(<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)], <a href="../solvers/MapLiftLatticeSolver.html" class="extype" name="tip.solvers.MapLiftLatticeSolver">MapLiftLatticeSolver</a>[(<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)], <a href="../solvers/MapLatticeSolver.html" class="extype" name="tip.solvers.MapLatticeSolver">MapLatticeSolver</a>[(<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)], <a href="../solvers/LatticeSolver.html" class="extype" name="tip.solvers.LatticeSolver">LatticeSolver</a>, <a href="ContextSensitiveForwardDependencies.html" class="extype" name="tip.analysis.ContextSensitiveForwardDependencies">ContextSensitiveForwardDependencies</a>[<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>], <a href="Dependencies.html" class="extype" name="tip.analysis.Dependencies">Dependencies</a>[(<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)], <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a>[(<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)], <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Any">Any</span>], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="FunctionalFunctions.html" class="extype" name="tip.analysis.FunctionalFunctions">FunctionalFunctions</a>, <a href="ContextSensitiveValueAnalysis.html" class="extype" name="tip.analysis.ContextSensitiveValueAnalysis">ContextSensitiveValueAnalysis</a>[<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>], <a href="CallContextFunctions.html" class="extype" name="tip.analysis.CallContextFunctions">CallContextFunctions</a>[<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>], <a href="InterprocValueAnalysisMisc.html" class="extype" name="tip.analysis.InterprocValueAnalysisMisc">InterprocValueAnalysisMisc</a>[(<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)], <a href="ValueAnalysisMisc.html" class="extype" name="tip.analysis.ValueAnalysisMisc">ValueAnalysisMisc</a>, <a href="../solvers/WorklistFixpointPropagationSolver.html" class="extype" name="tip.solvers.WorklistFixpointPropagationSolver">WorklistFixpointPropagationSolver</a>[(<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)], <a href="../solvers/WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a>[(<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)], <a href="../solvers/WorklistFixpointSolverWithReachability.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithReachability">WorklistFixpointSolverWithReachability</a>[(<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)], <a href="../solvers/WorklistFixpointSolver.html" class="extype" name="tip.solvers.WorklistFixpointSolver">WorklistFixpointSolver</a>[(<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)], <a href="../solvers/ListSetWorklist.html" class="extype" name="tip.solvers.ListSetWorklist">ListSetWorklist</a>[(<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)], <a href="../solvers/Worklist.html" class="extype" name="tip.solvers.Worklist">Worklist</a>[(<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)], <a href="../solvers/MapLiftLatticeSolver.html" class="extype" name="tip.solvers.MapLiftLatticeSolver">MapLiftLatticeSolver</a>[(<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)], <a href="../solvers/MapLatticeSolver.html" class="extype" name="tip.solvers.MapLatticeSolver">MapLatticeSolver</a>[(<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)], <a href="../solvers/LatticeSolver.html" class="extype" name="tip.solvers.LatticeSolver">LatticeSolver</a>, <a href="ContextSensitiveForwardDependencies.html" class="extype" name="tip.analysis.ContextSensitiveForwardDependencies">ContextSensitiveForwardDependencies</a>[<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>], <a href="Dependencies.html" class="extype" name="tip.analysis.Dependencies">Dependencies</a>[(<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)], <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a>, <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Any">Any</span>], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div><div class="toggleContainer block">
             <span class="toggle">
               Known Subclasses
@@ -605,7 +613,7 @@
               
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="tip.analysis.FunctionalValueAnalysis#declData" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -625,9 +633,9 @@
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.FunctionalValueAnalysis">FunctionalValueAnalysis</a> → <a href="ContextSensitiveValueAnalysis.html" class="extype" name="tip.analysis.ContextSensitiveValueAnalysis">ContextSensitiveValueAnalysis</a> → <a href="InterprocValueAnalysisMisc.html" class="extype" name="tip.analysis.InterprocValueAnalysisMisc">InterprocValueAnalysisMisc</a> → <a href="ValueAnalysisMisc.html" class="extype" name="tip.analysis.ValueAnalysisMisc">ValueAnalysisMisc</a></dd></dl></div>
     </li><li name="tip.analysis.ValueAnalysisMisc#declaredVars" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="declaredVars:Set[tip.ast.ADeclaration]"></a><a id="declaredVars:Set[ADeclaration]"></a>
+      <a id="declaredVars:scala.collection.immutable.Set[tip.ast.ADeclaration]"></a><a id="declaredVars:Set[ADeclaration]"></a>
       <span class="permalink">
-      <a href="../../tip/analysis/FunctionalValueAnalysis.html#declaredVars:Set[tip.ast.ADeclaration]" title="Permalink">
+      <a href="../../tip/analysis/FunctionalValueAnalysis.html#declaredVars:scala.collection.immutable.Set[tip.ast.ADeclaration]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -636,28 +644,11 @@
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">declaredVars</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>]</span>
+        <span class="name">declaredVars</span><span class="result">: <span class="extype" name="scala.collection.immutable.Set">Set</span>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>]</span>
       </span>
       
       <p class="shortcomment cmt">Set of declared variables, used by <code>statelattice</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set of declared variables, used by <code>statelattice</code>.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ValueAnalysisMisc.html" class="extype" name="tip.analysis.ValueAnalysisMisc">ValueAnalysisMisc</a></dd></dl></div>
-    </li><li name="tip.analysis.FlowSensitiveAnalysis#domain" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="domain:Set[tip.cfg.CfgNode]"></a><a id="domain:Set[CfgNode]"></a>
-      <span class="permalink">
-      <a href="../../tip/analysis/FunctionalValueAnalysis.html#domain:Set[tip.cfg.CfgNode]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">domain</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
-      </span>
-      
-      <p class="shortcomment cmt">The domain of the map lattice.</p><div class="fullcomment"><div class="comment cmt"><p>The domain of the map lattice.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a></dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
       <span class="permalink">
@@ -776,7 +767,7 @@ First computes the join of the incoming elements and then applies the transfer f
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -797,7 +788,7 @@ First computes the join of the incoming elements and then applies the transfer f
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="tip.analysis.ContextSensitiveForwardDependencies#indep" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -899,7 +890,7 @@ First computes the join of the incoming elements and then applies the transfer f
       </span>
       
       <p class="shortcomment cmt">The analysis lattice.</p><div class="fullcomment"><div class="comment cmt"><p>The analysis lattice.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ContextSensitiveValueAnalysis.html" class="extype" name="tip.analysis.ContextSensitiveValueAnalysis">ContextSensitiveValueAnalysis</a> → <a href="InterprocValueAnalysisMisc.html" class="extype" name="tip.analysis.InterprocValueAnalysisMisc">InterprocValueAnalysisMisc</a> → <a href="../solvers/WorklistFixpointPropagationSolver.html" class="extype" name="tip.solvers.WorklistFixpointPropagationSolver">WorklistFixpointPropagationSolver</a> → <a href="../solvers/WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a> → <a href="../solvers/MapLiftLatticeSolver.html" class="extype" name="tip.solvers.MapLiftLatticeSolver">MapLiftLatticeSolver</a> → <a href="../solvers/MapLatticeSolver.html" class="extype" name="tip.solvers.MapLatticeSolver">MapLatticeSolver</a> → <a href="../solvers/LatticeSolver.html" class="extype" name="tip.solvers.LatticeSolver">LatticeSolver</a> → <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a></dd></dl></div>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ContextSensitiveValueAnalysis.html" class="extype" name="tip.analysis.ContextSensitiveValueAnalysis">ContextSensitiveValueAnalysis</a> → <a href="InterprocValueAnalysisMisc.html" class="extype" name="tip.analysis.InterprocValueAnalysisMisc">InterprocValueAnalysisMisc</a> → <a href="../solvers/WorklistFixpointPropagationSolver.html" class="extype" name="tip.solvers.WorklistFixpointPropagationSolver">WorklistFixpointPropagationSolver</a> → <a href="../solvers/WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a> → <a href="../solvers/MapLiftLatticeSolver.html" class="extype" name="tip.solvers.MapLiftLatticeSolver">MapLiftLatticeSolver</a> → <a href="../solvers/MapLatticeSolver.html" class="extype" name="tip.solvers.MapLatticeSolver">MapLatticeSolver</a> → <a href="../solvers/LatticeSolver.html" class="extype" name="tip.solvers.LatticeSolver">LatticeSolver</a></dd></dl></div>
     </li><li name="tip.analysis.ContextSensitiveValueAnalysis#liftedstatelattice" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="liftedstatelattice:tip.lattices.LiftLattice[ContextSensitiveValueAnalysis.this.statelattice.type]"></a><a id="liftedstatelattice:LiftLattice[statelattice.type]"></a>
       <span class="permalink">
@@ -984,7 +975,7 @@ First computes the join of the incoming elements and then applies the transfer f
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -1005,7 +996,7 @@ First computes the join of the incoming elements and then applies the transfer f
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="tip.analysis.ContextSensitiveForwardDependencies#outdep" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -1094,6 +1085,22 @@ Called by the worklist solver when a node is visited.
       </span>
       
       <p class="shortcomment cmt">Iterates until there is no more work to do.</p><div class="fullcomment"><div class="comment cmt"><p>Iterates until there is no more work to do.</p></div><dl class="paramcmts block"><dt class="param">first</dt><dd class="cmt"><p>the initial contents of the worklist</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../solvers/ListSetWorklist.html" class="extype" name="tip.solvers.ListSetWorklist">ListSetWorklist</a> → <a href="../solvers/Worklist.html" class="extype" name="tip.solvers.Worklist">Worklist</a></dd></dl></div>
+    </li><li name="tip.analysis.FlowSensitiveAnalysis#stateAfterNode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="stateAfterNode:Boolean"></a>
+      <span class="permalink">
+      <a href="../../tip/analysis/FunctionalValueAnalysis.html#stateAfterNode:Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">stateAfterNode</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a></dd></dl></div>
     </li><li name="tip.analysis.ValueAnalysisMisc#statelattice" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="statelattice:tip.lattices.MapLattice[tip.ast.ADeclaration,ValueAnalysisMisc.this.valuelattice.type]"></a><a id="statelattice:MapLattice[ADeclaration,valuelattice.type]"></a>
       <span class="permalink">
@@ -1319,7 +1326,7 @@ Called by the worklist solver when a node is visited.
         <div class="parent" name="tip.analysis.FunctionalFunctions">
               <h3>Inherited from <a href="FunctionalFunctions.html" class="extype" name="tip.analysis.FunctionalFunctions">FunctionalFunctions</a></h3>
             </div><div class="parent" name="tip.analysis.ContextSensitiveValueAnalysis">
-              <h3>Inherited from <a href="ContextSensitiveValueAnalysis.html" class="extype" name="tip.analysis.ContextSensitiveValueAnalysis">ContextSensitiveValueAnalysis</a>[<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <span class="extype" name="tip.analysis.FunctionalValueAnalysis.L">L</span>]</h3>
+              <h3>Inherited from <a href="ContextSensitiveValueAnalysis.html" class="extype" name="tip.analysis.ContextSensitiveValueAnalysis">ContextSensitiveValueAnalysis</a>[<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>]</h3>
             </div><div class="parent" name="tip.analysis.CallContextFunctions">
               <h3>Inherited from <a href="CallContextFunctions.html" class="extype" name="tip.analysis.CallContextFunctions">CallContextFunctions</a>[<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>]</h3>
             </div><div class="parent" name="tip.analysis.InterprocValueAnalysisMisc">
@@ -1349,7 +1356,7 @@ Called by the worklist solver when a node is visited.
             </div><div class="parent" name="tip.analysis.Dependencies">
               <h3>Inherited from <a href="Dependencies.html" class="extype" name="tip.analysis.Dependencies">Dependencies</a>[(<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)]</h3>
             </div><div class="parent" name="tip.analysis.FlowSensitiveAnalysis">
-              <h3>Inherited from <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a>[(<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)]</h3>
+              <h3>Inherited from <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a></h3>
             </div><div class="parent" name="tip.analysis.Analysis">
               <h3>Inherited from <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Any">Any</span>]</h3>
             </div><div class="parent" name="scala.AnyRef">

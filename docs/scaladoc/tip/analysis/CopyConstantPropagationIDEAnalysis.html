@@ -163,8 +163,8 @@
                         <a href="ContextSensitiveValueAnalysis.html" title="Base class for value analysis with context sensitivity and lifted lattice.">ContextSensitiveValueAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="class" href="ControlFlowAnalysis.html" title=""></a>
-                        <a href="ControlFlowAnalysis.html" title="">ControlFlowAnalysis</a>
+                        <a class="class" href="ControlFlowAnalysis.html" title="Control flow analysis."></a>
+                        <a href="ControlFlowAnalysis.html" title="Control flow analysis.">ControlFlowAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
                         <a class="trait" href="CopyConstantPropagationAnalysisFunctions.html" title="Micro-transfer-functions for copy-constant-propagation analysis."></a>
@@ -295,6 +295,14 @@
                         <a href="PointsToAnalysis.html" title="Trait for (may-)points-to analyses.">PointsToAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
+                        <a class="trait" href="PossiblyUninitializedVarsAnalysisFunctions.html" title="Micro-transfer-functions for possibly-uninitialized variables analysis."></a>
+                        <a href="PossiblyUninitializedVarsAnalysisFunctions.html" title="Micro-transfer-functions for possibly-uninitialized variables analysis.">PossiblyUninitializedVarsAnalysisFunctions</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="PossiblyUninitializedVarsIDEAnalysis.html" title="Possibly-uninitialized variables analysis using IDE solver."></a>
+                        <a href="PossiblyUninitializedVarsIDEAnalysis.html" title="Possibly-uninitialized variables analysis using IDE solver.">PossiblyUninitializedVarsIDEAnalysis</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
                         <a class="object" href="SignAnalysis$.html" title=""></a>
                         <a href="SignAnalysis$.html" title="">SignAnalysis</a>
                       </li><li class="current-entities indented2">
@@ -344,7 +352,7 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">CopyConstantPropagationIDEAnalysis</span><span class="result"> extends <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
+        <span class="name">CopyConstantPropagationIDEAnalysis</span><span class="result"> extends <a href="../solvers/IDESolver.html" class="extype" name="tip.solvers.IDESolver">IDESolver</a>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>, <a href="../lattices/FlatLattice.html" class="extype" name="tip.lattices.FlatLattice">FlatLattice</a>[<span class="extype" name="scala.Int">Int</span>]] with <a href="CopyConstantPropagationAnalysisFunctions.html" class="extype" name="tip.analysis.CopyConstantPropagationAnalysisFunctions">CopyConstantPropagationAnalysisFunctions</a></span>
       </span>
       </h4>
 
@@ -354,7 +362,7 @@
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>], <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Any">Any</span>], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="CopyConstantPropagationAnalysisFunctions.html" class="extype" name="tip.analysis.CopyConstantPropagationAnalysisFunctions">CopyConstantPropagationAnalysisFunctions</a>, <a href="../solvers/IDESolver.html" class="extype" name="tip.solvers.IDESolver">IDESolver</a>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>, <a href="../lattices/FlatLattice.html" class="extype" name="tip.lattices.FlatLattice">FlatLattice</a>[<span class="extype" name="scala.Int">Int</span>]], <a href="../solvers/IDEAnalysis.html" class="extype" name="tip.solvers.IDEAnalysis">IDEAnalysis</a>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>, <a href="../lattices/FlatLattice.html" class="extype" name="tip.lattices.FlatLattice">FlatLattice</a>[<span class="extype" name="scala.Int">Int</span>]], <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a>, <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Any">Any</span>], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -380,7 +388,7 @@
                   <span class="filtertype">Inherited<br />
                   </span>
                   <ol id="linearization">
-                    <li class="in" name="tip.analysis.CopyConstantPropagationIDEAnalysis"><span>CopyConstantPropagationIDEAnalysis</span></li><li class="in" name="tip.analysis.FlowSensitiveAnalysis"><span>FlowSensitiveAnalysis</span></li><li class="in" name="tip.analysis.Analysis"><span>Analysis</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                    <li class="in" name="tip.analysis.CopyConstantPropagationIDEAnalysis"><span>CopyConstantPropagationIDEAnalysis</span></li><li class="in" name="tip.analysis.CopyConstantPropagationAnalysisFunctions"><span>CopyConstantPropagationAnalysisFunctions</span></li><li class="in" name="tip.solvers.IDESolver"><span>IDESolver</span></li><li class="in" name="tip.solvers.IDEAnalysis"><span>IDEAnalysis</span></li><li class="in" name="tip.analysis.FlowSensitiveAnalysis"><span>FlowSensitiveAnalysis</span></li><li class="in" name="tip.analysis.Analysis"><span>Analysis</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                   </ol>
                 </div><div class="ancestors">
               <span class="filtertype"></span>
@@ -419,7 +427,64 @@
     </li></ol>
             </div>
 
-        
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="tip.solvers.IDEAnalysis.DL" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="DL=Either[D,tip.solvers.Lambda]"></a><a id="DL:DL"></a>
+      <span class="permalink">
+      <a href="../../tip/analysis/CopyConstantPropagationIDEAnalysis.html#DL=Either[D,tip.solvers.Lambda]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">DL</span><span class="result alias"> = <span class="extype" name="scala.util.Either">Either</span>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>, <a href="../solvers/Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>]</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../solvers/IDEAnalysis.html" class="extype" name="tip.solvers.IDEAnalysis">IDEAnalysis</a></dd></dl></div>
+    </li><li name="tip.solvers.IDESolver.IDEPhase1Analysis" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="IDEPhase1AnalysisextendsWorklistFixpointPropagationFunctions[(tip.cfg.CfgNode,Either[D,tip.solvers.Lambda],Either[D,tip.solvers.Lambda])]"></a><a id="IDEPhase1Analysis:IDEPhase1Analysis"></a>
+      <span class="permalink">
+      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a title="Phase 1 of the IDE algorithm." href="../solvers/IDESolver$IDEPhase1Analysis.html"><span class="name">IDEPhase1Analysis</span></a><span class="result"> extends <a href="../solvers/WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="../solvers/Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>], <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="../solvers/Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Phase 1 of the IDE algorithm.</p><div class="fullcomment"><div class="comment cmt"><p>Phase 1 of the IDE algorithm.
+The original version of the algorithm uses summary edges from call nodes to after-call nodes
+instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../solvers/IDESolver.html" class="extype" name="tip.solvers.IDESolver">IDESolver</a></dd></dl></div>
+    </li><li name="tip.solvers.IDESolver.IDEPhase2Analysis" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="IDEPhase2AnalysisextendsFlowSensitiveAnalysiswithWorklistFixpointPropagationFunctions[(tip.cfg.CfgNode,Either[D,tip.solvers.Lambda])]"></a><a id="IDEPhase2Analysis:IDEPhase2Analysis"></a>
+      <span class="permalink">
+      <a href="../../tip/solvers/IDESolver$IDEPhase2Analysis.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a title="Phase 2 of the IDE algorithm." href="../solvers/IDESolver$IDEPhase2Analysis.html"><span class="name">IDEPhase2Analysis</span></a><span class="result"> extends <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a> with <a href="../solvers/WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="../solvers/Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Phase 2 of the IDE algorithm.</p><div class="fullcomment"><div class="comment cmt"><p>Phase 2 of the IDE algorithm.
+Performs a forward dataflow analysis using the decomposed lattice and the micro-transformers.
+The original RHS version of IDE uses jump functions for all nodes, not only at exits, but the analysis result and complexity is the same.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../solvers/IDESolver.html" class="extype" name="tip.solvers.IDESolver">IDESolver</a></dd></dl></div>
+    </li></ol>
+            </div>
 
         
 
@@ -474,10 +539,10 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="tip.analysis.CopyConstantPropagationIDEAnalysis#analyze" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="analyze():CopyConstantPropagationIDEAnalysis.this.lattice.Element"></a><a id="analyze():Element"></a>
+    </li><li name="tip.solvers.IDESolver#analyze" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="analyze():IDESolver.this.lattice.Element"></a><a id="analyze():Element"></a>
       <span class="permalink">
-      <a href="../../tip/analysis/CopyConstantPropagationIDEAnalysis.html#analyze():CopyConstantPropagationIDEAnalysis.this.lattice.Element" title="Permalink">
+      <a href="../../tip/analysis/CopyConstantPropagationIDEAnalysis.html#analyze():IDESolver.this.lattice.Element" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -489,7 +554,8 @@
         <span class="name">analyze</span><span class="params">()</span><span class="result">: <a href="../lattices/MapLattice.html#Element=Map[A,MapLattice.this.sublattice.Element]" class="extmbr" name="tip.lattices.MapLattice.Element">Element</a></span>
       </span>
       
-      <p class="shortcomment cmt">Performs the analysis and returns the result.</p><div class="fullcomment"><div class="comment cmt"><p>Performs the analysis and returns the result.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.CopyConstantPropagationIDEAnalysis">CopyConstantPropagationIDEAnalysis</a> → <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a> → <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a></dd></dl></div>
+      <p class="shortcomment cmt">Performs the analysis and returns the result.</p><div class="fullcomment"><div class="comment cmt"><p>Performs the analysis and returns the result.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../solvers/IDESolver.html" class="extype" name="tip.solvers.IDESolver">IDESolver</a> → <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a></dd></dl></div>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <span class="permalink">
@@ -506,7 +572,7 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="tip.analysis.CopyConstantPropagationIDEAnalysis#cfg" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="tip.solvers.IDESolver#cfg" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="cfg:tip.cfg.InterproceduralProgramCfg"></a><a id="cfg:InterproceduralProgramCfg"></a>
       <span class="permalink">
       <a href="../../tip/analysis/CopyConstantPropagationIDEAnalysis.html#cfg:tip.cfg.InterproceduralProgramCfg" title="Permalink">
@@ -521,7 +587,7 @@
         <span class="name">cfg</span><span class="result">: <a href="../cfg/InterproceduralProgramCfg.html" class="extype" name="tip.cfg.InterproceduralProgramCfg">InterproceduralProgramCfg</a></span>
       </span>
       
-      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../solvers/IDESolver.html" class="extype" name="tip.solvers.IDESolver">IDESolver</a> → <a href="../solvers/IDEAnalysis.html" class="extype" name="tip.solvers.IDEAnalysis">IDEAnalysis</a></dd></dl></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a><a id="clone():AnyRef"></a>
       <span class="permalink">
@@ -545,10 +611,10 @@
               
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="tip.analysis.CopyConstantPropagationIDEAnalysis#declData" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="tip.analysis.CopyConstantPropagationIDEAnalysis#declData" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="declData:tip.ast.AstNodeData.DeclarationData"></a><a id="declData:DeclarationData"></a>
       <span class="permalink">
       <a href="../../tip/analysis/CopyConstantPropagationIDEAnalysis.html#declData:tip.ast.AstNodeData.DeclarationData" title="Permalink">
@@ -563,11 +629,11 @@
         <span class="name">declData</span><span class="result">: <a href="../ast/AstNodeData$.html#DeclarationData=Map[tip.ast.AIdentifier,tip.ast.ADeclaration]" class="extmbr" name="tip.ast.AstNodeData.DeclarationData">DeclarationData</a></span>
       </span>
       
-      
-    </li><li name="tip.analysis.CopyConstantPropagationIDEAnalysis#declaredVars" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="declaredVars:Set[tip.ast.ADeclaration]"></a><a id="declaredVars:Set[ADeclaration]"></a>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.CopyConstantPropagationIDEAnalysis">CopyConstantPropagationIDEAnalysis</a> → <a href="CopyConstantPropagationAnalysisFunctions.html" class="extype" name="tip.analysis.CopyConstantPropagationAnalysisFunctions">CopyConstantPropagationAnalysisFunctions</a></dd></dl></div>
+    </li><li name="tip.analysis.CopyConstantPropagationAnalysisFunctions#edgelattice" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="edgelattice:tip.lattices.EdgeFunctionLattice[CopyConstantPropagationAnalysisFunctions.this.valuelattice.type]"></a><a id="edgelattice:EdgeFunctionLattice[valuelattice.type]"></a>
       <span class="permalink">
-      <a href="../../tip/analysis/CopyConstantPropagationIDEAnalysis.html#declaredVars:Set[tip.ast.ADeclaration]" title="Permalink">
+      <a href="../../tip/analysis/CopyConstantPropagationIDEAnalysis.html#edgelattice:tip.lattices.EdgeFunctionLattice[CopyConstantPropagationAnalysisFunctions.this.valuelattice.type]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -576,27 +642,79 @@
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">declaredVars</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>]</span>
+        <span class="name">edgelattice</span><span class="result">: <a href="../lattices/EdgeFunctionLattice.html" class="extype" name="tip.lattices.EdgeFunctionLattice">EdgeFunctionLattice</a>[<a href="#valuelattice:tip.lattices.FlatLattice[Int]" class="extmbr" name="tip.analysis.CopyConstantPropagationIDEAnalysis#valuelattice">valuelattice</a>.type]</span>
       </span>
       
-      
-    </li><li name="tip.analysis.FlowSensitiveAnalysis#domain" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="domain:Set[tip.cfg.CfgNode]"></a><a id="domain:Set[CfgNode]"></a>
+      <p class="shortcomment cmt">The edge lattice.</p><div class="fullcomment"><div class="comment cmt"><p>The edge lattice.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CopyConstantPropagationAnalysisFunctions.html" class="extype" name="tip.analysis.CopyConstantPropagationAnalysisFunctions">CopyConstantPropagationAnalysisFunctions</a> → <a href="../solvers/IDEAnalysis.html" class="extype" name="tip.solvers.IDEAnalysis">IDEAnalysis</a></dd></dl></div>
+    </li><li name="tip.analysis.CopyConstantPropagationAnalysisFunctions#edgesCallToAfterCall" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="edgesCallToAfterCall(d2:CopyConstantPropagationAnalysisFunctions.this.DL,call:tip.cfg.CfgCallNode,aftercall:tip.cfg.CfgAfterCallNode):List[(CopyConstantPropagationAnalysisFunctions.this.DL,CopyConstantPropagationAnalysisFunctions.this.edgelattice.EdgeFunction)]"></a><a id="edgesCallToAfterCall(DL,CfgCallNode,CfgAfterCallNode):List[(DL,EdgeFunction)]"></a>
       <span class="permalink">
-      <a href="../../tip/analysis/CopyConstantPropagationIDEAnalysis.html#domain:Set[tip.cfg.CfgNode]" title="Permalink">
+      <a href="../../tip/analysis/CopyConstantPropagationIDEAnalysis.html#edgesCallToAfterCall(d2:CopyConstantPropagationAnalysisFunctions.this.DL,call:tip.cfg.CfgCallNode,aftercall:tip.cfg.CfgAfterCallNode):List[(CopyConstantPropagationAnalysisFunctions.this.DL,CopyConstantPropagationAnalysisFunctions.this.edgelattice.EdgeFunction)]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">domain</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
+        <span class="name">edgesCallToAfterCall</span><span class="params">(<span name="d2">d2: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.CopyConstantPropagationIDEAnalysis.DL">DL</a></span>, <span name="call">call: <a href="../cfg/CfgCallNode.html" class="extype" name="tip.cfg.CfgCallNode">CfgCallNode</a></span>, <span name="aftercall">aftercall: <a href="../cfg/CfgAfterCallNode.html" class="extype" name="tip.cfg.CfgAfterCallNode">CfgAfterCallNode</a></span>)</span><span class="result">: <span class="extype" name="scala.List">List</span>[(<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.CopyConstantPropagationIDEAnalysis.DL">DL</a>, <a href="../lattices/EdgeFunctionLattice$EdgeFunction.html" class="extype" name="tip.lattices.EdgeFunctionLattice.EdgeFunction">EdgeFunction</a>)]</span>
       </span>
       
-      <p class="shortcomment cmt">The domain of the map lattice.</p><div class="fullcomment"><div class="comment cmt"><p>The domain of the map lattice.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a></dd></dl></div>
+      <p class="shortcomment cmt">Edges for call-to-aftercall.</p><div class="fullcomment"><div class="comment cmt"><p>Edges for call-to-aftercall.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CopyConstantPropagationAnalysisFunctions.html" class="extype" name="tip.analysis.CopyConstantPropagationAnalysisFunctions">CopyConstantPropagationAnalysisFunctions</a> → <a href="../solvers/IDEAnalysis.html" class="extype" name="tip.solvers.IDEAnalysis">IDEAnalysis</a></dd></dl></div>
+    </li><li name="tip.analysis.CopyConstantPropagationAnalysisFunctions#edgesCallToEntry" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="edgesCallToEntry(d:CopyConstantPropagationAnalysisFunctions.this.DL,call:tip.cfg.CfgCallNode,entry:tip.cfg.CfgFunEntryNode):List[(CopyConstantPropagationAnalysisFunctions.this.DL,CopyConstantPropagationAnalysisFunctions.this.edgelattice.EdgeFunction)]"></a><a id="edgesCallToEntry(DL,CfgCallNode,CfgFunEntryNode):List[(DL,EdgeFunction)]"></a>
+      <span class="permalink">
+      <a href="../../tip/analysis/CopyConstantPropagationIDEAnalysis.html#edgesCallToEntry(d:CopyConstantPropagationAnalysisFunctions.this.DL,call:tip.cfg.CfgCallNode,entry:tip.cfg.CfgFunEntryNode):List[(CopyConstantPropagationAnalysisFunctions.this.DL,CopyConstantPropagationAnalysisFunctions.this.edgelattice.EdgeFunction)]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">edgesCallToEntry</span><span class="params">(<span name="d">d: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.CopyConstantPropagationIDEAnalysis.DL">DL</a></span>, <span name="call">call: <a href="../cfg/CfgCallNode.html" class="extype" name="tip.cfg.CfgCallNode">CfgCallNode</a></span>, <span name="entry">entry: <a href="../cfg/CfgFunEntryNode.html" class="extype" name="tip.cfg.CfgFunEntryNode">CfgFunEntryNode</a></span>)</span><span class="result">: <span class="extype" name="scala.List">List</span>[(<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.CopyConstantPropagationIDEAnalysis.DL">DL</a>, <a href="../lattices/EdgeFunctionLattice$EdgeFunction.html" class="extype" name="tip.lattices.EdgeFunctionLattice.EdgeFunction">EdgeFunction</a>)]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Edges for call-to-entry.</p><div class="fullcomment"><div class="comment cmt"><p>Edges for call-to-entry.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CopyConstantPropagationAnalysisFunctions.html" class="extype" name="tip.analysis.CopyConstantPropagationAnalysisFunctions">CopyConstantPropagationAnalysisFunctions</a> → <a href="../solvers/IDEAnalysis.html" class="extype" name="tip.solvers.IDEAnalysis">IDEAnalysis</a></dd></dl></div>
+    </li><li name="tip.analysis.CopyConstantPropagationAnalysisFunctions#edgesExitToAfterCall" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="edgesExitToAfterCall(d:CopyConstantPropagationAnalysisFunctions.this.DL,exit:tip.cfg.CfgFunExitNode,aftercall:tip.cfg.CfgAfterCallNode):List[(CopyConstantPropagationAnalysisFunctions.this.DL,CopyConstantPropagationAnalysisFunctions.this.edgelattice.EdgeFunction)]"></a><a id="edgesExitToAfterCall(DL,CfgFunExitNode,CfgAfterCallNode):List[(DL,EdgeFunction)]"></a>
+      <span class="permalink">
+      <a href="../../tip/analysis/CopyConstantPropagationIDEAnalysis.html#edgesExitToAfterCall(d:CopyConstantPropagationAnalysisFunctions.this.DL,exit:tip.cfg.CfgFunExitNode,aftercall:tip.cfg.CfgAfterCallNode):List[(CopyConstantPropagationAnalysisFunctions.this.DL,CopyConstantPropagationAnalysisFunctions.this.edgelattice.EdgeFunction)]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">edgesExitToAfterCall</span><span class="params">(<span name="d">d: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.CopyConstantPropagationIDEAnalysis.DL">DL</a></span>, <span name="exit">exit: <a href="../cfg/CfgFunExitNode.html" class="extype" name="tip.cfg.CfgFunExitNode">CfgFunExitNode</a></span>, <span name="aftercall">aftercall: <a href="../cfg/CfgAfterCallNode.html" class="extype" name="tip.cfg.CfgAfterCallNode">CfgAfterCallNode</a></span>)</span><span class="result">: <span class="extype" name="scala.List">List</span>[(<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.CopyConstantPropagationIDEAnalysis.DL">DL</a>, <a href="../lattices/EdgeFunctionLattice$EdgeFunction.html" class="extype" name="tip.lattices.EdgeFunctionLattice.EdgeFunction">EdgeFunction</a>)]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Edges for exit-to-aftercall.</p><div class="fullcomment"><div class="comment cmt"><p>Edges for exit-to-aftercall.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CopyConstantPropagationAnalysisFunctions.html" class="extype" name="tip.analysis.CopyConstantPropagationAnalysisFunctions">CopyConstantPropagationAnalysisFunctions</a> → <a href="../solvers/IDEAnalysis.html" class="extype" name="tip.solvers.IDEAnalysis">IDEAnalysis</a></dd></dl></div>
+    </li><li name="tip.analysis.CopyConstantPropagationAnalysisFunctions#edgesOther" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="edgesOther(d:CopyConstantPropagationAnalysisFunctions.this.DL,n:tip.cfg.CfgNode):List[(CopyConstantPropagationAnalysisFunctions.this.DL,CopyConstantPropagationAnalysisFunctions.this.edgelattice.EdgeFunction)]"></a><a id="edgesOther(DL,CfgNode):List[(DL,EdgeFunction)]"></a>
+      <span class="permalink">
+      <a href="../../tip/analysis/CopyConstantPropagationIDEAnalysis.html#edgesOther(d:CopyConstantPropagationAnalysisFunctions.this.DL,n:tip.cfg.CfgNode):List[(CopyConstantPropagationAnalysisFunctions.this.DL,CopyConstantPropagationAnalysisFunctions.this.edgelattice.EdgeFunction)]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">edgesOther</span><span class="params">(<span name="d">d: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.CopyConstantPropagationIDEAnalysis.DL">DL</a></span>, <span name="n">n: <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a></span>)</span><span class="result">: <span class="extype" name="scala.List">List</span>[(<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.CopyConstantPropagationIDEAnalysis.DL">DL</a>, <a href="../lattices/EdgeFunctionLattice$EdgeFunction.html" class="extype" name="tip.lattices.EdgeFunctionLattice.EdgeFunction">EdgeFunction</a>)]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Edges for other CFG nodes.</p><div class="fullcomment"><div class="comment cmt"><p>Edges for other CFG nodes.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CopyConstantPropagationAnalysisFunctions.html" class="extype" name="tip.analysis.CopyConstantPropagationAnalysisFunctions">CopyConstantPropagationAnalysisFunctions</a> → <a href="../solvers/IDEAnalysis.html" class="extype" name="tip.solvers.IDEAnalysis">IDEAnalysis</a></dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
       <span class="permalink">
@@ -647,7 +765,7 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -668,7 +786,7 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -687,10 +805,10 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="tip.analysis.CopyConstantPropagationIDEAnalysis#lattice" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="lattice:tip.lattices.MapLattice[tip.cfg.CfgNode,tip.lattices.MapLattice[tip.ast.ADeclaration,tip.lattices.FlatLattice[Int]]]"></a><a id="lattice:MapLattice[CfgNode,MapLattice[ADeclaration,FlatLattice[Int]]]"></a>
+    </li><li name="tip.solvers.IDESolver#lattice" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="lattice:tip.lattices.MapLattice[tip.cfg.CfgNode,tip.lattices.MapLattice[D,IDESolver.this.valuelattice.type]]"></a><a id="lattice:MapLattice[CfgNode,MapLattice[ADeclaration,valuelattice.type]]"></a>
       <span class="permalink">
-      <a href="../../tip/analysis/CopyConstantPropagationIDEAnalysis.html#lattice:tip.lattices.MapLattice[tip.cfg.CfgNode,tip.lattices.MapLattice[tip.ast.ADeclaration,tip.lattices.FlatLattice[Int]]]" title="Permalink">
+      <a href="../../tip/analysis/CopyConstantPropagationIDEAnalysis.html#lattice:tip.lattices.MapLattice[tip.cfg.CfgNode,tip.lattices.MapLattice[D,IDESolver.this.valuelattice.type]]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -699,11 +817,10 @@
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">lattice</span><span class="result">: <a href="../lattices/MapLattice.html" class="extype" name="tip.lattices.MapLattice">MapLattice</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <a href="../lattices/MapLattice.html" class="extype" name="tip.lattices.MapLattice">MapLattice</a>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>, <a href="../lattices/FlatLattice.html" class="extype" name="tip.lattices.FlatLattice">FlatLattice</a>[<span class="extype" name="scala.Int">Int</span>]]]</span>
+        <span class="name">lattice</span><span class="result">: <a href="../lattices/MapLattice.html" class="extype" name="tip.lattices.MapLattice">MapLattice</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <a href="../lattices/MapLattice.html" class="extype" name="tip.lattices.MapLattice">MapLattice</a>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>, <a href="#valuelattice:tip.lattices.FlatLattice[Int]" class="extmbr" name="tip.analysis.CopyConstantPropagationIDEAnalysis#valuelattice">valuelattice</a>.type]]</span>
       </span>
       
-      <p class="shortcomment cmt">The lattice used by the analysis.</p><div class="fullcomment"><div class="comment cmt"><p>The lattice used by the analysis.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.analysis.CopyConstantPropagationIDEAnalysis">CopyConstantPropagationIDEAnalysis</a> → <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a></dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../solvers/IDESolver.html" class="extype" name="tip.solvers.IDESolver">IDESolver</a></dd></dl></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
       <span class="permalink">
@@ -738,7 +855,7 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -759,13 +876,13 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="tip.analysis.CopyConstantPropagationIDEAnalysis#phase1" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="phase1:tip.solvers.IDEPhase1Analysis[tip.ast.ADeclaration,tip.lattices.FlatLattice[Int]]withtip.analysis.CopyConstantPropagationAnalysisFunctions"></a><a id="phase1:IDEPhase1Analysis[ADeclaration,FlatLattice[Int]]withCopyConstantPropagationAnalysisFunctions"></a>
+    </li><li name="tip.solvers.IDESolver#phase1" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="phase1:IDESolver.this.IDEPhase1Analysis"></a><a id="phase1:IDEPhase1Analysis"></a>
       <span class="permalink">
-      <a href="../../tip/analysis/CopyConstantPropagationIDEAnalysis.html#phase1:tip.solvers.IDEPhase1Analysis[tip.ast.ADeclaration,tip.lattices.FlatLattice[Int]]withtip.analysis.CopyConstantPropagationAnalysisFunctions" title="Permalink">
+      <a href="../../tip/analysis/CopyConstantPropagationIDEAnalysis.html#phase1:IDESolver.this.IDEPhase1Analysis" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -774,14 +891,14 @@
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">phase1</span><span class="result">: <a href="../solvers/IDEPhase1Analysis.html" class="extype" name="tip.solvers.IDEPhase1Analysis">IDEPhase1Analysis</a>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>, <a href="../lattices/FlatLattice.html" class="extype" name="tip.lattices.FlatLattice">FlatLattice</a>[<span class="extype" name="scala.Int">Int</span>]] with <a href="CopyConstantPropagationAnalysisFunctions.html" class="extype" name="tip.analysis.CopyConstantPropagationAnalysisFunctions">CopyConstantPropagationAnalysisFunctions</a></span>
+        <span class="name">phase1</span><span class="result">: <a href="#IDEPhase1AnalysisextendsWorklistFixpointPropagationFunctions[(tip.cfg.CfgNode,Either[D,tip.solvers.Lambda],Either[D,tip.solvers.Lambda])]" class="extmbr" name="tip.solvers.IDESolver.IDEPhase1Analysis">IDEPhase1Analysis</a></span>
       </span>
       
-      
-    </li><li name="tip.analysis.CopyConstantPropagationIDEAnalysis#phase2" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="phase2:tip.solvers.IDEPhase2Analysis[tip.ast.ADeclaration,tip.lattices.FlatLattice[Int]]withtip.analysis.CopyConstantPropagationAnalysisFunctions"></a><a id="phase2:IDEPhase2Analysis[ADeclaration,FlatLattice[Int]]withCopyConstantPropagationAnalysisFunctions"></a>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../solvers/IDESolver.html" class="extype" name="tip.solvers.IDESolver">IDESolver</a></dd></dl></div>
+    </li><li name="tip.solvers.IDESolver#phase2" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="phase2:IDESolver.this.IDEPhase2Analysis"></a><a id="phase2:IDEPhase2Analysis"></a>
       <span class="permalink">
-      <a href="../../tip/analysis/CopyConstantPropagationIDEAnalysis.html#phase2:tip.solvers.IDEPhase2Analysis[tip.ast.ADeclaration,tip.lattices.FlatLattice[Int]]withtip.analysis.CopyConstantPropagationAnalysisFunctions" title="Permalink">
+      <a href="../../tip/analysis/CopyConstantPropagationIDEAnalysis.html#phase2:IDESolver.this.IDEPhase2Analysis" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -790,10 +907,26 @@
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">phase2</span><span class="result">: <a href="../solvers/IDEPhase2Analysis.html" class="extype" name="tip.solvers.IDEPhase2Analysis">IDEPhase2Analysis</a>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>, <a href="../lattices/FlatLattice.html" class="extype" name="tip.lattices.FlatLattice">FlatLattice</a>[<span class="extype" name="scala.Int">Int</span>]] with <a href="CopyConstantPropagationAnalysisFunctions.html" class="extype" name="tip.analysis.CopyConstantPropagationAnalysisFunctions">CopyConstantPropagationAnalysisFunctions</a></span>
+        <span class="name">phase2</span><span class="result">: <a href="#IDEPhase2AnalysisextendsFlowSensitiveAnalysiswithWorklistFixpointPropagationFunctions[(tip.cfg.CfgNode,Either[D,tip.solvers.Lambda])]" class="extmbr" name="tip.solvers.IDESolver.IDEPhase2Analysis">IDEPhase2Analysis</a></span>
       </span>
       
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../solvers/IDESolver.html" class="extype" name="tip.solvers.IDESolver">IDESolver</a></dd></dl></div>
+    </li><li name="tip.analysis.FlowSensitiveAnalysis#stateAfterNode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="stateAfterNode:Boolean"></a>
+      <span class="permalink">
+      <a href="../../tip/analysis/CopyConstantPropagationIDEAnalysis.html#stateAfterNode:Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">stateAfterNode</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
       
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
@@ -826,6 +959,23 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="tip.analysis.CopyConstantPropagationAnalysisFunctions#valuelattice" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="valuelattice:tip.lattices.FlatLattice[Int]"></a><a id="valuelattice:FlatLattice[Int]"></a>
+      <span class="permalink">
+      <a href="../../tip/analysis/CopyConstantPropagationIDEAnalysis.html#valuelattice:tip.lattices.FlatLattice[Int]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">valuelattice</span><span class="result">: <a href="../lattices/FlatLattice.html" class="extype" name="tip.lattices.FlatLattice">FlatLattice</a>[<span class="extype" name="scala.Int">Int</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">The value lattice.</p><div class="fullcomment"><div class="comment cmt"><p>The value lattice.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CopyConstantPropagationAnalysisFunctions.html" class="extype" name="tip.analysis.CopyConstantPropagationAnalysisFunctions">CopyConstantPropagationAnalysisFunctions</a> → <a href="../solvers/IDEAnalysis.html" class="extype" name="tip.solvers.IDEAnalysis">IDEAnalysis</a></dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
       <span class="permalink">
@@ -931,8 +1081,14 @@
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="tip.analysis.FlowSensitiveAnalysis">
-              <h3>Inherited from <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</h3>
+        <div class="parent" name="tip.analysis.CopyConstantPropagationAnalysisFunctions">
+              <h3>Inherited from <a href="CopyConstantPropagationAnalysisFunctions.html" class="extype" name="tip.analysis.CopyConstantPropagationAnalysisFunctions">CopyConstantPropagationAnalysisFunctions</a></h3>
+            </div><div class="parent" name="tip.solvers.IDESolver">
+              <h3>Inherited from <a href="../solvers/IDESolver.html" class="extype" name="tip.solvers.IDESolver">IDESolver</a>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>, <a href="../lattices/FlatLattice.html" class="extype" name="tip.lattices.FlatLattice">FlatLattice</a>[<span class="extype" name="scala.Int">Int</span>]]</h3>
+            </div><div class="parent" name="tip.solvers.IDEAnalysis">
+              <h3>Inherited from <a href="../solvers/IDEAnalysis.html" class="extype" name="tip.solvers.IDEAnalysis">IDEAnalysis</a>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>, <a href="../lattices/FlatLattice.html" class="extype" name="tip.lattices.FlatLattice">FlatLattice</a>[<span class="extype" name="scala.Int">Int</span>]]</h3>
+            </div><div class="parent" name="tip.analysis.FlowSensitiveAnalysis">
+              <h3>Inherited from <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a></h3>
             </div><div class="parent" name="tip.analysis.Analysis">
               <h3>Inherited from <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Any">Any</span>]</h3>
             </div><div class="parent" name="scala.AnyRef">

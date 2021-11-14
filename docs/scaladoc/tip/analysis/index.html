@@ -163,8 +163,8 @@
                         <a href="ContextSensitiveValueAnalysis.html" title="Base class for value analysis with context sensitivity and lifted lattice.">ContextSensitiveValueAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="class" href="ControlFlowAnalysis.html" title=""></a>
-                        <a href="ControlFlowAnalysis.html" title="">ControlFlowAnalysis</a>
+                        <a class="class" href="ControlFlowAnalysis.html" title="Control flow analysis."></a>
+                        <a href="ControlFlowAnalysis.html" title="Control flow analysis.">ControlFlowAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
                         <a class="trait" href="CopyConstantPropagationAnalysisFunctions.html" title="Micro-transfer-functions for copy-constant-propagation analysis."></a>
@@ -293,6 +293,14 @@
                         <span class="separator"></span>
                         <a class="trait" href="PointsToAnalysis.html" title="Trait for (may-)points-to analyses."></a>
                         <a href="PointsToAnalysis.html" title="Trait for (may-)points-to analyses.">PointsToAnalysis</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="PossiblyUninitializedVarsAnalysisFunctions.html" title="Micro-transfer-functions for possibly-uninitialized variables analysis."></a>
+                        <a href="PossiblyUninitializedVarsAnalysisFunctions.html" title="Micro-transfer-functions for possibly-uninitialized variables analysis.">PossiblyUninitializedVarsAnalysisFunctions</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="PossiblyUninitializedVarsIDEAnalysis.html" title="Possibly-uninitialized variables analysis using IDE solver."></a>
+                        <a href="PossiblyUninitializedVarsIDEAnalysis.html" title="Possibly-uninitialized variables analysis using IDE solver.">PossiblyUninitializedVarsIDEAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
                         <a class="object" href="SignAnalysis$.html" title=""></a>
@@ -578,7 +586,7 @@
       
       
     </li><li name="tip.analysis.AvailableExpAnalysis" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="AvailableExpAnalysisextendsFlowSensitiveAnalysis[tip.cfg.CfgNode]"></a><a id="AvailableExpAnalysis:AvailableExpAnalysis"></a>
+      <a id="AvailableExpAnalysisextendsFlowSensitiveAnalysis"></a><a id="AvailableExpAnalysis:AvailableExpAnalysis"></a>
       <span class="permalink">
       <a href="../../tip/analysis/AvailableExpAnalysis.html" title="Permalink">
         <i class="material-icons"></i>
@@ -589,7 +597,7 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="Base class for available expressions analysis." href="AvailableExpAnalysis.html"><span class="name">AvailableExpAnalysis</span></a><span class="result"> extends <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
+        <a title="Base class for available expressions analysis." href="AvailableExpAnalysis.html"><span class="name">AvailableExpAnalysis</span></a><span class="result"> extends <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a></span>
       </span>
       
       <p class="shortcomment cmt">Base class for available expressions analysis.</p>
@@ -706,7 +714,7 @@
       
       <p class="shortcomment cmt">Call context construction for call strings.</p>
     </li><li name="tip.analysis.CallStringValueAnalysis" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="CallStringValueAnalysis[L&lt;:tip.lattices.LatticeWithOps]extendsContextSensitiveValueAnalysis[tip.analysis.CallStringContext,L]withCallStringFunctions"></a><a id="CallStringValueAnalysis[L&lt;:LatticeWithOps]:CallStringValueAnalysis[L]"></a>
+      <a id="CallStringValueAnalysis[L&lt;:tip.lattices.LatticeWithOps]extendsContextSensitiveValueAnalysis[tip.analysis.CallStringContext]withCallStringFunctions"></a><a id="CallStringValueAnalysis[L&lt;:LatticeWithOps]:CallStringValueAnalysis[L]"></a>
       <span class="permalink">
       <a href="../../tip/analysis/CallStringValueAnalysis.html" title="Permalink">
         <i class="material-icons"></i>
@@ -717,7 +725,7 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="Context-sensitive value analysis with call-string approach." href="CallStringValueAnalysis.html"><span class="name">CallStringValueAnalysis</span></a><span class="tparams">[<span name="L">L &lt;: <a href="../lattices/LatticeWithOps.html" class="extype" name="tip.lattices.LatticeWithOps">LatticeWithOps</a></span>]</span><span class="result"> extends <a href="ContextSensitiveValueAnalysis.html" class="extype" name="tip.analysis.ContextSensitiveValueAnalysis">ContextSensitiveValueAnalysis</a>[<a href="CallStringContext.html" class="extype" name="tip.analysis.CallStringContext">CallStringContext</a>, <span class="extype" name="tip.analysis.CallStringValueAnalysis.L">L</span>] with <a href="CallStringFunctions.html" class="extype" name="tip.analysis.CallStringFunctions">CallStringFunctions</a></span>
+        <a title="Context-sensitive value analysis with call-string approach." href="CallStringValueAnalysis.html"><span class="name">CallStringValueAnalysis</span></a><span class="tparams">[<span name="L">L &lt;: <a href="../lattices/LatticeWithOps.html" class="extype" name="tip.lattices.LatticeWithOps">LatticeWithOps</a></span>]</span><span class="result"> extends <a href="ContextSensitiveValueAnalysis.html" class="extype" name="tip.analysis.ContextSensitiveValueAnalysis">ContextSensitiveValueAnalysis</a>[<a href="CallStringContext.html" class="extype" name="tip.analysis.CallStringContext">CallStringContext</a>] with <a href="CallStringFunctions.html" class="extype" name="tip.analysis.CallStringFunctions">CallStringFunctions</a></span>
       </span>
       
       <p class="shortcomment cmt">Context-sensitive value analysis with call-string approach.</p>
@@ -738,7 +746,7 @@
       
       <p class="shortcomment cmt">Variant of <a href="ForwardDependencies.html" class="extype" name="tip.analysis.ForwardDependencies">ForwardDependencies</a> for context-sensitive interprocedural analysis.</p>
     </li><li name="tip.analysis.ContextSensitiveValueAnalysis" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="ContextSensitiveValueAnalysis[C&lt;:tip.analysis.CallContext,L&lt;:tip.lattices.LatticeWithOps]extendsFlowSensitiveAnalysis[(C,tip.cfg.CfgNode)]withContextSensitiveForwardDependencies[C]withMapLiftLatticeSolver[(C,tip.cfg.CfgNode)]withWorklistFixpointPropagationSolver[(C,tip.cfg.CfgNode)]withInterprocValueAnalysisMisc[(C,tip.cfg.CfgNode)]withCallContextFunctions[C]"></a><a id="ContextSensitiveValueAnalysis[C&lt;:CallContext,L&lt;:LatticeWithOps]:ContextSensitiveValueAnalysis[C,L]"></a>
+      <a id="ContextSensitiveValueAnalysis[C&lt;:tip.analysis.CallContext]extendsFlowSensitiveAnalysiswithContextSensitiveForwardDependencies[C]withMapLiftLatticeSolver[(C,tip.cfg.CfgNode)]withWorklistFixpointPropagationSolver[(C,tip.cfg.CfgNode)]withInterprocValueAnalysisMisc[(C,tip.cfg.CfgNode)]withCallContextFunctions[C]"></a><a id="ContextSensitiveValueAnalysis[C&lt;:CallContext]:ContextSensitiveValueAnalysis[C]"></a>
       <span class="permalink">
       <a href="../../tip/analysis/ContextSensitiveValueAnalysis.html" title="Permalink">
         <i class="material-icons"></i>
@@ -749,7 +757,7 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="Base class for value analysis with context sensitivity and lifted lattice." href="ContextSensitiveValueAnalysis.html"><span class="name">ContextSensitiveValueAnalysis</span></a><span class="tparams">[<span name="C">C &lt;: <a href="CallContext.html" class="extype" name="tip.analysis.CallContext">CallContext</a></span>, <span name="L">L &lt;: <a href="../lattices/LatticeWithOps.html" class="extype" name="tip.lattices.LatticeWithOps">LatticeWithOps</a></span>]</span><span class="result"> extends <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a>[(<span class="extype" name="tip.analysis.ContextSensitiveValueAnalysis.C">C</span>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)] with <a href="ContextSensitiveForwardDependencies.html" class="extype" name="tip.analysis.ContextSensitiveForwardDependencies">ContextSensitiveForwardDependencies</a>[<span class="extype" name="tip.analysis.ContextSensitiveValueAnalysis.C">C</span>] with <a href="../solvers/MapLiftLatticeSolver.html" class="extype" name="tip.solvers.MapLiftLatticeSolver">MapLiftLatticeSolver</a>[(<span class="extype" name="tip.analysis.ContextSensitiveValueAnalysis.C">C</span>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)] with <a href="../solvers/WorklistFixpointPropagationSolver.html" class="extype" name="tip.solvers.WorklistFixpointPropagationSolver">WorklistFixpointPropagationSolver</a>[(<span class="extype" name="tip.analysis.ContextSensitiveValueAnalysis.C">C</span>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)] with <a href="InterprocValueAnalysisMisc.html" class="extype" name="tip.analysis.InterprocValueAnalysisMisc">InterprocValueAnalysisMisc</a>[(<span class="extype" name="tip.analysis.ContextSensitiveValueAnalysis.C">C</span>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)] with <a href="CallContextFunctions.html" class="extype" name="tip.analysis.CallContextFunctions">CallContextFunctions</a>[<span class="extype" name="tip.analysis.ContextSensitiveValueAnalysis.C">C</span>]</span>
+        <a title="Base class for value analysis with context sensitivity and lifted lattice." href="ContextSensitiveValueAnalysis.html"><span class="name">ContextSensitiveValueAnalysis</span></a><span class="tparams">[<span name="C">C &lt;: <a href="CallContext.html" class="extype" name="tip.analysis.CallContext">CallContext</a></span>]</span><span class="result"> extends <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a> with <a href="ContextSensitiveForwardDependencies.html" class="extype" name="tip.analysis.ContextSensitiveForwardDependencies">ContextSensitiveForwardDependencies</a>[<span class="extype" name="tip.analysis.ContextSensitiveValueAnalysis.C">C</span>] with <a href="../solvers/MapLiftLatticeSolver.html" class="extype" name="tip.solvers.MapLiftLatticeSolver">MapLiftLatticeSolver</a>[(<span class="extype" name="tip.analysis.ContextSensitiveValueAnalysis.C">C</span>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)] with <a href="../solvers/WorklistFixpointPropagationSolver.html" class="extype" name="tip.solvers.WorklistFixpointPropagationSolver">WorklistFixpointPropagationSolver</a>[(<span class="extype" name="tip.analysis.ContextSensitiveValueAnalysis.C">C</span>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)] with <a href="InterprocValueAnalysisMisc.html" class="extype" name="tip.analysis.InterprocValueAnalysisMisc">InterprocValueAnalysisMisc</a>[(<span class="extype" name="tip.analysis.ContextSensitiveValueAnalysis.C">C</span>, <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>)] with <a href="CallContextFunctions.html" class="extype" name="tip.analysis.CallContextFunctions">CallContextFunctions</a>[<span class="extype" name="tip.analysis.ContextSensitiveValueAnalysis.C">C</span>]</span>
       </span>
       
       <p class="shortcomment cmt">Base class for value analysis with context sensitivity and lifted lattice.</p>
@@ -765,10 +773,10 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="" href="ControlFlowAnalysis.html"><span class="name">ControlFlowAnalysis</span></a><span class="result"> extends <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Unit">Unit</span>] with <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Predef.Map">Map</span>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>, <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../ast/AFunDeclaration.html" class="extype" name="tip.ast.AFunDeclaration">AFunDeclaration</a>]]]</span>
+        <a title="Control flow analysis." href="ControlFlowAnalysis.html"><span class="name">ControlFlowAnalysis</span></a><span class="result"> extends <a href="../ast/DepthFirstAstVisitor.html" class="extype" name="tip.ast.DepthFirstAstVisitor">DepthFirstAstVisitor</a>[<span class="extype" name="scala.Unit">Unit</span>] with <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Predef.Map">Map</span>[<a href="../ast/AstNode.html" class="extype" name="tip.ast.AstNode">AstNode</a>, <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../ast/AFunDeclaration.html" class="extype" name="tip.ast.AFunDeclaration">AFunDeclaration</a>]]]</span>
       </span>
       
-      
+      <p class="shortcomment cmt">Control flow analysis.</p>
     </li><li name="tip.analysis.CopyConstantPropagationAnalysisFunctions" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="CopyConstantPropagationAnalysisFunctionsextendsIDEAnalysis[tip.ast.ADeclaration,tip.lattices.FlatLattice[Int]]"></a><a id="CopyConstantPropagationAnalysisFunctions:CopyConstantPropagationAnalysisFunctions"></a>
       <span class="permalink">
@@ -786,7 +794,7 @@
       
       <p class="shortcomment cmt">Micro-transfer-functions for copy-constant-propagation analysis.</p>
     </li><li name="tip.analysis.CopyConstantPropagationIDEAnalysis" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="CopyConstantPropagationIDEAnalysisextendsFlowSensitiveAnalysis[tip.cfg.CfgNode]"></a><a id="CopyConstantPropagationIDEAnalysis:CopyConstantPropagationIDEAnalysis"></a>
+      <a id="CopyConstantPropagationIDEAnalysisextendsIDESolver[tip.ast.ADeclaration,tip.lattices.FlatLattice[Int]]withCopyConstantPropagationAnalysisFunctions"></a><a id="CopyConstantPropagationIDEAnalysis:CopyConstantPropagationIDEAnalysis"></a>
       <span class="permalink">
       <a href="../../tip/analysis/CopyConstantPropagationIDEAnalysis.html" title="Permalink">
         <i class="material-icons"></i>
@@ -797,7 +805,7 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="Copy-constant-propagation analysis using IDE solver." href="CopyConstantPropagationIDEAnalysis.html"><span class="name">CopyConstantPropagationIDEAnalysis</span></a><span class="result"> extends <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
+        <a title="Copy-constant-propagation analysis using IDE solver." href="CopyConstantPropagationIDEAnalysis.html"><span class="name">CopyConstantPropagationIDEAnalysis</span></a><span class="result"> extends <a href="../solvers/IDESolver.html" class="extype" name="tip.solvers.IDESolver">IDESolver</a>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>, <a href="../lattices/FlatLattice.html" class="extype" name="tip.lattices.FlatLattice">FlatLattice</a>[<span class="extype" name="scala.Int">Int</span>]] with <a href="CopyConstantPropagationAnalysisFunctions.html" class="extype" name="tip.analysis.CopyConstantPropagationAnalysisFunctions">CopyConstantPropagationAnalysisFunctions</a></span>
       </span>
       
       <p class="shortcomment cmt">Copy-constant-propagation analysis using IDE solver.</p>
@@ -851,7 +859,7 @@
       
       <p class="shortcomment cmt">Dependency methods for worklist-based analyses.</p>
     </li><li name="tip.analysis.FlowSensitiveAnalysis" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="FlowSensitiveAnalysis[N]extendsAnalysis[Any]"></a><a id="FlowSensitiveAnalysis[N]:FlowSensitiveAnalysis[N]"></a>
+      <a id="FlowSensitiveAnalysisextendsAnalysis[Any]"></a><a id="FlowSensitiveAnalysis:FlowSensitiveAnalysis"></a>
       <span class="permalink">
       <a href="../../tip/analysis/FlowSensitiveAnalysis.html" title="Permalink">
         <i class="material-icons"></i>
@@ -862,7 +870,7 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="A flow-sensitive analysis." href="FlowSensitiveAnalysis.html"><span class="name">FlowSensitiveAnalysis</span></a><span class="tparams">[<span name="N">N</span>]</span><span class="result"> extends <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Any">Any</span>]</span>
+        <a title="A flow-sensitive analysis." href="FlowSensitiveAnalysis.html"><span class="name">FlowSensitiveAnalysis</span></a><span class="result"> extends <a href="Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Any">Any</span>]</span>
       </span>
       
       <p class="shortcomment cmt">A flow-sensitive analysis.</p>
@@ -931,7 +939,7 @@
       
       <p class="shortcomment cmt">Call context construction for functional approach.</p>
     </li><li name="tip.analysis.FunctionalValueAnalysis" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="FunctionalValueAnalysis[L&lt;:tip.lattices.LatticeWithOps]extendsContextSensitiveValueAnalysis[tip.analysis.FunctionalContext,L]withFunctionalFunctions"></a><a id="FunctionalValueAnalysis[L&lt;:LatticeWithOps]:FunctionalValueAnalysis[L]"></a>
+      <a id="FunctionalValueAnalysis[L&lt;:tip.lattices.LatticeWithOps]extendsContextSensitiveValueAnalysis[tip.analysis.FunctionalContext]withFunctionalFunctions"></a><a id="FunctionalValueAnalysis[L&lt;:LatticeWithOps]:FunctionalValueAnalysis[L]"></a>
       <span class="permalink">
       <a href="../../tip/analysis/FunctionalValueAnalysis.html" title="Permalink">
         <i class="material-icons"></i>
@@ -942,7 +950,7 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="Context-sensitive value analysis with functional approach." href="FunctionalValueAnalysis.html"><span class="name">FunctionalValueAnalysis</span></a><span class="tparams">[<span name="L">L &lt;: <a href="../lattices/LatticeWithOps.html" class="extype" name="tip.lattices.LatticeWithOps">LatticeWithOps</a></span>]</span><span class="result"> extends <a href="ContextSensitiveValueAnalysis.html" class="extype" name="tip.analysis.ContextSensitiveValueAnalysis">ContextSensitiveValueAnalysis</a>[<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>, <span class="extype" name="tip.analysis.FunctionalValueAnalysis.L">L</span>] with <a href="FunctionalFunctions.html" class="extype" name="tip.analysis.FunctionalFunctions">FunctionalFunctions</a></span>
+        <a title="Context-sensitive value analysis with functional approach." href="FunctionalValueAnalysis.html"><span class="name">FunctionalValueAnalysis</span></a><span class="tparams">[<span name="L">L &lt;: <a href="../lattices/LatticeWithOps.html" class="extype" name="tip.lattices.LatticeWithOps">LatticeWithOps</a></span>]</span><span class="result"> extends <a href="ContextSensitiveValueAnalysis.html" class="extype" name="tip.analysis.ContextSensitiveValueAnalysis">ContextSensitiveValueAnalysis</a>[<a href="FunctionalContext.html" class="extype" name="tip.analysis.FunctionalContext">FunctionalContext</a>] with <a href="FunctionalFunctions.html" class="extype" name="tip.analysis.FunctionalFunctions">FunctionalFunctions</a></span>
       </span>
       
       <p class="shortcomment cmt">Context-sensitive value analysis with functional approach.</p>
@@ -963,7 +971,7 @@
       
       <p class="shortcomment cmt">A term variable that represents an identifier in the program.</p>
     </li><li name="tip.analysis.InterprocValueAnalysisFunctions" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="InterprocValueAnalysisFunctions[L&lt;:tip.lattices.LatticeWithOps]extendsMapLiftLatticeSolver[tip.cfg.CfgNode]withInterprocValueAnalysisMisc[tip.cfg.CfgNode]"></a><a id="InterprocValueAnalysisFunctions[L&lt;:LatticeWithOps]:InterprocValueAnalysisFunctions[L]"></a>
+      <a id="InterprocValueAnalysisFunctionsextendsMapLiftLatticeSolver[tip.cfg.CfgNode]withInterprocValueAnalysisMisc[tip.cfg.CfgNode]"></a><a id="InterprocValueAnalysisFunctions:InterprocValueAnalysisFunctions"></a>
       <span class="permalink">
       <a href="../../tip/analysis/InterprocValueAnalysisFunctions.html" title="Permalink">
         <i class="material-icons"></i>
@@ -974,7 +982,7 @@
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <a title="Constraint functions for value analysis (including interprocedural)." href="InterprocValueAnalysisFunctions.html"><span class="name">InterprocValueAnalysisFunctions</span></a><span class="tparams">[<span name="L">L &lt;: <a href="../lattices/LatticeWithOps.html" class="extype" name="tip.lattices.LatticeWithOps">LatticeWithOps</a></span>]</span><span class="result"> extends <a href="../solvers/MapLiftLatticeSolver.html" class="extype" name="tip.solvers.MapLiftLatticeSolver">MapLiftLatticeSolver</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] with <a href="InterprocValueAnalysisMisc.html" class="extype" name="tip.analysis.InterprocValueAnalysisMisc">InterprocValueAnalysisMisc</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
+        <a title="Constraint functions for value analysis (including interprocedural)." href="InterprocValueAnalysisFunctions.html"><span class="name">InterprocValueAnalysisFunctions</span></a><span class="result"> extends <a href="../solvers/MapLiftLatticeSolver.html" class="extype" name="tip.solvers.MapLiftLatticeSolver">MapLiftLatticeSolver</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] with <a href="InterprocValueAnalysisMisc.html" class="extype" name="tip.analysis.InterprocValueAnalysisMisc">InterprocValueAnalysisMisc</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
       </span>
       
       <p class="shortcomment cmt">Constraint functions for value analysis (including interprocedural).</p><div class="fullcomment"><div class="comment cmt"><p>Constraint functions for value analysis (including interprocedural).
@@ -1015,7 +1023,7 @@ This is a variant of <a href="InterprocValueAnalysisFunctions.html" class="extyp
       
       <p class="shortcomment cmt">Common functionality for interprocedural analysis.</p>
     </li><li name="tip.analysis.InterprocValueAnalysisWorklistSolverWithReachability" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="InterprocValueAnalysisWorklistSolverWithReachability[L&lt;:tip.lattices.LatticeWithOps]extendsLiftedValueAnalysis[tip.cfg.InterproceduralProgramCfg]withLiftedValueAnalysisMiscwithInterprocValueAnalysisFunctions[L]withWorklistFixpointSolverWithReachability[tip.cfg.CfgNode]withInterproceduralForwardDependencies"></a><a id="InterprocValueAnalysisWorklistSolverWithReachability[L&lt;:LatticeWithOps]:InterprocValueAnalysisWorklistSolverWithReachability[L]"></a>
+      <a id="InterprocValueAnalysisWorklistSolverWithReachability[L&lt;:tip.lattices.LatticeWithOps]extendsLiftedValueAnalysis[tip.cfg.InterproceduralProgramCfg]withLiftedValueAnalysisMiscwithInterprocValueAnalysisFunctionswithWorklistFixpointSolverWithReachability[tip.cfg.CfgNode]withInterproceduralForwardDependencies"></a><a id="InterprocValueAnalysisWorklistSolverWithReachability[L&lt;:LatticeWithOps]:InterprocValueAnalysisWorklistSolverWithReachability[L]"></a>
       <span class="permalink">
       <a href="../../tip/analysis/InterprocValueAnalysisWorklistSolverWithReachability.html" title="Permalink">
         <i class="material-icons"></i>
@@ -1026,7 +1034,7 @@ This is a variant of <a href="InterprocValueAnalysisFunctions.html" class="extyp
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="Interprocedural value analysis that uses tip.solvers.WorklistFixpointSolverWithReachability, with the entry of the main function as the only start node." href="InterprocValueAnalysisWorklistSolverWithReachability.html"><span class="name">InterprocValueAnalysisWorklistSolverWithReachability</span></a><span class="tparams">[<span name="L">L &lt;: <a href="../lattices/LatticeWithOps.html" class="extype" name="tip.lattices.LatticeWithOps">LatticeWithOps</a></span>]</span><span class="result"> extends <a href="LiftedValueAnalysis.html" class="extype" name="tip.analysis.LiftedValueAnalysis">LiftedValueAnalysis</a>[<a href="../cfg/InterproceduralProgramCfg.html" class="extype" name="tip.cfg.InterproceduralProgramCfg">InterproceduralProgramCfg</a>] with <a href="LiftedValueAnalysisMisc.html" class="extype" name="tip.analysis.LiftedValueAnalysisMisc">LiftedValueAnalysisMisc</a> with <a href="InterprocValueAnalysisFunctions.html" class="extype" name="tip.analysis.InterprocValueAnalysisFunctions">InterprocValueAnalysisFunctions</a>[<span class="extype" name="tip.analysis.InterprocValueAnalysisWorklistSolverWithReachability.L">L</span>] with <a href="../solvers/WorklistFixpointSolverWithReachability.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithReachability">WorklistFixpointSolverWithReachability</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] with <a href="InterproceduralForwardDependencies.html" class="extype" name="tip.analysis.InterproceduralForwardDependencies">InterproceduralForwardDependencies</a></span>
+        <a title="Interprocedural value analysis that uses tip.solvers.WorklistFixpointSolverWithReachability, with the entry of the main function as the only start node." href="InterprocValueAnalysisWorklistSolverWithReachability.html"><span class="name">InterprocValueAnalysisWorklistSolverWithReachability</span></a><span class="tparams">[<span name="L">L &lt;: <a href="../lattices/LatticeWithOps.html" class="extype" name="tip.lattices.LatticeWithOps">LatticeWithOps</a></span>]</span><span class="result"> extends <a href="LiftedValueAnalysis.html" class="extype" name="tip.analysis.LiftedValueAnalysis">LiftedValueAnalysis</a>[<a href="../cfg/InterproceduralProgramCfg.html" class="extype" name="tip.cfg.InterproceduralProgramCfg">InterproceduralProgramCfg</a>] with <a href="LiftedValueAnalysisMisc.html" class="extype" name="tip.analysis.LiftedValueAnalysisMisc">LiftedValueAnalysisMisc</a> with <a href="InterprocValueAnalysisFunctions.html" class="extype" name="tip.analysis.InterprocValueAnalysisFunctions">InterprocValueAnalysisFunctions</a> with <a href="../solvers/WorklistFixpointSolverWithReachability.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithReachability">WorklistFixpointSolverWithReachability</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] with <a href="InterproceduralForwardDependencies.html" class="extype" name="tip.analysis.InterproceduralForwardDependencies">InterproceduralForwardDependencies</a></span>
       </span>
       
       <p class="shortcomment cmt">Interprocedural value analysis that uses <a href="../solvers/WorklistFixpointSolverWithReachability.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithReachability">tip.solvers.WorklistFixpointSolverWithReachability</a>,
@@ -1083,7 +1091,7 @@ and it does not use indeps.
       
       
     </li><li name="tip.analysis.IntraprocValueAnalysisSimpleSolver" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="IntraprocValueAnalysisSimpleSolver[L&lt;:tip.lattices.LatticeWithOps]extendsSimpleValueAnalysis[Nothing]withSimpleMapLatticeFixpointSolver[tip.cfg.CfgNode]withForwardDependencies"></a><a id="IntraprocValueAnalysisSimpleSolver[L&lt;:LatticeWithOps]:IntraprocValueAnalysisSimpleSolver[L]"></a>
+      <a id="IntraprocValueAnalysisSimpleSolver[L&lt;:tip.lattices.LatticeWithOps]extendsSimpleValueAnalysiswithSimpleMapLatticeFixpointSolver[tip.cfg.CfgNode]withForwardDependencies"></a><a id="IntraprocValueAnalysisSimpleSolver[L&lt;:LatticeWithOps]:IntraprocValueAnalysisSimpleSolver[L]"></a>
       <span class="permalink">
       <a href="../../tip/analysis/IntraprocValueAnalysisSimpleSolver.html" title="Permalink">
         <i class="material-icons"></i>
@@ -1094,12 +1102,12 @@ and it does not use indeps.
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="Intraprocedural value analysis that uses tip.solvers.SimpleFixpointSolver." href="IntraprocValueAnalysisSimpleSolver.html"><span class="name">IntraprocValueAnalysisSimpleSolver</span></a><span class="tparams">[<span name="L">L &lt;: <a href="../lattices/LatticeWithOps.html" class="extype" name="tip.lattices.LatticeWithOps">LatticeWithOps</a></span>]</span><span class="result"> extends <a href="SimpleValueAnalysis.html" class="extype" name="tip.analysis.SimpleValueAnalysis">SimpleValueAnalysis</a>[<span class="extype" name="scala.Nothing">Nothing</span>] with <a href="../solvers/SimpleMapLatticeFixpointSolver.html" class="extype" name="tip.solvers.SimpleMapLatticeFixpointSolver">SimpleMapLatticeFixpointSolver</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] with <a href="ForwardDependencies.html" class="extype" name="tip.analysis.ForwardDependencies">ForwardDependencies</a></span>
+        <a title="Intraprocedural value analysis that uses tip.solvers.SimpleFixpointSolver." href="IntraprocValueAnalysisSimpleSolver.html"><span class="name">IntraprocValueAnalysisSimpleSolver</span></a><span class="tparams">[<span name="L">L &lt;: <a href="../lattices/LatticeWithOps.html" class="extype" name="tip.lattices.LatticeWithOps">LatticeWithOps</a></span>]</span><span class="result"> extends <a href="SimpleValueAnalysis.html" class="extype" name="tip.analysis.SimpleValueAnalysis">SimpleValueAnalysis</a> with <a href="../solvers/SimpleMapLatticeFixpointSolver.html" class="extype" name="tip.solvers.SimpleMapLatticeFixpointSolver">SimpleMapLatticeFixpointSolver</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] with <a href="ForwardDependencies.html" class="extype" name="tip.analysis.ForwardDependencies">ForwardDependencies</a></span>
       </span>
       
       <p class="shortcomment cmt">Intraprocedural value analysis that uses <a href="../solvers/SimpleFixpointSolver.html" class="extype" name="tip.solvers.SimpleFixpointSolver">tip.solvers.SimpleFixpointSolver</a>.</p>
     </li><li name="tip.analysis.IntraprocValueAnalysisWorklistSolver" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="IntraprocValueAnalysisWorklistSolver[L&lt;:tip.lattices.LatticeWithOps]extendsSimpleValueAnalysis[Nothing]withSimpleWorklistFixpointSolver[tip.cfg.CfgNode]withForwardDependencies"></a><a id="IntraprocValueAnalysisWorklistSolver[L&lt;:LatticeWithOps]:IntraprocValueAnalysisWorklistSolver[L]"></a>
+      <a id="IntraprocValueAnalysisWorklistSolver[L&lt;:tip.lattices.LatticeWithOps]extendsSimpleValueAnalysiswithSimpleWorklistFixpointSolver[tip.cfg.CfgNode]withForwardDependencies"></a><a id="IntraprocValueAnalysisWorklistSolver[L&lt;:LatticeWithOps]:IntraprocValueAnalysisWorklistSolver[L]"></a>
       <span class="permalink">
       <a href="../../tip/analysis/IntraprocValueAnalysisWorklistSolver.html" title="Permalink">
         <i class="material-icons"></i>
@@ -1110,7 +1118,7 @@ and it does not use indeps.
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="Intraprocedural value analysis that uses tip.solvers.SimpleWorklistFixpointSolver." href="IntraprocValueAnalysisWorklistSolver.html"><span class="name">IntraprocValueAnalysisWorklistSolver</span></a><span class="tparams">[<span name="L">L &lt;: <a href="../lattices/LatticeWithOps.html" class="extype" name="tip.lattices.LatticeWithOps">LatticeWithOps</a></span>]</span><span class="result"> extends <a href="SimpleValueAnalysis.html" class="extype" name="tip.analysis.SimpleValueAnalysis">SimpleValueAnalysis</a>[<span class="extype" name="scala.Nothing">Nothing</span>] with <a href="../solvers/SimpleWorklistFixpointSolver.html" class="extype" name="tip.solvers.SimpleWorklistFixpointSolver">SimpleWorklistFixpointSolver</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] with <a href="ForwardDependencies.html" class="extype" name="tip.analysis.ForwardDependencies">ForwardDependencies</a></span>
+        <a title="Intraprocedural value analysis that uses tip.solvers.SimpleWorklistFixpointSolver." href="IntraprocValueAnalysisWorklistSolver.html"><span class="name">IntraprocValueAnalysisWorklistSolver</span></a><span class="tparams">[<span name="L">L &lt;: <a href="../lattices/LatticeWithOps.html" class="extype" name="tip.lattices.LatticeWithOps">LatticeWithOps</a></span>]</span><span class="result"> extends <a href="SimpleValueAnalysis.html" class="extype" name="tip.analysis.SimpleValueAnalysis">SimpleValueAnalysis</a> with <a href="../solvers/SimpleWorklistFixpointSolver.html" class="extype" name="tip.solvers.SimpleWorklistFixpointSolver">SimpleWorklistFixpointSolver</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] with <a href="ForwardDependencies.html" class="extype" name="tip.analysis.ForwardDependencies">ForwardDependencies</a></span>
       </span>
       
       <p class="shortcomment cmt">Intraprocedural value analysis that uses <a href="../solvers/SimpleWorklistFixpointSolver.html" class="extype" name="tip.solvers.SimpleWorklistFixpointSolver">tip.solvers.SimpleWorklistFixpointSolver</a>.</p>
@@ -1148,7 +1156,7 @@ with all function entries as start nodes.</p>
       
       <p class="shortcomment cmt">Intraprocedural value analysis that uses <a href="../solvers/WorklistFixpointPropagationSolver.html" class="extype" name="tip.solvers.WorklistFixpointPropagationSolver">tip.solvers.WorklistFixpointPropagationSolver</a>.</p>
     </li><li name="tip.analysis.LiftedValueAnalysis" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="LiftedValueAnalysis[P&lt;:tip.cfg.ProgramCfg]extendsFlowSensitiveAnalysis[tip.cfg.CfgNode]withMapLatticeSolver[tip.cfg.CfgNode]withValueAnalysisMisc"></a><a id="LiftedValueAnalysis[P&lt;:ProgramCfg]:LiftedValueAnalysis[P]"></a>
+      <a id="LiftedValueAnalysis[P&lt;:tip.cfg.ProgramCfg]extendsFlowSensitiveAnalysiswithMapLatticeSolver[tip.cfg.CfgNode]withValueAnalysisMisc"></a><a id="LiftedValueAnalysis[P&lt;:ProgramCfg]:LiftedValueAnalysis[P]"></a>
       <span class="permalink">
       <a href="../../tip/analysis/LiftedValueAnalysis.html" title="Permalink">
         <i class="material-icons"></i>
@@ -1159,7 +1167,7 @@ with all function entries as start nodes.</p>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="Base class for value analysis with lifted lattice, where the extra bottom element represents &quot;unreachable&quot;." href="LiftedValueAnalysis.html"><span class="name">LiftedValueAnalysis</span></a><span class="tparams">[<span name="P">P &lt;: <a href="../cfg/ProgramCfg.html" class="extype" name="tip.cfg.ProgramCfg">ProgramCfg</a></span>]</span><span class="result"> extends <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] with <a href="../solvers/MapLatticeSolver.html" class="extype" name="tip.solvers.MapLatticeSolver">MapLatticeSolver</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] with <a href="ValueAnalysisMisc.html" class="extype" name="tip.analysis.ValueAnalysisMisc">ValueAnalysisMisc</a></span>
+        <a title="Base class for value analysis with lifted lattice, where the extra bottom element represents &quot;unreachable&quot;." href="LiftedValueAnalysis.html"><span class="name">LiftedValueAnalysis</span></a><span class="tparams">[<span name="P">P &lt;: <a href="../cfg/ProgramCfg.html" class="extype" name="tip.cfg.ProgramCfg">ProgramCfg</a></span>]</span><span class="result"> extends <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a> with <a href="../solvers/MapLatticeSolver.html" class="extype" name="tip.solvers.MapLatticeSolver">MapLatticeSolver</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] with <a href="ValueAnalysisMisc.html" class="extype" name="tip.analysis.ValueAnalysisMisc">ValueAnalysisMisc</a></span>
       </span>
       
       <p class="shortcomment cmt">Base class for value analysis with lifted lattice, where the extra bottom element represents &quot;unreachable&quot;.</p>
@@ -1180,7 +1188,7 @@ with all function entries as start nodes.</p>
       
       <p class="shortcomment cmt">Functionality for basic analyses with lifted state lattice.</p>
     </li><li name="tip.analysis.LiveVarsAnalysis" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="LiveVarsAnalysisextendsFlowSensitiveAnalysis[tip.cfg.CfgNode]"></a><a id="LiveVarsAnalysis:LiveVarsAnalysis"></a>
+      <a id="LiveVarsAnalysisextendsFlowSensitiveAnalysis"></a><a id="LiveVarsAnalysis:LiveVarsAnalysis"></a>
       <span class="permalink">
       <a href="../../tip/analysis/LiveVarsAnalysis.html" title="Permalink">
         <i class="material-icons"></i>
@@ -1191,7 +1199,7 @@ with all function entries as start nodes.</p>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="Base class for live variables analysis." href="LiveVarsAnalysis.html"><span class="name">LiveVarsAnalysis</span></a><span class="result"> extends <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
+        <a title="Base class for live variables analysis." href="LiveVarsAnalysis.html"><span class="name">LiveVarsAnalysis</span></a><span class="result"> extends <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a></span>
       </span>
       
       <p class="shortcomment cmt">Base class for live variables analysis.</p>
@@ -1261,8 +1269,40 @@ with all function entries as start nodes.</p>
       <p class="shortcomment cmt">Trait for (may-)points-to analyses.</p><div class="fullcomment"><div class="comment cmt"><p>Trait for (may-)points-to analyses.
 Can answer may-points-to and may-alias queries.
 </p></div></div>
+    </li><li name="tip.analysis.PossiblyUninitializedVarsAnalysisFunctions" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="PossiblyUninitializedVarsAnalysisFunctionsextendsIDEAnalysis[tip.ast.ADeclaration,tip.lattices.TwoElementLattice]"></a><a id="PossiblyUninitializedVarsAnalysisFunctions:PossiblyUninitializedVarsAnalysisFunctions"></a>
+      <span class="permalink">
+      <a href="../../tip/analysis/PossiblyUninitializedVarsAnalysisFunctions.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a title="Micro-transfer-functions for possibly-uninitialized variables analysis." href="PossiblyUninitializedVarsAnalysisFunctions.html"><span class="name">PossiblyUninitializedVarsAnalysisFunctions</span></a><span class="result"> extends <a href="../solvers/IDEAnalysis.html" class="extype" name="tip.solvers.IDEAnalysis">IDEAnalysis</a>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>, <a href="../lattices/TwoElementLattice.html" class="extype" name="tip.lattices.TwoElementLattice">TwoElementLattice</a>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Micro-transfer-functions for possibly-uninitialized variables analysis.</p>
+    </li><li name="tip.analysis.PossiblyUninitializedVarsIDEAnalysis" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PossiblyUninitializedVarsIDEAnalysisextendsIDESolver[tip.ast.ADeclaration,tip.lattices.TwoElementLattice]withPossiblyUninitializedVarsAnalysisFunctions"></a><a id="PossiblyUninitializedVarsIDEAnalysis:PossiblyUninitializedVarsIDEAnalysis"></a>
+      <span class="permalink">
+      <a href="../../tip/analysis/PossiblyUninitializedVarsIDEAnalysis.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a title="Possibly-uninitialized variables analysis using IDE solver." href="PossiblyUninitializedVarsIDEAnalysis.html"><span class="name">PossiblyUninitializedVarsIDEAnalysis</span></a><span class="result"> extends <a href="../solvers/IDESolver.html" class="extype" name="tip.solvers.IDESolver">IDESolver</a>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>, <a href="../lattices/TwoElementLattice.html" class="extype" name="tip.lattices.TwoElementLattice">TwoElementLattice</a>] with <a href="PossiblyUninitializedVarsAnalysisFunctions.html" class="extype" name="tip.analysis.PossiblyUninitializedVarsAnalysisFunctions">PossiblyUninitializedVarsAnalysisFunctions</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Possibly-uninitialized variables analysis using IDE solver.</p>
     </li><li name="tip.analysis.SimpleSignAnalysis" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="SimpleSignAnalysisextendsFlowSensitiveAnalysis[tip.cfg.CfgNode]"></a><a id="SimpleSignAnalysis:SimpleSignAnalysis"></a>
+      <a id="SimpleSignAnalysisextendsFlowSensitiveAnalysis"></a><a id="SimpleSignAnalysis:SimpleSignAnalysis"></a>
       <span class="permalink">
       <a href="../../tip/analysis/SimpleSignAnalysis.html" title="Permalink">
         <i class="material-icons"></i>
@@ -1273,14 +1313,14 @@ Can answer may-points-to and may-alias queries.
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="Simple intra-procedural sign analysis." href="SimpleSignAnalysis.html"><span class="name">SimpleSignAnalysis</span></a><span class="result"> extends <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>]</span>
+        <a title="Simple intra-procedural sign analysis." href="SimpleSignAnalysis.html"><span class="name">SimpleSignAnalysis</span></a><span class="result"> extends <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a></span>
       </span>
       
       <p class="shortcomment cmt">Simple intra-procedural sign analysis.</p><div class="fullcomment"><div class="comment cmt"><p>Simple intra-procedural sign analysis.</p><p>This is a specialized version of <code>SignAnalysis.Intraprocedural.SimpleSolver</code>
 where most of the involved traits, classes, methods, and fields have been inlined.
 </p></div></div>
     </li><li name="tip.analysis.SimpleValueAnalysis" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="SimpleValueAnalysis[L&lt;:tip.lattices.LatticeWithOps]extendsFlowSensitiveAnalysis[tip.cfg.CfgNode]withValueAnalysisMisc"></a><a id="SimpleValueAnalysis[L&lt;:LatticeWithOps]:SimpleValueAnalysis[L]"></a>
+      <a id="SimpleValueAnalysisextendsFlowSensitiveAnalysiswithValueAnalysisMisc"></a><a id="SimpleValueAnalysis:SimpleValueAnalysis"></a>
       <span class="permalink">
       <a href="../../tip/analysis/SimpleValueAnalysis.html" title="Permalink">
         <i class="material-icons"></i>
@@ -1291,7 +1331,7 @@ where most of the involved traits, classes, methods, and fields have been inline
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="Base class for value analysis with simple (non-lifted) lattice." href="SimpleValueAnalysis.html"><span class="name">SimpleValueAnalysis</span></a><span class="tparams">[<span name="L">L &lt;: <a href="../lattices/LatticeWithOps.html" class="extype" name="tip.lattices.LatticeWithOps">LatticeWithOps</a></span>]</span><span class="result"> extends <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] with <a href="ValueAnalysisMisc.html" class="extype" name="tip.analysis.ValueAnalysisMisc">ValueAnalysisMisc</a></span>
+        <a title="Base class for value analysis with simple (non-lifted) lattice." href="SimpleValueAnalysis.html"><span class="name">SimpleValueAnalysis</span></a><span class="result"> extends <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a> with <a href="ValueAnalysisMisc.html" class="extype" name="tip.analysis.ValueAnalysisMisc">ValueAnalysisMisc</a></span>
       </span>
       
       <p class="shortcomment cmt">Base class for value analysis with simple (non-lifted) lattice.</p>

@@ -163,8 +163,8 @@
                         <a href="ContextSensitiveValueAnalysis.html" title="Base class for value analysis with context sensitivity and lifted lattice.">ContextSensitiveValueAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="class" href="ControlFlowAnalysis.html" title=""></a>
-                        <a href="ControlFlowAnalysis.html" title="">ControlFlowAnalysis</a>
+                        <a class="class" href="ControlFlowAnalysis.html" title="Control flow analysis."></a>
+                        <a href="ControlFlowAnalysis.html" title="Control flow analysis.">ControlFlowAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
                         <a class="trait" href="CopyConstantPropagationAnalysisFunctions.html" title="Micro-transfer-functions for copy-constant-propagation analysis."></a>
@@ -293,6 +293,14 @@
                         <span class="separator"></span>
                         <a class="trait" href="PointsToAnalysis.html" title="Trait for (may-)points-to analyses."></a>
                         <a href="PointsToAnalysis.html" title="Trait for (may-)points-to analyses.">PointsToAnalysis</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="PossiblyUninitializedVarsAnalysisFunctions.html" title="Micro-transfer-functions for possibly-uninitialized variables analysis."></a>
+                        <a href="PossiblyUninitializedVarsAnalysisFunctions.html" title="Micro-transfer-functions for possibly-uninitialized variables analysis.">PossiblyUninitializedVarsAnalysisFunctions</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="PossiblyUninitializedVarsIDEAnalysis.html" title="Possibly-uninitialized variables analysis using IDE solver."></a>
+                        <a href="PossiblyUninitializedVarsIDEAnalysis.html" title="Possibly-uninitialized variables analysis using IDE solver.">PossiblyUninitializedVarsIDEAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
                         <a class="object" href="SignAnalysis$.html" title=""></a>
@@ -736,13 +744,13 @@ This is a variant of <a href="InterprocValueAnalysisFunctions.html" class="extyp
               
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="tip.analysis.ValueAnalysisMisc#declaredVars" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="declaredVars:Set[tip.ast.ADeclaration]"></a><a id="declaredVars:Set[ADeclaration]"></a>
+      <a id="declaredVars:scala.collection.immutable.Set[tip.ast.ADeclaration]"></a><a id="declaredVars:Set[ADeclaration]"></a>
       <span class="permalink">
-      <a href="../../tip/analysis/InterprocValueAnalysisFunctionsWithPropagation.html#declaredVars:Set[tip.ast.ADeclaration]" title="Permalink">
+      <a href="../../tip/analysis/InterprocValueAnalysisFunctionsWithPropagation.html#declaredVars:scala.collection.immutable.Set[tip.ast.ADeclaration]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -751,7 +759,7 @@ This is a variant of <a href="InterprocValueAnalysisFunctions.html" class="extyp
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">declaredVars</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>]</span>
+        <span class="name">declaredVars</span><span class="result">: <span class="extype" name="scala.collection.immutable.Set">Set</span>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>]</span>
       </span>
       
       <p class="shortcomment cmt">Set of declared variables, used by <code>statelattice</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set of declared variables, used by <code>statelattice</code>.
@@ -857,7 +865,7 @@ First computes the join of the incoming elements and then applies the transfer f
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -878,7 +886,7 @@ First computes the join of the incoming elements and then applies the transfer f
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -965,7 +973,7 @@ First computes the join of the incoming elements and then applies the transfer f
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -986,7 +994,7 @@ First computes the join of the incoming elements and then applies the transfer f
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="tip.solvers.WorklistFixpointPropagationFunctions#propagate" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
