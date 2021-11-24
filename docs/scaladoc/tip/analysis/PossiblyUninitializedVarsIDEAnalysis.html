@@ -175,6 +175,10 @@
                         <a href="CopyConstantPropagationIDEAnalysis.html" title="Copy-constant-propagation analysis using IDE solver.">CopyConstantPropagationIDEAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
+                        <a class="class" href="CopyConstantPropagationSummaryAnalysis.html" title="Copy-constant-propagation analysis using summary solver."></a>
+                        <a href="CopyConstantPropagationSummaryAnalysis.html" title="Copy-constant-propagation analysis using summary solver.">CopyConstantPropagationSummaryAnalysis</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
                         <a class="class" href="DeclarationAnalysis.html" title="Declaration analysis, binds identifiers to their declarations."></a>
                         <a href="DeclarationAnalysis.html" title="Declaration analysis, binds identifiers to their declarations.">DeclarationAnalysis</a>
                       </li><li class="current-entities indented2">
@@ -303,6 +307,10 @@
                         <a href="" title="Possibly-uninitialized variables analysis using IDE solver.">PossiblyUninitializedVarsIDEAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
+                        <a class="class" href="PossiblyUninitializedVarsSummaryAnalysis.html" title="Possibly-uninitialized variables analysis using summary solver."></a>
+                        <a href="PossiblyUninitializedVarsSummaryAnalysis.html" title="Possibly-uninitialized variables analysis using summary solver.">PossiblyUninitializedVarsSummaryAnalysis</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
                         <a class="object" href="SignAnalysis$.html" title=""></a>
                         <a href="SignAnalysis$.html" title="">SignAnalysis</a>
                       </li><li class="current-entities indented2">
@@ -321,6 +329,18 @@
                         <span class="separator"></span>
                         <a class="class" href="SteensgaardAnalysis.html" title="Steensgaard-style pointer analysis."></a>
                         <a href="SteensgaardAnalysis.html" title="Steensgaard-style pointer analysis.">SteensgaardAnalysis</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="TaintAnalysisFunctions.html" title="Micro-transfer-functions for taint analysis."></a>
+                        <a href="TaintAnalysisFunctions.html" title="Micro-transfer-functions for taint analysis.">TaintAnalysisFunctions</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="TaintIDEAnalysis.html" title="Taint analysis using IDE solver."></a>
+                        <a href="TaintIDEAnalysis.html" title="Taint analysis using IDE solver.">TaintIDEAnalysis</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="TaintSummaryAnalysis.html" title="Taint analysis using summary solver."></a>
+                        <a href="TaintSummaryAnalysis.html" title="Taint analysis using summary solver.">TaintSummaryAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
                         <a class="class" href="TypeAnalysis.html" title="Unification-based type analysis."></a>
@@ -445,10 +465,10 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../solvers/IDEAnalysis.html" class="extype" name="tip.solvers.IDEAnalysis">IDEAnalysis</a></dd></dl></div>
-    </li><li name="tip.solvers.IDESolver.IDEPhase1Analysis" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="IDEPhase1AnalysisextendsWorklistFixpointPropagationFunctions[(tip.cfg.CfgNode,Either[D,tip.solvers.Lambda],Either[D,tip.solvers.Lambda])]"></a><a id="IDEPhase1Analysis:IDEPhase1Analysis"></a>
+    </li><li name="tip.solvers.IDESolver.Phase1" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="Phase1extendsWorklistFixpointPropagationFunctions[(tip.cfg.CfgNode,Either[D,tip.solvers.Lambda],Either[D,tip.solvers.Lambda])]"></a><a id="Phase1:Phase1"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase1.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -457,17 +477,17 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="Phase 1 of the IDE algorithm." href="../solvers/IDESolver$IDEPhase1Analysis.html"><span class="name">IDEPhase1Analysis</span></a><span class="result"> extends <a href="../solvers/WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="../solvers/Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>], <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="../solvers/Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])]</span>
+        <a title="Phase 1 of the IDE algorithm." href="../solvers/IDESolver$Phase1.html"><span class="name">Phase1</span></a><span class="result"> extends <a href="../solvers/WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="../solvers/Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>], <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="../solvers/Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])]</span>
       </span>
       
       <p class="shortcomment cmt">Phase 1 of the IDE algorithm.</p><div class="fullcomment"><div class="comment cmt"><p>Phase 1 of the IDE algorithm.
 The original version of the algorithm uses summary edges from call nodes to after-call nodes
 instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../solvers/IDESolver.html" class="extype" name="tip.solvers.IDESolver">IDESolver</a></dd></dl></div>
-    </li><li name="tip.solvers.IDESolver.IDEPhase2Analysis" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="IDEPhase2AnalysisextendsFlowSensitiveAnalysiswithWorklistFixpointPropagationFunctions[(tip.cfg.CfgNode,Either[D,tip.solvers.Lambda])]"></a><a id="IDEPhase2Analysis:IDEPhase2Analysis"></a>
+    </li><li name="tip.solvers.IDESolver.Phase2" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="Phase2extendsFlowSensitiveAnalysiswithWorklistFixpointPropagationFunctions[(tip.cfg.CfgNode,Either[D,tip.solvers.Lambda])]"></a><a id="Phase2:Phase2"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase2Analysis.html" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -476,7 +496,7 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="Phase 2 of the IDE algorithm." href="../solvers/IDESolver$IDEPhase2Analysis.html"><span class="name">IDEPhase2Analysis</span></a><span class="result"> extends <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a> with <a href="../solvers/WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="../solvers/Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])]</span>
+        <a title="Phase 2 of the IDE algorithm." href="../solvers/IDESolver$Phase2.html"><span class="name">Phase2</span></a><span class="result"> extends <a href="FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a> with <a href="../solvers/WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="../solvers/Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])]</span>
       </span>
       
       <p class="shortcomment cmt">Phase 2 of the IDE algorithm.</p><div class="fullcomment"><div class="comment cmt"><p>Phase 2 of the IDE algorithm.
@@ -540,9 +560,9 @@ The original RHS version of IDE uses jump functions for all nodes, not only at e
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="tip.solvers.IDESolver#analyze" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="analyze():IDESolver.this.lattice.Element"></a><a id="analyze():Element"></a>
+      <a id="analyze():Map[tip.cfg.CfgNode,Map[D,IDESolver.this.valuelattice.Element]]"></a><a id="analyze():Map[CfgNode,Map[ADeclaration,lattices.TwoElementLattice.Element]]"></a>
       <span class="permalink">
-      <a href="../../tip/analysis/PossiblyUninitializedVarsIDEAnalysis.html#analyze():IDESolver.this.lattice.Element" title="Permalink">
+      <a href="../../tip/analysis/PossiblyUninitializedVarsIDEAnalysis.html#analyze():Map[tip.cfg.CfgNode,Map[D,IDESolver.this.valuelattice.Element]]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -551,7 +571,7 @@ The original RHS version of IDE uses jump functions for all nodes, not only at e
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">analyze</span><span class="params">()</span><span class="result">: <a href="../lattices/MapLattice.html#Element=Map[A,MapLattice.this.sublattice.Element]" class="extmbr" name="tip.lattices.MapLattice.Element">Element</a></span>
+        <span class="name">analyze</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Predef.Map">Map</span>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>, <a href="../lattices/TwoElementLattice.html#Element=FlatLattice.this.FlatElement" class="extmbr" name="tip.lattices.TwoElementLattice.Element">lattices.TwoElementLattice.Element</a>]]</span>
       </span>
       
       <p class="shortcomment cmt">Performs the analysis and returns the result.</p><div class="fullcomment"><div class="comment cmt"><p>Performs the analysis and returns the result.
@@ -611,7 +631,7 @@ The original RHS version of IDE uses jump functions for all nodes, not only at e
               
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="tip.analysis.PossiblyUninitializedVarsIDEAnalysis#declData" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -648,9 +668,9 @@ The original RHS version of IDE uses jump functions for all nodes, not only at e
       <p class="shortcomment cmt">The edge lattice.</p><div class="fullcomment"><div class="comment cmt"><p>The edge lattice.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="PossiblyUninitializedVarsAnalysisFunctions.html" class="extype" name="tip.analysis.PossiblyUninitializedVarsAnalysisFunctions">PossiblyUninitializedVarsAnalysisFunctions</a> → <a href="../solvers/IDEAnalysis.html" class="extype" name="tip.solvers.IDEAnalysis">IDEAnalysis</a></dd></dl></div>
     </li><li name="tip.analysis.PossiblyUninitializedVarsAnalysisFunctions#edgesCallToAfterCall" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="edgesCallToAfterCall(d2:PossiblyUninitializedVarsAnalysisFunctions.this.DL,call:tip.cfg.CfgCallNode,aftercall:tip.cfg.CfgAfterCallNode):List[(PossiblyUninitializedVarsAnalysisFunctions.this.DL,PossiblyUninitializedVarsAnalysisFunctions.this.edgelattice.EdgeFunction)]"></a><a id="edgesCallToAfterCall(DL,CfgCallNode,CfgAfterCallNode):List[(DL,EdgeFunction)]"></a>
+      <a id="edgesCallToAfterCall(call:tip.cfg.CfgCallNode,aftercall:tip.cfg.CfgAfterCallNode)(d:PossiblyUninitializedVarsAnalysisFunctions.this.DL):Map[PossiblyUninitializedVarsAnalysisFunctions.this.DL,PossiblyUninitializedVarsAnalysisFunctions.this.edgelattice.EdgeFunction]"></a><a id="edgesCallToAfterCall(CfgCallNode,CfgAfterCallNode)(DL):Map[DL,EdgeFunction]"></a>
       <span class="permalink">
-      <a href="../../tip/analysis/PossiblyUninitializedVarsIDEAnalysis.html#edgesCallToAfterCall(d2:PossiblyUninitializedVarsAnalysisFunctions.this.DL,call:tip.cfg.CfgCallNode,aftercall:tip.cfg.CfgAfterCallNode):List[(PossiblyUninitializedVarsAnalysisFunctions.this.DL,PossiblyUninitializedVarsAnalysisFunctions.this.edgelattice.EdgeFunction)]" title="Permalink">
+      <a href="../../tip/analysis/PossiblyUninitializedVarsIDEAnalysis.html#edgesCallToAfterCall(call:tip.cfg.CfgCallNode,aftercall:tip.cfg.CfgAfterCallNode)(d:PossiblyUninitializedVarsAnalysisFunctions.this.DL):Map[PossiblyUninitializedVarsAnalysisFunctions.this.DL,PossiblyUninitializedVarsAnalysisFunctions.this.edgelattice.EdgeFunction]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -659,15 +679,15 @@ The original RHS version of IDE uses jump functions for all nodes, not only at e
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">edgesCallToAfterCall</span><span class="params">(<span name="d2">d2: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.PossiblyUninitializedVarsIDEAnalysis.DL">DL</a></span>, <span name="call">call: <a href="../cfg/CfgCallNode.html" class="extype" name="tip.cfg.CfgCallNode">CfgCallNode</a></span>, <span name="aftercall">aftercall: <a href="../cfg/CfgAfterCallNode.html" class="extype" name="tip.cfg.CfgAfterCallNode">CfgAfterCallNode</a></span>)</span><span class="result">: <span class="extype" name="scala.List">List</span>[(<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.PossiblyUninitializedVarsIDEAnalysis.DL">DL</a>, <a href="../lattices/EdgeFunctionLattice$EdgeFunction.html" class="extype" name="tip.lattices.EdgeFunctionLattice.EdgeFunction">EdgeFunction</a>)]</span>
+        <span class="name">edgesCallToAfterCall</span><span class="params">(<span name="call">call: <a href="../cfg/CfgCallNode.html" class="extype" name="tip.cfg.CfgCallNode">CfgCallNode</a></span>, <span name="aftercall">aftercall: <a href="../cfg/CfgAfterCallNode.html" class="extype" name="tip.cfg.CfgAfterCallNode">CfgAfterCallNode</a></span>)</span><span class="params">(<span name="d">d: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.PossiblyUninitializedVarsIDEAnalysis.DL">DL</a></span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.PossiblyUninitializedVarsIDEAnalysis.DL">DL</a>, <a href="../lattices/EdgeFunctionLattice$EdgeFunction.html" class="extype" name="tip.lattices.EdgeFunctionLattice.EdgeFunction">EdgeFunction</a>]</span>
       </span>
       
       <p class="shortcomment cmt">Edges for call-to-aftercall.</p><div class="fullcomment"><div class="comment cmt"><p>Edges for call-to-aftercall.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="PossiblyUninitializedVarsAnalysisFunctions.html" class="extype" name="tip.analysis.PossiblyUninitializedVarsAnalysisFunctions">PossiblyUninitializedVarsAnalysisFunctions</a> → <a href="../solvers/IDEAnalysis.html" class="extype" name="tip.solvers.IDEAnalysis">IDEAnalysis</a></dd></dl></div>
     </li><li name="tip.analysis.PossiblyUninitializedVarsAnalysisFunctions#edgesCallToEntry" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="edgesCallToEntry(d:PossiblyUninitializedVarsAnalysisFunctions.this.DL,call:tip.cfg.CfgCallNode,entry:tip.cfg.CfgFunEntryNode):List[(PossiblyUninitializedVarsAnalysisFunctions.this.DL,PossiblyUninitializedVarsAnalysisFunctions.this.edgelattice.EdgeFunction)]"></a><a id="edgesCallToEntry(DL,CfgCallNode,CfgFunEntryNode):List[(DL,EdgeFunction)]"></a>
+      <a id="edgesCallToEntry(call:tip.cfg.CfgCallNode,entry:tip.cfg.CfgFunEntryNode)(d:PossiblyUninitializedVarsAnalysisFunctions.this.DL):Map[PossiblyUninitializedVarsAnalysisFunctions.this.DL,PossiblyUninitializedVarsAnalysisFunctions.this.edgelattice.EdgeFunction]"></a><a id="edgesCallToEntry(CfgCallNode,CfgFunEntryNode)(DL):Map[DL,EdgeFunction]"></a>
       <span class="permalink">
-      <a href="../../tip/analysis/PossiblyUninitializedVarsIDEAnalysis.html#edgesCallToEntry(d:PossiblyUninitializedVarsAnalysisFunctions.this.DL,call:tip.cfg.CfgCallNode,entry:tip.cfg.CfgFunEntryNode):List[(PossiblyUninitializedVarsAnalysisFunctions.this.DL,PossiblyUninitializedVarsAnalysisFunctions.this.edgelattice.EdgeFunction)]" title="Permalink">
+      <a href="../../tip/analysis/PossiblyUninitializedVarsIDEAnalysis.html#edgesCallToEntry(call:tip.cfg.CfgCallNode,entry:tip.cfg.CfgFunEntryNode)(d:PossiblyUninitializedVarsAnalysisFunctions.this.DL):Map[PossiblyUninitializedVarsAnalysisFunctions.this.DL,PossiblyUninitializedVarsAnalysisFunctions.this.edgelattice.EdgeFunction]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -676,15 +696,15 @@ The original RHS version of IDE uses jump functions for all nodes, not only at e
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">edgesCallToEntry</span><span class="params">(<span name="d">d: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.PossiblyUninitializedVarsIDEAnalysis.DL">DL</a></span>, <span name="call">call: <a href="../cfg/CfgCallNode.html" class="extype" name="tip.cfg.CfgCallNode">CfgCallNode</a></span>, <span name="entry">entry: <a href="../cfg/CfgFunEntryNode.html" class="extype" name="tip.cfg.CfgFunEntryNode">CfgFunEntryNode</a></span>)</span><span class="result">: <span class="extype" name="scala.List">List</span>[(<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.PossiblyUninitializedVarsIDEAnalysis.DL">DL</a>, <a href="../lattices/EdgeFunctionLattice$EdgeFunction.html" class="extype" name="tip.lattices.EdgeFunctionLattice.EdgeFunction">EdgeFunction</a>)]</span>
+        <span class="name">edgesCallToEntry</span><span class="params">(<span name="call">call: <a href="../cfg/CfgCallNode.html" class="extype" name="tip.cfg.CfgCallNode">CfgCallNode</a></span>, <span name="entry">entry: <a href="../cfg/CfgFunEntryNode.html" class="extype" name="tip.cfg.CfgFunEntryNode">CfgFunEntryNode</a></span>)</span><span class="params">(<span name="d">d: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.PossiblyUninitializedVarsIDEAnalysis.DL">DL</a></span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.PossiblyUninitializedVarsIDEAnalysis.DL">DL</a>, <a href="../lattices/EdgeFunctionLattice$EdgeFunction.html" class="extype" name="tip.lattices.EdgeFunctionLattice.EdgeFunction">EdgeFunction</a>]</span>
       </span>
       
       <p class="shortcomment cmt">Edges for call-to-entry.</p><div class="fullcomment"><div class="comment cmt"><p>Edges for call-to-entry.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="PossiblyUninitializedVarsAnalysisFunctions.html" class="extype" name="tip.analysis.PossiblyUninitializedVarsAnalysisFunctions">PossiblyUninitializedVarsAnalysisFunctions</a> → <a href="../solvers/IDEAnalysis.html" class="extype" name="tip.solvers.IDEAnalysis">IDEAnalysis</a></dd></dl></div>
     </li><li name="tip.analysis.PossiblyUninitializedVarsAnalysisFunctions#edgesExitToAfterCall" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="edgesExitToAfterCall(d:PossiblyUninitializedVarsAnalysisFunctions.this.DL,exit:tip.cfg.CfgFunExitNode,aftercall:tip.cfg.CfgAfterCallNode):List[(PossiblyUninitializedVarsAnalysisFunctions.this.DL,PossiblyUninitializedVarsAnalysisFunctions.this.edgelattice.EdgeFunction)]"></a><a id="edgesExitToAfterCall(DL,CfgFunExitNode,CfgAfterCallNode):List[(DL,EdgeFunction)]"></a>
+      <a id="edgesExitToAfterCall(exit:tip.cfg.CfgFunExitNode,aftercall:tip.cfg.CfgAfterCallNode)(d:PossiblyUninitializedVarsAnalysisFunctions.this.DL):Map[PossiblyUninitializedVarsAnalysisFunctions.this.DL,PossiblyUninitializedVarsAnalysisFunctions.this.edgelattice.EdgeFunction]"></a><a id="edgesExitToAfterCall(CfgFunExitNode,CfgAfterCallNode)(DL):Map[DL,EdgeFunction]"></a>
       <span class="permalink">
-      <a href="../../tip/analysis/PossiblyUninitializedVarsIDEAnalysis.html#edgesExitToAfterCall(d:PossiblyUninitializedVarsAnalysisFunctions.this.DL,exit:tip.cfg.CfgFunExitNode,aftercall:tip.cfg.CfgAfterCallNode):List[(PossiblyUninitializedVarsAnalysisFunctions.this.DL,PossiblyUninitializedVarsAnalysisFunctions.this.edgelattice.EdgeFunction)]" title="Permalink">
+      <a href="../../tip/analysis/PossiblyUninitializedVarsIDEAnalysis.html#edgesExitToAfterCall(exit:tip.cfg.CfgFunExitNode,aftercall:tip.cfg.CfgAfterCallNode)(d:PossiblyUninitializedVarsAnalysisFunctions.this.DL):Map[PossiblyUninitializedVarsAnalysisFunctions.this.DL,PossiblyUninitializedVarsAnalysisFunctions.this.edgelattice.EdgeFunction]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -693,15 +713,15 @@ The original RHS version of IDE uses jump functions for all nodes, not only at e
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">edgesExitToAfterCall</span><span class="params">(<span name="d">d: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.PossiblyUninitializedVarsIDEAnalysis.DL">DL</a></span>, <span name="exit">exit: <a href="../cfg/CfgFunExitNode.html" class="extype" name="tip.cfg.CfgFunExitNode">CfgFunExitNode</a></span>, <span name="aftercall">aftercall: <a href="../cfg/CfgAfterCallNode.html" class="extype" name="tip.cfg.CfgAfterCallNode">CfgAfterCallNode</a></span>)</span><span class="result">: <span class="extype" name="scala.List">List</span>[(<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.PossiblyUninitializedVarsIDEAnalysis.DL">DL</a>, <a href="../lattices/EdgeFunctionLattice$EdgeFunction.html" class="extype" name="tip.lattices.EdgeFunctionLattice.EdgeFunction">EdgeFunction</a>)]</span>
+        <span class="name">edgesExitToAfterCall</span><span class="params">(<span name="exit">exit: <a href="../cfg/CfgFunExitNode.html" class="extype" name="tip.cfg.CfgFunExitNode">CfgFunExitNode</a></span>, <span name="aftercall">aftercall: <a href="../cfg/CfgAfterCallNode.html" class="extype" name="tip.cfg.CfgAfterCallNode">CfgAfterCallNode</a></span>)</span><span class="params">(<span name="d">d: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.PossiblyUninitializedVarsIDEAnalysis.DL">DL</a></span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.PossiblyUninitializedVarsIDEAnalysis.DL">DL</a>, <a href="../lattices/EdgeFunctionLattice$EdgeFunction.html" class="extype" name="tip.lattices.EdgeFunctionLattice.EdgeFunction">EdgeFunction</a>]</span>
       </span>
       
       <p class="shortcomment cmt">Edges for exit-to-aftercall.</p><div class="fullcomment"><div class="comment cmt"><p>Edges for exit-to-aftercall.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="PossiblyUninitializedVarsAnalysisFunctions.html" class="extype" name="tip.analysis.PossiblyUninitializedVarsAnalysisFunctions">PossiblyUninitializedVarsAnalysisFunctions</a> → <a href="../solvers/IDEAnalysis.html" class="extype" name="tip.solvers.IDEAnalysis">IDEAnalysis</a></dd></dl></div>
     </li><li name="tip.analysis.PossiblyUninitializedVarsAnalysisFunctions#edgesOther" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="edgesOther(d:PossiblyUninitializedVarsAnalysisFunctions.this.DL,n:tip.cfg.CfgNode):List[(PossiblyUninitializedVarsAnalysisFunctions.this.DL,PossiblyUninitializedVarsAnalysisFunctions.this.edgelattice.EdgeFunction)]"></a><a id="edgesOther(DL,CfgNode):List[(DL,EdgeFunction)]"></a>
+      <a id="edgesOther(n:tip.cfg.CfgNode)(d:PossiblyUninitializedVarsAnalysisFunctions.this.DL):Map[PossiblyUninitializedVarsAnalysisFunctions.this.DL,PossiblyUninitializedVarsAnalysisFunctions.this.edgelattice.EdgeFunction]"></a><a id="edgesOther(CfgNode)(DL):Map[DL,EdgeFunction]"></a>
       <span class="permalink">
-      <a href="../../tip/analysis/PossiblyUninitializedVarsIDEAnalysis.html#edgesOther(d:PossiblyUninitializedVarsAnalysisFunctions.this.DL,n:tip.cfg.CfgNode):List[(PossiblyUninitializedVarsAnalysisFunctions.this.DL,PossiblyUninitializedVarsAnalysisFunctions.this.edgelattice.EdgeFunction)]" title="Permalink">
+      <a href="../../tip/analysis/PossiblyUninitializedVarsIDEAnalysis.html#edgesOther(n:tip.cfg.CfgNode)(d:PossiblyUninitializedVarsAnalysisFunctions.this.DL):Map[PossiblyUninitializedVarsAnalysisFunctions.this.DL,PossiblyUninitializedVarsAnalysisFunctions.this.edgelattice.EdgeFunction]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -710,7 +730,7 @@ The original RHS version of IDE uses jump functions for all nodes, not only at e
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">edgesOther</span><span class="params">(<span name="d">d: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.PossiblyUninitializedVarsIDEAnalysis.DL">DL</a></span>, <span name="n">n: <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a></span>)</span><span class="result">: <span class="extype" name="scala.List">List</span>[(<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.PossiblyUninitializedVarsIDEAnalysis.DL">DL</a>, <a href="../lattices/EdgeFunctionLattice$EdgeFunction.html" class="extype" name="tip.lattices.EdgeFunctionLattice.EdgeFunction">EdgeFunction</a>)]</span>
+        <span class="name">edgesOther</span><span class="params">(<span name="n">n: <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a></span>)</span><span class="params">(<span name="d">d: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.PossiblyUninitializedVarsIDEAnalysis.DL">DL</a></span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.analysis.PossiblyUninitializedVarsIDEAnalysis.DL">DL</a>, <a href="../lattices/EdgeFunctionLattice$EdgeFunction.html" class="extype" name="tip.lattices.EdgeFunctionLattice.EdgeFunction">EdgeFunction</a>]</span>
       </span>
       
       <p class="shortcomment cmt">Edges for other CFG nodes.</p><div class="fullcomment"><div class="comment cmt"><p>Edges for other CFG nodes.
@@ -765,7 +785,7 @@ The original RHS version of IDE uses jump functions for all nodes, not only at e
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -786,7 +806,7 @@ The original RHS version of IDE uses jump functions for all nodes, not only at e
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -805,22 +825,6 @@ The original RHS version of IDE uses jump functions for all nodes, not only at e
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="tip.solvers.IDESolver#lattice" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="lattice:tip.lattices.MapLattice[tip.cfg.CfgNode,tip.lattices.MapLattice[D,IDESolver.this.valuelattice.type]]"></a><a id="lattice:MapLattice[CfgNode,MapLattice[ADeclaration,valuelattice.type]]"></a>
-      <span class="permalink">
-      <a href="../../tip/analysis/PossiblyUninitializedVarsIDEAnalysis.html#lattice:tip.lattices.MapLattice[tip.cfg.CfgNode,tip.lattices.MapLattice[D,IDESolver.this.valuelattice.type]]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">lattice</span><span class="result">: <a href="../lattices/MapLattice.html" class="extype" name="tip.lattices.MapLattice">MapLattice</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <a href="../lattices/MapLattice.html" class="extype" name="tip.lattices.MapLattice">MapLattice</a>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>, <a href="#valuelattice:tip.lattices.TwoElementLattice" class="extmbr" name="tip.analysis.PossiblyUninitializedVarsIDEAnalysis#valuelattice">valuelattice</a>.type]]</span>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../solvers/IDESolver.html" class="extype" name="tip.solvers.IDESolver">IDESolver</a></dd></dl></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
       <span class="permalink">
@@ -855,7 +859,7 @@ The original RHS version of IDE uses jump functions for all nodes, not only at e
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -876,41 +880,9 @@ The original RHS version of IDE uses jump functions for all nodes, not only at e
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="tip.solvers.IDESolver#phase1" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="phase1:IDESolver.this.IDEPhase1Analysis"></a><a id="phase1:IDEPhase1Analysis"></a>
-      <span class="permalink">
-      <a href="../../tip/analysis/PossiblyUninitializedVarsIDEAnalysis.html#phase1:IDESolver.this.IDEPhase1Analysis" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">phase1</span><span class="result">: <a href="#IDEPhase1AnalysisextendsWorklistFixpointPropagationFunctions[(tip.cfg.CfgNode,Either[D,tip.solvers.Lambda],Either[D,tip.solvers.Lambda])]" class="extmbr" name="tip.solvers.IDESolver.IDEPhase1Analysis">IDEPhase1Analysis</a></span>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../solvers/IDESolver.html" class="extype" name="tip.solvers.IDESolver">IDESolver</a></dd></dl></div>
-    </li><li name="tip.solvers.IDESolver#phase2" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="phase2:IDESolver.this.IDEPhase2Analysis"></a><a id="phase2:IDEPhase2Analysis"></a>
-      <span class="permalink">
-      <a href="../../tip/analysis/PossiblyUninitializedVarsIDEAnalysis.html#phase2:IDESolver.this.IDEPhase2Analysis" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">phase2</span><span class="result">: <a href="#IDEPhase2AnalysisextendsFlowSensitiveAnalysiswithWorklistFixpointPropagationFunctions[(tip.cfg.CfgNode,Either[D,tip.solvers.Lambda])]" class="extmbr" name="tip.solvers.IDESolver.IDEPhase2Analysis">IDEPhase2Analysis</a></span>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../solvers/IDESolver.html" class="extype" name="tip.solvers.IDESolver">IDESolver</a></dd></dl></div>
     </li><li name="tip.analysis.FlowSensitiveAnalysis#stateAfterNode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="stateAfterNode:Boolean"></a>
       <span class="permalink">

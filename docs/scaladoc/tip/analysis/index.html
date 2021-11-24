@@ -175,6 +175,10 @@
                         <a href="CopyConstantPropagationIDEAnalysis.html" title="Copy-constant-propagation analysis using IDE solver.">CopyConstantPropagationIDEAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
+                        <a class="class" href="CopyConstantPropagationSummaryAnalysis.html" title="Copy-constant-propagation analysis using summary solver."></a>
+                        <a href="CopyConstantPropagationSummaryAnalysis.html" title="Copy-constant-propagation analysis using summary solver.">CopyConstantPropagationSummaryAnalysis</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
                         <a class="class" href="DeclarationAnalysis.html" title="Declaration analysis, binds identifiers to their declarations."></a>
                         <a href="DeclarationAnalysis.html" title="Declaration analysis, binds identifiers to their declarations.">DeclarationAnalysis</a>
                       </li><li class="current-entities indented2">
@@ -303,6 +307,10 @@
                         <a href="PossiblyUninitializedVarsIDEAnalysis.html" title="Possibly-uninitialized variables analysis using IDE solver.">PossiblyUninitializedVarsIDEAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
+                        <a class="class" href="PossiblyUninitializedVarsSummaryAnalysis.html" title="Possibly-uninitialized variables analysis using summary solver."></a>
+                        <a href="PossiblyUninitializedVarsSummaryAnalysis.html" title="Possibly-uninitialized variables analysis using summary solver.">PossiblyUninitializedVarsSummaryAnalysis</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
                         <a class="object" href="SignAnalysis$.html" title=""></a>
                         <a href="SignAnalysis$.html" title="">SignAnalysis</a>
                       </li><li class="current-entities indented2">
@@ -321,6 +329,18 @@
                         <span class="separator"></span>
                         <a class="class" href="SteensgaardAnalysis.html" title="Steensgaard-style pointer analysis."></a>
                         <a href="SteensgaardAnalysis.html" title="Steensgaard-style pointer analysis.">SteensgaardAnalysis</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="TaintAnalysisFunctions.html" title="Micro-transfer-functions for taint analysis."></a>
+                        <a href="TaintAnalysisFunctions.html" title="Micro-transfer-functions for taint analysis.">TaintAnalysisFunctions</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="TaintIDEAnalysis.html" title="Taint analysis using IDE solver."></a>
+                        <a href="TaintIDEAnalysis.html" title="Taint analysis using IDE solver.">TaintIDEAnalysis</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="TaintSummaryAnalysis.html" title="Taint analysis using summary solver."></a>
+                        <a href="TaintSummaryAnalysis.html" title="Taint analysis using summary solver.">TaintSummaryAnalysis</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
                         <a class="class" href="TypeAnalysis.html" title="Unification-based type analysis."></a>
@@ -809,6 +829,22 @@
       </span>
       
       <p class="shortcomment cmt">Copy-constant-propagation analysis using IDE solver.</p>
+    </li><li name="tip.analysis.CopyConstantPropagationSummaryAnalysis" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CopyConstantPropagationSummaryAnalysisextendsSummarySolver[tip.ast.ADeclaration,tip.lattices.FlatLattice[Int]]withCopyConstantPropagationAnalysisFunctions"></a><a id="CopyConstantPropagationSummaryAnalysis:CopyConstantPropagationSummaryAnalysis"></a>
+      <span class="permalink">
+      <a href="../../tip/analysis/CopyConstantPropagationSummaryAnalysis.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a title="Copy-constant-propagation analysis using summary solver." href="CopyConstantPropagationSummaryAnalysis.html"><span class="name">CopyConstantPropagationSummaryAnalysis</span></a><span class="result"> extends <a href="../solvers/SummarySolver.html" class="extype" name="tip.solvers.SummarySolver">SummarySolver</a>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>, <a href="../lattices/FlatLattice.html" class="extype" name="tip.lattices.FlatLattice">FlatLattice</a>[<span class="extype" name="scala.Int">Int</span>]] with <a href="CopyConstantPropagationAnalysisFunctions.html" class="extype" name="tip.analysis.CopyConstantPropagationAnalysisFunctions">CopyConstantPropagationAnalysisFunctions</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Copy-constant-propagation analysis using summary solver.</p>
     </li><li name="tip.analysis.DeclarationAnalysis" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="DeclarationAnalysisextendsDepthFirstAstVisitor[Map[String,tip.ast.ADeclaration]]withAnalysis[tip.ast.AstNodeData.DeclarationData]"></a><a id="DeclarationAnalysis:DeclarationAnalysis"></a>
       <span class="permalink">
@@ -1040,7 +1076,7 @@ This is a variant of <a href="InterprocValueAnalysisFunctions.html" class="extyp
       <p class="shortcomment cmt">Interprocedural value analysis that uses <a href="../solvers/WorklistFixpointSolverWithReachability.html" class="extype" name="tip.solvers.WorklistFixpointSolverWithReachability">tip.solvers.WorklistFixpointSolverWithReachability</a>,
 with the entry of the main function as the only start node.</p>
     </li><li name="tip.analysis.InterprocValueAnalysisWorklistSolverWithReachabilityAndPropagation" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="InterprocValueAnalysisWorklistSolverWithReachabilityAndPropagation[L&lt;:tip.lattices.LatticeWithOps]extendsLiftedValueAnalysis[tip.cfg.InterproceduralProgramCfg]withInterprocValueAnalysisFunctionsWithPropagationwithWorklistFixpointPropagationSolver[tip.cfg.CfgNode]withInterproceduralForwardDependencies"></a><a id="InterprocValueAnalysisWorklistSolverWithReachabilityAndPropagation[L&lt;:LatticeWithOps]:InterprocValueAnalysisWorklistSolverWithReachabilityAndPropagation[L]"></a>
+      <a id="InterprocValueAnalysisWorklistSolverWithReachabilityAndPropagation[L&lt;:tip.lattices.LatticeWithOps]extendsLiftedValueAnalysis[tip.cfg.InterproceduralProgramCfg]withInterprocValueAnalysisFunctionsWithPropagationwithWorklistFixpointPropagationSolver[tip.cfg.CfgNode]withForwardDependencies"></a><a id="InterprocValueAnalysisWorklistSolverWithReachabilityAndPropagation[L&lt;:LatticeWithOps]:InterprocValueAnalysisWorklistSolverWithReachabilityAndPropagation[L]"></a>
       <span class="permalink">
       <a href="../../tip/analysis/InterprocValueAnalysisWorklistSolverWithReachabilityAndPropagation.html" title="Permalink">
         <i class="material-icons"></i>
@@ -1051,7 +1087,7 @@ with the entry of the main function as the only start node.</p>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="Interprocedural value analysis that uses tip.solvers.WorklistFixpointPropagationSolver." href="InterprocValueAnalysisWorklistSolverWithReachabilityAndPropagation.html"><span class="name">InterprocValueAnalysisWorklistSolverWithReachabilityAndPropagation</span></a><span class="tparams">[<span name="L">L &lt;: <a href="../lattices/LatticeWithOps.html" class="extype" name="tip.lattices.LatticeWithOps">LatticeWithOps</a></span>]</span><span class="result"> extends <a href="LiftedValueAnalysis.html" class="extype" name="tip.analysis.LiftedValueAnalysis">LiftedValueAnalysis</a>[<a href="../cfg/InterproceduralProgramCfg.html" class="extype" name="tip.cfg.InterproceduralProgramCfg">InterproceduralProgramCfg</a>] with <a href="InterprocValueAnalysisFunctionsWithPropagation.html" class="extype" name="tip.analysis.InterprocValueAnalysisFunctionsWithPropagation">InterprocValueAnalysisFunctionsWithPropagation</a> with <a href="../solvers/WorklistFixpointPropagationSolver.html" class="extype" name="tip.solvers.WorklistFixpointPropagationSolver">WorklistFixpointPropagationSolver</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] with <a href="InterproceduralForwardDependencies.html" class="extype" name="tip.analysis.InterproceduralForwardDependencies">InterproceduralForwardDependencies</a></span>
+        <a title="Interprocedural value analysis that uses tip.solvers.WorklistFixpointPropagationSolver." href="InterprocValueAnalysisWorklistSolverWithReachabilityAndPropagation.html"><span class="name">InterprocValueAnalysisWorklistSolverWithReachabilityAndPropagation</span></a><span class="tparams">[<span name="L">L &lt;: <a href="../lattices/LatticeWithOps.html" class="extype" name="tip.lattices.LatticeWithOps">LatticeWithOps</a></span>]</span><span class="result"> extends <a href="LiftedValueAnalysis.html" class="extype" name="tip.analysis.LiftedValueAnalysis">LiftedValueAnalysis</a>[<a href="../cfg/InterproceduralProgramCfg.html" class="extype" name="tip.cfg.InterproceduralProgramCfg">InterproceduralProgramCfg</a>] with <a href="InterprocValueAnalysisFunctionsWithPropagation.html" class="extype" name="tip.analysis.InterprocValueAnalysisFunctionsWithPropagation">InterprocValueAnalysisFunctionsWithPropagation</a> with <a href="../solvers/WorklistFixpointPropagationSolver.html" class="extype" name="tip.solvers.WorklistFixpointPropagationSolver">WorklistFixpointPropagationSolver</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>] with <a href="ForwardDependencies.html" class="extype" name="tip.analysis.ForwardDependencies">ForwardDependencies</a></span>
       </span>
       
       <p class="shortcomment cmt">Interprocedural value analysis that uses <a href="../solvers/WorklistFixpointPropagationSolver.html" class="extype" name="tip.solvers.WorklistFixpointPropagationSolver">tip.solvers.WorklistFixpointPropagationSolver</a>.</p><div class="fullcomment"><div class="comment cmt"><p>Interprocedural value analysis that uses <a href="../solvers/WorklistFixpointPropagationSolver.html" class="extype" name="tip.solvers.WorklistFixpointPropagationSolver">tip.solvers.WorklistFixpointPropagationSolver</a>.
@@ -1301,6 +1337,22 @@ Can answer may-points-to and may-alias queries.
       </span>
       
       <p class="shortcomment cmt">Possibly-uninitialized variables analysis using IDE solver.</p>
+    </li><li name="tip.analysis.PossiblyUninitializedVarsSummaryAnalysis" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PossiblyUninitializedVarsSummaryAnalysisextendsSummarySolver[tip.ast.ADeclaration,tip.lattices.TwoElementLattice]withPossiblyUninitializedVarsAnalysisFunctions"></a><a id="PossiblyUninitializedVarsSummaryAnalysis:PossiblyUninitializedVarsSummaryAnalysis"></a>
+      <span class="permalink">
+      <a href="../../tip/analysis/PossiblyUninitializedVarsSummaryAnalysis.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a title="Possibly-uninitialized variables analysis using summary solver." href="PossiblyUninitializedVarsSummaryAnalysis.html"><span class="name">PossiblyUninitializedVarsSummaryAnalysis</span></a><span class="result"> extends <a href="../solvers/SummarySolver.html" class="extype" name="tip.solvers.SummarySolver">SummarySolver</a>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>, <a href="../lattices/TwoElementLattice.html" class="extype" name="tip.lattices.TwoElementLattice">TwoElementLattice</a>] with <a href="PossiblyUninitializedVarsAnalysisFunctions.html" class="extype" name="tip.analysis.PossiblyUninitializedVarsAnalysisFunctions">PossiblyUninitializedVarsAnalysisFunctions</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Possibly-uninitialized variables analysis using summary solver.</p>
     </li><li name="tip.analysis.SimpleSignAnalysis" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="SimpleSignAnalysisextendsFlowSensitiveAnalysis"></a><a id="SimpleSignAnalysis:SimpleSignAnalysis"></a>
       <span class="permalink">
@@ -1370,6 +1422,54 @@ where most of the involved traits, classes, methods, and fields have been inline
 The analysis associates an <a href="StTerm.html" class="extype" name="tip.analysis.StTerm">StTerm</a> with each variable declaration and expression node in the AST.
 It is implemented using <a href="../solvers/UnionFindSolver.html" class="extype" name="tip.solvers.UnionFindSolver">tip.solvers.UnionFindSolver</a>.
 </p></div></div>
+    </li><li name="tip.analysis.TaintAnalysisFunctions" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="TaintAnalysisFunctionsextendsIDEAnalysis[tip.ast.ADeclaration,tip.lattices.TwoElementLattice]"></a><a id="TaintAnalysisFunctions:TaintAnalysisFunctions"></a>
+      <span class="permalink">
+      <a href="../../tip/analysis/TaintAnalysisFunctions.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a title="Micro-transfer-functions for taint analysis." href="TaintAnalysisFunctions.html"><span class="name">TaintAnalysisFunctions</span></a><span class="result"> extends <a href="../solvers/IDEAnalysis.html" class="extype" name="tip.solvers.IDEAnalysis">IDEAnalysis</a>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>, <a href="../lattices/TwoElementLattice.html" class="extype" name="tip.lattices.TwoElementLattice">TwoElementLattice</a>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Micro-transfer-functions for taint analysis.</p>
+    </li><li name="tip.analysis.TaintIDEAnalysis" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TaintIDEAnalysisextendsIDESolver[tip.ast.ADeclaration,tip.lattices.TwoElementLattice]withTaintAnalysisFunctions"></a><a id="TaintIDEAnalysis:TaintIDEAnalysis"></a>
+      <span class="permalink">
+      <a href="../../tip/analysis/TaintIDEAnalysis.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a title="Taint analysis using IDE solver." href="TaintIDEAnalysis.html"><span class="name">TaintIDEAnalysis</span></a><span class="result"> extends <a href="../solvers/IDESolver.html" class="extype" name="tip.solvers.IDESolver">IDESolver</a>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>, <a href="../lattices/TwoElementLattice.html" class="extype" name="tip.lattices.TwoElementLattice">TwoElementLattice</a>] with <a href="TaintAnalysisFunctions.html" class="extype" name="tip.analysis.TaintAnalysisFunctions">TaintAnalysisFunctions</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Taint analysis using IDE solver.</p>
+    </li><li name="tip.analysis.TaintSummaryAnalysis" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TaintSummaryAnalysisextendsSummarySolver[tip.ast.ADeclaration,tip.lattices.TwoElementLattice]withTaintAnalysisFunctions"></a><a id="TaintSummaryAnalysis:TaintSummaryAnalysis"></a>
+      <span class="permalink">
+      <a href="../../tip/analysis/TaintSummaryAnalysis.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a title="Taint analysis using summary solver." href="TaintSummaryAnalysis.html"><span class="name">TaintSummaryAnalysis</span></a><span class="result"> extends <a href="../solvers/SummarySolver.html" class="extype" name="tip.solvers.SummarySolver">SummarySolver</a>[<a href="../ast/ADeclaration.html" class="extype" name="tip.ast.ADeclaration">ADeclaration</a>, <a href="../lattices/TwoElementLattice.html" class="extype" name="tip.lattices.TwoElementLattice">TwoElementLattice</a>] with <a href="TaintAnalysisFunctions.html" class="extype" name="tip.analysis.TaintAnalysisFunctions">TaintAnalysisFunctions</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Taint analysis using summary solver.</p>
     </li><li name="tip.analysis.TypeAnalysis" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="TypeAnalysisextendsDepthFirstAstVisitor[Unit]withAnalysis[tip.ast.AstNodeData.TypeData]"></a><a id="TypeAnalysis:TypeAnalysis"></a>
       <span class="permalink">

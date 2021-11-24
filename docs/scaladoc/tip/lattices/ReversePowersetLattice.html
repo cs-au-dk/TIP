@@ -107,6 +107,10 @@
                         <a href="ConstantPropagationLattice$.html" title="Constant propagation lattice.">ConstantPropagationLattice</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
+                        <a class="class" href="EdgeEnvLattice.html" title="Lattice of the form ((D -&gt; L) -&gt; (D -&gt; L))."></a>
+                        <a href="EdgeEnvLattice.html" title="Lattice of the form ((D -&gt; L) -&gt; (D -&gt; L)).">EdgeEnvLattice</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
                         <a class="class" href="EdgeFunctionLattice.html" title="The lattice of edge functions, used by tip.solvers.IDEAnalysis."></a>
                         <a href="EdgeFunctionLattice.html" title="The lattice of edge functions, used by tip.solvers.IDEAnalysis.">EdgeFunctionLattice</a>
                       </li><li class="current-entities indented2">
@@ -370,24 +374,6 @@ For more information about abstract type members in Scala, see <a href="https://
       
       <p class="shortcomment cmt">The bottom element of this lattice.</p><div class="fullcomment"><div class="comment cmt"><p>The bottom element of this lattice.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.lattices.ReversePowersetLattice">ReversePowersetLattice</a> → <a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></dd></dl></div>
-    </li><li name="tip.lattices.Lattice#ch" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="ch(e:Lattice.this.Element):Boolean"></a><a id="ch(Element):Boolean"></a>
-      <span class="permalink">
-      <a href="../../tip/lattices/ReversePowersetLattice.html#ch(e:Lattice.this.Element):Boolean" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">ch</span><span class="params">(<span name="e">e: <a href="#Element=Set[A]" class="extmbr" name="tip.lattices.ReversePowersetLattice.Element">Element</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
-      </span>
-      
-      <p class="shortcomment cmt">The characteristic function of the set of lattice elements.</p><div class="fullcomment"><div class="comment cmt"><p>The characteristic function of the set of lattice elements.
-Default implementation: returns true for all elements of the right type.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></dd></dl></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a><a id="clone():AnyRef"></a>
       <span class="permalink">
@@ -411,7 +397,7 @@ Default implementation: returns true for all elements of the right type.
               
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -464,7 +450,7 @@ Default implementation: returns true for all elements of the right type.
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -485,7 +471,7 @@ Default implementation: returns true for all elements of the right type.
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -572,7 +558,7 @@ Default implementation: returns true for all elements of the right type.
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -593,7 +579,7 @@ Default implementation: returns true for all elements of the right type.
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">

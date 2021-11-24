@@ -107,6 +107,10 @@
                         <a href="ConstantPropagationLattice$.html" title="Constant propagation lattice.">ConstantPropagationLattice</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
+                        <a class="class" href="EdgeEnvLattice.html" title="Lattice of the form ((D -&gt; L) -&gt; (D -&gt; L))."></a>
+                        <a href="EdgeEnvLattice.html" title="Lattice of the form ((D -&gt; L) -&gt; (D -&gt; L)).">EdgeEnvLattice</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
                         <a class="class" href="EdgeFunctionLattice.html" title="The lattice of edge functions, used by tip.solvers.IDEAnalysis."></a>
                         <a href="EdgeFunctionLattice.html" title="The lattice of edge functions, used by tip.solvers.IDEAnalysis.">EdgeFunctionLattice</a>
                       </li><li class="current-entities indented2">
@@ -199,7 +203,7 @@
             <span class="toggle">
               Known Subclasses
             </span>
-            <div class="subClasses hiddenContent"><a href="ConstantPropagationLattice$.html" class="extype" name="tip.lattices.ConstantPropagationLattice">ConstantPropagationLattice</a>, <a href="EdgeFunctionLattice.html" class="extype" name="tip.lattices.EdgeFunctionLattice">EdgeFunctionLattice</a>, <a href="FlatLattice.html" class="extype" name="tip.lattices.FlatLattice">FlatLattice</a>, <a href="IntervalLattice$.html" class="extype" name="tip.lattices.IntervalLattice">IntervalLattice</a>, <a href="LatticeWithOps.html" class="extype" name="tip.lattices.LatticeWithOps">LatticeWithOps</a>, <a href="LiftLattice.html" class="extype" name="tip.lattices.LiftLattice">LiftLattice</a>, <a href="MapLattice.html" class="extype" name="tip.lattices.MapLattice">MapLattice</a>, <a href="PairLattice.html" class="extype" name="tip.lattices.PairLattice">PairLattice</a>, <a href="PowersetLattice.html" class="extype" name="tip.lattices.PowersetLattice">PowersetLattice</a>, <a href="ReversePowersetLattice.html" class="extype" name="tip.lattices.ReversePowersetLattice">ReversePowersetLattice</a>, <a href="SignLattice$.html" class="extype" name="tip.lattices.SignLattice">SignLattice</a>, <a href="TwoElementLattice.html" class="extype" name="tip.lattices.TwoElementLattice">TwoElementLattice</a>, <a href="UniformProductLattice.html" class="extype" name="tip.lattices.UniformProductLattice">UniformProductLattice</a></div>
+            <div class="subClasses hiddenContent"><a href="ConstantPropagationLattice$.html" class="extype" name="tip.lattices.ConstantPropagationLattice">ConstantPropagationLattice</a>, <a href="EdgeEnvLattice.html" class="extype" name="tip.lattices.EdgeEnvLattice">EdgeEnvLattice</a>, <a href="EdgeFunctionLattice.html" class="extype" name="tip.lattices.EdgeFunctionLattice">EdgeFunctionLattice</a>, <a href="FlatLattice.html" class="extype" name="tip.lattices.FlatLattice">FlatLattice</a>, <a href="IntervalLattice$.html" class="extype" name="tip.lattices.IntervalLattice">IntervalLattice</a>, <a href="LatticeWithOps.html" class="extype" name="tip.lattices.LatticeWithOps">LatticeWithOps</a>, <a href="LiftLattice.html" class="extype" name="tip.lattices.LiftLattice">LiftLattice</a>, <a href="MapLattice.html" class="extype" name="tip.lattices.MapLattice">MapLattice</a>, <a href="PairLattice.html" class="extype" name="tip.lattices.PairLattice">PairLattice</a>, <a href="PowersetLattice.html" class="extype" name="tip.lattices.PowersetLattice">PowersetLattice</a>, <a href="ReversePowersetLattice.html" class="extype" name="tip.lattices.ReversePowersetLattice">ReversePowersetLattice</a>, <a href="SignLattice$.html" class="extype" name="tip.lattices.SignLattice">SignLattice</a>, <a href="TwoElementLattice.html" class="extype" name="tip.lattices.TwoElementLattice">TwoElementLattice</a>, <a href="UniformProductLattice.html" class="extype" name="tip.lattices.UniformProductLattice">UniformProductLattice</a></div>
           </div></div>
         
 
@@ -374,24 +378,6 @@ For more information about abstract type members in Scala, see <a href="https://
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="tip.lattices.Lattice#ch" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="ch(e:Lattice.this.Element):Boolean"></a><a id="ch(Element):Boolean"></a>
-      <span class="permalink">
-      <a href="../../tip/lattices/Lattice.html#ch(e:Lattice.this.Element):Boolean" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">ch</span><span class="params">(<span name="e">e: <a href="#Element" class="extmbr" name="tip.lattices.Lattice.Element">Element</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
-      </span>
-      
-      <p class="shortcomment cmt">The characteristic function of the set of lattice elements.</p><div class="fullcomment"><div class="comment cmt"><p>The characteristic function of the set of lattice elements.
-Default implementation: returns true for all elements of the right type.
-</p></div></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a><a id="clone():AnyRef"></a>
       <span class="permalink">
@@ -415,7 +401,7 @@ Default implementation: returns true for all elements of the right type.
               
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -468,7 +454,7 @@ Default implementation: returns true for all elements of the right type.
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -489,7 +475,7 @@ Default implementation: returns true for all elements of the right type.
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -558,7 +544,7 @@ Default implementation: returns true for all elements of the right type.
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -579,7 +565,7 @@ Default implementation: returns true for all elements of the right type.
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">

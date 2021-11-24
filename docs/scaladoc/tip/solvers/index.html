@@ -275,6 +275,10 @@
                         <a href="SpecialCubicSolver.html" title="Special cubic solver.">SpecialCubicSolver</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
+                        <a class="class" href="SummarySolver.html" title="A tabulation solver, variant of IDESolver."></a>
+                        <a href="SummarySolver.html" title="A tabulation solver, variant of IDESolver.">SummarySolver</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
                         <a class="trait" href="Term.html" title="A generic term: a variable Var, a constructor Cons, or a recursive term Mu."></a>
                         <a href="Term.html" title="A generic term: a variable Var, a constructor Cons, or a recursive term Mu.">Term</a>
                       </li><li class="current-entities indented2">
@@ -648,6 +652,22 @@ v is a binder in the term, and the copy rule holds: μ v. t[v] == t [ μ v. t[v]
       
       <p class="shortcomment cmt">Special cubic solver.</p><div class="fullcomment"><div class="comment cmt"><p>Special cubic solver.
 </p></div><dl class="paramcmts block"><dt class="tparam">V</dt><dd class="cmt"><p>type of variables (tokens are a subset of variables)</p></dd></dl></div>
+    </li><li name="tip.solvers.SummarySolver" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="SummarySolver[D,L&lt;:tip.lattices.Lattice]extendsFlowSensitiveAnalysiswithIDEAnalysis[D,L]"></a><a id="SummarySolver[D,L&lt;:Lattice]:SummarySolver[D,L]"></a>
+      <span class="permalink">
+      <a href="../../tip/solvers/SummarySolver.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a title="A tabulation solver, variant of IDESolver." href="SummarySolver.html"><span class="name">SummarySolver</span></a><span class="tparams">[<span name="D">D</span>, <span name="L">L &lt;: <a href="../lattices/Lattice.html" class="extype" name="tip.lattices.Lattice">Lattice</a></span>]</span><span class="result"> extends <a href="../analysis/FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a> with <a href="IDEAnalysis.html" class="extype" name="tip.solvers.IDEAnalysis">IDEAnalysis</a>[<span class="extype" name="tip.solvers.SummarySolver.D">D</span>, <span class="extype" name="tip.solvers.SummarySolver.L">L</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">A tabulation solver, variant of IDESolver.</p><div class="fullcomment"><div class="comment cmt"><p>A tabulation solver, variant of IDESolver.</p></div><dl class="paramcmts block"><dt class="tparam">D</dt><dd class="cmt"><p>the type of items</p></dd><dt class="tparam">L</dt><dd class="cmt"><p>the type of the value lattice</p></dd></dl></div>
     </li><li name="tip.solvers.Term" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="Term[A]extendsAnyRef"></a><a id="Term[A]:Term[A]"></a>
       <span class="permalink">
@@ -778,7 +798,7 @@ v is a binder in the term, and the copy rule holds: μ v. t[v] == t [ μ v. t[v]
       
       <p class="shortcomment cmt">Worklist-based fixpoint solver that performs propagation after transfer instead of join before transfer.</p><div class="fullcomment"><div class="comment cmt"><p>Worklist-based fixpoint solver that performs propagation after transfer instead of join before transfer.
 This results in fewer join operations when nodes have many dependencies.
-Note that with this approach, each abstract state represents the program point *after* the node
+Note that with this approach, each abstract state represents the program point *before* the node
 (for a forward analysis, and opposite for a backward analysis).
 </p></div></div>
     </li><li name="tip.solvers.WorklistFixpointSolver" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">

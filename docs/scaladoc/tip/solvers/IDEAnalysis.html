@@ -163,6 +163,10 @@
                         <a href="SpecialCubicSolver.html" title="Special cubic solver.">SpecialCubicSolver</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
+                        <a class="class" href="SummarySolver.html" title="A tabulation solver, variant of IDESolver."></a>
+                        <a href="SummarySolver.html" title="A tabulation solver, variant of IDESolver.">SummarySolver</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
                         <a class="trait" href="Term.html" title="A generic term: a variable Var, a constructor Cons, or a recursive term Mu."></a>
                         <a href="Term.html" title="A generic term: a variable Var, a constructor Cons, or a recursive term Mu.">Term</a>
                       </li><li class="current-entities indented2">
@@ -246,7 +250,7 @@
             <span class="toggle">
               Known Subclasses
             </span>
-            <div class="subClasses hiddenContent"><a href="../analysis/CopyConstantPropagationAnalysisFunctions.html" class="extype" name="tip.analysis.CopyConstantPropagationAnalysisFunctions">CopyConstantPropagationAnalysisFunctions</a>, <a href="../analysis/CopyConstantPropagationIDEAnalysis.html" class="extype" name="tip.analysis.CopyConstantPropagationIDEAnalysis">CopyConstantPropagationIDEAnalysis</a>, <a href="../analysis/PossiblyUninitializedVarsAnalysisFunctions.html" class="extype" name="tip.analysis.PossiblyUninitializedVarsAnalysisFunctions">PossiblyUninitializedVarsAnalysisFunctions</a>, <a href="../analysis/PossiblyUninitializedVarsIDEAnalysis.html" class="extype" name="tip.analysis.PossiblyUninitializedVarsIDEAnalysis">PossiblyUninitializedVarsIDEAnalysis</a>, <a href="IDESolver.html" class="extype" name="tip.solvers.IDESolver">IDESolver</a></div>
+            <div class="subClasses hiddenContent"><a href="../analysis/CopyConstantPropagationAnalysisFunctions.html" class="extype" name="tip.analysis.CopyConstantPropagationAnalysisFunctions">CopyConstantPropagationAnalysisFunctions</a>, <a href="../analysis/CopyConstantPropagationIDEAnalysis.html" class="extype" name="tip.analysis.CopyConstantPropagationIDEAnalysis">CopyConstantPropagationIDEAnalysis</a>, <a href="../analysis/CopyConstantPropagationSummaryAnalysis.html" class="extype" name="tip.analysis.CopyConstantPropagationSummaryAnalysis">CopyConstantPropagationSummaryAnalysis</a>, <a href="../analysis/PossiblyUninitializedVarsAnalysisFunctions.html" class="extype" name="tip.analysis.PossiblyUninitializedVarsAnalysisFunctions">PossiblyUninitializedVarsAnalysisFunctions</a>, <a href="../analysis/PossiblyUninitializedVarsIDEAnalysis.html" class="extype" name="tip.analysis.PossiblyUninitializedVarsIDEAnalysis">PossiblyUninitializedVarsIDEAnalysis</a>, <a href="../analysis/PossiblyUninitializedVarsSummaryAnalysis.html" class="extype" name="tip.analysis.PossiblyUninitializedVarsSummaryAnalysis">PossiblyUninitializedVarsSummaryAnalysis</a>, <a href="../analysis/TaintAnalysisFunctions.html" class="extype" name="tip.analysis.TaintAnalysisFunctions">TaintAnalysisFunctions</a>, <a href="../analysis/TaintIDEAnalysis.html" class="extype" name="tip.analysis.TaintIDEAnalysis">TaintIDEAnalysis</a>, <a href="../analysis/TaintSummaryAnalysis.html" class="extype" name="tip.analysis.TaintSummaryAnalysis">TaintSummaryAnalysis</a>, <a href="IDESolver.html" class="extype" name="tip.solvers.IDESolver">IDESolver</a>, <a href="SummarySolver.html" class="extype" name="tip.solvers.SummarySolver">SummarySolver</a></div>
           </div></div>
         
 
@@ -348,9 +352,9 @@
       
       <p class="shortcomment cmt">The edge lattice.</p>
     </li><li name="tip.solvers.IDEAnalysis#edgesCallToAfterCall" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="edgesCallToAfterCall(d2:IDEAnalysis.this.DL,call:tip.cfg.CfgCallNode,aftercall:tip.cfg.CfgAfterCallNode):List[(IDEAnalysis.this.DL,IDEAnalysis.this.edgelattice.EdgeFunction)]"></a><a id="edgesCallToAfterCall(DL,CfgCallNode,CfgAfterCallNode):List[(DL,EdgeFunction)]"></a>
+      <a id="edgesCallToAfterCall(call:tip.cfg.CfgCallNode,aftercall:tip.cfg.CfgAfterCallNode)(d:IDEAnalysis.this.DL):Map[IDEAnalysis.this.DL,IDEAnalysis.this.edgelattice.Element]"></a><a id="edgesCallToAfterCall(CfgCallNode,CfgAfterCallNode)(DL):Map[DL,Element]"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDEAnalysis.html#edgesCallToAfterCall(d2:IDEAnalysis.this.DL,call:tip.cfg.CfgCallNode,aftercall:tip.cfg.CfgAfterCallNode):List[(IDEAnalysis.this.DL,IDEAnalysis.this.edgelattice.EdgeFunction)]" title="Permalink">
+      <a href="../../tip/solvers/IDEAnalysis.html#edgesCallToAfterCall(call:tip.cfg.CfgCallNode,aftercall:tip.cfg.CfgAfterCallNode)(d:IDEAnalysis.this.DL):Map[IDEAnalysis.this.DL,IDEAnalysis.this.edgelattice.Element]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -359,14 +363,14 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">edgesCallToAfterCall</span><span class="params">(<span name="d2">d2: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDEAnalysis.DL">DL</a></span>, <span name="call">call: <a href="../cfg/CfgCallNode.html" class="extype" name="tip.cfg.CfgCallNode">CfgCallNode</a></span>, <span name="aftercall">aftercall: <a href="../cfg/CfgAfterCallNode.html" class="extype" name="tip.cfg.CfgAfterCallNode">CfgAfterCallNode</a></span>)</span><span class="result">: <span class="extype" name="scala.List">List</span>[(<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDEAnalysis.DL">DL</a>, <a href="../lattices/EdgeFunctionLattice$EdgeFunction.html" class="extype" name="tip.lattices.EdgeFunctionLattice.EdgeFunction">EdgeFunction</a>)]</span>
+        <span class="name">edgesCallToAfterCall</span><span class="params">(<span name="call">call: <a href="../cfg/CfgCallNode.html" class="extype" name="tip.cfg.CfgCallNode">CfgCallNode</a></span>, <span name="aftercall">aftercall: <a href="../cfg/CfgAfterCallNode.html" class="extype" name="tip.cfg.CfgAfterCallNode">CfgAfterCallNode</a></span>)</span><span class="params">(<span name="d">d: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDEAnalysis.DL">DL</a></span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDEAnalysis.DL">DL</a>, <a href="../lattices/EdgeFunctionLattice.html#Element=EdgeFunctionLattice.this.EdgeFunction" class="extmbr" name="tip.lattices.EdgeFunctionLattice.Element">Element</a>]</span>
       </span>
       
       <p class="shortcomment cmt">Edges for call-to-aftercall.</p>
     </li><li name="tip.solvers.IDEAnalysis#edgesCallToEntry" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="edgesCallToEntry(d:IDEAnalysis.this.DL,call:tip.cfg.CfgCallNode,entry:tip.cfg.CfgFunEntryNode):List[(IDEAnalysis.this.DL,IDEAnalysis.this.edgelattice.EdgeFunction)]"></a><a id="edgesCallToEntry(DL,CfgCallNode,CfgFunEntryNode):List[(DL,EdgeFunction)]"></a>
+      <a id="edgesCallToEntry(call:tip.cfg.CfgCallNode,entry:tip.cfg.CfgFunEntryNode)(d:IDEAnalysis.this.DL):Map[IDEAnalysis.this.DL,IDEAnalysis.this.edgelattice.Element]"></a><a id="edgesCallToEntry(CfgCallNode,CfgFunEntryNode)(DL):Map[DL,Element]"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDEAnalysis.html#edgesCallToEntry(d:IDEAnalysis.this.DL,call:tip.cfg.CfgCallNode,entry:tip.cfg.CfgFunEntryNode):List[(IDEAnalysis.this.DL,IDEAnalysis.this.edgelattice.EdgeFunction)]" title="Permalink">
+      <a href="../../tip/solvers/IDEAnalysis.html#edgesCallToEntry(call:tip.cfg.CfgCallNode,entry:tip.cfg.CfgFunEntryNode)(d:IDEAnalysis.this.DL):Map[IDEAnalysis.this.DL,IDEAnalysis.this.edgelattice.Element]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -375,14 +379,14 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">edgesCallToEntry</span><span class="params">(<span name="d">d: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDEAnalysis.DL">DL</a></span>, <span name="call">call: <a href="../cfg/CfgCallNode.html" class="extype" name="tip.cfg.CfgCallNode">CfgCallNode</a></span>, <span name="entry">entry: <a href="../cfg/CfgFunEntryNode.html" class="extype" name="tip.cfg.CfgFunEntryNode">CfgFunEntryNode</a></span>)</span><span class="result">: <span class="extype" name="scala.List">List</span>[(<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDEAnalysis.DL">DL</a>, <a href="../lattices/EdgeFunctionLattice$EdgeFunction.html" class="extype" name="tip.lattices.EdgeFunctionLattice.EdgeFunction">EdgeFunction</a>)]</span>
+        <span class="name">edgesCallToEntry</span><span class="params">(<span name="call">call: <a href="../cfg/CfgCallNode.html" class="extype" name="tip.cfg.CfgCallNode">CfgCallNode</a></span>, <span name="entry">entry: <a href="../cfg/CfgFunEntryNode.html" class="extype" name="tip.cfg.CfgFunEntryNode">CfgFunEntryNode</a></span>)</span><span class="params">(<span name="d">d: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDEAnalysis.DL">DL</a></span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDEAnalysis.DL">DL</a>, <a href="../lattices/EdgeFunctionLattice.html#Element=EdgeFunctionLattice.this.EdgeFunction" class="extmbr" name="tip.lattices.EdgeFunctionLattice.Element">Element</a>]</span>
       </span>
       
       <p class="shortcomment cmt">Edges for call-to-entry.</p>
     </li><li name="tip.solvers.IDEAnalysis#edgesExitToAfterCall" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="edgesExitToAfterCall(d:IDEAnalysis.this.DL,exit:tip.cfg.CfgFunExitNode,aftercall:tip.cfg.CfgAfterCallNode):List[(IDEAnalysis.this.DL,IDEAnalysis.this.edgelattice.EdgeFunction)]"></a><a id="edgesExitToAfterCall(DL,CfgFunExitNode,CfgAfterCallNode):List[(DL,EdgeFunction)]"></a>
+      <a id="edgesExitToAfterCall(exit:tip.cfg.CfgFunExitNode,aftercall:tip.cfg.CfgAfterCallNode)(d:IDEAnalysis.this.DL):Map[IDEAnalysis.this.DL,IDEAnalysis.this.edgelattice.Element]"></a><a id="edgesExitToAfterCall(CfgFunExitNode,CfgAfterCallNode)(DL):Map[DL,Element]"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDEAnalysis.html#edgesExitToAfterCall(d:IDEAnalysis.this.DL,exit:tip.cfg.CfgFunExitNode,aftercall:tip.cfg.CfgAfterCallNode):List[(IDEAnalysis.this.DL,IDEAnalysis.this.edgelattice.EdgeFunction)]" title="Permalink">
+      <a href="../../tip/solvers/IDEAnalysis.html#edgesExitToAfterCall(exit:tip.cfg.CfgFunExitNode,aftercall:tip.cfg.CfgAfterCallNode)(d:IDEAnalysis.this.DL):Map[IDEAnalysis.this.DL,IDEAnalysis.this.edgelattice.Element]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -391,14 +395,14 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">edgesExitToAfterCall</span><span class="params">(<span name="d">d: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDEAnalysis.DL">DL</a></span>, <span name="exit">exit: <a href="../cfg/CfgFunExitNode.html" class="extype" name="tip.cfg.CfgFunExitNode">CfgFunExitNode</a></span>, <span name="aftercall">aftercall: <a href="../cfg/CfgAfterCallNode.html" class="extype" name="tip.cfg.CfgAfterCallNode">CfgAfterCallNode</a></span>)</span><span class="result">: <span class="extype" name="scala.List">List</span>[(<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDEAnalysis.DL">DL</a>, <a href="../lattices/EdgeFunctionLattice$EdgeFunction.html" class="extype" name="tip.lattices.EdgeFunctionLattice.EdgeFunction">EdgeFunction</a>)]</span>
+        <span class="name">edgesExitToAfterCall</span><span class="params">(<span name="exit">exit: <a href="../cfg/CfgFunExitNode.html" class="extype" name="tip.cfg.CfgFunExitNode">CfgFunExitNode</a></span>, <span name="aftercall">aftercall: <a href="../cfg/CfgAfterCallNode.html" class="extype" name="tip.cfg.CfgAfterCallNode">CfgAfterCallNode</a></span>)</span><span class="params">(<span name="d">d: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDEAnalysis.DL">DL</a></span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDEAnalysis.DL">DL</a>, <a href="../lattices/EdgeFunctionLattice.html#Element=EdgeFunctionLattice.this.EdgeFunction" class="extmbr" name="tip.lattices.EdgeFunctionLattice.Element">Element</a>]</span>
       </span>
       
       <p class="shortcomment cmt">Edges for exit-to-aftercall.</p>
     </li><li name="tip.solvers.IDEAnalysis#edgesOther" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="edgesOther(d:IDEAnalysis.this.DL,n:tip.cfg.CfgNode):List[(IDEAnalysis.this.DL,IDEAnalysis.this.edgelattice.EdgeFunction)]"></a><a id="edgesOther(DL,CfgNode):List[(DL,EdgeFunction)]"></a>
+      <a id="edgesOther(n:tip.cfg.CfgNode)(d:IDEAnalysis.this.DL):Map[IDEAnalysis.this.DL,IDEAnalysis.this.edgelattice.Element]"></a><a id="edgesOther(CfgNode)(DL):Map[DL,Element]"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDEAnalysis.html#edgesOther(d:IDEAnalysis.this.DL,n:tip.cfg.CfgNode):List[(IDEAnalysis.this.DL,IDEAnalysis.this.edgelattice.EdgeFunction)]" title="Permalink">
+      <a href="../../tip/solvers/IDEAnalysis.html#edgesOther(n:tip.cfg.CfgNode)(d:IDEAnalysis.this.DL):Map[IDEAnalysis.this.DL,IDEAnalysis.this.edgelattice.Element]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -407,7 +411,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">edgesOther</span><span class="params">(<span name="d">d: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDEAnalysis.DL">DL</a></span>, <span name="n">n: <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a></span>)</span><span class="result">: <span class="extype" name="scala.List">List</span>[(<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDEAnalysis.DL">DL</a>, <a href="../lattices/EdgeFunctionLattice$EdgeFunction.html" class="extype" name="tip.lattices.EdgeFunctionLattice.EdgeFunction">EdgeFunction</a>)]</span>
+        <span class="name">edgesOther</span><span class="params">(<span name="n">n: <a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a></span>)</span><span class="params">(<span name="d">d: <a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDEAnalysis.DL">DL</a></span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<a href="#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDEAnalysis.DL">DL</a>, <a href="../lattices/EdgeFunctionLattice.html#Element=EdgeFunctionLattice.this.EdgeFunction" class="extmbr" name="tip.lattices.EdgeFunctionLattice.Element">Element</a>]</span>
       </span>
       
       <p class="shortcomment cmt">Edges for other CFG nodes.</p>
@@ -520,7 +524,7 @@
               
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -573,7 +577,7 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -594,7 +598,7 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -647,7 +651,7 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -668,7 +672,7 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">

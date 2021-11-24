@@ -120,12 +120,12 @@
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="tip.solvers">solvers</a></dd></dl></div>
     </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="class" href="" title="Phase 1 of the IDE algorithm."></a>
-                        <a href="" title="Phase 1 of the IDE algorithm.">IDEPhase1Analysis</a>
+                        <a class="class" href="IDESolver$Phase1.html" title="Phase 1 of the IDE algorithm."></a>
+                        <a href="IDESolver$Phase1.html" title="Phase 1 of the IDE algorithm.">Phase1</a>
                       </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="class" href="IDESolver$IDEPhase2Analysis.html" title="Phase 2 of the IDE algorithm."></a>
-                        <a href="IDESolver$IDEPhase2Analysis.html" title="Phase 2 of the IDE algorithm.">IDEPhase2Analysis</a>
+                        <a class="class" href="" title="Phase 2 of the IDE algorithm."></a>
+                        <a href="" title="Phase 2 of the IDE algorithm.">Phase2</a>
                       </li>
               </ul>
             </div>
@@ -135,8 +135,8 @@
       <div id="definition">
         <div class="big-circle class">c</div>
         <p id="owner"><a href="../index.html" class="extype" name="tip">tip</a>.<a href="index.html" class="extype" name="tip.solvers">solvers</a>.<a href="IDESolver.html" class="extype" name="tip.solvers.IDESolver">IDESolver</a></p>
-        <h1>IDEPhase1Analysis<span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html" title="Permalink">
+        <h1>Phase2<span class="permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span></h1>
@@ -149,19 +149,19 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">IDEPhase1Analysis</span><span class="result"> extends <a href="WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>], <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])]</span>
+        <span class="name">Phase2</span><span class="result"> extends <a href="../analysis/FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a> with <a href="WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])]</span>
       </span>
       </h4>
 
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Phase 1 of the IDE algorithm.
-The original version of the algorithm uses summary edges from call nodes to after-call nodes
-instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Phase 2 of the IDE algorithm.
+Performs a forward dataflow analysis using the decomposed lattice and the micro-transformers.
+The original RHS version of IDE uses jump functions for all nodes, not only at exits, but the analysis result and complexity is the same.
 </p></div><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><a href="WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>], <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])], <a href="ListSetWorklist.html" class="extype" name="tip.solvers.ListSetWorklist">ListSetWorklist</a>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>], <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])], <a href="Worklist.html" class="extype" name="tip.solvers.Worklist">Worklist</a>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>], <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])], <a href="ListSetWorklist.html" class="extype" name="tip.solvers.ListSetWorklist">ListSetWorklist</a>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])], <a href="Worklist.html" class="extype" name="tip.solvers.Worklist">Worklist</a>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])], <a href="../analysis/FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a>, <a href="../analysis/Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Any">Any</span>], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -187,7 +187,7 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
                   <span class="filtertype">Inherited<br />
                   </span>
                   <ol id="linearization">
-                    <li class="in" name="tip.solvers.IDESolver.IDEPhase1Analysis"><span>IDEPhase1Analysis</span></li><li class="in" name="tip.solvers.WorklistFixpointPropagationFunctions"><span>WorklistFixpointPropagationFunctions</span></li><li class="in" name="tip.solvers.ListSetWorklist"><span>ListSetWorklist</span></li><li class="in" name="tip.solvers.Worklist"><span>Worklist</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                    <li class="in" name="tip.solvers.IDESolver.Phase2"><span>Phase2</span></li><li class="in" name="tip.solvers.WorklistFixpointPropagationFunctions"><span>WorklistFixpointPropagationFunctions</span></li><li class="in" name="tip.solvers.ListSetWorklist"><span>ListSetWorklist</span></li><li class="in" name="tip.solvers.Worklist"><span>Worklist</span></li><li class="in" name="tip.analysis.FlowSensitiveAnalysis"><span>FlowSensitiveAnalysis</span></li><li class="in" name="tip.analysis.Analysis"><span>Analysis</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                   </ol>
                 </div><div class="ancestors">
               <span class="filtertype"></span>
@@ -207,10 +207,10 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
         <div id="allMembers">
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
-              <ol><li name="tip.solvers.IDESolver.IDEPhase1Analysis#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(cfg:tip.cfg.InterproceduralProgramCfg)(implicitdeclData:tip.ast.AstNodeData.DeclarationData):IDESolver.this.IDEPhase1Analysis"></a><a id="&lt;init&gt;:IDEPhase1Analysis"></a>
+              <ol><li name="tip.solvers.IDESolver.Phase2#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;(cfg:tip.cfg.InterproceduralProgramCfg,phase1:IDESolver.this.Phase1):IDESolver.this.Phase2"></a><a id="&lt;init&gt;:Phase2"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#&lt;init&gt;(cfg:tip.cfg.InterproceduralProgramCfg)(implicitdeclData:tip.ast.AstNodeData.DeclarationData):IDESolver.this.IDEPhase1Analysis" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#&lt;init&gt;(cfg:tip.cfg.InterproceduralProgramCfg,phase1:IDESolver.this.Phase1):IDESolver.this.Phase2" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -219,7 +219,7 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">IDEPhase1Analysis</span><span class="params">(<span name="cfg">cfg: <a href="../cfg/InterproceduralProgramCfg.html" class="extype" name="tip.cfg.InterproceduralProgramCfg">InterproceduralProgramCfg</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="declData">declData: <a href="../ast/AstNodeData$.html#DeclarationData=Map[tip.ast.AIdentifier,tip.ast.ADeclaration]" class="extmbr" name="tip.ast.AstNodeData.DeclarationData">DeclarationData</a></span>)</span>
+        <span class="name">Phase2</span><span class="params">(<span name="cfg">cfg: <a href="../cfg/InterproceduralProgramCfg.html" class="extype" name="tip.cfg.InterproceduralProgramCfg">InterproceduralProgramCfg</a></span>, <span name="phase1">phase1: <a href="IDESolver$Phase1.html" class="extype" name="tip.solvers.IDESolver.Phase1">Phase1</a></span>)</span>
       </span>
       
       
@@ -236,7 +236,7 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
                 <li name="scala.AnyRef#!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#!=(x$1:Any):Boolean" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#!=(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -252,7 +252,7 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
     </li><li name="scala.AnyRef###" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="##():Int"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html###():Int" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html###():Int" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -268,7 +268,7 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
     </li><li name="scala.AnyRef#==" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="==(x$1:Any):Boolean"></a><a id="==(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#==(x$1:Any):Boolean" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#==(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -282,9 +282,9 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="tip.solvers.ListSetWorklist#add" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="add(ns:scala.collection.immutable.Set[N]):Unit"></a><a id="add(Set[(CfgNode,Either[D,Lambda],Either[D,Lambda])]):Unit"></a>
+      <a id="add(ns:scala.collection.immutable.Set[N]):Unit"></a><a id="add(Set[(CfgNode,Either[D,Lambda])]):Unit"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#add(ns:scala.collection.immutable.Set[N]):Unit" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#add(ns:scala.collection.immutable.Set[N]):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -293,15 +293,15 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">add</span><span class="params">(<span name="ns">ns: <span class="extype" name="scala.collection.immutable.Set">Set</span>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>], <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">add</span><span class="params">(<span name="ns">ns: <span class="extype" name="scala.collection.immutable.Set">Set</span>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       
       <p class="shortcomment cmt">Adds a set of items to the worklist.</p><div class="fullcomment"><div class="comment cmt"><p>Adds a set of items to the worklist.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ListSetWorklist.html" class="extype" name="tip.solvers.ListSetWorklist">ListSetWorklist</a> → <a href="Worklist.html" class="extype" name="tip.solvers.Worklist">Worklist</a></dd></dl></div>
     </li><li name="tip.solvers.ListSetWorklist#add" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="add(n:N):Unit"></a><a id="add((CfgNode,Either[D,Lambda],Either[D,Lambda])):Unit"></a>
+      <a id="add(n:N):Unit"></a><a id="add((CfgNode,Either[D,Lambda])):Unit"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#add(n:N):Unit" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#add(n:N):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -310,7 +310,7 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">add</span><span class="params">(<span name="n">n: (<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>], <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">add</span><span class="params">(<span name="n">n: (<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       
       <p class="shortcomment cmt">Adds an item to the worklist.</p><div class="fullcomment"><div class="comment cmt"><p>Adds an item to the worklist.
@@ -318,7 +318,7 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
     </li><li name="tip.solvers.WorklistFixpointPropagationFunctions#analyze" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="analyze():WorklistFixpointPropagationFunctions.this.lattice.Element"></a><a id="analyze():Element"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#analyze():WorklistFixpointPropagationFunctions.this.lattice.Element" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#analyze():WorklistFixpointPropagationFunctions.this.lattice.Element" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -334,7 +334,7 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
     </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#asInstanceOf[T0]:T0" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#asInstanceOf[T0]:T0" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -347,10 +347,10 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="tip.solvers.IDESolver.IDEPhase1Analysis#cfg" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="tip.solvers.IDESolver.Phase2#cfg" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="cfg:tip.cfg.InterproceduralProgramCfg"></a><a id="cfg:InterproceduralProgramCfg"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#cfg:tip.cfg.InterproceduralProgramCfg" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#cfg:tip.cfg.InterproceduralProgramCfg" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -366,7 +366,7 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
     </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a><a id="clone():AnyRef"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#clone():Object" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#clone():Object" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -386,29 +386,13 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
               
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="tip.solvers.IDESolver.IDEPhase1Analysis#declData" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="declData:tip.ast.AstNodeData.DeclarationData"></a><a id="declData:DeclarationData"></a>
-      <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#declData:tip.ast.AstNodeData.DeclarationData" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier">implicit </span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">declData</span><span class="result">: <a href="../ast/AstNodeData$.html#DeclarationData=Map[tip.ast.AIdentifier,tip.ast.ADeclaration]" class="extmbr" name="tip.ast.AstNodeData.DeclarationData">DeclarationData</a></span>
-      </span>
-      
-      
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#eq(x$1:AnyRef):Boolean" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#eq(x$1:AnyRef):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -424,7 +408,7 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
     </li><li name="scala.AnyRef#equals" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="equals(x$1:Any):Boolean"></a><a id="equals(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#equals(x$1:Any):Boolean" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#equals(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -437,10 +421,10 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="tip.solvers.IDESolver.IDEPhase1Analysis#first" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="first:Set[(tip.cfg.CfgNode,IDESolver.this.DL,IDESolver.this.DL)]"></a><a id="first:Set[(CfgNode,IDESolver.DL,IDESolver.DL)]"></a>
+    </li><li name="tip.solvers.IDESolver.Phase2#first" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="first:Set[(tip.cfg.CfgNode,IDESolver.this.DL)]"></a><a id="first:Set[(CfgNode,IDESolver.DL)]"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#first:Set[(tip.cfg.CfgNode,IDESolver.this.DL,IDESolver.this.DL)]" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#first:Set[(tip.cfg.CfgNode,IDESolver.this.DL)]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -449,15 +433,15 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">first</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <a href="IDESolver.html#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDESolver.DL">IDESolver.DL</a>, <a href="IDESolver.html#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDESolver.DL">IDESolver.DL</a>)]</span>
+        <span class="name">first</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <a href="IDESolver.html#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDESolver.DL">IDESolver.DL</a>)]</span>
       </span>
       
       <p class="shortcomment cmt">The start locations.</p><div class="fullcomment"><div class="comment cmt"><p>The start locations.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.solvers.IDESolver.IDEPhase1Analysis">IDEPhase1Analysis</a> → <a href="WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a></dd></dl></div>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.solvers.IDESolver.Phase2">Phase2</a> → <a href="WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a></dd></dl></div>
     </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#getClass():Class[_]" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#getClass():Class[_]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -472,13 +456,13 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="hashCode():Int"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#hashCode():Int" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#hashCode():Int" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -493,13 +477,13 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="tip.solvers.IDESolver.IDEPhase1Analysis#init" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="init:IDESolver.this.edgelattice.IdEdge"></a><a id="init:IdEdge"></a>
+    </li><li name="tip.solvers.IDESolver.Phase2#init" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="init:Phase2.this.lattice.sublattice.Element"></a><a id="init:L.Element"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#init:IDESolver.this.edgelattice.IdEdge" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#init:Phase2.this.lattice.sublattice.Element" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -508,15 +492,15 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">init</span><span class="result">: <a href="../lattices/EdgeFunctionLattice$IdEdge.html" class="extype" name="tip.lattices.EdgeFunctionLattice.IdEdge">IdEdge</a></span>
+        <span class="name">init</span><span class="result">: <span class="extype" name="tip.lattices.Lattice.Element">L.Element</span></span>
       </span>
       
       <p class="shortcomment cmt">The initial lattice element at the start locations.</p><div class="fullcomment"><div class="comment cmt"><p>The initial lattice element at the start locations.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.solvers.IDESolver.IDEPhase1Analysis">IDEPhase1Analysis</a> → <a href="WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a></dd></dl></div>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.solvers.IDESolver.Phase2">Phase2</a> → <a href="WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a></dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#isInstanceOf[T0]:Boolean" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#isInstanceOf[T0]:Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -529,10 +513,10 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="tip.solvers.IDESolver.IDEPhase1Analysis#lattice" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="lattice:tip.lattices.MapLattice[(tip.cfg.CfgNode,IDESolver.this.DL,IDESolver.this.DL),IDESolver.this.edgelattice.type]"></a><a id="lattice:MapLattice[(CfgNode,IDESolver.DL,IDESolver.DL),IDESolver.edgelattice.type]"></a>
+    </li><li name="tip.solvers.IDESolver.Phase2#lattice" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="lattice:tip.lattices.MapLattice[(tip.cfg.CfgNode,IDESolver.this.DL),IDESolver.this.valuelattice.type]"></a><a id="lattice:MapLattice[(CfgNode,IDESolver.DL),IDESolver.valuelattice.type]"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#lattice:tip.lattices.MapLattice[(tip.cfg.CfgNode,IDESolver.this.DL,IDESolver.this.DL),IDESolver.this.edgelattice.type]" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#lattice:tip.lattices.MapLattice[(tip.cfg.CfgNode,IDESolver.this.DL),IDESolver.this.valuelattice.type]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -541,15 +525,15 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">lattice</span><span class="result">: <a href="../lattices/MapLattice.html" class="extype" name="tip.lattices.MapLattice">MapLattice</a>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <a href="IDESolver.html#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDESolver.DL">IDESolver.DL</a>, <a href="IDESolver.html#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDESolver.DL">IDESolver.DL</a>), <a href="IDESolver.html#edgelattice:tip.lattices.EdgeFunctionLattice[IDEAnalysis.this.valuelattice.type]" class="extmbr" name="tip.solvers.IDESolver#edgelattice">IDESolver.edgelattice</a>.type]</span>
+        <span class="name">lattice</span><span class="result">: <a href="../lattices/MapLattice.html" class="extype" name="tip.lattices.MapLattice">MapLattice</a>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <a href="IDESolver.html#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDESolver.DL">IDESolver.DL</a>), <a href="IDESolver.html#valuelattice:L" class="extmbr" name="tip.solvers.IDESolver#valuelattice">IDESolver.valuelattice</a>.type]</span>
       </span>
       
       <p class="shortcomment cmt">The analysis lattice.</p><div class="fullcomment"><div class="comment cmt"><p>The analysis lattice.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.solvers.IDESolver.IDEPhase1Analysis">IDEPhase1Analysis</a> → <a href="WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a></dd></dl></div>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.solvers.IDESolver.Phase2">Phase2</a> → <a href="WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a></dd></dl></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#ne(x$1:AnyRef):Boolean" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#ne(x$1:AnyRef):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -565,7 +549,7 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
     </li><li name="scala.AnyRef#notify" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notify():Unit"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#notify():Unit" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#notify():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -580,13 +564,13 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notifyAll():Unit"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#notifyAll():Unit" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#notifyAll():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -601,30 +585,29 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@native</span><span class="args">()</span>
               
-                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="tip.solvers.IDESolver.IDEPhase1Analysis#process" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="process(nab:(tip.cfg.CfgNode,IDESolver.this.DL,IDESolver.this.DL)):Unit"></a><a id="process((CfgNode,IDESolver.DL,IDESolver.DL)):Unit"></a>
+    </li><li name="tip.solvers.IDESolver.Phase2#phase1" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="phase1:IDESolver.this.Phase1"></a><a id="phase1:Phase1"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#process(nab:(tip.cfg.CfgNode,IDESolver.this.DL,IDESolver.this.DL)):Unit" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#phase1:IDESolver.this.Phase1" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">def</span>
+        <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">process</span><span class="params">(<span name="nab">nab: (<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <a href="IDESolver.html#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDESolver.DL">IDESolver.DL</a>, <a href="IDESolver.html#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDESolver.DL">IDESolver.DL</a>)</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">phase1</span><span class="result">: <a href="IDESolver$Phase1.html" class="extype" name="tip.solvers.IDESolver.Phase1">Phase1</a></span>
       </span>
       
-      <p class="shortcomment cmt">Called by <a href="#run(first:scala.collection.immutable.Set[N]):Unit" class="extmbr" name="tip.solvers.IDESolver.IDEPhase1Analysis#run">run</a> to process an item from the worklist.</p><div class="fullcomment"><div class="comment cmt"><p>Called by <a href="#run(first:scala.collection.immutable.Set[N]):Unit" class="extmbr" name="tip.solvers.IDESolver.IDEPhase1Analysis#run">run</a> to process an item from the worklist.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.solvers.IDESolver.IDEPhase1Analysis">IDEPhase1Analysis</a> → <a href="Worklist.html" class="extype" name="tip.solvers.Worklist">Worklist</a></dd></dl></div>
-    </li><li name="tip.solvers.WorklistFixpointPropagationFunctions#propagate" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="propagate(y:WorklistFixpointPropagationFunctions.this.lattice.sublattice.Element,m:N):Unit"></a><a id="propagate(Element,(CfgNode,Either[D,Lambda],Either[D,Lambda])):Unit"></a>
+      
+    </li><li name="tip.solvers.IDESolver.Phase2#process" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="process(nd:(tip.cfg.CfgNode,IDESolver.this.DL)):Unit"></a><a id="process((CfgNode,IDESolver.DL)):Unit"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#propagate(y:WorklistFixpointPropagationFunctions.this.lattice.sublattice.Element,m:N):Unit" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#process(nd:(tip.cfg.CfgNode,IDESolver.this.DL)):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -633,15 +616,32 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">propagate</span><span class="params">(<span name="y">y: <a href="../lattices/EdgeFunctionLattice.html#Element=EdgeFunctionLattice.this.EdgeFunction" class="extmbr" name="tip.lattices.EdgeFunctionLattice.Element">Element</a></span>, <span name="m">m: (<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>], <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">process</span><span class="params">(<span name="nd">nd: (<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <a href="IDESolver.html#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDESolver.DL">IDESolver.DL</a>)</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Called by <a href="#run(first:scala.collection.immutable.Set[N]):Unit" class="extmbr" name="tip.solvers.IDESolver.Phase2#run">run</a> to process an item from the worklist.</p><div class="fullcomment"><div class="comment cmt"><p>Called by <a href="#run(first:scala.collection.immutable.Set[N]):Unit" class="extmbr" name="tip.solvers.IDESolver.Phase2#run">run</a> to process an item from the worklist.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.solvers.IDESolver.Phase2">Phase2</a> → <a href="Worklist.html" class="extype" name="tip.solvers.Worklist">Worklist</a></dd></dl></div>
+    </li><li name="tip.solvers.WorklistFixpointPropagationFunctions#propagate" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="propagate(y:WorklistFixpointPropagationFunctions.this.lattice.sublattice.Element,m:N):Unit"></a><a id="propagate(L.Element,(CfgNode,Either[D,Lambda])):Unit"></a>
+      <span class="permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#propagate(y:WorklistFixpointPropagationFunctions.this.lattice.sublattice.Element,m:N):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">propagate</span><span class="params">(<span name="y">y: <span class="extype" name="tip.lattices.Lattice.Element">L.Element</span></span>, <span name="m">m: (<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       
       <p class="shortcomment cmt">Propagates lattice element y to node m.</p><div class="fullcomment"><div class="comment cmt"><p>Propagates lattice element y to node m.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a></dd></dl></div>
-    </li><li name="tip.solvers.ListSetWorklist#run" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="run(first:scala.collection.immutable.Set[N]):Unit"></a><a id="run(Set[(CfgNode,Either[D,Lambda],Either[D,Lambda])]):Unit"></a>
+    </li><li name="tip.solvers.IDESolver.Phase2#restructure" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="restructure(y:Phase2.this.lattice.Element):Phase2.this.restructuredlattice.Element"></a><a id="restructure(Element):Element"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#run(first:scala.collection.immutable.Set[N]):Unit" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#restructure(y:Phase2.this.lattice.Element):Phase2.this.restructuredlattice.Element" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -650,31 +650,80 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">run</span><span class="params">(<span name="first">first: <span class="extype" name="scala.collection.immutable.Set">Set</span>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>], <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">restructure</span><span class="params">(<span name="y">y: <a href="../lattices/MapLattice.html#Element=Map[A,MapLattice.this.sublattice.Element]" class="extmbr" name="tip.lattices.MapLattice.Element">Element</a></span>)</span><span class="result">: <a href="../lattices/MapLattice.html#Element=Map[A,MapLattice.this.sublattice.Element]" class="extmbr" name="tip.lattices.MapLattice.Element">Element</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Restructures the analysis output to match <code>restructuredlattice</code>.</p>
+    </li><li name="tip.solvers.IDESolver.Phase2#restructuredlattice" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="restructuredlattice:tip.lattices.MapLattice[tip.cfg.CfgNode,tip.lattices.MapLattice[D,IDESolver.this.valuelattice.type]]"></a><a id="restructuredlattice:MapLattice[CfgNode,MapLattice[D,IDESolver.valuelattice.type]]"></a>
+      <span class="permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#restructuredlattice:tip.lattices.MapLattice[tip.cfg.CfgNode,tip.lattices.MapLattice[D,IDESolver.this.valuelattice.type]]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">restructuredlattice</span><span class="result">: <a href="../lattices/MapLattice.html" class="extype" name="tip.lattices.MapLattice">MapLattice</a>[<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <a href="../lattices/MapLattice.html" class="extype" name="tip.lattices.MapLattice">MapLattice</a>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="IDESolver.html#valuelattice:L" class="extmbr" name="tip.solvers.IDESolver#valuelattice">IDESolver.valuelattice</a>.type]]</span>
+      </span>
+      
+      
+    </li><li name="tip.solvers.ListSetWorklist#run" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="run(first:scala.collection.immutable.Set[N]):Unit"></a><a id="run(Set[(CfgNode,Either[D,Lambda])]):Unit"></a>
+      <span class="permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#run(first:scala.collection.immutable.Set[N]):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">run</span><span class="params">(<span name="first">first: <span class="extype" name="scala.collection.immutable.Set">Set</span>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       
       <p class="shortcomment cmt">Iterates until there is no more work to do.</p><div class="fullcomment"><div class="comment cmt"><p>Iterates until there is no more work to do.</p></div><dl class="paramcmts block"><dt class="param">first</dt><dd class="cmt"><p>the initial contents of the worklist</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ListSetWorklist.html" class="extype" name="tip.solvers.ListSetWorklist">ListSetWorklist</a> → <a href="Worklist.html" class="extype" name="tip.solvers.Worklist">Worklist</a></dd></dl></div>
-    </li><li name="tip.solvers.IDESolver.IDEPhase1Analysis#summaries" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="summaries():scala.collection.mutable.Map[tip.ast.AFunDeclaration,scala.collection.mutable.Map[IDESolver.this.DL,scala.collection.mutable.Map[IDESolver.this.DL,IDESolver.this.edgelattice.EdgeFunction]]]"></a><a id="summaries():Map[AFunDeclaration,Map[IDESolver.DL,Map[IDESolver.DL,EdgeFunction]]]"></a>
+    </li><li name="tip.analysis.FlowSensitiveAnalysis#stateAfterNode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="stateAfterNode:Boolean"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#summaries():scala.collection.mutable.Map[tip.ast.AFunDeclaration,scala.collection.mutable.Map[IDESolver.this.DL,scala.collection.mutable.Map[IDESolver.this.DL,IDESolver.this.edgelattice.EdgeFunction]]]" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#stateAfterNode:Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">def</span>
+        <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">summaries</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.collection.mutable.Map">Map</span>[<a href="../ast/AFunDeclaration.html" class="extype" name="tip.ast.AFunDeclaration">AFunDeclaration</a>, <span class="extype" name="scala.collection.mutable.Map">Map</span>[<a href="IDESolver.html#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDESolver.DL">IDESolver.DL</a>, <span class="extype" name="scala.collection.mutable.Map">Map</span>[<a href="IDESolver.html#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDESolver.DL">IDESolver.DL</a>, <a href="../lattices/EdgeFunctionLattice$EdgeFunction.html" class="extype" name="tip.lattices.EdgeFunctionLattice.EdgeFunction">EdgeFunction</a>]]]</span>
+        <span class="name">stateAfterNode</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       
-      <p class="shortcomment cmt">Extracts the function summaries from the analysis result.</p><div class="fullcomment"><div class="comment cmt"><p>Extracts the function summaries from the analysis result.
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a map s such that s(f)(d1)(d2) is the transfer function for function f from d1 at function entry to d2 at function exit</p></dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../analysis/FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a></dd></dl></div>
+    </li><li name="tip.solvers.IDESolver.Phase2#summaries" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="summaries:scala.collection.mutable.Map[tip.ast.AFunDeclaration,scala.collection.mutable.Map[IDESolver.this.DL,scala.collection.mutable.Map[IDESolver.this.DL,IDESolver.this.edgelattice.EdgeFunction]]]"></a><a id="summaries:Map[AFunDeclaration,Map[IDESolver.DL,Map[IDESolver.DL,EdgeFunction]]]"></a>
+      <span class="permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#summaries:scala.collection.mutable.Map[tip.ast.AFunDeclaration,scala.collection.mutable.Map[IDESolver.this.DL,scala.collection.mutable.Map[IDESolver.this.DL,IDESolver.this.edgelattice.EdgeFunction]]]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">lazy val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">summaries</span><span class="result">: <span class="extype" name="scala.collection.mutable.Map">Map</span>[<a href="../ast/AFunDeclaration.html" class="extype" name="tip.ast.AFunDeclaration">AFunDeclaration</a>, <span class="extype" name="scala.collection.mutable.Map">Map</span>[<a href="IDESolver.html#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDESolver.DL">IDESolver.DL</a>, <span class="extype" name="scala.collection.mutable.Map">Map</span>[<a href="IDESolver.html#DL=Either[D,tip.solvers.Lambda]" class="extmbr" name="tip.solvers.IDESolver.DL">IDESolver.DL</a>, <a href="../lattices/EdgeFunctionLattice$EdgeFunction.html" class="extype" name="tip.lattices.EdgeFunctionLattice.EdgeFunction">EdgeFunction</a>]]]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Function summaries from phase 1.</p><div class="fullcomment"><div class="comment cmt"><p>Function summaries from phase 1.
+Built when first invoked.
+</p></div></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -690,7 +739,7 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
     </li><li name="scala.AnyRef#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#toString():String" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#toString():String" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -706,7 +755,7 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -728,7 +777,7 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait(x$1:Long):Unit"></a><a id="wait(Long):Unit"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#wait(x$1:Long):Unit" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#wait(x$1:Long):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -752,7 +801,7 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#wait():Unit" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#wait():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -771,10 +820,10 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="tip.solvers.IDESolver.IDEPhase1Analysis#x" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="x:IDEPhase1Analysis.this.lattice.Element"></a><a id="x:Element"></a>
+    </li><li name="tip.solvers.IDESolver.Phase2#x" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="x:Phase2.this.lattice.Element"></a><a id="x:Element"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#x:IDEPhase1Analysis.this.lattice.Element" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#x:Phase2.this.lattice.Element" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -787,7 +836,7 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
       </span>
       
       <p class="shortcomment cmt">The current lattice element.</p><div class="fullcomment"><div class="comment cmt"><p>The current lattice element.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.solvers.IDESolver.IDEPhase1Analysis">IDEPhase1Analysis</a> → <a href="WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a></dd></dl></div>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="tip.solvers.IDESolver.Phase2">Phase2</a> → <a href="WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a></dd></dl></div>
     </li>
               </ol>
             </div>
@@ -799,7 +848,7 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
               <ol><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <span class="permalink">
-      <a href="../../tip/solvers/IDESolver$IDEPhase1Analysis.html#finalize():Unit" title="Permalink">
+      <a href="../../tip/solvers/IDESolver$Phase2.html#finalize():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -826,11 +875,15 @@ instead of <code>callJumpCache</code> and <code>exitJumpCache</code>.
 
         <div id="inheritedMembers">
         <div class="parent" name="tip.solvers.WorklistFixpointPropagationFunctions">
-              <h3>Inherited from <a href="WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>], <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])]</h3>
+              <h3>Inherited from <a href="WorklistFixpointPropagationFunctions.html" class="extype" name="tip.solvers.WorklistFixpointPropagationFunctions">WorklistFixpointPropagationFunctions</a>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])]</h3>
             </div><div class="parent" name="tip.solvers.ListSetWorklist">
-              <h3>Inherited from <a href="ListSetWorklist.html" class="extype" name="tip.solvers.ListSetWorklist">ListSetWorklist</a>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>], <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])]</h3>
+              <h3>Inherited from <a href="ListSetWorklist.html" class="extype" name="tip.solvers.ListSetWorklist">ListSetWorklist</a>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])]</h3>
             </div><div class="parent" name="tip.solvers.Worklist">
-              <h3>Inherited from <a href="Worklist.html" class="extype" name="tip.solvers.Worklist">Worklist</a>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>], <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])]</h3>
+              <h3>Inherited from <a href="Worklist.html" class="extype" name="tip.solvers.Worklist">Worklist</a>[(<a href="../cfg/CfgNode.html" class="extype" name="tip.cfg.CfgNode">CfgNode</a>, <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="tip.solvers.IDESolver.D">D</span>, <a href="Lambda.html" class="extype" name="tip.solvers.Lambda">Lambda</a>])]</h3>
+            </div><div class="parent" name="tip.analysis.FlowSensitiveAnalysis">
+              <h3>Inherited from <a href="../analysis/FlowSensitiveAnalysis.html" class="extype" name="tip.analysis.FlowSensitiveAnalysis">FlowSensitiveAnalysis</a></h3>
+            </div><div class="parent" name="tip.analysis.Analysis">
+              <h3>Inherited from <a href="../analysis/Analysis.html" class="extype" name="tip.analysis.Analysis">Analysis</a>[<span class="extype" name="scala.Any">Any</span>]</h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">
