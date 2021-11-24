@@ -18,12 +18,6 @@ trait Lattice {
   type Element
 
   /**
-    * The characteristic function of the set of lattice elements.
-    * Default implementation: returns true for all elements of the right type.
-    */
-  def ch(e: Element) = true
-
-  /**
     * The bottom element of this lattice.
     */
   val bottom: Element

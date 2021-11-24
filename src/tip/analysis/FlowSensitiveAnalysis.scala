@@ -19,7 +19,8 @@ object FlowSensitiveAnalysis {
   def select(kind: Analysis.Value, options: AnalysisOption.Value, cfg: FragmentCfg)(implicit declData: DeclarationData): Option[FlowSensitiveAnalysis] = {
 
     val typedCfg = options match {
-      case AnalysisOption.`iwlr` | AnalysisOption.`iwlrp` | AnalysisOption.`csiwlrp` | AnalysisOption.`cfiwlrp` | AnalysisOption.`ide` =>
+      case AnalysisOption.`iwlr` | AnalysisOption.`iwlrp` | AnalysisOption.`csiwlrp` | AnalysisOption.`cfiwlrp` | AnalysisOption.`ide` |
+          AnalysisOption.`summary` =>
         cfg match {
           case w: InterproceduralProgramCfg => Right(w)
           case _ => throw new RuntimeException(s"Whole CFG needed")
@@ -103,6 +104,14 @@ object FlowSensitiveAnalysis {
         Some(kind match {
           case Analysis.copyconstprop => new CopyConstantPropagationIDEAnalysis(typedCfg.right.get)
           case Analysis.uninitvars => new PossiblyUninitializedVarsIDEAnalysis(typedCfg.right.get)
+          case Analysis.taint => new TaintIDEAnalysis(typedCfg.right.get)
+          case _ => throw new RuntimeException(s"Unsupported solver option `$options` for the analysis $kind")
+        })
+      case AnalysisOption.`summary` =>
+        Some(kind match {
+          case Analysis.copyconstprop => new CopyConstantPropagationSummaryAnalysis(typedCfg.right.get)
+          case Analysis.uninitvars => new PossiblyUninitializedVarsSummaryAnalysis(typedCfg.right.get)
+          case Analysis.taint => new TaintSummaryAnalysis(typedCfg.right.get)
           case _ => throw new RuntimeException(s"Unsupported solver option `$options` for the analysis $kind")
         })
     }
@@ -122,9 +131,10 @@ object FlowSensitiveAnalysis {
     * - csiwlrp: use the worklist solver with reachability and propagation, context-sensitive (with call string) interprocedural version
     * - cfiwlrp: use the worklist solver with reachability and propagation, context-sensitive (with functional approach) interprocedural version
     * - ide: use the IDE solver
+    * - summary: use the summary solver
     */
   object AnalysisOption extends Enumeration {
-    val simple, Disabled, wl, wlr, wlrw, wlrwn, wlrp, iwlr, iwlrp, csiwlrp, cfiwlrp, ide = Value
+    val simple, Disabled, wl, wlr, wlrw, wlrwn, wlrp, iwlr, iwlrp, csiwlrp, cfiwlrp, ide, summary = Value
 
     def interprocedural(v: Value): Boolean =
       v match {
@@ -133,6 +143,7 @@ object FlowSensitiveAnalysis {
         case `csiwlrp` => true
         case `cfiwlrp` => true
         case `ide` => true
+        case `summary` => true
         case _ => false
       }
 
@@ -155,6 +166,6 @@ object FlowSensitiveAnalysis {
     * A flow sensitive analysis kind
     */
   object Analysis extends Enumeration {
-    val sign, livevars, available, vbusy, reaching, constprop, interval, copyconstprop, uninitvars = Value
+    val sign, livevars, available, vbusy, reaching, constprop, interval, copyconstprop, uninitvars, taint = Value
   }
 }

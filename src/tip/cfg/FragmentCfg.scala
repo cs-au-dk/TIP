@@ -79,8 +79,8 @@ object FragmentCfg {
   * Fragment of a control-flow graph.
   * Describes a fragment of a TIP program, for example one or more statements or function bodies.
   *
-  * @param graphEntries map from AST function declarations to corresponding CFG function entry nodes
-  * @param graphExits map from AST function declarations to corresponding CFG function exit nodes
+  * @param graphEntries set of entry nodes of the fragment
+  * @param graphExits set of exit nodes of the fragment
   *
   * @see [[tip.cfg.InterproceduralProgramCfg]], [[tip.cfg.IntraproceduralProgramCfg]]
   */
@@ -178,4 +178,4 @@ class FragmentCfg(private[cfg] val graphEntries: Set[CfgNode], private[cfg] val 
   * @param funExits map from AST function declarations to CFG function exit nodes
   */
 abstract class ProgramCfg(val prog: AProgram, val funEntries: Map[AFunDeclaration, CfgFunEntryNode], val funExits: Map[AFunDeclaration, CfgFunExitNode])
-    extends FragmentCfg(funEntries.values.toSet[CfgNode], funEntries.values.toSet[CfgNode])
+    extends FragmentCfg(funEntries.values.toSet, funExits.values.toSet)

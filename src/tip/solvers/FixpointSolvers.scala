@@ -305,7 +305,7 @@ trait WorklistFixpointPropagationFunctions[N] extends ListSetWorklist[N] {
 /**
   * Worklist-based fixpoint solver that performs propagation after transfer instead of join before transfer.
   * This results in fewer join operations when nodes have many dependencies.
-  * Note that with this approach, each abstract state represents the program point *after* the node
+  * Note that with this approach, each abstract state represents the program point *before* the node
   * (for a forward analysis, and opposite for a backward analysis).
   */
 trait WorklistFixpointPropagationSolver[N] extends WorklistFixpointSolverWithReachability[N] with WorklistFixpointPropagationFunctions[N] {
@@ -322,7 +322,7 @@ trait WorklistFixpointPropagationSolver[N] extends WorklistFixpointSolverWithRea
     * This method overrides the one from [[WorklistFixpointSolver]].
     * Called by the worklist solver when a node is visited.
     */
-  override def process(n: N) = {
+  override def process(n: N): Unit = {
     // read the current lattice element
     val xn = x(n)
     // apply the transfer function

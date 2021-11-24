@@ -230,8 +230,8 @@ abstract class SimpleValueAnalysis(val cfg: ProgramCfg)(implicit val decl: Decla
 /**
   * Base class for value analysis with lifted lattice, where the extra bottom element represents "unreachable".
   */
-abstract class LiftedValueAnalysis[P <: ProgramCfg](val cfg: P)(implicit val declData: DeclarationData)
-    extends FlowSensitiveAnalysis(true)
+abstract class LiftedValueAnalysis[P <: ProgramCfg](val cfg: P, stateAfterNode: Boolean)(implicit val declData: DeclarationData)
+    extends FlowSensitiveAnalysis(stateAfterNode)
     with MapLatticeSolver[CfgNode]
     with ValueAnalysisMisc {
 
@@ -396,7 +396,7 @@ abstract class IntraprocValueAnalysisWorklistSolver[L <: LatticeWithOps](cfg: In
   */
 abstract class IntraprocValueAnalysisWorklistSolverWithReachability[L <: LatticeWithOps](cfg: IntraproceduralProgramCfg, val valuelattice: L)(
   implicit override val declData: DeclarationData
-) extends LiftedValueAnalysis(cfg)
+) extends LiftedValueAnalysis(cfg, true)
     with LiftedValueAnalysisMisc
     with WorklistFixpointSolverWithReachability[CfgNode]
     with ForwardDependencies
@@ -406,7 +406,7 @@ abstract class IntraprocValueAnalysisWorklistSolverWithReachability[L <: Lattice
   */
 abstract class IntraprocValueAnalysisWorklistSolverWithReachabilityAndPropagation[L <: LatticeWithOps](cfg: IntraproceduralProgramCfg, val valuelattice: L)(
   implicit override val declData: DeclarationData
-) extends LiftedValueAnalysis(cfg)
+) extends LiftedValueAnalysis(cfg, false)
     with LiftedValueAnalysisMisc
     with WorklistFixpointPropagationSolver[CfgNode]
     with ForwardDependencies
@@ -417,7 +417,7 @@ abstract class IntraprocValueAnalysisWorklistSolverWithReachabilityAndPropagatio
   */
 abstract class InterprocValueAnalysisWorklistSolverWithReachability[L <: LatticeWithOps](cfg: InterproceduralProgramCfg, val valuelattice: L)(
   implicit override val declData: DeclarationData
-) extends LiftedValueAnalysis(cfg)
+) extends LiftedValueAnalysis(cfg, true)
     with LiftedValueAnalysisMisc
     with InterprocValueAnalysisFunctions
     with WorklistFixpointSolverWithReachability[CfgNode]
@@ -436,10 +436,10 @@ abstract class InterprocValueAnalysisWorklistSolverWithReachability[L <: Lattice
   */
 abstract class InterprocValueAnalysisWorklistSolverWithReachabilityAndPropagation[L <: LatticeWithOps](cfg: InterproceduralProgramCfg, val valuelattice: L)(
   implicit override val declData: DeclarationData
-) extends LiftedValueAnalysis(cfg)
+) extends LiftedValueAnalysis(cfg, false)
     with InterprocValueAnalysisFunctionsWithPropagation
     with WorklistFixpointPropagationSolver[CfgNode]
-    with InterproceduralForwardDependencies {
+    with ForwardDependencies {
 
   /**
     * Initialize worklist with the program entry point.

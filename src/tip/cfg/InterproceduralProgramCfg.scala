@@ -123,7 +123,7 @@ class InterproceduralProgramCfg(
   /**
     * The node corresponding to entry of the main function.
     */
-  def programEntry = funEntries(program.mainFunction)
+  def programEntry: CfgFunEntryNode = funEntries(program.mainFunction)
 
   /**
     * Map from [[tip.cfg.CfgFunEntryNode]] to the set of [[tip.cfg.CfgCallNode]]s calling the function.
@@ -144,6 +144,11 @@ class InterproceduralProgramCfg(
     * Map from [[tip.cfg.CfgFunExitNode]] to the set of [[tip.cfg.CfgAfterCallNode]]s of the calling functions.
     */
   var callerAfterCalls = Map[CfgFunExitNode, Set[CfgAfterCallNode]]().withDefaultValue(Set[CfgAfterCallNode]())
+
+  /**
+    * Map from [[tip.cfg.CfgFunEntryNode]] to the set of [[tip.cfg.CfgCallNode]]s in the function.
+    */
+  var callsInFunction: Map[CfgFunEntryNode, Set[CfgCallNode]] = _
 
   /**
     * Map from [[tip.cfg.CfgNode]] to the enclosing function entry node.
@@ -169,6 +174,7 @@ class InterproceduralProgramCfg(
       case _ =>
     }
     enclosingFunctionEntry = functionNodes.reverse.mapValues(_.head)
+    callsInFunction = entryToCalls
   }
 
   /**
@@ -177,6 +183,19 @@ class InterproceduralProgramCfg(
   private def functionNodes: Map[CfgFunEntryNode, Set[CfgNode]] =
     funEntries.values.map { entry =>
       entry -> nodesRec(entry).toSet
+    }.toMap
+
+  /**
+    * Maps each function (represented by it's entry node) to the set of call nodes it contains.
+    */
+  private def entryToCalls: Map[CfgFunEntryNode, Set[CfgCallNode]] =
+    funEntries.values.map { entry =>
+      (entry, nodesRec(entry).toSet.flatMap { n: CfgNode =>
+        n match {
+          case call: CfgCallNode => Some(call)
+          case _ => None
+        }
+      })
     }.toMap
 
   initdeps()

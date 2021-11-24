@@ -20,7 +20,7 @@ abstract class IDESolver[D, L <: Lattice](val cfg: InterproceduralProgramCfg)(im
     * The original version of the algorithm uses summary edges from call nodes to after-call nodes
     * instead of `callJumpCache` and `exitJumpCache`.
     */
-  class IDEPhase1Analysis(val cfg: InterproceduralProgramCfg) extends WorklistFixpointPropagationFunctions[(CfgNode, Either[D, Lambda], Either[D, Lambda])] {
+  class Phase1(val cfg: InterproceduralProgramCfg) extends WorklistFixpointPropagationFunctions[(CfgNode, Either[D, Lambda], Either[D, Lambda])] {
 
     /**
       * The analysis lattice.
@@ -46,7 +46,7 @@ abstract class IDESolver[D, L <: Lattice](val cfg: InterproceduralProgramCfg)(im
 
     import edgelattice.{EdgeFunction, IdEdge}
 
-    val first: Set[(CfgNode, DL, DL)] = Set((cfg.funEntries(cfg.program.mainFunction), Right(Lambda()), Right(Lambda())))
+    val first: Set[(CfgNode, DL, DL)] = Set((cfg.programEntry, Right(Lambda()), Right(Lambda())))
 
     val init = IdEdge()
 
@@ -78,7 +78,7 @@ abstract class IDESolver[D, L <: Lattice](val cfg: InterproceduralProgramCfg)(im
         case (d3, e12) => // d3 is now an item at the caller function entry, and e12 is the composed edge to d1 at the callee entry
           val e3 = x(funexit, d1, d2) // summary edge from d1 to d2 at the callee function
           val e123 = e3.composeWith(e12)
-          edgesExitToAfterCall(d2, funexit, aftercall).foreach {
+          edgesExitToAfterCall(funexit, aftercall)(d2).foreach {
             case (d4, e4) => // d4 is now an item at the aftercall node, and e4 is the edge from the function exit to the aftercall node
               val e = e4.composeWith(e123) // e is now the composed edge from e3 at the caller entry to d4 at the aftercall node
               propagate(e, (aftercall, d3, d4))
@@ -97,7 +97,7 @@ abstract class IDESolver[D, L <: Lattice](val cfg: InterproceduralProgramCfg)(im
             // function call nodes
             case call: CfgCallNode =>
               call.callees.foreach { entry =>
-                edgesCallToEntry(d2, call, entry).foreach {
+                edgesCallToEntry(call, entry)(d2).foreach {
                   case (d3, e2) =>
                     // propagate to function entry
                     propagate(IdEdge(), (entry, d3, d3))
@@ -110,7 +110,7 @@ abstract class IDESolver[D, L <: Lattice](val cfg: InterproceduralProgramCfg)(im
                 }
               }
               // propagate bypassing local variables to after-call
-              edgesCallToAfterCall(d2, call, call.afterCallNode).foreach {
+              edgesCallToAfterCall(call, call.afterCallNode)(d2).foreach {
                 case (d3, e2) =>
                   propagate(e2.composeWith(e1), (call.afterCallNode, d1, d3))
               }
@@ -124,7 +124,7 @@ abstract class IDESolver[D, L <: Lattice](val cfg: InterproceduralProgramCfg)(im
 
             // other nodes
             case _ =>
-              edgesOther(d2, n).foreach {
+              edgesOther(n)(d2).foreach {
                 case (d3, e2) =>
                   val e3 = e2.composeWith(e1)
                   n.succ.foreach { m =>
@@ -165,7 +165,7 @@ abstract class IDESolver[D, L <: Lattice](val cfg: InterproceduralProgramCfg)(im
     * Performs a forward dataflow analysis using the decomposed lattice and the micro-transformers.
     * The original RHS version of IDE uses jump functions for all nodes, not only at exits, but the analysis result and complexity is the same.
     */
-  class IDEPhase2Analysis(val cfg: InterproceduralProgramCfg, val phase1: IDEPhase1Analysis)
+  class Phase2(val cfg: InterproceduralProgramCfg, val phase1: Phase1)
       extends FlowSensitiveAnalysis(false)
       with WorklistFixpointPropagationFunctions[(CfgNode, Either[D, Lambda])] {
 
@@ -187,7 +187,7 @@ abstract class IDESolver[D, L <: Lattice](val cfg: InterproceduralProgramCfg)(im
       */
     var x: lattice.Element = _
 
-    val first: Set[(CfgNode, DL)] = Set((cfg.funEntries(cfg.program.mainFunction), Right(Lambda())))
+    val first: Set[(CfgNode, DL)] = Set((cfg.programEntry, Right(Lambda())))
 
     val init: lattice.sublattice.Element = lattice.sublattice.top
 
@@ -202,14 +202,14 @@ abstract class IDESolver[D, L <: Lattice](val cfg: InterproceduralProgramCfg)(im
             // function call nodes
             case call: CfgCallNode =>
               call.callees.foreach { entry =>
-                edgesCallToEntry(d, call, entry).foreach {
+                edgesCallToEntry(call, entry)(d).foreach {
                   case (d2, e) =>
                     // propagate to function entry
                     propagate(e(xnd), (entry, d2))
                     // propagate to after-call, via the function summary and exit edges
                     summaries(entry.data)(d2).foreach {
                       case (d3, e2) =>
-                        edgesExitToAfterCall(d3, entry.exit, call.afterCallNode).foreach {
+                        edgesExitToAfterCall(entry.exit, call.afterCallNode)(d3).foreach {
                           case (d4, e3) =>
                             propagate(e3(e2(e(xnd))), (call.afterCallNode, d4))
                         }
@@ -217,7 +217,7 @@ abstract class IDESolver[D, L <: Lattice](val cfg: InterproceduralProgramCfg)(im
                 }
               }
               // propagate bypassing local variables to after-call
-              edgesCallToAfterCall(d, call, call.afterCallNode).foreach {
+              edgesCallToAfterCall(call, call.afterCallNode)(d).foreach {
                 case (d2, e) =>
                   propagate(e(xnd), (call.afterCallNode, d2))
               }
@@ -227,7 +227,7 @@ abstract class IDESolver[D, L <: Lattice](val cfg: InterproceduralProgramCfg)(im
 
             // all other nodes, just use the micro-transformer edges
             case _ =>
-              edgesOther(d, n).foreach {
+              edgesOther(n)(d).foreach {
                 case (d2, e) =>
                   n.succ.foreach { m =>
                     propagate(e(xnd), (m, d2))
@@ -254,10 +254,10 @@ abstract class IDESolver[D, L <: Lattice](val cfg: InterproceduralProgramCfg)(im
 
   def analyze(): Map[CfgNode, Map[D, valuelattice.Element]] = {
     FixpointSolvers.log.verb(s"IDE phase 1")
-    val phase1 = new IDEPhase1Analysis(cfg)
+    val phase1 = new Phase1(cfg)
     phase1.analyze()
     FixpointSolvers.log.verb(s"IDE phase 2")
-    val phase2 = new IDEPhase2Analysis(cfg, phase1)
+    val phase2 = new Phase2(cfg, phase1)
     phase2.restructure(phase2.analyze())
   }
 }

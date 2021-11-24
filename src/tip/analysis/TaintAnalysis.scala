@@ -5,14 +5,11 @@ import tip.ast.AstNodeData.{AstNodeWithDeclaration, DeclarationData}
 import tip.cfg._
 import tip.lattices._
 import tip.solvers._
-import tip.ast.AstOps._
-
-import scala.collection.mutable
 
 /**
-  * Micro-transfer-functions for possibly-uninitialized variables analysis.
+  * Micro-transfer-functions for taint analysis.
   */
-trait PossiblyUninitializedVarsAnalysisFunctions extends IDEAnalysis[ADeclaration, TwoElementLattice] {
+trait TaintAnalysisFunctions extends IDEAnalysis[ADeclaration, TwoElementLattice] {
 
   NoPointers.assertContainsProgram(cfg.prog)
   NoRecords.assertContainsProgram(cfg.prog)
@@ -25,7 +22,6 @@ trait PossiblyUninitializedVarsAnalysisFunctions extends IDEAnalysis[ADeclaratio
 
   import cfg._
   import edgelattice._
-  import edgelattice.valuelattice._
 
   def edgesCallToEntry(call: CfgCallNode, entry: CfgFunEntryNode)(d: DL): Map[DL, edgelattice.EdgeFunction] =
     entry.data.params.zip(call.invocation.args).foldLeft(Map[DL, edgelattice.EdgeFunction]()) {
@@ -46,20 +42,6 @@ trait PossiblyUninitializedVarsAnalysisFunctions extends IDEAnalysis[ADeclaratio
     n match {
       case r: CfgStmtNode =>
         r.data match {
-
-          // var declarations
-          case varr: AVarStmt =>
-            d match {
-              case Right(_) =>
-                varr.declIds.foldLeft(Map(d -> IdEdge()): Map[DL, EdgeFunction]) { (ps, id) => // identity edge from lambda to lambda
-                  ps + (Left(id) -> ConstEdge(Top)) // top edge from lambda to each variable being declared
-                }
-              case Left(a) =>
-                if (varr.declIds.contains(a))
-                  Map() // no edges from the variables being declared
-                else
-                  Map(d -> IdEdge()) // identity edge from all other variables to themselves
-            }
 
           // assignments
           case as: AAssignStmt =>
@@ -88,30 +70,19 @@ trait PossiblyUninitializedVarsAnalysisFunctions extends IDEAnalysis[ADeclaratio
   /**
     * Micro-transfer-functions for assigning an expression to an identifier.
     */
-  private def assign(d: DL, id: ADeclaration, exp: AExprOrIdentifierDeclaration): Map[DL, edgelattice.EdgeFunction] = {
-    val edges = mutable.ListBuffer[(DL, EdgeFunction)]()
-    d match {
-      case Right(_) =>
-        edges += d -> IdEdge() // identity edge from lambda to lambda
-      case Left(a) =>
-        // identity edge from d to the variable being assigned to if d appears in exp
-        if (exp.appearingIds.contains(a))
-          edges += Left(id) -> IdEdge()
-    }
-    edges.toMap
-  }
+  private def assign(d: DL, id: ADeclaration, exp: AExprOrIdentifierDeclaration): Map[DL, edgelattice.EdgeFunction] = ??? //<--- Complete here
 }
 
 /**
-  * Possibly-uninitialized variables analysis using IDE solver.
+  * Taint analysis using IDE solver.
   */
-class PossiblyUninitializedVarsIDEAnalysis(cfg: InterproceduralProgramCfg)(implicit val declData: DeclarationData)
+class TaintIDEAnalysis(cfg: InterproceduralProgramCfg)(implicit val declData: DeclarationData)
     extends IDESolver[ADeclaration, TwoElementLattice](cfg)
-    with PossiblyUninitializedVarsAnalysisFunctions
+    with TaintAnalysisFunctions
 
 /**
-  * Possibly-uninitialized variables analysis using summary solver.
+  * Taint analysis using summary solver.
   */
-class PossiblyUninitializedVarsSummaryAnalysis(cfg: InterproceduralProgramCfg)(implicit val declData: DeclarationData)
+class TaintSummaryAnalysis(cfg: InterproceduralProgramCfg)(implicit val declData: DeclarationData)
     extends SummarySolver[ADeclaration, TwoElementLattice](cfg)
-    with PossiblyUninitializedVarsAnalysisFunctions
+    with TaintAnalysisFunctions
