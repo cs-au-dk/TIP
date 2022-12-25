@@ -73,7 +73,7 @@ class TypeAnalysis(program: AProgram)(implicit declData: DeclarationData) extend
     // close the terms and create the TypeData
     new DepthFirstAstVisitor[Unit] {
       val sol: Map[Var[Type], Term[Type]] = solver.solution()
-      log.info(s"Solution (not yet closed):\n${sol.map { case (k, v) => s"  \u27E6$k\u27E7 = $v" }.mkString("\n")}")
+      log.info(s"Solution (not yet closed):\n${sol.map { case (k, v) => s"  $k = $v" }.mkString("\n")}")
       val freshvars: mutable.Map[Var[Type], Var[Type]] = mutable.Map()
       visit(program, ())
 
